@@ -1,0 +1,33 @@
+# ============================================================
+#  Oil Roxwood — ce qui ne doit JAMAIS partir sur le dépôt public
+# ============================================================
+
+# Bot Discord : code local uniquement
+bot/
+swisstransfer_*/
+
+# Secrets et bases locales
+.env
+.env.*
+*.db
+*.sqlite
+secrets.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Éditeurs et systèmes
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Fichiers temporaires
+*.log
+*.tmp
+*.bak
+~$*

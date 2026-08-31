@@ -1,0 +1,253 @@
+/* ============================================================
+   OIL ROXWOOD — SOCLE COMMUN  «raffinerie brute»
+   Chargé par index.html ET admin.html.
+   Contient : jetons de couleur, typographie, textures, rivets,
+   rubans de danger, lampe torche, plaques inclinables, boutons.
+   ------------------------------------------------------------
+   Deux thèmes : JOUR (par défaut) et NUIT (html.dark).
+   Le basculement est piloté par toggleTheme() → html.dark
+   ============================================================ */
+
+/* ---------- 1. JETONS ---------- */
+:root{
+  /* --- JOUR : plein soleil sur le dépôt --- */
+  --brut:#1C1410;
+  --fond:#E7DFD3;
+  --bg:#E7DFD3;
+  --plaque:#FFFFFF;
+  --plaque-2:#F4EEE5;
+  --plaque-3:#EAE1D4;
+  --acier:#DDD2C2;
+  --trait:#D2C6B4;
+  --trait-fort:#B9A88F;
+  --ink:#1C1410;
+  --vapeur:#1C1410;
+  --fumee:#5C5145;
+  --cendre:#8A7C6C;
+  --white:#FFFFFF;
+
+  --ambre:#C97A0C;
+  --ambre-clair:#E8A020;
+  --flamme:#E0521A;
+  --accent:#C97A0C;
+  --accent-2:#A8620A;
+
+  --ok:#2F7A55;
+  --alerte:#B3352F;
+  --attente:#3E6288;
+  --green:#2F7A55;
+  --red:#B3352F;
+  --blue:#3E6288;
+  --violet:#8A4A20;
+
+  /* échelle orange héritée de l'ancien socle */
+  --or1:#E8A020; --or2:#C97A0C; --or3:#9C5A08; --or4:#6E3D06;
+  --neon-p:#C97A0C; --neon-c:#E8A020; --neon-v:#9C5A08;
+
+  --radius:2px;
+  --wrap:1240px;
+  --ease:cubic-bezier(.22,.7,.25,1);
+
+  --f-display:"Big Shoulders Display","Oswald","Arial Narrow",Impact,sans-serif;
+  --f-body:"Archivo","Inter","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono","JetBrains Mono",ui-monospace,Menlo,monospace;
+
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  --rouille:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .022' numOctaves='5' seed='7'/%3E%3CfeColorMatrix values='0.9 0 0 0 0.45  0 0.42 0 0 0.16  0 0 0.15 0 0.04  0 0 0 -1.4 1.05'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23r)'/%3E%3C/svg%3E");
+  --danger:repeating-linear-gradient(45deg,#1C1410 0 14px,#E8A020 14px 28px);
+
+  --grain-op:.05;
+  --rouille-op:.5;
+  --torche-a:.10;
+  --reflet-a:.06;
+}
+
+html.dark{
+  /* --- NUIT : la raffinerie au crépuscule --- */
+  --brut:#080605;
+  --fond:#0D0A08;
+  --bg:#0D0A08;
+  --plaque:#16110E;
+  --plaque-2:#1E1713;
+  --plaque-3:#241C17;
+  --acier:#241C17;
+  --trait:#2E241E;
+  --trait-fort:#4A362A;
+  --ink:#F3EADF;
+  --vapeur:#F3EADF;
+  --fumee:#A2948A;
+  --cendre:#70645B;
+  --white:#16110E;
+
+  --ambre:#E8A020;
+  --ambre-clair:#F7C463;
+  --flamme:#FF6A2B;
+  --accent:#E8A020;
+  --accent-2:#F7C463;
+
+  --ok:#4FA97B;
+  --alerte:#D9534F;
+  --attente:#6C8BB0;
+  --green:#4FA97B;
+  --red:#D9534F;
+  --blue:#6C8BB0;
+  --violet:#C0862B;
+
+  --or1:#F7C463; --or2:#E8A020; --or3:#B8752A; --or4:#7A4A18;
+  --neon-p:#E8A020; --neon-c:#F7C463; --neon-v:#B8752A;
+
+  --danger:repeating-linear-gradient(45deg,#0A0806 0 14px,#E8A020 14px 28px);
+
+  --grain-op:.055;
+  --rouille-op:.85;
+  --torche-a:.15;
+  --reflet-a:.10;
+}
+
+/* ---------- 2. BASE ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip}
+body{
+  margin:0;background:var(--fond);color:var(--ink);
+  font-family:var(--f-body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:var(--grain);opacity:var(--grain-op);mix-blend-mode:overlay;
+}
+img{max-width:100%}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+::selection{background:var(--ambre);color:#0A0806}
+:focus-visible{outline:2px solid var(--ambre);outline-offset:3px}
+
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:800;margin:0;line-height:.92;text-wrap:balance}
+
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--trait-fort);border-radius:99px;border:2px solid var(--fond)}
+::-webkit-scrollbar-thumb:hover{background:var(--ambre)}
+
+/* ---------- 3. LAMPE TORCHE ---------- */
+#rouille,#torche{position:fixed;inset:0;pointer-events:none;z-index:110}
+#rouille{
+  background-image:var(--rouille);background-size:520px;
+  opacity:var(--rouille-op);mix-blend-mode:overlay;
+  -webkit-mask-image:radial-gradient(circle 250px at var(--mx,-600px) var(--my,-600px),#000 0%,rgba(0,0,0,.4) 48%,transparent 74%);
+          mask-image:radial-gradient(circle 250px at var(--mx,-600px) var(--my,-600px),#000 0%,rgba(0,0,0,.4) 48%,transparent 74%);
+}
+#torche{
+  z-index:111;mix-blend-mode:screen;
+  background:radial-gradient(circle 300px at var(--mx,-600px) var(--my,-600px),
+    rgba(255,170,64,var(--torche-a)),rgba(255,110,30,.04) 45%,transparent 70%);
+}
+@media (hover:none),(prefers-reduced-motion:reduce){#rouille,#torche{display:none}}
+
+/* ---------- 4. RIVETS & PLAQUES INCLINABLES ---------- */
+.rivet{
+  position:absolute;width:4px;height:4px;border-radius:50%;
+  background:var(--trait-fort);box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+  pointer-events:none;z-index:4;
+}
+.rivet.a{top:6px;left:6px}.rivet.b{top:6px;right:6px}
+.rivet.c{bottom:6px;left:6px}.rivet.d{bottom:6px;right:6px}
+
+[data-tilt],[data-lueur]{position:relative}
+[data-tilt]{transform:rotate(var(--base,0deg));transition:transform .5s var(--ease);will-change:transform}
+[data-tilt].actif{
+  transition:transform .1s linear;
+  transform:perspective(1000px) rotate(var(--base,0deg)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+}
+[data-tilt]::after,[data-lueur]::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:5;
+  background:radial-gradient(circle 220px at var(--sx,50%) var(--sy,50%),
+    rgba(255,225,175,var(--reflet-a)),transparent 62%);
+}
+[data-tilt].actif::after,[data-lueur].actif::after{opacity:1}
+
+/* ---------- 5. RUBANS DE DANGER ---------- */
+.hachures{height:12px;background:var(--danger);opacity:.9}
+.ruban{
+  position:relative;z-index:6;overflow:hidden;
+  background:var(--ambre);color:#0A0806;
+  border-block:2px solid #0A0806;
+  transform:rotate(-1.15deg) scaleX(1.06);
+}
+.ruban.inverse{transform:rotate(1deg) scaleX(1.06);background:var(--acier);color:var(--ambre);border-color:var(--trait-fort)}
+.defile{display:flex;width:max-content;animation:defile 34s linear infinite}
+.ruban.inverse .defile{animation-duration:44s;animation-direction:reverse}
+.defile > div{display:flex;align-items:center;padding:11px 0}
+.defile span{
+  font-family:var(--f-display);font-size:23px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.04em;padding:0 22px;display:flex;align-items:center;gap:22px;white-space:nowrap;
+}
+.defile span::after{content:"";width:7px;height:7px;background:currentColor;transform:rotate(45deg);flex:none}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ---------- 6. ÉTIQUETTE / TAG ---------- */
+.tag{
+  display:inline-flex;align-items:center;gap:9px;position:relative;
+  font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ambre);
+  border:1px solid var(--trait-fort);background:rgba(232,160,32,.07);padding:7px 14px;
+}
+.tag::before,.tag::after{content:"";position:absolute;width:3px;height:3px;background:var(--trait-fort);border-radius:50%;top:3px}
+.tag::before{left:3px}.tag::after{right:3px}
+
+/* ---------- 7. TYPO GÉANTE EN FILIGRANE ---------- */
+.geant{
+  position:absolute;pointer-events:none;user-select:none;z-index:0;
+  font-family:var(--f-display);font-weight:900;line-height:.72;white-space:nowrap;
+  font-size:clamp(150px,25vw,380px);
+  color:transparent;-webkit-text-stroke:1.5px rgba(201,122,12,.13);
+}
+html.dark .geant{-webkit-text-stroke-color:rgba(232,160,32,.11)}
+
+/* ---------- 8. BOUTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;justify-content:center;
+  font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;text-decoration:none;cursor:pointer;
+  padding:13px 22px;border-radius:var(--radius);
+  border:1px solid var(--ambre);color:var(--ambre);background:transparent;
+  position:relative;overflow:hidden;
+  transition:color .3s var(--ease),border-color .3s,transform .18s var(--ease),box-shadow .25s;
+}
+.btn > *{position:relative;z-index:2}
+.btn::before{
+  content:"";position:absolute;inset:0;background:var(--ambre);z-index:1;
+  transform:translateY(101%);transition:transform .38s var(--ease);
+}
+.btn:hover{color:#120C05;transform:translateY(-2px)}
+.btn:hover::before{transform:none}
+.btn:active{transform:translateY(0) scale(.97)}
+
+/* effet ripple (créé par le JS existant) */
+.rip{
+  position:absolute;border-radius:50%;z-index:3;
+  background:radial-gradient(circle,rgba(255,255,255,.35),rgba(255,255,255,.12) 60%,transparent);
+  transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none;
+}
+@keyframes rip{to{transform:scale(2.8);opacity:0}}
+
+/* ---------- 9. ANIMATIONS PARTAGÉES ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes growX{from{transform:scaleX(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 24px rgba(232,160,32,.14)}50%{box-shadow:0 0 56px rgba(232,160,32,.34)}}
+@keyframes haloPulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:1;transform:scale(1.8)}}
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0);filter:drop-shadow(0 0 4px rgba(232,160,32,.25))}
+  50%{transform:translateY(-4px);filter:drop-shadow(0 4px 10px rgba(232,160,32,.55))}
+}
+@keyframes logoSpin{to{transform:rotate(360deg) scale(1.12)}}
+@keyframes pouls{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ---------- 10. MOUVEMENT RÉDUIT ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}

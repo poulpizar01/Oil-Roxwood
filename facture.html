@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Facture — Oil Roxwood</title>
+<!--
+  PAGE-GABARIT POUR LE BOT (commande /facture sur Discord).
+  Le bot lit la facture dans la base, l'encode en base64 et ouvre :
+      facture.html#<base64 de {"f": {...facture}, "c": {...client}}>
+  puis imprime la page en PDF (Puppeteer page.pdf) et la poste sur Discord.
+  Aucune donnée n'est stockée ici : la page ne fait que dessiner ce qu'on
+  lui donne. Sans données (#), elle affiche une explication.
+-->
+<style>
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:#111;background:#fff;margin:0}
+  .inv{max-width:760px;margin:0 auto;padding:40px}
+  .inv-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #E8622C;padding-bottom:18px}
+  h1{font-size:1.6rem;color:#1b2739;margin:0}
+  h1 b{color:#c4841a}
+  .co{font-size:.82rem;color:#444;line-height:1.6}
+  .inv-num{text-align:right;font-size:.9rem}
+  .inv-num .n{font-size:1.3rem;font-weight:800;color:#c4841a}
+  .inv-client{margin:24px 0;display:flex;justify-content:flex-end}
+  .inv-client div{background:#f5f6f8;border-radius:8px;padding:14px 20px;font-size:.88rem;line-height:1.7;min-width:240px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin:10px 0 20px}
+  th{background:#1b2739;color:#fff;padding:9px 10px;text-align:left;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  td{padding:8px 10px;border-bottom:1px solid #e3e5e9;color:#222}
+  .tots{display:flex;justify-content:flex-end}
+  .tots table{width:auto;min-width:300px}
+  .tots td{border:none;padding:5px 10px}
+  .tots tr:last-child td{border-top:2px solid #1b2739;font-weight:800;font-size:1rem;color:#c4841a}
+  .foot{margin-top:34px;display:flex;justify-content:space-between;font-size:.78rem;color:#555}
+  .sig{text-align:center}
+  .sig .script{font-family:'Segoe Script','Brush Script MT','Lucida Handwriting',cursive;font-size:1.6rem;color:#1b2739;display:inline-block;transform:rotate(-3deg);margin-top:14px}
+  .sig .line{margin-top:6px;border-top:1px solid #999;padding-top:6px;min-width:190px}
+  .legal{margin-top:26px;padding-top:12px;border-top:1px solid #e3e5e9;font-size:.68rem;color:#8a94a3;text-align:center}
+  .vide{max-width:560px;margin:80px auto;font-size:.95rem;color:#444;line-height:1.8;padding:0 20px}
+  @media print{ @page{margin:12mm} }
+</style>
+</head>
+<body>
+<div id="zone"><div class="vide"><b>Oil Roxwood — gabarit de facture.</b><br>
+Cette page est utilisée par le bot Discord (commande <code>/facture</code>) pour
+générer les PDF. Elle n'affiche rien sans données : passe par Discord pour
+obtenir une facture.</div></div>
+<script>
+(function(){
+  const SOCIETE={nom:'OIL ROXWOOD',tel:'986',rib:'20076',lieu:'Roxwood County — San Andreas'};
+  const esc=x=>String(x==null?'':x).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+  const nn=x=>{const v=parseFloat(x);return isNaN(v)?0:v;};
+  const fmt=n=>Number(n||0).toLocaleString('fr-FR');
+  const frDate=d=>{const t=new Date(d);return isNaN(t)?esc(d):t.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});};
+
+  let brut=location.hash.slice(1);
+  if(!brut) return;
+  try{
+    // accepte base64 standard ET base64url ; décodage UTF-8 propre
+    brut=brut.replace(/-/g,'+').replace(/_/g,'/');
+    while(brut.length%4) brut+='=';
+    const octets=Uint8Array.from(atob(brut),c=>c.charCodeAt(0));
+    const {f,c}=JSON.parse(new TextDecoder('utf-8').decode(octets));
+    const cl=c||{adresse:'',tel:'',rib:''};
+    let lignes=(f.lignes||[]).filter(l=>nn(l.qte)>0||nn(l.ht)>0);
+    if(!lignes.length) lignes=(f.lignes||[]);
+    const totHT=nn(f.ht)||lignes.reduce((a,l)=>a+nn(l.ht),0);
+    const totTTC=nn(f.ttc)||lignes.reduce((a,l)=>a+nn(l.ttc),0);
+    const poids=nn(f.poids)||lignes.reduce((a,l)=>a+nn(l.qte),0)*2;
+    document.title='Facture n°'+f.num+' — Oil Roxwood';
+    document.getElementById('zone').innerHTML=`<div class="inv" id="pret">
+    <div class="inv-head">
+      <div style="display:flex;gap:16px;align-items:center">
+        <img src="assets/logo.png" style="width:80px;height:80px;object-fit:contain" onerror="this.style.display='none'">
+        <div><h1>OIL <b>ROXWOOD</b></h1>
+        <div class="co">${SOCIETE.lieu}<br>Téléphone : ${SOCIETE.tel} · RIB : ${SOCIETE.rib}</div></div>
+      </div>
+      <div class="inv-num">FACTURE<div class="n">n°${esc(f.num)}</div>Date : ${frDate(f.date)}</div>
+    </div>
+    <div class="inv-client"><div><b>Facturé à :</b><br>${esc(f.client)}<br>${esc(cl.adresse||'')}<br>${cl.tel?'Tél : '+esc(cl.tel):''} ${cl.rib?'· RIB : '+esc(cl.rib):''}</div></div>
+    <table><thead><tr><th>Référence</th><th>Description</th><th style="text-align:right">Qté</th><th style="text-align:right">PU HT</th><th style="text-align:right">Total HT</th><th style="text-align:right">TVA</th><th style="text-align:right">Total TTC</th></tr></thead><tbody>
+    ${lignes.map(l=>`<tr><td>${esc(l.ref||'—')}</td><td>${esc(l.desc)}</td><td style="text-align:right">${fmt(nn(l.qte))}</td><td style="text-align:right">${fmt(l.pu)} $</td><td style="text-align:right">${fmt(Math.round(nn(l.ht)))} $</td><td style="text-align:right">${(nn(l.tva)*100).toFixed(0)} %</td><td style="text-align:right">${fmt(Math.round(nn(l.ttc)))} $</td></tr>`).join('')}
+    ${f.offert?`<tr><td>OFFERT</td><td>Bidons d'essence offerts</td><td style="text-align:right">${esc(f.offert)}</td><td style="text-align:right">0 $</td><td style="text-align:right">0 $</td><td style="text-align:right">—</td><td style="text-align:right">0 $</td></tr>`:''}
+    </tbody></table>
+    <div class="tots"><table>
+      <tr><td>Total Hors Taxes</td><td style="text-align:right">${fmt(Math.round(totHT))} $</td></tr>
+      <tr><td>Montant TVA</td><td style="text-align:right">${fmt(Math.round(totTTC-totHT))} $</td></tr>
+      ${poids?`<tr><td>Poids total de la livraison</td><td style="text-align:right">${fmt(poids)} kg</td></tr>`:''}
+      <tr><td>Total TTC en Dollars</td><td style="text-align:right">${fmt(Math.round(totTTC))} $</td></tr>
+    </table></div>
+    ${f.postop?`<div style="margin-top:20px;display:flex;align-items:center;gap:14px;background:#fff7ec;border:1px solid #E8622C;border-radius:8px;padding:12px 18px;font-size:.9rem">
+      <img src="assets/postop.png" alt="Post OP" style="height:44px" onerror="this.style.display='none'">
+      <span><b>Livraison assurée par Post OP</b><br><span style="color:#555;font-size:.8rem">Service de livraison partenaire — sans frais supplémentaires.</span></span>
+    </div>`:''}
+    <div class="foot">
+      <div><b>Conditions de paiement</b><br>Paiement à réception de la facture.<br>Modes acceptés : virement bancaire, TPE.<br><br>${f.emetteur?`Dossier suivi par : ${esc(f.emetteur)}`:''}</div>
+      <div class="sig">Pour Oil Roxwood,<br>La Direction
+        <div class="script">Stella Collins</div>
+        <div class="line">Stella Collins — Patron</div>
+      </div>
+    </div>
+    <div class="legal">OIL ROXWOOD · ${SOCIETE.lieu} · Téléphone ${SOCIETE.tel} · RIB ${SOCIETE.rib} — Merci de votre confiance 🛢</div>
+    </div>`;
+  }catch(e){
+    document.getElementById('zone').innerHTML='<div class="vide" id="erreur"><b>Données illisibles.</b><br>'+esc(e.message)+'</div>';
+  }
+})();
+</script>
+</body>
+</html>

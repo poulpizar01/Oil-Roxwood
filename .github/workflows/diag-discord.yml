@@ -1,0 +1,25 @@
+name: Diagnostic Discord
+
+# Lancement manuel uniquement : Actions → Diagnostic Discord → Run workflow.
+# Ne modifie rien, n'écrit aucun fichier. Sert seulement à comprendre
+# pourquoi le bot n'accède pas aux salons de logs.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Diagnostic des accès du bot
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+          DISCORD_FER_CHANNEL_ID: ${{ secrets.DISCORD_FER_CHANNEL_ID }}
+        run: python3 scripts/diag_discord.py

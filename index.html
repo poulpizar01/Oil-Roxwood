@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Roxwood — Compagnie Pétrolière | FlashbackFA</title>
+<meta name="description" content="Oil Roxwood, entreprise de collecte et transport de pétrole sur Roxwood County — Serveur FlashbackFA.">
+<!-- ═══════════════════════════════════════════════════════════════
+     APERÇU RICHE (Discord, réseaux sociaux)
+     ⚠️ SEUL ENDROIT DU SITE OÙ L'URL EST ÉCRITE EN DUR.
+     Les robots des réseaux n'exécutent pas de JavaScript : ces deux
+     adresses doivent être absolues. Si tu renommes le dépôt GitHub,
+     remplace-les par la nouvelle adresse de GitHub Pages — et c'est
+     tout, le reste du site est en chemins relatifs.
+     ═══════════════════════════════════════════════════════════════ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oil Roxwood">
+<meta property="og:title" content="⛽ OIL ROXWOOD — Compagnie Pétrolière">
+<meta property="og:description" content="Collecte & transport de pétrole sur Roxwood County 🛢️ Recrutement ouvert · Devis au 986 · Simulateur de paie en ligne — Serveur FlashbackFA">
+<meta property="og:url"   content="https://poulpizar01.github.io/Oil-Roxwood/">
+<meta property="og:image" content="https://poulpizar01.github.io/Oil-Roxwood/assets/banner-og-v3.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#e8a020">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>
+/* applique le thème avant le rendu pour éviter le flash */
+(function(){
+  const s=localStorage.getItem('orx_theme');
+  if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme: dark)').matches))
+    document.documentElement.classList.add('dark');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/roxwood-core.css">
+<link rel="stylesheet" href="assets/roxwood-site.css">
+</head>
+<body>
+
+<div id="pipeline"></div>
+<span class="cartouche" aria-hidden="true">Oil Roxwood · Roxwood County · Est. 2026</span>
+
+<nav class="barre">
+  <a class="logo" href="#accueil">
+    <img src="assets/logo.png" alt="Logo Oil Roxwood" width="34" height="34">
+    <span>OIL <b>ROXWOOD</b></span>
+  </a>
+  <button class="burger" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+  <div class="nav-links">
+    <a href="#presentation">L'entreprise</a>
+    <a href="#organigramme">Organigramme</a>
+    <a href="#devenir-client">Devenir client</a>
+    <a href="#grades">Grades &amp; Salaires</a>
+    <a href="#recrutement">Recrutement</a>
+    <a href="#contact">Contact</a>
+    <a href="#recrutement" class="nav-cta">Postuler</a>
+    <a href="admin.html" class="nav-membre">Espace membre</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Mode clair / sombre" aria-label="Changer de thème">🌙</button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="accueil">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <span class="tag kicker">FlashbackFA · Roxwood County</span>
+    <h1>L'or noir de Roxwood,<br><span class="creux">livré</span> <em>par des pros</em></h1>
+    <p class="hero-sub">
+      Oil Roxwood est la référence de la collecte et du transport de pétrole sur le comté
+      de Roxwood. Extraction, convoyage, revente : nos runners assurent la chaîne complète,
+      à toute heure.
+    </p>
+    <div class="hero-cta">
+      <a href="#recrutement" class="btn" style="background:var(--ambre);color:#120C05"><span>Rejoindre l'équipe</span></a>
+      <a href="#presentation" class="btn"><span>Découvrir l'entreprise</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ruban défilant -->
+<div class="ruban pleine" aria-hidden="true"><div class="defile" id="ruban1"></div></div>
+
+<div class="wrap dessus">
+  <div class="hero-stats">
+    <div><strong>24/7</strong><span>Opérations en continu</span></div>
+    <div><strong>100 %</strong><span>Runs sécurisés</span></div>
+    <div><strong>N°1</strong><span>Pétrole sur Roxwood</span></div>
+  </div>
+</div>
+
+<!-- ================= PRÉSENTATION ================= -->
+<section id="presentation">
+  <span class="geant" style="top:2vw;right:-6vw" aria-hidden="true">BRUT</span>
+  <div class="wrap">
+    <span class="tag sec-kicker rev">L'entreprise</span>
+    <h2 class="rev">Qui sommes-<span class="creux">nous ?</span></h2>
+    <div class="rev">
+      <p class="sec-intro">
+        Ces pages vous entraînent au cœur de notre entreprise, celle qui façonne les bidons
+        d'essence qui font tourner Los Santos jour et nuit.
+      </p>
+      <p class="sec-intro">
+        <strong>Ici, rien n'est laissé au hasard :</strong> du premier pétrole brut au dernier
+        pétrole raffiné, jusqu'aux bureaux où se prennent les décisions qui orientent toute
+        l'entreprise. Au fil de ce site, vous croiserez nos équipes, découvrirez comment nous
+        organisons nos effectifs, comment chacun trouve sa place dans cette grande mécanique,
+        et comment nos hauts gradés veillent à maintenir l'ordre, la qualité et l'ambition qui
+        nous animent — et comment les employés façonnent leur énergie et leur volonté de faire
+        pousser l'entreprise vers le haut.
+      </p>
+      <p class="sec-intro">
+        <strong>Ce n'est pas seulement une présentation :</strong> c'est une plongée dans une
+        famille de travailleurs, de meneurs et de passionnés qui, ensemble, garantissent que
+        le carburant continue de couler, quoi qu'il arrive.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card rev">
+        <div class="ico">🛢️</div>
+        <h3>Collecte de pétrole</h3>
+        <p>Nos équipes récupèrent le brut directement sur les puits d'extraction du comté, avec du matériel adapté et des rotations optimisées.</p>
+      </div>
+      <div class="card rev">
+        <div class="ico">🚛</div>
+        <h3>Transport &amp; convois</h3>
+        <p>Convoyage sécurisé des cargaisons vers les points de traitement et de revente. Itinéraires étudiés, escortes possibles sur les gros volumes.</p>
+      </div>
+      <div class="card rev">
+        <div class="ico">🤝</div>
+        <h3>Esprit d'équipe</h3>
+        <p>Une entreprise RP avant tout : entraide entre runners, formations pour les nouveaux et une hiérarchie accessible.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step rev"><span class="num" aria-hidden="true">1</span><h4>Prise de poste</h4><p>Briefing au dépôt, attribution du véhicule et de la zone d'extraction.</p></div>
+      <div class="step rev"><span class="num" aria-hidden="true">2</span><h4>Extraction</h4><p>Remplissage des barils sur les puits de pétrole de Roxwood.</p></div>
+      <div class="step rev"><span class="num" aria-hidden="true">3</span><h4>Convoyage</h4><p>Transport de la cargaison en respectant les consignes de sécurité.</p></div>
+      <div class="step rev"><span class="num" aria-hidden="true">4</span><h4>Revente</h4><p>Livraison au point de vente et partage des bénéfices selon le grade.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORGANIGRAMME ================= -->
+<section id="organigramme">
+  <span class="geant" style="top:0;left:-4vw" aria-hidden="true">COLONNE</span>
+  <div class="wrap">
+    <span class="tag sec-kicker rev">Organisation</span>
+    <h2 class="rev">La colonne de <span class="creux">commandement</span></h2>
+    <p class="sec-intro rev">
+      Une structure claire où chacun a un rôle précis, de la direction aux équipes de terrain.
+      Comme dans une colonne de distillation, chaque plateau a sa fonction.
+    </p>
+
+    <div class="org">
+      <div>
+        <div class="org-level">
+          <div class="org-card rev"><div class="rang">Direction</div><div class="corps"><h4>Patron</h4><p>Assure le bon fonctionnement de l'entreprise</p></div></div>
+          <div class="org-card rev"><div class="rang">Direction</div><div class="corps"><h4>Co-Patron</h4><p>Assure le bon fonctionnement de l'entreprise</p></div></div>
+        </div>
+        <div class="org-level" style="margin-top:16px">
+          <div class="org-card rev"><div class="rang">Support</div><div class="corps"><h4>Comptable</h4><p>Gère la comptabilité</p></div></div>
+          <div class="org-card rev"><div class="rang">Support</div><div class="corps"><h4>Ressources Humaines</h4><p>Recrute, guide, conseille et suit le personnel</p></div></div>
+        </div>
+        <div class="org-level" style="margin-top:16px">
+          <div class="org-card rev"><div class="rang">Terrain</div><div class="corps"><h4>Responsable commercial</h4><p>Encadre l'équipe commerciale</p></div></div>
+          <div class="org-card rev"><div class="rang">Terrain</div><div class="corps"><h4>Commerciaux</h4><p>Assurent la création et la vente de bidons d'essence</p></div></div>
+        </div>
+      </div>
+
+      <div class="org-fig" aria-hidden="true">
+        <svg viewBox="0 0 140 560" fill="none">
+          <defs>
+            <linearGradient id="col" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#12100E" stop-opacity=".55"/><stop offset=".38" stop-color="#463328"/>
+              <stop offset=".6" stop-color="#241B16"/><stop offset="1" stop-color="#100D0B" stop-opacity=".55"/>
+            </linearGradient>
+          </defs>
+          <rect x="34" y="52" width="72" height="474" rx="6" fill="url(#col)" stroke="#4A362A"/>
+          <ellipse cx="70" cy="52" rx="36" ry="13" fill="#241B16" stroke="#4A362A"/>
+          <path d="M70 39V14h30" stroke="#4A362A" stroke-width="3"/>
+          <path d="M34 68h72M34 100h72" stroke="#4A362A"/>
+          <g stroke="#E8A020" opacity=".55"><path d="M0 150h106M0 250h106M0 350h106M0 450h106"/></g>
+          <g fill="#E8A020"><circle cx="70" cy="150" r="4"/><circle cx="70" cy="250" r="4"/><circle cx="70" cy="350" r="4"/><circle cx="70" cy="450" r="4"/></g>
+          <path d="M106 180h22v240h-22" stroke="#4A362A" stroke-width="2"/>
+          <rect x="20" y="526" width="100" height="12" fill="#241B16" stroke="#4A362A"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="org-quote rev">
+      <p>La direction est présente pour assurer le bien-être de tout le monde. Nous sommes également présents pour vous motiver, vous guider et vous intégrer dans l'équipe.</p>
+      <p>Nous avons pour objectif de vous satisfaire dans votre travail. Vos conditions de vie et de travail sont pour nous un critère important pour la réussite et la pérennité de l'entreprise. L'investissement financier que nous portons ici est en partie pour augmenter votre productivité au déclin de votre temps passé en service.</p>
+      <p>Nous voulons vous faire un maximum de cadeaux, récompenses… afin que vous ne manquiez de rien.</p>
+      <p>Votre bien-être est notre fierté.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ruban inverse -->
+<div class="ruban inverse pleine" aria-hidden="true"><div class="defile" id="ruban2"></div></div>
+
+<!-- ================= DEVENIR CLIENT ================= -->
+<section id="devenir-client">
+  <div class="wrap">
+    <span class="tag sec-kicker rev">Entreprises &amp; familles</span>
+    <h2 class="rev">Le plein, où que vous <span class="creux">soyez</span></h2>
+    <p class="sec-intro rev">
+      Oil Roxwood fournit en bidons d'essence les entreprises, familles et organisations
+      de tout San Andreas. Livraison assurée par nos équipes, du dépôt jusqu'à vos portes.
+    </p>
+
+    <div class="offre">
+      <div class="card rev">
+        <div class="ico">⛽</div>
+        <h3>Bidon d'essence</h3>
+        <b class="prix">180 <span>$ HT / unité</span></b>
+        <p>TVA de 0 à 5 % selon contrat. Tarifs dégressifs sur les gros volumes — demande un devis.</p>
+      </div>
+      <div class="card rev">
+        <div class="ico">🚚</div>
+        <h3>Livraison incluse</h3>
+        <b class="prix">24h <span>sur San Andreas</span></b>
+        <p>Los Santos, Paleto, Sandy Shores, Cayo, Roxwood… nos convois livrent partout, escorte possible.</p>
+      </div>
+    </div>
+
+    <div class="devis rev">
+      <a href="#contact" class="btn" style="background:var(--ambre);color:#120C05"><span>📞 Demander un devis : 986</span></a>
+      <p class="note" style="margin-top:14px">Ou passez directement au dépôt de Roxwood County — nos commerciaux vous reçoivent à toute heure.</p>
+    </div>
+
+    <p class="confiance">Ils nous font déjà confiance</p>
+    <div class="marquee">
+      <div class="marquee-track" id="cliTrack">
+        <span class="cli-chip"><b>Gruppe Sechs</b></span>
+        <span class="cli-chip">LTD Mirror Park</span>
+        <span class="cli-chip"><b>Bean Ice Cream</b></span>
+        <span class="cli-chip">Pizza This</span>
+        <span class="cli-chip"><b>La Linterna</b></span>
+        <span class="cli-chip">Burger Shot</span>
+        <span class="cli-chip"><b>Cayo Cigare</b></span>
+        <span class="cli-chip">Paleto Garage</span>
+        <span class="cli-chip"><b>Rockford Records</b></span>
+        <span class="cli-chip">Aqua Black</span>
+        <span class="cli-chip"><b>Post OP</b></span>
+        <span class="cli-chip">Atelier Komori</span>
+        <span class="cli-chip"><b>Pacific Bluff</b></span>
+        <span class="cli-chip">Mairie San Andreas</span>
+        <span class="cli-chip"><b>Club 77</b></span>
+        <span class="cli-chip">Casa Del Gusto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GRADES ================= -->
+<section id="grades">
+  <span class="geant" style="bottom:4vw;right:-8vw" aria-hidden="true">PAIE</span>
+  <div class="wrap">
+    <span class="tag sec-kicker rev">Hiérarchie</span>
+    <h2 class="rev">Plus tu raffines, plus <span class="creux">ça paie</span></h2>
+    <p class="sec-intro rev">
+      Chaque runner évolue au mérite : assiduité, quotas remplis et comportement RP.
+      Les meilleurs de la semaine sont récompensés, et les grades montent avec la production.
+    </p>
+
+    <div class="paye">
+      <div class="table-card rev">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Grade</th>
+              <th scope="col">Montée de grade</th>
+              <th scope="col">Quota hebdo</th>
+              <th scope="col">Prime fin de semaine<small>si quota effectué</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="badge b-grey">Intérimaire</span></td><td>3 000</td><td>3 000</td><td>×1</td></tr>
+            <tr><td><span class="badge b-blue">Raffineur</span></td><td>5 000</td><td>3 000</td><td>×1,5</td></tr>
+            <tr><td><span class="badge b-blue">Raffineur Confirmé</span></td><td>8 000</td><td>5 000</td><td>×2</td></tr>
+            <tr><td><span class="badge b-gold">Raffineur Expert</span></td><td>10 000</td><td>6 500</td><td>×2,5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="simu rev">
+        <h3>🧮 Simule ta paie</h3>
+        <p class="simu-sub">Combien de barils penses-tu livrer cette semaine ?</p>
+        <div class="simu-grades" id="simuGrades"></div>
+        <input type="range" id="simuRange" min="0" max="24000" step="100" value="8000" aria-label="Barils livrés cette semaine">
+        <div class="simu-baril"><b id="simuBarils">8 000</b> barils livrés</div>
+        <div class="simu-out">
+          <div class="simu-card"><span>Prime estimée</span><strong id="simuPrime">—</strong></div>
+          <div class="simu-card simu-card-total"><span>Multiplicateur</span><strong id="simuMult">—</strong></div>
+        </div>
+        <p class="simu-note" id="simuNote"></p>
+      </div>
+    </div>
+
+    <p class="note rev" style="margin-top:26px">💡 Les primes ne sont pas fixes — le montant indiqué est un minimum. Elles sont versées tous les lundis.</p>
+    <p class="note rev" style="color:var(--red)">⚠️ Une limite de 24 000 pétroles est indiquée.</p>
+  </div>
+</section>
+
+<!-- ================= RECRUTEMENT ================= -->
+<section id="recrutement" class="bande pleine">
+  <span class="geant" style="top:6vw;left:-3vw" aria-hidden="true">EMBAUCHE</span>
+  <span class="tag sec-kicker rev">Recrutement</span>
+  <h2 class="rev">On embauche toute <span class="creux">l'année</span></h2>
+  <p class="sec-intro rev">
+    Oil Roxwood recrute ! Un job de runner efficace, un salaire attractif et une
+    vraie évolution. Vérifie que tu remplis les conditions, puis envoie ta candidature.
+  </p>
+
+  <div class="cards">
+    <div class="card rev">
+      <div class="ico">🛣️</div><h3>Des trajets courts</h3>
+      <p>Seulement <strong>1,30 km</strong> de la récolte à la transformation et <strong>1,77 km</strong> de la transformation à la vente. Un quota de base facile à atteindre : <strong>3 000 barils</strong>.</p>
+    </div>
+    <div class="card rev">
+      <div class="ico">💰</div><h3>Salaire attractif</h3>
+      <p>Le pétrole se vend <strong>10 $ l'unité</strong>. Plus tu run, plus ton compte en banque grimpe en flèche !</p>
+    </div>
+    <div class="card rev">
+      <div class="ico">📈</div><h3>Évolution rapide</h3>
+      <p><strong>Raffineur</strong> : 5 000 barils réalisés (maintien 3 000) · <strong>Confirmé</strong> : 8 000 (maintien 5 000) · <strong>Expert</strong> : 10 000 (maintien 6 500).</p>
+    </div>
+    <div class="card rev">
+      <div class="ico">🎁</div><h3>Récompenses</h3>
+      <p>Nourriture &amp; carburant : <strong>10/10 + 10 bidons</strong> d'essence jusqu'à Raffineur Confirmé, <strong>15/15 + 15 bidons</strong> pour les Raffineurs Experts.</p>
+    </div>
+    <div class="card rev">
+      <div class="ico">🧰</div><h3>Matériel fourni</h3>
+      <p>Container de stockage : <strong>2 000</strong> (Raffineurs), <strong>3 000</strong> (Confirmés), <strong>3 500</strong> (Experts). Véhicules de transport <strong>250 kg</strong> pour faciliter tes runs.</p>
+    </div>
+    <div class="card rev">
+      <div class="ico">🏆</div><h3>On joue aussi pour gagner</h3>
+      <p>Mini-jeux, défis à thème, événements réguliers. Primes du TOP 3 : <strong>🥇 15 000 $</strong> · <strong>🥈 10 000 $</strong> · <strong>🥉 5 000 $</strong>.</p>
+    </div>
+  </div>
+
+  <div class="org-quote rev" style="text-align:left">
+    <p style="font-family:var(--f-display);font-size:clamp(26px,3.4vw,44px);text-transform:uppercase;color:var(--ink);max-width:none">Tu bosses. Tu gagnes.<br>Tu montes en grade. Tu t'amuses.</p>
+    <p>Prêt à devenir une légende du pétrole ? Rejoins-nous maintenant !</p>
+  </div>
+
+  <div class="recruit-grid">
+    <ul class="conditions">
+      <li class="rev">Être actif sur le serveur <strong>FlashbackFA</strong></li>
+      <li class="rev">Posséder le permis de conduire (poids lourd apprécié)</li>
+      <li class="rev">Esprit d'équipe, ponctualité et respect du RP</li>
+      <li class="rev">Le respect avant tout : collègues, clients ou concurrents, chacun est traité avec considération — c'est la valeur fondatrice d'Oil Roxwood</li>
+      <li class="rev">Micro fonctionnel et <strong>Discord</strong> obligatoire</li>
+    </ul>
+
+    <div class="discord-card rev">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="#5865F2" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
+      <h3>Candidature sur Discord</h3>
+      <p>Tout le recrutement se passe sur notre serveur Discord : rejoins-nous et dépose ta candidature directement là-bas.</p>
+      <a href="https://discord.com/invite/99AuEX3Kpz" target="_blank" rel="noopener" class="btn" style="background:var(--ambre);color:#120C05;width:100%"><span>Rejoindre le Discord Oil Roxwood</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <span class="tag sec-kicker rev">Contact</span>
+    <h2 class="rev">Le dépôt reste <span class="creux">allumé</span></h2>
+    <p class="sec-intro rev">Pour toute question, partenariat ou candidature spontanée, retrouve-nous en jeu ou sur notre Discord.</p>
+    <div class="contact-links">
+      <a class="contact-chip rev" href="https://discord.com/invite/99AuEX3Kpz" target="_blank" rel="noopener">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
+        Discord Oil Roxwood
+      </a>
+      <a class="contact-chip rev" href="#recrutement">📋 Recrutement</a>
+      <a class="contact-chip rev" href="#devenir-client">📞 Standard RP : 986</a>
+    </div>
+  </div>
+</section>
+
+<div class="hachures" aria-hidden="true"></div>
+<footer>
+  <div class="wrap pied">
+    <a class="logo" href="#accueil">
+      <img src="assets/logo.png" alt="" width="30" height="30">
+      <span>OIL <b>ROXWOOD</b></span>
+    </a>
+    <p>Entreprise RP sur FlashbackFA · Site non officiel, aucun lien avec une entreprise réelle — © 2026 · <a href="admin.html">Espace membre</a></p>
+  </div>
+</footer>
+
+<script src="assets/roxwood-ui.js"></script>
+<script>
+  Roxwood.ruban(document.getElementById('ruban1'), [
+    "Bidon d'essence · 180 $ HT","Pétrole brut · 10 $ / unité","Livraison 24 h sur San Andreas",
+    "Recrutement ouvert","Devis au 986","4 grades · primes ×2.5",
+    "Bidon d'essence · 180 $ HT","Pétrole brut · 10 $ / unité","Livraison 24 h sur San Andreas",
+    "Recrutement ouvert","Devis au 986","4 grades · primes ×2.5"
+  ]);
+  Roxwood.ruban(document.getElementById('ruban2'), [
+    "Extraction","Transport","Raffinage","Revente","Roxwood County","FlashbackFA",
+    "Extraction","Transport","Raffinage","Revente","Roxwood County","FlashbackFA",
+    "Extraction","Transport","Raffinage","Revente","Roxwood County","FlashbackFA"
+  ]);
+</script>
+<script src="assets/roxwood-site.js"></script>
+</body>
+</html>

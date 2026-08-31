@@ -1,0 +1,69 @@
+name: Sync logs Discord
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # toutes les 15 minutes
+  workflow_dispatch:          # lancement manuel possible
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Récupérer les messages du salon
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+        run: python scripts/fetch_discord_logs.py || true
+
+      - name: Récupérer les achats de Fer
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_FER_CHANNEL_ID: ${{ secrets.DISCORD_FER_CHANNEL_ID }}
+        run: python scripts/fetch_fer_logs.py || true
+
+      - name: Publier les stats du dashboard (automatique)
+        env:
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python3 scripts/publish_stats.py || true
+
+      - name: MP Discord pour les nouvelles suggestions/bugs
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python3 scripts/dm_feedback.py || true
+
+      - name: Présence Discord (widget serveur)
+        env:
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        run: python3 scripts/fetch_presence.py || true
+
+      - name: Rappels d'agenda (MP 1h avant)
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python3 scripts/agenda_reminders.py || true
+
+      - name: Notifications Discord (accès validés…)
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python3 scripts/send_notifs.py || true
+
+      - name: Commit si changement
+        run: |
+          git config user.name "oilroxwood-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A data/
+          git diff --cached --quiet && exit 0
+          git commit -m "🤖 MAJ automatique (logs + stats)"
+          git pull --rebase origin main || true
+          git push origin HEAD:main

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Réinitialisation Oil Roxwood</title>
+<style>body{font-family:system-ui;background:#0b111b;color:#e8edf4;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
+a{color:#e8a020;font-weight:700}div{max-width:420px;line-height:1.7}</style></head>
+<body><div>
+<h2>🔧 Réinitialisation du dashboard</h2>
+<p id="msg">Nettoyage en cours…</p>
+</div>
+<script>
+try{
+  localStorage.clear();
+  sessionStorage.clear();
+  document.getElementById('msg').innerHTML=
+    '✅ Stockage local entièrement réinitialisé.<br><br>'+
+    'Mot de passe : <b>roxwood</b><br><br>'+
+    '<a href="admin.html">→ Ouvrir le dashboard</a><br><br>'+
+    '<small style="color:#8494a9">Les données de l\'entreprise sont conservées (elles vivent dans Supabase).<br>Il faudra juste re-saisir le token GitHub dans Paramètres si tu utilisais la publication.</small>';
+}catch(e){
+  document.getElementById('msg').textContent='Erreur : '+e.message;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Roxwood — TV du dépôt</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root{--bg:#0b111b;--ink:#e8edf4;--muted:#8494a9;--accent:#e8a020;--p:#ff2d95;--c:#22d7ee;--v:#8b5cf6;--green:#3ddc84}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow:hidden;
+    background:radial-gradient(ellipse at 15% -5%,rgba(139,92,246,.2),transparent 55%),radial-gradient(ellipse at 90% 105%,rgba(255,45,149,.15),transparent 55%),#0b111b}
+  #bg{position:fixed;inset:0;z-index:0}
+  .wrap{position:relative;z-index:1;padding:3vh 4vw;height:100vh;display:flex;flex-direction:column}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2vh}
+  .brand{display:flex;align-items:center;gap:16px}
+  .brand img{width:64px;height:64px;object-fit:contain;animation:float 4s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .brand h1{font-size:2.4vw;letter-spacing:1px}
+  .brand h1 b{background:linear-gradient(90deg,var(--p),var(--v),var(--c));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .brand small{display:block;color:var(--c);font-size:.9vw;letter-spacing:3px}
+  .clock{text-align:right}
+  .clock .t{font-size:2.6vw;font-weight:800}
+  .clock .d{color:var(--muted);font-size:1vw}
+  .obj{margin:1.5vh 0 1vh}
+  .obj .lbl{display:flex;justify-content:space-between;font-size:1.1vw;margin-bottom:.6vh}
+  .obj .lbl b{color:var(--accent)}
+  .obj .track{height:2.4vh;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);overflow:hidden}
+  .obj .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--p));box-shadow:0 0 18px rgba(232,160,32,.5);transition:width 1s}
+  .obj .fill.done{background:linear-gradient(90deg,#2eb872,var(--green));box-shadow:0 0 18px rgba(61,220,132,.6)}
+  .podium{display:flex;gap:2vw;align-items:flex-end;justify-content:center;margin:2vh 0 3vh}
+  .pod{flex:0 0 22vw;text-align:center;border-radius:16px 16px 0 0;padding:2vh 1vw;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
+  .pod .medal{font-size:3vw}
+  .pod .name{font-weight:800;font-size:1.5vw;margin-top:.5vh}
+  .pod .amt{color:var(--muted);font-size:1vw;margin-top:.3vh}
+  .pod1{background:linear-gradient(180deg,rgba(232,160,32,.35),rgba(232,160,32,.05));min-height:26vh;border-top:4px solid var(--accent);box-shadow:0 0 40px rgba(232,160,32,.3)}
+  .pod2{background:linear-gradient(180deg,rgba(160,175,195,.25),rgba(160,175,195,.04));min-height:20vh;border-top:4px solid #a8b6c8}
+  .pod3{background:linear-gradient(180deg,rgba(190,120,60,.25),rgba(190,120,60,.04));min-height:16vh;border-top:4px solid #c07840}
+  .grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(20vw,1fr));grid-auto-rows:min-content;gap:1vh 1.5vw;overflow:hidden;align-content:start}
+  .row{display:flex;align-items:center;gap:.8vw;background:rgba(20,30,46,.6);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1vh 1vw}
+  .row .nm{flex:1;font-weight:700;font-size:1vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .bar{width:6vw;height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+  .row .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--p),var(--accent))}
+  .row .bar i.full{background:linear-gradient(90deg,#2eb872,var(--green))}
+  .row .pc{font-size:.85vw;color:var(--muted);width:3vw;text-align:right}
+  footer{text-align:center;color:var(--muted);font-size:.9vw;margin-top:1vh}
+  footer b{color:var(--accent)}
+  .empty{text-align:center;color:var(--muted);font-size:1.4vw;margin-top:15vh}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="assets/logo.png" alt=""><div><h1>OIL <b>ROXWOOD</b></h1><small id="hdrSem">TABLEAU DE BORD</small></div></div>
+    <div class="clock"><div class="t" id="clk"></div><div class="d" id="cdate"></div></div>
+  </header>
+  <div id="content"><div class="empty">En attente des données… (la direction doit cliquer « 📊 Publier sur le site »)</div></div>
+  <footer>Total semaine : <b id="fTot">—</b> barils · <b id="fN">0</b> runners · mise à jour <span id="fMaj">—</span></footer>
+</div>
+<script>
+const F=n=>(n||0).toLocaleString('fr-FR');
+const esc=t=>String(t??'').replace(/[<>&]/g,'');
+const GR=[{q:3000},{q:3000},{q:5000},{q:6500}];
+function clock(){const d=new Date();document.getElementById('clk').textContent=d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});document.getElementById('cdate').textContent=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});}
+setInterval(clock,1000);clock();
+
+async function load(){
+  try{
+    const r=await fetch('data/stats-public.json?ts='+Date.now(),{cache:'no-store'});
+    const d=await r.json();
+    if(!d||!d.runners) return;
+    document.getElementById('hdrSem').textContent='SEMAINE '+(d.semaine||'')+' · EN DIRECT';
+    document.getElementById('fTot').textContent=F(d.totalBarils);
+    document.getElementById('fN').textContent=d.effectif||d.runners.length;
+    document.getElementById('fMaj').textContent=d.maj?new Date(d.maj).toLocaleString('fr-FR'):'—';
+    const rs=[...d.runners].sort((a,b)=>b.barils-a.barils); // direction incluse dans le classement
+    const top=rs.slice(0,3);
+    const pod=(r,i)=>r?`<div class="pod pod${i}"><div class="medal">${['🥇','🥈','🥉'][i-1]}</div><div class="name">${esc(r.nom)}</div><div class="amt">${F(r.barils)} barils</div></div>`:'';
+    const rows=rs.map(r=>{
+      if(r.poste){ return `<div class="row"><span class="nm">${esc(r.nom)} <small style="opacity:.55">· ${esc(r.poste)}</small></span><span class="bar"><i style="width:${r.barils?100:0}%;opacity:.3"></i></span><span class="pc">${F(r.barils)}</span></div>`; }
+      const q=r.quota||GR[r.grade]?.q||3000;const pc=Math.min(100,Math.round(r.barils/q*100));
+      return `<div class="row"><span class="nm">${esc(r.nom)}</span><span class="bar"><i class="${pc>=100?'full':''}" style="width:${pc}%"></i></span><span class="pc">${pc}%</span></div>`;}).join('');
+    let obj='';
+    if(d.objectif>0){
+      const pc=Math.min(100,Math.round((d.totalBarils||0)/d.objectif*100));
+      obj=`<div class="obj"><div class="lbl"><span>🎯 OBJECTIF DE LA SEMAINE — <b>${F(d.objectif)}</b> BARILS</span><span>${F(d.totalBarils)} · <b>${pc}%</b>${pc>=100?' 🎉':''}</span></div>
+        <div class="track"><div class="fill ${pc>=100?'done':''}" style="width:${pc}%"></div></div></div>`;
+    }
+    document.getElementById('content').innerHTML=`
+      ${obj}
+      <div class="podium">${pod(top[1],2)}${pod(top[0],1)}${pod(top[2],3)}</div>
+      <div class="grid">${rows}</div>`;
+  }catch(e){}
+}
+load(); setInterval(load,30000);
+
+/* fond particules néon */
+(function(){
+  const cv=document.getElementById('bg'),cx=cv.getContext('2d');const R=Math.random;let W,H,P=[];
+  const COL=['232,160,32','255,45,149','34,215,238','139,92,246'];
+  function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;const N=Math.min(90,W/18|0);P=Array.from({length:N},()=>({x:R()*W,y:R()*H,vx:(R()-.5)*.4,vy:(R()-.5)*.4,r:R()*2+.7,o:R()*.4+.3,c:COL[R()*COL.length|0]}));}
+  addEventListener('resize',rs);rs();
+  (function t(){requestAnimationFrame(t);if(document.hidden)return;cx.clearRect(0,0,W,H);
+    for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      cx.shadowColor='rgba('+p.c+',.9)';cx.shadowBlur=8;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fillStyle='rgba('+p.c+','+p.o+')';cx.fill();}
+    cx.shadowBlur=0;})();
+})();
+</script>
+</body>
+</html>

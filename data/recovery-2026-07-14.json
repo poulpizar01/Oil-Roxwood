@@ -1,0 +1,260 @@
+{
+ "origine": "sauvegarde du 2026-07-13 (03h)",
+ "factures": [
+  {
+   "ht": 36000,
+   "num": 252980,
+   "ttc": 36000,
+   "date": "2026-07-12",
+   "poids": 400,
+   "client": "Burger Shot Nord",
+   "lignes": [
+    {
+     "ht": 36000,
+     "pu": 180,
+     "qte": 200,
+     "ref": "CMD",
+     "ttc": 36000,
+     "tva": 0,
+     "desc": "bidons d'essence "
+    }
+   ],
+   "offert": 0,
+   "statut": "payee",
+   "emetteur": "Emma Collins-rodriguez, William Rodriguez-collins"
+  },
+  {
+   "ht": 27000,
+   "num": 252978,
+   "ttc": 28350,
+   "date": "2026-07-12",
+   "poids": 300,
+   "client": "Klan Ozumiya",
+   "lignes": [
+    {
+     "ht": 27000,
+     "pu": 180,
+     "qte": 150,
+     "ref": "CMD",
+     "ttc": 28350,
+     "tva": 0.05,
+     "desc": "bidons d'essence "
+    }
+   ],
+   "offert": 0,
+   "statut": "payee",
+   "emetteur": "Emma Collins-rodriguez"
+  },
+  {
+   "ht": 18000,
+   "num": 252977,
+   "ttc": 18900,
+   "date": "2026-07-11",
+   "poids": 200,
+   "client": "Cartel Madrazo",
+   "lignes": [
+    {
+     "ht": 18000,
+     "pu": 180,
+     "qte": 100,
+     "ref": "CMD",
+     "ttc": 18900,
+     "tva": 0.05,
+     "desc": "bidons d'essence "
+    }
+   ],
+   "offert": 0,
+   "statut": "payee",
+   "emetteur": "Julio Collins"
+  },
+  {
+   "ht": 54000,
+   "num": 252975,
+   "ttc": 54000,
+   "date": "2026-07-11",
+   "poids": 600,
+   "client": "LTD Strawberry",
+   "lignes": [
+    {
+     "ht": 54000,
+     "pu": 180,
+     "qte": 300,
+     "ref": "CMD",
+     "ttc": 54000,
+     "tva": 0,
+     "desc": "bidons d'essence "
+    }
+   ],
+   "offert": 0,
+   "statut": "payee",
+   "emetteur": ""
+  }
+ ],
+ "rh": [
+  {
+   "idU": "370401",
+   "nom": "Giovanni Conti",
+   "rib": "548210",
+   "tel": "555203023",
+   "actif": true,
+   "avert": "",
+   "grade": "Raffineur",
+   "recrut": "",
+   "arrivee": "2026-06-19",
+   "contrat": true,
+   "discord": "raftouki",
+   "flagOut": false,
+   "dernierService": "2026-06-29"
+  },
+  {
+   "idU": "63598",
+   "nom": "Tony Cariat",
+   "rib": "167735",
+   "tel": "55567735",
+   "actif": true,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-25",
+   "contrat": true,
+   "discord": "dln_6zero_81771",
+   "flagOut": false,
+   "dernierService": "2026-06-28"
+  },
+  {
+   "idU": "297 540",
+   "nom": "Chang Lee",
+   "rib": "454 585",
+   "tel": "555 735 015",
+   "actif": true,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-25",
+   "contrat": true,
+   "discord": "slowing",
+   "flagOut": false,
+   "dernierService": "2026-06-28"
+  },
+  {
+   "idU": "371 311",
+   "nom": "Alejandro Cortez",
+   "rib": "549 521",
+   "tel": "555 828 736",
+   "actif": false,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-23",
+   "contrat": true,
+   "discord": "offsuris.",
+   "flagOut": false,
+   "dernierService": "2026-06-24"
+  },
+  {
+   "idU": "368445",
+   "nom": "Djo Cortez",
+   "rib": "545435",
+   "tel": "555936290",
+   "actif": false,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-23",
+   "contrat": true,
+   "discord": "zeiyleniglou",
+   "flagOut": false,
+   "dernierService": "2026-06-24"
+  },
+  {
+   "idU": "372016",
+   "nom": "Khalil Mana",
+   "rib": "550463",
+   "tel": "555764743",
+   "actif": true,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-28",
+   "contrat": true,
+   "discord": "7kipa",
+   "flagOut": false,
+   "dernierService": "2026-06-28"
+  },
+  {
+   "idU": "352086",
+   "nom": "Nas Kalaoui",
+   "rib": "524064",
+   "tel": "555311990",
+   "actif": false,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-21",
+   "contrat": true,
+   "discord": "atmane0669",
+   "flagOut": false,
+   "dernierService": "2026-06-21"
+  },
+  {
+   "idU": "253 394",
+   "nom": "Rayan Amrany",
+   "rib": "400808",
+   "tel": "555 489 228",
+   "actif": true,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "Thomas Boyer",
+   "arrivee": "2026-07-01",
+   "contrat": false,
+   "discord": "d_bkg",
+   "flagOut": false,
+   "dernierService": "2026-07-11"
+  },
+  {
+   "idU": "299 220",
+   "nom": "Xin Zhao",
+   "rib": "456 787",
+   "tel": "555 708 023",
+   "actif": true,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-25",
+   "contrat": false,
+   "discord": "sac2patate6969",
+   "flagOut": false,
+   "dernierService": "2026-06-28"
+  },
+  {
+   "idU": "244 289",
+   "nom": "Colonel Folley",
+   "rib": "541 970",
+   "tel": "555 190 018",
+   "actif": true,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "Thomas Boyer",
+   "arrivee": "2026-07-04",
+   "contrat": false,
+   "discord": "topsykrets23",
+   "flagOut": false,
+   "dernierService": "2026-07-04"
+  },
+  {
+   "idU": "334080",
+   "nom": "Enzo Corwell",
+   "rib": "546399",
+   "tel": "555923291",
+   "actif": false,
+   "avert": "",
+   "grade": "Intérimaire",
+   "recrut": "",
+   "arrivee": "2026-06-05",
+   "contrat": true,
+   "discord": "velkrize",
+   "flagOut": false,
+   "dernierService": "2026-06-21"
+  }
+ ]
+}
