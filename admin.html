@@ -26,7 +26,7 @@ window.ROXWOOD_CFG = {
   branche : "main",               // branche publiée
   fichier : "data/etat.json",     // le fichier qui fait office de base
   discordClientId : "1529450789909561558",  // identifiant public de l'application Discord
-  discordGuild    : ""                      // identifiant du serveur — se règle plutôt dans Paramètres → Connexion par rôle Discord
+  discordGuild    : "1245400912835510283"   // serveur Oil Roxwood — surchargeable dans Paramètres → Connexion par rôle Discord
 };
 </script>
 <script src="assets/roxwood-github.js"></script>
@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-39</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-40</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -581,7 +581,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-39';
+const APP_VERSION='C-40';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3285,6 +3285,9 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-40',d:'01/09/2026',t:'Connexion par rôle Discord activée',items:[
+   ['🎖️','Le serveur est branché','L\'identifiant du serveur Oil Roxwood est en place : porter le rôle Responsable Runner sur Discord ouvre désormais l\'accès directement, sans validation. Les autres rôles s\'ajoutent dans Paramètres → Connexion par rôle Discord. À la première connexion, Discord redemandera l\'autorisation — il réclame maintenant la lecture de ton appartenance au serveur, en plus de ton pseudo.'],
+ ]},
  {v:'C-39',d:'01/09/2026',t:'Mon profil & les visages de l\'équipe',items:[
    ['👤','Chacun sa fiche','Nouvelle rubrique « Mon profil », ouverte à tout le monde, membres compris : photo, titre affiché et deux lignes de présentation. Un aperçu à côté montre exactement le rendu. La photo remplace les initiales partout où ton nom apparaît dans le dashboard.'],
    ['🖼️','La photo','Ton avatar Discord par défaut, ou l\'adresse d\'une image à toi. Seules les adresses en https sont acceptées, et si le lien meurt un jour, la carte retombe proprement sur tes initiales.'],
