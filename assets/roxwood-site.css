@@ -153,6 +153,31 @@ section h2{margin-bottom:18px}
 .org-card h4{font-family:var(--f-display);font-size:clamp(21px,2.2vw,29px);font-weight:800;text-transform:uppercase;line-height:1}
 .org-card p{color:var(--fumee);font-size:14px}
 .org-fig svg{position:sticky;top:100px;width:100%;height:auto}
+/* ── L'ÉQUIPE ── cartes de profil sous l'organigramme ────────────────── */
+#equipe{margin-top:clamp(46px,6vw,80px)}
+.equipe-titre{
+  font-family:var(--f-display);font-size:clamp(28px,4vw,48px);font-weight:800;
+  text-transform:uppercase;line-height:.95;margin-bottom:clamp(20px,3vw,34px);
+}
+.equipe-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:clamp(14px,2vw,22px)}
+.equipe-carte{
+  background:var(--plaque);border:1px solid var(--trait);border-radius:var(--radius);
+  padding:22px 18px 20px;text-align:center;position:relative;
+}
+.equipe-carte .pp{
+  width:88px;height:88px;border-radius:calc(var(--radius) * 3);margin:0 auto 15px;overflow:hidden;
+  background:var(--plaque-2);border:2px solid var(--ambre);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-display);font-size:30px;font-weight:800;color:var(--ambre);
+}
+.equipe-carte .pp img{width:100%;height:100%;object-fit:cover;display:block}
+.equipe-carte h4{font-family:var(--f-display);font-size:20px;font-weight:800;text-transform:uppercase;line-height:1.05}
+.equipe-carte .role{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ambre);margin-top:6px;
+}
+.equipe-carte .mot{color:var(--fumee);font-size:13.5px;line-height:1.55;margin-top:11px}
+@media(max-width:560px){.equipe-grille{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 .org-quote{
   border:1px solid var(--trait-fort);border-left:4px solid var(--ambre);
   background:linear-gradient(150deg,var(--plaque-2),var(--plaque));

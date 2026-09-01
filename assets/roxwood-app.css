@@ -135,6 +135,13 @@ aside .spacer{flex:1;min-height:10px}
   overflow:hidden;
 }
 .avat img{width:100%;height:100%;object-fit:cover;display:block}
+/* Plaque d'identité en grand (Mon profil) : même langage que le reste —
+   une plaque boulonnée, pas une pastille ronde. */
+.avat-xl{
+  width:112px;height:112px;border-radius:calc(var(--radius) * 2);font-size:2rem;
+  margin:0 auto 15px;border:2px solid var(--accent);
+  box-shadow:0 0 0 1px rgba(0,0,0,.35), 0 10px 26px rgba(0,0,0,.28);
+}
 .nvb{
   margin-left:auto;font-family:var(--f-mono);background:var(--flamme);color:#140D05;
   font-size:9.5px;font-weight:700;border-radius:9px;padding:1px 6px;line-height:1.6;

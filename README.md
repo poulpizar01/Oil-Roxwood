@@ -21,11 +21,13 @@ barils raffinés, effectif, commandes livrées, barre d'objectif et podium des t
 meilleurs — lue dans `data/stats-public.json`. Uniquement des agrégats : les fiches
 individuelles, qui contiennent quotas et primes, ne sortent jamais du poste de
 contrôle. Tant que rien n'est publié, la section et son lien de menu restent
-invisibles.
+invisibles. Sous l'organigramme, la bande **« Les visages de l'équipe »** montre les
+personnes qui ont coché la case dans « Mon profil » — photo, nom, titre et présentation,
+choisis par elles. Personne n'y figure par défaut.
 
 **`admin.html` — le poste de contrôle.** L'espace membre : effectif, runs, feuilles
 de production, factures, relances, bilan comptable, quotas, primes, clôture du lundi,
-agenda, to-do, comptes-rendus de réunion, journal d'audit et logs Discord. Connexion par Discord,
+agenda, to-do, comptes-rendus de réunion, fiche de profil personnelle, journal d'audit et logs Discord. Connexion par Discord,
 données partagées entre administrateurs, permissions par rôle, factures imprimables.
 
 Deux pages satellites complètent l'ensemble : **`facture.html`** (facture autonome)

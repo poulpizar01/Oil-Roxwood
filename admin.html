@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-38</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-39</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -80,6 +80,7 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="frecues">📥 <span class="txt">Factures reçues</span></button>
     <div class="nav-sec" data-sec="perso" onclick="navToggle('perso')">Perso <span class="chev">▾</span></div>
     <button class="nav-item" data-view="moi">🙋 <span class="txt">Ma semaine</span></button>
+    <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
     <button class="nav-item" data-view="todo">✅ <span class="txt">Ma to-do</span></button>
     <button class="nav-item" data-view="agenda">📅 <span class="txt">Mon agenda</span></button>
@@ -149,6 +150,7 @@ function defaults(){
     sheets:null,
     fact:null,
     users:[],
+    profils:{},
     pending:[],
     fer:[],
     settings:{prix:10, primeBase:5000, top:[15000,10000,5000], limite:24000, semaine:1,
@@ -161,7 +163,7 @@ function load(){
 }
 /* ---- synchro par sections : chaque famille de données a sa propre date ----
    Évite qu'un admin qui touche l'effectif écrase la facture qu'un autre vient de créer. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','pending','fer','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -447,21 +449,23 @@ function avatarHTML(qui, style){
   const nom = (typeof qui==='string') ? qui : ((u&&u.user)||'?');
   const ini = String(nom||'?').trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
   const st = style ? ` style="${style}"` : '';
-  return (u&&u.avatar)
-    ? `<span class="avat"${st}><img src="${esc(u.avatar)}" alt="" loading="lazy"></span>`
+  const pf=profilDe(nom);
+  const photo=(pf&&pf.photo)||(u&&u.avatar)||'';
+  return photo
+    ? `<span class="avat"${st}><img src="${esc(photo)}" alt="" loading="lazy" data-ini="${esc(ini)}" onerror="if(this.parentNode)this.parentNode.textContent=this.dataset.ini"></span>`
     : `<span class="avat"${st}>${esc(ini)}</span>`;
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
-  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','retention','prodder','quotascom','fer','frecues','moi','quotashist','todo','agenda','feedback','maj','dlogs','journal','params'],
-  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','retention','acces','factures','relances','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj','dlogs'],
-  comptable:['overview','reunions','feuilles','factures','bilan','moi','quotashist','todo','agenda','feedback','maj'],
-  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj'],
+  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','retention','prodder','quotascom','fer','frecues','moi','profil','quotashist','todo','agenda','feedback','maj','dlogs','journal','params'],
+  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','retention','acces','factures','relances','prodder','quotascom','fer','moi','profil','quotashist','todo','agenda','feedback','maj','dlogs'],
+  comptable:['overview','reunions','feuilles','factures','bilan','moi','profil','quotashist','todo','agenda','feedback','maj'],
+  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','profil','quotashist','todo','agenda','feedback','maj'],
   /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
      l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
      factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
-  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','fer','moi','quotashist','todo','agenda','feedback','maj','dlogs'],
-  membre:   ['effectif','reunions','moi','quotashist','todo','agenda','feedback','maj'] // lecture seule + stats perso + boîte à idées + agenda
+  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','fer','moi','profil','quotashist','todo','agenda','feedback','maj','dlogs'],
+  membre:   ['effectif','reunions','moi','profil','quotashist','todo','agenda','feedback','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return false; // clé de secours = Direction
@@ -534,11 +538,16 @@ function currentUser(){
   const u=sessionStorage.getItem('orx_user');
   return (S.users||[]).find(x=>x.user.toLowerCase()===String(u||'').toLowerCase())||null;
 }
+/* Pastille d'identité de la barre latérale — extraite d'enter() pour pouvoir
+   la rafraîchir quand quelqu'un change sa photo de profil. */
+function whoami(){
+  const cu=currentUser(), wu=document.getElementById('whoami');
+  if(wu) wu.innerHTML=cu?`${avatarHTML(cu)}<span style="min-width:0"><b style="color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(cu.user)}</b><small>${ROLES[cu.role]||cu.role}</small></span>`:'';
+}
 function enter(){
   document.getElementById('login').style.display='none';
   document.getElementById('app').style.display='block';
-  const cu=currentUser(), wu=document.getElementById('whoami');
-  if(wu) wu.innerHTML=cu?`${avatarHTML(cu)}<span style="min-width:0"><b style="color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(cu.user)}</b><small>${ROLES[cu.role]||cu.role}</small></span>`:'';
+  whoami();
   applyPerms(); navBadges();
   const bell=document.getElementById('nfBell'); if(bell) bell.style.display='flex';
   nfRefresh();
@@ -572,7 +581,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-38';
+const APP_VERSION='C-39';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -903,7 +912,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,retention,prodder,quotascom,fer,frecues,moi,quotashist,todo,acces,agenda,feedback,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,retention,prodder,quotascom,fer,frecues,moi,profil,quotashist,todo,acces,agenda,feedback,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -1489,7 +1498,17 @@ function statsData(){
     effectif:S.runners.length,
     clientsServis:(S.fact&&S.fact.factures.length)||0,
     top3:sorted.slice(0,3).filter(r=>r.barils>0).map(r=>({nom:r.nom,barils:r.barils})),
-    runners:S.runners.map(r=>({nom:r.nom,grade:r.grade,poste:r.poste||null,barils:r.barils,total:r.total,quota:grade(r).quota,prime:primeProj(r)}))
+    /* Ce fichier est lisible par n'importe qui sur GitHub Pages, et rien ne lisait
+       le détail par personne — ni la vitrine, ni les robots. Il contenait pourtant
+       le nom, le grade, les barils, le quota et la prime de tout l'effectif.
+       Retiré. Pour le remettre, décommenter la ligne ci-dessous.
+       runners:S.runners.map(r=>({nom:r.nom,grade:r.grade,poste:r.poste||null,barils:r.barils,total:r.total})), */
+    runners:[],
+    /* L'équipe : uniquement les personnes qui ont coché la case dans Mon profil. */
+    equipe:Object.values(S.profils||{})
+      .filter(p=>p&&p.public&&p.nom)
+      .map(p=>({nom:p.nom,titre:p.titre||profilTitreAuto(p.nom)||'',photo:photoOk(p.photo)||profilPhotoAuto(p.nom)||'',bio:p.bio||''}))
+      .sort((a,b)=>bilanOrdGrade(a.titre)-bilanOrdGrade(b.titre)||String(a.nom).localeCompare(String(b.nom)))
   };
 }
 async function publishStats(){
@@ -3266,6 +3285,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-39',d:'01/09/2026',t:'Mon profil & les visages de l\'équipe',items:[
+   ['👤','Chacun sa fiche','Nouvelle rubrique « Mon profil », ouverte à tout le monde, membres compris : photo, titre affiché et deux lignes de présentation. Un aperçu à côté montre exactement le rendu. La photo remplace les initiales partout où ton nom apparaît dans le dashboard.'],
+   ['🖼️','La photo','Ton avatar Discord par défaut, ou l\'adresse d\'une image à toi. Seules les adresses en https sont acceptées, et si le lien meurt un jour, la carte retombe proprement sur tes initiales.'],
+   ['🌐','Les visages de l\'équipe','Une bande de cartes sous l\'organigramme du site public. Elle ne contient que les gens qui ont coché la case eux-mêmes — photo, nom, titre et présentation, jamais les barils, le quota ou la prime. Personne n\'y apparaît par défaut.'],
+   ['🔒','Le fichier public allégé','data/stats-public.json est lisible par n\'importe qui, et il contenait le nom, le grade, les barils, le quota et la prime de tout l\'effectif — alors que rien ne s\'en servait, ni la vitrine ni les robots. Retiré. Restent les totaux, l\'objectif et le podium.'],
+ ]},
  {v:'C-38',d:'01/09/2026',t:'Responsable Runner, connexion par rôle Discord & rappels de quota',items:[
    ['🏅','Nouveau grade : Responsable Runner','Juste au-dessus d\'Expert : quota ramené à 5 000 barils, prime ×2,5. Ce n\'est pas une marche de plus — il ne s\'obtient pas au compteur. La direction l\'attribue à la main dans la fiche du runner, et le badge est volontairement différent du dégradé des grades pour qu\'on ne les confonde jamais. Ni montée ni descente automatique : le bouton ▼ ne s\'affiche même pas.'],
    ['🔐','Un rôle d\'accès qui va avec','Responsable Runner existe aussi comme rôle du dashboard : effectif, runs, semaine et feuilles ouverts, bilan, factures et paie fermés. Tout se règle case par case dans Paramètres → Permissions par rôle, comme les autres.'],
@@ -4126,6 +4151,7 @@ function tourSteps(){
   add('relances','Relances',"Les clients à relancer et leur historique.");
   add('prodder','Produits dérivés',"Suivi des produits dérivés vendus.");
   add('moi','Ma semaine',"Ton suivi personnel de la semaine en cours.");
+  add('profil','Mon profil',"Ta photo, ton titre et deux lignes de présentation. Tu peux choisir d'apparaître sur le site public — c'est à toi de cocher, rien ne part sans ton accord.");
   add('todo','Ma to-do',"Tes tâches personnelles à faire.");
   add('agenda','Mon agenda',"Ton planning personnel (avec option de partage direction).");
   add('feedback','Suggestions / Bugs',"Où proposer une idée ou signaler un bug.");
@@ -4385,6 +4411,153 @@ function moiNom(){
   }
   return localStorage.getItem('orx_moi')||'';
 }
+/* ================== MON PROFIL ==================
+   Chacun soigne sa propre fiche : photo, titre affiché, deux lignes de
+   présentation. Rien n'en sort tant que la personne ne coche pas elle-même
+   la case « apparaître sur la page publique » — l'affichage sur la vitrine
+   est un choix, jamais un réglage par défaut. */
+function profilNom(){
+  const cu=currentUser();
+  return moiNom()||(cu&&cu.user)||String(sessionStorage.getItem('orx_user')||'');
+}
+function profilCle(nom){ return normNom(nom); }
+function profilDe(nom){
+  const c=profilCle(nom);
+  return (c&&S.profils&&S.profils[c])||null;
+}
+/* Une photo est une adresse écrite à la main : on n'accepte que du https,
+   pour qu'aucune autre sorte d'URL ne se retrouve dans un attribut src. */
+function photoOk(u){
+  u=String(u||'').trim();
+  return /^https:\/\/[^\s"'<>]+$/i.test(u)?u:'';
+}
+function profilPhotoAuto(nom){
+  const u=(S.users||[]).find(x=>normNom(x.user)===normNom(nom));
+  return (u&&u.avatar)||'';
+}
+function profilTitreAuto(nom){
+  const r=(S.runners||[]).find(x=>normNom(x.nom)===normNom(nom));
+  return r?gTitle(r):(posteDe(nom)||'');
+}
+
+function profil(){
+  const nom=profilNom();
+  if(!nom){
+    $('#main').innerHTML=`
+    <div class="topbar"><div><h2>Mon profil</h2><div class="sub">Ta fiche, telle que les autres la voient</div></div></div>
+    <div class="panel" style="max-width:560px"><div class="empty">Connecte-toi avec ton compte Discord pour retrouver ta fiche.</div></div>`;
+    return;
+  }
+  const pf=profilDe(nom)||{};
+  const r=(S.runners||[]).find(x=>normNom(x.nom)===normNom(nom));
+  const row=rhRowOf(nom);
+  const photo=photoOk(pf.photo)||profilPhotoAuto(nom);
+  const titre=pf.titre||profilTitreAuto(nom);
+  const bio=pf.bio||'';
+  const ini=String(nom).trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
+
+  $('#main').innerHTML=`
+  <div class="topbar">
+    <div><h2>Mon profil</h2><div class="sub">👤 <b style="color:var(--ink)">${esc(nom)}</b>${r?` · <span class="badge ${gCls(r)}">${esc(gTitle(r))}</span>`:''}</div></div>
+  </div>
+  <div class="grid" style="grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start">
+
+    <div class="panel">
+      <h3>Aperçu</h3>
+      <p style="color:var(--muted);font-size:.78rem;margin-bottom:14px">Voilà ta carte, exactement comme elle apparaîtra.</p>
+      <div style="text-align:center;padding:10px 6px 4px">
+        <span class="avat avat-xl" id="pfApercu">${
+          photo?`<img src="${esc(photo)}" alt="" loading="lazy" data-ini="${esc(ini)}" onerror="if(this.parentNode)this.parentNode.textContent=this.dataset.ini">`:esc(ini)}</span>
+        <div style="font-family:var(--f-display);font-size:1.35rem;font-weight:800;letter-spacing:.01em;color:var(--ink)">${esc(nom)}</div>
+        <div id="pfTitreApercu" style="font-family:var(--f-mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:5px">${esc(titre||'—')}</div>
+        <p id="pfBioApercu" style="color:var(--muted);font-size:.84rem;line-height:1.55;margin-top:12px;min-height:1.2em">${esc(bio)}</p>
+      </div>
+      <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px;display:grid;gap:7px;font-size:.8rem;color:var(--muted)">
+        ${row&&row.arrivee?`<div>Arrivée dans l'entreprise · <b style="color:var(--ink)">${frDate(row.arrivee)}</b></div>`:''}
+        ${r?`<div>Barils cette semaine · <b style="color:var(--ink)">${fmt(r.barils)}</b></div>
+             <div>Total carrière · <b style="color:var(--ink)">${fmt(r.total)}</b></div>`:''}
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <h3>Ta photo</h3>
+        <p style="color:var(--muted);font-size:.78rem;margin-bottom:12px">
+          Par défaut, c'est ton avatar Discord. Tu peux mettre autre chose en collant une adresse d'image —
+          en <b>https</b>, sur un hébergeur qui ne l'effacera pas (une image postée sur Discord fait très bien l'affaire :
+          clic droit dessus → « Copier le lien du média »).
+        </p>
+        <div class="f-row"><label class="f-lbl">Adresse de l'image</label>
+          <input class="field" id="pf_photo" value="${esc(pf.photo||'')}" placeholder="https://…" oninput="profilApercu()"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" onclick="profilPhotoDiscord()">↺ Reprendre mon avatar Discord</button>
+          <span id="pf_photoNote" style="font-size:.76rem;color:var(--muted);align-self:center"></span>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <h3>Comment tu te présentes</h3>
+        <div class="f-row"><label class="f-lbl">Titre affiché</label>
+          <input class="field" id="pf_titre" value="${esc(pf.titre||'')}" placeholder="${esc(profilTitreAuto(nom)||'ton rôle dans l\'entreprise')}" oninput="profilApercu()"></div>
+        <p style="color:var(--muted);font-size:.74rem;margin:-4px 0 12px">Laisse vide pour afficher ton grade automatiquement.</p>
+        <div class="f-row"><label class="f-lbl">À propos</label>
+          <textarea class="field" id="pf_bio" rows="3" maxlength="220" placeholder="Deux lignes sur toi, ton poste, ta manière de bosser…" oninput="profilApercu()">${esc(pf.bio||'')}</textarea></div>
+        <p style="color:var(--muted);font-size:.74rem;margin:-4px 0 0"><span id="pf_cpt">${(pf.bio||'').length}</span> / 220 caractères</p>
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <h3>Sur la page publique</h3>
+        <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.85rem">
+          <input type="checkbox" id="pf_public" ${pf.public?'checked':''} style="margin-top:3px">
+          <span>Afficher ma carte sur le site, sous l'organigramme.<br>
+          <small style="color:var(--muted)">Photo, nom, titre et « à propos » uniquement. Jamais tes barils, ton quota ni ta prime.
+          Décoche quand tu veux : ta carte disparaît à la prochaine publication des stats.</small></span>
+        </label>
+      </div>
+
+      <button class="btn btn-gold" style="width:100%;margin-top:18px" onclick="profilSave()">Enregistrer mon profil</button>
+    </div>
+  </div>`;
+  profilApercu();
+}
+function profilApercu(){
+  const ph=photoOk($('#pf_photo').value), brut=$('#pf_photo').value.trim();
+  const nom=profilNom();
+  const note=$('#pf_photoNote');
+  if(brut&&!ph) note.innerHTML='<b style="color:var(--red,#ff5c5c)">Adresse refusée</b> — il faut une adresse commençant par https://';
+  else note.textContent=brut?'':'Avatar Discord utilisé';
+  const cible=$('#pfApercu');
+  const url=ph||profilPhotoAuto(nom);
+  const ini=String(nom).trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
+  cible.innerHTML=url?`<img src="${esc(url)}" alt="" data-ini="${esc(ini)}" onerror="if(this.parentNode)this.parentNode.textContent=this.dataset.ini">`:esc(ini);
+  $('#pfTitreApercu').textContent=$('#pf_titre').value.trim()||profilTitreAuto(nom)||'—';
+  $('#pfBioApercu').textContent=$('#pf_bio').value.trim();
+  $('#pf_cpt').textContent=$('#pf_bio').value.length;
+}
+function profilSave(){
+  const nom=profilNom(); if(!nom) return;
+  const brut=$('#pf_photo').value.trim();
+  const ph=photoOk(brut);
+  if(brut&&!ph) return toast('⚠️ L\'adresse de l\'image doit commencer par https://');
+  S.profils=S.profils||{};
+  S.profils[profilCle(nom)]={
+    nom, photo:ph,
+    titre:$('#pf_titre').value.trim().slice(0,60),
+    bio:$('#pf_bio').value.trim().slice(0,220),
+    public:$('#pf_public').checked,
+    maj:new Date(nowSrv()).toISOString()
+  };
+  save(); sbPushNow();
+  whoami();
+  toast('👤 Profil enregistré'+($('#pf_public').checked?' · visible sur le site à la prochaine publication':''));
+  profil();
+}
+function profilPhotoDiscord(){
+  const a=profilPhotoAuto(profilNom());
+  if(!a) return toast('⚠️ Aucun avatar Discord connu — reconnecte-toi via Discord');
+  $('#pf_photo').value=a; profilApercu(); toast('↺ Avatar Discord repris');
+}
+
 function moi(){
   const R=S.runners||[], nom=moiNom();
   const r=R.find(x=>String(x.nom||'').toLowerCase().trim()===String(nom||'').toLowerCase().trim());

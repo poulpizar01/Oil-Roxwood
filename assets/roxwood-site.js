@@ -387,7 +387,9 @@
   fetch("data/stats-public.json?t=" + Date.now(), { cache: "no-store" })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
-      if (!d || !d.totalBarils) return;              // rien de publié : la section reste cachée
+      if (!d) return;
+      equipe(d.equipe);                              // l'équipe ne dépend pas de la production
+      if (!d.totalBarils) return;                    // rien de publié : la section reste cachée
       sec.hidden = false;
       if ($("navDirect")) $("navDirect").hidden = false;
 
@@ -424,4 +426,39 @@
       document.querySelectorAll("#direct .rev").forEach(function (el) { el.classList.add("vue"); });
     })
     .catch(function () { /* pas de stats : la vitrine reste telle quelle */ });
+
+  /* L'équipe — uniquement les gens qui ont coché la case dans « Mon profil ».
+     Le texte vient de ce qu'ils ont écrit eux-mêmes : on le pose en texte, jamais
+     en HTML, et une photo n'est acceptée qu'en https. */
+  function equipe(liste) {
+    var sec = document.getElementById("equipe"), grille = document.getElementById("equipeGrille");
+    if (!sec || !grille || !Array.isArray(liste) || !liste.length) return;
+    var https = function (u) { return /^https:\/\/[^\s"'<>]+$/i.test(String(u || "")) ? String(u) : ""; };
+    grille.textContent = "";
+    liste.forEach(function (m) {
+      if (!m || !m.nom) return;
+      var carte = document.createElement("div");
+      carte.className = "equipe-carte rev";
+      var pp = document.createElement("div"); pp.className = "pp";
+      var ini = String(m.nom).trim().split(/\s+/).map(function (w) { return w[0] || ""; }).slice(0, 2).join("").toUpperCase();
+      var url = https(m.photo);
+      if (url) {
+        var img = document.createElement("img"); img.src = url; img.alt = ""; img.loading = "lazy";
+        // un lien d'image finit toujours par mourir un jour : on retombe sur les initiales
+        img.onerror = function () { pp.textContent = ini; };
+        pp.appendChild(img);
+      } else pp.textContent = ini;
+      carte.appendChild(pp);
+      var h = document.createElement("h4"); h.textContent = m.nom; carte.appendChild(h);
+      if (m.titre) { var t = document.createElement("div"); t.className = "role"; t.textContent = m.titre; carte.appendChild(t); }
+      if (m.bio)   { var b = document.createElement("p");   b.className = "mot";  b.textContent = m.bio;   carte.appendChild(b); }
+      grille.appendChild(carte);
+    });
+    if (!grille.children.length) return;
+    sec.hidden = false;
+    if (window.Roxwood) Roxwood.habiller(sec, { tilt: ".equipe-carte" });
+    requestAnimationFrame(function () {
+      sec.querySelectorAll(".rev").forEach(function (el) { el.classList.add("vue"); });
+    });
+  }
 })();
