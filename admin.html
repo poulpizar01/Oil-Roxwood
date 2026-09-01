@@ -11,7 +11,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ═══════════════════════════════════════════════════════════════
+     CONFIGURATION — les 5 valeurs à vérifier si tu changes de dépôt
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+window.ROXWOOD_CFG = {
+  owner   : "poulpizar01",        // compte GitHub propriétaire du dépôt
+  repo    : "Oil-Roxwood",        // nom du dépôt
+  branche : "main",               // branche publiée
+  fichier : "data/etat.json",     // le fichier qui fait office de base
+  discordClientId : ""            // ⚠️ À RENSEIGNER : identifiant de ton application Discord
+};
+</script>
+<script src="assets/roxwood-github.js"></script>
 <link rel="stylesheet" href="assets/roxwood-core.css">
 <link rel="stylesheet" href="assets/roxwood-app.css">
 </head>
@@ -39,7 +51,7 @@
 <!-- ============ APP ============ -->
 <div id="app">
   <aside>
-    <div class="brand"><img src="assets/logo.png" alt="" width="32" height="32" style="object-fit:contain"> <span>OIL <b>ROXWOOD</b><small>ESPACE MEMBRE <span id="syncDot" title="Synchro non configurée" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-left:4px;vertical-align:middle"></span></small></span></div>
+    <div class="brand"><img src="assets/logo.png" alt="" width="32" height="32" style="object-fit:contain"> <span>OIL <b>ROXWOOD</b><small>ESPACE MEMBRE <span id="syncDot" title="État de la synchro — cliquer pour régler le jeton" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--muted);margin-left:5px;vertical-align:middle;cursor:pointer"></span></small></span></div>
     <div class="nav-sec" data-sec="pilotage" onclick="navToggle('pilotage')">Pilotage <span class="chev">▾</span></div>
     <button class="nav-item active" data-view="overview">📊 <span class="txt">Vue d'ensemble</span></button>
     <button class="nav-item" data-view="semaine">💰 <span class="txt">Semaine &amp; Primes</span></button>
@@ -151,7 +163,8 @@ function dateParis(ts){
 function semaineCal(){ return isoWeek(dateParis()); }
 function syncClock(){
   try{
-    fetch(SB_URL+'/rest/v1/',{method:'HEAD',headers:{apikey:SB_KEY}}).then(r=>{
+    // heure de référence : l'en-tête Date renvoyé par GitHub Pages
+    fetch(location.href,{method:'HEAD',cache:'no-store'}).then(r=>{
       const d=Date.parse(r.headers.get('Date')||'');
       if(d){ CLOCK_SKEW=d-Date.now();
         if(Math.abs(CLOCK_SKEW)>120000) console.warn('[OilRoxwood] horloge locale décalée de',Math.round(CLOCK_SKEW/60000),'min — corrigé via l\'heure serveur');
@@ -217,193 +230,127 @@ function mergeRemote(rem){
   return {changed,localNewer};
 }
 
-/* ================== SYNCHRO SUPABASE (multi-admin temps réel) ================== */
-const SB_URL='https://prwdtdmdkhzwfyivaepw.supabase.co';
-const SB_KEY='sb_publishable_qgN4fRX9eVdKn3SWAjtmhw_F00rlqXz';
-const SYNC={on:false, cli:null, cid:Math.random().toString(36).slice(2), t:null, ready:false};
+/* ================== SYNCHRO GITHUB (multi-admin, sans serveur) ==================
+   Le dépôt fait office de base : tout l'état partagé vit dans data/etat.json.
+   · lecture  : fichier public, sans jeton
+   · écriture : API GitHub Contents avec le jeton personnel de chacun
+   · conflits : le SHA du fichier sert de jeton de version
+   · fraîcheur : sondage toutes les 45 s + au retour sur l'onglet
+   Les noms de fonctions sont ceux d'avant : le reste du code n'a pas bougé. */
+const SYNC={on:false, cli:null, cid:Math.random().toString(36).slice(2), t:null, ready:false, sha:null};
+
 function syncDot(ok,msg){
   const el=document.getElementById('syncDot');
   if(el){ el.style.background=ok===null?'var(--muted)':ok?'var(--green)':'var(--red)'; el.title=msg||''; }
 }
+
 function initSync(){
-  if(SYNC.on||!SB_URL||!SB_KEY||typeof supabase==='undefined') return;
-  SYNC.cli=supabase.createClient(SB_URL,SB_KEY);
+  if(SYNC.on||typeof RoxwoodGH==='undefined') return;
   SYNC.on=true;
-  syncClock(); setInterval(syncClock,10*60*1000); // heure serveur = référence, revérifiée régulièrement
-  // dès que la session Discord est établie (même après l'échange du code), on tente l'entrée
-  SYNC.cli.auth.onAuthStateChange((event,session)=>{
-    if(session && sessionStorage.getItem('orx_auth')!=='1') checkDiscordAuth();
-  });
-  SYNC.cli.channel('etat-sync')
-    .on('postgres_changes',{event:'*',schema:'public',table:'oilroxwood_etat',filter:'id=eq.2'},p=>{
-      const d=p.new&&p.new.data;
-      if(!d||d._cid===SYNC.cid) return; // ignore l'écho de nos propres écritures
-      const localReal=(S.runners&&S.runners.length)||(S.users&&S.users.length);
-      if(d._majSec&&S._majSec&&localReal){
-        // fusion section par section : personne n'écrase le travail de personne
-        const r=mergeRemote(d);
-        if(r.localNewer) sbQueue(); // nos sections plus récentes repartent vers la base
-        if(!r.changed) return;      // rien de neuf pour nous : pas de re-rendu
-      } else {
-        // compatibilité anciens clients : comparaison globale
-        if(localReal&&S._maj&&(!d._maj||d._maj<S._maj)) return;
-        const monPass=S.passHash; // le mot de passe reste propre à chaque navigateur
-        S=Object.assign(defaults(),d);
-        S.passHash=monPass;
-      }
-      localStorage.setItem(LS_KEY,JSON.stringify(S));
-      if(sessionStorage.getItem('orx_auth')==='1'){
-        applyPerms(); softRerender();
-        const cu=currentUser(), wu=document.getElementById('whoami'); // le rôle affiché suit un éventuel changement
-        if(wu) wu.innerHTML=cu?`<span class="avat">${esc((cu.user||'?').trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase())}</span><span style="min-width:0"><b style="color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(cu.user)}</b><small>${ROLES[cu.role]||cu.role}</small></span>`:'';
-        toast('☁️ Mise à jour reçue d\'un autre admin');
-      }
-      else checkDiscordAuth(); // en attente de validation : entre automatiquement dès que la direction valide
-    })
-    .subscribe(st=>{
-      if(st==='SUBSCRIBED'){
-        syncDot(true,'Temps réel actif');
-        if(SYNC.lost){ SYNC.lost=false; sbResync(); } // on rattrape ce qu'on a manqué pendant la coupure
-      } else if(st==='CHANNEL_ERROR'||st==='TIMED_OUT'||st==='CLOSED'){
-        SYNC.lost=true; syncDot(false,'Temps réel interrompu — resynchronisation au retour');
-      }
-    });
-  // présence : « untel est en train de modifier » (éphémère, jamais stocké)
-  SYNC.pres=SYNC.cli.channel('presence-edit');
-  SYNC.pres.on('broadcast',{event:'edit'},p=>{
-    const d=p.payload||{};
-    if(d.u&&d.u!==((currentUser()||{}).user)) presBadge(d.u,d.v);
-  }).subscribe();
-  let presLast=0;
-  document.addEventListener('focusin',e=>{
-    if(!e.target.closest||!e.target.closest('#main')) return;
-    if(!/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
-    const now=Date.now(); if(now-presLast<5000) return; presLast=now;
-    try{ SYNC.pres.send({type:'broadcast',event:'edit',payload:{u:(currentUser()||{}).user||'?',v:VIEW}}); }catch(err){}
-  });
-  // notification en direct des demandes d'accès (table dédiée)
-  SYNC.cli.channel('demandes-sync')
-    .on('postgres_changes',{event:'INSERT',schema:'public',table:'oilroxwood_demandes'},p=>{
-      if(sessionStorage.getItem('orx_auth')==='1'&&!isMembre()){
-        toast('🔔 Nouvelle demande d\'accès : '+esc((p.new&&p.new.pseudo)||'?'));
-        if(VIEW==='params') params();
-      }
-    })
-    .subscribe();
+  // le client émule l'API Supabase pour les tables annexes (agenda, todo, médias…)
+  SYNC.cli=RoxwoodGH.creerClient({ etat:()=>S, modifie:()=>{ save(); } });
+  if(typeof syncClock==='function'){ try{ syncClock(); setInterval(syncClock,10*60*1000); }catch(e){} }
+  syncDot(null, RoxwoodGH.peutEcrire()?'Connexion au dépôt…':'Lecture seule — aucun jeton d\'écriture');
+  setInterval(()=>{ if(!document.hidden) sbResync(); }, 45*1000);
 }
+
+/* ---- lecture de l'état partagé ---- */
 async function sbPull(){
   if(!SYNC.on) return;
   try{
-    // emplacement v2 (id=2) : isolé des anciennes versions du code qui écrivaient sur id=1
-    let {data,error}=await SYNC.cli.from('oilroxwood_etat').select('data').eq('id',2).maybeSingle();
-    if(error) throw error;
-    if(!data){
-      const old=await SYNC.cli.from('oilroxwood_etat').select('data').eq('id',1).maybeSingle();
-      if(old.data) data=old.data; // migration depuis l'ancien emplacement
-    }
-    if(data&&data.data){
-      const rem=data.data;
-      const localReal=(S.runners&&S.runners.length)||(S.users&&S.users.length);
+    const rem=await RoxwoodGH.lire();
+    const localReal=(S.runners&&S.runners.length)||(S.users&&S.users.length);
+    if(rem){
       if(rem._majSec&&S._majSec&&localReal){
-        // fusion section par section, puis on republie l'état fusionné
         mergeRemote(rem);
         localStorage.setItem(LS_KEY,JSON.stringify(S));
         SYNC.ready=true; await sbPushNow();
       } else if(localReal && S._maj && (!rem._maj || rem._maj < S._maj)){
-        // notre état local est plus récent : on le repousse au lieu de régresser
         SYNC.ready=true; await sbPushNow();
       } else {
-        const monPass=S.passHash; // le mot de passe reste propre à chaque navigateur
+        const monPass=S.passHash;            // le mot de passe reste propre à chaque navigateur
         S=Object.assign(defaults(),rem);
         S.passHash=monPass;
         localStorage.setItem(LS_KEY,JSON.stringify(S));
-        SYNC.ready=true; await sbPushNow(); // garantit la présence horodatée sur l'emplacement v2
+        SYNC.ready=true;
       }
     } else {
       SYNC.ready=true;
-      await sbPushNow(); // base vide : on y pousse l'état local (première installation)
+      await sbPushNow();                     // dépôt vide : on y publie l'état local
     }
-    SYNC.ready=true; syncDot(true,'Synchronisé');
-  }catch(e){ syncDot(false,'Connexion Supabase impossible'); }
+    SYNC.ready=true;
+    syncDot(true, RoxwoodGH.peutEcrire()?'Synchronisé':'Lecture seule');
+  }catch(e){ SYNC.ready=true; syncDot(false,'Dépôt injoignable — travail en local'); }
 }
-function sbQueue(){ if(!SYNC.on||!SYNC.ready) return; clearTimeout(SYNC.t); SYNC.t=setTimeout(sbPushNow,250); }
-// filet de sécurité : si on quitte la page avec un envoi en attente, on tente de l'expédier
+
+function sbQueue(){
+  if(!SYNC.on||!SYNC.ready) return;
+  clearTimeout(SYNC.t);
+  // écrire dans le dépôt crée un commit : on regroupe les modifications sur 3 s
+  SYNC.t=setTimeout(sbPushNow, 3000);
+}
 addEventListener('beforeunload',()=>{ if(SYNC.t){ clearTimeout(SYNC.t); SYNC.t=null; sbPushNow(); } });
-/* Envoi sécurisé : on relit la base, on fusionne, puis on n'écrit QUE si personne
-   n'a écrit entre-temps (jeton _rev). Sans ça, un onglet resté ouvert plusieurs heures
-   réécrivait tout son état périmé par-dessus le travail des autres. */
+
+/* ---- écriture : on relit, on fusionne, on écrit si le SHA n'a pas bougé ---- */
 async function sbPushNow(force){
   if(!SYNC.on) return;
-  if(!force&&isMembre()) return; // les membres ne modifient jamais l'état partagé (sauf envoi forcé : demandes d'accès)
-  if(SYNC.pushing){ SYNC.again=true; return; } // un seul envoi à la fois dans cet onglet
+  if(!RoxwoodGH.peutEcrire()){ syncDot(null,'Lecture seule — aucun jeton d\'écriture'); return; }
+  if(!force&&isMembre()) return;
+  if(SYNC.pushing){ SYNC.again=true; return; }
   SYNC.pushing=true;
   try{
     let ok=false;
     for(let essai=0; essai<5 && !ok; essai++){
-      // 1) état réellement présent en base
-      const {data:row,error:eLire}=await SYNC.cli.from('oilroxwood_etat').select('data').eq('id',2).maybeSingle();
-      if(eLire) throw eLire;
-      const rem=row&&row.data;
-      const revDist=rem?(rem._rev||null):null;
-      // 2) on récupère ce qui est plus récent en base avant d'écrire
+      const {data:rem, sha}=await RoxwoodGH.lireAvecSha();
       if(rem&&rem._majSec&&S._majSec&&((S.runners&&S.runners.length)||(S.users&&S.users.length))){
         if(mergeRemote(rem).changed){
           localStorage.setItem(LS_KEY,JSON.stringify(S));
           if(sessionStorage.getItem('orx_auth')==='1'){ try{ applyPerms(); softRerender(); }catch(e){} }
         }
       }
-      // 3) paquet à envoyer
       const d=JSON.parse(JSON.stringify(S)); d._cid=SYNC.cid;
-      delete d.passHash; // jamais synchronisé : chaque navigateur garde le sien
-      delete d._fp;      // empreintes locales : inutiles aux autres
-      d._rev=Math.random().toString(36).slice(2)+'-'+Date.now().toString(36); // jeton de version
-      try{ d._statsPub=statsData(); }catch(e){} // paquet prêt à publier, récupéré par le robot GitHub toutes les 15 min
-      // 4) écriture conditionnelle : refusée si la base a bougé depuis la lecture
-      if(!rem){
-        const ins=await SYNC.cli.from('oilroxwood_etat').insert({id:2,data:d,maj:new Date().toISOString()}).select('id');
-        if(!ins.error) ok=true;
-        else if(ins.error.code!=='23505') throw ins.error; // 23505 = créée par un autre entre-temps : on refait un tour
-      } else {
-        let q=SYNC.cli.from('oilroxwood_etat').update({data:d,maj:new Date().toISOString()}).eq('id',2);
-        q = revDist ? q.eq('data->>_rev',revDist) : q.is('data->>_rev',null);
-        const up=await q.select('id');
-        if(up.error) throw up.error;
-        if(up.data&&up.data.length) ok=true; // écriture acceptée
-        else await new Promise(r=>setTimeout(r,120+Math.random()*200)); // quelqu'un a écrit : on refusionne
-      }
+      delete d.passHash;                     // jamais partagé
+      delete d._fp;
+      d._rev=Math.random().toString(36).slice(2)+'-'+Date.now().toString(36);
+      try{ d._statsPub=statsData(); }catch(e){}   // paquet récupéré par le robot GitHub
+      const qui=(currentUser()||{}).user||'inconnu';
+      const r=await RoxwoodGH.ecrire(d, sha, 'MAJ dashboard · '+qui);
+      if(r&&r.conflit){ await new Promise(x=>setTimeout(x,300+Math.random()*400)); continue; }
+      SYNC.sha=r&&r.sha; ok=true;
     }
     if(ok) syncDot(true,'Synchronisé · '+new Date().toLocaleTimeString('fr-FR'));
-    else   syncDot(false,'Base occupée — nouvel essai automatique');
-    if(!ok){ clearTimeout(SYNC.t); SYNC.t=setTimeout(sbPushNow,1500); }
-  }catch(e){ syncDot(false,'Échec d\'envoi — modifs gardées en local'); }
+    else{ syncDot(false,'Dépôt occupé — nouvel essai automatique'); clearTimeout(SYNC.t); SYNC.t=setTimeout(sbPushNow,4000); }
+  }catch(e){
+    const m=String(e&&e.message||e);
+    syncDot(false, /401|403|Bad credentials/i.test(m) ? 'Jeton GitHub refusé — vérifie-le dans Paramètres' : 'Échec d\'envoi — modifs gardées en local');
+  }
   finally{
     SYNC.pushing=false;
-    if(SYNC.again){ SYNC.again=false; sbQueue(); } // des modifs sont arrivées pendant l'envoi
+    if(SYNC.again){ SYNC.again=false; sbQueue(); }
   }
 }
 
-/* Resynchronisation légère : relit la base et fusionne, sans forcer d'envoi.
-   Appelée au retour sur l'onglet, au retour du réseau, à la reconnexion et toutes les 5 min. */
+/* ---- relecture légère : au retour sur l'onglet, au retour du réseau, toutes les 45 s ---- */
 async function sbResync(){
   if(!SYNC.on||!SYNC.ready||SYNC.pushing) return;
   try{
-    const {data:row,error}=await SYNC.cli.from('oilroxwood_etat').select('data').eq('id',2).maybeSingle();
-    if(error) throw error;
-    const rem=row&&row.data;
-    if(!rem||rem._cid===SYNC.cid){ syncDot(true,'Synchronisé'); return; }
+    const rem=await RoxwoodGH.lire();
+    if(!rem||rem._cid===SYNC.cid){ syncDot(true, RoxwoodGH.peutEcrire()?'Synchronisé':'Lecture seule'); return; }
     const localReal=(S.runners&&S.runners.length)||(S.users&&S.users.length);
     if(rem._majSec&&S._majSec&&localReal){
       const r=mergeRemote(rem);
       localStorage.setItem(LS_KEY,JSON.stringify(S));
-      if(r.changed&&sessionStorage.getItem('orx_auth')==='1'){ try{ applyPerms(); softRerender(); }catch(e){} }
-      if(r.localNewer) sbQueue(); // nos sections plus récentes repartent vers la base
+      if(r.changed&&sessionStorage.getItem('orx_auth')==='1'){
+        try{ applyPerms(); softRerender(); }catch(e){}
+        toast('☁️ Mise à jour reçue d\'un autre admin');
+      }
+      if(r.localNewer) sbQueue();
     }
     syncDot(true,'Synchronisé · '+new Date().toLocaleTimeString('fr-FR'));
-  }catch(e){ syncDot(false,'Resynchronisation impossible'); }
+  }catch(e){ syncDot(false,'Relecture impossible'); }
 }
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) sbResync(); });
 addEventListener('online',()=>sbResync());
-setInterval(()=>{ if(!document.hidden) sbResync(); },5*60*1000);
 
 /* ================== AUTH ================== */
 async function sha(t){
@@ -556,65 +503,53 @@ async function checkRescue(){
   }
 }
 
-/* ---- Connexion via Discord (OAuth Supabase) ---- */
+/* ---- Connexion via Discord (flux implicite, sans serveur ni secret) ----
+   Discord renvoie un jeton dans le fragment de l'URL. On s'en sert une seule
+   fois pour lire l'identité (id + pseudo), puis on l'oublie : le dashboard
+   n'a plus jamais besoin de parler à Discord. */
 async function loginDiscord(){
-  if(!SYNC.cli) return alert('Connexion Discord indisponible : Supabase injoignable. Utilise l\'identifiant en secours.');
-  // pas de prompt:'none' : il bloquait silencieusement les comptes n'ayant JAMAIS autorisé l'appli.
-  // Discord saute de lui-même l'écran d'autorisation pour les comptes déjà approuvés.
-  await SYNC.cli.auth.signInWithOAuth({provider:'discord',options:{
-    redirectTo:location.origin+location.pathname
-  }});
+  RoxwoodGH.connexionDiscord();
 }
+
 async function checkDiscordAuth(){
-  if(!SYNC.cli) return;
-  if(sessionStorage.getItem('orx_auth')==='1') return; // déjà connecté
+  if(sessionStorage.getItem('orx_auth')==='1') return;   // déjà connecté
   try{
-    if(!SYNC.ready) await sbPull(); // s'assure d'avoir la liste des comptes partagée avant de décider
-    const {data:{session}}=await SYNC.cli.auth.getSession();
-    if(!session) return;
-    const m=session.user.user_metadata||{};
-    const idn=(session.user.identities&&session.user.identities[0]&&session.user.identities[0].identity_data)||{};
-    const cc=m.custom_claims||{};
-    const pseudo=cc.global_name||m.full_name||m.name||m.preferred_username
-      ||idn.custom_claims&&idn.custom_claims.global_name||idn.full_name||idn.name||idn.preferred_username
-      ||(m.email||session.user.email||'').split('@')[0]||'inconnu';
-    const did=m.provider_id||idn.provider_id||m.sub||session.user.id;
-    console.log('[OilRoxwood] identité Discord reçue :',{pseudo,did,user_metadata:m,identity_data:idn});
+    const id=await RoxwoodGH.recupererIdentite();
+    if(!id||!id.did) return;                             // pas encore passé par Discord
+    if(!SYNC.ready) await sbPull();                      // il faut la liste des comptes avant de décider
+    const pseudo=id.pseudo, did=id.did;
+
     let u=(S.users||[]).find(x=>x.did===did)
         ||(S.users||[]).find(x=>String(x.user).toLowerCase()===String(pseudo).toLowerCase());
+
     if(!u&&!(S.users&&S.users.length)){
-      // premier lancement : le premier connecté Discord devient Direction
+      // premier lancement : le premier connecté devient Direction
       u={id:Date.now(),user:pseudo,did,role:'direction'};
       S.users=[u]; save();
-      await sbPushNow(); // envoi IMMÉDIAT (sans délai) pour ne pas être écrasé par un pull
+      await sbPushNow(true);
       sendLog('👤 Premier compte créé', `**${pseudo}** (Direction) via Discord`, 0x5865F2);
     }
+
     if(u){
-      if(!u.did){ u.did=did; save(); await sbPushNow(); } // liaison définitive au premier login
+      if(!u.did){ u.did=did; save(); await sbPushNow(); }  // liaison définitive au premier login
       sessionStorage.setItem('orx_auth','1');
       sessionStorage.setItem('orx_user',u.user);
       enter();
     } else {
-      // inconnu → demande d'accès dans une table dédiée (fiable, temps réel, hors état partagé)
-      let errDem=null;
-      try{
-        const r=await SYNC.cli.from('oilroxwood_demandes').upsert({did, pseudo});
-        errDem=r.error||null;
-      }catch(e){ errDem=e; }
-      console.log('[OilRoxwood] demande d\'accès', pseudo, did, errDem?('ERREUR: '+(errDem.message||errDem)):'enregistrée ✓');
-      if(!errDem) sendLog('🔔 Demande d\'accès au dashboard', `**${pseudo}** attend une validation — Paramètres → Comptes d'accès → ✓`, 0xe8a020, '<@186397473374208000>');
+      // Inconnu. Sans serveur il ne peut rien écrire dans le dépôt : la demande
+      // part sur Discord, et la direction crée le compte dans Paramètres.
+      sendLog('🔔 Demande d\'accès au dashboard',
+              `**${pseudo}** demande l'accès\nIdentifiant Discord : \`${did}\`\nParamètres → Comptes d'accès → Ajouter`,
+              0xe8a020, '<@186397473374208000>');
       const d=document.getElementById('lg_denied');
-      if(d){ d.style.display='block';
-        if(errDem){
-          d.style.background='rgba(255,92,92,.1)'; d.style.borderColor='rgba(255,92,92,.35)'; d.style.color='#ffb0b0';
-          d.innerHTML=`⚠️ Impossible d'enregistrer la demande de <b>${esc(pseudo)}</b>.<br>Erreur : <code>${esc(errDem.message||String(errDem))}</code><br>Transmets ce message à la direction (table <b>oilroxwood_demandes</b> manquante côté Supabase ?).`;
-        } else {
-          d.style.background='rgba(232,98,44,.08)'; d.style.borderColor='rgba(232,98,44,.35)'; d.style.color='var(--accent-2)';
-          d.innerHTML=`⏳ Demande d'accès envoyée pour <b>${esc(pseudo)}</b>.<br>Dès que la direction valide, cette page se connectera <b>automatiquement</b> — laisse-la ouverte. <a href="#" onclick="logout();return false" style="color:inherit;text-decoration:underline">Changer de compte</a>`;
-        }
+      if(d){
+        d.style.display='block';
+        d.innerHTML=`⏳ Demande envoyée pour <b>${esc(pseudo)}</b>.<br>`
+          +`La direction a reçu une notification sur Discord. Reviens quand ton compte aura été créé.<br>`
+          +`<a href="#" onclick="logout();return false" style="color:inherit;text-decoration:underline">Changer de compte</a>`;
       }
     }
-  }catch(e){ /* session illisible : on reste sur l'écran de connexion */ }
+  }catch(e){ /* identité illisible : on reste sur l'écran de connexion */ }
 }
 // connexion auto différée : attend que tout le script soit chargé avant d'entrer
 if(sessionStorage.getItem('orx_auth')==='1') setTimeout(enter,0);
@@ -5112,6 +5047,55 @@ new MutationObserver(()=>animateCounters()).observe(document.getElementById('mai
   initSync();
   sbPull().then(()=>{ majHint(); checkDiscordAuth(); });
 })();
+</script>
+
+
+<!-- ============ JETON D'ÉCRITURE GITHUB ============
+     Sans serveur, écrire dans le dépôt demande un jeton personnel.
+     Chacun crée le sien ; il ne quitte jamais son navigateur.        -->
+<script>
+function roxwoodJeton(){
+  const actuel = RoxwoodGH.jeton();
+  openModal(`<h3>🔑 Jeton d'écriture GitHub</h3>
+  <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px">
+    Sans jeton, le dashboard fonctionne en <b>lecture seule</b> : tu vois tout, tu ne modifies rien.
+    Le jeton reste dans ce navigateur, il n'est jamais envoyé ailleurs.
+  </p>
+  <div class="f-row">
+    <label class="f-lbl">Jeton personnel (github_pat_…)</label>
+    <input class="field" id="ghTok" type="password" placeholder="${actuel?'•••••••• (déjà enregistré)':'colle ton jeton ici'}" autocomplete="off">
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+    <button class="btn btn-gold btn-sm" onclick="roxwoodJetonSave()">Enregistrer</button>
+    ${actuel?`<button class="btn btn-red btn-sm" onclick="RoxwoodGH.poserJeton('');closeModal();toast('Jeton retiré — lecture seule');syncDot(null,'Lecture seule')">Retirer</button>`:''}
+  </div>
+  <details style="font-size:.82rem;color:var(--muted)">
+    <summary style="cursor:pointer;color:var(--accent)">Comment créer un jeton ?</summary>
+    <ol style="margin:10px 0 0 18px;line-height:1.8">
+      <li>GitHub → photo de profil → <b>Settings</b></li>
+      <li>Tout en bas : <b>Developer settings</b></li>
+      <li><b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b></li>
+      <li>Expiration : 1 an · Repository access : <b>Only select repositories</b> → <b>${(window.ROXWOOD_CFG||{}).repo||'Oil-Roxwood'}</b></li>
+      <li>Permissions → Repository permissions → <b>Contents : Read and write</b></li>
+      <li>Generate, puis copie le jeton ici. GitHub ne le réaffichera jamais.</li>
+    </ol>
+  </details>`);
+}
+async function roxwoodJetonSave(){
+  const v=(document.getElementById('ghTok').value||'').trim();
+  if(!v) return toast('⚠️ Colle un jeton');
+  RoxwoodGH.poserJeton(v);
+  try{
+    await RoxwoodGH.lireAvecSha();          // vérifie tout de suite qu'il est accepté
+    closeModal(); toast('✅ Jeton valide — écriture activée'); syncDot(true,'Synchronisé');
+    sbPushNow();
+  }catch(e){
+    RoxwoodGH.poserJeton('');
+    toast('❌ Jeton refusé : '+(e.message||e));
+  }
+}
+// le voyant de synchro ouvre le réglage du jeton
+document.addEventListener('click',e=>{ if(e.target&&e.target.id==='syncDot') roxwoodJeton(); });
 </script>
 
 <!-- ============ HABILLAGE «raffinerie brute» ============

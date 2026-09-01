@@ -14,18 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Récupérer l'état depuis Supabase
-        env:
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      - name: Copier l'état du dépôt dans les sauvegardes
         run: |
+          DATE=$(date +%F)
           mkdir -p backups
-          DATE=$(date +%Y-%m-%d)
-          URL="https://prwdtdmdkhzwfyivaepw.supabase.co/rest/v1/oilroxwood_etat?id=eq.2&select=data"
-          KEY="${SUPABASE_SERVICE_KEY:-sb_publishable_qgN4fRX9eVdKn3SWAjtmhw_F00rlqXz}"
-          curl -s "$URL" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" \
-            | python3 -c "import sys,json; d=json.load(sys.stdin); open('backups/$DATE.json','w').write(json.dumps(d[0]['data'],ensure_ascii=False,indent=1) if d else '{}')"
-          echo "Sauvegarde du $DATE : $(wc -c < backups/$DATE.json) octets"
-          # ne garde que les 30 dernières sauvegardes
+          if [ -f data/etat.json ]; then
+            cp data/etat.json "backups/$DATE.json"
+            echo "Sauvegarde du $DATE : $(wc -c < backups/$DATE.json) octets"
+          else
+            echo "data/etat.json absent — rien à sauvegarder"
+          fi
           ls -1t backups/*.json 2>/dev/null | tail -n +31 | xargs -r rm -f
 
       - name: Commit
