@@ -16,7 +16,12 @@ Deux applications dans un seul dépôt statique, hébergé sur GitHub Pages.
 
 **`index.html` — la vitrine.** Présentation de l'entreprise, organigramme, tarifs,
 grille des grades, simulateur de paie et recrutement. Thème jour / nuit au choix
-du visiteur.
+du visiteur. Une section **« Le dépôt en direct »** affiche la semaine en cours —
+barils raffinés, effectif, commandes livrées, barre d'objectif et podium des trois
+meilleurs — lue dans `data/stats-public.json`. Uniquement des agrégats : les fiches
+individuelles, qui contiennent quotas et primes, ne sortent jamais du poste de
+contrôle. Tant que rien n'est publié, la section et son lien de menu restent
+invisibles.
 
 **`admin.html` — le poste de contrôle.** L'espace membre : effectif, runs, feuilles
 de production, factures, relances, bilan comptable, quotas, primes, clôture du lundi,

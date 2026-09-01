@@ -369,3 +369,58 @@
 
   demarrer();
 })();
+
+/* ============================================================
+   LE DÉPÔT EN DIRECT — lit data/stats-public.json
+   Publié par le dashboard, rafraîchi par le robot toutes les 15 min.
+   On n'affiche que les agrégats et le podium : jamais les fiches
+   individuelles, qui contiennent quotas et primes.
+   ============================================================ */
+(function () {
+  "use strict";
+  var sec = document.getElementById("direct");
+  if (!sec) return;
+  var F = function (n) { return Math.round(n || 0).toLocaleString("fr-FR"); };
+  var $ = function (id) { return document.getElementById(id); };
+
+  fetch("data/stats-public.json?t=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.totalBarils) return;              // rien de publié : la section reste cachée
+      sec.hidden = false;
+      if ($("navDirect")) $("navDirect").hidden = false;
+
+      $("dirSem").textContent = d.semaine ? ("n° " + d.semaine) : "en cours";
+      $("dirBarils").textContent = F(d.totalBarils);
+      $("dirEffectif").textContent = F(d.effectif);
+      $("dirClients").textContent = F(d.clientsServis);
+
+      if (d.maj) {
+        var j = new Date(d.maj);
+        $("dirMaj").textContent = "Chiffres relevés au dépôt le "
+          + j.toLocaleDateString("fr-FR", { day: "numeric", month: "long" })
+          + " à " + j.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) + ".";
+      }
+
+      if (d.objectif > 0) {
+        var pct = Math.min(100, (d.totalBarils / d.objectif) * 100);
+        $("dirObjWrap").hidden = false;
+        $("dirObjTxt").textContent = F(d.totalBarils) + " / " + F(d.objectif) + " barils · " + Math.round(pct) + " %";
+        requestAnimationFrame(function () { $("dirObjBar").style.right = (100 - pct) + "%"; });
+      }
+
+      if (d.top3 && d.top3.length) {
+        var medailles = ["🥇", "🥈", "🥉"];
+        $("dirTop").hidden = false;
+        $("dirTop").innerHTML = d.top3.map(function (r, i) {
+          return '<div class="card"><div class="ico">' + medailles[i] + "</div>"
+               + "<h3>" + String(r.nom).replace(/[&<>]/g, "") + "</h3>"
+               + '<b class="prix">' + F(r.barils) + " <span>barils</span></b></div>";
+        }).join("");
+        if (window.Roxwood) Roxwood.habiller($("dirTop"), { tilt: ".card" });
+      }
+
+      document.querySelectorAll("#direct .rev").forEach(function (el) { el.classList.add("vue"); });
+    })
+    .catch(function () { /* pas de stats : la vitrine reste telle quelle */ });
+})();

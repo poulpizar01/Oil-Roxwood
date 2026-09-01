@@ -42,7 +42,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-36</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-37</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -494,7 +494,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-36';
+const APP_VERSION='C-37';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1383,22 +1383,28 @@ function statsData(){
   };
 }
 async function publishStats(){
-  const token=(localStorage.getItem('orx_gh')||'').trim();
-  if(!token){ toast('⚠️ Ajoute d\'abord un token GitHub dans Paramètres'); return; }
+  if(!RoxwoodGH.peutEcrire()){ toast('⚠️ Il faut un jeton d\'écriture — clique sur le voyant de synchro'); return; }
+  const C=window.ROXWOOD_CFG||{};
+  const api=`https://api.github.com/repos/${C.owner}/${C.repo}/contents/data/stats-public.json`;
+  const hdr={Authorization:'Bearer '+RoxwoodGH.jeton(),Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
   const data=statsData();
-  const api='https://api.github.com/repos/Poloveni/OilRoxwood/contents/data/stats-public.json';
-  const hdr={Authorization:'Bearer '+token,Accept:'application/vnd.github+json'};
   toast('📡 Publication en cours…');
   try{
     let sha;
-    const g=await fetch(api,{headers:hdr});
+    const g=await fetch(api+'?t='+Date.now(),{headers:hdr,cache:'no-store'});
     if(g.ok) sha=(await g.json()).sha;
-    const body={message:'📊 Publication des stats publiques',
-      content:btoa(unescape(encodeURIComponent(JSON.stringify(data,null,1))))};
+    const octets=new TextEncoder().encode(JSON.stringify(data,null,1));
+    let bin=''; octets.forEach(o=>bin+=String.fromCharCode(o));
+    const body={message:'📊 Publication des stats publiques',content:btoa(bin),branch:C.branche||'main'};
     if(sha) body.sha=sha;
     const r=await fetch(api,{method:'PUT',headers:hdr,body:JSON.stringify(body)});
-    if(r.ok){ toast('✅ Stats publiées ! Visibles sur le site dans ~1 min'); sendLog('📊 Stats publiées','Le site public affiche maintenant la semaine '+S.settings.semaine,0x3ddc84); }
-    else{ const e=await r.json().catch(()=>({})); toast('⚠️ Échec ('+(e.message||r.status)+') — vérifie le token'); }
+    if(r.ok){
+      toast('✅ Stats publiées — visibles sur le site dans ~1 min');
+      sendLog('📊 Stats publiées','Le site public affiche maintenant la semaine '+S.settings.semaine,0x3ddc84);
+    } else {
+      const e=await r.json().catch(()=>({}));
+      toast('⚠️ Échec ('+(e.message||r.status)+') — vérifie ton jeton');
+    }
   }catch(e){ toast('⚠️ Erreur réseau pendant la publication'); }
 }
 
@@ -3146,6 +3152,27 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-37',d:'01/09/2026',t:'La vitrine prend vie & réparations du dépôt',items:[
+   ['📡','Le dépôt en direct sur la vitrine','La page publique affiche désormais la semaine en cours : barils raffinés, effectif, commandes livrées, barre d\'objectif et podium des trois meilleurs. Uniquement des agrégats — aucune fiche individuelle, aucun quota, aucune prime ne sort du poste de contrôle. Tant que rien n\'est publié, la section et son lien de menu restent invisibles.'],
+   ['🔧','Trois renvois vers l\'ancien dépôt corrigés','La publication des stats, l\'explorateur de sauvegardes et le panneau Paramètres pointaient encore vers l\'ancien dépôt et l\'ancienne clé de jeton : ils n\'écrivaient donc nulle part. Tout passe maintenant par le bloc de configuration unique en haut du fichier.'],
+   ['🔑','Un seul endroit pour le jeton','Le champ en double dans Paramètres a disparu : un seul bouton, la même fenêtre que le voyant de synchro.'],
+ ]},
+ {v:'C-36',d:'31/08/2026',t:'Comptes-rendus de réunion',items:[
+   ['📝','Nouvelle rubrique Réunions','Formulaire structuré : type de réunion, date, présents, ordre du jour, décisions, actions à mener. L\'encadrement écrit, les membres lisent.'],
+   ['📤','Publication au choix','À l\'enregistrement, on décide au cas par cas : envoyer le compte-rendu sur Discord, créer automatiquement les tâches à partir des lignes « Pseudo : action », les deux, ou rien.'],
+ ]},
+ {v:'C-35',d:'31/08/2026',t:'Fin de Supabase — le dépôt devient la base',items:[
+   ['🗃','Tout passe par GitHub','Plus aucune base externe. L\'état partagé vit dans data/etat.json : lecture publique, écriture par l\'API GitHub avec le jeton personnel de chacun. Chaque enregistrement est un commit, donc l\'historique complet est gratuit et consultable.'],
+   ['🔒','Connexion Discord sans secret','Flux implicite : Discord renvoie l\'identité, le dashboard la lit une fois et l\'oublie. Aucun secret client n\'existe plus dans le code.'],
+   ['⚔','Conflits gérés','Si deux personnes enregistrent en même temps, GitHub refuse la seconde écriture, le dashboard refusionne et réessaie tout seul. Relecture automatique toutes les 45 s.'],
+   ['📴','Lecture seule sans jeton','Sans jeton personnel, on voit tout mais on ne modifie rien — plus de perte silencieuse.'],
+ ]},
+ {v:'C-34',d:'30/08/2026',t:'Refonte graphique « raffinerie brute »',items:[
+   ['🎨','Nouvelle direction artistique','Noir charbon et ambre, typographie de signalétique, plaques d\'acier boulonnées, rubans de chantier. Le style est sorti des pages : deux feuilles dans assets/, un seul endroit à toucher.'],
+   ['🔦','Torche et plaques inclinables','Une lampe suit le curseur et révèle la rouille ; les plaques s\'inclinent sous la souris.'],
+   ['🚦','Les couleurs ne servent plus à décorer','Vert, rouge et bleu sont réservés aux états — validé, en retard, en attente — et chaque état porte aussi une icône et un libellé.'],
+   ['📱','Mobile & installation','Mise en page revue sur téléphone, et le poste de contrôle s\'installe comme une application depuis le navigateur.'],
+ ]},
  {v:'C-33',d:'03/08/2026',t:'Visite guidée, langue, présence & corrections',items:[
    ['🎓','Visite guidée du site','À l\'attribution d\'un accès de gestion, une visite pas-à-pas présente chaque section selon tes droits (textes de Thomas, étapes RH détaillées). Relançable depuis Paramètres. Elle remplace la checklist d\'intégration.'],
    ['🌐','Langue FR / EN','Un bouton dans la barre latérale bascule l\'interface en anglais pour les membres non-francophones — choix mémorisé par utilisateur.'],
@@ -3420,7 +3447,8 @@ function journal(){
 async function restoreModal(){
   openModal('<h3>📥 Restaurer une sauvegarde</h3><p style="color:var(--muted);font-size:.8rem;margin-bottom:14px">Sauvegardes automatiques quotidiennes (30 jours). L\'état actuel sera d\'abord téléchargé en secours.</p><div id="rbList">Chargement…</div>');
   try{
-    const r=await fetch('https://api.github.com/repos/Poloveni/OilRoxwood/contents/backups');
+    const C=window.ROXWOOD_CFG||{};
+    const r=await fetch(`https://api.github.com/repos/${C.owner}/${C.repo}/contents/backups`);
     if(!r.ok) throw 0;
     const files=(await r.json()).filter(f=>f.name.endsWith('.json')).sort((a,b)=>b.name.localeCompare(a.name));
     $('#rbList').innerHTML=files.length?files.map(f=>`
@@ -3434,7 +3462,8 @@ async function restoreBackup(name){
   if(!confirm(`Restaurer la sauvegarde du ${frDate(name.replace('.json',''))} ?\n\n⚠️ L'état ACTUEL sera remplacé POUR TOUT LE MONDE par celui de cette date.\nUne copie de l'état actuel est d'abord téléchargée en secours.`)) return;
   try{
     exportData(); // filet de sécurité
-    const r=await fetch(`https://raw.githubusercontent.com/Poloveni/OilRoxwood/main/backups/${name}?ts=${Date.now()}`);
+    const C=window.ROXWOOD_CFG||{};
+    const r=await fetch(`https://raw.githubusercontent.com/${C.owner}/${C.repo}/${C.branche||'main'}/backups/${name}?ts=${Date.now()}`);
     const d=await r.json();
     if(!d||!d.runners||!d.settings) throw new Error('fichier de sauvegarde invalide');
     const ph=S.passHash, jr=S.journal||[];
@@ -4952,11 +4981,14 @@ async function params(){
         <p style="color:var(--muted);font-size:.76rem;margin-top:10px">Connexion uniquement via Discord. Crée le compte avec le <b>pseudo Discord exact</b> de la personne — ou plus simple : laisse-la se connecter, sa demande apparaîtra ici et tu n'auras qu'à cliquer ✓. À la première connexion, le compte est lié définitivement à son ID Discord.</p>
       </div>
       <div class="panel" style="margin-bottom:18px">
-        <h3>📊 Publication sur le site</h3>
-        <div class="f-row"><label class="f-lbl">Token GitHub (fine-grained, droit « Contents » en écriture sur OilRoxwood)</label>
-        <input class="field" id="p_gh" type="password" value="${esc(localStorage.getItem('orx_gh')||'')}" placeholder="github_pat_…"></div>
-        <button class="btn btn-ghost" onclick="localStorage.setItem('orx_gh',document.getElementById('p_gh').value.trim());toast('🔑 Token enregistré (uniquement dans ce navigateur)')">Enregistrer le token</button>
-        <p style="color:var(--muted);font-size:.78rem;margin-top:12px">À créer sur github.com → Settings → Developer settings → Fine-grained tokens. Le token reste dans ce navigateur, il n'est ni exporté ni publié.</p>
+        <h3>🔑 Jeton d'écriture</h3>
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:12px">
+          Un seul jeton sert à tout : enregistrer les données et publier les stats sur le site.
+          ${RoxwoodGH.peutEcrire()
+            ? '<b style="color:var(--green)">Jeton actif</b> — tu peux modifier et publier.'
+            : '<b style="color:var(--red)">Aucun jeton</b> — le dashboard est en lecture seule.'}
+        </p>
+        <button class="btn btn-ghost" onclick="roxwoodJeton()">${RoxwoodGH.peutEcrire()?'Changer ou retirer le jeton':'Ajouter un jeton'}</button>
       </div>
       <div class="panel" style="margin-bottom:18px">
         <h3>📡 Logs Discord (compte entreprise)</h3>

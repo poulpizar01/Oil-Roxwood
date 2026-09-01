@@ -59,6 +59,7 @@
     <a href="#presentation">L'entreprise</a>
     <a href="#organigramme">Organigramme</a>
     <a href="#devenir-client">Devenir client</a>
+    <a href="#direct" id="navDirect" hidden>En direct</a>
     <a href="#grades">Grades &amp; Salaires</a>
     <a href="#recrutement">Recrutement</a>
     <a href="#contact">Contact</a>
@@ -261,6 +262,34 @@
         <span class="cli-chip">Casa Del Gusto</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= LE DÉPÔT EN DIRECT ================= -->
+<section id="direct" hidden>
+  <span class="geant" style="top:1vw;right:-5vw" aria-hidden="true">SEMAINE</span>
+  <div class="wrap">
+    <span class="tag sec-kicker rev">Le dépôt en direct</span>
+    <h2 class="rev">La semaine <span class="creux" id="dirSem">en cours</span></h2>
+    <p class="sec-intro rev" id="dirMaj"></p>
+
+    <div class="hero-stats" style="margin-top:clamp(30px,4vw,52px)">
+      <div><strong id="dirBarils">—</strong><span>Barils raffinés</span></div>
+      <div><strong id="dirEffectif">—</strong><span>Runners en poste</span></div>
+      <div><strong id="dirClients">—</strong><span>Commandes livrées</span></div>
+    </div>
+
+    <div id="dirObjWrap" class="rev" style="margin-top:clamp(26px,3vw,40px)" hidden>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:10px">
+        <span class="tag">Objectif de la semaine</span>
+        <span class="mono" id="dirObjTxt" style="color:var(--fumee);font-size:13px"></span>
+      </div>
+      <div style="height:14px;background:var(--plaque);border:1px solid var(--trait-fort);position:relative;overflow:hidden">
+        <i id="dirObjBar" style="position:absolute;inset:0 100% 0 0;background:var(--ambre);transition:right 1.2s var(--ease)"></i>
+      </div>
+    </div>
+
+    <div id="dirTop" class="cards" style="margin-top:clamp(30px,4vw,50px)" hidden></div>
   </div>
 </section>
 
