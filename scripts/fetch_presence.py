@@ -6,7 +6,7 @@ import json, os, sys, urllib.request
 
 GUILD = os.environ.get("DISCORD_GUILD_ID", "").strip()
 OUT = "data/presence.json"
-UA = "OilRoxwoodPresence (https://github.com/Poloveni/OilRoxwood, 1.0)"
+UA = "OilRoxwoodPresence (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"
 
 if not GUILD:
     print("DISCORD_GUILD_ID manquant — présence Discord ignorée (voir SETUP-BOT.md)")

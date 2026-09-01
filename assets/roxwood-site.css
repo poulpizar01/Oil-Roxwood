@@ -198,6 +198,8 @@ section h2{margin-bottom:18px}
 .b-grey{color:var(--fumee);border-color:var(--trait-fort)}
 .b-blue{color:var(--attente);border-color:color-mix(in srgb,var(--attente) 45%,transparent);background:color-mix(in srgb,var(--attente) 10%,transparent)}
 .b-gold{color:var(--ambre);border-color:color-mix(in srgb,var(--ambre) 50%,transparent);background:rgba(232,160,32,.10)}
+/* Responsable Runner : un galon, pas une marche du dégradé — plaque pleine. */
+.b-galon{color:var(--ambre);border-color:var(--ambre);background:rgba(232,160,32,.18);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ambre) 30%,transparent);font-weight:700}
 
 .simu{
   width:min(430px,100%);background:linear-gradient(150deg,var(--acier),var(--plaque));

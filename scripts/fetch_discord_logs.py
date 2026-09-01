@@ -23,7 +23,7 @@ if not TOKEN or not CHANNEL:
 def api(url):
     req = urllib.request.Request(url, headers={
         "Authorization": f"Bot {TOKEN}",
-        "User-Agent": "OilRoxwoodLogs (https://github.com/Poloveni/OilRoxwood, 1.0)",
+        "User-Agent": "OilRoxwoodLogs (https://github.com/poulpizar01/Oil-Roxwood, 1.0)",
     })
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode())

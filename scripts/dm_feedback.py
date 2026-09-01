@@ -26,7 +26,7 @@ if os.path.exists(SEEN):
 rows = [r for r in etat.table("oilroxwood_feedback") if (r.get("id") or 0) > last]
 rows.sort(key=lambda r: r.get("id") or 0)
 
-UA = "DiscordBot (https://github.com/Poloveni/OilRoxwood, 1.0)"
+UA = "DiscordBot (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"
 
 def bot_api(path, payload):
     r = urllib.request.Request(

@@ -94,15 +94,24 @@
      ============================================================ */
   function urlRetour() { return location.origin + location.pathname; }
 
+  /* Identifiant du serveur Discord. Ce n'est pas un secret (tout le monde sur le
+     serveur peut le lire), mais il est réglable depuis Paramètres plutôt que codé
+     en dur. Tant qu'il est vide, on ne demande QUE `identify` : la lecture des
+     rôles n'est réclamée à l'utilisateur que si elle sert vraiment à quelque chose. */
+  var SERVEUR = CFG.discordGuild || "";
+  function configurerServeur(id) { SERVEUR = String(id || "").trim(); }
+  function serveur() { return SERVEUR; }
+
   function connexionDiscord() {
     if (!CFG.discordClientId) {
       alert("Connexion Discord non configurée : renseigne discordClientId dans admin.html.");
       return;
     }
+    var scope = SERVEUR ? "identify guilds.members.read" : "identify";
     var u = "https://discord.com/api/oauth2/authorize"
       + "?client_id=" + encodeURIComponent(CFG.discordClientId)
       + "&redirect_uri=" + encodeURIComponent(urlRetour())
-      + "&response_type=token&scope=identify";
+      + "&response_type=token&scope=" + encodeURIComponent(scope);
     location.href = u;
   }
 
@@ -124,10 +133,29 @@
           pseudo: u.global_name || u.username || "inconnu",
           avatar: u.avatar ? "https://cdn.discordapp.com/avatars/" + u.id + "/" + u.avatar + ".png" : ""
         };
-        try { localStorage.setItem(CLE_IDENT, JSON.stringify(id)); } catch (e) {}
-        return id;
+        return rolesServeur(tok).then(function (m) {
+          /* `roles` absent = on n'a pas pu savoir (serveur non réglé, permission
+             refusée, personne pas sur le serveur). Un tableau vide veut dire
+             « sur le serveur, mais aucun rôle » : ce n'est pas la même chose,
+             et la différence compte au moment de décider d'un accès. */
+          if (m) { id.roles = m.roles || []; if (m.nick) id.nick = m.nick; }
+          try { localStorage.setItem(CLE_IDENT, JSON.stringify(id)); } catch (e) {}
+          return id;
+        });
       })
       .catch(function () { return identiteLocale(); });
+  }
+
+  /* Rôles de la personne SUR LE SERVEUR — lus avec le même jeton, qui est
+     ensuite oublié comme le reste. Renvoie null si l'information n'est pas
+     disponible, plutôt que de faire passer un doute pour un refus. */
+  function rolesServeur(tok) {
+    if (!SERVEUR) return Promise.resolve(null);
+    return fetch("https://discord.com/api/users/@me/guilds/" + encodeURIComponent(SERVEUR) + "/member",
+                 { headers: { Authorization: "Bearer " + tok } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (m) { return m ? { roles: (m.roles || []).map(String), nick: m.nick || "" } : null; })
+      .catch(function () { return null; });
   }
   function identiteLocale() {
     try { return JSON.parse(localStorage.getItem(CLE_IDENT) || "null"); } catch (e) { return null; }
@@ -291,6 +319,8 @@
     poserJeton: poserJeton,
     peutEcrire: peutEcrire,
     connexionDiscord: connexionDiscord,
+    configurerServeur: configurerServeur,
+    serveur: serveur,
     recupererIdentite: recupererIdentite,
     identiteLocale: identiteLocale,
     oublierIdentite: oublierIdentite,

@@ -1,0 +1,48 @@
+name: Rappels de quota (vendredi)
+
+on:
+  schedule:
+    # 18 h UTC le vendredi = 20 h à Paris en été, 19 h en hiver.
+    # Le cron de GitHub ne connaît que l'heure UTC : c'est le seul décalage à accepter.
+    - cron: '0 18 * * 5'
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Essai à blanc : afficher les rappels sans rien envoyer"
+        type: boolean
+        default: true
+      seuil:
+        description: "Rappeler en dessous de ce pourcentage du quota"
+        default: "100"
+
+permissions:
+  contents: write
+
+jobs:
+  rappels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rappeler les quotas dans les tickets
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          ORX_RAPPELS_TEST: ${{ inputs.test && '1' || '' }}
+          ORX_RAPPELS_SEUIL: ${{ inputs.seuil || '100' }}
+        run: python3 scripts/rappels_quota.py
+
+      - name: Retenir qui a déjà été rappelé
+        if: ${{ !inputs.test }}
+        run: |
+          git config user.name "oilroxwood-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A data/rappels-seen.json
+          git diff --cached --quiet && exit 0
+          git commit -m "🤖 Rappels de quota envoyés"
+          git pull --rebase origin main || true
+          git push origin HEAD:main

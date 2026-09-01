@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 BOT = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
 SEEN = "data/agenda-seen.json"
-UA = "DiscordBot (https://github.com/Poloveni/OilRoxwood, 1.0)"
+UA = "DiscordBot (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"
 TYPES = {"rdv": "📌 RDV", "commande": "🛒 Commande", "entretien": "🤝 Entretien", "autre": "📅 Événement"}
 
 if not BOT:

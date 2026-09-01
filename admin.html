@@ -25,7 +25,8 @@ window.ROXWOOD_CFG = {
   repo    : "Oil-Roxwood",        // nom du dépôt
   branche : "main",               // branche publiée
   fichier : "data/etat.json",     // le fichier qui fait office de base
-  discordClientId : "1529450789909561558"   // identifiant public de l'application Discord
+  discordClientId : "1529450789909561558",  // identifiant public de l'application Discord
+  discordGuild    : ""                      // identifiant du serveur — se règle plutôt dans Paramètres → Connexion par rôle Discord
 };
 </script>
 <script src="assets/roxwood-github.js"></script>
@@ -42,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-37</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-38</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -120,7 +121,14 @@ const GRADES = [
   {nom:'Raffineur',          quota:3000, mult:1.5, montee:5000,  cls:'bg1'},
   {nom:'Raffineur Confirmé', quota:5000, mult:2,   montee:8000,  cls:'bg2'},
   {nom:'Raffineur Expert',   quota:6500, mult:2.5, montee:10000, cls:'bg3'},
+  /* Responsable Runner : au-dessus d'Expert, mais ce n'est PAS une marche que l'on
+     gravit à la production — il s'attribue au mérite, à la main, dans la fiche du
+     runner. D'où montee:null (aucune montée automatique) et merite:true (aucune
+     descente automatique non plus : seule la direction le retire). */
+  {nom:'Responsable Runner', quota:5000, mult:2.5, montee:null,  cls:'bg4', merite:true},
 ];
+const GR_RESP = 4;     // index du Responsable Runner dans GRADES
+const GR_MAX_AUTO = 3; // dernier grade atteignable par montée automatique (Expert)
 const LS_KEY = 'oilroxwood_admin_v1';
 const DEFAULT_HASH = null; // défini au premier login avec le mdp par défaut
 
@@ -362,7 +370,73 @@ async function sha(t){
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
-const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Commercial',membre:'Membre'};
+const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Commercial',resprunner:'Responsable Runner',membre:'Membre'};
+
+/* ================== CONNEXION PAR RÔLE DISCORD ==================
+   Plutôt que d'attendre qu'un admin valide chaque arrivée à la main, on peut
+   laisser le serveur Discord faire foi : « tu as le rôle X là-bas, tu as le
+   rôle Y ici ». La correspondance se règle dans Paramètres.
+
+   Deux garde-fous à garder en tête :
+   · L'ordre de la liste est une PRIORITÉ — la première correspondance gagne,
+     donc Direction se met en haut. Quelqu'un cumule souvent plusieurs rôles.
+   · Entrer ne veut pas dire écrire. Sans jeton GitHub personnel, un compte créé
+     par ce chemin est en lecture seule : le rôle Discord ouvre la porte, il ne
+     donne pas les clés du dépôt. */
+const ROLES_DISCORD_DEF=[{id:'1487435766547349604',role:'resprunner'}];
+function rolesDiscord(){
+  const r=S.settings&&S.settings.rolesDiscord;
+  return Array.isArray(r)?r:ROLES_DISCORD_DEF.slice();
+}
+function serveurDiscord(){
+  return String((S.settings&&S.settings.discordGuild)||(window.ROXWOOD_CFG&&window.ROXWOOD_CFG.discordGuild)||'').trim();
+}
+/* `membreRoles` vaut null quand on n'a PAS PU savoir (serveur non réglé, permission
+   refusée, personne absente du serveur) et [] quand la personne est bien là mais sans
+   aucun rôle. Confondre les deux ferait entrer des gens sur une panne. */
+function roleDepuisDiscord(membreRoles){
+  if(!Array.isArray(membreRoles)) return null;
+  const set=new Set(membreRoles.map(String));
+  const m=rolesDiscord().find(x=>x&&x.id&&set.has(String(x.id))&&ROLES[x.role]);
+  return m?m.role:null;
+}
+try{ if(window.RoxwoodGH&&RoxwoodGH.configurerServeur) RoxwoodGH.configurerServeur(serveurDiscord()); }catch(e){}
+/* ---- Réglages (Paramètres → Connexion par rôle Discord) ---- */
+function rdMaj(liste,note){
+  S.settings.rolesDiscord=liste;
+  jlog('Rôles Discord : '+note);
+  save(); sbPushNow(); params();
+}
+function rdServeur(v){
+  const id=String(v||'').replace(/\D/g,'');
+  S.settings.discordGuild=id;
+  RoxwoodGH.configurerServeur(id);
+  jlog(id?`Serveur Discord réglé sur ${id}`:'Serveur Discord effacé — retour à la connexion par validation');
+  save(); sbPushNow();
+  toast(id?'🎖️ Serveur enregistré — reconnecte-toi pour que Discord donne les rôles':'Serveur effacé');
+}
+function rdSet(i,champ,val){
+  const l=rolesDiscord().slice(); if(!l[i]) return;
+  l[i]={...l[i],[champ]: champ==='id'?String(val||'').replace(/\D/g,''):val};
+  rdMaj(l,`${ROLES[l[i].role]||l[i].role} ← ${l[i].id||'(vide)'}`);
+}
+function rdAdd(){ rdMaj([...rolesDiscord(),{id:'',role:'membre'}],'nouvelle ligne'); }
+function rdDel(i){
+  const l=rolesDiscord().slice(); const x=l[i]; if(!x) return;
+  if(!confirm(`Retirer la correspondance ${x.id||'(vide)'} → ${ROLES[x.role]||x.role} ?`)) return;
+  l.splice(i,1); rdMaj(l,`${x.id||'(vide)'} retiré`);
+}
+function rdUp(i){
+  const l=rolesDiscord().slice(); if(i<=0||!l[i]) return;
+  [l[i-1],l[i]]=[l[i],l[i-1]];
+  rdMaj(l,`${ROLES[l[i-1].role]||l[i-1].role} remonté en priorité`);
+}
+function rdSync(on){
+  S.settings.rolesDiscordSync=!!on;
+  jlog(`Alignement des rôles sur Discord : ${on?'activé':'désactivé'}`);
+  save(); sbPushNow();
+  toast(on?'🔄 Les rôles suivront Discord à chaque connexion':'🔒 Les rôles réglés à la main sont préservés');
+}
 
 /* Pastille d'identité : la photo Discord si on la connaît, les initiales sinon.
    `qui` accepte un compte (objet) ou un simple nom. */
@@ -383,6 +457,10 @@ const PERMS={
   rh:       ['overview','effectif','semaine','historique','reunions','feuilles','retention','acces','factures','relances','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj','dlogs'],
   comptable:['overview','reunions','feuilles','factures','bilan','moi','quotashist','todo','agenda','feedback','maj'],
   commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj'],
+  /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
+     l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
+     factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
+  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','fer','moi','quotashist','todo','agenda','feedback','maj','dlogs'],
   membre:   ['effectif','reunions','moi','quotashist','todo','agenda','feedback','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
@@ -494,7 +572,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-37';
+const APP_VERSION='C-38';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -541,6 +619,9 @@ async function checkDiscordAuth(){
     let u=(S.users||[]).find(x=>x.did===did)
         ||(S.users||[]).find(x=>String(x.user).toLowerCase()===String(pseudo).toLowerCase());
 
+    // Ce que le serveur Discord dit de cette personne (null = information indisponible)
+    const roleDsc=roleDepuisDiscord(id.roles);
+
     if(!u&&!(S.users&&S.users.length)){
       // premier lancement : le premier connecté devient Direction
       u={id:Date.now(),user:pseudo,did,role:'direction'};
@@ -549,8 +630,33 @@ async function checkDiscordAuth(){
       sendLog('👤 Premier compte créé', `**${pseudo}** (Direction) via Discord`, 0x5865F2);
     }
 
+    // Personne inconnue mais porteuse d'un rôle Discord reconnu : on ouvre, sans validation.
+    if(!u&&roleDsc){
+      u={id:Date.now(),user:pseudo,did,role:roleDsc,auto:true};
+      S.users=[...(S.users||[]),u];
+      save();
+      // Sans jeton, l'écriture dans le dépôt échouerait : le compte reste local,
+      // ce qui suffit — le rôle Discord sera relu à chaque connexion.
+      if(RoxwoodGH.peutEcrire()) await sbPushNow();
+      sendLog('🔐 Accès ouvert par rôle Discord',
+              `**${pseudo}** entre en **${ROLES[roleDsc]}** — rôle reconnu sur le serveur`, 0x5865F2);
+    }
+
     if(u){
       if(!u.did){ u.did=did; save(); await sbPushNow(); }  // liaison définitive au premier login
+      // Alignement du rôle sur Discord : systématique pour les comptes ouverts par
+      // ce chemin, optionnel pour les comptes créés à la main (case dans Paramètres).
+      const syncOn=!!(S.settings&&S.settings.rolesDiscordSync);
+      if(roleDsc&&u.role!==roleDsc&&(u.auto||syncOn)){
+        const restants=(S.users||[]).filter(x=>x.role==='direction'&&x!==u).length;
+        if(u.role==='direction'&&roleDsc!=='direction'&&restants===0){
+          sendLog('⚠️ Rôle Discord ignoré', `**${u.user}** est le dernier compte Direction — son rôle n'a pas été rétrogradé automatiquement`, 0xff5c5c);
+        } else {
+          const avant=u.role; u.role=roleDsc; save();
+          if(RoxwoodGH.peutEcrire()) sbQueue();
+          jlog(`Rôle aligné sur Discord : ${u.user} · ${ROLES[avant]||avant} → ${ROLES[roleDsc]}`);
+        }
+      }
       // photo de profil Discord : rafraîchie à chaque connexion
       if(id.avatar && u.avatar!==id.avatar){ u.avatar=id.avatar; save(); sbQueue(); }
       sessionStorage.setItem('orx_auth','1');
@@ -566,6 +672,9 @@ async function checkDiscordAuth(){
       if(d){
         d.style.display='block';
         d.innerHTML=`⏳ Demande envoyée pour <b>${esc(pseudo)}</b>.<br>`
+          +(Array.isArray(id.roles)&&rolesDiscord().length
+              ? `Aucun de tes rôles sur le serveur n'ouvre l'accès.<br>`
+              : ``)
           +`La direction a reçu une notification sur Discord. Reviens quand ton compte aura été créé.<br>`
           +`<a href="#" onclick="logout();return false" style="color:inherit;text-decoration:underline">Changer de compte</a>`;
       }
@@ -828,7 +937,7 @@ function overview(){
     </div>
   </div>
   <div class="grid g4" style="margin-bottom:18px">
-    <div class="panel kpi link" onclick="show('effectif')" title="Ouvrir l'Effectif"><div class="lbl">Effectif</div><div class="val">${R.length}</div><div class="delta">${R.filter(r=>r.grade===3).length} expert(s)</div></div>
+    <div class="panel kpi link" onclick="show('effectif')" title="Ouvrir l'Effectif"><div class="lbl">Effectif</div><div class="val">${R.length}</div><div class="delta">${R.filter(r=>r.grade===3&&!r.poste).length} expert(s)${R.filter(r=>r.grade===GR_RESP&&!r.poste).length?` · ${R.filter(r=>r.grade===GR_RESP&&!r.poste).length} resp. runner`:''}</div></div>
     <div class="panel kpi link" onclick="show('semaine')" title="Ouvrir Semaine & Primes"><div class="lbl">Barils · semaine</div><div class="val">${fmt(tot)}</div><div class="delta">${lastW?`sem. préc. : ${fmt(lastW.total)}`:weekRange()}</div></div>
     <div class="panel kpi link" onclick="show('bilan')" title="Ouvrir le Bilan compta"><div class="lbl">Chiffre d'affaires</div><div class="val gold">${money(tot*S.settings.prix)}</div><div class="delta">à ${S.settings.prix} $/unité</div></div>
     <div class="panel kpi link" onclick="show('semaine')" title="Ouvrir Semaine & Primes"><div class="lbl">Quotas atteints</div><div class="val ${ok===R.length&&R.length?'up':''}">${ok}<span style="font-size:1rem;color:var(--muted)">/${R.length}</span></div><div class="delta">primes projetées : ${money(R.reduce((a,r)=>a+primeProj(r),0)+(S.primesExtra||[]).reduce((a,p)=>a+nn(p.montant),0))}</div></div>
@@ -901,7 +1010,7 @@ function effectif(){
     .map(x=>{
       const gn=deacc(x.grade);
       let gi=GRADES.findIndex(g=>deacc(g.nom)===gn);
-      if(gi<0){ const m=[3,2,1,0].find(i=>gn&&gn.includes(deacc(GRADES[i].nom))); gi=m===undefined?-1:m; }
+      if(gi<0){ const m=[4,3,2,1,0].find(i=>gn&&gn.includes(deacc(GRADES[i].nom))); gi=m===undefined?-1:m; }
       const r={nom:x.nom,discord:x.discord||'',barils:0,total:0,runs:[],_ghost:true,grade:gi>=0?gi:0};
       if(/stagiaire/.test(gn)){ r.stagiaire=true; r.grade=0; }
       else if(gi<0&&String(x.grade||'').trim()) r.poste=x.grade; // grade RH inconnu → traité comme poste
@@ -959,7 +1068,7 @@ function rowRunner(r){
     ${isMembre()?'':`<td>${fmt(r.total)}</td>
     <td style="text-align:right;white-space:nowrap">
       ${eligible(r)?`<button class="btn btn-sm btn-gold" onclick="promote(${r.id})" title="Monter de grade">▲</button>`:''}
-      ${!r.poste&&r.grade>0&&r.barils<g.quota*0.95&&!r.absent&&!ab?`<button class="btn btn-sm btn-red" onclick="demote(${r.id})" title="Descendre de grade (quota réalisé à ${pc}% — sous les 95%)">▼</button>`:''}
+      ${!r.poste&&r.grade>0&&!g.merite&&r.barils<g.quota*0.95&&!r.absent&&!ab?`<button class="btn btn-sm btn-red" onclick="demote(${r.id})" title="Descendre de grade (quota réalisé à ${pc}% — sous les 95%)">▼</button>`:''}
       ${!r.poste&&r.grade===0&&r.barils<g.quota*0.80&&!r.absent&&!ab&&!estNouveau(r.nom)?`<button class="btn btn-sm btn-ghost" style="color:#ffa500;border-color:rgba(255,165,0,.4)" onclick="avertir(${r.id})" title="Sous 80 % du quota (${pc}%) — donner un avertissement">⚠</button>`:''}
       ${estStagiaire(r)?`<button class="btn btn-sm btn-gold" onclick="titulariser(decodeURIComponent('${encodeURIComponent(r.nom)}'))" title="Titulariser (Stagiaire → Intérimaire)">🎓</button>`:''}
       <button class="btn btn-sm btn-ghost" onclick="toggleAbsent(${r.id})" title="${r.absent?'Marquer de retour':'Mettre en congé / absence'}">${r.absent?'💼':'🌴'}</button>
@@ -1016,7 +1125,7 @@ function syncRhGrade(r){
 function promote(id){
   if(isMembre()) return toast('👀 Consultation seule pour les membres');
   const r=S.runners.find(x=>x.id===id);
-  if(r.grade<3){
+  if(r.grade<GR_MAX_AUTO){ // la montée automatique s'arrête à Expert : Responsable Runner s'attribue à la main
     r.grade++;
     const rhMaj=syncRhGrade(r);
     jlog(`Montée de grade : ${r.nom} → ${GRADES[r.grade].nom}`);
@@ -1029,6 +1138,7 @@ function demote(id){
   if(isMembre()) return toast('👀 Consultation seule pour les membres');
   const r=S.runners.find(x=>x.id===id);
   if(!r||r.poste||r.grade<=0) return;
+  if(grade(r).merite) return toast('🏅 Responsable Runner s\'attribue et se retire à la main — passe par « Modifier »');
   if(r.absent||absDe(r.nom)) return toast('🌴 Absence déclarée — descente de grade bloquée');
   const pcD=grade(r).quota?Math.round(r.barils/grade(r).quota*100):0;
   if(!confirm(`Descendre ${r.nom} de ${GRADES[r.grade].nom} à ${GRADES[r.grade-1].nom} ?\n(quota réalisé à ${pcD}% cette semaine — sous les 95%)`)) return;
@@ -1092,7 +1202,7 @@ function demoteGhost(nom){
   const deacc=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
   const gn=deacc(row.grade);
   let gi=GRADES.findIndex(g=>deacc(g.nom)===gn);
-  if(gi<0){ const m=[3,2,1,0].find(i=>gn&&gn.includes(deacc(GRADES[i].nom))); gi=m===undefined?-1:m; }
+  if(gi<0){ const m=[4,3,2,1,0].find(i=>gn&&gn.includes(deacc(GRADES[i].nom))); gi=m===undefined?-1:m; }
   if(gi<=0) return toast('⚠️ Déjà au grade le plus bas (ou grade non reconnu)');
   if(absDe(row.nom)) return toast('🌴 Absence déclarée — descente de grade bloquée');
   if(!confirm(`Descendre ${row.nom} de ${GRADES[gi].nom} à ${GRADES[gi-1].nom} ?\n(aucune prise de service cette semaine)`)) return;
@@ -1466,7 +1576,10 @@ const nn = x => +x||0;
 /* feuilles interdites par rôle (en plus des restrictions de vues) */
 /* permissions fines par feuille : 'x' = plein accès · 'ro' = lecture seule · 'off' = caché
    défauts historiques + compta réservée Patron/Comptable ; personnalisable dans Paramètres */
-const SHEET_DEF_PERMS={ commercial:{rh:'off',blacklist:'off',compta:'off'}, rh:{compta:'off'} };
+const SHEET_DEF_PERMS={ commercial:{rh:'off',blacklist:'off',compta:'off'}, rh:{compta:'off'},
+  /* Responsable Runner : il pilote la production, il ne touche ni à la paie ni aux
+     dossiers du personnel. RH en lecture, compta et ventes fermées par défaut. */
+  resprunner:{rh:'ro',compta:'off',ventesSem:'off'} };
 function sheetPerm(role,k){
   if(!role||role==='direction'||role==='comptable'&&k==='compta') {}
   const c=S.settings&&S.settings.sheetPerms&&S.settings.sheetPerms[role];
@@ -1569,7 +1682,7 @@ function rowDel(i){ if(confirm('Supprimer cette ligne ?')){ S.sheets[curSheet].s
 function syncRunners(silent){
   if(!S.sheets||!S.sheets.tablette) return;
   const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();
-  const MAP={'interimaire':0,'raffineur':1,'raffineur confirme':2,'raffineur expert':3};
+  const MAP={'interimaire':0,'raffineur':1,'raffineur confirme':2,'raffineur expert':3,'responsable runner':4,'resp runner':4,'responsable des runners':4};
   let added=0, updated=0, removed=0;
   const present=new Set();
   S.sheets.tablette.forEach(row=>{
@@ -1761,7 +1874,7 @@ function rhApplyPaste(){
         if(runMaj&&!runMaj.poste){
           const gnP=String(rec.grade).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
           let giP=GRADES.findIndex(g=>g.nom.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()===gnP.trim());
-          if(giP<0){ const mP=[3,2,1,0].find(i=>gnP.includes(GRADES[i].nom.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase())); giP=mP===undefined?-1:mP; }
+          if(giP<0){ const mP=[4,3,2,1,0].find(i=>gnP.includes(GRADES[i].nom.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase())); giP=mP===undefined?-1:mP; }
           if(giP>=0&&runMaj.grade!==giP){ runMaj.grade=giP; jlog(`Grade mis à jour via pointage : ${runMaj.nom} → ${GRADES[giP].nom}`); }
         }
       }
@@ -2594,6 +2707,7 @@ function bilanOrdGrade(rang){
   if(/resp/.test(s)&&/commercial/.test(s)) return 4;
   if(/commercial/.test(s)) return 5;
   if(/web\s*master/.test(s)) return 6;
+  if(/resp/.test(s)&&/runner/.test(s)) return 6.5; // Responsable Runner : au-dessus d'Expert
   if(/expert/.test(s)) return 7;
   if(/confirme/.test(s)) return 8;
   if(/raffineur/.test(s)) return 9;
@@ -3152,6 +3266,13 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-38',d:'01/09/2026',t:'Responsable Runner, connexion par rôle Discord & rappels de quota',items:[
+   ['🏅','Nouveau grade : Responsable Runner','Juste au-dessus d\'Expert : quota ramené à 5 000 barils, prime ×2,5. Ce n\'est pas une marche de plus — il ne s\'obtient pas au compteur. La direction l\'attribue à la main dans la fiche du runner, et le badge est volontairement différent du dégradé des grades pour qu\'on ne les confonde jamais. Ni montée ni descente automatique : le bouton ▼ ne s\'affiche même pas.'],
+   ['🔐','Un rôle d\'accès qui va avec','Responsable Runner existe aussi comme rôle du dashboard : effectif, runs, semaine et feuilles ouverts, bilan, factures et paie fermés. Tout se règle case par case dans Paramètres → Permissions par rôle, comme les autres.'],
+   ['🎖️','Connexion par rôle Discord','Plus besoin de valider chaque arrivée à la main : on renseigne l\'identifiant du serveur et la correspondance rôle Discord → rôle dashboard, et qui porte le bon rôle entre directement. L\'ordre de la liste fait la priorité (Direction en haut) puisqu\'on cumule souvent plusieurs rôles. Entrer n\'est pas écrire : sans jeton GitHub personnel, l\'accès reste en lecture seule.'],
+   ['⏰','Rappel de quota le vendredi soir','Un robot repère qui est sous son quota et poste le rappel dans son ticket — pas en message privé. Il retrouve le ticket par l\'unique dérogation de permission au nom de la personne, ignore les absences déclarées, et n\'écrit qu\'une fois par semaine et par personne. Lançable à blanc depuis l\'onglet Actions pour vérifier avant d\'envoyer.'],
+   ['🧹','Robots recalés sur le bon dépôt','Six scripts s\'annonçaient encore à Discord sous le nom de l\'ancien dépôt.'],
+ ]},
  {v:'C-37',d:'01/09/2026',t:'La vitrine prend vie & réparations du dépôt',items:[
    ['📡','Le dépôt en direct sur la vitrine','La page publique affiche désormais la semaine en cours : barils raffinés, effectif, commandes livrées, barre d\'objectif et podium des trois meilleurs. Uniquement des agrégats — aucune fiche individuelle, aucun quota, aucune prime ne sort du poste de contrôle. Tant que rien n\'est publié, la section et son lien de menu restent invisibles.'],
    ['🔧','Trois renvois vers l\'ancien dépôt corrigés','La publication des stats, l\'explorateur de sauvegardes et le panneau Paramètres pointaient encore vers l\'ancien dépôt et l\'ancienne clé de jeton : ils n\'écrivaient donc nulle part. Tout passe maintenant par le bloc de configuration unique en haut du fichier.'],
@@ -5014,11 +5135,51 @@ async function params(){
     </div>
   </div>
   <div class="panel" style="margin-top:18px;overflow-x:auto">
+    <h3>🎖️ Connexion par rôle Discord</h3>
+    <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px">
+      Au lieu de valider chaque arrivée à la main, le serveur Discord fait foi : qui porte un rôle listé ici
+      entre directement, avec le rôle en face. <b>L'ordre est une priorité</b> — quelqu'un cumule souvent
+      plusieurs rôles, c'est le premier de la liste qui gagne, donc Direction en haut.
+      <br><b style="color:var(--accent)">Entrer n'est pas écrire :</b> sans jeton GitHub personnel, un compte ouvert
+      par ce chemin voit tout et ne modifie rien. Le rôle Discord ouvre la porte, il ne donne pas les clés du dépôt.
+    </p>
+    <div class="f-row"><label class="f-lbl">Identifiant du serveur Discord</label>
+      <input class="field" id="p_guild" value="${esc(serveurDiscord())}" placeholder="ex. 1123456789012345678"
+             onchange="rdServeur(this.value)"></div>
+    <p style="color:var(--muted);font-size:.72rem;margin:-4px 0 12px">
+      Sur Discord : clic droit sur le nom du serveur → « Copier l'identifiant » (mode développeur activé).
+      Tant que ce champ est vide, rien ne change : la connexion reste par validation.
+    </p>
+    <table><thead><tr><th style="width:44px">Ordre</th><th>Identifiant du rôle Discord</th><th>Rôle dans le dashboard</th><th style="width:90px"></th></tr></thead><tbody>
+      ${rolesDiscord().map((x,i)=>`<tr>
+        <td style="text-align:center;color:var(--muted);font-family:var(--f-mono)">${i+1}</td>
+        <td><input class="field" style="padding:6px 9px;font-family:var(--f-mono)" value="${esc(x.id||'')}" placeholder="identifiant du rôle" onchange="rdSet(${i},'id',this.value)"></td>
+        <td><select class="field" style="padding:6px 9px" onchange="rdSet(${i},'role',this.value)">
+          ${Object.entries(ROLES).map(([k,l])=>`<option value="${k}" ${x.role===k?'selected':''}>${l}</option>`).join('')}
+        </select></td>
+        <td style="white-space:nowrap">
+          ${i>0?`<button class="btn btn-sm btn-ghost" onclick="rdUp(${i})" title="Monter en priorité">↑</button>`:''}
+          <button class="btn btn-sm btn-red" onclick="rdDel(${i})" title="Retirer">✕</button></td>
+      </tr>`).join('')}
+    </tbody></table>
+    <div style="display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="rdAdd()">+ Ajouter un rôle</button>
+      <label style="display:flex;gap:7px;align-items:center;font-size:.78rem;color:var(--muted);cursor:pointer">
+        <input type="checkbox" ${S.settings.rolesDiscordSync?'checked':''} onchange="rdSync(this.checked)">
+        Réaligner aussi le rôle des comptes créés à la main, à chaque connexion
+      </label>
+    </div>
+    <p style="color:var(--muted);font-size:.72rem;margin-top:8px">
+      Sans cette case, un compte que tu as réglé à la main garde le rôle que tu lui as donné.
+      Le dernier compte Direction n'est jamais rétrogradé automatiquement, quoi qu'en dise Discord.
+    </p>
+  </div>
+  <div class="panel" style="margin-top:18px;overflow-x:auto">
     <h3 style="display:flex;justify-content:space-between;align-items:center">🔐 Permissions par rôle
       ${(S.settings.permsCustom||S.settings.permsRO)?`<button class="btn btn-sm btn-ghost" onclick="if(confirm('Revenir aux permissions par défaut pour tous les rôles ?')){delete S.settings.permsCustom;delete S.settings.permsRO;jlog('Permissions : retour aux valeurs par défaut');save();sbPushNow();applyPerms();applyRO();params();}">↺ Permissions par défaut</button>`:''}</h3>
     <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px"><b>Clique sur une case</b> pour donner ou retirer un onglet à un rôle — appliqué immédiatement à tous les comptes du rôle. Les rôles individuels se règlent dans « Comptes d'accès » ci-dessus.</p>
     ${(()=>{
-      const roles=[['direction','Direction'],['rh','RH'],['comptable','Comptable'],['commercial','Commercial'],['membre','Membre']];
+      const roles=Object.entries(ROLES); // dérivé de ROLES : un rôle ajouté apparaît ici tout seul
       const lbl=v=>{ const b=document.querySelector(`.nav-item[data-view="${v}"] .txt`); return b?b.textContent:v; };
       return `<table><thead><tr><th>Onglet</th>${roles.map(([,l])=>`<th style="text-align:center">${l}</th>`).join('')}</tr></thead><tbody>
       ${PERMS.direction.map(v=>`<tr><td><b>${lbl(v)}</b></td>${roles.map(([k])=>{
@@ -5033,7 +5194,7 @@ async function params(){
     <h3>🗂️ Permissions fines — feuilles</h3>
     <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px">Onglet par onglet de la page Feuilles, pour chaque rôle : <b style="color:var(--green)">✓</b> plein accès → <b style="color:#5aa0ff">👁</b> lecture seule → <b style="color:var(--muted)">—</b> caché (clic pour faire tourner). La Direction a toujours tout.</p>
     ${(()=>{
-      const roles=[['rh','RH'],['comptable','Comptable'],['commercial','Commercial']];
+      const roles=Object.entries(ROLES).filter(([k])=>k!=='direction'&&k!=='membre'); // la Direction a tout, un Membre n'a pas la page Feuilles
       return `<table><thead><tr><th>Feuille</th>${roles.map(([,l])=>`<th style="text-align:center">${l}</th>`).join('')}</tr></thead><tbody>
       ${Object.entries(SHEETS_DEF).map(([k,d])=>`<tr><td><b>${d.ico} ${d.label}</b></td>
         ${roles.map(([rk])=>{ const v=sheetPerm(rk,k);
@@ -5054,7 +5215,7 @@ async function params(){
   <div class="panel" style="margin-top:18px">
     <h3>📐 Règles de grades (rappel)</h3>
     <table><thead><tr><th>Grade</th><th>Quota hebdo</th><th>Multiplicateur prime</th><th>Montée de grade</th></tr></thead><tbody>
-    ${GRADES.map((g,i)=>`<tr><td><span class="badge ${g.cls}">${g.nom}</span></td><td>${fmt(g.quota)} barils</td><td>×${g.mult}</td><td>${i>0?fmt(g.montee)+' barils/sem. pour y accéder':'grade d\'entrée'}</td></tr>`).join('')}
+    ${GRADES.map((g,i)=>`<tr><td><span class="badge ${g.cls}">${g.nom}</span></td><td>${fmt(g.quota)} barils</td><td>×${g.mult}</td><td>${g.merite?'🏅 attribué au mérite par la direction — pas de montée automatique':i>0?fmt(g.montee)+' barils/sem. pour y accéder':'grade d\'entrée'}</td></tr>`).join('')}
     <tr><td><span class="badge bg3">Direction &amp; postes</span> <small style="color:var(--muted)">Patron, RH, commerciaux…</small></td><td>0 barils (aucun quota)</td><td>×${DIR_GRADE.mult}</td><td>—</td></tr>
     <tr><td><span class="badge bgrole">Web Master</span> <small style="color:var(--muted)">sous-direction</small></td><td>0 barils (aucun quota)</td><td>×${WM_GRADE.mult} + prime fixe (Paramètres)</td><td>—</td></tr>
     <tr><td><span class="badge bgstg">Stagiaire</span> <small style="color:var(--muted)">période d'essai</small></td><td>${fmt(STG_GRADE.quota)} barils</td><td>×${STG_GRADE.mult}</td><td>titularisation manuelle → Intérimaire (bouton 🎓 dans l'Effectif)</td></tr>

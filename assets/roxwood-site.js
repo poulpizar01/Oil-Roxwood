@@ -73,7 +73,8 @@
       { nom: "Intérimaire", quota: 3000, mult: 1 },
       { nom: "Raffineur",   quota: 3000, mult: 1.5 },
       { nom: "Confirmé",    quota: 5000, mult: 2 },
-      { nom: "Expert",      quota: 6500, mult: 2.5 }
+      { nom: "Expert",      quota: 6500, mult: 2.5 },
+      { nom: "Resp. Runner", quota: 5000, mult: 2.5 }   // galon confié par la direction, pas une montée
     ];
     var CAP = 42500, gi = 3;
     var F = function (n) { return Math.round(n).toLocaleString("fr-FR"); };

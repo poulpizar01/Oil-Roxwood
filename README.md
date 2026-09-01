@@ -62,7 +62,7 @@ JavaScript servis tels quels. On ouvre un fichier, on modifie, on pousse.
 ├── data/etat.json          LA BASE : tout l'état partagé
 ├── data/                   Stats publiques, logs Discord, marqueurs des robots
 ├── backups/                Sauvegardes quotidiennes automatiques
-├── scripts/                Robots Python (Discord, sauvegardes, notifications)
+├── scripts/                Robots Python (Discord, sauvegardes, notifications, rappels)
 ├── sql/                    Schéma d'origine + export de migration
 ├── .github/workflows/      Automatisations GitHub Actions
 └── SETUP-*.md              Guides d'installation détaillés
@@ -137,14 +137,24 @@ Dans [le portail Discord](https://discord.com/developers/applications) → ton a
 > La première personne qui se connecte devient le compte **Direction**. Les demandes
 > suivantes arrivent sur Discord et la direction crée le compte dans Paramètres.
 
+**Ou par rôle Discord, sans validation manuelle.** Dans Paramètres → *Connexion par rôle
+Discord* : l'identifiant du serveur, puis la correspondance rôle Discord → rôle dashboard.
+Qui porte un rôle listé entre directement. L'ordre de la liste est une priorité — on cumule
+souvent plusieurs rôles, c'est le premier qui gagne, donc Direction en haut. Le dashboard
+demande alors la permission `guilds.members.read` en plus de `identify`.
+
+> **Entrer n'est pas écrire.** Sans jeton GitHub personnel, un compte ouvert par ce chemin
+> voit tout et ne modifie rien. Le rôle Discord ouvre la porte, il ne donne pas les clés du dépôt.
+
 ### 4. Les robots (facultatif)
 
-Trois automatisations tournent sur GitHub Actions :
+Quatre automatisations tournent sur GitHub Actions :
 
 | Workflow | Quand | Ce qu'il fait |
 |---|---|---|
 | `backup.yml` | tous les jours à 03 h UTC | copie `data/etat.json` dans `backups/` |
 | `discord-logs.yml` | toutes les 15 min | récupère les logs de production et de fer depuis Discord |
+| `rappels-quota.yml` | vendredi 18 h UTC | rappelle son quota à chaque retardataire **dans son ticket** |
 | `diag-discord.yml` | manuel | diagnostique les accès du bot aux salons |
 
 Ils ont besoin de ces secrets dans **Settings → Secrets and variables → Actions** :
@@ -154,6 +164,13 @@ Ils ont besoin de ces secrets dans **Settings → Secrets and variables → Acti
 Les robots **lisent** `data/etat.json` mais ne le modifient jamais : ils retiennent ce
 qu'ils ont traité dans leurs propres fichiers `data/*-seen.json`. Sans ça, un robot et
 un admin pourraient écrire en même temps et s'écraser mutuellement.
+
+**Comment le rappel de quota trouve un ticket.** Dans un salon de ticket, l'encadrement a
+accès *par rôle* et la personne concernée *par membre*. Cette dérogation de type « membre »
+est unique dans le salon : c'est elle qui désigne le propriétaire. Le robot ignore les absences
+déclarées, n'écrit qu'une fois par personne et par semaine, et liste dans son journal ce qu'il
+n'a pas su relier. Il se lance à blanc depuis l'onglet **Actions** (`Rappels de quota` →
+*Run workflow*, case « essai à blanc » cochée) pour voir les messages avant qu'ils partent.
 
 Détails dans **[SETUP-BOT.md](SETUP-BOT.md)** et **[SETUP-BOT-ENTREPRISE.md](SETUP-BOT-ENTREPRISE.md)**.
 

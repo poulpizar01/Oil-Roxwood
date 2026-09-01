@@ -23,7 +23,7 @@ salon de logs et met à jour `data/discord-logs.json`, que le dashboard affiche.
 
 ## Étape 4 — Ajouter les secrets sur GitHub
 
-Sur https://github.com/Poloveni/OilRoxwood/settings/secrets/actions → **New repository secret** :
+Sur https://github.com/poulpizar01/Oil-Roxwood/settings/secrets/actions → **New repository secret** :
 
 | Nom | Valeur |
 |---|---|

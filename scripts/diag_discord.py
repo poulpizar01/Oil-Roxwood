@@ -28,7 +28,7 @@ def appel(chemin):
     req = urllib.request.Request(
         "https://discord.com/api/v10" + chemin,
         headers={"Authorization": f"Bot {TOKEN}",
-                 "User-Agent": "OilRoxwoodDiag (https://github.com/Poloveni/OilRoxwood, 1.0)"})
+                 "User-Agent": "OilRoxwoodDiag (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             return r.status, json.loads(r.read().decode())
