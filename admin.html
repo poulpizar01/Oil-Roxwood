@@ -42,7 +42,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-35</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-36</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -62,6 +62,7 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="semaine">💰 <span class="txt">Semaine &amp; Primes</span></button>
     <button class="nav-item" data-view="historique">📈 <span class="txt">Historique</span></button>
     <button class="nav-item" data-view="cloture">🗓️ <span class="txt">Clôture du lundi</span></button>
+    <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
     <div class="nav-sec" data-sec="gestion" onclick="navToggle('gestion')">Gestion <span class="chev">▾</span></div>
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
     <button class="nav-item" data-view="runs">🚛 <span class="txt">Runs</span></button>
@@ -378,11 +379,11 @@ function avatarHTML(qui, style){
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
-  direction:['overview','effectif','runs','semaine','historique','cloture','feuilles','factures','relances','bilan','retention','prodder','quotascom','fer','frecues','moi','quotashist','todo','agenda','feedback','maj','dlogs','journal','params'],
-  rh:       ['overview','effectif','semaine','historique','feuilles','retention','acces','factures','relances','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj','dlogs'],
-  comptable:['overview','feuilles','factures','bilan','moi','quotashist','todo','agenda','feedback','maj'],
-  commercial:['overview','factures','relances','feuilles','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj'],
-  membre:   ['effectif','moi','quotashist','todo','agenda','feedback','maj'] // lecture seule + stats perso + boîte à idées + agenda
+  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','retention','prodder','quotascom','fer','frecues','moi','quotashist','todo','agenda','feedback','maj','dlogs','journal','params'],
+  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','retention','acces','factures','relances','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj','dlogs'],
+  comptable:['overview','reunions','feuilles','factures','bilan','moi','quotashist','todo','agenda','feedback','maj'],
+  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','quotashist','todo','agenda','feedback','maj'],
+  membre:   ['effectif','reunions','moi','quotashist','todo','agenda','feedback','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return false; // clé de secours = Direction
@@ -493,7 +494,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-35';
+const APP_VERSION='C-36';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -793,7 +794,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,runs,semaine,historique,cloture,feuilles,factures,relances,bilan,retention,prodder,quotascom,fer,frecues,moi,quotashist,todo,acces,agenda,feedback,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,retention,prodder,quotascom,fer,frecues,moi,quotashist,todo,acces,agenda,feedback,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -2861,6 +2862,187 @@ async function cloture(){
       <button class="btn btn-red" onclick="undoClose()">↩ Annuler la dernière clôture</button>
     </div>
   </div>`:''}`;
+}
+
+/* ================== COMPTES-RENDUS DE RÉUNION ==================
+   L'encadrement rédige, les membres lisent. À la publication, on
+   choisit au cas par cas : envoi Discord et/ou création des tâches. */
+const REU_TYPES={direction:'Direction',generale:'Générale',rh:'RH',commerciale:'Commerciale',autre:'Autre'};
+
+function reuPeutEcrire(){ return !isMembre(); }
+function reuListe(){ return (S.reunions=S.reunions||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))); }
+function reuGet(id){ return (S.reunions||[]).find(r=>String(r.id)===String(id)); }
+/* « Pseudo : action » sur une ligne → {qui, txt} ; sans deux-points, action sans destinataire */
+function reuParseActions(txt){
+  return String(txt||'').split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{
+    const i=l.indexOf(':');
+    return i>0 ? {qui:l.slice(0,i).trim(), txt:l.slice(i+1).trim()} : {qui:'', txt:l};
+  }).filter(a=>a.txt);
+}
+const reuLignes = t => String(t||'').split('\n').map(l=>l.trim()).filter(Boolean);
+
+function reunions(){
+  const L=reuListe(), ecrit=reuPeutEcrire();
+  $('#main').innerHTML=`
+  <div class="topbar">
+    <div><h2>Comptes-rendus</h2><div class="sub">${L.length} réunion(s) archivée(s)${ecrit?'':' · consultation'}</div></div>
+    ${ecrit?`<button class="btn btn-gold" onclick="reuForm()">➕ Nouveau compte-rendu</button>`:''}
+  </div>
+  ${L.length?`<div class="grid g2">${L.map(r=>{
+    const nA=(r.actions||[]).length, nD=(r.decisions||[]).length;
+    return `<div class="panel link" style="cursor:pointer" onclick="reuVoir('${r.id}')">
+      <div style="display:flex;align-items:flex-start;gap:12px;justify-content:space-between">
+        <div style="min-width:0">
+          <div style="font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">
+            ${esc(new Date(r.date+'T12:00:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))}</div>
+          <h3 style="margin:6px 0 0;border:0;padding:0">${esc(r.titre||'Sans titre')}</h3>
+        </div>
+        <span class="badge bgrole">${esc(REU_TYPES[r.type]||r.type||'Autre')}</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <span class="chip">👥 <b>${(r.participants||[]).length}</b></span>
+        <span class="chip">⚖️ <b>${nD}</b> décision${nD>1?'s':''}</span>
+        <span class="chip">✅ <b>${nA}</b> action${nA>1?'s':''}</span>
+        ${r.publie&&r.publie.quand?`<span class="badge bg3">publié</span>`:`<span class="badge bgrole">brouillon</span>`}
+      </div>
+    </div>`;}).join('')}</div>`
+  :`<div class="panel"><div class="empty">Aucun compte-rendu pour le moment.${ecrit?'<br>Le bouton en haut à droite en crée un.':''}</div></div>`}`;
+}
+
+function reuVoir(id){
+  const r=reuGet(id); if(!r) return;
+  const ecrit=reuPeutEcrire();
+  const bloc=(titre,items,puce)=>items&&items.length
+    ? `<div style="margin-top:18px"><div class="f-lbl">${titre}</div>
+       ${items.map(x=>`<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)">
+         <span style="color:var(--accent);flex:none">${puce}</span><span>${x}</span></div>`).join('')}</div>` : '';
+  openModal(`
+    <h3>${esc(r.titre||'Sans titre')}</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 4px">
+      <span class="chip">${esc(new Date(r.date+'T12:00:00').toLocaleDateString('fr-FR',{dateStyle:'long'}))}</span>
+      <span class="badge bgrole">${esc(REU_TYPES[r.type]||r.type||'Autre')}</span>
+      ${r.publie&&r.publie.quand?'<span class="badge bg3">publié</span>':'<span class="badge bgrole">brouillon</span>'}
+    </div>
+    ${(r.participants||[]).length?`<div style="margin-top:16px"><div class="f-lbl">Participants</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${r.participants.map(p=>`<span class="em-chip">${esc(p)}</span>`).join('')}</div></div>`:''}
+    ${bloc('Ordre du jour',(r.ordre||[]).map(esc),'—')}
+    ${bloc('Décisions',(r.decisions||[]).map(esc),'⚖')}
+    ${bloc('Actions',(r.actions||[]).map(a=>`${a.qui?`<b>${esc(a.qui)}</b> — `:''}${esc(a.txt)}`),'✅')}
+    <div style="margin-top:18px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem">
+      Rédigé par ${esc(r.auteur||'?')} · ${esc(new Date(r.cree||Date.now()).toLocaleString('fr-FR'))}
+      ${r.publie&&r.publie.quand?`<br>Publié le ${esc(new Date(r.publie.quand).toLocaleString('fr-FR'))}${r.publie.discord?' · Discord':''}${r.publie.taches?' · tâches créées':''}`:''}
+    </div>
+    ${ecrit?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+      <button class="btn btn-sm btn-gold" onclick="reuPublier('${r.id}')">📢 Publier</button>
+      <button class="btn btn-sm btn-ghost" onclick="reuForm('${r.id}')">✏️ Modifier</button>
+      <button class="btn btn-sm btn-red" onclick="reuSuppr('${r.id}')">🗑 Supprimer</button>
+    </div>`:''}`);
+}
+
+function reuForm(id){
+  const r=id?reuGet(id):null;
+  const noms=(S.runners||[]).map(x=>x.nom).concat((S.users||[]).map(u=>u.user));
+  const uniq=[...new Set(noms.filter(Boolean))].sort();
+  openModal(`<h3>${r?'Modifier le compte-rendu':'Nouveau compte-rendu'}</h3>
+    <div class="f-row"><label class="f-lbl">Date</label>
+      <input class="field" type="date" id="reuDate" value="${esc((r&&r.date)||new Date().toISOString().slice(0,10))}"></div>
+    <div class="f-row"><label class="f-lbl">Titre</label>
+      <input class="field" id="reuTitre" placeholder="Réunion hebdomadaire du staff" value="${esc((r&&r.titre)||'')}"></div>
+    <div class="f-row"><label class="f-lbl">Type</label>
+      <select class="field" id="reuType">${Object.entries(REU_TYPES).map(([k,v])=>
+        `<option value="${k}"${r&&r.type===k?' selected':''}>${v}</option>`).join('')}</select></div>
+    <div class="f-row"><label class="f-lbl">Participants — séparés par une virgule</label>
+      <input class="field" id="reuPart" list="reuNoms" placeholder="Thomas, Léa, Marcus" value="${esc(((r&&r.participants)||[]).join(', '))}">
+      <datalist id="reuNoms">${uniq.map(n=>`<option value="${esc(n)}">`).join('')}</datalist></div>
+    <div class="f-row"><label class="f-lbl">Ordre du jour — une ligne par point</label>
+      <textarea class="field" id="reuOrdre" rows="3" placeholder="Bilan de la semaine&#10;Tarifs des bidons">${esc(((r&&r.ordre)||[]).join('\n'))}</textarea></div>
+    <div class="f-row"><label class="f-lbl">Décisions — une ligne par décision</label>
+      <textarea class="field" id="reuDec" rows="3" placeholder="Le bidon passe à 190 $&#10;Recrutement rouvert">${esc(((r&&r.decisions)||[]).join('\n'))}</textarea></div>
+    <div class="f-row"><label class="f-lbl">Actions — « Pseudo : ce qu'il doit faire »</label>
+      <textarea class="field" id="reuAct" rows="3" placeholder="Léa : relancer Ferme Grapeseed&#10;Marcus : commander 200 u de fer">${esc(((r&&r.actions)||[]).map(a=>(a.qui?a.qui+' : ':'')+a.txt).join('\n'))}</textarea>
+      <p class="note" style="margin-top:6px">Le pseudo doit correspondre à un compte pour que la tâche lui arrive.</p></div>
+    <button class="btn btn-gold" style="width:100%" onclick="reuSave('${id||''}')">${r?'Enregistrer':'Créer le compte-rendu'}</button>`);
+}
+
+function reuSave(id){
+  const titre=$('#reuTitre').value.trim();
+  if(!titre) return toast('⚠️ Donne un titre à la réunion');
+  S.reunions=S.reunions||[];
+  const r=id?reuGet(id):{id:'R'+Date.now(), cree:new Date().toISOString(), auteur:(currentUser()||{}).user||'?'};
+  r.date=$('#reuDate').value||new Date().toISOString().slice(0,10);
+  r.titre=titre;
+  r.type=$('#reuType').value;
+  r.participants=$('#reuPart').value.split(',').map(s=>s.trim()).filter(Boolean);
+  r.ordre=reuLignes($('#reuOrdre').value);
+  r.decisions=reuLignes($('#reuDec').value);
+  r.actions=reuParseActions($('#reuAct').value);
+  r.maj=new Date().toISOString();
+  if(!id) S.reunions.push(r);
+  save(); sbQueue(); closeModal(); reunions();
+  jlog(`Compte-rendu ${id?'modifié':'créé'} : ${titre}`);
+  toast(id?'✅ Compte-rendu enregistré':'✅ Compte-rendu créé');
+}
+
+function reuSuppr(id){
+  const r=reuGet(id); if(!r) return;
+  if(!confirm(`Supprimer le compte-rendu « ${r.titre} » ?\n\nC'est définitif.`)) return;
+  S.reunions=(S.reunions||[]).filter(x=>String(x.id)!==String(id));
+  save(); sbQueue(); closeModal(); reunions();
+  jlog(`Compte-rendu supprimé : ${r.titre}`);
+  toast('🗑 Compte-rendu supprimé');
+}
+
+/* Publication : les deux options se cochent réunion par réunion. */
+function reuPublier(id){
+  const r=reuGet(id); if(!r) return;
+  const nA=(r.actions||[]).length;
+  const webhookOK=String((S.settings||{}).webhook||'').startsWith('https://discord.com/api/webhooks/');
+  openModal(`<h3>📢 Publier « ${esc(r.titre)} »</h3>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px">Choisis ce qui part. Rien n'est obligatoire.</p>
+    <label class="f-row" style="display:flex;gap:12px;align-items:flex-start;cursor:${webhookOK?'pointer':'not-allowed'};opacity:${webhookOK?1:.5}">
+      <input type="checkbox" id="reuPubDis" ${webhookOK?'checked':'disabled'} style="width:18px;height:18px;accent-color:var(--accent);margin-top:2px">
+      <span><b>Envoyer dans Discord</b><br><span style="color:var(--muted);font-size:.82rem">
+        ${webhookOK?'Le compte-rendu part dans le salon des logs.':'Aucun webhook configuré (Paramètres).'}</span></span>
+    </label>
+    <label class="f-row" style="display:flex;gap:12px;align-items:flex-start;cursor:${nA?'pointer':'not-allowed'};opacity:${nA?1:.5}">
+      <input type="checkbox" id="reuPubTod" ${nA?'checked':'disabled'} style="width:18px;height:18px;accent-color:var(--accent);margin-top:2px">
+      <span><b>Créer les tâches</b><br><span style="color:var(--muted);font-size:.82rem">
+        ${nA?`${nA} action(s) atterriront dans la to-do des personnes nommées.`:'Aucune action dans ce compte-rendu.'}</span></span>
+    </label>
+    <button class="btn btn-gold" style="width:100%;margin-top:8px" onclick="reuPublierGo('${id}')">Publier</button>`);
+}
+
+async function reuPublierGo(id){
+  const r=reuGet(id); if(!r) return;
+  const dis=$('#reuPubDis')&&$('#reuPubDis').checked;
+  const tod=$('#reuPubTod')&&$('#reuPubTod').checked;
+  let taches=0;
+
+  if(tod){
+    for(const a of (r.actions||[])){
+      const u=(S.users||[]).find(x=>String(x.user).toLowerCase()===String(a.qui).toLowerCase());
+      if(!u||!u.did) continue;                      // sans compte Discord, pas de destinataire
+      try{
+        await SYNC.cli.from('oilroxwood_todo').insert({uid:String(u.did), txt:`[${r.titre}] ${a.txt}`});
+        taches++;
+      }catch(e){}
+    }
+  }
+
+  if(dis){
+    const L=[];
+    if(r.participants&&r.participants.length) L.push(`**Participants** — ${r.participants.join(', ')}`);
+    if(r.ordre&&r.ordre.length)     L.push('\n**Ordre du jour**\n'+r.ordre.map(x=>'• '+x).join('\n'));
+    if(r.decisions&&r.decisions.length) L.push('\n**Décisions**\n'+r.decisions.map(x=>'⚖ '+x).join('\n'));
+    if(r.actions&&r.actions.length) L.push('\n**Actions**\n'+r.actions.map(a=>'✅ '+(a.qui?`**${a.qui}** — `:'')+a.txt).join('\n'));
+    sendLog(`📋 ${r.titre} — ${new Date(r.date+'T12:00:00').toLocaleDateString('fr-FR',{dateStyle:'long'})}`,
+            L.join('\n').slice(0,3900), 0xe8a020);
+  }
+
+  r.publie={quand:new Date().toISOString(), discord:!!dis, taches:!!tod};
+  save(); sbQueue(); closeModal(); reunions();
+  jlog(`Compte-rendu publié : ${r.titre}${taches?` (${taches} tâche(s) créée(s))`:''}`);
+  toast(`📢 Publié${dis?' · Discord':''}${taches?` · ${taches} tâche(s)`:''}`);
 }
 
 /* ================== ACHATS DE FER (Direction) ================== */

@@ -20,7 +20,7 @@ du visiteur.
 
 **`admin.html` — le poste de contrôle.** L'espace membre : effectif, runs, feuilles
 de production, factures, relances, bilan comptable, quotas, primes, clôture du lundi,
-agenda, to-do, journal d'audit et logs Discord en direct. Connexion par Discord,
+agenda, to-do, comptes-rendus de réunion, journal d'audit et logs Discord. Connexion par Discord,
 données partagées entre administrateurs, permissions par rôle, factures imprimables.
 
 Deux pages satellites complètent l'ensemble : **`facture.html`** (facture autonome)
