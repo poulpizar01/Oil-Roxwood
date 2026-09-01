@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Envoie un MP Discord à la direction pour chaque nouvelle entrée Suggestions/Bugs.
-Nécessite le secret GitHub DISCORD_BOT_TOKEN (bot partageant un serveur avec le destinataire)."""
+
+Les suggestions sont lues dans data/etat.json (plus de Supabase).
+Nécessite le secret GitHub DISCORD_BOT_TOKEN."""
 import json, os, sys, urllib.request
+
+import etat
 
 BOT = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
 DEST_IDS = ["186397473374208000"]  # IDs Discord des destinataires des MP
-SB_URL = "https://prwdtdmdkhzwfyivaepw.supabase.co/rest/v1/oilroxwood_feedback"
-SB_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "").strip() or "sb_publishable_qgN4fRX9eVdKn3SWAjtmhw_F00rlqXz"
 SEEN = "data/feedback-seen.json"
 
 if not BOT:
@@ -20,10 +22,9 @@ if os.path.exists(SEEN):
     except Exception:
         pass
 
-req = urllib.request.Request(
-    f"{SB_URL}?id=gt.{last}&order=id.asc&select=*",
-    headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"})
-rows = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
+# les suggestions vivent désormais dans le dépôt (data/etat.json → _tables)
+rows = [r for r in etat.table("oilroxwood_feedback") if (r.get("id") or 0) > last]
+rows.sort(key=lambda r: r.get("id") or 0)
 
 UA = "DiscordBot (https://github.com/Poloveni/OilRoxwood, 1.0)"
 

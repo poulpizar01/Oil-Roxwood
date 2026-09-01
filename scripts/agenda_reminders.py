@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Rappels d'agenda : envoie un MP Discord à chaque membre ~1h avant ses événements
 (RDV, commandes, entretiens) enregistrés dans l'onglet « Mon agenda ».
-Nécessite : DISCORD_BOT_TOKEN + SUPABASE_SERVICE_KEY (secrets GitHub)."""
+Les événements sont lus dans data/etat.json (plus de Supabase).
+Nécessite : DISCORD_BOT_TOKEN (secret GitHub)."""
 import json, os, sys, urllib.request, urllib.error
+
+import etat
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 BOT = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
-KEY = os.environ.get("SUPABASE_SERVICE_KEY", "").strip() or "sb_publishable_qgN4fRX9eVdKn3SWAjtmhw_F00rlqXz"
-SB = "https://prwdtdmdkhzwfyivaepw.supabase.co/rest/v1/oilroxwood_agenda"
 SEEN = "data/agenda-seen.json"
 UA = "DiscordBot (https://github.com/Poloveni/OilRoxwood, 1.0)"
 TYPES = {"rdv": "📌 RDV", "commande": "🛒 Commande", "entretien": "🤝 Entretien", "autre": "📅 Événement"}
@@ -30,10 +31,8 @@ if os.path.exists(SEEN):
     except Exception:
         pass
 
-req = urllib.request.Request(
-    f"{SB}?date=eq.{today}&select=*",
-    headers={"apikey": KEY, "Authorization": f"Bearer {KEY}", "User-Agent": UA})
-rows = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
+# l'agenda vit désormais dans le dépôt (data/etat.json → _tables)
+rows = [e for e in etat.table("oilroxwood_agenda") if str(e.get("date")) == today]
 
 def bot_api(path, payload):
     r = urllib.request.Request(

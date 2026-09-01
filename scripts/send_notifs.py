@@ -1,26 +1,30 @@
 #!/usr/bin/env python3
-"""File d'attente de MP Discord (table oilroxwood_notifs) : le dashboard y dépose des
-messages (ex. « accès validé ») et ce script les envoie puis les marque comme faits.
-Nécessite : DISCORD_BOT_TOKEN + SUPABASE_SERVICE_KEY (secrets GitHub)."""
-import json, os, sys, urllib.request, urllib.error
+"""File d'attente de MP Discord.
+
+Le dashboard dépose des messages (« accès validé », etc.) dans la table
+oilroxwood_notifs, désormais rangée dans data/etat.json sous _tables.
+Ce script les envoie et retient ce qu'il a déjà expédié dans son propre
+fichier data/notifs-seen.json — il ne touche jamais à data/etat.json,
+pour ne pas entrer en collision avec un admin en train de saisir.
+
+Nécessite : DISCORD_BOT_TOKEN (secret GitHub).
+"""
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+
+import etat
 
 BOT = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
-KEY = os.environ.get("SUPABASE_SERVICE_KEY", "").strip() or "sb_publishable_qgN4fRX9eVdKn3SWAjtmhw_F00rlqXz"
-SB = "https://prwdtdmdkhzwfyivaepw.supabase.co/rest/v1/oilroxwood_notifs"
-UA = "DiscordBot (https://github.com/Poloveni/OilRoxwood, 1.0)"
+SEEN = "data/notifs-seen.json"
+UA = "DiscordBot (https://github.com/poulpizar01/Oil-Roxwood, 2.0)"
 
 if not BOT:
     print("DISCORD_BOT_TOKEN manquant — notifications ignorées")
     sys.exit(0)
 
-def sb(url, method="GET", payload=None):
-    r = urllib.request.Request(url, method=method,
-        data=json.dumps(payload).encode() if payload else None,
-        headers={"apikey": KEY, "Authorization": f"Bearer {KEY}",
-                 "Content-Type": "application/json", "User-Agent": UA, "Prefer": "return=minimal"})
-    with urllib.request.urlopen(r, timeout=30) as resp:
-        body = resp.read().decode()
-        return json.loads(body) if body else None
 
 def bot_api(path, payload):
     r = urllib.request.Request(
@@ -33,19 +37,28 @@ def bot_api(path, payload):
     except urllib.error.HTTPError as e:
         raise Exception(f"{e.code} → {e.read().decode(errors='replace')[:200]}")
 
-rows = sb(f"{SB}?done=eq.false&order=id.asc&select=*") or []
-sent = 0
-for nt in rows:
+
+envoyes = set(etat.lire_marqueur(SEEN, {}).get("ids", []))
+notifs = etat.table("oilroxwood_notifs")
+
+en_attente = [n for n in notifs
+              if str(n.get("id")) not in envoyes and not n.get("done")]
+
+envoi = 0
+for nt in en_attente:
+    nid = str(nt.get("id"))
     uid = str(nt.get("did") or "")
     if not uid.isdigit():
-        sb(f"{SB}?id=eq.{nt['id']}", "PATCH", {"done": True})  # invalide → on écarte
+        envoyes.add(nid)          # destinataire invalide : on écarte définitivement
         continue
     try:
         dm = bot_api("/users/@me/channels", {"recipient_id": uid})
         bot_api(f"/channels/{dm['id']}/messages", {"content": (nt.get("msg") or "")[:1900]})
-        sb(f"{SB}?id=eq.{nt['id']}", "PATCH", {"done": True})  # marqué fait UNIQUEMENT si envoyé
-        sent += 1
+        envoyes.add(nid)          # marqué fait UNIQUEMENT si le MP est parti
+        envoi += 1
     except Exception as e:
         print(f"MP vers {uid} impossible : {e}")
 
-print(f"{len(rows)} notification(s) en attente · {sent} MP envoyé(s)")
+# on ne garde que les 500 derniers identifiants : le fichier ne gonfle pas
+etat.ecrire_marqueur(SEEN, {"ids": sorted(envoyes)[-500:]})
+print(f"{len(en_attente)} notification(s) en attente · {envoi} MP envoyé(s)")
