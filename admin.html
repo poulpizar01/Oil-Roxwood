@@ -7,6 +7,11 @@
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Oil Roxwood">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,7 +42,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-34</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-35</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -84,7 +89,6 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="params">⚙️ <span class="txt">Paramètres</span></button>
     <div class="spacer"></div>
     <div class="nav-sec" style="cursor:default">Accès rapides</div>
-    <a class="nav-item" href="tv.html" target="_blank" rel="noopener" style="text-decoration:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3"/></svg> <span class="txt">TV du dépôt</span></a>
     <a class="nav-item" href="index.html" style="text-decoration:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> <span class="txt">Retour au site</span></a>
     <button class="nav-item" onclick="localStorage.setItem('orx_lang',localStorage.getItem('orx_lang')==='en'?'fr':'en');applyLang()" title="Changer la langue de l'interface / Switch interface language">🌐 <span class="txt" data-nolang="1">FR / EN</span></button>
     <div id="whoami" style="padding:8px 14px;font-size:.78rem;color:var(--muted)"></div>
@@ -358,6 +362,20 @@ async function sha(t){
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Commercial',membre:'Membre'};
+
+/* Pastille d'identité : la photo Discord si on la connaît, les initiales sinon.
+   `qui` accepte un compte (objet) ou un simple nom. */
+function avatarHTML(qui, style){
+  const u = (typeof qui==='string')
+    ? (S.users||[]).find(x=>String(x.user).toLowerCase()===String(qui).toLowerCase())
+    : qui;
+  const nom = (typeof qui==='string') ? qui : ((u&&u.user)||'?');
+  const ini = String(nom||'?').trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
+  const st = style ? ` style="${style}"` : '';
+  return (u&&u.avatar)
+    ? `<span class="avat"${st}><img src="${esc(u.avatar)}" alt="" loading="lazy"></span>`
+    : `<span class="avat"${st}>${esc(ini)}</span>`;
+}
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
   direction:['overview','effectif','runs','semaine','historique','cloture','feuilles','factures','relances','bilan','retention','prodder','quotascom','fer','frecues','moi','quotashist','todo','agenda','feedback','maj','dlogs','journal','params'],
@@ -441,7 +459,7 @@ function enter(){
   document.getElementById('login').style.display='none';
   document.getElementById('app').style.display='block';
   const cu=currentUser(), wu=document.getElementById('whoami');
-  if(wu) wu.innerHTML=cu?`<span class="avat">${esc((cu.user||'?').trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase())}</span><span style="min-width:0"><b style="color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(cu.user)}</b><small>${ROLES[cu.role]||cu.role}</small></span>`:'';
+  if(wu) wu.innerHTML=cu?`${avatarHTML(cu)}<span style="min-width:0"><b style="color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(cu.user)}</b><small>${ROLES[cu.role]||cu.role}</small></span>`:'';
   applyPerms(); navBadges();
   const bell=document.getElementById('nfBell'); if(bell) bell.style.display='flex';
   nfRefresh();
@@ -475,7 +493,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-34';
+const APP_VERSION='C-35';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -532,6 +550,8 @@ async function checkDiscordAuth(){
 
     if(u){
       if(!u.did){ u.did=did; save(); await sbPushNow(); }  // liaison définitive au premier login
+      // photo de profil Discord : rafraîchie à chaque connexion
+      if(id.avatar && u.avatar!==id.avatar){ u.avatar=id.avatar; save(); sbQueue(); }
       sessionStorage.setItem('orx_auth','1');
       sessionStorage.setItem('orx_user',u.user);
       enter();
@@ -3899,7 +3919,7 @@ function ficheEmp(nom){
   const ds=row&&row.dernierService, dj=ds&&!isNaN(Date.parse(ds))?Math.floor((nowSrv()-Date.parse(ds))/86400000):null;
   openModal(`
   <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-    <span class="avat" style="width:46px;height:46px;font-size:1rem">${esc(String(nom).trim().split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase())}</span>
+    ${avatarHTML(nom,'width:46px;height:46px;font-size:1rem')}
     <div style="min-width:0">
       <h3 style="margin:0">${esc(nom)}</h3>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px">

@@ -15,7 +15,7 @@ Nouveau socle graphique commun au site vitrine et au poste de contrôle.
 | `index.html` | **réécrit** — même contenu, même SEO, mêmes liens |
 | `admin.html` | **modifié à 3 endroits seulement** (voir plus bas) |
 
-Rien d'autre ne bouge : `tv.html`, `facture.html`, `reset.html`, `data/`, `scripts/`,
+Rien d'autre ne bouge : `facture.html`, `reset.html`, `data/`, `scripts/`,
 les workflows GitHub et les tables Supabase sont inchangés.
 
 ## Ce qui a changé dans `admin.html`

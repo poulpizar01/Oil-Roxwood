@@ -1,3 +1,8 @@
+> ⚠️ **Document historique.** Depuis la version C-34, Oil Roxwood n'utilise plus
+> Supabase : le dépôt GitHub sert lui-même de base de données. Ce guide n'est
+> conservé que pour comprendre l'ancienne installation et pour la migration
+> (voir `sql/export-tables.sql`). Voir le README pour l'architecture actuelle.
+
 # 🎮 Connexion Discord au dashboard
 
 Deux réglages à faire une seule fois (~5 min). Ensuite, tout le monde se

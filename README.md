@@ -21,12 +21,14 @@ du visiteur.
 **`admin.html` — le poste de contrôle.** L'espace membre : effectif, runs, feuilles
 de production, factures, relances, bilan comptable, quotas, primes, clôture du lundi,
 agenda, to-do, journal d'audit et logs Discord en direct. Connexion par Discord,
-données synchronisées en temps réel entre administrateurs via Supabase, permissions
-par rôle, factures imprimables.
+données partagées entre administrateurs, permissions par rôle, factures imprimables.
 
-Trois pages satellites complètent l'ensemble : **`tv.html`** (affichage plein écran
-pour l'écran du dépôt), **`facture.html`** (facture autonome) et **`reset.html`**
-(remise à zéro de secours).
+Deux pages satellites complètent l'ensemble : **`facture.html`** (facture autonome)
+et **`reset.html`** (remise à zéro de secours).
+
+**Il n'y a pas de serveur.** Le dépôt lui-même sert de base de données : tout l'état
+partagé vit dans `data/etat.json`, lu publiquement et écrit via l'API GitHub. Voir
+« Comment la donnée circule » plus bas.
 
 ---
 
@@ -38,7 +40,6 @@ JavaScript servis tels quels. On ouvre un fichier, on modifie, on pousse.
 ```
 ├── index.html              Vitrine publique
 ├── admin.html              Poste de contrôle (logique complète, un seul fichier)
-├── tv.html                 Affichage dépôt
 ├── facture.html            Facture autonome
 ├── reset.html              Remise à zéro de secours
 ├── equipe.html             Redirection
@@ -49,13 +50,15 @@ JavaScript servis tels quels. On ouvre un fichier, on modifie, on pousse.
 │   ├── roxwood-site.css    Mise en page de la vitrine
 │   ├── roxwood-site.js     Thème jour/nuit, hero animé, simulateur, mur de clients
 │   ├── roxwood-app.css     Socle du poste de contrôle
+│   └── roxwood-github.js   Moteur : identité Discord + stockage dans le dépôt
 │   ├── logo.png, favicon.png, banner-og-*.jpg …
 │   └── medias/             Photos et captures hors interface
 │
-├── data/                   État publié et historiques (écrits par les robots)
+├── data/etat.json          LA BASE : tout l'état partagé
+├── data/                   Stats publiques, logs Discord, marqueurs des robots
 ├── backups/                Sauvegardes quotidiennes automatiques
 ├── scripts/                Robots Python (Discord, sauvegardes, notifications)
-├── sql/                    Schéma des tables Supabase
+├── sql/                    Schéma d'origine + export de migration
 ├── .github/workflows/      Automatisations GitHub Actions
 └── SETUP-*.md              Guides d'installation détaillés
 ```
@@ -94,27 +97,40 @@ dossier `/ (root)`. Le site est en ligne une minute plus tard.
 
 Ensuite, `push.bat` fait commit + pull + push en un double-clic.
 
-### 2. Supabase (base de données partagée)
+### 2. Comment la donnée circule
 
-Créer un projet sur [supabase.com](https://supabase.com), puis exécuter le SQL de
-**[SETUP-SUPABASE.md](SETUP-SUPABASE.md)** dans l'éditeur SQL. Cela crée les tables :
+Il n'y a rien à installer : **le dépôt est la base**.
 
-`oilroxwood_etat` · `oilroxwood_agenda` · `oilroxwood_notifs` · `oilroxwood_frecues`
-`oilroxwood_todo` · `oilroxwood_media` · `oilroxwood_demandes` · `oilroxwood_feedback`
+| | |
+|---|---|
+| **Lecture** | `data/etat.json` est public. Le dashboard le lit via `raw.githubusercontent.com` — sans jeton, sans limite de débit. |
+| **Écriture** | Via l'API GitHub Contents, avec le jeton personnel de chacun. Chaque enregistrement est un commit. |
+| **Conflits** | Le SHA du fichier sert de jeton de version : GitHub refuse l'écriture si quelqu'un a écrit entre-temps, le dashboard refusionne et réessaie. |
+| **Fraîcheur** | Relecture toutes les 45 s, au retour sur l'onglet et au retour du réseau. |
+| **Historique** | Gratuit : chaque modification est un commit, `git log data/etat.json` est un journal d'audit complet. |
 
-Reporter l'URL du projet et la clé publique (`anon`) dans `admin.html`, section
-`SYNCHRO SUPABASE`. Cette clé est publique par conception : les droits sont gérés
-par les politiques RLS côté Supabase.
+Les anciennes tables annexes (agenda, to-do, factures reçues, médias, suggestions,
+notifications) sont rangées dans le même fichier, sous la clé `_tables`.
+
+**Le jeton d'écriture.** Sans jeton, le dashboard fonctionne en lecture seule : on
+voit tout, on ne modifie rien. Chacun crée le sien — clic sur le voyant rond à côté
+de « ESPACE MEMBRE » dans la barre latérale, la marche à suivre y est dépliable.
+Un jeton *fine-grained*, limité à ce seul dépôt, permission **Contents : Read and write**.
+Il reste dans le navigateur et n'est jamais envoyé ailleurs.
 
 ### 3. Connexion Discord
 
-Suivre **[SETUP-DISCORD-LOGIN.md](SETUP-DISCORD-LOGIN.md)**. Dans Supabase →
-Authentication → Providers → Discord, renseigner l'identifiant et le secret de
-l'application Discord, puis ajouter l'adresse de `admin.html` aux **Redirect URLs**
-autorisées.
+Le dashboard utilise le **flux implicite** OAuth2 : aucun secret côté client, aucun
+serveur d'échange. Discord renvoie un jeton dans le fragment de l'URL, le dashboard
+s'en sert une seule fois pour lire l'identité (identifiant, pseudo, avatar), puis l'oublie.
 
-> La première personne qui se connecte devient le compte **Direction**. Les accès
-> suivants se valident depuis l'onglet « Demandes d'accès ».
+Dans [le portail Discord](https://discord.com/developers/applications) → ton application :
+
+- **General Information** → copier l'**Application ID** dans le bloc `ROXWOOD_CFG` en haut d'`admin.html`
+- **OAuth2 → Redirects** → ajouter l'adresse exacte de `admin.html`
+
+> La première personne qui se connecte devient le compte **Direction**. Les demandes
+> suivantes arrivent sur Discord et la direction crée le compte dans Paramètres.
 
 ### 4. Les robots (facultatif)
 
@@ -122,14 +138,17 @@ Trois automatisations tournent sur GitHub Actions :
 
 | Workflow | Quand | Ce qu'il fait |
 |---|---|---|
-| `backup.yml` | tous les jours à 03 h UTC | sauvegarde l'état Supabase dans `backups/` |
+| `backup.yml` | tous les jours à 03 h UTC | copie `data/etat.json` dans `backups/` |
 | `discord-logs.yml` | toutes les 15 min | récupère les logs de production et de fer depuis Discord |
 | `diag-discord.yml` | manuel | diagnostique les accès du bot aux salons |
 
 Ils ont besoin de ces secrets dans **Settings → Secrets and variables → Actions** :
 
-`SUPABASE_SERVICE_KEY` · `DISCORD_BOT_TOKEN` · `DISCORD_GUILD_ID`
-`DISCORD_CHANNEL_ID` · `DISCORD_FER_CHANNEL_ID`
+`DISCORD_BOT_TOKEN` · `DISCORD_GUILD_ID` · `DISCORD_CHANNEL_ID` · `DISCORD_FER_CHANNEL_ID`
+
+Les robots **lisent** `data/etat.json` mais ne le modifient jamais : ils retiennent ce
+qu'ils ont traité dans leurs propres fichiers `data/*-seen.json`. Sans ça, un robot et
+un admin pourraient écrire en même temps et s'écraser mutuellement.
 
 Détails dans **[SETUP-BOT.md](SETUP-BOT.md)** et **[SETUP-BOT-ENTREPRISE.md](SETUP-BOT-ENTREPRISE.md)**.
 
@@ -143,9 +162,10 @@ Trois choses seulement dépendent de l'adresse :
 1. **`index.html`, lignes 20–21** — les deux balises `og:url` et `og:image`.
    Les robots de Discord et des réseaux sociaux n'exécutent pas de JavaScript,
    ces adresses doivent rester absolues. Le bloc est signalé par un commentaire.
-2. **Supabase → Authentication → URL Configuration** — ajouter la nouvelle adresse
-   de `admin.html` aux Redirect URLs, sinon la connexion Discord échoue.
-3. **Les guides `SETUP-*.md`** — pour que les exemples restent justes.
+2. **Le bloc `ROXWOOD_CFG`** en haut d'`admin.html` — `owner` et `repo`.
+3. **Discord → OAuth2 → Redirects** — ajouter la nouvelle adresse de `admin.html`,
+   sinon la connexion échoue.
+4. **Les guides `SETUP-*.md`** — pour que les exemples restent justes.
 
 Tout le reste suit automatiquement, y compris le lien envoyé en message privé
 quand un accès est validé.
@@ -154,7 +174,7 @@ quand un accès est validé.
 
 ## Développer en local
 
-Les appels à `version.json` et à Supabase échouent en `file://`. Il faut un serveur :
+Les appels à `version.json` et à GitHub échouent en `file://`. Il faut un serveur :
 
 ```bash
 python -m http.server 8000
