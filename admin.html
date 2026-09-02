@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-40</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-41</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -385,9 +385,35 @@ const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Com
    · Entrer ne veut pas dire écrire. Sans jeton GitHub personnel, un compte créé
      par ce chemin est en lecture seule : le rôle Discord ouvre la porte, il ne
      donne pas les clés du dépôt. */
-const ROLES_DISCORD_DEF=[{id:'1487435766547349604',role:'resprunner'}];
+/* Les rôles du serveur Oil Roxwood, du plus ouvert au plus restreint.
+   L'ordre EST la règle : beaucoup de gens cumulent (un patron porte aussi un
+   rôle de grade runner), et c'est la première ligne qui correspond qui gagne.
+   Trier du plus de droits au moins de droits garantit qu'un cumul ne fait
+   jamais perdre d'accès. */
+const ROLES_DISCORD_DEF=[
+  {id:'1245400912835510286', role:'direction'},   // Patron
+  {id:'1468694481153818674', role:'direction'},   // Co Patron
+  {id:'',                    role:'rh'},          // ⚠️ RH — identifiant à renseigner dans Paramètres
+  {id:'1472927781192208518', role:'comptable'},   // Comptable
+  {id:'1498757191044305086', role:'commercial'},  // Responsable commercial
+  {id:'1246586673140203601', role:'commercial'},  // Commercial
+  {id:'1487435766547349604', role:'resprunner'},  // Responsable Runner
+  {id:'1513313167931871362', role:'membre'},      // Runner
+  {id:'1246584841785446480', role:'membre'},      // Runner
+  {id:'1246585410461896879', role:'membre'},      // Runner
+  {id:'1288434147257483275', role:'membre'}       // Runner
+];
+/* Mise à jour unique de la table : la première version n'avait qu'une ligne.
+   On tamponne pour ne le faire qu'une fois, sans écraser les réglages suivants. */
+const ROLES_DISCORD_VER=2;
 function rolesDiscord(){
-  const r=S.settings&&S.settings.rolesDiscord;
+  const st=S.settings||{};
+  if(st.rolesDiscordV!==ROLES_DISCORD_VER){
+    st.rolesDiscord=ROLES_DISCORD_DEF.map(x=>({...x}));
+    st.rolesDiscordV=ROLES_DISCORD_VER;
+    try{ save(); }catch(e){}
+  }
+  const r=st.rolesDiscord;
   return Array.isArray(r)?r:ROLES_DISCORD_DEF.slice();
 }
 function serveurDiscord(){
@@ -406,6 +432,7 @@ try{ if(window.RoxwoodGH&&RoxwoodGH.configurerServeur) RoxwoodGH.configurerServe
 /* ---- Réglages (Paramètres → Connexion par rôle Discord) ---- */
 function rdMaj(liste,note){
   S.settings.rolesDiscord=liste;
+  S.settings.rolesDiscordV=ROLES_DISCORD_VER;
   jlog('Rôles Discord : '+note);
   save(); sbPushNow(); params();
 }
@@ -581,7 +608,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-40';
+const APP_VERSION='C-41';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3285,8 +3312,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
- {v:'C-40',d:'01/09/2026',t:'Connexion par rôle Discord activée',items:[
-   ['🎖️','Le serveur est branché','L\'identifiant du serveur Oil Roxwood est en place : porter le rôle Responsable Runner sur Discord ouvre désormais l\'accès directement, sans validation. Les autres rôles s\'ajoutent dans Paramètres → Connexion par rôle Discord. À la première connexion, Discord redemandera l\'autorisation — il réclame maintenant la lecture de ton appartenance au serveur, en plus de ton pseudo.'],
+ {v:'C-41',d:'01/09/2026',t:'Connexion par rôle Discord activée',items:[
+   ['🎖️','Le serveur et les rôles sont branchés','Fini la validation à la main : porter un rôle du serveur ouvre l\'accès directement, avec les droits qui vont avec. Patron et Co Patron → Direction · Comptable → Comptable · Responsable commercial et Commercial → Commercial · Responsable Runner → son propre rôle · les quatre rôles de grade Runner → Membre en lecture. Qui n\'a aucun de ces rôles passe par l\'ancien chemin : la demande arrive sur Discord.'],
+   ['🥇','L\'ordre protège les cumuls','La table est triée du plus de droits au moins de droits, et la première ligne qui correspond gagne. Un patron qui porte aussi son grade de runner entre donc en Direction, pas en Membre. Testé sur les cumuls réels du serveur.'],
+   ['⚠️','Le rôle RH reste à renseigner','Sa ligne est là, vide, dans Paramètres → Connexion par rôle Discord. Tant qu\'elle l\'est, une personne des RH qui n\'a que ce rôle-là entrera en Membre.'],
+   ['🔐','Une autorisation de plus','Discord redemandera l\'accord à tout le monde une fois : l\'application lit maintenant ton appartenance au serveur, en plus de ton pseudo. Rien n\'est stocké de plus, et entrer ne donne toujours pas le droit d\'écrire — ça, c\'est le jeton GitHub.'],
  ]},
  {v:'C-39',d:'01/09/2026',t:'Mon profil & les visages de l\'équipe',items:[
    ['👤','Chacun sa fiche','Nouvelle rubrique « Mon profil », ouverte à tout le monde, membres compris : photo, titre affiché et deux lignes de présentation. Un aperçu à côté montre exactement le rendu. La photo remplace les initiales partout où ton nom apparaît dans le dashboard.'],
