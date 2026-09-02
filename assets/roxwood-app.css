@@ -539,3 +539,39 @@ tbody tr:nth-child(7){animation-delay:.20s}tbody tr:nth-child(8){animation-delay
   .kpi .val{font-size:32px}
   [data-tilt]{--base:0deg!important}
 }
+
+/* ══════════════ 16. TÉLÉPHONE ══════════════
+   Trois problèmes constatés en 390 px de large, corrigés ici plutôt que
+   dans chaque vue : les barres d'outils qui sortaient de l'écran, les
+   boutons trop petits sous le doigt, et la barre de navigation devenue
+   un ruban horizontal sans rien qui indique qu'elle défile. */
+@media(max-width:760px){
+  /* 1. Les groupes de boutons du bandeau de titre passent à la ligne.
+        Ils sont posés en display:flex dans le HTML : seul le retour à la
+        ligne manquait, d'où des « Aujourd'hui › » ou des « ＋ Ligne »
+        invisibles hors cadre. */
+  .topbar > div{flex-wrap:wrap}
+  .topbar > div > .btn{flex:0 1 auto;min-width:0}
+
+  /* 2. Une cible tactile confortable fait 44 px ; on ne descend pas sous 36.
+        Les petits boutons d'action des tableaux (▲ ▼ ✎ ✕) en faisaient 24. */
+  .btn{min-height:40px}
+  .btn-sm{min-height:36px;padding:9px 13px;font-size:11px}
+  table .btn-sm{min-width:36px;padding:9px 10px}
+  td .btn-sm + .btn-sm{margin-left:4px}
+
+  /* 3. Le ruban de navigation défile horizontalement : sans indice, la moitié
+        des onglets passe inaperçue. Le masque estompe le bord droit — il est
+        appliqué au cadre visible, pas au contenu, donc il reste au bord quoi
+        qu'on fasse défiler. */
+  aside{scrollbar-width:none}
+  aside::-webkit-scrollbar{display:none}
+  aside{
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent);
+            mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent);
+  }
+}
+
+/* La fiche de profil : deux colonnes au bureau, une seule dès que ça serre. */
+.profil-grid{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}
+@media(max-width:860px){ .profil-grid{grid-template-columns:1fr} }

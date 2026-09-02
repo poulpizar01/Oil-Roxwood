@@ -9,7 +9,9 @@ body{font-size:16px}
 .pleine{width:100vw;margin-left:calc(50% - 50vw)}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 
-h2{font-size:clamp(44px,7.4vw,104px);text-transform:uppercase;letter-spacing:-.012em}
+/* Filet de sécurité : si la police condensée ne se charge pas, un mot long
+   comme « commandement » débordait de l'écran sur téléphone. */
+h2{font-size:clamp(40px,7.4vw,104px);text-transform:uppercase;letter-spacing:-.012em;overflow-wrap:break-word}
 h3{font-size:clamp(22px,2.3vw,29px);text-transform:uppercase}
 .creux{color:transparent;-webkit-text-stroke:2px var(--ambre)}
 p{margin:0}
@@ -156,8 +158,9 @@ section h2{margin-bottom:18px}
 /* ── L'ÉQUIPE ── cartes de profil sous l'organigramme ────────────────── */
 #equipe{margin-top:clamp(46px,6vw,80px)}
 .equipe-titre{
-  font-family:var(--f-display);font-size:clamp(28px,4vw,48px);font-weight:800;
+  font-family:var(--f-display);font-size:clamp(24px,4vw,48px);font-weight:800;
   text-transform:uppercase;line-height:.95;margin-bottom:clamp(20px,3vw,34px);
+  overflow-wrap:break-word;
 }
 .equipe-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:clamp(14px,2vw,22px)}
 .equipe-carte{
@@ -177,7 +180,9 @@ section h2{margin-bottom:18px}
   color:var(--ambre);margin-top:6px;
 }
 .equipe-carte .mot{color:var(--fumee);font-size:13.5px;line-height:1.55;margin-top:11px}
-@media(max-width:560px){.equipe-grille{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+/* Sur téléphone, une seule colonne : ces cartes contiennent du texte suivi,
+   deux colonnes de 170 px le hachent en mots isolés. */
+@media(max-width:560px){.equipe-grille{grid-template-columns:1fr}}
 .org-quote{
   border:1px solid var(--trait-fort);border-left:4px solid var(--ambre);
   background:linear-gradient(150deg,var(--plaque-2),var(--plaque));

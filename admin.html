@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-41</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-42</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -608,7 +608,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-41';
+const APP_VERSION='C-42';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3312,6 +3312,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-42',d:'02/09/2026',t:'Le dashboard tient dans un téléphone',items:[
+   ['📱','Passage complet sur écran de 390 px','Toutes les vues ont été mesurées une par une. Trois défauts trouvés et corrigés : des barres d\'outils qui sortaient de l\'écran (le « Aujourd\'hui › » de l\'agenda, le « ＋ Ligne » des feuilles étaient hors cadre et inatteignables), la fiche de profil restée sur deux colonnes dont la seconde tombait dans le vide, et les petits boutons d\'action des tableaux — ▲ ▼ ✎ ✕ — qui faisaient 24 px de haut. Ils en font 36 maintenant, le minimum pour viser au doigt sans se tromper de ligne.'],
+   ['👆','La barre de navigation dit qu\'elle défile','Sur téléphone elle devient un ruban horizontal d\'icônes. La moitié était hors écran sans que rien ne l\'indique : le bord droit est maintenant estompé, on voit qu\'il y a une suite.'],
+   ['🖼️','Les cartes d\'équipe passent à une colonne','Sur la vitrine, deux colonnes de 170 px hachaient les présentations en mots isolés.'],
+ ]},
  {v:'C-41',d:'01/09/2026',t:'Connexion par rôle Discord activée',items:[
    ['🎖️','Le serveur et les rôles sont branchés','Fini la validation à la main : porter un rôle du serveur ouvre l\'accès directement, avec les droits qui vont avec. Patron et Co Patron → Direction · Comptable → Comptable · Responsable commercial et Commercial → Commercial · Responsable Runner → son propre rôle · les quatre rôles de grade Runner → Membre en lecture. Qui n\'a aucun de ces rôles passe par l\'ancien chemin : la demande arrive sur Discord.'],
    ['🥇','L\'ordre protège les cumuls','La table est triée du plus de droits au moins de droits, et la première ligne qui correspond gagne. Un patron qui porte aussi son grade de runner entre donc en Direction, pas en Membre. Testé sur les cumuls réels du serveur.'],
@@ -4493,7 +4498,7 @@ function profil(){
   <div class="topbar">
     <div><h2>Mon profil</h2><div class="sub">👤 <b style="color:var(--ink)">${esc(nom)}</b>${r?` · <span class="badge ${gCls(r)}">${esc(gTitle(r))}</span>`:''}</div></div>
   </div>
-  <div class="grid" style="grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start">
+  <div class="profil-grid">
 
     <div class="panel">
       <h3>Aperçu</h3>
