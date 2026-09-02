@@ -89,6 +89,48 @@
       });
   }
 
+  /* ---------- fichiers joints (photos de factures, captures) ----------
+     Une photo pèse 60 à 80 Ko. Rangée en base64 dans data/etat.json, elle
+     serait relue par chaque navigateur ouvert toutes les 45 secondes et
+     renvoyée en entier à chaque enregistrement. Elle devient donc un vrai
+     fichier du dépôt, et l'état ne garde que son chemin — que les balises
+     <img src="..."> acceptent tel quel.
+
+     Chaque fichier a son propre SHA, donc son envoi n'entre jamais en
+     concurrence avec l'écriture de l'état.                                */
+  var API_BASE = "https://api.github.com/repos/" + CFG.owner + "/" + CFG.repo + "/contents/";
+
+  /* dataURI -> { chemin } si l'envoi passe, { erreur } sinon. */
+  function televerser(chemin, dataURI, message) {
+    var m = /^data:([^;]+);base64,(.*)$/.exec(String(dataURI || ""));
+    if (!m) return Promise.resolve({ erreur: "ce n'est pas une image encodée" });
+    if (!jeton()) return Promise.resolve({ erreur: "aucun jeton d'écriture" });
+    var corps = { message: message || "Ajout d'une pièce jointe", content: m[2], branch: CFG.branche };
+    return fetch(API_BASE + chemin, { method: "PUT", headers: enTetes(true), body: JSON.stringify(corps) })
+      .then(function (r) {
+        if (r.ok) return { chemin: chemin };
+        return r.json().then(function (j) { return { erreur: j.message || "HTTP " + r.status }; },
+                             function () { return { erreur: "HTTP " + r.status }; });
+      })
+      .catch(function (e) { return { erreur: String(e.message || e) }; });
+  }
+
+  /* Suppression au mieux : un fichier orphelin ne casse rien, une erreur
+     bloquante en pleine suppression de facture, si.                        */
+  function supprimerFichier(chemin, message) {
+    if (!jeton() || !chemin || chemin.indexOf("data:") === 0) return Promise.resolve(false);
+    return fetch(API_BASE + chemin + "?ref=" + CFG.branche, { headers: enTetes(true), cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.sha) return false;
+        return fetch(API_BASE + chemin, {
+          method: "DELETE", headers: enTetes(true),
+          body: JSON.stringify({ message: message || "Retrait d'une pièce jointe", sha: j.sha, branch: CFG.branche })
+        }).then(function (r) { return r.ok; });
+      })
+      .catch(function () { return false; });
+  }
+
   /* ============================================================
      IDENTITÉ DISCORD — flux implicite, aucun secret côté client
      ============================================================ */
@@ -317,6 +359,8 @@
     ecrire: ecrire,
     jeton: jeton,
     poserJeton: poserJeton,
+    televerser: televerser,
+    supprimerFichier: supprimerFichier,
     peutEcrire: peutEcrire,
     connexionDiscord: connexionDiscord,
     configurerServeur: configurerServeur,

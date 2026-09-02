@@ -119,6 +119,14 @@ Il n'y a rien à installer : **le dépôt est la base**.
 Les anciennes tables annexes (agenda, to-do, factures reçues, médias, suggestions,
 notifications) sont rangées dans le même fichier, sous la clé `_tables`.
 
+**Les pièces jointes n'y sont pas.** Une photo de facture pèse 60 à 80 Ko : rangée
+dans `etat.json`, elle serait relue par chaque navigateur toutes les 45 secondes.
+Les photos sont donc de vrais fichiers — `data/factures-recues/` et
+`data/medias-notes/` — et l'état ne garde que leur chemin, ce qu'une balise
+`<img src="…">` comprend tel quel. Supprimer une facture supprime sa photo. Si
+l'envoi du fichier échoue, la photo est conservée dans la base comme avant plutôt
+que perdue, et le journal le note.
+
 **Le jeton d'écriture.** Sans jeton, le dashboard fonctionne en lecture seule : on
 voit tout, on ne modifie rien. Chacun crée le sien — clic sur le voyant rond à côté
 de « ESPACE MEMBRE » dans la barre latérale, la marche à suivre y est dépliable.

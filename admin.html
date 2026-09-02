@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-42</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-43</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -608,7 +608,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-42';
+const APP_VERSION='C-43';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -2617,7 +2617,11 @@ async function relNoteAdd(i){
   const t=nowSrv();
   (c.notes=c.notes||[]).push({t,par:(currentUser()||{}).user||'?',txt,imgs:RN_IMGS.length});
   if(RN_IMGS.length&&SYNC.cli){
-    try{ await SYNC.cli.from('oilroxwood_media').insert(RN_IMGS.map(d=>({client:c.nom,type:'note',note_t:t,img:d}))); }
+    try{
+      const jointes=[];
+      for(const d of RN_IMGS) jointes.push(await pieceJointe(d,'data/medias-notes','Note client — '+c.nom));
+      await SYNC.cli.from('oilroxwood_media').insert(jointes.map(img=>({client:c.nom,type:'note',note_t:t,img})));
+    }
     catch(e){ toast('⚠️ Note enregistrée mais images non stockées (table oilroxwood_media manquante ?)'); }
   }
   RN_IMGS=[];
@@ -2628,7 +2632,11 @@ async function relNoteDel(i,t){
   const c=S.fact.clients[i]; if(!c) return;
   if(!confirm('Supprimer cette note (et ses captures) ?')) return;
   c.notes=(c.notes||[]).filter(n=>n.t!==t);
-  try{ await SYNC.cli.from('oilroxwood_media').delete().eq('client',c.nom).eq('note_t',t); }catch(e){}
+  try{
+    const vieilles=(CM_CACHE[c.nom]||[]).filter(m=>m.note_t===t);
+    await SYNC.cli.from('oilroxwood_media').delete().eq('client',c.nom).eq('note_t',t);
+    vieilles.forEach(m=>pieceJointeSuppr(m.img,'Capture de note retirée'));
+  }catch(e){}
   save(); sbPushNow(); await cmLoad(c.nom); relNotes(i); relances();
 }
 /* ---- fiche client unifiée (panneau au clic sur un client) ---- */
@@ -2687,8 +2695,11 @@ function fcLieu(i,inp){
   const c=S.fact.clients[i], f=inp.files[0]; if(!c||!f) return;
   frResize(f,async d=>{
     try{
+      const vieux=(CM_CACHE[c.nom]||[]).filter(m=>m.type==='lieu');
       await SYNC.cli.from('oilroxwood_media').delete().eq('client',c.nom).eq('type','lieu');
-      const {error}=await SYNC.cli.from('oilroxwood_media').insert({client:c.nom,type:'lieu',img:d});
+      vieux.forEach(m=>pieceJointeSuppr(m.img,'Ancienne photo de lieu remplacée'));
+      const chemin=await pieceJointe(d,'data/medias-notes','Lieu de livraison — '+c.nom);
+      const {error}=await SYNC.cli.from('oilroxwood_media').insert({client:c.nom,type:'lieu',img:chemin});
       if(error) throw error;
       jlog(`Lieu de livraison ajouté : ${c.nom}`);
       await cmLoad(c.nom); ficheClient(i); toast('🖼️ Lieu de livraison enregistré');
@@ -3312,6 +3323,13 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-43',d:'02/09/2026',t:'Les photos sortent de la base',items:[
+   ['📥','Retour des archives Supabase','29 factures reçues, 9 événements d\'agenda, 3 to-do, 2 notes clients et 4 demandes d\'accès sont de retour. Elles étaient restées derrière quand on a quitté Supabase.'],
+   ['📎','Une photo est un fichier, plus une chaîne de caractères','Chaque photo de facture pesait 60 à 80 Ko encodés à l\'intérieur de la base partagée — et cette base est relue par tous les navigateurs ouverts toutes les 45 secondes. Les 29 photos d\'archive sont devenues de vrais fichiers dans data/factures-recues/, et les nouvelles y vont directement. La base est repassée de 3 Mo à 585 Ko.'],
+   ['🗑️','Supprimer une facture supprime sa photo','Idem pour les captures de notes clients et la photo de lieu de livraison, remplacée proprement quand on en met une autre.'],
+   ['🛟','Si GitHub refuse, la facture n\'est pas perdue','En cas d\'échec d\'envoi — quota, coupure réseau — la photo repart dans la base comme avant, et le message le dit. Mieux vaut un fichier lourd qu\'une archive perdue. L\'incident est consigné au journal.'],
+   ['🔕','45 vieux messages privés désamorcés','La file de notifications récupérée contenait 45 messages jamais marqués comme envoyés, dont des « ton accès est validé » vieux de deux mois. Le robot les aurait tous expédiés au premier passage.'],
+ ]},
  {v:'C-42',d:'02/09/2026',t:'Le dashboard tient dans un téléphone',items:[
    ['📱','Passage complet sur écran de 390 px','Toutes les vues ont été mesurées une par une. Trois défauts trouvés et corrigés : des barres d\'outils qui sortaient de l\'écran (le « Aujourd\'hui › » de l\'agenda, le « ＋ Ligne » des feuilles étaient hors cadre et inatteignables), la fiche de profil restée sur deux colonnes dont la seconde tombait dans le vide, et les petits boutons d\'action des tableaux — ▲ ▼ ✎ ✕ — qui faisaient 24 px de haut. Ils en font 36 maintenant, le minimum pour viser au doigt sans se tromper de ligne.'],
    ['👆','La barre de navigation dit qu\'elle défile','Sur téléphone elle devient un ruban horizontal d\'icônes. La moitié était hors écran sans que rien ne l\'indique : le bord droit est maintenant estompé, on voit qu\'il y a une suite.'],
@@ -3682,6 +3700,32 @@ function frResize(file,cb){
   };
   img.src=URL.createObjectURL(file);
 }
+/* ---------- pièces jointes : un vrai fichier, pas du base64 ----------
+   Historiquement les photos étaient rangées entières dans l'état partagé.
+   29 factures y pesaient 2,4 Mo, relus par chaque navigateur toutes les
+   45 secondes. Elles deviennent des fichiers du dépôt ; l'état ne garde
+   que le chemin, que <img src="..."> comprend tel quel.
+
+   En cas d'échec d'envoi on RETOURNE QUAND MÊME l'image en base64 : mieux
+   vaut un fichier gras qu'une facture perdue. Le message le dit. */
+async function pieceJointe(dataURI, dossier, quoi){
+  if(!dataURI || !String(dataURI).startsWith('data:')) return dataURI;
+  const ext = (/^data:image\/(\w+)/.exec(dataURI)||[,'jpg'])[1].replace('jpeg','jpg');
+  const nom = `${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+  const r = await RoxwoodGH.televerser(`${dossier}/${nom}`, dataURI, `📎 ${quoi||'Pièce jointe'}`);
+  if(r.chemin) return r.chemin;
+  /* L'appelant affiche son propre message de succès juste après : on décale
+     l'avertissement pour qu'il ne soit pas effacé, et on le consigne au journal
+     pour qu'il en reste une trace même si personne ne l'a vu passer. */
+  jlog(`Pièce jointe non envoyée (${quoi||'image'}) — gardée dans la base : ${r.erreur}`);
+  setTimeout(()=>toast('⚠️ Photo gardée dans la base — envoi refusé : '+r.erreur), 1200);
+  return dataURI;
+}
+function pieceJointeSuppr(chemin, quoi){
+  if(chemin && !String(chemin).startsWith('data:'))
+    RoxwoodGH.supprimerFichier(chemin, `🗑️ ${quoi||'Pièce jointe retirée'}`);
+}
+
 // collage direct : Ctrl+V n'importe où dans la vue attache l'image au formulaire
 document.addEventListener('paste',e=>{
   if(VIEW!=='frecues') return;
@@ -3755,7 +3799,8 @@ async function frAdd(){
     const {error}=await SYNC.cli.from('oilroxwood_frecues').insert({
       entreprise:en, date:$('#frD').value||new Date().toISOString().slice(0,10),
       montant:+$('#frM').value||0, lien:$('#frL').value.trim(), note:$('#frN').value.trim(),
-      img:FR_IMG, auteur:(currentUser()||{}).user||'?'});
+      img:await pieceJointe(FR_IMG,'data/factures-recues','Facture reçue — '+en),
+      auteur:(currentUser()||{}).user||'?'});
     if(error) throw error;
     jlog(`Facture reçue archivée : ${en}${+$('#frM').value?' — '+fmt(+$('#frM').value)+' $':''}`);
     FR_IMG=null; FR_CACHE=null; frecues(); toast('📥 Facture archivée — classée sous '+en);
@@ -3794,6 +3839,7 @@ async function frDel(id){
   const f=(FR_CACHE||[]).find(x=>x.id===id);
   if(!confirm(`Supprimer cette facture${f?' de '+f.entreprise:''} de l'archive ?`)) return;
   try{ await SYNC.cli.from('oilroxwood_frecues').delete().eq('id',id); }catch(e){}
+  if(f) pieceJointeSuppr(f.img,'Facture reçue supprimée');
   jlog(`Facture reçue supprimée de l'archive${f?' : '+f.entreprise+' ('+frDate(f.date)+')':''}`);
   FR_CACHE=null; frecues();
 }
