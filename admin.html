@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-45</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-46</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -657,7 +657,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-45';
+const APP_VERSION='C-46';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1087,6 +1087,7 @@ function top3html(sorted){
 /* ================== EFFECTIF ================== */
 let filterG=-1, search='';
 function effectif(){
+  if(!isMembre()){ const n=absPurge(); if(n){ jlog(`${n} absence(s) terminée(s) archivée(s) automatiquement`); save(); sbQueue(); } }
   let R=[...S.runners].sort((a,b)=>b.grade-a.grade||b.barils-a.barils);
   // personnel de la feuille RH jamais pointé sur la tablette : affiché à 0
   const noms=new Set(S.runners.map(r=>String(r.nom||'').toLowerCase().trim()));
@@ -1136,7 +1137,8 @@ function effectif(){
 }
 function rowRunner(r){
   const g=grade(r), pc=g.quota?Math.min(100,Math.round(r.barils/g.quota*100)):100;
-  const ab=absDe(r.nom); // absence déclarée en cours ?
+  const ab=absDe(r.nom);          // absence déclarée en cours ?
+  const abPrec=ab?null:absSemPrec(r.nom);   // sinon : était-il absent la semaine passée ?
   if(r._ghost) return `<tr style="opacity:.55">
     <td style="cursor:pointer" title="Ouvrir la fiche employé" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))">${przDot(r)}<b>${esc(r.nom)}</b><div style="color:var(--muted);font-size:.76rem">@${esc(r.discord)}</div></td>
     <td><span class="badge ${gCls(r)}">${esc(gTitle(r))}</span><div style="font-size:.7rem;color:var(--muted);font-weight:700;margin-top:3px">💤 aucune prise de service</div>${ab?`<div style="font-size:.7rem;color:#22d3ee;font-weight:700;margin-top:3px">💤 absent jusqu'au ${frDate(ab.au)}</div>`:''}</td>
@@ -1149,7 +1151,8 @@ function rowRunner(r){
   </tr>`;
   return `<tr>
     <td style="cursor:pointer" title="Ouvrir la fiche employé" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))">${przDot(r)}<b>${esc(r.nom)}</b><div style="color:var(--muted);font-size:.76rem">@${esc(r.discord)}</div></td>
-    <td><span class="badge ${gCls(r)}">${esc(gTitle(r))}</span>${(r.absent||ab)?`<div style="font-size:.7rem;color:#22d3ee;font-weight:700;margin-top:3px">💤 ${ab?`absent du ${frDate(ab.du)} au ${frDate(ab.au)}`:'Congé / absence'}</div>`:''}${!r.poste&&eligible(r)?`<span class="promo-flag">▲ Montée dispo (${fmt(seuilMontee(r))} barils atteints)</span>`:''}</td>
+    <td><span class="badge ${gCls(r)}">${esc(gTitle(r))}</span>${(r.absent||ab)?`<div style="font-size:.7rem;color:#22d3ee;font-weight:700;margin-top:3px">💤 ${ab?`absent du ${frDate(ab.du)} au ${frDate(ab.au)}`:'Congé / absence'}</div>`
+      :abPrec?`<div style="font-size:.7rem;color:#8fb4d9;font-weight:700;margin-top:3px" title="Sa production de la semaine passée est à lire en tenant compte de ça">🌴 était absent la semaine dernière (${frDate(abPrec.du)} → ${frDate(abPrec.au)})</div>`:''}${!r.poste&&eligible(r)?`<span class="promo-flag">▲ Montée dispo (${fmt(seuilMontee(r))} barils atteints)</span>`:''}</td>
     <td><div class="prog"><i class="${pc>=100?'full':pc<40?'low':''}" style="width:${pc}%"></i></div><div class="pct">${fmt(r.barils)} / ${fmt(g.quota)} (${pc}%)</div></td>
     ${isMembre()?'':`<td>${fmt(r.total)}</td>
     <td style="text-align:right;white-space:nowrap">
@@ -1227,7 +1230,9 @@ function demote(id){
   if(grade(r).merite) return toast('🏅 Responsable Runner s\'attribue et se retire à la main — passe par « Modifier »');
   if(r.absent||absDe(r.nom)) return toast('🌴 Absence déclarée — descente de grade bloquée');
   const pcD=grade(r).quota?Math.round(r.barils/grade(r).quota*100):0;
-  if(!confirm(`Descendre ${r.nom} de ${GRADES[r.grade].nom} à ${GRADES[r.grade-1].nom} ?\n(quota réalisé à ${pcD}% cette semaine — sous les 95%)`)) return;
+  const ap=absSemPrec(r.nom);   // on ne bloque pas, mais on ne laisse pas la descente passer en aveugle
+  if(!confirm(`Descendre ${r.nom} de ${GRADES[r.grade].nom} à ${GRADES[r.grade-1].nom} ?\n(quota réalisé à ${pcD}% cette semaine — sous les 95%)`
+    +(ap?`\n\n🌴 ATTENTION : ${r.nom} était absent du ${frDate(ap.du)} au ${frDate(ap.au)} — sa production est à lire en tenant compte de ça.`:''))) return;
   r.grade--;
   const rhMaj=syncRhGrade(r);
   jlog(`Descente de grade : ${r.nom} → ${GRADES[r.grade].nom} (quota à ${pcD}%)`);
@@ -3398,6 +3403,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-46',d:'03/09/2026',t:'Absences : ménage automatique, mémoire d\'une semaine',items:[
+   ['🌴','Les absences terminées s\'effacent seules','Plus de liste qui s\'allonge : une absence disparaît d\'elle-même une fois passée. Elle n\'attend plus 30 jours et l\'ouverture manuelle de la fenêtre.'],
+   ['📌','« Était absent la semaine dernière » dans l\'Effectif','Le vrai défaut était là : une absence protège de la descente de grade tant qu\'elle court, mais l\'examen se fait le lundi — sur la semaine qui vient de finir, donc au moment précis où l\'absence vient d\'expirer et où la protection disparaît. La trace est maintenant gardée une semaine de plus et s\'affiche à côté du grade.'],
+   ['⚠️','Un avertissement avant de descendre quelqu\'un','Si la personne était absente la semaine passée, la fenêtre de confirmation le dit noir sur blanc. Rien n\'est bloqué — c\'est ta décision — mais elle ne se prend plus en aveugle.'],
+   ['🗂','La fenêtre Absences sépare le présent du passé','« En cours et à venir » d\'un côté, « Terminées » de l\'autre, avec la date à laquelle elles s\'effaceront.'],
+ ]},
  {v:'C-45',d:'03/09/2026',t:'Éligibilité : les grades d\'aujourd\'hui',items:[
    ['✅','La feuille ne fige plus les grades','La feuille Éligibilité est reconstruite à la clôture avec le grade de chacun — et ce grade y restait ensuite pour la semaine entière. Une descente du mardi, une nomination Responsable Runner du mercredi ou un ré-import de la Tablette ne s\'y voyaient jamais : on lisait le grade d\'avant. Le grade n\'est pas une donnée de la feuille, c\'est un reflet de l\'effectif : il se réaligne maintenant tout seul à chaque ouverture.'],
    ['🧍','Ceux qui sont partis gardent leur ligne','Une personne qui n\'est plus ni dans l\'effectif ni sur la feuille RH conserve le grade écrit — sinon sa ligne se viderait.'],
@@ -4133,18 +4144,48 @@ function absDe(nom,date){
   const d=date||new Date().toISOString().slice(0,10);
   return (S.absences||[]).find(a=>String(a.nom||'').toLowerCase().trim()===String(nom||'').toLowerCase().trim()&&a.du<=d&&d<=a.au)||null;
 }
+
+/* ---- absences : ménage automatique, avec une semaine de mémoire ----
+   Le problème que ça règle : une absence protège de la descente de grade tant
+   qu'elle court. Or l'examen se fait le lundi, sur la semaine qui vient de
+   finir — moment précis où l'absence de la semaine passée vient d'expirer et
+   où la protection disparaît. On garde donc la trace une semaine de plus.
+
+   Bornes de la semaine passée, à l'heure de Paris (lundi → dimanche). */
+function jourISO(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function semainePrec(){
+  const d=dateParis(), jour=(d.getDay()+6)%7;          // 0 = lundi
+  const lundi=new Date(d); lundi.setDate(d.getDate()-jour-7);
+  const dimanche=new Date(lundi); dimanche.setDate(lundi.getDate()+6);
+  return {du:jourISO(lundi), au:jourISO(dimanche)};
+}
+/* Absence qui a couvert tout ou partie de la semaine passée, hors absence en cours. */
+function absSemPrec(nom){
+  const sp=semainePrec(), auj=jourISO(dateParis());
+  if(absDe(nom,auj)) return null;                       // absent aujourd'hui : déjà signalé
+  const low=String(nom||'').toLowerCase().trim();
+  return (S.absences||[]).find(a=>String(a.nom||'').toLowerCase().trim()===low&&a.du<=sp.au&&a.au>=sp.du)||null;
+}
+/* Une absence terminée avant la semaine passée n'apprend plus rien : on l'efface.
+   Renvoie le nombre de lignes retirées. */
+function absPurge(){
+  const av=(S.absences||[]).length; if(!av) return 0;
+  const sp=semainePrec();
+  S.absences=S.absences.filter(a=>String(a.au||'')>=sp.du);
+  return av-S.absences.length;
+}
 function absModal(){
   if(isMembre()) return toast('👀 Réservé aux rôles avec accès gestion');
-  // purge des absences terminées depuis plus de 30 jours
-  const lim=new Date(Date.now()-30*86400000).toISOString().slice(0,10);
-  S.absences=(S.absences||[]).filter(a=>a.au>=lim);
+  absPurge();   // les absences plus vieilles que la semaine passée s'effacent seules
   // liste des membres : feuille RH ∪ effectif
   const noms=[...new Set([
     ...((S.sheets&&S.sheets.rh)||[]).map(x=>String(x.nom||'').trim()),
     ...S.runners.map(r=>String(r.nom||'').trim())
   ].filter(Boolean))].sort((a,b)=>a.localeCompare(b));
   const auj=new Date().toISOString().slice(0,10);
-  const enCours=[...S.absences].sort((a,b)=>a.du.localeCompare(b.du));
+  const tri=[...S.absences].sort((a,b)=>a.du.localeCompare(b.du));
+  const enCours=tri.filter(a=>a.au>=auj);       // en cours ou à venir
+  const finies=tri.filter(a=>a.au<auj);         // terminées, gardées une semaine pour l'Effectif
   openModal(`<h3>🌴 Absences déclarées</h3>
   <p style="color:var(--muted);font-size:.8rem;margin-bottom:14px">Une absence déclarée bloque la descente de grade, désactive l'alerte « démission ? » du pointage RH et retire les commerciaux du partage des quotas.</p>
   <div class="f-row"><label class="f-lbl">Membre (fiche RH)</label>
@@ -4154,14 +4195,20 @@ function absModal(){
     <div><label class="f-lbl">Au (inclus)</label><input class="field" type="date" id="abAu"></div>
   </div>
   <button class="btn btn-gold" style="width:100%;margin-bottom:16px" onclick="absAdd()">Déclarer l'absence</button>
-  ${enCours.length?`<label class="f-lbl">Absences enregistrées</label>
+  ${enCours.length?`<label class="f-lbl">En cours et à venir</label>
   ${enCours.map(a=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.85rem">
-    <span>🌴 <b>${esc(a.nom)}</b> · du ${frDate(a.du)} au ${frDate(a.au)}${a.au<auj?' <small style="color:var(--muted)">(terminée)</small>':''}</span>
+    <span>🌴 <b>${esc(a.nom)}</b> · du ${frDate(a.du)} au ${frDate(a.au)}</span>
     <span style="white-space:nowrap">
       ${(a.du<=auj&&auj<=a.au)?`<button class="btn btn-sm btn-gold" onclick="absRetour(${a.id})" title="Clôt l'absence à hier : la personne redevient active dès maintenant">✔ De retour</button> `:''}
       <button class="btn btn-sm btn-red" onclick="absDel(${a.id})">✕</button>
     </span>
-  </div>`).join('')}`:'<div class="empty" style="padding:10px">Aucune absence enregistrée</div>'}`);
+  </div>`).join('')}`:'<div class="empty" style="padding:10px">Aucune absence en cours</div>'}
+  ${finies.length?`<label class="f-lbl" style="margin-top:16px">Terminées — gardées jusqu'à la fin de la semaine</label>
+  <p style="color:var(--muted);font-size:.74rem;margin:-4px 0 6px">Elles s'effaceront toutes seules. En attendant, l'Effectif signale « était absent la semaine dernière » : c'est le lundi, en relisant la semaine écoulée, qu'on en a besoin.</p>
+  ${finies.map(a=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.85rem;opacity:.72">
+    <span>✔ <b>${esc(a.nom)}</b> · du ${frDate(a.du)} au ${frDate(a.au)}</span>
+    <button class="btn btn-sm btn-red" onclick="absDel(${a.id})">✕</button>
+  </div>`).join('')}`:''}`);
 }
 function absAdd(){
   const nom=$('#abN').value, du=$('#abDu').value, au=$('#abAu').value;

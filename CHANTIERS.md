@@ -56,7 +56,7 @@ Le ping part en message privé au commercial concerné, ou dans un salon ?*
 
 ---
 
-## 6. Absences — nettoyage automatique + mémoire
+## 6. ~~Absences — nettoyage automatique + mémoire~~ ✅ *fait en C-46*
 
 - Une absence terminée se supprime toute seule.
 - Mais dans **Effectif**, signaler « était absent la semaine dernière » quand c'est
