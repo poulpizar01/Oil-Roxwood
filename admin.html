@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-53</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-55</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -222,7 +222,11 @@ function load(){
 }
 /* ---- synchro par sections : chaque famille de données a sa propre date ----
    Évite qu'un admin qui touche l'effectif écrase la facture qu'un autre vient de créer. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1'];
+/* '_tables' doit figurer ici : c'est là que vivent l'agenda, les factures reçues,
+   les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
+   ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
+   les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -672,7 +676,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-53';
+const APP_VERSION='C-55';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1858,32 +1862,47 @@ function eligCopyNoms(){
 }
 /* Envoie la feuille Éligibilité au bot de l'entreprise, qui la met en image
    et la poste sur Discord. On dépose un « ordre » dans la boîte aux lettres
-   (oilroxwood_bot_ordres) puis on suit la réponse du bot en temps réel. */
+   (`_tables.oilroxwood_bot_ordres`) et on attend sa réponse.
+
+   L'attente a été refaite en C-55. Avant, on s'abonnait au temps réel de
+   Supabase et on retombait sur une seule vérification à 25 s. Depuis la
+   migration il n'y a plus de temps réel — l'abonnement est un mannequin qui
+   ne se déclenche jamais — et cette unique vérification relisait l'état gardé
+   en mémoire, pas le dépôt : la réponse du bot, même arrivée, n'était pas vue.
+   Le message « le bot semble hors ligne » tombait donc systématiquement,
+   alors que l'image partait bel et bien.
+
+   Maintenant on relit le dépôt lui-même toutes les 8 secondes. Le bot le
+   sonde toutes les 20 s : il lui faut au pire 20 s pour voir l'ordre, plus le
+   temps de fabriquer l'image et d'écrire sa réponse. 90 s de patience laissent
+   une marge confortable avant de conclure quoi que ce soit. */
 async function eligEnvoyerDiscord(){
   const noms=((S.sheets&&S.sheets.eligibilite)||[]).map(x=>String(x.nom||'').trim()).filter(Boolean);
   if(!noms.length) return toast('Feuille Éligibilité vide');
   if(!SYNC.cli) return toast('⚠️ Synchro non connectée — recharge la page et réessaie');
+  if(!RoxwoodGH.peutEcrire()) return toast('⚠️ Lecture seule — ajoute ton jeton d\'écriture pour envoyer au bot');
   toast('📤 Envoi au bot…');
   const {data,error}=await SYNC.cli.from('oilroxwood_bot_ordres')
     .insert({type:'eligibilite_image',payload:{noms}}).select('id').single();
   if(error) return toast('⚠️ Échec de l\'envoi : '+error.message);
-  const id=data.id; let fini=false; let ch=null;
-  const conclure=(statut,rapport)=>{
-    if(fini) return; fini=true;
-    try{ if(ch) SYNC.cli.removeChannel(ch); }catch(e){}
-    if(statut==='fait') toast('✅ Image postée sur Discord');
-    else if(statut==='erreur') toast('⚠️ Le bot a signalé une erreur : '+(rapport||'sans détail'));
-    else toast('⏳ Ordre déposé — le bot semble hors ligne, il le traitera à son réveil');
-  };
-  ch=SYNC.cli.channel('ordre-'+id)
-    .on('postgres_changes',{event:'UPDATE',schema:'public',table:'oilroxwood_bot_ordres',filter:'id=eq.'+id},
-      p=>conclure(p.new&&p.new.statut,p.new&&p.new.rapport))
-    .subscribe();
-  setTimeout(async()=>{
-    if(fini) return;
-    const {data:o}=await SYNC.cli.from('oilroxwood_bot_ordres').select('statut,rapport').eq('id',id).single();
-    conclure(o&&o.statut,o&&o.rapport);
-  },25000);
+  await sbPushNow();                       // l'ordre doit être DANS le dépôt, pas seulement en mémoire
+  toast('⏳ Ordre déposé — le bot le prend dans les 20 s…');
+
+  const id=data.id, limite=Date.now()+90000;
+  (async function attendre(){
+    while(Date.now()<limite){
+      await new Promise(r=>setTimeout(r,8000));
+      let o=null;
+      try{
+        const rem=await RoxwoodGH.lire();  // on relit le dépôt, pas le cache local
+        o=((rem&&rem._tables&&rem._tables.oilroxwood_bot_ordres)||[]).find(x=>x&&x.id===id)||null;
+      }catch(e){ continue; }
+      if(!o||(o.statut||'en_attente')==='en_attente') continue;
+      if(o.statut==='fait') return toast('✅ Image postée sur Discord');
+      return toast('⚠️ Le bot a signalé une erreur : '+(o.rapport||'sans détail'));
+    }
+    toast('⏳ Toujours sans réponse après 90 s — le bot est sans doute éteint, il traitera l\'ordre à son réveil');
+  })();
 }
 /* ---- Éligibilité : le grade suit l'effectif, il ne se fige plus ----
    La feuille est reconstruite à la clôture avec le grade de chacun, puis ce grade
@@ -3435,6 +3454,15 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-55',d:'03/09/2026',t:'Le bot répond de nouveau',items:[
+   ['🤖','« Poster sur Discord » dit enfin la vérité','Le bouton attendait la réponse du bot par le temps réel de Supabase, qui n\'existe plus, et se rabattait sur une seule vérification à 25 secondes — faite dans la mémoire du navigateur, pas dans le dépôt. Le message « le bot semble hors ligne » tombait donc à tous les coups, alors que l\'image partait bel et bien. On relit maintenant le dépôt toutes les 8 secondes pendant 90 secondes.'],
+   ['📤','L\'ordre part vraiment avant qu\'on attende','L\'ordre est écrit dans le dépôt avant le début de l\'attente. Sans jeton d\'écriture, le bouton le dit franchement au lieu de faire semblant.'],
+   ['🧾','/facture rebranché','La commande Discord lisait encore la facture dans Supabase, et pointait sur l\'ancienne adresse du site. Elle lit désormais le dépôt, comme tout le reste.'],
+ ]},
+ {v:'C-54',d:'03/09/2026',t:'Les tables annexes se synchronisent enfin',items:[
+   ['🔗','Un trou dans la synchro, bouché','Depuis la sortie de Supabase, l\'agenda, les factures reçues, les contrats et les médias vivent sous la clé « _tables » — mais cette clé ne figurait pas dans la liste des sections synchronisées. Résultat : elle n\'était jamais reprise du dépôt, et le dernier qui enregistrait écrasait les lignes ajoutées par un autre. Deux admins qui saisissaient des factures reçues en même temps s\'effaçaient mutuellement.'],
+   ['🤖','C\'est aussi ce qui bloquait le bot','Toute écriture du bot dans ces tables aurait été perdue au premier enregistrement d\'un admin. La liaison bot ↔ site ne pouvait pas fonctionner sans ça.'],
+ ]},
  {v:'C-53',d:'03/09/2026',t:'Le rôle RH branché',items:[
    ['🎖️','La dernière ligne vide est remplie','Le rôle RH du serveur Discord est en place. Quelqu\'un qui ne porte que ce rôle entre désormais en RH, plus en Membre. La table des rôles est réécrite au complet une fois au chargement — si tu y avais changé quelque chose à la main, c\'est le moment de le revérifier.'],
  ]},
