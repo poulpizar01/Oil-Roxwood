@@ -1,11 +1,19 @@
 {
+ "maj": "2026-09-03T17:10:07.174Z",
+ "semaine": 36,
+ "totalBarils": 0,
  "ca": 0,
- "maj": "2026-08-30T23:03:02.842Z",
+ "objectif": 275000,
+ "effectif": 0,
+ "clientsServis": 73,
  "top3": [],
  "runners": [],
- "semaine": 36,
- "effectif": 0,
- "objectif": 275000,
- "totalBarils": 0,
- "clientsServis": 73
+ "equipe": [
+  {
+   "nom": "Diego Herrera",
+   "titre": "Co Patron",
+   "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+   "bio": ""
+  }
+ ]
 }
