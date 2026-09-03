@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-57</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-58</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -68,7 +68,6 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
     <button class="nav-item" data-view="acces">🔔 <span class="txt">Demandes d'accès</span></button>
     <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
-    <button class="nav-item" data-view="runs">🚛 <span class="txt">Runs</span></button>
     <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
     <button class="nav-item" data-view="factures">🧾 <span class="txt">Factures</span></button>
     <button class="nav-item" data-view="relances">📞 <span class="txt">Relances</span></button>
@@ -547,14 +546,14 @@ function avatarHTML(qui, style){
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
-  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
+  direction:['overview','effectif','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
   rh:       ['overview','effectif','semaine','historique','reunions','feuilles','acces','factures','relances','prodder','quotascom','moi','profil','quotashist','agenda','maj','dlogs'],
   comptable:['overview','reunions','feuilles','factures','bilan','moi','profil','quotashist','agenda','maj'],
   commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','moi','profil','quotashist','agenda','maj'],
   /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
      l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
      factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
-  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
+  resprunner:['overview','effectif','semaine','historique','reunions','feuilles','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
   membre:   ['effectif','reunions','moi','profil','quotashist','agenda','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
@@ -676,7 +675,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-57';
+const APP_VERSION='C-58';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -955,7 +954,6 @@ document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>show(
     historique:'<path d="M3 20h18"/><path d="M5 20v-6h3v6M10.5 20V9h3v11M16 20v-9h3v9"/>',
     cloture:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"/>',
     effectif:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 15.5c2.8.2 4.5 2 4.5 4.5"/>',
-    runs:'<path d="M2 16V7h11v9"/><path d="M13 10h4l3 3v3h-2.5"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M2 16h2.7M8.3 17.5h6.4"/>',
     feuilles:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/>',
     acces:'<path d="M18 8a6 6 0 1 0-12 0c0 7-2 8-2 8h16s-2-1-2-8"/><path d="M10.5 20a1.8 1.8 0 0 0 3 0"/>',
     factures:'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>',
@@ -1006,7 +1004,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -1135,6 +1133,10 @@ function effectif(){
       <button class="btn btn-gold" onclick="openRunnerModal()">＋ Ajouter un runner</button>
     </div>`}
   </div>
+  ${(()=>{ /* l'alerte de limite vivait dans la rubrique Runs, supprimée en C-58 — sa place est ici */
+    const over=S.runners.filter(r=>r.barils>=S.settings.limite);
+    return over.length?`<div class="warn">⚠️ Limite de ${fmt(S.settings.limite)} pétroles atteinte pour : ${over.map(r=>esc(r.nom)).join(', ')}</div>`:'';
+  })()}
   <div class="panel" style="margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
     <input class="field" id="effSearchInput" style="max-width:220px" placeholder="🔍 Rechercher…" value="${esc(search)}" oninput="search=this.value;effectif()">
     <select class="field" style="max-width:200px" onchange="filterG=this.value;effectif()">
@@ -1326,40 +1328,18 @@ function delRunner(id){
   if(confirm(`Supprimer ${r.nom} de l'effectif ?`)){ S.runners=S.runners.filter(x=>x.id!==id); jlog(`Suppression de ${r.nom} de l'effectif`); save(); rerender(); sendLog('🚪 Départ', `**${r.nom}** quitte l'effectif`, 0xff5c5c); toast('Runner supprimé'); }
 }
 
-/* ================== RUNS ================== */
-function runs(){
-  const all=S.runners.flatMap(r=>r.runs.map(x=>({...x,nom:r.nom,rid:r.id}))).sort((a,b)=>b.t-a.t).slice(0,25);
-  const over=S.runners.filter(r=>r.barils>=S.settings.limite);
-  $('#main').innerHTML = `
-  <div class="topbar"><div><h2>Runs</h2><div class="sub">Saisie des barils livrés</div></div></div>
-  ${over.length?`<div class="warn">⚠️ Limite de ${fmt(S.settings.limite)} pétroles atteinte pour : ${over.map(r=>esc(r.nom)).join(', ')}</div>`:''}
-  <div class="grid g2">
-    <div class="panel">
-      <h3>➕ Enregistrer un run</h3>
-      ${S.runners.length?`
-      <div class="f-row"><label class="f-lbl">Runner</label><select class="field" id="run_r">${[...S.runners].sort((a,b)=>a.nom.localeCompare(b.nom)).map(r=>`<option value="${r.id}">${esc(r.nom)} — ${esc(gTitle(r))}</option>`).join('')}</select></div>
-      <div class="f-row"><label class="f-lbl">Barils livrés</label><input class="field" id="run_b" type="number" min="1" placeholder="Ex : 500"></div>
-      <button class="btn btn-gold" style="width:100%" onclick="addRun()">Valider le run 🚛</button>
-      <p style="color:var(--muted);font-size:.78rem;margin-top:12px">💡 CA généré = barils × ${S.settings.prix} $ · le quota et le total du runner sont mis à jour automatiquement.</p>
-      `:'<div class="empty">Ajoute d\'abord des runners dans l\'effectif</div>'}
-    </div>
-    <div class="panel">
-      <h3>📜 Derniers runs</h3>
-      ${all.length?`<table><thead><tr><th>Runner</th><th>Barils</th><th>CA</th><th>Date</th><th></th></tr></thead><tbody>
-        ${all.map(x=>`<tr><td><b>${esc(x.nom)}</b></td><td>${fmt(x.b)}</td><td class="gold">${money(x.b*S.settings.prix)}</td><td style="color:var(--muted);font-size:.78rem">${new Date(x.t).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
-        <td><button class="btn btn-sm btn-red" onclick="delRun(${x.rid},${x.t})" title="Annuler">✕</button></td></tr>`).join('')}
-      </tbody></table>`:'<div class="empty">Aucun run enregistré cette semaine</div>'}
-    </div>
-  </div>`;
-}
-function addRun(){
-  const r=S.runners.find(x=>x.id===+$('#run_r').value), b=+$('#run_b').value;
-  if(!b||b<1) return toast('⚠️ Nombre de barils invalide');
-  r.runs.push({t:Date.now(),b}); r.barils+=b; r.total+=b;
-  save(); rerender();
-  sendLog('🚛 Run enregistré', `**${r.nom}** a livré **${fmt(b)} barils** (CA ${money(b*S.settings.prix)})\nSemaine : ${fmt(r.barils)}/${fmt(grade(r).quota)}${quotaOK(r)?' — 🎯 quota atteint !':''}`, 0x5aa0ff);
-  toast(quotaOK(r)?`✅ ${r.nom} : +${fmt(b)} barils — quota atteint ! 🎯`:`✅ ${r.nom} : +${fmt(b)} barils`);
-}
+/* ================== RUNS ==================
+   La rubrique « Runs » a été supprimée en C-58. Elle ne servait qu'à saisir un
+   run à la main, or plus personne ne le fait : la production arrive par les
+   logs Discord (rubrique Logs Discord) et par l'import de la Tablette.
+
+   Ce qui reste ici, c'est `delRun` : le tableau des runs enregistrés a
+   déménagé au bas de Logs Discord, avec son bouton d'annulation. Les données
+   ne bougent pas — `runner.runs[]` est toujours ce que l'import remplit, et
+   `barils` / `total` en découlent.
+
+   À ne pas confondre avec la colonne « Runs » de la feuille Tablette : c'est
+   un tout autre chiffre, celui du récap de production, et il reste en place. */
 function delRun(rid,t){
   const r=S.runners.find(x=>x.id===rid), i=r.runs.findIndex(x=>x.t===t);
   if(i>-1){ const b=r.runs[i].b; r.barils-=b; r.total-=b; r.runs.splice(i,1); save(); rerender(); sendLog('↩️ Run annulé', `**${r.nom}** : -${fmt(b)} barils`, 0xff5c5c); toast('Run annulé'); }
@@ -3456,6 +3436,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-58',d:'03/09/2026',t:'La rubrique Runs disparaît',items:[
+   ['🚛','Plus de saisie de run à la main','Personne ne le faisait plus : la production arrive par les logs Discord et par l\'import de la Tablette. La rubrique n\'existait que pour un geste devenu inutile.'],
+   ['↩️','L\'annulation reste possible','Le tableau des runs enregistrés, avec sa croix rouge, a déménagé au bas de Logs Discord — là où les imports se font. Un import mal aiguillé se rattrape au même endroit qu\'il a été créé.'],
+   ['⚠️','L\'alerte de limite passe dans Effectif','Le message « limite de pétroles atteinte » s\'affichait dans Runs. Il est maintenant en haut de l\'effectif, où l\'on regarde les gens.'],
+ ]},
  {v:'C-57',d:'03/09/2026',t:'Le fer se relève tout seul',items:[
    ['📣','Le contrat prévient le service, pas une personne','Le menu « Qui prévenir » propose en premier « Service commercial — tout le rôle », et c\'est le choix par défaut : un contrat revient à qui est disponible ce jour-là. Nommer quelqu\'un reste possible, plus bas dans la liste.'],
    ['🔍','Le relevé était cassé depuis le début','Le robot cherchait un nom écrit en gras dans les messages du salon. Or ces messages sont des fiches structurées, sans gras : il ne trouvait rien et attribuait l\'achat à l\'auteur du message — le webhook. La colonne restait donc vide pour tout le monde. Il lit maintenant le champ « playerCharacter », c\'est-à-dire le nom de la fiche RP, celui de l\'effectif.'],
@@ -5466,9 +5451,29 @@ function dlRender(){
     </div>
     <div id="dl-cote" class="panel" style="width:300px;flex-shrink:0;padding:14px 16px;position:sticky;top:12px"></div>
   </div>`}
+  ${dlRunsPanel()}
   </div>`;
   dlTuiles();
   if(DL.sel) dlDetails(DL.sel);
+}
+/* Les runs déjà importés, avec de quoi annuler une erreur.
+   Ce tableau vivait dans la rubrique « Runs », supprimée en C-58 : on ne saisit
+   plus un run à la main, ils viennent tous des logs. Mais un import mal
+   aiguillé — le mauvais runner dans le menu — devait rester rattrapable, et sa
+   place est ici, à côté des logs qui l'ont produit. */
+function dlRunsPanel(){
+  const all=(S.runners||[]).flatMap(r=>(r.runs||[]).map(x=>({...x,nom:r.nom,rid:r.id})))
+                           .sort((a,b)=>b.t-a.t).slice(0,25);
+  if(!all.length) return '';
+  return `<div class="panel" style="margin-top:14px;padding:8px 16px;overflow-x:auto">
+    <h3 style="padding:12px 0 4px">🚛 Runs enregistrés (${all.length > 24 ? '25 derniers' : all.length})</h3>
+    <table><thead><tr><th>Runner</th><th>Barils</th><th>CA</th><th>Date</th><th></th></tr></thead><tbody>
+    ${all.map(x=>`<tr><td><b>${esc(x.nom)}</b></td><td>${fmt(x.b)}</td><td class="gold">${money(x.b*S.settings.prix)}</td>
+      <td style="color:var(--muted);font-size:.78rem">${new Date(x.t).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
+      <td style="text-align:right"><button class="btn btn-sm btn-red" onclick="delRun(${x.rid},${x.t})" title="Annuler ce run">✕</button></td></tr>`).join('')}
+    </tbody></table>
+    <p style="color:var(--muted);font-size:.76rem;margin:8px 0 12px">Annuler retire les barils du total de la semaine et du cumul de la personne. Le log Discord d'origine, lui, ne bouge pas.</p>
+  </div>`;
 }
 function dlImport(id,qte){
   const sel=document.getElementById('dlsel_'+id); if(!sel) return;
@@ -5491,6 +5496,8 @@ async function dlogsAncien(){
       Suis le guide <b>SETUP-BOT.md</b> du dépôt : créer le bot Discord, ajouter les secrets
       <b>DISCORD_BOT_TOKEN</b> et <b>DISCORD_CHANNEL_ID</b> sur GitHub, puis lancer le workflow
       <b>Sync logs Discord</b> dans l'onglet Actions.</p>`;
+    // même sans logs, on garde de quoi annuler un run déjà importé
+    $('#main').insertAdjacentHTML('beforeend', dlRunsPanel());
     return;
   }
   const match = n => n ? S.runners.find(r => r.nom.toLowerCase()===n.toLowerCase() || r.discord.toLowerCase()===n.toLowerCase() || n.toLowerCase().includes(r.nom.toLowerCase())) : null;
@@ -5525,7 +5532,8 @@ async function dlogsAncien(){
   <div class="panel" style="padding:8px 16px;overflow-x:auto">
     <table><thead><tr><th>Date</th><th>Type</th><th>Qui</th><th>Message</th><th>Quantité</th><th style="text-align:right">Import</th></tr></thead>
     <tbody>${rows}</tbody></table>
-  </div>`;
+  </div>
+  ${dlRunsPanel()}`;
   window._dlogsData = d;
 }
 function importLog(id, qte){
