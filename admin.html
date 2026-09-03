@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-47</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-48</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -659,7 +659,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-47';
+const APP_VERSION='C-48';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -2148,28 +2148,77 @@ function vrSideHtml(){
     agg[nom]=(agg[nom]||0)+nn(v.quantite);
   });
   const rows=Object.entries(agg).sort((a,b)=>b[1]-a[1]);
+  const cap=capBidons();
   return `<h3 style="margin-bottom:4px">⚡ Commandes employés</h3>
-  <p style="color:var(--muted);font-size:.72rem;margin-bottom:10px">Ventes rapides « Employé » · remises à zéro à la clôture du lundi</p>
+  <p style="color:var(--muted);font-size:.72rem;margin-bottom:10px">Ventes rapides « Employé »${cap?` · plafond ${fmt(cap)} bidons/semaine`:''} · remises à zéro à la clôture du lundi</p>
   ${rows.length?rows.map(([n,q])=>`<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.84rem">
-    <span>${esc(n)}</span><b style="color:var(--accent);white-space:nowrap">${fmt(q)} bidons</b></div>`).join('')
+    <span>${esc(n)}</span><b style="white-space:nowrap;color:${cap&&q>=cap?'#ffa500':'var(--accent)'}" title="${cap?(q>=cap?'Plafond atteint':`il lui reste ${fmt(cap-q)} bidon(s)`):''}">${fmt(q)}${cap?` / ${fmt(cap)}`:''} bidons</b></div>`).join('')
     +`<div style="display:flex;justify-content:space-between;padding:9px 0 0;font-weight:800;font-size:.9rem"><span>Total</span><span>${fmt(rows.reduce((a,[,q])=>a+q,0))} bidons</span></div>`
   :'<div class="empty" style="padding:8px">Aucune commande employé cette semaine</div>'}`;
 }
 
 /* ---- vente rapide sans facture (commande employé / citoyen) ---- */
+/* ---- plafond hebdomadaire des commandes employés ----
+   Un employé a droit à un nombre de bidons par semaine, décompté au fil de l'eau :
+   20 pris le lundi, il ne peut plus en prendre que 30 le jeudi. Le compteur repart
+   tout seul à la clôture, qui efface déjà les commandes employés. */
+function capBidons(){ const v=S.settings&&S.settings.capBidons; return (v===0||v>0)?+v:50; }
+function nomDepuisClient(c){
+  return String(c||'').replace(/^employ[ée]s?\s*(?:—|-)?\s*/i,'').replace(/⚡/g,'').replace(/\(vente rapide\)/i,'').trim();
+}
+function bidonsEmploye(nom){
+  const l=normNom(nom); if(!l) return 0;
+  return ((S.sheets&&S.sheets.ventesSem)||[])
+    .filter(v=>/^employ/i.test(String(v.client||''))&&normNom(nomDepuisClient(v.client))===l)
+    .reduce((a,v)=>a+nn(v.quantite),0);
+}
+function employesVente(){
+  return [...new Set([
+    ...((S.sheets&&S.sheets.rh)||[]).map(x=>String(x.nom||'').trim()),
+    ...S.runners.map(r=>String(r.nom||'').trim())
+  ].filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+}
 function venteRapide(){
+  const emp=employesVente();
   openModal(`<h3>⚡ Vente rapide (sans facture)</h3>
   <p style="color:var(--muted);font-size:.8rem;margin-bottom:14px">Commande <b>employé</b> ou <b>citoyen</b> : aucune facture n'est générée. La quantité est ajoutée à la feuille « Ventes de la semaine » et compte donc dans le salaire des commerciaux.</p>
-  <div class="f-row"><label class="f-lbl">Type de client</label><select class="field" id="vrT"><option>Citoyen</option><option>Employé</option></select></div>
-  <div class="f-row"><label class="f-lbl">Nom (optionnel)</label><input class="field" id="vrN" placeholder="Nom du citoyen / de l'employé"></div>
-  <div class="f-row"><label class="f-lbl">Quantité de bidons</label><input class="field" id="vrQ" type="number" min="1" value="1"></div>
+  <div class="f-row"><label class="f-lbl">Type de client</label>
+    <select class="field" id="vrT" onchange="vrMaj()"><option>Citoyen</option><option>Employé</option></select></div>
+  <div class="f-row" id="vrLigneNom" style="display:none"><label class="f-lbl">Employé</label>
+    <select class="field" id="vrN" onchange="vrMaj()">
+      <option value="">— choisis dans l'effectif —</option>
+      ${emp.map(n=>`<option>${esc(n)}</option>`).join('')}
+    </select></div>
+  <div class="f-row"><label class="f-lbl">Quantité de bidons</label><input class="field" id="vrQ" type="number" min="1" value="1" oninput="vrMaj()"></div>
+  <div id="vrReste" style="font-size:.8rem;margin:-6px 0 12px"></div>
   <div class="f-row"><label class="f-lbl">Vendeur</label><input class="field" id="vrV" value="${esc((currentUser()||{}).user||'')}"></div>
   <button class="btn btn-gold" style="width:100%" onclick="venteRapideSave()">Enregistrer la vente</button>`);
+  vrMaj();
+}
+/* Affiche le solde de l'employé choisi et empêche de dépasser. */
+function vrMaj(){
+  const estEmp=$('#vrT').value==='Employé';
+  $('#vrLigneNom').style.display=estEmp?'':'none';
+  const zone=$('#vrReste');
+  if(!estEmp){ zone.innerHTML=''; return; }
+  const nom=$('#vrN').value, cap=capBidons();
+  if(!nom){ zone.innerHTML='<span style="color:var(--muted)">Choisis l\'employé pour voir ce qu\'il lui reste.</span>'; return; }
+  const pris=bidonsEmploye(nom), reste=Math.max(0,cap-pris), q=+$('#vrQ').value||0;
+  const trop=q>reste;
+  zone.innerHTML=`<span style="color:${trop?'var(--red,#ff5c5c)':reste?'var(--muted)':'#ffa500'}">`
+    +`${esc(nom)} a déjà pris <b>${fmt(pris)}</b> bidon(s) cette semaine — il lui en reste <b>${fmt(reste)}</b> sur ${fmt(cap)}.`
+    +(trop?`<br><b>Cette commande dépasse de ${fmt(q-reste)} bidon(s).</b>`:'')+'</span>';
 }
 async function venteRapideSave(){
   const q=+$('#vrQ').value||0; if(q<=0) return toast('⚠️ Quantité invalide');
   await ensureSheets();
-  const nom=$('#vrN').value.trim(), type=$('#vrT').value, qui=$('#vrV').value.trim();
+  const type=$('#vrT').value;
+  const nom=(type==='Employé'?$('#vrN').value:'').trim(), qui=$('#vrV').value.trim();
+  if(type==='Employé'){
+    if(!nom) return toast('⚠️ Choisis l\'employé dans la liste');
+    const cap=capBidons(), pris=bidonsEmploye(nom), reste=Math.max(0,cap-pris);
+    if(q>reste) return toast(`🚫 ${nom} n'a plus que ${fmt(reste)} bidon(s) sur ${fmt(cap)} cette semaine`);
+  }
   (S.sheets.ventesSem=S.sheets.ventesSem||[]).push({
     date:new Date().toISOString().slice(0,10),
     client:`${type}${nom?' — '+nom:''} ⚡`,
@@ -3405,6 +3454,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-48',d:'03/09/2026',t:'Vente rapide : plafond employé et nom au bon endroit',items:[
+   ['⛽','50 bidons par employé et par semaine','Le formulaire affiche en direct ce qu\'il reste : « Marcus a déjà pris 20 bidons — il lui en reste 30 sur 50 ». Au-delà, l\'enregistrement est refusé. Le compteur repart tout seul à la clôture, qui efface déjà les commandes employés. Le plafond se règle dans Paramètres (0 = sans limite).'],
+   ['👤','Le nom, seulement quand il sert','Pour un citoyen le champ nom disparaît — il ne servait à rien. Pour un employé il devient un menu déroulant de l\'effectif : plus de faute de frappe, et le décompte tombe sur la bonne personne.'],
+   ['📊','Le panneau latéral montre les soldes','Dans Facturation, chaque employé apparaît avec son « 20 / 50 », en orange quand le plafond est atteint.'],
+ ]},
  {v:'C-47',d:'03/09/2026',t:'Le menu remis dans l\'ordre',items:[
    ['🗂','Huit pôles au lieu de cinq','Pilotage · Ressources humaines · Responsable Runner · Commerce · Gestion · Vitrine · Perso · Système. Chaque rubrique est passée dans le pôle de son métier : l\'Ancienneté RH et les demandes d\'accès rejoignent l\'Effectif côté RH, le Bilan compta et les Factures reçues quittent Commerce pour Gestion, et les Runs ont désormais leur propre pôle.'],
    ['🌐','Un pôle Vitrine','« Voir le site public » n\'est plus perdu tout en bas dans les accès rapides : il a sa place, et s\'ouvre dans un nouvel onglet pour ne plus te faire quitter le poste de contrôle.'],
@@ -5448,6 +5502,7 @@ async function params(){
         <div class="f-row"><label class="f-lbl">Limite pétroles</label><input class="field" id="p_lim" type="number" value="${S.settings.limite}"></div>
         <div class="f-row"><label class="f-lbl">N° de semaine</label><input class="field" id="p_sem" type="number" value="${S.settings.semaine}"></div>
         <div class="f-row"><label class="f-lbl">🎯 Objectif collectif (barils/sem., 0 = off)</label><input class="field" id="p_obj" type="number" value="${S.settings.objectif??0}"></div>
+        <div class="f-row"><label class="f-lbl">⛽ Bidons max par employé et par semaine (0 = sans limite)</label><input class="field" id="p_cap" type="number" min="0" value="${capBidons()}"></div>
       </div>
       <div style="margin:6px 0 16px;border-top:1px solid var(--line);padding-top:16px">
         <label class="f-lbl">💼 Salaires fixes minimum par poste (direction & co)</label>
@@ -5662,6 +5717,7 @@ function saveParams(){
   S.settings.semaine=+$('#p_sem').value||semaineCal();
   S.settings.top=[numOr($('#p_t1').value,15000),numOr($('#p_t2').value,10000),numOr($('#p_t3').value,5000)];
   S.settings.objectif=numOr($('#p_obj').value,0);
+  S.settings.capBidons=numOr($('#p_cap').value,50);
   jlog('Modification des paramètres');
   save();
   sbPushNow(); // envoi immédiat vers la base partagée, sans différé

@@ -24,7 +24,7 @@ appliquées à la clôture.
 
 ---
 
-## 3. Facture rapide — citoyens vs employés
+## 3. ~~Facture rapide — citoyens vs employés~~ ✅ *fait en C-48*
 
 - **Citoyen** : retirer le champ nom.
 - **Employé** : garder le nom, mais en **menu déroulant** (choisi dans l'effectif,
@@ -32,8 +32,8 @@ appliquées à la clôture.
 - **Plafond hebdomadaire de 50 par employé**, décompté au fil de la semaine :
   20 pris le lundi ⇒ 30 disponibles le jeudi, pas davantage.
 
-*À préciser : 50 de quoi exactement (bidons ? articles ? montant ?), et le compteur
-repart-il à la clôture du lundi comme les quotas ?*
+**Réponse de Thomas :** 50 **bidons d'essence** par employé et par semaine. Le compteur
+repart à la clôture (déjà le cas : elle efface les commandes employés).
 
 ---
 
@@ -41,8 +41,8 @@ repart-il à la clôture du lundi comme les quotas ?*
 
 Une fois la facture émise, pouvoir revenir dessus et la corriger.
 
-*À préciser : tout est modifiable, ou seulement certains champs ? Et faut-il garder
-une trace de la correction (journal, mention sur la facture) ?*
+**Réponse de Thomas :** tout est modifiable. Aucune mention sur la facture, mais une
+trace au journal.
 
 ---
 
@@ -51,8 +51,7 @@ une trace de la correction (journal, mention sur la facture) ?*
 Nouvelle catégorie dans le planning pour enregistrer les **contrats hebdomadaires**,
 avec un **ping du commercial 3 h avant** l'échéance.
 
-*À préciser : « planning » = l'onglet Mon agenda, ou une nouvelle vue partagée ?
-Le ping part en message privé au commercial concerné, ou dans un salon ?*
+**Réponse de Thomas :** c'est **Mon agenda**. Le ping part **dans un salon**, pas en privé.
 
 ---
 
@@ -84,8 +83,7 @@ Retirer trois rubriques :
 - Ma to-do
 - Ancienneté RH
 
-*À vérifier : les données correspondantes viennent d'être récupérées de Supabase
-(3 to-do, 0 suggestion). On supprime aussi les données, ou juste les écrans ?*
+**Réponse de Thomas :** on supprime **aussi les données**.
 
 ---
 
@@ -93,6 +91,7 @@ Retirer trois rubriques :
 
 - Faire en sorte que le **bot lise correctement** les achats de fer.
 - **Fusionner Achats Fer et Quotas commerciaux** en une seule rubrique : même domaine.
+  **Réponse de Thomas :** un **seul tableau**, pas deux onglets.
 
 ---
 
