@@ -16397,8 +16397,8 @@
   "rolesDiscordV": 3
  },
  "_cid": "vfew6ij7jyf",
- "_maj": 1788455808385,
- "_rev": "mj2o6ircw1-mtlsexmt",
+ "_maj": 1788457080327,
+ "_rev": "b472rzpu56e-mtlt65zb",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16407,7 +16407,7 @@
   "sheets": 1788222184505,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788446621667,
+  "journal": 1788456486084,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
@@ -16415,17 +16415,32 @@
   "imported": 1788222184505,
   "settings": 1788445633687,
   "closeUndo": 1788222184505,
-  "quotasCom": 1788255382663,
+  "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
   "bilanForce": 1788222184505,
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788455808385
+  "_tables": 1788457080327
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788456486175,
+   "u": "Diego Herrera",
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 0"
+  },
+  {
+   "t": 1788456484693,
+   "u": "Diego Herrera",
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 1"
+  },
+  {
+   "t": 1788456478766,
+   "u": "Diego Herrera",
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 2"
+  },
   {
    "t": 1788446622827,
    "u": "Diego Herrera",
@@ -17910,21 +17925,6 @@
    "a": "Suppression du compte Marcus Johnson",
    "t": 1787330837180,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Juan Sanchez",
-   "t": 1787330834395,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte nico whites",
-   "t": 1787330832703,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Tisso Gone",
-   "t": 1787330830446,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T17:16:53.573Z",
+  "maj": "2026-09-03T17:38:04.103Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18275,7 +18275,9 @@
  },
  "quotasCom": {
   "sem": 36,
-  "achats": {},
+  "achats": {
+   "Emma Collins-rodriguez": 0
+  },
   "vendus": 0,
   "parPers": 0,
   "ferPers": 0
@@ -21994,6 +21996,104 @@
     "role": "direction",
     "vu": "2026-09-03T17:16:48.385Z",
     "id": 1788455809097
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:18:18.392Z",
+    "id": 1788455899729
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:19:48.392Z",
+    "id": 1788455989618
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:22:05.389Z",
+    "id": 1788456126666
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:23:05.853Z",
+    "id": 1788456186452
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:25:05.856Z",
+    "id": 1788456306154
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:26:05.852Z",
+    "id": 1788456365956
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:27:18.391Z",
+    "id": 1788456438995
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:28:48.384Z",
+    "id": 1788456528981
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:30:18.846Z",
+    "id": 1788456619663
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:31:48.862Z",
+    "id": 1788456709367
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:33:34.857Z",
+    "id": 1788456815669
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:34:48.868Z",
+    "id": 1788456889110
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:36:18.863Z",
+    "id": 1788456978959
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:38:00.327Z",
+    "id": 1788457080699
    }
   ],
   "oilroxwood_demandes": [],
