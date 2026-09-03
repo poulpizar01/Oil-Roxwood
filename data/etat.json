@@ -16397,8 +16397,8 @@
   "rolesDiscordV": 3
  },
  "_cid": "vfew6ij7jyf",
- "_maj": 1788456438391,
- "_rev": "mlx38lb7n4b-mtlssepy",
+ "_maj": 1788456478675,
+ "_rev": "lr7s123mbyl-mtlst7l8",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16407,7 +16407,7 @@
   "sheets": 1788222184505,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788446621667,
+  "journal": 1788456478675,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
@@ -16415,7 +16415,7 @@
   "imported": 1788222184505,
   "settings": 1788445633687,
   "closeUndo": 1788222184505,
-  "quotasCom": 1788255382663,
+  "quotasCom": 1788456478675,
   "bilanExtra": 1788222184505,
   "bilanForce": 1788222184505,
   "primesExtra": 1788222184505,
@@ -16426,6 +16426,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788456478766,
+   "u": "Diego Herrera",
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 2"
+  },
   {
    "t": 1788446622827,
    "u": "Diego Herrera",
@@ -17920,11 +17925,6 @@
    "a": "Suppression du compte nico whites",
    "t": 1787330832703,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Tisso Gone",
-   "t": 1787330830446,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T17:27:22.246Z",
+  "maj": "2026-09-03T17:27:59.660Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18275,7 +18275,9 @@
  },
  "quotasCom": {
   "sem": 36,
-  "achats": {},
+  "achats": {
+   "Emma Collins-rodriguez": 2
+  },
   "vendus": 0,
   "parPers": 0,
   "ferPers": 0
