@@ -87,7 +87,7 @@ Retirer trois rubriques :
 
 ---
 
-## 9. Achats Fer — lecture du bot + fusion
+## 9. ~~Achats Fer — fusion~~ ✅ *fait en C-51 · la lecture par le bot reste à revoir avec sa mise à jour*
 
 - Faire en sorte que le **bot lise correctement** les achats de fer.
 - **Fusionner Achats Fer et Quotas commerciaux** en une seule rubrique : même domaine.

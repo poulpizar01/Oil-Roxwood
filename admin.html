@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-50</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-51</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -72,8 +72,7 @@ window.ROXWOOD_CFG = {
     <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
     <button class="nav-item" data-view="factures">🧾 <span class="txt">Factures</span></button>
     <button class="nav-item" data-view="relances">📞 <span class="txt">Relances</span></button>
-    <button class="nav-item" data-view="quotascom">⚖️ <span class="txt">Quotas commerciaux</span></button>
-    <button class="nav-item" data-view="fer">🔩 <span class="txt">Achats Fer</span></button>
+    <button class="nav-item" data-view="quotascom">⚖️ <span class="txt">Quotas &amp; fer</span></button>
     <button class="nav-item" data-view="prodder">🗡️ <span class="txt">Produits dérivés</span></button>
     <div class="nav-sec" data-sec="gestion" onclick="navToggle('gestion')">Gestion <span class="chev">▾</span></div>
     <button class="nav-item" data-view="feuilles">📋 <span class="txt">Feuilles</span></button>
@@ -544,14 +543,14 @@ function avatarHTML(qui, style){
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
-  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','prodder','quotascom','fer','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
-  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','acces','factures','relances','prodder','quotascom','fer','moi','profil','quotashist','agenda','maj','dlogs'],
+  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
+  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','acces','factures','relances','prodder','quotascom','moi','profil','quotashist','agenda','maj','dlogs'],
   comptable:['overview','reunions','feuilles','factures','bilan','moi','profil','quotashist','agenda','maj'],
-  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','profil','quotashist','agenda','maj'],
+  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','moi','profil','quotashist','agenda','maj'],
   /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
      l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
      factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
-  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','fer','moi','profil','quotashist','agenda','maj','dlogs'],
+  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
   membre:   ['effectif','reunions','moi','profil','quotashist','agenda','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
@@ -673,7 +672,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-50';
+const APP_VERSION='C-51';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1003,7 +1002,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,prodder,quotascom,fer,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -3381,51 +3380,6 @@ async function reuPublierGo(id){
 }
 
 /* ================== ACHATS DE FER (Direction) ================== */
-async function fer(){
-  S.fer=S.fer||[];
-  const rows=[...S.fer].sort((a,b)=>String(b.t).localeCompare(String(a.t)));
-  const grp=fn=>{const m={};rows.forEach(r=>{const k=fn(r);m[k]=m[k]||{quantite:0,montant:0,n:0};m[k].quantite+=nn(r.quantite);m[k].montant+=nn(r.montant);m[k].n++;});return m;};
-  const parJour=grp(r=>String(r.t).slice(0,10));
-  const parEmp=grp(r=>r.nom||'?');
-  const totQ=rows.reduce((a,r)=>a+nn(r.quantite),0), totM=rows.reduce((a,r)=>a+nn(r.montant),0);
-  $('#main').innerHTML=`
-  <div class="topbar">
-    <div><h2>Achats de Fer</h2><div class="sub">Direction &amp; commerciaux · alimenté par le salon Discord (bot) ou par collage</div></div>
-    <div style="display:flex;gap:10px">
-      <button class="btn btn-ghost" onclick="ferPasteModal()">📋 Coller des logs</button>
-      <button class="btn btn-gold" onclick="ferImportSalon()">↻ Importer depuis le salon</button>
-    </div>
-  </div>
-  <div class="grid g3" style="margin-bottom:18px">
-    <div class="panel kpi"><div class="lbl">Fer acheté</div><div class="val">${fmt(totQ)}</div><div class="delta">${rows.length} achat(s) enregistrés</div></div>
-    <div class="panel kpi"><div class="lbl">Montant total</div><div class="val gold">${money(totM)}</div></div>
-    <div class="panel kpi"><div class="lbl">Prix moyen</div><div class="val">${totQ?money(totM/totQ):'—'}</div><div class="delta">par unité de fer</div></div>
-  </div>
-  <div class="grid g2" style="margin-bottom:18px">
-    <div class="panel" style="padding:8px 16px;overflow-x:auto">
-      <h3 style="padding:12px 0 4px">📅 Total par jour</h3>
-      ${Object.keys(parJour).length?`<table><thead><tr><th>Date</th><th>Achats</th><th>Quantité</th><th>Montant</th></tr></thead><tbody>
-      ${Object.entries(parJour).sort((a,b)=>b[0].localeCompare(a[0])).map(([j,v])=>`<tr><td><b>${frDate(j)}</b></td><td>${v.n}</td><td>${fmt(v.quantite)}</td><td class="gold">${money(v.montant)}</td></tr>`).join('')}
-      </tbody></table>`:'<div class="empty">Aucune donnée</div>'}
-    </div>
-    <div class="panel" style="padding:8px 16px;overflow-x:auto">
-      <h3 style="padding:12px 0 4px">👤 Total par employé</h3>
-      ${Object.keys(parEmp).length?`<table><thead><tr><th>Employé</th><th>Achats</th><th>Quantité</th><th>Montant</th></tr></thead><tbody>
-      ${Object.entries(parEmp).sort((a,b)=>b[1].quantite-a[1].quantite).map(([n,v])=>`<tr><td><b>${esc(n)}</b></td><td>${v.n}</td><td>${fmt(v.quantite)}</td><td class="gold">${money(v.montant)}</td></tr>`).join('')}
-      </tbody></table>`:'<div class="empty">Aucune donnée</div>'}
-    </div>
-  </div>
-  <div class="panel" style="padding:8px 16px;overflow-x:auto">
-    <h3 style="padding:12px 0 4px">📜 Journal des achats (${rows.length})</h3>
-    ${rows.length?`<table><thead><tr><th>Date</th><th>Employé</th><th>Quantité</th><th>Montant</th><th style="text-align:right"></th></tr></thead><tbody>
-    ${rows.slice(0,80).map(r=>`<tr>
-      <td style="white-space:nowrap">${frDate(String(r.t).slice(0,10))} <span style="color:var(--muted);font-size:.75rem">${esc(String(r.t).slice(11,16))}</span></td>
-      <td><b>${esc(r.nom)}</b></td><td>${fmt(r.quantite)}</td><td class="gold">${money(r.montant)}</td>
-      <td style="text-align:right"><button class="btn btn-sm btn-red" onclick="ferDel('${r.id}')">✕</button></td>
-    </tr>`).join('')}
-    </tbody></table>`:'<div class="empty">Aucun achat — importe depuis le salon ou colle des logs 📋</div>'}
-  </div>`;
-}
 async function ferImportSalon(){
   try{
     const r=await fetch('data/fer-logs.json?ts='+Date.now(),{cache:'no-store'});
@@ -3439,7 +3393,7 @@ async function ferImportSalon(){
         n++;
       }
     });
-    save(); sbPushNow(); fer();
+    save(); sbPushNow(); quotascom();
     toast(n?`↻ ${n} achat(s) de fer importés du salon`:'✓ Déjà à jour — aucun nouvel achat');
   }catch(e){ toast('📡 data/fer-logs.json introuvable — le bot n\'est pas encore configuré'); }
 }
@@ -3468,19 +3422,24 @@ function ferApplyPaste(){
   let n=0;
   lines.forEach(l=>{ const a=ferParseLine(l); if(a){ S.fer.push(a); n++; } });
   if(!n) return toast('⚠️ Aucune ligne reconnue — vérifie qu\'il y a une quantité de fer ou un montant $');
-  save(); sbPushNow(); closeModal(); fer();
+  save(); sbPushNow(); closeModal(); quotascom();
   toast(`📋 ${n} achat(s) de fer importés`);
   sendLog('🔩 Achats de Fer importés', `**${n} ligne(s)** ajoutées par ${currentUser()?currentUser().user:'?'}`, 0x8b5cf6);
 }
 function ferDel(id){
   if(confirm('Supprimer cet achat ?')){
     S.fer=S.fer.filter(x=>x.id!==id);
-    save(); sbPushNow(); fer();
+    save(); sbPushNow(); quotascom();
   }
 }
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-51',d:'03/09/2026',t:'Quotas & achats de fer réunis',items:[
+   ['⚖️','Une seule rubrique, un seul tableau','« Achats Fer » et « Quotas commerciaux » racontaient la même histoire à deux endroits : d\'un côté l\'objectif de fer à acheter, de l\'autre les achats réellement relevés par le bot. Ils sont maintenant dans le même tableau.'],
+   ['🤖','Fini de recopier ce que le bot sait déjà','Une colonne « Relevé du bot » affiche le fer acheté par chaque commercial depuis lundi, lu dans le salon Discord. La colonne « Noté à la main » ne sert plus qu\'en secours si un achat a échappé au relevé — c\'est le plus élevé des deux qui compte, le bot pouvant rater un achat mais jamais en inventer.'],
+   ['📅','Le relevé s\'arrête au lundi','Seuls les achats de la semaine en cours comptent pour l\'objectif. Le journal sous le tableau ne montre plus que ceux-là, avec les boutons d\'import.'],
+ ]},
  {v:'C-50',d:'03/09/2026',t:'Trois rubriques en moins',items:[
    ['🗑','Suggestions / Bugs, Ma to-do et Ancienneté RH retirées','Les écrans, les entrées de menu, les permissions, les étapes de visite guidée et les données. Le robot qui envoyait un message privé à chaque nouvelle suggestion a été supprimé du dépôt et de l\'automatisation.'],
    ['🔁','Les données ne reviennent pas par la fenêtre','La purge tourne à chaque rechargement de l\'état, pas seulement au démarrage : sans ça, la première synchro aurait ramené les tables effacées depuis le dépôt.'],
@@ -4192,31 +4151,60 @@ function quotascom(){
   // photographie continue (utilisée par l'archivage)
   if(S.quotasCom.vendus!==vendus||S.quotasCom.parPers!==parPers){ Object.assign(S.quotasCom,{vendus,parPers,ferPers}); save(); }
   const achats=S.quotasCom.achats;
-  const totAchete=coms.reduce((a,c)=>a+nn(achats[c.nom]),0);
-  const totReste=coms.reduce((a,c)=>a+Math.max(0,ferPers-nn(achats[c.nom])),0);
+  // ce qui compte pour chacun : le relevé du bot, ou la saisie manuelle si elle est plus haute
+  const ferRetenu=c=>Math.max(ferReleveSem(c.nom), nn(achats[c.nom]));
+  const totAchete=coms.reduce((a,c)=>a+ferRetenu(c),0);
+  const totReste=coms.reduce((a,c)=>a+Math.max(0,ferPers-ferRetenu(c)),0);
+  const lundi=lundiCourant();
+  const ferSem=(S.fer||[]).filter(r=>String(r.t||'').slice(0,10)>=lundi)
+                          .sort((a,b)=>String(b.t).localeCompare(String(a.t)));
+  const ferMontant=ferSem.reduce((a,r)=>a+nn(r.montant),0);
+  const ferQte=ferSem.reduce((a,r)=>a+nn(r.quantite),0);
   $('#main').innerHTML=`
-  <div class="topbar"><div><h2>Quotas commerciaux</h2><div class="sub">Semaine ${S.settings.semaine} · basé sur la feuille « Ventes de la semaine » · fer nécessaire = 2 × bidons à produire</div></div></div>
+  <div class="topbar">
+    <div><h2>Quotas &amp; achats de fer</h2><div class="sub">Semaine ${S.settings.semaine} · objectif calculé sur « Ventes de la semaine » (2 fer par bidon) · achats relevés par le bot depuis le salon Discord</div></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" onclick="ferPasteModal()">📋 Coller des logs</button>
+      <button class="btn btn-gold" onclick="ferImportSalon()">↻ Importer depuis le salon</button>
+    </div>
+  </div>
   <div class="grid g4" style="margin-bottom:18px">
     <div class="panel kpi"><div class="lbl">Bidons vendus · semaine</div><div class="val">${fmt(vendus)}</div><div class="delta">${coms.length} commercial(aux) actif(s)</div></div>
-    <div class="panel kpi"><div class="lbl">Bidons à produire / pers.</div><div class="val">${fmt(parPers)}</div><div class="delta">ventes ÷ commerciaux actifs</div></div>
-    <div class="panel kpi"><div class="lbl">Fer à acheter / pers.</div><div class="val gold">${fmt(ferPers)}</div><div class="delta">2 fer par bidon</div></div>
-    <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${totReste===0&&coms.length?'up':''}">${fmt(totReste)}</div><div class="delta">${fmt(totAchete)} déjà acheté(s)</div></div>
+    <div class="panel kpi"><div class="lbl">Fer à acheter / pers.</div><div class="val gold">${fmt(ferPers)}</div><div class="delta">${fmt(parPers)} bidons à produire chacun</div></div>
+    <div class="panel kpi"><div class="lbl">Fer acheté · équipe</div><div class="val">${fmt(ferQte)}</div><div class="delta">${ferSem.length} achat(s) relevés cette semaine</div></div>
+    <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${totReste===0&&coms.length?'up':''}">${fmt(totReste)}</div><div class="delta">${ferMontant?money(ferMontant)+' dépensés':fmt(totAchete)+' noté(s) à la main'}</div></div>
   </div>
   <div class="panel">
     <h3>Suivi par commercial</h3>
-    ${coms.length?`<table><thead><tr><th>Commercial</th><th>Bidons à produire</th><th>Fer à acheter</th><th>Fer acheté (à noter ici)</th><th>Reste à acheter</th></tr></thead><tbody>
+    ${coms.length?`<table><thead><tr><th>Commercial</th><th style="text-align:right">Bidons à produire</th><th style="text-align:right">Fer à acheter</th><th style="text-align:right">Relevé du bot</th><th style="text-align:right">Noté à la main</th><th style="text-align:right">Reste</th></tr></thead><tbody>
     ${coms.map(c=>{
-      const a=nn(achats[c.nom]), reste=Math.max(0,ferPers-a);
+      const releve=ferReleveSem(c.nom), a=nn(achats[c.nom]);
+      const retenu=Math.max(releve,a);          // on garde le plus favorable : le bot peut rater un achat, jamais en inventer
+      const reste=Math.max(0,ferPers-retenu);
       return `<tr>
         <td><b>${esc(c.nom)}</b></td>
-        <td>${fmt(parPers)}</td>
-        <td>${fmt(ferPers)}</td>
-        <td><input class="field" type="number" min="0" style="max-width:120px;text-align:right" value="${a}" onchange="qcSet('${esc(c.nom)}',this.value)"></td>
-        <td style="font-weight:800;color:${reste===0?'#4A9D6F':'var(--accent)'}">${reste===0?'✔ complet':fmt(reste)+' fer'}</td>
+        <td style="text-align:right">${fmt(parPers)}</td>
+        <td style="text-align:right">${fmt(ferPers)}</td>
+        <td style="text-align:right;color:${releve?'var(--ink)':'var(--muted)'}" title="Achats de fer relevés dans le salon Discord depuis lundi">${releve?fmt(releve):'—'}</td>
+        <td style="text-align:right"><input class="field" type="number" min="0" style="max-width:110px;text-align:right" value="${a}" onchange="qcSet('${esc(c.nom)}',this.value)" title="À remplir seulement si le bot a raté un achat"></td>
+        <td style="text-align:right;font-weight:800;color:${reste===0?'#4A9D6F':'var(--accent)'}">${reste===0?'✔ complet':fmt(reste)+' fer'}</td>
       </tr>`;
     }).join('')}</tbody></table>
-    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">Chaque commercial note ici le fer qu'il a acheté — le « reste à acheter » se met à jour pour tout le monde. Remise à zéro automatique à chaque nouvelle semaine (l'ancienne part dans l'historique ci-dessous).</p>`
+    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">La colonne <b>Relevé du bot</b> vient des achats de fer postés dans le salon Discord depuis lundi — il n'y a plus rien à recopier. La colonne <b>Noté à la main</b> ne sert qu'en secours, si un achat n'a pas été relevé : c'est le plus élevé des deux qui compte. Remise à zéro à la clôture, l'ancienne semaine part dans l'historique.</p>`
     :'<div class="empty">Aucun commercial actif dans l\'effectif (poste contenant « commercial »)</div>'}
+  </div>
+  <div class="panel" style="margin-top:18px;padding:8px 16px;overflow-x:auto">
+    <h3 style="padding:12px 0 4px">📜 Achats de fer relevés cette semaine (${ferSem.length})</h3>
+    ${ferSem.length?`<table><thead><tr><th>Date</th><th>Employé</th><th style="text-align:right">Quantité</th><th style="text-align:right">Montant</th><th></th></tr></thead><tbody>
+    ${ferSem.slice(0,80).map(r=>`<tr>
+      <td style="white-space:nowrap">${frDate(String(r.t).slice(0,10))} <span style="color:var(--muted);font-size:.75rem">${esc(String(r.t).slice(11,16))}</span></td>
+      <td><b>${esc(r.nom)}</b></td>
+      <td style="text-align:right">${fmt(r.quantite)}</td>
+      <td style="text-align:right" class="gold">${money(r.montant)}</td>
+      <td style="text-align:right"><button class="btn btn-sm btn-red" onclick="ferDel('${r.id}')">✕</button></td>
+    </tr>`).join('')}</tbody></table>
+    ${ferSem.length>80?`<p style="color:var(--muted);font-size:.76rem;margin-top:8px">80 achats affichés sur ${ferSem.length}.</p>`:''}`
+    :`<div class="empty">Aucun achat relevé depuis lundi — utilise « Importer depuis le salon » ou colle les logs.</div>`}
   </div>
   ${(S.quotasComHist||[]).length?`<div class="panel" style="margin-top:18px">
     <h3>🗓 Historique des semaines précédentes</h3>
@@ -4232,6 +4220,22 @@ function quotascom(){
       </div>`;
     }).join('')}
   </div>`:''}`;
+}
+/* ---- pont entre les deux moitiés de la même réalité ----
+   « Fer à acheter » est un objectif ; « Achats de fer » est ce qui a réellement été
+   acheté, relevé par le bot dans le salon Discord. Les deux vivaient dans deux
+   rubriques séparées, et chacun retapait à la main un chiffre que le bot connaissait
+   déjà. On les met dans le même tableau : le relevé s'affiche à côté de la saisie. */
+function lundiCourant(){
+  const d=dateParis(), j=(d.getDay()+6)%7;
+  const l=new Date(d); l.setDate(d.getDate()-j);
+  return jourISO(l);
+}
+function ferReleveSem(nom){
+  const l=normNom(nom); if(!l) return 0;
+  const lundi=lundiCourant();
+  return (S.fer||[]).filter(r=>normNom(r.nom)===l&&String(r.t||'').slice(0,10)>=lundi)
+                    .reduce((a,r)=>a+nn(r.quantite),0);
 }
 function qcSet(nom,v){
   S.quotasCom.achats[nom]=Math.max(0,+v||0);
