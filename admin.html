@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-62</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-63</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -684,7 +684,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-62';
+const APP_VERSION='C-63';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3465,6 +3465,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-63',d:'03/09/2026',t:'Le contrat dit quand il pingera',items:[
+   ['⏰','« Enregistré » ne suffisait pas','Le rappel part 3 h AVANT le début. Un contrat créé pour tout de suite n\'a donc jamais de ping : son heure de rappel est déjà derrière. L\'écran ne disait rien, et on attendait une notification impossible. Il annonce maintenant l\'heure exacte du rappel — ou la raison de son absence.'],
+   ['📜','Le salon manquant est dit à l\'enregistrement','Tant que Paramètres → Salon Discord des contrats est vide, l\'écran le répète au moment où ça compte, pas seulement dans le formulaire.'],
+ ]},
  {v:'C-62',d:'03/09/2026',t:'Les logs de coffre enfin lisibles',items:[
    ['👤','« Qui » affichait le webhook','Toute la colonne disait « Logs - Coffre » : le robot cherchait un nom en gras, n\'en trouvait pas, et retombait sur l\'auteur du message. Il lit maintenant le champ playerCharacter — le nom de la fiche RP, celui de l\'effectif.'],
    ['🔢','La quantité restait vide','Les logs écrivent « 157x Pétrole Raffiné » : le nombre AVANT le x. Aucune des règles de lecture ne reconnaissait cette forme.'],
@@ -5165,6 +5169,29 @@ function agTypeMaj(){
   const z=document.getElementById('agContrat');
   if(z) z.style.display=$('#agTy').value==='contrat'?'':'none';
 }
+/* ---- Quand le rappel partira-t-il, au juste ? (C-63) ----
+   Le rappel part 3 h AVANT le début du contrat, et le robot passe toutes les
+   15 minutes. Un contrat créé pour tout de suite n'a donc jamais de ping : son
+   heure de rappel est déjà derrière nous. L'écran disait seulement « Événement
+   enregistré », et on attendait un ping qui ne pouvait pas venir.
+   Il annonce maintenant l'heure exacte du rappel, ou la raison de son absence. */
+function contratPingInfo(row){
+  if(!salonContrats())
+    return {ok:false,msg:'📅 Enregistré — ⚠️ aucun salon de contrats réglé dans Paramètres, aucun rappel ne partira'};
+  const [h,m]=String(row.deb||'0:0').split(':').map(n=>parseInt(n,10)||0);
+  let debut=new Date(String(row.date)+'T00:00:00');
+  if(isNaN(debut)) return {ok:false,msg:'📅 Enregistré — date illisible, pas de rappel'};
+  debut.setHours(h,m,0,0);
+  // un contrat hebdomadaire se rejoue : on avance jusqu'à la prochaine occurrence
+  if(row.hebdo){ const j=86400000; while(debut.getTime()-3*3600e3 < Date.now()) debut=new Date(debut.getTime()+7*j); }
+  const cible=new Date(debut.getTime()-3*3600e3);
+  if(cible.getTime()<Date.now())
+    return {ok:false,msg:'📅 Enregistré — mais l\'heure du rappel (3 h avant, soit '+
+      cible.toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+
+      ') est déjà passée : aucun ping pour cette occurrence'};
+  return {ok:true,msg:'📅 Enregistré — rappel prévu '+
+    cible.toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})};
+}
 async function agSave(id){
   const titre=$('#agT').value.trim(); if(!titre) return toast('⚠️ Donne un titre à l\'événement');
   if(!SYNC.cli) return toast('⚠️ Synchronisation non configurée');
@@ -5180,7 +5207,8 @@ async function agSave(id){
     const q=SYNC.cli.from('oilroxwood_agenda');
     const {error}=id?await q.update(row).eq('id',id):await q.insert(Object.assign({uid:agKey()},row));
     if(error) throw error;
-    closeModal(); await agLoad(); agenda(); toast('📅 Événement enregistré');
+    closeModal(); await agLoad(); agenda(); sbPushNow();
+    toast(type==='contrat'?contratPingInfo(row).msg:'📅 Événement enregistré');
   }catch(e){ toast('❌ Enregistrement impossible — table manquante ?'); }
 }
 async function agDel(id){
