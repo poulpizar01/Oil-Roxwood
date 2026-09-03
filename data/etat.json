@@ -16396,8 +16396,8 @@
   ],
   "rolesDiscordV": 3
  },
- "_cid": "niflhw73kv",
- "_maj": 1788454241721,
+ "_cid": "bot",
+ "_maj": 1788454304621,
  "_rev": "k0wgsenxtgf-mtlrhcto",
  "_majSec": {
   "fer": 1788222184505,
@@ -16421,7 +16421,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788454241721
+  "_tables": 1788454304621
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -21947,7 +21947,9 @@
       "Wagner Rischtoffen"
      ]
     },
-    "id": 1788448894274
+    "id": 1788448894274,
+    "statut": "fait",
+    "rapport": "Image d'eligibilite postee sur Discord."
    },
    {
     "type": "eligibilite_image",
