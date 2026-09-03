@@ -16,7 +16,7 @@ Par fréquence d'usage ? Par rôle ?*
 
 ---
 
-## 2. Éligibilité — grades de la bonne semaine
+## 2. ~~Éligibilité — grades de la bonne semaine~~ ✅ *fait en C-45*
 
 La feuille Éligibilité affiche les grades de la semaine **précédente**. Elle doit
 montrer ceux de la **nouvelle** semaine, donc tenir compte des montées et descentes
@@ -64,7 +64,7 @@ Le ping part en message privé au commercial concerné, ou dans un salon ?*
 
 ---
 
-## 7. Quotas et multiplicateurs réglables dans Paramètres
+## 7. ~~Quotas et multiplicateurs réglables dans Paramètres~~ ✅ *fait en C-44*
 
 Aujourd'hui le tableau `GRADES` est **écrit en dur dans le code** : quota, multiplicateur
 et seuil de montée de chaque grade. Les faire passer dans Paramètres pour qu'ils se
