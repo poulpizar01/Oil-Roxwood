@@ -16399,8 +16399,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "07cyn7qeu6di",
- "_maj": 1788477076010,
- "_rev": "8t6ovrfmkhm-mtm52odr",
+ "_maj": 1788477082998,
+ "_rev": "ui7oaerarp-mtm52x4z",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16423,7 +16423,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788477076010
+  "_tables": 1788477082998
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18252,7 +18252,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T23:11:16.719Z",
+  "maj": "2026-09-03T23:11:28.067Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -23253,19 +23253,6 @@
     "commercial": "@role",
     "hebdo": true,
     "id": 1788475100217
-   },
-   {
-    "uid": "826526979204841482",
-    "titre": "test",
-    "type": "contrat",
-    "date": "2026-09-04",
-    "deb": "03:45",
-    "fin": "05:00",
-    "note": "",
-    "partage": true,
-    "commercial": "@role",
-    "hebdo": false,
-    "id": 1788475432700
    },
    {
     "uid": "826526979204841482",
