@@ -6,7 +6,7 @@
 
 ---
 
-## 1. Réorganiser les pôles
+## 1. ~~Réorganiser les pôles~~ ✅ *fait en C-47 — à valider par Thomas*
 
 Revoir le découpage du menu (Pilotage / Gestion / Commerce / Perso / Système)
 pour qu'il suive une logique métier cohérente.

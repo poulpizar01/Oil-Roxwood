@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-46</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-47</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -61,29 +61,33 @@ window.ROXWOOD_CFG = {
     <div class="nav-sec" data-sec="pilotage" onclick="navToggle('pilotage')">Pilotage <span class="chev">▾</span></div>
     <button class="nav-item active" data-view="overview">📊 <span class="txt">Vue d'ensemble</span></button>
     <button class="nav-item" data-view="semaine">💰 <span class="txt">Semaine &amp; Primes</span></button>
-    <button class="nav-item" data-view="historique">📈 <span class="txt">Historique</span></button>
     <button class="nav-item" data-view="cloture">🗓️ <span class="txt">Clôture du lundi</span></button>
+    <button class="nav-item" data-view="historique">📈 <span class="txt">Historique</span></button>
     <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
-    <div class="nav-sec" data-sec="gestion" onclick="navToggle('gestion')">Gestion <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="rh" onclick="navToggle('rh')">Ressources humaines <span class="chev">▾</span></div>
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
-    <button class="nav-item" data-view="runs">🚛 <span class="txt">Runs</span></button>
-    <button class="nav-item" data-view="feuilles">📋 <span class="txt">Feuilles</span></button>
     <button class="nav-item" data-view="retention">🗂️ <span class="txt">Ancienneté RH</span></button>
     <button class="nav-item" data-view="acces">🔔 <span class="txt">Demandes d'accès</span></button>
+    <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
+    <button class="nav-item" data-view="runs">🚛 <span class="txt">Runs</span></button>
     <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
     <button class="nav-item" data-view="factures">🧾 <span class="txt">Factures</span></button>
     <button class="nav-item" data-view="relances">📞 <span class="txt">Relances</span></button>
-    <button class="nav-item" data-view="bilan">🏦 <span class="txt">Bilan compta</span></button>
-    <button class="nav-item" data-view="prodder">🗡️ <span class="txt">Produits dérivés</span></button>
     <button class="nav-item" data-view="quotascom">⚖️ <span class="txt">Quotas commerciaux</span></button>
     <button class="nav-item" data-view="fer">🔩 <span class="txt">Achats Fer</span></button>
+    <button class="nav-item" data-view="prodder">🗡️ <span class="txt">Produits dérivés</span></button>
+    <div class="nav-sec" data-sec="gestion" onclick="navToggle('gestion')">Gestion <span class="chev">▾</span></div>
+    <button class="nav-item" data-view="feuilles">📋 <span class="txt">Feuilles</span></button>
+    <button class="nav-item" data-view="bilan">🏦 <span class="txt">Bilan compta</span></button>
     <button class="nav-item" data-view="frecues">📥 <span class="txt">Factures reçues</span></button>
+    <div class="nav-sec" data-sec="vitrine" onclick="navToggle('vitrine')">Vitrine <span class="chev">▾</span></div>
+    <a class="nav-item" href="index.html" target="_blank" rel="noopener" style="text-decoration:none">🌐 <span class="txt">Voir le site public</span></a>
     <div class="nav-sec" data-sec="perso" onclick="navToggle('perso')">Perso <span class="chev">▾</span></div>
     <button class="nav-item" data-view="moi">🙋 <span class="txt">Ma semaine</span></button>
     <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
-    <button class="nav-item" data-view="todo">✅ <span class="txt">Ma to-do</span></button>
     <button class="nav-item" data-view="agenda">📅 <span class="txt">Mon agenda</span></button>
+    <button class="nav-item" data-view="todo">✅ <span class="txt">Ma to-do</span></button>
     <button class="nav-item" data-view="feedback">💡 <span class="txt">Suggestions / Bugs</span></button>
     <button class="nav-item" data-view="maj">🆕 <span class="txt">Mises à jour</span></button>
     <div class="nav-sec" data-sec="systeme" onclick="navToggle('systeme')">Système <span class="chev">▾</span></div>
@@ -91,8 +95,6 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="journal">📜 <span class="txt">Journal</span></button>
     <button class="nav-item" data-view="params">⚙️ <span class="txt">Paramètres</span></button>
     <div class="spacer"></div>
-    <div class="nav-sec" style="cursor:default">Accès rapides</div>
-    <a class="nav-item" href="index.html" style="text-decoration:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> <span class="txt">Retour au site</span></a>
     <button class="nav-item" onclick="localStorage.setItem('orx_lang',localStorage.getItem('orx_lang')==='en'?'fr':'en');applyLang()" title="Changer la langue de l'interface / Switch interface language">🌐 <span class="txt" data-nolang="1">FR / EN</span></button>
     <div id="whoami" style="padding:8px 14px;font-size:.78rem;color:var(--muted)"></div>
     <button class="nav-item" id="logout" onclick="logout()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v8"/><path d="M6.3 6.5a8 8 0 1 0 11.4 0"/></svg> <span class="txt">Déconnexion</span></button>
@@ -657,7 +659,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-46';
+const APP_VERSION='C-47';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3403,6 +3405,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-47',d:'03/09/2026',t:'Le menu remis dans l\'ordre',items:[
+   ['🗂','Huit pôles au lieu de cinq','Pilotage · Ressources humaines · Responsable Runner · Commerce · Gestion · Vitrine · Perso · Système. Chaque rubrique est passée dans le pôle de son métier : l\'Ancienneté RH et les demandes d\'accès rejoignent l\'Effectif côté RH, le Bilan compta et les Factures reçues quittent Commerce pour Gestion, et les Runs ont désormais leur propre pôle.'],
+   ['🌐','Un pôle Vitrine','« Voir le site public » n\'est plus perdu tout en bas dans les accès rapides : il a sa place, et s\'ouvre dans un nouvel onglet pour ne plus te faire quitter le poste de contrôle.'],
+   ['🧭','Rien n\'a changé côté droits','Les pôles ne sont qu\'un rangement : qui voit quoi dépend toujours des permissions. Un pôle dont aucune rubrique n\'est autorisée reste invisible — vérifié pour la Direction, le Responsable Runner et un membre.'],
+ ]},
  {v:'C-46',d:'03/09/2026',t:'Absences : ménage automatique, mémoire d\'une semaine',items:[
    ['🌴','Les absences terminées s\'effacent seules','Plus de liste qui s\'allonge : une absence disparaît d\'elle-même une fois passée. Elle n\'attend plus 30 jours et l\'ouverture manuelle de la fenêtre.'],
    ['📌','« Était absent la semaine dernière » dans l\'Effectif','Le vrai défaut était là : une absence protège de la descente de grade tant qu\'elle court, mais l\'examen se fait le lundi — sur la semaine qui vient de finir, donc au moment précis où l\'absence vient d\'expirer et où la protection disparaît. La trace est maintenant gardée une semaine de plus et s\'affiche à côté du grade.'],
