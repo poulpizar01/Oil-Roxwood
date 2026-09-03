@@ -75,7 +75,7 @@ valeurs. Il faudra décider si un changement s'applique rétroactivement à l'hi
 
 ---
 
-## 8. Suppressions
+## 8. ~~Suppressions~~ ✅ *fait en C-50*
 
 Retirer trois rubriques :
 

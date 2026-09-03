@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-49</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-50</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -66,7 +66,6 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
     <div class="nav-sec" data-sec="rh" onclick="navToggle('rh')">Ressources humaines <span class="chev">▾</span></div>
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
-    <button class="nav-item" data-view="retention">🗂️ <span class="txt">Ancienneté RH</span></button>
     <button class="nav-item" data-view="acces">🔔 <span class="txt">Demandes d'accès</span></button>
     <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
     <button class="nav-item" data-view="runs">🚛 <span class="txt">Runs</span></button>
@@ -87,8 +86,6 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
     <button class="nav-item" data-view="agenda">📅 <span class="txt">Mon agenda</span></button>
-    <button class="nav-item" data-view="todo">✅ <span class="txt">Ma to-do</span></button>
-    <button class="nav-item" data-view="feedback">💡 <span class="txt">Suggestions / Bugs</span></button>
     <button class="nav-item" data-view="maj">🆕 <span class="txt">Mises à jour</span></button>
     <div class="nav-sec" data-sec="systeme" onclick="navToggle('systeme')">Système <span class="chev">▾</span></div>
     <button class="nav-item" data-view="dlogs">📡 <span class="txt">Logs en direct</span></button>
@@ -185,6 +182,18 @@ const DEFAULT_HASH = null; // défini au premier login avec le mdp par défaut
 
 /* ================== ÉTAT ================== */
 let S = load();
+/* Suppression des rubriques Suggestions, Ma to-do et Ancienneté RH (C-50).
+   Thomas a demandé que les données partent aussi. La purge doit tourner à CHAQUE
+   fois que l'état est rechargé, pas seulement au démarrage : une synchro ramène
+   sinon les tables effacées depuis le dépôt. Elle est donc idempotente et appelée
+   au même endroit que le barème. */
+function purgeSupprimees(){
+  const t=S._tables; if(!t) return false;
+  let n=0;
+  ['oilroxwood_todo','oilroxwood_feedback'].forEach(k=>{ if(k in t){ delete t[k]; n++; } });
+  return n>0;
+}
+purgeSupprimees();
 appliquerGrades();   // les réglages de la direction priment sur les valeurs d'usine
 // Réinitialisation unique du mot de passe (juillet 2026) : retour à « roxwood ».
 if(!localStorage.getItem('orx_pwfix1')){
@@ -535,15 +544,15 @@ function avatarHTML(qui, style){
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
-  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','retention','prodder','quotascom','fer','frecues','moi','profil','quotashist','todo','agenda','feedback','maj','dlogs','journal','params'],
-  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','retention','acces','factures','relances','prodder','quotascom','fer','moi','profil','quotashist','todo','agenda','feedback','maj','dlogs'],
-  comptable:['overview','reunions','feuilles','factures','bilan','moi','profil','quotashist','todo','agenda','feedback','maj'],
-  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','profil','quotashist','todo','agenda','feedback','maj'],
+  direction:['overview','effectif','runs','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','prodder','quotascom','fer','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
+  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','acces','factures','relances','prodder','quotascom','fer','moi','profil','quotashist','agenda','maj','dlogs'],
+  comptable:['overview','reunions','feuilles','factures','bilan','moi','profil','quotashist','agenda','maj'],
+  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','fer','moi','profil','quotashist','agenda','maj'],
   /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
      l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
      factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
-  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','fer','moi','profil','quotashist','todo','agenda','feedback','maj','dlogs'],
-  membre:   ['effectif','reunions','moi','profil','quotashist','todo','agenda','feedback','maj'] // lecture seule + stats perso + boîte à idées + agenda
+  resprunner:['overview','effectif','runs','semaine','historique','reunions','feuilles','prodder','fer','moi','profil','quotashist','agenda','maj','dlogs'],
+  membre:   ['effectif','reunions','moi','profil','quotashist','agenda','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return false; // clé de secours = Direction
@@ -557,9 +566,14 @@ function allowedViews(){
   const cu=currentUser();
   return cu ? (permsDe(cu.role)||PERMS.membre) : PERMS.membre; // session sans compte : minimum
 }
+/* Filet de sécurité après une suppression de rubrique : les permissions
+   personnalisées enregistrées peuvent encore citer une vue qui n'existe plus.
+   Sans ce filtre, show('todo') planterait pour qui avait réglé ses droits à la main. */
+function vueExiste(v){ return PERMS.direction.includes(v)||v==='acces'; }
 function permsDe(role){
   const c=S.settings&&S.settings.permsCustom;
-  return (c&&Array.isArray(c[role])&&c[role].length)?c[role]:PERMS[role];
+  const l=(c&&Array.isArray(c[role])&&c[role].length)?c[role]:PERMS[role];
+  return (l||[]).filter(vueExiste);
 }
 function permRO(role){ const c=S.settings&&S.settings.permsRO; return (c&&Array.isArray(c[role]))?c[role]:[]; }
 function isRO(v){
@@ -659,7 +673,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-49';
+const APP_VERSION='C-50';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -940,7 +954,6 @@ document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>show(
     effectif:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 15.5c2.8.2 4.5 2 4.5 4.5"/>',
     runs:'<path d="M2 16V7h11v9"/><path d="M13 10h4l3 3v3h-2.5"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M2 16h2.7M8.3 17.5h6.4"/>',
     feuilles:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/>',
-    retention:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     acces:'<path d="M18 8a6 6 0 1 0-12 0c0 7-2 8-2 8h16s-2-1-2-8"/><path d="M10.5 20a1.8 1.8 0 0 0 3 0"/>',
     factures:'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>',
     relances:'<path d="M5 4h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
@@ -951,9 +964,7 @@ document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>show(
     frecues:'<path d="M3 13h5l2 3h4l2-3h5"/><path d="M3 13V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 13v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/>',
     moi:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5"/>',
     quotashist:'<path d="M4 4v16h16"/><path d="M8 16v-5M12 16V8M16 16v-3"/>',
-    todo:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12.5l2.6 2.6L16.5 9"/>',
     agenda:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/>',
-    feedback:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6.5 6.5 0 0 0-4 11.5c.8.7 1 1.5 1 2.5h6c0-1 .2-1.8 1-2.5A6.5 6.5 0 0 0 12 3z"/>',
     maj:'<path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/><path d="M18.5 15l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9z"/>',
     dlogs:'<circle cx="12" cy="12" r="1.8"/><path d="M7.8 16.2a6 6 0 0 1 0-8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 19.1a10 10 0 0 1 0-14.2M19.1 4.9a10 10 0 0 1 0 14.2"/>',
     journal:'<path d="M7 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/><path d="M8 8h8M8 12h8M8 16h5"/>',
@@ -986,12 +997,13 @@ applyLang();
 let VIEW='overview';
 function show(v){
   appliquerGrades();   // une synchro a pu changer les barèmes depuis le dernier rendu
+  if(purgeSupprimees()&&!isMembre()){ save(); sbQueue(); }   // rubriques supprimées : leurs données ne reviennent pas
   const al=allowedViews();
   if(!al.includes(v)) v=al[0]||'overview'; // vue non autorisée → première vue permise
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,retention,prodder,quotascom,fer,frecues,moi,profil,quotashist,todo,acces,agenda,feedback,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,runs,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,prodder,quotascom,fer,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -3145,34 +3157,6 @@ function bilanCopy(){
     .catch(()=>toast('⚠️ Copie refusée par le navigateur — réessaie après un clic sur la page'));
 }
 
-/* ================== RÉTENTION RH ================== */
-async function retention(){
-  await ensureSheets();
-  const RH=(S.sheets.rh||[]).filter(x=>x.nom&&String(x.nom).trim());
-  const jours=(a,b)=>{const t1=Date.parse(a),t2=Date.parse(b);return(isNaN(t1)||isNaN(t2))?null:Math.round((t2-t1)/86400000);};
-  const now=new Date().toISOString().slice(0,10);
-  const list=RH.map(x=>({x,a:jours(x.arrivee,now)})).sort((p,q)=>(q.a??-1)-(p.a??-1));
-  const anc=list.map(e=>e.a).filter(d=>d!==null&&d>=0);
-  const ancMoy=anc.length?Math.round(anc.reduce((a,b)=>a+b,0)/anc.length):0;
-  const doyen=list.find(e=>e.a!==null), bleu=[...list].reverse().find(e=>e.a!==null);
-  $('#main').innerHTML=`
-  <div class="topbar"><div><h2>Ancienneté RH</h2><div class="sub">Recensement de l'effectif actuel, du doyen au dernier arrivé</div></div></div>
-  <div class="grid g4" style="margin-bottom:18px">
-    <div class="panel kpi"><div class="lbl">Effectif recensé</div><div class="val">${RH.length}</div><div class="delta">fiche RH</div></div>
-    <div class="panel kpi"><div class="lbl">Ancienneté moyenne</div><div class="val">${ancMoy} <span style="font-size:1rem">j</span></div></div>
-    <div class="panel kpi"><div class="lbl">Doyen</div><div class="val" style="font-size:1.2rem">${doyen?esc(doyen.x.nom):'—'}</div><div class="delta">${doyen?doyen.a+' jours de maison':''}</div></div>
-    <div class="panel kpi"><div class="lbl">Dernier arrivé</div><div class="val" style="font-size:1.2rem">${bleu?esc(bleu.x.nom):'—'}</div><div class="delta">${bleu?'il y a '+bleu.a+' jour(s)':''}</div></div>
-  </div>
-  <div class="panel" style="padding:8px 16px;overflow-x:auto">
-    <h3 style="padding:12px 0 4px">👥 Ancienneté de l'effectif actuel (${RH.length})</h3>
-    ${RH.length?`<table><thead><tr><th>Employé</th><th>Grade</th><th>Arrivée</th><th>Ancienneté</th></tr></thead><tbody>
-    ${list.map(({x,a})=>`<tr>
-      <td><b>${esc(x.nom)}</b></td><td style="color:var(--muted);font-size:.8rem">${esc(x.grade||'')}</td>
-      <td>${x.arrivee?frDate(x.arrivee):'—'}</td><td>${a!==null?`<b style="color:${a>=300?'var(--green)':a>=100?'var(--accent)':'var(--muted)'}">${a} j</b>`:'<span style="color:var(--muted)">date d\'arrivée manquante</span>'}</td></tr>`).join('')}
-    </tbody></table>`:'<div class="empty">Feuille RH vide</div>'}
-  </div>`;
-}
-
 /* ================== CLÔTURE GUIDÉE DU LUNDI ================== */
 let CL_STEP=(sessionStorage.getItem('orx_clstep'))|0;
 function clSet(n){ CL_STEP=n; sessionStorage.setItem('orx_clstep',n); cloture(); }
@@ -3371,30 +3355,14 @@ function reuPublier(id){
       <span><b>Envoyer dans Discord</b><br><span style="color:var(--muted);font-size:.82rem">
         ${webhookOK?'Le compte-rendu part dans le salon des logs.':'Aucun webhook configuré (Paramètres).'}</span></span>
     </label>
-    <label class="f-row" style="display:flex;gap:12px;align-items:flex-start;cursor:${nA?'pointer':'not-allowed'};opacity:${nA?1:.5}">
-      <input type="checkbox" id="reuPubTod" ${nA?'checked':'disabled'} style="width:18px;height:18px;accent-color:var(--accent);margin-top:2px">
-      <span><b>Créer les tâches</b><br><span style="color:var(--muted);font-size:.82rem">
-        ${nA?`${nA} action(s) atterriront dans la to-do des personnes nommées.`:'Aucune action dans ce compte-rendu.'}</span></span>
-    </label>
     <button class="btn btn-gold" style="width:100%;margin-top:8px" onclick="reuPublierGo('${id}')">Publier</button>`);
 }
 
 async function reuPublierGo(id){
   const r=reuGet(id); if(!r) return;
   const dis=$('#reuPubDis')&&$('#reuPubDis').checked;
-  const tod=$('#reuPubTod')&&$('#reuPubTod').checked;
-  let taches=0;
-
-  if(tod){
-    for(const a of (r.actions||[])){
-      const u=(S.users||[]).find(x=>String(x.user).toLowerCase()===String(a.qui).toLowerCase());
-      if(!u||!u.did) continue;                      // sans compte Discord, pas de destinataire
-      try{
-        await SYNC.cli.from('oilroxwood_todo').insert({uid:String(u.did), txt:`[${r.titre}] ${a.txt}`});
-        taches++;
-      }catch(e){}
-    }
-  }
+  /* La to-do a été supprimée : les actions ne deviennent plus des tâches.
+     Elles restent listées dans le compte-rendu lui-même et partent sur Discord. */
 
   if(dis){
     const L=[];
@@ -3406,10 +3374,10 @@ async function reuPublierGo(id){
             L.join('\n').slice(0,3900), 0xe8a020);
   }
 
-  r.publie={quand:new Date().toISOString(), discord:!!dis, taches:!!tod};
+  r.publie={quand:new Date().toISOString(), discord:!!dis};
   save(); sbQueue(); closeModal(); reunions();
-  jlog(`Compte-rendu publié : ${r.titre}${taches?` (${taches} tâche(s) créée(s))`:''}`);
-  toast(`📢 Publié${dis?' · Discord':''}${taches?` · ${taches} tâche(s)`:''}`);
+  jlog(`Compte-rendu publié : ${r.titre}`);
+  toast(`📢 Publié${dis?' · Discord':''}`);
 }
 
 /* ================== ACHATS DE FER (Direction) ================== */
@@ -3513,6 +3481,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-50',d:'03/09/2026',t:'Trois rubriques en moins',items:[
+   ['🗑','Suggestions / Bugs, Ma to-do et Ancienneté RH retirées','Les écrans, les entrées de menu, les permissions, les étapes de visite guidée et les données. Le robot qui envoyait un message privé à chaque nouvelle suggestion a été supprimé du dépôt et de l\'automatisation.'],
+   ['🔁','Les données ne reviennent pas par la fenêtre','La purge tourne à chaque rechargement de l\'état, pas seulement au démarrage : sans ça, la première synchro aurait ramené les tables effacées depuis le dépôt.'],
+   ['🛟','Aucun plantage pour ceux qui avaient réglé leurs droits à la main','Une permission personnalisée peut encore citer une rubrique disparue. Elle est ignorée au lieu de faire planter l\'affichage.'],
+   ['📋','Un effet de bord assumé sur les comptes-rendus','La publication d\'une réunion pouvait transformer les lignes « Pseudo : action » en tâches. Cette option disparaît avec la to-do. Les actions restent écrites dans le compte-rendu et partent toujours sur Discord — rien n\'est perdu.'],
+ ]},
  {v:'C-49',d:'03/09/2026',t:'Une facture émise redevient modifiable',items:[
    ['✎','Rouvrir une facture de l\'historique','Un bouton ✎ à côté de chaque facture la recharge dans le formulaire : client, date, émetteur, lignes, TVA, Post OP — tout est modifiable. Elle garde son numéro et son statut de paiement, et le compteur ne bouge pas.'],
    ['🧮','Les bidons ne sont plus comptés deux fois','C\'était le vrai piège : une facture ajoute ses bidons aux « Ventes de la semaine » à l\'émission. La modifier sans y toucher aurait doublé les quantités. Les lignes de vente portent désormais le numéro de la facture qui les a créées, et une modification remplace les siennes au lieu d\'en rajouter.'],
@@ -4389,60 +4363,6 @@ function quotashist(){
   </div>`;
 }
 
-/* ================== MA TO-DO (perso) ================== */
-let TD_CACHE=null;
-async function tdLoad(){
-  if(!SYNC.cli){ TD_CACHE=[]; return; }
-  try{
-    const {data,error}=await SYNC.cli.from('oilroxwood_todo').select('*').eq('uid',agKey()).order('id',{ascending:false});
-    if(error) throw error;
-    TD_CACHE=data||[]; TD_CACHE._err=false;
-  }catch(e){ TD_CACHE=[]; TD_CACHE._err=true; }
-}
-async function todo(){
-  if(TD_CACHE===null){ $('#main').innerHTML='<div class="panel"><div class="empty">Chargement…</div></div>'; await tdLoad(); }
-  if(VIEW!=='todo') return;
-  const L=TD_CACHE||[], afaire=L.filter(t=>!t.fait), faites=L.filter(t=>t.fait);
-  $('#main').innerHTML=`
-  <div class="topbar"><div><h2>Ma to-do</h2><div class="sub">🔒 Personnelle — visible uniquement par toi · ${afaire.length} à faire · ${faites.length} faite(s)</div></div></div>
-  ${L._err?`<div class="panel" style="border-color:rgba(255,92,92,.4);margin-bottom:14px;color:#ffb0b0;font-size:.85rem">⚠️ La table <b>oilroxwood_todo</b> n'existe pas encore — demande à la direction d'exécuter le SQL de SETUP-SUPABASE.md.</div>`:''}
-  <div class="panel" style="max-width:680px">
-    <div style="display:flex;gap:10px;margin-bottom:16px">
-      <input class="field" id="tdTxt" placeholder="Relancer LTD Strawberry, acheter du fer…" onkeydown="if(event.key==='Enter')tdAdd()">
-      <button class="btn btn-gold" onclick="tdAdd()">＋ Ajouter</button>
-    </div>
-    ${afaire.map(t=>`<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)">
-      <input type="checkbox" style="width:19px;height:19px;accent-color:var(--accent);cursor:pointer" onchange="tdToggle(${t.id},true)">
-      <span style="flex:1">${esc(t.txt)}</span>
-      <button class="btn btn-sm btn-ghost" style="color:#f87171" onclick="tdDel(${t.id})">✕</button>
-    </div>`).join('')||'<div class="empty" style="padding:14px">Rien à faire — profite 🌴</div>'}
-    ${faites.length?`<div style="margin-top:16px;color:var(--muted);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px">Fait ✔</div>
-    ${faites.slice(0,15).map(t=>`<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);opacity:.55">
-      <input type="checkbox" checked style="width:19px;height:19px;accent-color:#4A9D6F;cursor:pointer" onchange="tdToggle(${t.id},false)">
-      <span style="flex:1;text-decoration:line-through">${esc(t.txt)}</span>
-      <button class="btn btn-sm btn-ghost" style="color:#f87171" onclick="tdDel(${t.id})">✕</button>
-    </div>`).join('')}`:''}
-  </div>`;
-}
-async function tdAdd(){
-  const txt=$('#tdTxt').value.trim();
-  if(!txt) return toast('⚠️ Écris d\'abord ta tâche');
-  if(!SYNC.cli) return toast('⚠️ Synchronisation non configurée');
-  try{
-    const {error}=await SYNC.cli.from('oilroxwood_todo').insert({uid:agKey(),txt});
-    if(error) throw error;
-    await tdLoad(); todo();
-  }catch(e){ toast('❌ Ajout impossible — table manquante ?'); }
-}
-async function tdToggle(id,v){
-  try{ await SYNC.cli.from('oilroxwood_todo').update({fait:v}).eq('id',id); }catch(e){}
-  await tdLoad(); todo();
-}
-async function tdDel(id){
-  try{ await SYNC.cli.from('oilroxwood_todo').delete().eq('id',id); }catch(e){}
-  await tdLoad(); todo();
-}
-
 /* ================== DEMANDES D'ACCÈS (vue RH) ================== */
 async function acces(){
   let DEM=[];
@@ -4495,9 +4415,7 @@ function tourSteps(){
   add('prodder','Produits dérivés',"Suivi des produits dérivés vendus.");
   add('moi','Ma semaine',"Ton suivi personnel de la semaine en cours.");
   add('profil','Mon profil',"Ta photo, ton titre et deux lignes de présentation. Tu peux choisir d'apparaître sur le site public — c'est à toi de cocher, rien ne part sans ton accord.");
-  add('todo','Ma to-do',"Tes tâches personnelles à faire.");
   add('agenda','Mon agenda',"Ton planning personnel (avec option de partage direction).");
-  add('feedback','Suggestions / Bugs',"Où proposer une idée ou signaler un bug.");
   add('dlogs','Logs Discord',"Tu y retrouveras bientôt tous les logs possibles : de chaque personne, de chaque coffre, véhicule, etc.");
   return stp;
 }
@@ -4958,16 +4876,6 @@ async function navBadges(){
   if(m){ const old=m.querySelector('.nvb'); if(old) old.remove();
     if(localStorage.getItem('orx_seenver')!==APP_VERSION) m.insertAdjacentHTML('beforeend','<span class="nvb dot" title="Nouvelle version !"></span>');
   }
-  const f=document.querySelector('.nav-item[data-view="feedback"]');
-  if(f){ const old=f.querySelector('.nvb'); if(old) old.remove();
-    try{
-      const cu=currentUser();
-      if(SYNC.cli&&cu&&cu.role==='direction'){
-        const {count}=await SYNC.cli.from('oilroxwood_feedback').select('*',{count:'exact',head:true}).is('statut',null);
-        if(count>0) f.insertAdjacentHTML('beforeend',`<span class="nvb" title="${count} remarque(s) à traiter">${count}</span>`);
-      }
-    }catch(e){}
-  }
 }
 
 /* ================== AGENDA PERSONNEL ================== */
@@ -5090,67 +4998,6 @@ async function agSave(id){
 async function agDel(id){
   try{ await SYNC.cli.from('oilroxwood_agenda').delete().eq('id',id); }catch(e){}
   closeModal(); await agLoad(); agenda(); toast('🗑 Événement supprimé');
-}
-
-/* ================== SUGGESTIONS / BUGS ================== */
-async function feedback(){
-  $('#main').innerHTML='<div class="panel"><div class="empty">Chargement…</div></div>';
-  let FB=[];
-  try{
-    if(SYNC.cli){ const {data}=await SYNC.cli.from('oilroxwood_feedback').select('*').order('date',{ascending:false}); FB=data||[]; }
-  }catch(e){}
-  const dir=!isMembre()&&currentUser()&&currentUser().role==='direction';
-  const badge=f=>f.statut==='traite'
-    ?'<span class="badge" style="background:rgba(74,157,111,.14);color:var(--green)">✓ traité</span>'
-    :'<span class="badge bg0">ouvert</span>';
-  $('#main').innerHTML=`
-  <div class="topbar"><div><h2>Suggestions / Bugs</h2><div class="sub">La boîte à idées du site — visible par toute l'équipe, traitée par la direction</div></div></div>
-  <div class="grid g2" style="align-items:start">
-    <div class="panel">
-      <h3>✍️ Nouvelle remarque</h3>
-      <div class="f-row"><label class="f-lbl">Type</label>
-        <select class="field" id="fb_type"><option value="suggestion">💡 Suggestion</option><option value="bug">🐛 Bug</option></select></div>
-      <div class="f-row"><label class="f-lbl">Description</label>
-        <textarea class="field" id="fb_txt" style="min-height:120px" placeholder="Décris ton idée ou le problème rencontré (où, quand, comment le reproduire…)"></textarea></div>
-      <button class="btn btn-gold" style="width:100%" onclick="fbSend()">Envoyer</button>
-      <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Ton pseudo est joint automatiquement. La direction est notifiée sur Discord.</p>
-    </div>
-    <div class="panel" style="padding:8px 16px">
-      <h3 style="padding:12px 0 4px">📬 Remarques (${FB.length})</h3>
-      ${FB.length?FB.map(f=>`<div style="padding:12px 4px;border-bottom:1px solid var(--line)">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <span>${f.type==='bug'?'🐛':'💡'}</span>
-          <b>${esc(f.auteur||'anonyme')}</b>
-          <small style="color:var(--muted)">${f.date?frDate(String(f.date).slice(0,10)):''}</small>
-          ${badge(f)}
-          ${dir?`<span style="margin-left:auto;white-space:nowrap">
-            ${f.statut!=='traite'?`<button class="btn btn-sm btn-gold" onclick="fbDone(${f.id})">✓ Traité</button>`:''}
-            <button class="btn btn-sm btn-red" onclick="fbDel(${f.id})">✕</button></span>`:''}
-        </div>
-        <div style="margin-top:6px;font-size:.9rem;white-space:pre-wrap;${f.statut==='traite'?'color:var(--muted)':''}">${esc(f.texte)}</div>
-      </div>`).join(''):'<div class="empty">Aucune remarque pour l\'instant — sois le premier ! 💡</div>'}
-    </div>
-  </div>`;
-}
-async function fbSend(){
-  const type=$('#fb_type').value, txt=$('#fb_txt').value.trim();
-  if(txt.length<5) return toast('⚠️ Décris un peu plus ta remarque');
-  if(!SYNC.cli) return toast('⚠️ Connexion Supabase indisponible');
-  const auteur=(currentUser()&&currentUser().user)||'anonyme';
-  const {error}=await SYNC.cli.from('oilroxwood_feedback').insert({type,texte:txt,auteur});
-  if(error) return toast('⚠️ Envoi impossible : '+error.message);
-  sendLog(type==='bug'?'🐛 Bug signalé':'💡 Nouvelle suggestion', `**${auteur}** : ${txt.slice(0,300)}`, type==='bug'?0xff5c5c:0x22d7ee, '<@186397473374208000>');
-  toast('✅ Merci ! Ta remarque est transmise à la direction');
-  feedback();
-}
-async function fbDone(id){
-  try{ await SYNC.cli.from('oilroxwood_feedback').update({statut:'traite'}).eq('id',id); }catch(e){}
-  feedback(); navBadges();
-}
-async function fbDel(id){
-  if(!confirm('Supprimer cette remarque ?')) return;
-  try{ await SYNC.cli.from('oilroxwood_feedback').delete().eq('id',id); }catch(e){}
-  feedback(); navBadges();
 }
 
 /* ================== LOGS DISCORD ================== */

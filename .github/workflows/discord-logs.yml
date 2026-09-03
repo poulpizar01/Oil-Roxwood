@@ -33,11 +33,6 @@ jobs:
       - name: Publier les stats du dashboard (automatique)
         run: python3 scripts/publish_stats.py || true
 
-      - name: MP Discord pour les nouvelles suggestions/bugs
-        env:
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-        run: python3 scripts/dm_feedback.py || true
-
       - name: Présence Discord (widget serveur)
         env:
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
