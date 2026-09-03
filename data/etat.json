@@ -16396,9 +16396,9 @@
   ],
   "rolesDiscordV": 3
  },
- "_cid": "bot",
- "_maj": 1788454410671,
- "_rev": "xydw8j122ho-mtlrj9cz",
+ "_cid": "niflhw73kv",
+ "_maj": 1788454421729,
+ "_rev": "pxp06mz0dx-mtlrl8ih",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16421,7 +16421,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788454410671
+  "_tables": 1788454421729
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T16:52:15.779Z",
+  "maj": "2026-09-03T16:53:47.993Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -21882,6 +21882,13 @@
     "role": "direction",
     "vu": "2026-09-03T16:52:10.757Z",
     "id": 1788454332652
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T16:53:41.729Z",
+    "id": 1788454423842
    }
   ],
   "oilroxwood_demandes": [],
@@ -21954,9 +21961,7 @@
       "Wagner Rischtoffen"
      ]
     },
-    "id": 1788448894274,
-    "statut": "fait",
-    "rapport": "Image d'eligibilite postee sur Discord."
+    "id": 1788448894274
    },
    {
     "type": "eligibilite_image",
@@ -22024,9 +22029,7 @@
       "Wagner Rischtoffen"
      ]
     },
-    "id": 1788452239068,
-    "statut": "fait",
-    "rapport": "Image d'eligibilite postee sur Discord."
+    "id": 1788452239068
    },
    {
     "type": "eligibilite_image",
@@ -22094,9 +22097,7 @@
       "Wagner Rischtoffen"
      ]
     },
-    "id": 1788452385695,
-    "statut": "fait",
-    "rapport": "Image d'eligibilite postee sur Discord."
+    "id": 1788452385695
    },
    {
     "type": "eligibilite_image",
@@ -22164,9 +22165,7 @@
       "Wagner Rischtoffen"
      ]
     },
-    "id": 1788452394570,
-    "statut": "fait",
-    "rapport": "Image d'eligibilite postee sur Discord."
+    "id": 1788452394570
    }
   ]
  },
