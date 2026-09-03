@@ -13,8 +13,11 @@ mentionnant le commercial désigné.
 · Un contrat coché « hebdomadaire » se reconduit chaque semaine : on le
   rappelle donc aussi les semaines suivantes, à la même heure et le même
   jour, sans avoir à recréer la ligne.
-· Le robot tourne toutes les 15 min. La fenêtre de tir est donc large
-  (entre 2 h 45 et 3 h 15 avant), et un marqueur empêche les doublons.
+· Le robot est censé tourner toutes les 15 min, mais GitHub met les tâches
+  planifiées en file d'attente : en pratique il passe toutes les deux à quatre
+  heures. On n'attend donc pas un créneau précis — on annonce dès que le
+  contrat commence dans moins de 3 h et qu'il n'a pas encore commencé. Un
+  marqueur empêche les doublons.
 · Il ne modifie jamais data/etat.json — il ne touche qu'à son marqueur.
 
 Nécessite : DISCORD_BOT_TOKEN (secret GitHub).
@@ -34,7 +37,16 @@ BOT = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
 SEEN = "data/contrats-seen.json"
 UA = "DiscordBot (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"
 AVANT = timedelta(hours=3)
-MARGE = timedelta(minutes=16)          # le robot passe toutes les 15 min
+# GitHub ne tient pas la promesse du « toutes les 15 minutes » : sur les dépôts
+# publics, les tâches planifiées sont mises en file d'attente et passent en
+# pratique toutes les deux à quatre heures. Une fenêtre de tir de 16 minutes
+# ratait donc presque tous les contrats — le robot arrivait après.
+#
+# On ne vise plus un créneau, on regarde un ÉTAT : le contrat commence-t-il
+# dans moins de 3 h, et n'est-il pas déjà passé ? Si oui, on annonce. Un robot
+# en retard préviendra donc 2 h avant au lieu de 3, ce qui vaut infiniment
+# mieux que pas de rappel du tout. Le marqueur `contrats-seen.json` garantit
+# qu'une occurrence n'est annoncée qu'une fois.
 
 if not BOT:
     print("DISCORD_BOT_TOKEN manquant — rappels de contrats ignorés")
@@ -130,7 +142,9 @@ for c in contrats:
 
     debut = datetime.combine(jour, datetime.min.time(), ZoneInfo("Europe/Paris")).replace(hour=h, minute=m)
     cible = debut - AVANT
-    if not (cible <= maintenant < cible + MARGE):
+    # « ça commence bientôt et ce n'est pas encore commencé », plutôt qu'un
+    # créneau de quelques minutes que le robot manque une fois sur deux.
+    if not (cible <= maintenant < debut):
         continue
 
     cle = f'{c.get("id")}@{jour.isoformat()}'      # une occurrence = un rappel
@@ -140,8 +154,12 @@ for c in contrats:
 
     qui = c.get("commercial") or ""
     men, ids, roles = mention(qui)
+    # le robot peut passer en retard : on annonce le délai réel, pas « 3 heures »
+    reste = debut - maintenant
+    rh, rm = int(reste.total_seconds() // 3600), int((reste.total_seconds() % 3600) // 60)
+    delai = f"{rh} h {rm:02d}" if rh else f"{rm} min"
     corps = (
-        f'📜 **Contrat dans 3 heures** — {c.get("titre") or "sans titre"}\n'
+        f'📜 **Contrat dans {delai}** — {c.get("titre") or "sans titre"}\n'
         f'🕒 {en_francais(debut)}'
         + (f'\n{"📣" if roles else "👤"} {men}' if men else "")
         + (f'\n📝 {c.get("note")}' if c.get("note") else "")
