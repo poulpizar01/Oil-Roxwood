@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-52</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-53</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -452,7 +452,7 @@ const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Com
 const ROLES_DISCORD_DEF=[
   {id:'1245400912835510286', role:'direction'},   // Patron
   {id:'1468694481153818674', role:'direction'},   // Co Patron
-  {id:'',                    role:'rh'},          // ⚠️ RH — identifiant à renseigner dans Paramètres
+  {id:'1246581064219230250', role:'rh'},          // RH
   {id:'1472927781192208518', role:'comptable'},   // Comptable
   {id:'1498757191044305086', role:'commercial'},  // Responsable commercial
   {id:'1246586673140203601', role:'commercial'},  // Commercial
@@ -464,7 +464,7 @@ const ROLES_DISCORD_DEF=[
 ];
 /* Mise à jour unique de la table : la première version n'avait qu'une ligne.
    On tamponne pour ne le faire qu'une fois, sans écraser les réglages suivants. */
-const ROLES_DISCORD_VER=2;
+const ROLES_DISCORD_VER=3;   // v3 : identifiant du rôle RH renseigné
 function rolesDiscord(){
   const st=S.settings||{};
   if(st.rolesDiscordV!==ROLES_DISCORD_VER){
@@ -672,7 +672,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-52';
+const APP_VERSION='C-53';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3435,6 +3435,9 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-53',d:'03/09/2026',t:'Le rôle RH branché',items:[
+   ['🎖️','La dernière ligne vide est remplie','Le rôle RH du serveur Discord est en place. Quelqu\'un qui ne porte que ce rôle entre désormais en RH, plus en Membre. La table des rôles est réécrite au complet une fois au chargement — si tu y avais changé quelque chose à la main, c\'est le moment de le revérifier.'],
+ ]},
  {v:'C-52',d:'03/09/2026',t:'Les contrats à l\'agenda, annoncés 3 h avant',items:[
    ['📜','Nouvelle catégorie « Contrat »','Dans Mon agenda, à côté de RDV, Commande et Entretien. Quand on la choisit, un bloc s\'ouvre : le commercial à prévenir, et une case « contrat hebdomadaire ».'],
    ['🔁','Hebdomadaire veut dire hebdomadaire','Un contrat coché ainsi se reconduit chaque semaine, même jour, même heure, sans avoir à recréer la ligne. Le robot avance tout seul jusqu\'à la prochaine occurrence.'],
