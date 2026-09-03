@@ -16394,11 +16394,13 @@
     "role": "membre"
    }
   ],
-  "rolesDiscordV": 3
+  "rolesDiscordV": 3,
+  "capBidons": 50,
+  "salonContrats": "1328076154586009660"
  },
  "_cid": "jp4ocx2hnok",
- "_maj": 1788475039623,
- "_rev": "vj3cwyoyrk-mtm3vdg8",
+ "_maj": 1788475057204,
+ "_rev": "jrloklcsw3a-mtm3vfpy",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16407,13 +16409,13 @@
   "sheets": 1788222184505,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788456486084,
+  "journal": 1788475057204,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788445633687,
+  "settings": 1788475057204,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16426,6 +16428,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788475058527,
+   "u": "Diego Herrera",
+   "a": "Modification des paramètres"
+  },
   {
    "t": 1788456486175,
    "u": "Diego Herrera",
@@ -17920,11 +17927,6 @@
    "a": "Suppression du compte Reese Miltod",
    "t": 1787330839383,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Marcus Johnson",
-   "t": 1787330837180,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18250,7 +18252,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T22:37:36.344Z",
+  "maj": "2026-09-03T22:37:39.286Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
