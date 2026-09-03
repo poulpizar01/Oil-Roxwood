@@ -46,7 +46,7 @@ trace au journal.
 
 ---
 
-## 5. Planning — catégorie « contrat »
+## 5. ~~Planning — catégorie « contrat »~~ ✅ *fait en C-52*
 
 Nouvelle catégorie dans le planning pour enregistrer les **contrats hebdomadaires**,
 avec un **ping du commercial 3 h avant** l'échéance.

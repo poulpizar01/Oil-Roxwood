@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-51</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-52</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -672,7 +672,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-51';
+const APP_VERSION='C-52';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3435,6 +3435,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-52',d:'03/09/2026',t:'Les contrats à l\'agenda, annoncés 3 h avant',items:[
+   ['📜','Nouvelle catégorie « Contrat »','Dans Mon agenda, à côté de RDV, Commande et Entretien. Quand on la choisit, un bloc s\'ouvre : le commercial à prévenir, et une case « contrat hebdomadaire ».'],
+   ['🔁','Hebdomadaire veut dire hebdomadaire','Un contrat coché ainsi se reconduit chaque semaine, même jour, même heure, sans avoir à recréer la ligne. Le robot avance tout seul jusqu\'à la prochaine occurrence.'],
+   ['📢','Le rappel part dans un salon, pas en privé','Trois heures avant, le robot poste dans le salon Discord réglé en Paramètres, en mentionnant le commercial désigné — ou son nom en clair s\'il n\'a pas de compte lié. Un contrat n\'est annoncé qu\'une fois par occurrence.'],
+   ['⚙️','Le salon se règle dans Paramètres','Pas un secret GitHub : la direction colle l\'identifiant du salon et c\'est actif. Vide, aucun rappel ne part — et le formulaire de contrat le dit au lieu de laisser croire que ça marche.'],
+ ]},
  {v:'C-51',d:'03/09/2026',t:'Quotas & achats de fer réunis',items:[
    ['⚖️','Une seule rubrique, un seul tableau','« Achats Fer » et « Quotas commerciaux » racontaient la même histoire à deux endroits : d\'un côté l\'objectif de fer à acheter, de l\'autre les achats réellement relevés par le bot. Ils sont maintenant dans le même tableau.'],
    ['🤖','Fini de recopier ce que le bot sait déjà','Une colonne « Relevé du bot » affiche le fer acheté par chaque commercial depuis lundi, lu dans le salon Discord. La colonne « Noté à la main » ne sert plus qu\'en secours si un achat a échappé au relevé — c\'est le plus élevé des deux qui compte, le bot pouvant rater un achat mais jamais en inventer.'],
@@ -4887,7 +4893,9 @@ let AG_OFF=0, AG_EVS=null, AG_ERR=false, AG_SHARED=[]; // décalage de semaine �
 let AG_TEAM=localStorage.getItem('orx_agteam')!=='0'; // afficher les événements partagés (rôles gestion)
 function agPeutVoirPartages(){ const cu=currentUser(); return sessionStorage.getItem('orx_user')==='SECOURS'||(cu&&cu.role!=='membre'); }
 function agProprio(uid){ const u=(S.users||[]).find(x=>String(x.did||'')===String(uid)); return u?u.user:'?'; }
-const AG_TYPES={rdv:{lbl:'RDV',c:'#B8431E'},commande:{lbl:'Commande',c:'#E8622C'},entretien:{lbl:'Entretien',c:'#22c55e'},autre:{lbl:'Autre',c:'#38bdf8'}};
+const AG_TYPES={rdv:{lbl:'RDV',c:'#B8431E'},commande:{lbl:'Commande',c:'#E8622C'},contrat:{lbl:'Contrat',c:'#E8A020'},entretien:{lbl:'Entretien',c:'#22c55e'},autre:{lbl:'Autre',c:'#38bdf8'}};
+/* Salon où le robot annonce les contrats 3 h avant. Vide = aucun rappel. */
+function salonContrats(){ return String((S.settings&&S.settings.salonContrats)||'').trim(); }
 function agKey(){ const cu=currentUser(); return cu?String(cu.did||cu.user):String(sessionStorage.getItem('orx_user')||'anonyme'); }
 function agMonday(off){ const n=new Date(), d=(n.getDay()+6)%7; return new Date(n.getFullYear(),n.getMonth(),n.getDate()-d+off*7); }
 function agISO(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
@@ -4970,7 +4978,22 @@ function agEdit(id,iso,deb){
   const fin=e.fin||agHM(agMin(e.deb)+60);
   openModal(`<h3>${id?'✎ Modifier l\'':'📅 Nouvel '}événement</h3>
   <div class="f-row"><label class="f-lbl">Titre</label><input class="field" id="agT" value="${esc(e.titre)}" placeholder="RDV client, entretien recrue…"></div>
-  <div class="f-row"><label class="f-lbl">Type</label><select class="field" id="agTy">${Object.entries(AG_TYPES).map(([k,t])=>`<option value="${k}" ${e.type===k?'selected':''}>${t.lbl}</option>`).join('')}</select></div>
+  <div class="f-row"><label class="f-lbl">Type</label><select class="field" id="agTy" onchange="agTypeMaj()">${Object.entries(AG_TYPES).map(([k,t])=>`<option value="${k}" ${e.type===k?'selected':''}>${t.lbl}</option>`).join('')}</select></div>
+  <div id="agContrat" style="display:none;border:1px dashed rgba(232,160,32,.45);background:rgba(232,160,32,.05);border-radius:10px;padding:12px 14px;margin-bottom:14px">
+    <div class="f-row" style="margin-bottom:10px"><label class="f-lbl">Commercial à prévenir</label>
+      <select class="field" id="agCom">
+        <option value="">— personne —</option>
+        ${nomsPostes().map(n=>`<option ${String(e.commercial||'')===n?'selected':''}>${esc(n)}</option>`).join('')}
+      </select></div>
+    <label style="display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.84rem">
+      <input type="checkbox" id="agHebdo" style="width:17px;height:17px;accent-color:var(--accent)" ${e.hebdo?'checked':''}>
+      <span>🔁 <b>Contrat hebdomadaire</b> — se reconduit chaque semaine, même jour, même heure</span>
+    </label>
+    <p style="color:var(--muted);font-size:.75rem;margin:9px 0 0">
+      ${salonContrats()?'Le robot annoncera ce contrat <b>3 h avant</b> dans le salon réglé en Paramètres.'
+                      :'⚠️ Aucun salon réglé dans Paramètres : aucun rappel ne partira.'}
+    </p>
+  </div>
   <div class="f-row" style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px">
     <div><label class="f-lbl">Date</label><input class="field" type="date" id="agD" value="${e.date}"></div>
     <div><label class="f-lbl">Début</label><input class="field" type="time" id="agDe" value="${e.deb}"></div>
@@ -4985,13 +5008,23 @@ function agEdit(id,iso,deb){
     <button class="btn btn-gold" style="flex:1" onclick="agSave(${id||'null'})">Enregistrer</button>
     ${id?`<button class="btn btn-ghost" style="color:#f87171" onclick="agDel(${id})">🗑 Supprimer</button>`:''}
   </div>`);
+  agTypeMaj();
+}
+function agTypeMaj(){
+  const z=document.getElementById('agContrat');
+  if(z) z.style.display=$('#agTy').value==='contrat'?'':'none';
 }
 async function agSave(id){
   const titre=$('#agT').value.trim(); if(!titre) return toast('⚠️ Donne un titre à l\'événement');
   if(!SYNC.cli) return toast('⚠️ Synchronisation non configurée');
   let deb=$('#agDe').value||'14:00', fin=$('#agF').value;
   if(!fin||agMin(fin)<=agMin(deb)) fin=agHM(agMin(deb)+60);
-  const row={titre,type:$('#agTy').value,date:$('#agD').value,deb,fin,note:$('#agN').value.trim(),partage:!!($('#agPart')&&$('#agPart').checked)};
+  const type=$('#agTy').value;
+  const row={titre,type,date:$('#agD').value,deb,fin,note:$('#agN').value.trim(),partage:!!($('#agPart')&&$('#agPart').checked)};
+  if(type==='contrat'){
+    row.commercial=($('#agCom')&&$('#agCom').value)||'';
+    row.hebdo=!!($('#agHebdo')&&$('#agHebdo').checked);
+  } else { row.commercial=''; row.hebdo=false; }
   try{
     const q=SYNC.cli.from('oilroxwood_agenda');
     const {error}=id?await q.update(row).eq('id',id):await q.insert(Object.assign({uid:agKey()},row));
@@ -5419,6 +5452,7 @@ async function params(){
         <div class="f-row"><label class="f-lbl">N° de semaine</label><input class="field" id="p_sem" type="number" value="${S.settings.semaine}"></div>
         <div class="f-row"><label class="f-lbl">🎯 Objectif collectif (barils/sem., 0 = off)</label><input class="field" id="p_obj" type="number" value="${S.settings.objectif??0}"></div>
         <div class="f-row"><label class="f-lbl">⛽ Bidons max par employé et par semaine (0 = sans limite)</label><input class="field" id="p_cap" type="number" min="0" value="${capBidons()}"></div>
+        <div class="f-row"><label class="f-lbl">📜 Salon Discord des contrats (identifiant, vide = pas de rappel)</label><input class="field" id="p_salon" value="${esc(salonContrats())}" placeholder="ex. 1246584841785446480"></div>
       </div>
       <div style="margin:6px 0 16px;border-top:1px solid var(--line);padding-top:16px">
         <label class="f-lbl">💼 Salaires fixes minimum par poste (direction & co)</label>
@@ -5634,6 +5668,7 @@ function saveParams(){
   S.settings.top=[numOr($('#p_t1').value,15000),numOr($('#p_t2').value,10000),numOr($('#p_t3').value,5000)];
   S.settings.objectif=numOr($('#p_obj').value,0);
   S.settings.capBidons=numOr($('#p_cap').value,50);
+  S.settings.salonContrats=String($('#p_salon').value||'').replace(/\D/g,'');
   jlog('Modification des paramètres');
   save();
   sbPushNow(); // envoi immédiat vers la base partagée, sans différé

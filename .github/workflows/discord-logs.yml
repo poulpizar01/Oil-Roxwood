@@ -38,6 +38,11 @@ jobs:
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
         run: python3 scripts/fetch_presence.py || true
 
+      - name: Rappels de contrats (salon, 3h avant)
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        run: python3 scripts/rappels_contrats.py || true
+
       - name: Rappels d'agenda (MP 1h avant)
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}

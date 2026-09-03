@@ -27,7 +27,7 @@ choisis par elles. Personne n'y figure par défaut.
 
 **`admin.html` — le poste de contrôle.** L'espace membre : effectif, runs, feuilles
 de production, factures, relances, bilan comptable, quotas, primes, clôture du lundi,
-agenda, to-do, comptes-rendus de réunion, fiche de profil personnelle, journal d'audit et logs Discord. Connexion par Discord,
+agenda avec contrats, comptes-rendus de réunion, fiche de profil personnelle, journal d'audit et logs Discord. Connexion par Discord,
 données partagées entre administrateurs, permissions par rôle, factures imprimables.
 
 Deux pages satellites complètent l'ensemble : **`facture.html`** (facture autonome)
@@ -165,6 +165,7 @@ Quatre automatisations tournent sur GitHub Actions :
 | `backup.yml` | tous les jours à 03 h UTC | copie `data/etat.json` dans `backups/` |
 | `discord-logs.yml` | toutes les 15 min | récupère les logs de production et de fer depuis Discord |
 | `rappels-quota.yml` | vendredi 18 h UTC | rappelle son quota à chaque retardataire **dans son ticket** |
+| (dans `discord-logs.yml`) | toutes les 15 min | annonce les contrats de l'agenda **3 h avant**, dans le salon réglé en Paramètres |
 | `diag-discord.yml` | manuel | diagnostique les accès du bot aux salons |
 
 Ils ont besoin de ces secrets dans **Settings → Secrets and variables → Actions** :
