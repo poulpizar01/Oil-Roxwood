@@ -37,7 +37,7 @@ repart à la clôture (déjà le cas : elle efface les commandes employés).
 
 ---
 
-## 4. Modifier une facture déjà éditée
+## 4. ~~Modifier une facture déjà éditée~~ ✅ *fait en C-49*
 
 Une fois la facture émise, pouvoir revenir dessus et la corriger.
 

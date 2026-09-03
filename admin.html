@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-48</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-49</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -659,7 +659,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-48';
+const APP_VERSION='C-49';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -2248,6 +2248,10 @@ function fNew(){
       <td><button class="btn btn-sm btn-red" onclick="delL(${i})">✕</button></td></tr>`;
   }).join('');
   $('#factBody').innerHTML=`
+  ${FD._modifie!=null?`<div class="panel" style="margin-bottom:16px;border-color:rgba(232,160,32,.45);background:rgba(232,160,32,.06);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <span style="font-size:.9rem">✎ Tu modifies la <b>facture n°${FD._modifie}</b>, déjà émise. Elle gardera son numéro et son statut de paiement, et la modification sera inscrite au journal.</span>
+    <button class="btn btn-sm btn-ghost" onclick="fEditAnnuler()">↩ Abandonner</button>
+  </div>`:''}
   <div class="grid g3" style="margin-bottom:16px;position:relative;z-index:5">
     <div class="panel"><h3>Facture</h3>
       <div class="grid g2" style="gap:10px">
@@ -2307,10 +2311,11 @@ function fNew(){
     </span>
     ${FD.postop?'<span style="margin-left:auto;color:#4A9D6F;font-weight:800;font-size:1rem;white-space:nowrap">✔ Activée</span>':'<span style="margin-left:auto;color:var(--muted);font-size:.85rem;white-space:nowrap">cocher pour activer</span>'}
   </label>
-  <div style="display:flex;gap:12px">
-    <button class="btn btn-gold" onclick="saveFact()">💾 Enregistrer la facture</button>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <button class="btn btn-gold" onclick="saveFact()">${FD._modifie!=null?`💾 Enregistrer les modifications (n°${FD._modifie})`:'💾 Enregistrer la facture'}</button>
     <button class="btn btn-ghost" onclick="printSmart()">🖨️ Imprimer / PDF</button>
-    <button class="btn btn-ghost" onclick="newDraft();fNew()">↺ Réinitialiser</button>
+    ${FD._modifie!=null?'<button class="btn btn-ghost" onclick="fEditAnnuler()">↩ Abandonner la modification</button>'
+                      :'<button class="btn btn-ghost" onclick="newDraft();fNew()">↺ Réinitialiser</button>'}
   </div>`;
 }
 function updL(i,k,v){
@@ -2400,8 +2405,29 @@ function draftAsFact(){
 function saveFact(){
   if(!FD.client) return toast('⚠️ Indique le client');
   if(!factTotaux().ttc) return toast('⚠️ La facture est vide');
-  S.fact.factures.unshift(draftAsFact());
-  S.fact.compteur=Math.max(S.fact.compteur+1,FD.num+1);
+  /* Modification d'une facture déjà émise : on remplace au lieu d'ajouter, on ne
+     touche pas au compteur, et surtout on retire les lignes de « Ventes de la
+     semaine » que cette facture avait créées — sinon les bidons seraient comptés
+     deux fois. Ces lignes portent le numéro de facture depuis C-49 ; pour une
+     facture plus ancienne on ne peut pas les retrouver, et on le dit. */
+  const edition=FD._modifie!=null;
+  let avant=null, ventesOrphelines=false;
+  if(edition){
+    const i=S.fact.factures.findIndex(f=>f.num===FD._modifie);
+    if(i<0){ FD._modifie=null; return toast('⚠️ Facture introuvable — elle a dû être supprimée'); }
+    avant=S.fact.factures[i];
+    const nouvelle=draftAsFact();
+    nouvelle.statut=avant.statut;                       // on ne repasse pas une facture payée en attente
+    nouvelle.modifiee=nowSrv();
+    S.fact.factures[i]=nouvelle;
+    const V=(S.sheets&&S.sheets.ventesSem)||[];
+    const liees=V.filter(v=>v.fact===FD._modifie);
+    if(liees.length) S.sheets.ventesSem=V.filter(v=>v.fact!==FD._modifie);
+    else if(V.some(v=>normNom(v.client)===normNom(avant.client))) ventesOrphelines=true;
+  } else {
+    S.fact.factures.unshift(draftAsFact());
+    S.fact.compteur=Math.max(S.fact.compteur+1,FD.num+1);
+  }
   // cohérence Relances : la facture met à jour la dernière commande du client et clôt la relance en cours
   const cRel=cli(FD.client);
   if(cRel){ cRel.lastCmd=FD.date; delete cRel.relance; }
@@ -2419,7 +2445,7 @@ function saveFact(){
       ? noms.map((nom,i)=>({nom, q: Math.floor(qteB/noms.length) + (i<qteB%noms.length?1:0)})).filter(x=>x.q>0)
       : [{nom:(noms[0]||''), q:qteB}];
     const addVente=()=>{
-      parts.forEach(x=>S.sheets.ventesSem.push({date:FD.date,client:FD.client,quantite:x.q,qui:x.nom}));
+      parts.forEach(x=>S.sheets.ventesSem.push({date:FD.date,client:FD.client,quantite:x.q,qui:x.nom,fact:FD.num}));
       save();
     };
     if(S.sheets&&S.sheets.ventesSem) addVente();
@@ -2433,8 +2459,22 @@ function saveFact(){
     jlog(`⚠️ Facture n°${FD.num} (${FD.client}) : aucune ligne reconnue comme bidon, rien ajouté aux Ventes de la semaine`);
     toast('⚠️ Aucune ligne reconnue comme bidon — rien n\'a été ajouté aux Ventes de la semaine');
   }
-  sendLog('🧾 Facture n°'+FD.num, `Client : **${FD.client}**\nTotal TTC : **${money(factTotaux().ttc)}**\nÉmise par : ${FD.emetteur||'—'}`, 0xa78bfa);
-  newDraft(); save(); factures(); toast('💾 Facture enregistrée');
+  if(edition){
+    const chg=[];
+    if(avant.client!==FD.client) chg.push(`client ${avant.client} → ${FD.client}`);
+    if(Math.round(avant.ttc)!==Math.round(factTotaux().ttc)) chg.push(`total ${money(avant.ttc)} → ${money(factTotaux().ttc)}`);
+    if((avant.emetteur||'')!==(FD.emetteur||'')) chg.push(`émetteur ${avant.emetteur||'—'} → ${FD.emetteur||'—'}`);
+    if(String(avant.date)!==String(FD.date)) chg.push(`date ${frDate(avant.date)} → ${frDate(FD.date)}`);
+    jlog(`Facture n°${FD.num} modifiée${chg.length?' — '+chg.join(' · '):' (lignes retouchées)'}`);
+    if(ventesOrphelines) jlog(`⚠️ Facture n°${FD.num} : ses anciennes lignes de Ventes de la semaine sont antérieures au suivi par numéro — à corriger à la main`);
+    sendLog('✎ Facture n°'+FD.num+' modifiée', `Client : **${FD.client}**\nTotal TTC : **${money(factTotaux().ttc)}**${chg.length?'\n'+chg.map(c=>'· '+c).join('\n'):''}\nPar : ${(currentUser()||{}).user||'?'}`, 0xe8a020);
+  } else {
+    sendLog('🧾 Facture n°'+FD.num, `Client : **${FD.client}**\nTotal TTC : **${money(factTotaux().ttc)}**\nÉmise par : ${FD.emetteur||'—'}`, 0xa78bfa);
+  }
+  const numFait=FD.num, etaitEdition=edition;
+  newDraft(); save(); sbPushNow();
+  if(etaitEdition){ factTab='hist'; factures(); toast(`✎ Facture n°${numFait} mise à jour`+(ventesOrphelines?' — vérifie les Ventes de la semaine':'')); }
+  else { factures(); toast('💾 Facture enregistrée'); }
 }
 /* ---- historique ---- */
 function fHist(){
@@ -2446,6 +2486,7 @@ function fHist(){
     <td class="gold" style="font-weight:700">${money(f.ttc)}</td><td>${esc(f.emetteur||'—')}</td>
     <td><span class="badge ${f.statut==='payee'?'bg3':'bg0'}" style="cursor:pointer" title="Cliquer pour changer" onclick="togglePay(${i})">${f.statut==='payee'?'✔ Payée':'⏳ En attente'}</span></td>
     <td style="text-align:right;white-space:nowrap">
+      <button class="btn btn-sm btn-ghost" onclick="fEdit(${f.num})" title="Modifier cette facture">✎</button>
       <button class="btn btn-sm btn-ghost" onclick="printFact(S.fact.factures[${i}])">🖨️</button>
       <button class="btn btn-sm btn-red" onclick="if(confirm('Supprimer la facture n°${f.num} ?')){jlog('Suppression de la facture n°${f.num}');S.fact.factures.splice(${i},1);save();fHist();}">✕</button></td>
   </tr>`).join('')}</tbody></table>`:'<div class="empty">Aucune facture enregistrée</div>'}
@@ -2455,6 +2496,24 @@ function fHist(){
     <div class="panel kpi"><div class="lbl">En attente de paiement</div><div class="val">${money(F.filter(f=>f.statut!=='payee').reduce((a,f)=>a+f.ttc,0))}</div></div>
   </div>`:''}`;
 }
+/* Rouvre une facture émise dans le formulaire. Le brouillon en cours est écrasé :
+   on prévient s'il contenait quelque chose. */
+function fEdit(num){
+  if(isMembre()) return toast('👀 Consultation seule pour les membres');
+  const f=S.fact.factures.find(x=>x.num===num);
+  if(!f) return toast('⚠️ Facture introuvable');
+  if(FD&&FD._modifie==null&&(FD.client||FD.lignes.some(l=>nn(l.qte)>0))
+     &&!confirm('Le brouillon en cours sera remplacé par la facture n°'+num+'. Continuer ?')) return;
+  FD={num:f.num, date:String(f.date||'').slice(0,10), client:f.client, emetteur:f.emetteur||'',
+      postop:!!f.postop,
+      lignes:(f.lignes||[]).map(l=>({ref:l.ref,qte:l.qte,tva:l.tva,
+        ...(l.desc!==undefined?{desc:l.desc}:{}), ...(l.pu!==undefined?{pu:l.pu}:{})})),
+      _modifie:f.num};
+  if(!FD.lignes.length) FD.lignes=[{ref:'CMD',qte:0,tva:0.05}];
+  factTab='new'; factures();
+  toast(`✎ Facture n°${num} ouverte — modifie puis enregistre`);
+}
+function fEditAnnuler(){ newDraft(); factTab='hist'; factures(); toast('↩ Modification abandonnée'); }
 function togglePay(i){ const f=S.fact.factures[i]; f.statut=f.statut==='payee'?'attente':'payee'; save(); sbPushNow(); fHist(); toast(f.statut==='payee'?`✔ Facture n°${f.num} marquée payée`:`⏳ Facture n°${f.num} repassée en attente`); }
 /* ---- bases ---- */
 function fClients(){
@@ -3454,6 +3513,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-49',d:'03/09/2026',t:'Une facture émise redevient modifiable',items:[
+   ['✎','Rouvrir une facture de l\'historique','Un bouton ✎ à côté de chaque facture la recharge dans le formulaire : client, date, émetteur, lignes, TVA, Post OP — tout est modifiable. Elle garde son numéro et son statut de paiement, et le compteur ne bouge pas.'],
+   ['🧮','Les bidons ne sont plus comptés deux fois','C\'était le vrai piège : une facture ajoute ses bidons aux « Ventes de la semaine » à l\'émission. La modifier sans y toucher aurait doublé les quantités. Les lignes de vente portent désormais le numéro de la facture qui les a créées, et une modification remplace les siennes au lieu d\'en rajouter.'],
+   ['📜','Trace au journal, rien sur la facture','Le journal note ce qui a changé — client, total, émetteur, date — et Discord reçoit un message « facture modifiée ». La facture imprimée, elle, ne porte aucune mention : c\'est un document propre.'],
+   ['⚠️','Le cas des anciennes factures','Celles émises avant cette version n\'ont pas de lien vers leurs lignes de vente : si tu en modifies une, le journal te prévient qu\'il faut vérifier les Ventes de la semaine à la main.'],
+ ]},
  {v:'C-48',d:'03/09/2026',t:'Vente rapide : plafond employé et nom au bon endroit',items:[
    ['⛽','50 bidons par employé et par semaine','Le formulaire affiche en direct ce qu\'il reste : « Marcus a déjà pris 20 bidons — il lui en reste 30 sur 50 ». Au-delà, l\'enregistrement est refusé. Le compteur repart tout seul à la clôture, qui efface déjà les commandes employés. Le plafond se règle dans Paramètres (0 = sans limite).'],
    ['👤','Le nom, seulement quand il sert','Pour un citoyen le champ nom disparaît — il ne servait à rien. Pour un employé il devient un menu déroulant de l\'effectif : plus de faute de frappe, et le décompte tombe sur la bonne personne.'],
