@@ -16397,8 +16397,8 @@
   "rolesDiscordV": 3
  },
  "_cid": "niflhw73kv",
- "_maj": 1788448840822,
- "_rev": "z55iv3yf48l-mtloak0d",
+ "_maj": 1788448892064,
+ "_rev": "319sqr2hih3-mtloamhd",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16421,7 +16421,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788448840822
+  "_tables": 1788448892064
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T15:21:30.829Z",
+  "maj": "2026-09-03T15:21:34.033Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -21515,7 +21515,77 @@
   ],
   "oilroxwood_demandes": [],
   "oilroxwood_frecues": [],
-  "oilroxwood_agenda": []
+  "oilroxwood_agenda": [],
+  "oilroxwood_bot_ordres": [
+   {
+    "type": "eligibilite_image",
+    "payload": {
+     "noms": [
+      "Stella Collins",
+      "Diego Herrera",
+      "Tyler Collins",
+      "Nikko Mount",
+      "Thomas Boyer",
+      "Emma Collins-rodriguez",
+      "Juan Sanchez",
+      "Julio Collins",
+      "Laurent Roquel",
+      "William Rodriguez-collins",
+      "Alex Turner",
+      "Ashley Cooper",
+      "Bobby Rousseau",
+      "Jason Harper",
+      "Mike Brooks",
+      "Andrew Clark",
+      "Elliot Mayers",
+      "Jojo Lappach",
+      "Joseph Purple",
+      "Saad Lzaar",
+      "Savannah Brooks",
+      "Sevan Vargas",
+      "Alejandro Varrgas",
+      "Amine Nasser",
+      "Calvin Praline",
+      "Eden Birds",
+      "Enzo Vargas",
+      "Fred Montaigu",
+      "Helena Rhosé",
+      "Ilyes Moutaouk",
+      "John Scoupio",
+      "Johnatan Rodriguez",
+      "Joseph Larose",
+      "Luca Morel",
+      "Marcus Johnson",
+      "Nills Truduk",
+      "Ray Buffalo",
+      "Rico Garcia",
+      "Strya Ryuzen",
+      "Tommy Helfinger",
+      "Tony Clark",
+      "Xavier Collins",
+      "Yuri Jing",
+      "Abdel Hafy",
+      "Alexander Hayes",
+      "Baza Kov",
+      "carlos dupont",
+      "Elliot Adkins",
+      "Hirsute Maasai",
+      "Jayson Simth",
+      "John Alvarez",
+      "John Daltone",
+      "Junior Winchester",
+      "Mia Santorelli",
+      "Miles Cole",
+      "Thomas Bernard",
+      "Thomas Cortello",
+      "Tony Bellino",
+      "Tyrone Harper",
+      "Wagner Rischtoffen"
+     ]
+    },
+    "id": 1788448894274
+   }
+  ]
  },
  "reunions": []
 }
