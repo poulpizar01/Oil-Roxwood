@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-55</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-56</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -676,7 +676,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-55';
+const APP_VERSION='C-56';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3454,6 +3454,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-56',d:'03/09/2026',t:'Le contrat s\'adresse au bon monde',items:[
+   ['🎯','« Commercial à prévenir » ne liste plus que les commerciaux','Le menu proposait tout l\'encadrement — RH, comptables, direction. On réunit maintenant les trois endroits où le métier s\'écrit : le poste en effectif, le grade en fiche RH, le rôle du compte. Les absents restent listés, un contrat se pose souvent pour la semaine suivante.'],
+   ['📣','Ou le pôle entier, d\'un coup','Nouvelle entrée « Tout le pôle commercial » : le robot mentionne les rôles Discord commerciaux au lieu d\'une personne. Pratique quand le contrat revient à qui est disponible.'],
+   ['👁️','Visible sans ouvrir','Survoler un contrat dans l\'agenda indique qui sera prévenu et s\'il est hebdomadaire.'],
+ ]},
  {v:'C-55',d:'03/09/2026',t:'Le bot répond de nouveau',items:[
    ['🤖','« Poster sur Discord » dit enfin la vérité','Le bouton attendait la réponse du bot par le temps réel de Supabase, qui n\'existe plus, et se rabattait sur une seule vérification à 25 secondes — faite dans la mémoire du navigateur, pas dans le dépôt. Le message « le bot semble hors ligne » tombait donc à tous les coups, alors que l\'image partait bel et bien. On relit maintenant le dépôt toutes les 8 secondes pendant 90 secondes.'],
    ['📤','L\'ordre part vraiment avant qu\'on attende','L\'ordre est écrit dans le dépôt avant le début de l\'attente. Sans jeton d\'écriture, le bouton le dit franchement au lieu de faire semblant.'],
@@ -4927,6 +4932,39 @@ function agProprio(uid){ const u=(S.users||[]).find(x=>String(x.did||'')===Strin
 const AG_TYPES={rdv:{lbl:'RDV',c:'#B8431E'},commande:{lbl:'Commande',c:'#E8622C'},contrat:{lbl:'Contrat',c:'#E8A020'},entretien:{lbl:'Entretien',c:'#22c55e'},autre:{lbl:'Autre',c:'#38bdf8'}};
 /* Salon où le robot annonce les contrats 3 h avant. Vide = aucun rappel. */
 function salonContrats(){ return String((S.settings&&S.settings.salonContrats)||'').trim(); }
+/* ---- Qui prévenir pour un contrat (C-56) ----
+   Le menu proposait `nomsPostes()`, c'est-à-dire tout l'encadrement : RH,
+   comptables, direction. Un contrat ne concerne que le pôle commercial, et
+   chercher le bon nom au milieu de quinze autres n'aide personne.
+
+   On réunit donc les trois endroits où « être commercial » s'écrit dans le
+   dashboard — le poste en effectif, le grade en fiche RH, le rôle du compte —
+   parce qu'aucun des trois n'est renseigné pour tout le monde. Les absents
+   restent listés : un contrat se pose souvent pour la semaine suivante, et
+   qui est en congé aujourd'hui ne l'est pas forcément jeudi.
+
+   Si aucune de ces trois pistes ne donne rien (rôles pas encore attribués,
+   effectif vide), on retombe sur la liste complète : un menu vide serait
+   pire que trop long. */
+function nomsCommerciaux(){
+  const m=new Map(), add=n=>{ n=String(n||'').trim(); if(n&&!m.has(n.toLowerCase())) m.set(n.toLowerCase(),n); };
+  (S.runners||[]).filter(r=>estCommercial(r)).forEach(r=>add(r.nom));
+  ((S.sheets&&S.sheets.rh)||[]).forEach(x=>{ if(/commercial/i.test(String(x.grade||''))) add(x.nom); });
+  (S.users||[]).filter(u=>u.role==='commercial').forEach(u=>add(u.user));
+  const l=[...m.values()].sort((a,b)=>a.localeCompare(b));
+  return l.length?l:nomsPostes();
+}
+/* Les rôles Discord du pôle commercial, pour pouvoir mentionner le rôle
+   entier plutôt qu'une personne — utile quand le contrat revient à qui est
+   disponible. La valeur stockée est le sentinelle `@role` ; le robot la
+   traduit en <@&…> au moment du rappel. */
+function rolesCommerciauxDiscord(){
+  return (rolesDiscord()||[]).filter(x=>x&&x.role==='commercial'&&x.id).map(x=>String(x.id));
+}
+const AG_COM_ROLE='@role';
+function agComLibelle(v){
+  return v===AG_COM_ROLE?'tout le pôle commercial':String(v||'');
+}
 function agKey(){ const cu=currentUser(); return cu?String(cu.did||cu.user):String(sessionStorage.getItem('orx_user')||'anonyme'); }
 function agMonday(off){ const n=new Date(), d=(n.getDay()+6)%7; return new Date(n.getFullYear(),n.getMonth(),n.getDate()-d+off*7); }
 function agISO(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
@@ -4981,7 +5019,7 @@ async function agenda(){
               const t=AG_TYPES[e.type]||AG_TYPES.autre;
               const top=agMin(e.deb)/60*H, hgt=Math.max(24,(Math.max(agMin(e.fin),agMin(e.deb)+30)-agMin(e.deb))/60*H-2);
               return `<div class="ag-ev" style="top:${top}px;height:${hgt}px;background:${e.partage?'rgba(242,183,5,.20)':t.c+'26'};border-color:${e.partage?'#F2B705':t.c};color:var(--ink);${e.partage?'border-width:2px':''}"
-                onclick="event.stopPropagation();agEdit(${e.id})" title="${esc(e.titre)}${e.partage?' · partagé avec la direction':''}">
+                onclick="event.stopPropagation();agEdit(${e.id})" title="${esc(e.titre)}${e.commercial?' · à prévenir : '+esc(agComLibelle(e.commercial)):''}${e.hebdo?' · hebdomadaire':''}${e.partage?' · partagé avec la direction':''}">
                 <span style="color:${t.c}">${esc(e.deb||'')}</span> ${e.partage?'📢 ':''}${esc(e.titre)}${e.note?`<small>${esc(e.note)}</small>`:''}</div>`;
             }).join('')}
             ${(AG_TEAM?AG_SHARED:[]).filter(e=>e.date===iso).map(e=>{
@@ -5014,7 +5052,8 @@ function agEdit(id,iso,deb){
     <div class="f-row" style="margin-bottom:10px"><label class="f-lbl">Commercial à prévenir</label>
       <select class="field" id="agCom">
         <option value="">— personne —</option>
-        ${nomsPostes().map(n=>`<option ${String(e.commercial||'')===n?'selected':''}>${esc(n)}</option>`).join('')}
+        ${rolesCommerciauxDiscord().length?`<option value="${AG_COM_ROLE}" ${e.commercial===AG_COM_ROLE?'selected':''}>📣 Tout le pôle commercial (rôle Discord)</option>`:''}
+        ${nomsCommerciaux().map(n=>`<option ${String(e.commercial||'')===n?'selected':''}>${esc(n)}</option>`).join('')}
       </select></div>
     <label style="display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.84rem">
       <input type="checkbox" id="agHebdo" style="width:17px;height:17px;accent-color:var(--accent)" ${e.hebdo?'checked':''}>

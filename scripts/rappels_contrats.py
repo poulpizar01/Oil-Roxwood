@@ -58,13 +58,38 @@ def norm(s):
     return "".join(c for c in s if unicodedata.category(c) != "Mn").lower().strip()
 
 
+COM_ROLE = "@role"      # sentinelle posée par le dashboard : « tout le pôle »
+
+
+def roles_commerciaux():
+    """Les identifiants de rôle Discord marqués « commercial » dans Paramètres.
+
+    Il y en a deux chez Oil Roxwood (Responsable commercial et Commercial) ;
+    on les mentionne tous les deux. Discord ne notifie qu'une fois quelqu'un
+    qui porte les deux.
+    """
+    table = (E.get("settings") or {}).get("rolesDiscord") or []
+    return [str(x.get("id")) for x in table
+            if isinstance(x, dict) and x.get("role") == "commercial" and str(x.get("id") or "").isdigit()]
+
+
 def mention(nom):
-    """<@id> si on connaît son compte Discord, sinon le nom en gras."""
+    """Rend le texte de mention et la liste d'ids à autoriser.
+
+    Trois cas : le pôle entier (mention de rôle), une personne dont on connaît
+    le compte Discord (mention utilisateur), ou un nom qu'on n'a pas su relier
+    — écrit en gras, sans notification, plutôt que rien du tout.
+    """
+    if str(nom) == COM_ROLE:
+        ids = roles_commerciaux()
+        if not ids:
+            return "**le pôle commercial**", [], []
+        return " ".join(f"<@&{i}>" for i in ids), [], ids
     n = norm(nom)
     for u in users:
         if norm(u.get("user")) == n and str(u.get("did") or "").isdigit():
-            return f"<@{u['did']}>"
-    return f"**{nom}**" if nom else ""
+            return f"<@{u['did']}>", [str(u["did"])], []
+    return (f"**{nom}**" if nom else ""), [], []
 
 
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
@@ -77,10 +102,11 @@ def en_francais(d):
     return f"{JOURS[d.weekday()]} {d.day} {MOIS[d.month - 1]} à {d:%H:%M}"
 
 
-def poster(contenu, ids):
+def poster(contenu, ids, roles=()):
     req = urllib.request.Request(
         f"https://discord.com/api/v10/channels/{salon}/messages",
-        data=json.dumps({"content": contenu, "allowed_mentions": {"users": ids}}).encode(),
+        data=json.dumps({"content": contenu,
+                         "allowed_mentions": {"users": list(ids), "roles": list(roles)}}).encode(),
         headers={"Authorization": f"Bot {BOT}", "Content-Type": "application/json", "User-Agent": UA},
         method="POST")
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -116,17 +142,16 @@ for c in contrats:
         continue
 
     qui = c.get("commercial") or ""
-    men = mention(qui)
-    ids = [men[2:-1]] if men.startswith("<@") else []
+    men, ids, roles = mention(qui)
     corps = (
         f'📜 **Contrat dans 3 heures** — {c.get("titre") or "sans titre"}\n'
         f'🕒 {en_francais(debut)}'
-        + (f'\n👤 {men}' if men else "")
+        + (f'\n{"📣" if roles else "👤"} {men}' if men else "")
         + (f'\n📝 {c.get("note")}' if c.get("note") else "")
         + (f'\n🔁 Contrat hebdomadaire' if c.get("hebdo") else "")
     )
     try:
-        poster(corps, ids)
+        poster(corps, ids, roles)
         faits.add(cle)
         envoyes += 1
     except urllib.error.HTTPError as e:
