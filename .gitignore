@@ -31,3 +31,9 @@ desktop.ini
 *.tmp
 *.bak
 ~$*
+
+# Livraisons de Claude : archives de travail, pas du site.
+# Elles sont parties une fois par erreur (deux .zip, 149 Ko) — ce n'est rien
+# de confidentiel, mais ça n'a rien à faire dans un dépôt public.
+Claude outputs/
+*.zip
