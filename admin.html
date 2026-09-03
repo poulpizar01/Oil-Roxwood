@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-43</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-44</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -130,11 +130,60 @@ const GRADES = [
 ];
 const GR_RESP = 4;     // index du Responsable Runner dans GRADES
 const GR_MAX_AUTO = 3; // dernier grade atteignable par montée automatique (Expert)
+
+/* Les valeurs ci-dessus sont les valeurs d'usine. Elles restent ici pour qu'une
+   installation neuve fonctionne sans réglage, mais la direction peut les changer
+   depuis Paramètres sans toucher au code : les surcharges vivent dans
+   S.settings.grades et sont recopiées DANS le tableau GRADES lui-même.
+
+   Pourquoi les recopier plutôt que passer par un accesseur : GRADES est lu à une
+   quinzaine d'endroits (montées, descentes, primes, imports, bilan). Muter le
+   tableau en place fait que tout le reste du fichier continue de fonctionner sans
+   qu'une seule de ces lectures ait à changer — donc sans risque d'en oublier une.
+
+   Le nom d'un grade n'est pas modifiable : il sert de clé de correspondance avec
+   la feuille RH, la Tablette et le pointage. Le renommer casserait les imports. */
+const GRADES_DEF = GRADES.map(g => ({...g}));
+function appliquerGrades(){
+  const c = (S.settings && S.settings.grades) || [];
+  GRADES.forEach((g, i) => {
+    const usine = GRADES_DEF[i], perso = c[i] || {};
+    const nb = (v, defaut) => (v===''||v===null||v===undefined||!isFinite(+v)) ? defaut : Math.max(0, +v);
+    g.quota = nb(perso.quota, usine.quota);
+    g.mult  = nb(perso.mult,  usine.mult);
+    // un grade « au mérite » n'a pas de seuil de montée : il ne s'atteint pas au compteur
+    g.montee = usine.merite ? null : nb(perso.montee, usine.montee);
+  });
+}
+function grSet(i,champ,val){
+  if(!GRADES[i]) return;
+  S.settings.grades = S.settings.grades || [];
+  while(S.settings.grades.length < GRADES.length) S.settings.grades.push({});
+  const v = (val===''||!isFinite(+val)) ? null : Math.max(0,+val);
+  S.settings.grades[i] = {...S.settings.grades[i], [champ]: v};
+  appliquerGrades();
+  const libelle = {quota:'quota', mult:'multiplicateur', montee:'seuil de montée'}[champ]||champ;
+  jlog(`Barème : ${GRADES[i].nom} · ${libelle} → ${GRADES[i][champ]}`);
+  save(); sbPushNow(); params();
+  toast(`📐 ${GRADES[i].nom} · ${libelle} : ${GRADES[i][champ]}`);
+}
+function grReset(){
+  if(!confirm('Revenir aux quotas, multiplicateurs et seuils d\'origine ?')) return;
+  delete S.settings.grades;
+  appliquerGrades();
+  jlog('Barème des grades : retour aux valeurs d\'usine');
+  save(); sbPushNow(); params();
+  toast('↺ Barème remis aux valeurs d\'usine');
+}
+function gradesPersonnalises(){
+  return GRADES.some((g,i)=>g.quota!==GRADES_DEF[i].quota||g.mult!==GRADES_DEF[i].mult||g.montee!==GRADES_DEF[i].montee);
+}
 const LS_KEY = 'oilroxwood_admin_v1';
 const DEFAULT_HASH = null; // défini au premier login avec le mdp par défaut
 
 /* ================== ÉTAT ================== */
 let S = load();
+appliquerGrades();   // les réglages de la direction priment sur les valeurs d'usine
 // Réinitialisation unique du mot de passe (juillet 2026) : retour à « roxwood ».
 if(!localStorage.getItem('orx_pwfix1')){
   S.passHash=null;
@@ -608,7 +657,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-43';
+const APP_VERSION='C-44';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -934,6 +983,7 @@ function applyLang(){
 applyLang();
 let VIEW='overview';
 function show(v){
+  appliquerGrades();   // une synchro a pu changer les barèmes depuis le dernier rendu
   const al=allowedViews();
   if(!al.includes(v)) v=al[0]||'overview'; // vue non autorisée → première vue permise
   VIEW=v;
@@ -1441,6 +1491,7 @@ async function semaine(){
   if(q){ const el=document.getElementById('semSearchInput'); if(el){ el.focus(); el.setSelectionRange(el.value.length,el.value.length); } }
 }
 function closeWeek(){
+  appliquerGrades();   // la clôture calcule primes et montées : on part des barèmes à jour
   if(!S.runners.length) return toast('Aucun runner à clôturer');
   // la semaine qu'on clôture = celle d'HIER (heure de Paris) : une clôture le lundi 13/07 (S29) ferme la semaine 28
   let semClose=isoWeek(dateParis(nowSrv()-86400000));
@@ -3323,6 +3374,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-44',d:'02/09/2026',t:'Le barème des grades sort du code',items:[
+   ['📐','Quotas et multiplicateurs réglables','Paramètres → Barème des grades : le quota hebdomadaire, le multiplicateur de prime et le seuil de montée de chaque grade se changent à la main. Jusqu\'ici ces cinq lignes étaient écrites dans le code — il fallait me passer commande pour bouger un chiffre.'],
+   ['🧾','L\'historique n\'est jamais recalculé','Un changement de barème vaut pour la semaine en cours : primes projetées, montées et descentes proposées. Les semaines déjà closes gardent les chiffres avec lesquels elles ont été calculées, et l\'écran le dit.'],
+   ['🔒','Deux garde-fous','Le nom d\'un grade reste figé : il sert de clé de correspondance avec la feuille RH, la Tablette et le pointage, le renommer casserait les imports. Et Responsable Runner n\'a pas de seuil de montée modifiable — il s\'attribue au mérite, pas au compteur.'],
+   ['↺','Retour aux valeurs d\'usine','Un bouton, et tout revient aux réglages d\'origine.'],
+ ]},
  {v:'C-43',d:'02/09/2026',t:'Les photos sortent de la base',items:[
    ['📥','Retour des archives Supabase','29 factures reçues, 9 événements d\'agenda, 3 to-do, 2 notes clients et 4 demandes d\'accès sont de retour. Elles étaient restées derrière quand on a quitté Supabase.'],
    ['📎','Une photo est un fichier, plus une chaîne de caractères','Chaque photo de facture pesait 60 à 80 Ko encodés à l\'intérieur de la base partagée — et cette base est relue par tous les navigateurs ouverts toutes les 45 secondes. Les 29 photos d\'archive sont devenues de vrais fichiers dans data/factures-recues/, et les nouvelles y vont directement. La base est repassée de 3 Mo à 585 Ko.'],
@@ -5390,6 +5447,39 @@ async function params(){
         <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(this)">
       </div>
     </div>
+  </div>
+  <div class="panel" style="margin-top:18px;overflow-x:auto">
+    <h3 style="display:flex;justify-content:space-between;align-items:center">📐 Barème des grades
+      ${gradesPersonnalises()?`<button class="btn btn-sm btn-ghost" onclick="grReset()">↺ Valeurs d'usine</button>`:''}</h3>
+    <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px">
+      Le quota hebdomadaire, le multiplicateur de prime et le seuil de montée de chaque grade.
+      <b>Modifier une valeur ici change les calculs de la semaine en cours</b> — primes projetées,
+      montées et descentes proposées. Les semaines déjà closes gardent les chiffres avec lesquels
+      elles ont été calculées : l'historique n'est jamais recalculé.
+    </p>
+    <table><thead><tr>
+      <th>Grade</th><th style="text-align:right">Quota hebdo</th>
+      <th style="text-align:right">Multiplicateur</th><th style="text-align:right">Montée</th>
+    </tr></thead><tbody>
+      ${GRADES.map((g,i)=>`<tr>
+        <td><span class="badge ${g.cls}">${g.nom}</span></td>
+        <td style="text-align:right"><input class="field" type="number" min="0" step="100" style="width:120px;padding:6px 9px;text-align:right"
+             value="${g.quota}" onchange="grSet(${i},'quota',this.value)"> <small style="color:var(--muted)">barils</small></td>
+        <td style="text-align:right"><input class="field" type="number" min="0" step="0.1" style="width:90px;padding:6px 9px;text-align:right"
+             value="${g.mult}" onchange="grSet(${i},'mult',this.value)"></td>
+        <td style="text-align:right">${g.merite
+          ? `<span style="color:var(--muted);font-size:.78rem">🏅 au mérite</span>`
+          : i===0 ? `<span style="color:var(--muted);font-size:.78rem">grade d'entrée</span>`
+          : `<input class="field" type="number" min="0" step="100" style="width:120px;padding:6px 9px;text-align:right"
+               value="${g.montee}" onchange="grSet(${i},'montee',this.value)"> <small style="color:var(--muted)">barils</small>`}</td>
+      </tr>`).join('')}
+    </tbody></table>
+    <p style="color:var(--muted);font-size:.74rem;margin-top:8px">
+      Le <b>nom</b> d'un grade ne se change pas ici : il sert de clé de correspondance avec la feuille RH,
+      la Tablette et le pointage — le renommer casserait les imports.
+      La colonne <b>Montée</b> est le seuil à atteindre pour accéder à ce grade.
+      ${gradesPersonnalises()?'<b style="color:var(--accent)"> Barème personnalisé actif.</b>':''}
+    </p>
   </div>
   <div class="panel" style="margin-top:18px;overflow-x:auto">
     <h3>🎖️ Connexion par rôle Discord</h3>
