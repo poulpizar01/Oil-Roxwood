@@ -3457,6 +3457,7 @@ function ferDel(id){
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
  {v:'C-57',d:'03/09/2026',t:'Le fer se relève tout seul',items:[
+   ['📣','Le contrat prévient le service, pas une personne','Le menu « Qui prévenir » propose en premier « Service commercial — tout le rôle », et c\'est le choix par défaut : un contrat revient à qui est disponible ce jour-là. Nommer quelqu\'un reste possible, plus bas dans la liste.'],
    ['🔍','Le relevé était cassé depuis le début','Le robot cherchait un nom écrit en gras dans les messages du salon. Or ces messages sont des fiches structurées, sans gras : il ne trouvait rien et attribuait l\'achat à l\'auteur du message — le webhook. La colonne restait donc vide pour tout le monde. Il lit maintenant le champ « playerCharacter », c\'est-à-dire le nom de la fiche RP, celui de l\'effectif.'],
    ['🗑️','« Noté à la main » supprimée','Elle n\'existait que parce que le relevé ne marchait pas. Garder une saisie parallèle à un relevé qui fonctionne, c\'est garder deux vérités pour un même chiffre. Les valeurs déjà notées restent dans l\'historique, elles ne sont simplement plus modifiables.'],
    ['🪪','Rattrapage par identifiant Discord','Si le nom RP de quelqu\'un change, ses achats continuent d\'être comptés : le log porte aussi l\'identifiant Discord, et le dashboard s\'en sert quand le nom ne colle plus.'],
@@ -4993,16 +4994,22 @@ function nomsCommerciaux(){
   const l=[...m.values()].sort((a,b)=>a.localeCompare(b));
   return l.length?l:nomsPostes();
 }
-/* Les rôles Discord du pôle commercial, pour pouvoir mentionner le rôle
-   entier plutôt qu'une personne — utile quand le contrat revient à qui est
-   disponible. La valeur stockée est le sentinelle `@role` ; le robot la
-   traduit en <@&…> au moment du rappel. */
-function rolesCommerciauxDiscord(){
-  return (rolesDiscord()||[]).filter(x=>x&&x.role==='commercial'&&x.id).map(x=>String(x.id));
+/* Un contrat s'adresse au service, pas à quelqu'un en particulier : c'est
+   celui qui est disponible ce jour-là qui le prend. Le choix par défaut est
+   donc la mention du rôle Discord @Service commercial ; nommer une personne
+   reste possible, mais devient l'exception.
+
+   La valeur stockée est la sentinelle `@role`, que le robot traduit en <@&…>
+   au moment du rappel. L'identifiant est modifiable dans l'état partagé
+   (`settings.roleCommercial`) si le rôle change un jour. */
+const ROLE_SERVICE_COM_DEF='1246586673140203601';   // @Service commercial
+function roleServiceCommercial(){
+  const v=String((S.settings&&S.settings.roleCommercial)||'').replace(/\D/g,'');
+  return v||ROLE_SERVICE_COM_DEF;
 }
 const AG_COM_ROLE='@role';
 function agComLibelle(v){
-  return v===AG_COM_ROLE?'tout le pôle commercial':String(v||'');
+  return v===AG_COM_ROLE?'le service commercial':String(v||'');
 }
 function agKey(){ const cu=currentUser(); return cu?String(cu.did||cu.user):String(sessionStorage.getItem('orx_user')||'anonyme'); }
 function agMonday(off){ const n=new Date(), d=(n.getDay()+6)%7; return new Date(n.getFullYear(),n.getMonth(),n.getDate()-d+off*7); }
@@ -5088,11 +5095,13 @@ function agEdit(id,iso,deb){
   <div class="f-row"><label class="f-lbl">Titre</label><input class="field" id="agT" value="${esc(e.titre)}" placeholder="RDV client, entretien recrue…"></div>
   <div class="f-row"><label class="f-lbl">Type</label><select class="field" id="agTy" onchange="agTypeMaj()">${Object.entries(AG_TYPES).map(([k,t])=>`<option value="${k}" ${e.type===k?'selected':''}>${t.lbl}</option>`).join('')}</select></div>
   <div id="agContrat" style="display:none;border:1px dashed rgba(232,160,32,.45);background:rgba(232,160,32,.05);border-radius:10px;padding:12px 14px;margin-bottom:14px">
-    <div class="f-row" style="margin-bottom:10px"><label class="f-lbl">Commercial à prévenir</label>
+    <div class="f-row" style="margin-bottom:10px"><label class="f-lbl">Qui prévenir</label>
       <select class="field" id="agCom">
-        <option value="">— personne —</option>
-        ${rolesCommerciauxDiscord().length?`<option value="${AG_COM_ROLE}" ${e.commercial===AG_COM_ROLE?'selected':''}>📣 Tout le pôle commercial (rôle Discord)</option>`:''}
+        <option value="${AG_COM_ROLE}" ${(e.commercial===AG_COM_ROLE||(!e.id&&!e.commercial))?'selected':''}>📣 Service commercial — tout le rôle</option>
+        <option value="" ${(e.id&&!e.commercial)?'selected':''}>— personne —</option>
+        <optgroup label="Une personne en particulier">
         ${nomsCommerciaux().map(n=>`<option ${String(e.commercial||'')===n?'selected':''}>${esc(n)}</option>`).join('')}
+        </optgroup>
       </select></div>
     <label style="display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.84rem">
       <input type="checkbox" id="agHebdo" style="width:17px;height:17px;accent-color:var(--accent)" ${e.hebdo?'checked':''}>

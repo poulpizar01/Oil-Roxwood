@@ -58,33 +58,30 @@ def norm(s):
     return "".join(c for c in s if unicodedata.category(c) != "Mn").lower().strip()
 
 
-COM_ROLE = "@role"      # sentinelle posée par le dashboard : « tout le pôle »
+COM_ROLE = "@role"                       # sentinelle posée par le dashboard
+ROLE_SERVICE_COM = "1246586673140203601"  # @Service commercial
 
 
-def roles_commerciaux():
-    """Les identifiants de rôle Discord marqués « commercial » dans Paramètres.
+def role_service_commercial():
+    """Le rôle à mentionner pour « Service commercial ».
 
-    Il y en a deux chez Oil Roxwood (Responsable commercial et Commercial) ;
-    on les mentionne tous les deux. Discord ne notifie qu'une fois quelqu'un
-    qui porte les deux.
+    Réglable dans l'état partagé (`settings.roleCommercial`) au cas où le rôle
+    changerait ; sinon c'est celui du serveur d'aujourd'hui.
     """
-    table = (E.get("settings") or {}).get("rolesDiscord") or []
-    return [str(x.get("id")) for x in table
-            if isinstance(x, dict) and x.get("role") == "commercial" and str(x.get("id") or "").isdigit()]
+    v = str(((E.get("settings") or {}).get("roleCommercial")) or "").strip()
+    return v if v.isdigit() else ROLE_SERVICE_COM
 
 
 def mention(nom):
     """Rend le texte de mention et la liste d'ids à autoriser.
 
-    Trois cas : le pôle entier (mention de rôle), une personne dont on connaît
-    le compte Discord (mention utilisateur), ou un nom qu'on n'a pas su relier
-    — écrit en gras, sans notification, plutôt que rien du tout.
+    Trois cas : le service entier (mention de rôle), une personne dont on
+    connaît le compte Discord (mention utilisateur), ou un nom qu'on n'a pas su
+    relier — écrit en gras, sans notification, plutôt que rien du tout.
     """
     if str(nom) == COM_ROLE:
-        ids = roles_commerciaux()
-        if not ids:
-            return "**le pôle commercial**", [], []
-        return " ".join(f"<@&{i}>" for i in ids), [], ids
+        rid = role_service_commercial()
+        return f"<@&{rid}>", [], [rid]
     n = norm(nom)
     for u in users:
         if norm(u.get("user")) == n and str(u.get("did") or "").isdigit():
