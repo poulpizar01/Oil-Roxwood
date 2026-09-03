@@ -16396,9 +16396,9 @@
   ],
   "rolesDiscordV": 3
  },
- "_cid": "b0l0f72myrd",
+ "_cid": "0ygzy72gx38",
  "_maj": 1788471037496,
- "_rev": "klkvierw3u-mtm1hx4h",
+ "_rev": "x4f8wjgpfyh-mtm1i0xz",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16421,7 +16421,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788470857028
+  "_tables": 1788471037496
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T21:31:09.425Z",
+  "maj": "2026-09-03T21:31:14.375Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
