@@ -33,6 +33,26 @@ from zoneinfo import ZoneInfo
 
 import etat
 
+# ---------------------------------------------------------------------------
+# EN VEILLE DEPUIS LE 3 SEPTEMBRE 2026.
+#
+# Ce rappel est desormais envoye par le bot Discord (cogs/site_bridge.py), qui
+# verifie les contrats CHAQUE MINUTE. GitHub, lui, met les taches planifiees des
+# depots publics en file d'attente : ce workflow demande a passer toutes les 15
+# minutes et passe en realite toutes les 2 a 4 heures. Un rappel cale 3 h avant
+# un contrat n'avait donc quasiment aucune chance de partir a l'heure.
+#
+# Le script reste ici comme secours, au cas ou le bot serait arrete durablement.
+# Pour le reveiller : ajouter ORX_RAPPELS_CONTRATS=1 dans l'etape du workflow.
+# Attention, si le bot tourne en meme temps, chaque contrat sera annonce deux
+# fois : les deux marqueurs (data/contrats-seen.json ici, un fichier local cote
+# bot) ne se connaissent pas.
+# ---------------------------------------------------------------------------
+if os.environ.get("ORX_RAPPELS_CONTRATS", "").strip() != "1":
+    print("rappels de contrat : assures par le bot Discord — script en veille "
+          "(ORX_RAPPELS_CONTRATS=1 pour le reactiver)")
+    sys.exit(0)
+
 BOT = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
 SEEN = "data/contrats-seen.json"
 UA = "DiscordBot (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"

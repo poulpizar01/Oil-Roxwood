@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-63</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-64</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -684,7 +684,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-63';
+const APP_VERSION='C-64';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3465,6 +3465,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-64',d:'03/09/2026',t:'Le rappel de contrat change de mains',items:[
+   ['🤖','C\'est le bot qui annonce, plus GitHub','GitHub met les tâches planifiées des dépôts publics en file d\'attente : le robot demandait à passer toutes les 15 minutes, il passait toutes les 2 à 4 heures. Un rappel calé 3 h avant un contrat n\'avait donc presque aucune chance de tomber au bon moment. Le bot Discord, lui, est déjà connecté et relit le dépôt en permanence : il vérifie les contrats chaque minute.'],
+   ['⏱️','On n\'attend plus un créneau','L\'ancien robot visait une fenêtre de 16 minutes et la ratait une fois sur deux. Le bot regarde un état : « ce contrat commence dans moins de 3 h et n\'a pas encore commencé ? alors j\'annonce ». Le message dit le délai réel — « Contrat dans 2 h 10 » — plutôt qu\'un « 3 heures » approximatif.'],
+   ['🔌','Une condition, en revanche','Le bot doit tourner. S\'il est éteint, aucun rappel ne part — et il rattrapera au démarrage tout contrat encore dans sa fenêtre de 3 h.'],
+ ]},
  {v:'C-63',d:'03/09/2026',t:'Le contrat dit quand il pingera',items:[
    ['⏰','« Enregistré » ne suffisait pas','Le rappel part 3 h AVANT le début. Un contrat créé pour tout de suite n\'a donc jamais de ping : son heure de rappel est déjà derrière. L\'écran ne disait rien, et on attendait une notification impossible. Il annonce maintenant l\'heure exacte du rappel — ou la raison de son absence.'],
    ['📜','Le salon manquant est dit à l\'enregistrement','Tant que Paramètres → Salon Discord des contrats est vide, l\'écran le répète au moment où ça compte, pas seulement dans le formulaire.'],
@@ -5145,7 +5150,7 @@ function agEdit(id,iso,deb){
       <span>🔁 <b>Contrat hebdomadaire</b> — se reconduit chaque semaine, même jour, même heure</span>
     </label>
     <p style="color:var(--muted);font-size:.75rem;margin:9px 0 0">
-      ${salonContrats()?'Le robot annoncera ce contrat <b>3 h avant</b> dans le salon réglé en Paramètres.'
+      ${salonContrats()?'Le <b>bot Discord</b> annoncera ce contrat <b>3 h avant</b> dans le salon réglé en Paramètres. Il vérifie chaque minute — encore faut-il qu\'il tourne.'
                       :'⚠️ Aucun salon réglé dans Paramètres : aucun rappel ne partira.'}
     </p>
   </div>
@@ -5170,9 +5175,10 @@ function agTypeMaj(){
   if(z) z.style.display=$('#agTy').value==='contrat'?'':'none';
 }
 /* ---- Quand le rappel partira-t-il, au juste ? (C-63) ----
-   Le rappel part 3 h AVANT le début du contrat, et le robot passe toutes les
-   15 minutes. Un contrat créé pour tout de suite n'a donc jamais de ping : son
-   heure de rappel est déjà derrière nous. L'écran disait seulement « Événement
+   Le rappel part 3 h AVANT le début du contrat. Un contrat créé pour tout de
+   suite n'a donc jamais de ping : son heure de rappel est déjà derrière nous.
+   Depuis C-64 c'est le bot Discord qui annonce, en vérifiant chaque minute —
+   GitHub Actions passait toutes les 2 à 4 heures et ratait presque tout. L'écran disait seulement « Événement
    enregistré », et on attendait un ping qui ne pouvait pas venir.
    Il annonce maintenant l'heure exacte du rappel, ou la raison de son absence. */
 function contratPingInfo(row){
@@ -5189,7 +5195,7 @@ function contratPingInfo(row){
     return {ok:false,msg:'📅 Enregistré — mais l\'heure du rappel (3 h avant, soit '+
       cible.toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+
       ') est déjà passée : aucun ping pour cette occurrence'};
-  return {ok:true,msg:'📅 Enregistré — rappel prévu '+
+  return {ok:true,msg:'📅 Enregistré — le bot annoncera ce contrat '+
     cible.toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})};
 }
 async function agSave(id){
