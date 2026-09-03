@@ -65,64 +65,65 @@ def api(url):
         return json.loads(r.read().decode())
 
 
-def text_of(msg):
-    """Concatène contenu + embeds d'un message."""
-    parts = [msg.get("content") or ""]
-    for e in msg.get("embeds", []):
-        for k in ("title", "description"):
-            if e.get(k):
-                parts.append(e[k])
-        if e.get("author", {}).get("name"):
-            parts.append(e["author"]["name"])
-        for f in e.get("fields", []):
-            parts.append(f.get("name", "") + " : " + f.get("value", ""))
+def texte_embed(e, contenu=""):
+    """Le texte d'UN embed : titre, description, auteur, champs."""
+    parts = [contenu or ""]
+    for k in ("title", "description"):
+        if e.get(k):
+            parts.append(e[k])
+    if (e.get("author") or {}).get("name"):
+        parts.append(e["author"]["name"])
+    for f in e.get("fields", []):
+        parts.append(f.get("name", "") + " : " + f.get("value", ""))
     return "\n".join(p for p in parts if p).strip()
 
 
-def champs_de(msg):
-    """Les champs des embeds, en minuscules : {'stashname': 'Coffre principal', ...}"""
+def champs_embed(e):
+    """Les champs d'UN embed, en minuscules : {'playercharacter': 'John Scoupio', ...}"""
     d = {}
-    for e in msg.get("embeds", []):
-        for f in e.get("fields", []):
-            cle = str(f.get("name", "")).strip().lower()
-            if cle and cle not in d:
-                d[cle] = str(f.get("value", "")).strip()[:120]
+    for f in e.get("fields", []):
+        cle = str(f.get("name", "")).strip().lower()
+        if cle and cle not in d:
+            d[cle] = str(f.get("value", "")).strip()[:120]
     return d
 
 
-# Le serveur nomme ses coffres. Selon la version du script RP le champ s'appelle
-# stash, stashName, coffre, inventory... On accepte la famille entiere plutot que
-# de parier sur une orthographe, et on retombe sur le titre de l'embed s'il n'y a
-# aucun champ (certains logs ecrivent « Depot - Coffre principal » en titre).
+# Le nom du coffre n'est pas dans un champ : il est dans la phrase.
+#   « a retire 157x Petrole Raffine du coffre de l'entreprise (Oil RoxWood) »
+# On prend donc ce qui suit le mot « coffre ». Si un jour le serveur ajoute un
+# champ dedie (stashName, coffre...), il est prioritaire : il sera plus propre.
 CLES_COFFRE = ("stashname", "stash", "stashid", "coffre", "coffrename", "nomcoffre",
                "inventory", "inventoryname", "inventoryid", "container",
                "containername", "safe", "chest")
+RE_COFFRE_PHRASE = re.compile(
+    r"(?:du|dans le|dans un|au|le)\s+coffre\s+(?:de\s+)?(?:la\s+|l'|les\s+|du\s+)?([^\n]{2,60})", re.I)
 
 
-def coffre_de(msg, ch, t):
+def coffre_de(e, ch, t):
     for k in CLES_COFFRE:
         if ch.get(k):
             return ch[k]
-    for e in msg.get("embeds", []):
-        titre = str(e.get("title") or "")
-        # « Coffre : principal »  et  « Depot - Coffre du garage »
-        m = (re.search(r"(?:coffre|stash|casier)\s*[:\-\u2014]\s*(.{2,40})", titre, re.I)
-             or re.search(r"[:\-\u2014]\s*((?:coffre|stash|casier)\b.{0,40})$", titre, re.I))
-        if m:
-            return m.group(1).strip()
+    m = RE_COFFRE_PHRASE.search(t)
+    if m:
+        nom = m.group(1).strip(" .,;:-—")
+        return nom[:60] if nom else None
     return None
 
 
 NUM = r"(\d[\d\s., ]*)"
 RE_QTY = re.compile(NUM + r"\s*(?:p[ée]troles?|barils?|bidons?|litres?|L\b|u\b|unit[ée]s?)", re.I)
 RE_X = re.compile(r"[x×]\s*" + NUM, re.I)
+# « 157x Pétrole Raffiné » : le nombre precede le x. C'est la forme utilisee par
+# les logs de coffre, et aucune des deux regles precedentes ne l'attrapait —
+# d'ou une colonne Quantite vide sur toute la rubrique Coffres.
+RE_XPOST = re.compile(NUM + r"\s*[x×]\s*[A-Za-zÀ-ÿ]", re.I)
 RE_MONEY = re.compile(NUM + r"\s*\$")
 RE_NAME = re.compile(r"\*\*([^*]{2,40})\*\*")
 
 
 def parse_amount(t):
     """Cherche une quantité de pétrole/barils dans le texte."""
-    m = RE_QTY.search(t) or RE_X.search(t)
+    m = RE_XPOST.search(t) or RE_QTY.search(t) or RE_X.search(t)
     if m:
         try:
             return int(re.sub(r"[^\d]", "", m.group(1)))
@@ -142,9 +143,9 @@ def parse_type(t, ch):
     item = (ch.get("itemid") or "").lower()
     if re.search(r"achat\s*fer|iron", low) or "iron" in item:
         return "achat_fer"
-    if re.search(r"d[ée]p[ôo]t|deposit|depose", low):
+    if re.search(r"d[ée]p[ôo]t|deposit|d[ée]pos", low):
         return "coffre_depot"
-    if re.search(r"retrait|withdraw|retire", low):
+    if re.search(r"retrait|withdraw|retir", low):
         return "coffre_retrait"
     if re.search(r"vente|vendu|sold|achat", low):
         return "vente"
@@ -224,30 +225,44 @@ if not ok_salons:
     print("Aucun salon accessible — vérifier que le bot est sur le serveur "
           "et qu'il a « Voir le salon » + « Lire l'historique des messages ».")
 
+# --- une ligne par ENCART, pas par message ---
+# Un seul message Discord peut porter plusieurs encarts, donc plusieurs
+# mouvements de coffre. On les collait bout à bout dans un même « texte » :
+# la ligne affichait deux retraits mêlés, avec une seule quantité (celle du
+# premier) et un seul nom. Chaque encart devient maintenant sa propre ligne.
 for msg in fetched:
-    t = text_of(msg)
-    if not t:
-        continue
-    ch_emb = champs_de(msg)
-    money_m = RE_MONEY.search(t)
-    ligne = {
-        "id": msg["id"],
-        "t": msg["timestamp"],
-        "auteur": (msg.get("author") or {}).get("global_name")
-                  or (msg.get("author") or {}).get("username") or "?",
-        "texte": t[:400],
-        "nom": ch_emb.get("playercharacter") or ch_emb.get("playername") or parse_name(msg, t),
-        "quantite": parse_amount(t),
-        "montant": int(re.sub(r"[^\d]", "", money_m.group(1))) if money_m else None,
-        "type": parse_type(t, ch_emb),
-        "salon": str(msg.get("channel_id") or ""),
-    }
-    coffre = coffre_de(msg, ch_emb, t)
-    if coffre:
-        ligne["coffre"] = coffre
-    if ch_emb:
-        ligne["champs"] = ch_emb
-    existing[msg["id"]] = ligne
+    encarts = msg.get("embeds") or []
+    contenu = msg.get("content") or ""
+    if not encarts:
+        encarts = [{}]                      # message sans encart : le contenu suffit
+    for i, e in enumerate(encarts):
+        t = texte_embed(e, contenu if i == 0 else "")
+        if not t:
+            continue
+        ch = champs_embed(e)
+        money_m = RE_MONEY.search(t)
+        ident = msg["id"] if len(encarts) == 1 else f'{msg["id"]}-{i}'
+        ligne = {
+            "id": ident,
+            "t": msg["timestamp"],
+            "auteur": (msg.get("author") or {}).get("global_name")
+                      or (msg.get("author") or {}).get("username") or "?",
+            "texte": t[:400],
+            # playerCharacter = le nom de la fiche RP, celui de l'effectif.
+            # Sans lui on retombait sur l'auteur du message, c'est-à-dire le
+            # webhook : toute la colonne « Qui » affichait « Logs - Coffre ».
+            "nom": ch.get("playercharacter") or ch.get("playername") or parse_name(msg, t),
+            "quantite": parse_amount(t),
+            "montant": int(re.sub(r"[^\d]", "", money_m.group(1))) if money_m else None,
+            "type": parse_type(t, ch),
+            "salon": str(msg.get("channel_id") or ""),
+        }
+        coffre = coffre_de(e, ch, t)
+        if coffre:
+            ligne["coffre"] = coffre
+        if ch:
+            ligne["champs"] = ch
+        existing[ident] = ligne
 
 msgs = sorted(existing.values(), key=lambda m: m["t"], reverse=True)[:MAX_KEPT]
 coffres = sorted({m["coffre"] for m in msgs if m.get("coffre")})

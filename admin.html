@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-61</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-62</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -684,7 +684,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-61';
+const APP_VERSION='C-62';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3465,6 +3465,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-62',d:'03/09/2026',t:'Les logs de coffre enfin lisibles',items:[
+   ['👤','« Qui » affichait le webhook','Toute la colonne disait « Logs - Coffre » : le robot cherchait un nom en gras, n\'en trouvait pas, et retombait sur l\'auteur du message. Il lit maintenant le champ playerCharacter — le nom de la fiche RP, celui de l\'effectif.'],
+   ['🔢','La quantité restait vide','Les logs écrivent « 157x Pétrole Raffiné » : le nombre AVANT le x. Aucune des règles de lecture ne reconnaissait cette forme.'],
+   ['📑','Un message, plusieurs mouvements','Le serveur poste parfois deux retraits dans un seul message. Ils étaient collés bout à bout sur une seule ligne, avec une seule quantité. Chaque mouvement a maintenant sa ligne.'],
+   ['🗄','Le nom du coffre vient de la phrase','Il n\'y a pas de champ dédié : le coffre est nommé dans le texte (« du coffre de l\'entreprise »). C\'est de là qu\'on le tire, et le menu « Coffre » se remplit tout seul.'],
+ ]},
  {v:'C-61',d:'03/09/2026',t:'Les logs sur trois jours, et les coffres par leur nom',items:[
    ['📅','Une fenêtre en jours, plus en nombre de lignes','Le robot gardait « les 500 derniers messages ». Un jour chargé en effaçait donc trois, un jour creux gardait la semaine passée : ce qu\'on voyait dépendait de l\'activité, pas du calendrier. Il garde maintenant tout ce qui a moins de trois jours, et remonte les salons aussi loin qu\'il le faut pour ça.'],
    ['🗄','Filtrer par coffre','Le serveur nomme ses coffres ; ces noms remontent maintenant jusqu\'au dashboard. Un menu « Coffre » apparaît à côté du domaine, et le nom s\'affiche sous la personne dans le tableau. Le menu ne s\'affiche que si des coffres nommés ont été repérés.'],
@@ -5326,7 +5332,7 @@ function dlRow(m){
     meta=Object.entries(m.meta).slice(0,2)
       .map(([k,v])=>esc(k)+' : '+esc(typeof v==='object'?JSON.stringify(v):String(v))).join(' · ');
   }
-  return `<tr data-dlid="${m.id}" class="${DL.sel===m.id?'dl-sel':''}" onclick="dlDetails(${m.id})">
+  return `<tr data-dlid="${esc(String(m.id))}" class="${String(DL.sel)===String(m.id)?'dl-sel':''}" onclick="dlDetails('${esc(String(m.id))}')">
     <td style="white-space:nowrap;color:var(--muted);font-size:.76rem">${new Date(m.ts).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
     <td style="white-space:nowrap">${T[0]} <span style="font-size:.75rem">${esc(T[1])}</span></td>
     <td><b>${esc(m.employe||'—')}</b>${dlCoffre(m)?`<div style="font-size:.7rem;color:var(--accent)">🗄 ${esc(dlCoffre(m))}</div>`:''}</td>
@@ -5336,7 +5342,7 @@ function dlRow(m){
       <select class="field" style="width:120px;display:inline-block;padding:5px 8px;font-size:.75rem" id="dlsel_${m.id}">
         ${S.runners.map(x=>`<option value="${x.id}">${esc(x.nom)}</option>`).join('')}
       </select>
-      <button class="btn btn-sm btn-gold" onclick="dlImport(${m.id},${+m.quantite})">⬇</button>`:'—'}</td>
+      <button class="btn btn-sm btn-gold" onclick="dlImport('${esc(String(m.id))}',${+m.quantite})">⬇</button>`:'—'}</td>
   </tr>`;
 }
 function dlLive(m){
@@ -5403,13 +5409,13 @@ window.dlCSV=function(){
 };
 window.dlDetails=function(id){
   DL.sel=id;
-  document.querySelectorAll('#dl-tbody tr').forEach(tr=>tr.classList.toggle('dl-sel',+tr.dataset.dlid===id));
-  const m=(DL.data||[]).find(x=>x.id===id);
+  document.querySelectorAll('#dl-tbody tr').forEach(tr=>tr.classList.toggle('dl-sel',String(tr.dataset.dlid)===String(id)));
+  const m=(DL.data||[]).find(x=>String(x.id)===String(id));
   const cote=document.getElementById('dl-cote');
   if(!cote||!m) return;
   const T=dlLbl(m.type); const me=m.meta||{};
   const bloc=(titre,val)=>val?`<div style="margin-top:10px"><div style="font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)">${titre}</div><div style="font-size:.85rem;margin-top:2px;word-break:break-word">${val}</div></div>`:'';
-  const dejaVus=['target_position','position','license','steam','discord_url','note','avant','apres','serveur','user_id','item','objet'];
+  const dejaVus=['target_position','position','license','steam','discord_url','note','avant','apres','serveur','user_id','item','objet','coffre','champs','salon'];
   const reste=Object.entries(me).filter(([k])=>!dejaVus.includes(k)).slice(0,6)
     .map(([k,v])=>bloc(esc(k),esc(typeof v==='object'?JSON.stringify(v):String(v)))).join('');
   const pos=me.target_position||me.position;
@@ -5421,7 +5427,8 @@ window.dlDetails=function(id){
     ${bloc('Date / Heure',new Date(m.ts).toLocaleString('fr-FR'))}
     ${bloc('Type',T[0]+' '+esc(T[1]))}
     ${bloc('Joueur',esc(m.employe||'—')+(me.user_id?`<div style="font-size:.72rem;color:var(--muted)">id : ${esc(me.user_id)}</div>`:'')+(me.license?`<div style="font-size:.72rem;color:var(--muted)">license : ${esc(me.license)}</div>`:'')+(me.steam?`<div style="font-size:.72rem;color:var(--muted)">steam : ${esc(me.steam)}</div>`:''))}
-    ${bloc('Objet',esc(me.item||me.objet||String(m.details||'').split('\n')[0]||''))}
+    ${bloc('Objet',esc(me.item||me.objet||(me.champs&&(me.champs.itemid||me.champs.item))||String(m.details||'').split('\n')[0]||''))}
+    ${bloc('Coffre',esc(dlCoffre(m)))}
     ${bloc('Quantité',m.quantite!=null?fmt(+m.quantite):'')}
     ${bloc('Montant',m.montant!=null?money(+m.montant):'')}
     ${pos?bloc('Position',esc(String(pos))+` <button class="btn btn-sm btn-ghost" title="Copier" onclick="navigator.clipboard&&navigator.clipboard.writeText('${esc(String(pos))}').then(()=>toast('📋 Position copiée'))">📋</button>`):''}
