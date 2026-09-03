@@ -16397,8 +16397,8 @@
   "rolesDiscordV": 3
  },
  "_cid": "vfew6ij7jyf",
- "_maj": 1788455718388,
- "_rev": "ekwi92obm8d-mtlseb7l",
+ "_maj": 1788455808385,
+ "_rev": "mj2o6ircw1-mtlsexmt",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16421,7 +16421,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788455718388
+  "_tables": 1788455808385
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T17:16:24.513Z",
+  "maj": "2026-09-03T17:16:53.573Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -21987,6 +21987,13 @@
     "role": "direction",
     "vu": "2026-09-03T17:15:18.388Z",
     "id": 1788455719250
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-03T17:16:48.385Z",
+    "id": 1788455809097
    }
   ],
   "oilroxwood_demandes": [],
