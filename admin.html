@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-58</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-59</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -66,15 +66,20 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
     <div class="nav-sec" data-sec="rh" onclick="navToggle('rh')">Ressources humaines <span class="chev">▾</span></div>
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
+    <button class="nav-item" data-view="frh">🗂️ <span class="txt">Fiches RH</span></button>
+    <button class="nav-item" data-view="fblacklist">⛔ <span class="txt">Blacklist</span></button>
     <button class="nav-item" data-view="acces">🔔 <span class="txt">Demandes d'accès</span></button>
     <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
+    <button class="nav-item" data-view="felig">✅ <span class="txt">Éligibilité</span></button>
     <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
+    <button class="nav-item" data-view="fventes">🛒 <span class="txt">Ventes de la semaine</span></button>
     <button class="nav-item" data-view="factures">🧾 <span class="txt">Factures</span></button>
     <button class="nav-item" data-view="relances">📞 <span class="txt">Relances</span></button>
     <button class="nav-item" data-view="quotascom">⚖️ <span class="txt">Quotas &amp; fer</span></button>
     <button class="nav-item" data-view="prodder">🗡️ <span class="txt">Produits dérivés</span></button>
     <div class="nav-sec" data-sec="gestion" onclick="navToggle('gestion')">Gestion <span class="chev">▾</span></div>
-    <button class="nav-item" data-view="feuilles">📋 <span class="txt">Feuilles</span></button>
+    <button class="nav-item" data-view="ftablette">🖥️ <span class="txt">Tablette</span></button>
+    <button class="nav-item" data-view="fcompta">💸 <span class="txt">Dépenses &amp; retraits</span></button>
     <button class="nav-item" data-view="bilan">🏦 <span class="txt">Bilan compta</span></button>
     <button class="nav-item" data-view="frecues">📥 <span class="txt">Factures reçues</span></button>
     <div class="nav-sec" data-sec="vitrine" onclick="navToggle('vitrine')">Vitrine <span class="chev">▾</span></div>
@@ -546,14 +551,14 @@ function avatarHTML(qui, style){
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
-  direction:['overview','effectif','semaine','historique','cloture','reunions','feuilles','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
-  rh:       ['overview','effectif','semaine','historique','reunions','feuilles','acces','factures','relances','prodder','quotascom','moi','profil','quotashist','agenda','maj','dlogs'],
-  comptable:['overview','reunions','feuilles','factures','bilan','moi','profil','quotashist','agenda','maj'],
-  commercial:['overview','reunions','factures','relances','feuilles','prodder','quotascom','moi','profil','quotashist','agenda','maj'],
+  direction:['overview','effectif','semaine','historique','cloture','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
+  rh:       ['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','acces','factures','relances','prodder','quotascom','moi','profil','quotashist','agenda','maj','dlogs'],
+  comptable:['overview','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','bilan','moi','profil','quotashist','agenda','maj'],
+  commercial:['overview','reunions','factures','relances','ftablette','felig','fventes','frh','fblacklist','fcompta','prodder','quotascom','moi','profil','quotashist','agenda','maj'],
   /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
      l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
      factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
-  resprunner:['overview','effectif','semaine','historique','reunions','feuilles','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
+  resprunner:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
   membre:   ['effectif','reunions','moi','profil','quotashist','agenda','maj'] // lecture seule + stats perso + boîte à idées + agenda
 };
 function isMembre(){
@@ -566,7 +571,9 @@ function allowedViews(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return PERMS.direction; // clé de secours
   if(!S.users||!S.users.length) return PERMS.direction; // phase d'installation : tout ouvert
   const cu=currentUser();
-  return cu ? (permsDe(cu.role)||PERMS.membre) : PERMS.membre; // session sans compte : minimum
+  const base = cu ? (permsDe(cu.role)||PERMS.membre) : PERMS.membre; // session sans compte : minimum
+  // une feuille reglee sur « cache » dans Parametres retire aussi son entree de menu
+  return base.filter(v=>!SHEET_VIEWS[v]||sheetAllowed(SHEET_VIEWS[v]));
 }
 /* Filet de sécurité après une suppression de rubrique : les permissions
    personnalisées enregistrées peuvent encore citer une vue qui n'existe plus.
@@ -675,7 +682,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-58';
+const APP_VERSION='C-59';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -978,7 +985,7 @@ document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>show(
   });
 })();
 /* ---- langue de l'interface (v1 : navigation & sections) ---- */
-const I18N_EN={"Vue d'ensemble":'Overview','Semaine & Primes':'Week & Bonuses','Historique':'History','Clôture du lundi':'Monday closing','Effectif':'Workforce','Runs':'Runs','Feuilles':'Sheets','Ancienneté RH':'HR seniority',"Demandes d'accès":'Access requests','Factures':'Invoices','Relances':'Follow-ups','Bilan compta':'Accounting','Produits dérivés':'Merchandise','Quotas commerciaux':'Sales quotas','Achats Fer':'Iron purchases','Factures reçues':'Received invoices','Ma semaine':'My week','Quotas 3 semaines':'Quotas (3 weeks)','Ma to-do':'My to-do','Mon agenda':'My agenda','Suggestions / Bugs':'Suggestions / Bugs','Mises à jour':'Updates','Logs Discord':'Discord logs','Logs en direct':'Live logs','Journal':'Activity log','Paramètres':'Settings','TV du dépôt':'Depot TV','Retour au site':'Back to site','Déconnexion':'Log out','Pilotage':'Steering','Gestion':'Management','Commerce':'Sales','Perso':'Personal','Système':'System','Accès rapides':'Quick access'};
+const I18N_EN={"Vue d'ensemble":'Overview','Semaine & Primes':'Week & Bonuses','Historique':'History','Clôture du lundi':'Monday closing','Effectif':'Workforce','Runs':'Runs','Feuilles':'Sheets','Tablette':'Tablet','Éligibilité':'Eligibility','Ventes de la semaine':'Weekly sales','Fiches RH':'HR records','Blacklist':'Blacklist','Dépenses & retraits':'Expenses & withdrawals','Ancienneté RH':'HR seniority',"Demandes d'accès":'Access requests','Factures':'Invoices','Relances':'Follow-ups','Bilan compta':'Accounting','Produits dérivés':'Merchandise','Quotas commerciaux':'Sales quotas','Achats Fer':'Iron purchases','Factures reçues':'Received invoices','Ma semaine':'My week','Quotas 3 semaines':'Quotas (3 weeks)','Ma to-do':'My to-do','Mon agenda':'My agenda','Suggestions / Bugs':'Suggestions / Bugs','Mises à jour':'Updates','Logs Discord':'Discord logs','Logs en direct':'Live logs','Journal':'Activity log','Paramètres':'Settings','TV du dépôt':'Depot TV','Retour au site':'Back to site','Déconnexion':'Log out','Pilotage':'Steering','Gestion':'Management','Commerce':'Sales','Perso':'Personal','Système':'System','Accès rapides':'Quick access'};
 function applyLang(){
   const en=localStorage.getItem('orx_lang')==='en';
   document.querySelectorAll('.nav-item .txt').forEach(e=>{
@@ -1004,7 +1011,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,semaine,historique,cloture,reunions,feuilles,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -1633,7 +1640,7 @@ const SHEETS_DEF = {
     {k:'date',l:'Date',t:'date'},{k:'client',l:'Client',t:'client'},
     {k:'quantite',l:'Quantité',t:'num'},{k:'qui',l:'Qui ?',t:'text'}],
     tot:['quantite'], nouveau:{date:'',client:'',quantite:0,qui:''}},
-  rh:{ico:'🗂️',label:'RH',drag:true,cols:[
+  rh:{ico:'🗂️',label:'Fiches RH',drag:true,cols:[
     {k:'_ctr',l:'📄',t:'html',f:r=>{
       const id=String(r.idU||'').replace(/\D/g,'');
       if(!id) return '<span style="color:var(--muted)" title="ID unique requis pour générer le contrat">—</span>';
@@ -1665,7 +1672,7 @@ const SHEETS_DEF = {
     {k:'comm',l:'Raison',t:'text'}],
     tot:[], nouveau:{nom:'',grade:'',tel:'',idU:'',date:'',discord:'',comm:''},
     note:'Liste interne — personnes à ne pas recruter'},
-  compta:{ico:'🏦',label:'Compta',cols:[
+  compta:{ico:'💸',label:'Dépenses & retraits',cols:[
     {k:'type',l:'Type',t:'choice',opts:['Dépense déductible','Retrait']},{k:'date',l:'Date',t:'date'},{k:'justif',l:'Justificatif',t:'text'},
     {k:'montant',l:'Montant',t:'num'}],
     tot:['montant'], nouveau:{type:'Dépense déductible',date:'',justif:'',montant:0},
@@ -1705,6 +1712,27 @@ function sheetPermToggle(role,k){
   jlog(`Permissions feuilles : ${ROLES[role]||role} · « ${k} » → ${next==='x'?'plein accès':next==='ro'?'lecture seule':'caché'}`);
   save(); sbPushNow(); params();
 }
+/* ---- Une feuille = une rubrique du menu (C-59) ----
+   Les six tableaux vivaient sous une seule entree « Feuilles », avec des onglets.
+   Ils appartiennent en realite a des metiers differents : la Tablette et les
+   depenses a la gestion, l'Eligibilite au Responsable Runner, les ventes au
+   commerce, les fiches RH et la blacklist aux RH. Chacune a donc sa place dans
+   le menu, dans son pole.
+
+   Le rendu n'a pas bouge : `feuilles()` reste le moteur, ces six fonctions ne
+   font que lui dire quelle feuille afficher. Les permissions par feuille
+   (Parametres -> Permissions feuilles) continuent de s'appliquer telles quelles,
+   et masquent aussi l'entree de menu correspondante. */
+const SHEET_VIEWS={ftablette:'tablette',felig:'eligibilite',fventes:'ventesSem',
+                   frh:'rh',fblacklist:'blacklist',fcompta:'compta'};
+function ouvrirFeuille(k){ if(curSheet!==k){ curSheet=k; sheetSearch=''; } return feuilles(); }
+function ftablette(){ return ouvrirFeuille('tablette'); }
+function felig(){ return ouvrirFeuille('eligibilite'); }
+function fventes(){ return ouvrirFeuille('ventesSem'); }
+function frh(){ return ouvrirFeuille('rh'); }
+function fblacklist(){ return ouvrirFeuille('blacklist'); }
+function fcompta(){ return ouvrirFeuille('compta'); }
+
 let curSheet='tablette', sheetSearch='', sheetFull=false;
 async function feuilles(){
   if(!S.sheets) $('#main').innerHTML='<div class="panel"><div class="empty">Chargement des feuilles…</div></div>';
@@ -1745,7 +1773,7 @@ async function feuilles(){
   }).join('')}<td></td></tr></tfoot>`:'';
   $('#main').innerHTML=`
   <div class="topbar">
-    <div><h2>Feuilles</h2><div class="sub">Les tableaux de gestion de l'entreprise — modifiables directement, sauvegardés automatiquement</div></div>
+    <div><h2>${def.ico} ${def.label}</h2><div class="sub">${rows.length} ligne(s) · modifiable directement, sauvegardé automatiquement</div></div>
     <div style="display:flex;gap:10px">
       ${curSheet==='tablette'?'<button class="btn btn-ghost" onclick="openPasteModal()">📋 Coller depuis Excel</button>':''}
       ${curSheet==='rh'?'<button class="btn btn-ghost" onclick="rhPasteModal()">🕒 Coller le pointage</button><button class="btn btn-ghost" onclick="rhTriGrade()" title="Réordonne les lignes : Patron → Co Patron → … → Intérimaire">⇅ Trier par grade</button>':''}
@@ -1759,7 +1787,6 @@ async function feuilles(){
       <button class="btn btn-red" onclick="sheetReset()">♻️ Réinitialiser</button>
     </div>
   </div>
-  <div class="tabs">${Object.entries(SHEETS_DEF).filter(([k])=>sheetAllowed(k)).map(([k,d])=>`<button class="tab ${k===curSheet?'on':''}" onclick="curSheet='${k}';sheetSearch='';feuilles()">${d.ico} ${d.label} <span style="opacity:.6">(${S.sheets[k].length})</span></button>`).join('')}</div>
   ${def.note?`<div class="warn" style="border-color:rgba(232,98,44,.35);background:rgba(232,98,44,.07);color:var(--accent)">ℹ️ ${def.note}</div>`:''}
   ${sheetRO(curSheet)?'<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">👁 Feuille en consultation seule pour ton rôle</div>':''}
   <div class="panel ${sheetRO(curSheet)?'ro-zone':''}" style="padding:10px 16px;overflow-x:auto">
@@ -1956,7 +1983,7 @@ function contratGen(idU){
   if(!row.contratGen){
     row.contratGen={t:nowSrv(),par:(currentUser()||{}).user||'?'};
     jlog(`Contrat de travail généré : ${full} (${poste})`);
-    save(); sbPushNow(); if(VIEW==='feuilles') feuilles();
+    save(); sbPushNow(); if(SHEET_VIEWS[VIEW]) feuilles();
     sendLog('📄 Contrat généré',`Le contrat de travail de **${full}** (${poste}) a été généré par **${row.contratGen.par}**.`,0x5aa0ff);
   }
 }
@@ -3163,9 +3190,9 @@ async function cloture(){
   const totB=S.runners.reduce((a,r)=>a+r.barils,0);
   const steps=[
     {t:'Coller la tablette de la semaine',d:'Ouvre Feuilles → Tablette → 📋 Coller depuis Excel (mode ♻️ Remplacer). L\'effectif et les quotas se calent automatiquement.',
-     btn:'📋 Ouvrir la Tablette',act:"show('feuilles');curSheet='tablette';setTimeout(()=>openPasteModal(),200)"},
+     btn:'📋 Ouvrir la Tablette',act:"show('ftablette');setTimeout(()=>openPasteModal(),200)"},
     {t:'Vérifier l\'effectif et les salaires',d:'Colle le pointage RH (Gestion équipe en jeu → tout sélectionner sauf « Renvoyer ») puis contrôle les salaires et primes projetés.',
-     btn:'🕒 Coller le pointage RH',act:"show('feuilles');curSheet='rh';setTimeout(()=>rhPasteModal(),200)",btn2:'💰 Contrôler les salaires',act2:"show('semaine')"},
+     btn:'🕒 Coller le pointage RH',act:"show('frh');setTimeout(()=>rhPasteModal(),200)",btn2:'💰 Contrôler les salaires',act2:"show('semaine')"},
     {t:'Annoncer les montées, descentes et avertissements',d:'Dans l\'Effectif : ▲ montées disponibles, ▼ descentes (quota sous 95 %), ⚠ avertissements des intérimaires sous 80 %. Annonce-les en jeu / sur Discord avant de figer.',
      btn:'👥 Ouvrir l\'Effectif',act:"show('effectif')"},
     {t:'Clôturer la semaine',d:'Fige les primes + TOP 3, applique les montées de grade, remet les compteurs à zéro. '+fmt(totB)+' barils en cours.',
@@ -3173,7 +3200,7 @@ async function cloture(){
     {t:'Copier les GDocs et vérifier',d:'Bilan → 📋 Copier pour GDoc (détail employés) puis le second bouton pour dépenses/retraits. Vérifie que les totaux du GDoc correspondent au site.',
      btn:'📋 Ouvrir le Bilan',act:"show('bilan');setTimeout(()=>bilanCopy(),300)"},
     {t:'Réinitialiser les ventes de la semaine',d:'Vide la feuille Ventes de la semaine pour repartir propre.',
-     btn:'♻️ Vider les ventes',act:"show('feuilles');curSheet='ventesSem';setTimeout(()=>sheetReset(),200)"},
+     btn:'♻️ Vider les ventes',act:"show('fventes');setTimeout(()=>sheetReset(),200)"},
     {t:'Statistiques de la semaine',d:'Compare la semaine close aux précédentes : recrutements, CA, ventes, production, % sans production, effectif — flèches vertes/rouges, archivées définitivement dans l\'Historique.',
      btn:'📈 Voir les statistiques',act:"show('historique')"},
   ];
@@ -3436,6 +3463,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-59',d:'03/09/2026',t:'Chaque feuille rejoint son métier',items:[
+   ['🗂️','Fini l\'onglet fourre-tout','« Feuilles » regroupait six tableaux qui n\'ont rien à voir entre eux. Chacun a maintenant sa propre entrée dans le menu, dans le pôle auquel il appartient : Tablette et Dépenses & retraits en Gestion, Éligibilité chez le Responsable Runner, Ventes de la semaine en Commerce, Fiches RH et Blacklist aux Ressources humaines.'],
+   ['🔐','Les permissions par feuille marchent toujours','Une feuille réglée sur « caché » pour un rôle ne lui montre plus non plus l\'entrée de menu correspondante. Rien à reconfigurer, les réglages existants sont repris tels quels.'],
+ ]},
  {v:'C-58',d:'03/09/2026',t:'La rubrique Runs disparaît',items:[
    ['🚛','Plus de saisie de run à la main','Personne ne le faisait plus : la production arrive par les logs Discord et par l\'import de la Tablette. La rubrique n\'existait que pour un geste devenu inutile.'],
    ['↩️','L\'annulation reste possible','Le tableau des runs enregistrés, avec sa croix rouge, a déménagé au bas de Logs Discord — là où les imports se font. Un import mal aiguillé se rattrape au même endroit qu\'il a été créé.'],
@@ -4463,23 +4494,23 @@ function tourSteps(){
   const add=(view,title,txt,sel,tab)=>{ if(al.includes(view)) stp.push({view,title,txt,sel,tab}); };
   add('semaine','Salaires et primes',"Tu retrouveras en temps réel ici les salaires actuels de chacun ainsi que leurs quotas.");
   add('effectif','Effectif',"La fiche de chaque employé : grade, quota, contrat, actions.");
-  if(al.includes('feuilles')){
+  if(al.some(v=>SHEET_VIEWS[v])){
     const sv=k=>sheetAllowed(k);
-    if(sv('tablette')) add('feuilles','Feuilles — Tablette',"Tu viendras ici mettre les quotas à jour. En jeu, ouvre la tablette, va dans Statistiques, clique sur Exporter. Reviens sur le site, clique sur « Coller depuis Excel » (Ctrl+V) dans l'espace prévu, puis clique sur la case rouge.",'button[onclick="openPasteModal()"]','tablette');
-    if(sv('eligibilite')) add('feuilles','Feuilles — Éligibilité',"Tu y retrouveras chaque personne éligible à la semaine. Remplis le document si tu lui remets son dû.",null,'eligibilite');
-    if(sv('ventesSem')) add('feuilles','Feuilles — Ventes de la semaine',"Historique des commandes.",null,'ventesSem');
+    if(sv('tablette')) add('ftablette','Tablette',"Tu viendras ici mettre les quotas à jour. En jeu, ouvre la tablette, va dans Statistiques, clique sur Exporter. Reviens sur le site, clique sur « Coller depuis Excel » (Ctrl+V) dans l'espace prévu, puis clique sur la case rouge.",'button[onclick="openPasteModal()"]','tablette');
+    if(sv('eligibilite')) add('felig','Éligibilité',"Tu y retrouveras chaque personne éligible à la semaine. Remplis le document si tu lui remets son dû.",null,'eligibilite');
+    if(sv('ventesSem')) add('fventes','Ventes de la semaine',"Historique des commandes.",null,'ventesSem');
     if(sv('rh')){
-      add('feuilles','Feuilles RH — 1/8',"Après chaque recrutement, va en jeu dans Gestion équipe.",null,'rh');
-      add('feuilles','Feuilles RH — 2/8',"Sélectionne toutes les lignes sauf la dernière (« Renvoyer »).",null,'rh');
-      add('feuilles','Feuilles RH — 3/8',"Reviens sur le site, clique sur « Coller le pointage » (Ctrl+V) dans l'espace prévu.",'button[onclick="rhPasteModal()"]','rh');
-      add('feuilles','Feuilles RH — 4/8',"Valide.",'button[onclick="rhPasteModal()"]','rh');
-      add('feuilles','Feuilles RH — 5/8',"Tu retrouveras des lignes incomplètes correspondant à tes derniers recrutements.",'table.sheet thead','rh');
-      add('feuilles','Feuilles RH — 6/8',"Enregistre les informations manquantes sur chaque ligne.",'table.sheet thead','rh');
-      add('feuilles','Feuilles RH — 7/8',"Génère le contrat en cliquant sur le bouton en début de ligne.",'table.sheet tbody .btn-gold','rh');
-      add('feuilles','Feuilles RH — 8/8',"Il ne reste plus qu'à l'envoyer.",null,'rh');
+      add('frh','Fiches RH — 1/8',"Après chaque recrutement, va en jeu dans Gestion équipe.",null,'rh');
+      add('frh','Fiches RH — 2/8',"Sélectionne toutes les lignes sauf la dernière (« Renvoyer »).",null,'rh');
+      add('frh','Fiches RH — 3/8',"Reviens sur le site, clique sur « Coller le pointage » (Ctrl+V) dans l'espace prévu.",'button[onclick="rhPasteModal()"]','rh');
+      add('frh','Fiches RH — 4/8',"Valide.",'button[onclick="rhPasteModal()"]','rh');
+      add('frh','Fiches RH — 5/8',"Tu retrouveras des lignes incomplètes correspondant à tes derniers recrutements.",'table.sheet thead','rh');
+      add('frh','Fiches RH — 6/8',"Enregistre les informations manquantes sur chaque ligne.",'table.sheet thead','rh');
+      add('frh','Fiches RH — 7/8',"Génère le contrat en cliquant sur le bouton en début de ligne.",'table.sheet tbody .btn-gold','rh');
+      add('frh','Fiches RH — 8/8',"Il ne reste plus qu'à l'envoyer.",null,'rh');
     }
-    if(sv('blacklist')) add('feuilles','Feuilles — Blacklist',"Renseigne ici les personnes blacklistées de l'entreprise.",null,'blacklist');
-    if(sv('compta')) add('feuilles','Feuilles — Compta',"Réservé Patron / Comptable : dépenses déductibles et retraits du compte entreprise.",null,'compta');
+    if(sv('blacklist')) add('fblacklist','Blacklist',"Renseigne ici les personnes blacklistées de l'entreprise.",null,'blacklist');
+    if(sv('compta')) add('fcompta','Dépenses & retraits',"Réservé Patron / Comptable : dépenses déductibles et retraits du compte entreprise.",null,'compta');
   }
   add('factures','Factures',"Ici tu vas créer les factures : dans « Émetteur », indique ton prénom, choisis ton client, renseigne la quantité commandée ainsi que la TVA en application. Si la livraison est effectuée par Post Op, n'oublie pas de cocher la case, puis génère la facture et envoie-la. Une fois payée, déclare-la comme payée dans l'historique. Si c'est un nouveau client ou que des données ont changé, retrouve tout dans « Base client ».");
   add('relances','Relances',"Les clients à relancer et leur historique.");
@@ -4657,11 +4688,11 @@ function notifs(){
     ((S.absences||[])).filter(a=>{const fin=Date.parse(a.au);return !isNaN(fin)&&fin<now&&(now-fin)/86400000<=3;})
       .forEach(a=>N.push({k:'a'+a.id,g:'var(--green)',t:`${a.nom} : absence terminée`,d:`de retour depuis le ${frDate(a.au)}`,v:'effectif'}));
   }
-  if(al.includes('feuilles')){
+  if(al.some(v=>SHEET_VIEWS[v])){
     const inact=((S.sheets&&S.sheets.rh)||[]).filter(x=>{const d=Date.parse(x.dernierService);return String(x.nom||'').trim()&&!isNaN(d)&&(now-d)/86400000>=5&&!absDe(x.nom);});
-    if(inact.length) N.push({k:'i'+inact.length,g:'var(--accent)',t:`${inact.length} employé(s) sans service depuis 5 j ou +`,d:inact.slice(0,4).map(x=>x.nom).join(', ')+(inact.length>4?'…':''),v:'feuilles'});
+    if(inact.length) N.push({k:'i'+inact.length,g:'var(--accent)',t:`${inact.length} employé(s) sans service depuis 5 j ou +`,d:inact.slice(0,4).map(x=>x.nom).join(', ')+(inact.length>4?'…':''),v:'frh'});
     const nc=((S.sheets&&S.sheets.rh)||[]).filter(x=>String(x.nom||'').trim()&&x.contrat!==true);
-    if(nc.length) N.push({k:'c'+nc.length,g:'#5aa0ff',t:`${nc.length} contrat(s) non signé(s)`,d:nc.slice(0,4).map(x=>x.nom).join(', ')+(nc.length>4?'…':''),v:'feuilles'});
+    if(nc.length) N.push({k:'c'+nc.length,g:'#5aa0ff',t:`${nc.length} contrat(s) non signé(s)`,d:nc.slice(0,4).map(x=>x.nom).join(', ')+(nc.length>4?'…':''),v:'frh'});
   }
   return N;
 }
