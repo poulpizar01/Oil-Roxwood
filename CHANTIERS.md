@@ -1,117 +1,81 @@
-# 📋 Chantiers à venir — notes de Thomas
+# 📋 Chantiers — état au 3 septembre 2026
 
-> Prises en note le 2 septembre 2026. **Rien n'est codé.** Liste de travail
-> pour les prochaines sessions. Les questions en italique sont à trancher
-> avant de commencer le point concerné.
-
----
-
-## 1. ~~Réorganiser les pôles~~ ✅ *fait en C-47 — à valider par Thomas*
-
-Revoir le découpage du menu (Pilotage / Gestion / Commerce / Perso / Système)
-pour qu'il suive une logique métier cohérente.
-
-*À préciser : le regroupement voulu. Par métier (RH / Prod / Commerce / Compta) ?
-Par fréquence d'usage ? Par rôle ?*
+> Les dix points notés le 2 septembre sont faits. Ce qui reste tient en deux
+> listes : ce qui demande une action de Thomas, et ce qui reste à coder.
 
 ---
 
-## 2. ~~Éligibilité — grades de la bonne semaine~~ ✅ *fait en C-45*
+## ✅ Fait
 
-La feuille Éligibilité affiche les grades de la semaine **précédente**. Elle doit
-montrer ceux de la **nouvelle** semaine, donc tenir compte des montées et descentes
-appliquées à la clôture.
+| # | Sujet | Version |
+|---|---|---|
+| 1 | Réorganisation des pôles du menu | C-47 |
+| 2 | Éligibilité — grades de la bonne semaine | C-45 |
+| 3 | Facture rapide — citoyens vs employés, plafond 50 bidons | C-48 |
+| 4 | Modifier une facture déjà éditée | C-49 |
+| 5 | Planning — catégorie « contrat », ping 3 h avant | C-52 |
+| 6 | Absences — nettoyage automatique + mémoire | C-46 |
+| 7 | Quotas et multiplicateurs réglables dans Paramètres | C-44 |
+| 8 | Suppressions (Suggestions, Ma to-do, Ancienneté RH) | C-50 |
+| 9 | Achats Fer et Quotas commerciaux fusionnés | C-51 |
+| — | Les tables annexes se synchronisent enfin | C-54 |
+| — | **Le bot et le site se parlent de nouveau** | C-55 |
+| — | Contrat : le menu ne liste que les commerciaux | C-56 |
 
----
-
-## 3. ~~Facture rapide — citoyens vs employés~~ ✅ *fait en C-48*
-
-- **Citoyen** : retirer le champ nom.
-- **Employé** : garder le nom, mais en **menu déroulant** (choisi dans l'effectif,
-  pas saisi à la main).
-- **Plafond hebdomadaire de 50 par employé**, décompté au fil de la semaine :
-  20 pris le lundi ⇒ 30 disponibles le jeudi, pas davantage.
-
-**Réponse de Thomas :** 50 **bidons d'essence** par employé et par semaine. Le compteur
-repart à la clôture (déjà le cas : elle efface les commandes employés).
-
----
-
-## 4. ~~Modifier une facture déjà éditée~~ ✅ *fait en C-49*
-
-Une fois la facture émise, pouvoir revenir dessus et la corriger.
-
-**Réponse de Thomas :** tout est modifiable. Aucune mention sur la facture, mais une
-trace au journal.
+Le pont Supabase est mort et enterré. Le bot lit et écrit `data/etat.json`
+dans le dépôt, comme le dashboard, avec le SHA du fichier pour arbitrer les
+écritures simultanées. Il sonde toutes les 20 secondes.
 
 ---
 
-## 5. ~~Planning — catégorie « contrat »~~ ✅ *fait en C-52*
+## 🔧 À faire par Thomas
 
-Nouvelle catégorie dans le planning pour enregistrer les **contrats hebdomadaires**,
-avec un **ping du commercial 3 h avant** l'échéance.
+**Envoyer C-56.** `push.bat` dans le dossier du dépôt.
 
-**Réponse de Thomas :** c'est **Mon agenda**. Le ping part **dans un salon**, pas en privé.
+**Régler le salon des contrats.** Paramètres → 📜 *Salon Discord des contrats*.
+Tant que c'est vide, un contrat s'enregistre à l'agenda mais aucun rappel ne
+part — le formulaire le signale en rouge.
 
----
+**Faire le ménage.** Trois fichiers qui ne servent plus. En une commande, dans
+le dossier du dépôt :
 
-## 6. ~~Absences — nettoyage automatique + mémoire~~ ✅ *fait en C-46*
+```
+git rm tv.html scripts/dm_feedback.py
+```
 
-- Une absence terminée se supprime toute seule.
-- Mais dans **Effectif**, signaler « était absent la semaine dernière » quand c'est
-  le cas — pour que la descente de grade ne tombe pas sur quelqu'un qui était en congé.
+Et à la main dans le dossier du bot : supprimer `cogs\supabase_bridge.py`
+(il n'est plus chargé par `main.py`, mais autant ne pas le garder).
 
----
+**Les images d'éligibilité en double sur Discord.** Postées pendant la mise au
+point ; le garde-fou ajouté au bot empêche que ça se reproduise, mais il faut
+les effacer à la main.
 
-## 7. ~~Quotas et multiplicateurs réglables dans Paramètres~~ ✅ *fait en C-44*
-
-Aujourd'hui le tableau `GRADES` est **écrit en dur dans le code** : quota, multiplicateur
-et seuil de montée de chaque grade. Les faire passer dans Paramètres pour qu'ils se
-changent sans toucher au code.
-
-*Point d'attention : les semaines déjà closes ont été calculées avec les anciennes
-valeurs. Il faudra décider si un changement s'applique rétroactivement à l'historique
-(a priori non) et le dire clairement dans l'écran.*
+**Dire si un autre exemplaire du bot tourne ailleurs** (VPS, hébergeur). Deux
+instances sur le même token se déconnectent mutuellement en boucle.
 
 ---
 
-## 8. ~~Suppressions~~ ✅ *fait en C-50*
+## 🛠️ À coder
 
-Retirer trois rubriques :
+**Achats de fer — vérifier la lecture par le bot.** Le point 9 est fait côté
+interface (un seul tableau, colonne « Relevé du bot »). Reste à vérifier sur
+une vraie semaine que le relevé colle aux achats réels, maintenant que le pont
+est vivant.
 
-- Suggestions / Bugs
-- Ma to-do
-- Ancienneté RH
+**Recrutements automatiques depuis Discord.** Renseigner un recrutement en
+lisant le message d'annonce. Dépendait de la mise à jour du bot : c'est levé.
 
-**Réponse de Thomas :** on supprime **aussi les données**.
-
----
-
-## 9. ~~Achats Fer — fusion~~ ✅ *fait en C-51 · la lecture par le bot reste à revoir avec sa mise à jour*
-
-- Faire en sorte que le **bot lise correctement** les achats de fer.
-- **Fusionner Achats Fer et Quotas commerciaux** en une seule rubrique : même domaine.
-  **Réponse de Thomas :** un **seul tableau**, pas deux onglets.
+**La clôture du lundi.** Jamais traitée. Thomas voulait d'abord voir comment
+elle fonctionne aujourd'hui, étape par étape, avant de décider quoi automatiser.
 
 ---
 
-## 10. Recrutements automatiques depuis Discord
+## 📌 À surveiller
 
-Renseigner automatiquement les recrutements en lisant un message Discord.
-
-> ⚠️ **Dépend d'une mise à jour du bot** — à faire avant. Son code est maintenant
-> disponible (`site_bridge.py`, `site_acces.py`), il écrit encore vers Supabase.
-
----
-
-## Reste des sessions précédentes
-
-- **La clôture du lundi** — jamais traitée. Thomas voulait d'abord voir comment elle
-  fonctionne aujourd'hui, étape par étape.
-- **Le bot Discord** — diagnostic à faire : ce qui marche encore, ce qui écrit dans le vide.
-- **`tv.html`** — toujours dans le dépôt, à supprimer.
-- **⚠️ Le rôle RH n'est pas arrivé dans le dépôt.** La table des rôles Discord est
-  absente de `data/etat.json` et le `_rev` n'a pas bougé depuis la migration : aucun
-  enregistrement du dashboard n'est parti. Vérifier le voyant de synchro (jeton
-  d'écriture) avant toute autre chose — sinon tout ce qui sera réglé demain restera
-  aussi coincé dans un seul navigateur.
+Le jeton d'écriture GitHub est désormais posé dans le navigateur de Thomas :
+ce qui est réglé dans Paramètres part enfin dans le dépôt. Avant le 3
+septembre, rien n'était jamais parti — la table des rôles Discord et le rôle
+RH étaient restés coincés dans un seul navigateur. **Chaque personne qui doit
+modifier quelque chose a besoin de son propre jeton** (clic sur le voyant rond
+à côté d'ESPACE MEMBRE). Sans jeton, l'accès reste en lecture seule : on voit
+tout, on ne modifie rien.
