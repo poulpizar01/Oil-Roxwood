@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-60</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-61</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -684,7 +684,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-60';
+const APP_VERSION='C-61';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3465,6 +3465,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-61',d:'03/09/2026',t:'Les logs sur trois jours, et les coffres par leur nom',items:[
+   ['📅','Une fenêtre en jours, plus en nombre de lignes','Le robot gardait « les 500 derniers messages ». Un jour chargé en effaçait donc trois, un jour creux gardait la semaine passée : ce qu\'on voyait dépendait de l\'activité, pas du calendrier. Il garde maintenant tout ce qui a moins de trois jours, et remonte les salons aussi loin qu\'il le faut pour ça.'],
+   ['🗄','Filtrer par coffre','Le serveur nomme ses coffres ; ces noms remontent maintenant jusqu\'au dashboard. Un menu « Coffre » apparaît à côté du domaine, et le nom s\'affiche sous la personne dans le tableau. Le menu ne s\'affiche que si des coffres nommés ont été repérés.'],
+   ['🏷️','Le domaine Coffres marchait dans le vide','Le robot étiquetait les dépôts « depot » et les retraits « retrait », alors que la vue attendait « coffre_depot » et « coffre_retrait ». Le filtre Coffres ne renvoyait donc jamais rien. Les étiquettes sont réalignées, ainsi que celles du fer, des véhicules, des factures et des prises de service.'],
+ ]},
  {v:'C-60',d:'03/09/2026',t:'Le logo ramène à la vitrine',items:[
    ['🌐','« Voir le site public » disparaît du menu','L\'action passe par le logo, en haut de la barre latérale. Il avait déjà le curseur main et l\'animation au survol : l\'entrée de menu ne faisait que répéter une invitation déjà présente. Le site s\'ouvre toujours dans un nouvel onglet.'],
    ['🟢','Le voyant de synchro reste cliquable','Il est à l\'intérieur du logo maintenant, mais son clic ouvre bien le réglage du jeton et n\'ouvre pas la vitrine.'],
@@ -5183,7 +5188,7 @@ const TYPE_ICON={vente:'💵',recolte:'⛏️',raffinage:'🏭',depot:'📦',ret
    Recherche avancée, export CSV, tri, pagination, panneau de détails.
    Un événement temps réel s'insère sans redessiner (aucune saccade). ---- */
 const DL={data:null,ch:null,plage:false,
-  f:{domaine:'',type:'',joueur:'',du:'',au:'',q:''},
+  f:{domaine:'',type:'',joueur:'',coffre:'',du:'',au:'',q:''},
   tri:{col:'ts',dir:-1},page:1,parPage:25,sel:null};
 const DL_TYPES={
   vente:['💰','Vente'], achat_fer:['⚙️','Achat de fer'],
@@ -5203,6 +5208,17 @@ const DL_DOMAINES={
   service:{lbl:'Service',types:['prise_service','fin_service']},
 };
 function dlLbl(t){ return DL_TYPES[t]||['📄',t||'?']; }
+/* ---- Coffres nommés (C-61) ----
+   Le serveur sépare ses coffres par des noms. Le robot les remonte dans le champ
+   `coffre` de chaque ligne — soit lu dans les champs de l'embed, soit dans son
+   titre. On ne devine rien ici : si aucune ligne n'en porte, le menu n'apparaît
+   pas du tout, plutôt que d'afficher une liste vide. */
+function dlCoffre(x){
+  return String((x&&x.coffre)||(x&&x.meta&&x.meta.coffre)||'').trim();
+}
+function dlCoffresDispo(L){
+  return [...new Set((L||[]).map(dlCoffre).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+}
 (function(){
   const st=document.createElement('style');
   st.textContent='@keyframes dlFlash{from{background:rgba(232,180,76,.22)}to{background:transparent}}'+
@@ -5223,7 +5239,7 @@ async function dlogs(){
       .on('postgres_changes',{event:'INSERT',schema:'public',table:'oilroxwood_bot_logs'},pl=>{
         if(!DL.data) DL.data=[];
         DL.data.unshift(pl.new);
-        if(DL.data.length>2000) DL.data.pop();
+        if(DL.data.length>5000) DL.data.pop();
         dlLive(pl.new);
       }).subscribe();
   }
@@ -5235,7 +5251,7 @@ async function dlCharger(){
   let q=SYNC.cli.from('oilroxwood_bot_logs').select('*').order('ts',{ascending:false});
   if(DL.f.du) q=q.gte('ts',new Date(DL.f.du+'T00:00:00').toISOString());
   if(DL.f.au) q=q.lte('ts',new Date(DL.f.au+'T23:59:59').toISOString());
-  const {data,error}=await q.limit(2000);
+  const {data,error}=await q.limit(5000);   // la fenêtre est fixée par le robot (3 jours), pas par un plafond de lignes
   if(error){ toast('⚠️ Lecture des logs impossible : '+error.message); DL.data=DL.data||[]; return; }
   DL.data=data||[]; DL.plage=!!(DL.f.du||DL.f.au);
 }
@@ -5246,6 +5262,7 @@ function dlFiltrer(L){
     if(typesDom&&!typesDom.includes(x.type)) return false;
     if(F.type&&x.type!==F.type) return false;
     if(F.joueur&&!String(x.employe||'').toLowerCase().includes(F.joueur)) return false;
+    if(F.coffre&&dlCoffre(x)!==F.coffre) return false;
     if(F.du&&new Date(x.ts)<new Date(F.du+'T00:00:00')) return false;
     if(F.au&&new Date(x.ts)>new Date(F.au+'T23:59:59')) return false;
     if(F.q){
@@ -5312,7 +5329,7 @@ function dlRow(m){
   return `<tr data-dlid="${m.id}" class="${DL.sel===m.id?'dl-sel':''}" onclick="dlDetails(${m.id})">
     <td style="white-space:nowrap;color:var(--muted);font-size:.76rem">${new Date(m.ts).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
     <td style="white-space:nowrap">${T[0]} <span style="font-size:.75rem">${esc(T[1])}</span></td>
-    <td><b>${esc(m.employe||'—')}</b></td>
+    <td><b>${esc(m.employe||'—')}</b>${dlCoffre(m)?`<div style="font-size:.7rem;color:var(--accent)">🗄 ${esc(dlCoffre(m))}</div>`:''}</td>
     <td style="max-width:320px;font-size:.8rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(m.details||'')}">${esc(String(m.details||'').split('\n')[0])}${meta?`<div style="font-size:.7rem;color:var(--muted);opacity:.8">${meta}</div>`:''}</td>
     <td>${m.quantite?`<b>${fmt(+m.quantite)}</b>`:'—'}${m.montant?`<div class="gold" style="font-size:.72rem">${money(+m.montant)}</div>`:''}</td>
     <td style="text-align:right" onclick="event.stopPropagation()">${done?'<span class="up" style="font-size:.75rem">✔</span>':canImp?`
@@ -5355,7 +5372,7 @@ window.dlPeriode=async function(v){
   DL.page=1; await dlCharger(); dlRender();
 };
 window.dlReset=async function(){
-  DL.f={domaine:'',type:'',joueur:'',du:'',au:'',q:''}; DL.page=1; DL.sel=null;
+  DL.f={domaine:'',type:'',joueur:'',coffre:'',du:'',au:'',q:''}; DL.page=1; DL.sel=null;
   await dlCharger(); dlRender();
 };
 window.dlTriCol=function(col){
@@ -5434,7 +5451,7 @@ function dlRender(){
     pagesHtml+=`<button class="btn btn-sm ${i===DL.page?'btn-gold':'btn-ghost'}" onclick="dlPage(${i})">${i}</button>`; });
   $('#main').innerHTML = `
   <div class="topbar">
-    <div><h2>Logs en direct</h2><div class="sub">Écrits par le bot de l'entreprise · mise à jour instantanée · <span id="dl-compte"></span></div></div>
+    <div><h2>Logs en direct</h2><div class="sub">Écrits par le bot de l'entreprise · les <b>3 derniers jours</b> · <span id="dl-compte"></span></div></div>
     <div style="display:flex;gap:10px">
       <button class="btn btn-ghost" onclick="dlogs()">↻ Recharger</button>
       <button class="btn btn-ghost" onclick="dlogsAncien()" title="Ancien détour GitHub Actions — conservé en secours">🗄 Ancien système</button>
@@ -5446,6 +5463,11 @@ function dlRender(){
       <option value="">Tous</option>${Object.entries(DL_DOMAINES).map(([k,d])=>`<option value="${k}" ${DL.f.domaine===k?'selected':''}>${esc(d.lbl)}</option>`).join('')}</select></div>
     <div><label style="font-size:.66rem">Action</label><select class="field"${fl('type')} style="width:160px;padding:6px 10px" onchange="dlMajF('type',this.value)">
       <option value="">Toutes</option>${typesDispo.map(t=>`<option value="${esc(t)}" ${DL.f.type===t?'selected':''}>${dlLbl(t)[0]} ${esc(dlLbl(t)[1])}</option>`).join('')}</select></div>
+    ${(()=>{ /* le menu n'apparaît que si le robot a repéré des coffres nommés (C-61) */
+      const cs=dlCoffresDispo(L);
+      return cs.length?`<div><label style="font-size:.66rem">Coffre</label><select class="field"${fl('coffre')} style="width:170px;padding:6px 10px" onchange="dlMajF('coffre',this.value)">
+        <option value="">Tous</option>${cs.map(c=>`<option value="${esc(c)}" ${DL.f.coffre===c?'selected':''}>${esc(c)}</option>`).join('')}</select></div>`:'';
+    })()}
     <div><label style="font-size:.66rem">Joueur</label><input class="field"${fl('joueur')} style="width:170px;padding:6px 10px" placeholder="Rechercher un joueur…" value="${esc(DL.f.joueur)}" onchange="dlMajF('joueur',this.value)"></div>
     <div><label style="font-size:.66rem">Date début</label><input type="date" class="field"${fl('du')} style="width:150px;padding:6px 10px" value="${esc(DL.f.du)}" onchange="dlMajF('du',this.value,true)"></div>
     <div><label style="font-size:.66rem">Date fin</label><input type="date" class="field"${fl('au')} style="width:150px;padding:6px 10px" value="${esc(DL.f.au)}" onchange="dlMajF('au',this.value,true)"></div>

@@ -223,7 +223,14 @@
         LOGS.lignes = msgs.map(function (m) {
           return {
             id: m.id, ts: m.t, type: m.type || "", employe: m.nom || m.auteur || "",
-            details: m.texte || "", meta: { auteur: m.auteur, quantite: m.quantite, montant: m.montant }
+            details: m.texte || "",
+            /* le nom du coffre remonte tel quel : c'est sur lui que filtre la vue */
+            coffre: m.coffre || "",
+            meta: {
+              auteur: m.auteur, quantite: m.quantite, montant: m.montant,
+              coffre: m.coffre || undefined, salon: m.salon || undefined,
+              champs: m.champs || undefined
+            }
           };
         });
         LOGS.charges = true;
