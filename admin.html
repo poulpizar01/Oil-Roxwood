@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-56</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-57</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -676,7 +676,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-56';
+const APP_VERSION='C-57';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3408,7 +3408,9 @@ async function ferImportSalon(){
     let n=0;
     d.achats.forEach(a=>{
       if(!S.fer.find(x=>x.id===a.id)){
-        S.fer.push({id:a.id,t:a.t,nom:a.nom,quantite:nn(a.quantite),montant:nn(a.montant)});
+        const l={id:a.id,t:a.t,nom:a.nom,quantite:nn(a.quantite),montant:nn(a.montant)};
+        if(a.did) l.did=String(a.did);   // secours : rattrape même si le nom RP a changé
+        S.fer.push(l);
         n++;
       }
     });
@@ -3454,6 +3456,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-57',d:'03/09/2026',t:'Le fer se relève tout seul',items:[
+   ['🔍','Le relevé était cassé depuis le début','Le robot cherchait un nom écrit en gras dans les messages du salon. Or ces messages sont des fiches structurées, sans gras : il ne trouvait rien et attribuait l\'achat à l\'auteur du message — le webhook. La colonne restait donc vide pour tout le monde. Il lit maintenant le champ « playerCharacter », c\'est-à-dire le nom de la fiche RP, celui de l\'effectif.'],
+   ['🗑️','« Noté à la main » supprimée','Elle n\'existait que parce que le relevé ne marchait pas. Garder une saisie parallèle à un relevé qui fonctionne, c\'est garder deux vérités pour un même chiffre. Les valeurs déjà notées restent dans l\'historique, elles ne sont simplement plus modifiables.'],
+   ['🪪','Rattrapage par identifiant Discord','Si le nom RP de quelqu\'un change, ses achats continuent d\'être comptés : le log porte aussi l\'identifiant Discord, et le dashboard s\'en sert quand le nom ne colle plus.'],
+   ['📚','L\'historique se remplit tout seul','À la clôture, le relevé de la semaine close est photographié dans l\'historique des quotas — il n\'y a plus personne pour le saisir.'],
+ ]},
  {v:'C-56',d:'03/09/2026',t:'Le contrat s\'adresse au bon monde',items:[
    ['🎯','« Commercial à prévenir » ne liste plus que les commerciaux','Le menu proposait tout l\'encadrement — RH, comptables, direction. On réunit maintenant les trois endroits où le métier s\'écrit : le poste en effectif, le grade en fiche RH, le rôle du compte. Les absents restent listés, un contrat se pose souvent pour la semaine suivante.'],
    ['📣','Ou le pôle entier, d\'un coup','Nouvelle entrée « Tout le pôle commercial » : le robot mentionne les rôles Discord commerciaux au lieu d\'une personne. Pratique quand le contrat revient à qui est disponible.'],
@@ -4158,10 +4166,29 @@ function pdCell(ri,k,v){
 
 /* ================== QUOTAS COMMERCIAUX ================== */
 function qcArchive(){
-  // archive la semaine écoulée dans l'historique (16 semaines max) puis repart à zéro
+  /* Archive la semaine écoulée dans l'historique (16 semaines max) puis repart à zéro.
+
+     Depuis C-57, `achats` n'est plus rempli à la main : on le photographie
+     ici, à partir du relevé du bot, juste avant d'archiver. Sans ça
+     l'historique repartirait vide chaque semaine — les achats vivent dans
+     `S.fer`, qui est daté, et la vue ne montre que la semaine en cours. */
   const q=S.quotasCom;
-  if(q&&(Object.keys(q.achats||{}).length||q.vendus)){
-    (S.quotasComHist=S.quotasComHist||[]).push({sem:q.sem,vendus:q.vendus||0,parPers:q.parPers||0,ferPers:q.ferPers||0,achats:q.achats||{}});
+  /* Quelle fenêtre ? La clôture se fait le lundi, pour la semaine qui vient
+     de finir : `lundiCourant()` désigne alors le lundi du jour, pas celui de
+     la semaine close. On regarde donc d'abord la semaine précédente ; si elle
+     est vide (clôture faite dimanche soir, par exemple), on prend la semaine
+     en cours. Et si les deux sont vides, on garde ce qui était noté avant. */
+  const releve=(du,au)=>{
+    const o={};
+    try{ commerciauxActifs().forEach(c=>{ const v=ferReleveEntre(c.nom,du,au); if(v) o[c.nom]=v; }); }catch(e){}
+    return o;
+  };
+  const p=semainePrec();
+  let snap=releve(p.du,p.au);
+  if(!Object.keys(snap).length) snap=releve(lundiCourant(),'');
+  const achats=Object.keys(snap).length?snap:(q&&q.achats)||{};
+  if(q&&(Object.keys(achats).length||q.vendus)){
+    (S.quotasComHist=S.quotasComHist||[]).push({sem:q.sem,vendus:q.vendus||0,parPers:q.parPers||0,ferPers:q.ferPers||0,achats:achats});
     if(S.quotasComHist.length>16) S.quotasComHist.shift();
   }
   S.quotasCom={sem:S.settings.semaine,achats:{}};
@@ -4192,9 +4219,14 @@ function quotascom(){
   const ferPers=parPers*2;                                   // fer nécessaire = double des bidons
   // photographie continue (utilisée par l'archivage)
   if(S.quotasCom.vendus!==vendus||S.quotasCom.parPers!==parPers){ Object.assign(S.quotasCom,{vendus,parPers,ferPers}); save(); }
-  const achats=S.quotasCom.achats;
-  // ce qui compte pour chacun : le relevé du bot, ou la saisie manuelle si elle est plus haute
-  const ferRetenu=c=>Math.max(ferReleveSem(c.nom), nn(achats[c.nom]));
+  /* Ce qui compte pour chacun : le relevé du bot, et rien d'autre.
+     La colonne « Noté à la main » a été retirée en C-57. Elle datait de
+     l'époque où le relevé ne fonctionnait pas — il cherchait un nom en gras
+     dans un message qui n'en contient pas, et attribuait tout au webhook.
+     Une fois le relevé réparé, garder une saisie parallèle, c'était garder
+     deux vérités pour un même chiffre. Les anciennes valeurs restent dans
+     l'historique, elles ne sont simplement plus modifiables. */
+  const ferRetenu=c=>ferReleveSem(c.nom);
   const totAchete=coms.reduce((a,c)=>a+ferRetenu(c),0);
   const totReste=coms.reduce((a,c)=>a+Math.max(0,ferPers-ferRetenu(c)),0);
   const lundi=lundiCourant();
@@ -4214,25 +4246,23 @@ function quotascom(){
     <div class="panel kpi"><div class="lbl">Bidons vendus · semaine</div><div class="val">${fmt(vendus)}</div><div class="delta">${coms.length} commercial(aux) actif(s)</div></div>
     <div class="panel kpi"><div class="lbl">Fer à acheter / pers.</div><div class="val gold">${fmt(ferPers)}</div><div class="delta">${fmt(parPers)} bidons à produire chacun</div></div>
     <div class="panel kpi"><div class="lbl">Fer acheté · équipe</div><div class="val">${fmt(ferQte)}</div><div class="delta">${ferSem.length} achat(s) relevés cette semaine</div></div>
-    <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${totReste===0&&coms.length?'up':''}">${fmt(totReste)}</div><div class="delta">${ferMontant?money(ferMontant)+' dépensés':fmt(totAchete)+' noté(s) à la main'}</div></div>
+    <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${totReste===0&&coms.length?'up':''}">${fmt(totReste)}</div><div class="delta">${ferMontant?money(ferMontant)+' dépensés':fmt(totAchete)+' fer relevé(s)'}</div></div>
   </div>
   <div class="panel">
     <h3>Suivi par commercial</h3>
-    ${coms.length?`<table><thead><tr><th>Commercial</th><th style="text-align:right">Bidons à produire</th><th style="text-align:right">Fer à acheter</th><th style="text-align:right">Relevé du bot</th><th style="text-align:right">Noté à la main</th><th style="text-align:right">Reste</th></tr></thead><tbody>
+    ${coms.length?`<table><thead><tr><th>Commercial</th><th style="text-align:right">Bidons à produire</th><th style="text-align:right">Fer à acheter</th><th style="text-align:right">Fer acheté</th><th style="text-align:right">Reste</th></tr></thead><tbody>
     ${coms.map(c=>{
-      const releve=ferReleveSem(c.nom), a=nn(achats[c.nom]);
-      const retenu=Math.max(releve,a);          // on garde le plus favorable : le bot peut rater un achat, jamais en inventer
-      const reste=Math.max(0,ferPers-retenu);
+      const releve=ferReleveSem(c.nom);
+      const reste=Math.max(0,ferPers-releve);
       return `<tr>
         <td><b>${esc(c.nom)}</b></td>
         <td style="text-align:right">${fmt(parPers)}</td>
         <td style="text-align:right">${fmt(ferPers)}</td>
-        <td style="text-align:right;color:${releve?'var(--ink)':'var(--muted)'}" title="Achats de fer relevés dans le salon Discord depuis lundi">${releve?fmt(releve):'—'}</td>
-        <td style="text-align:right"><input class="field" type="number" min="0" style="max-width:110px;text-align:right" value="${a}" onchange="qcSet('${esc(c.nom)}',this.value)" title="À remplir seulement si le bot a raté un achat"></td>
+        <td style="text-align:right;color:${releve?'var(--ink)':'var(--muted)'}" title="Relevé dans le salon Discord des achats depuis lundi">${releve?fmt(releve):'—'}</td>
         <td style="text-align:right;font-weight:800;color:${reste===0?'#4A9D6F':'var(--accent)'}">${reste===0?'✔ complet':fmt(reste)+' fer'}</td>
       </tr>`;
     }).join('')}</tbody></table>
-    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">La colonne <b>Relevé du bot</b> vient des achats de fer postés dans le salon Discord depuis lundi — il n'y a plus rien à recopier. La colonne <b>Noté à la main</b> ne sert qu'en secours, si un achat n'a pas été relevé : c'est le plus élevé des deux qui compte. Remise à zéro à la clôture, l'ancienne semaine part dans l'historique.</p>`
+    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">La colonne <b>Fer acheté</b> vient des achats postés dans le salon Discord depuis lundi, relevés automatiquement — il n'y a rien à saisir. Un tiret veut dire qu'aucun achat n'a été relevé au nom de cette personne : c'est le nom de la fiche RP qui fait le lien. Remise à zéro à la clôture, l'ancienne semaine part dans l'historique.</p>`
     :'<div class="empty">Aucun commercial actif dans l\'effectif (poste contenant « commercial »)</div>'}
   </div>
   <div class="panel" style="margin-top:18px;padding:8px 16px;overflow-x:auto">
@@ -4273,17 +4303,26 @@ function lundiCourant(){
   const l=new Date(d); l.setDate(d.getDate()-j);
   return jourISO(l);
 }
-function ferReleveSem(nom){
+/* Le relevé d'une personne depuis lundi.
+   On rapproche par nom RP — c'est `playerCharacter` dans le log, donc le même
+   nom qu'en effectif. Et par identifiant Discord en secours : un nom RP peut
+   changer (mariage, correction d'orthographe) alors que l'identifiant, non.
+   C'est le seul rattrapage qui reste depuis que la colonne « Noté à la main »
+   a disparu — il vaut mieux qu'il soit solide. */
+function ferDidsDe(nom){
+  const l=normNom(nom); if(!l) return [];
+  return (S.users||[]).filter(u=>normNom(u.user)===l&&u.did).map(u=>String(u.did));
+}
+function ferReleveEntre(nom,du,au){
   const l=normNom(nom); if(!l) return 0;
-  const lundi=lundiCourant();
-  return (S.fer||[]).filter(r=>normNom(r.nom)===l&&String(r.t||'').slice(0,10)>=lundi)
-                    .reduce((a,r)=>a+nn(r.quantite),0);
+  const dids=ferDidsDe(nom);
+  return (S.fer||[]).filter(r=>{
+    const j=String(r.t||'').slice(0,10);
+    if(!(j>=du&&(!au||j<=au))) return false;
+    return normNom(r.nom)===l||(r.did&&dids.includes(String(r.did)));
+  }).reduce((a,r)=>a+nn(r.quantite),0);
 }
-function qcSet(nom,v){
-  S.quotasCom.achats[nom]=Math.max(0,+v||0);
-  jlog(`Fer acheté noté : ${nom} → ${fmt(S.quotasCom.achats[nom])}`);
-  save(); sbPushNow(); quotascom();
-}
+function ferReleveSem(nom){ return ferReleveEntre(nom, lundiCourant(), ''); }
 
 /* ================== ABSENCES DÉCLARÉES ================== */
 function absDe(nom,date){

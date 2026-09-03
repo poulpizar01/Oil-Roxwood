@@ -170,7 +170,12 @@ Quatre automatisations tournent sur GitHub Actions :
 
 Ils ont besoin de ces secrets dans **Settings → Secrets and variables → Actions** :
 
-`DISCORD_BOT_TOKEN` · `DISCORD_GUILD_ID` · `DISCORD_CHANNEL_ID` · `DISCORD_FER_CHANNEL_ID`
+`DISCORD_BOT_TOKEN` · `DISCORD_GUILD_ID` · `DISCORD_CHANNEL_ID`
+
+`DISCORD_FER_CHANNEL_ID` est facultatif : le salon des achats de fer a une valeur
+par défaut dans le script, un identifiant de salon n'étant pas un secret. Ces achats
+sont lus dans les **champs** de la fiche postée — `playerCharacter` donne le nom de
+l'effectif, `playerDiscord` sert de secours si ce nom change un jour.
 
 Les robots **lisent** `data/etat.json` mais ne le modifient jamais : ils retiennent ce
 qu'ils ont traité dans leurs propres fichiers `data/*-seen.json`. Sans ça, un robot et
