@@ -16397,8 +16397,8 @@
   "rolesDiscordV": 3
  },
  "_cid": "vfew6ij7jyf",
- "_maj": 1788456484602,
- "_rev": "1d9cp0i4wyl-mtlstc4a",
+ "_maj": 1788456486084,
+ "_rev": "0zhzxiut85m-mtlstg74",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16407,7 +16407,7 @@
   "sheets": 1788222184505,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788456484602,
+  "journal": 1788456486084,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
@@ -16415,7 +16415,7 @@
   "imported": 1788222184505,
   "settings": 1788445633687,
   "closeUndo": 1788222184505,
-  "quotasCom": 1788456484602,
+  "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
   "bilanForce": 1788222184505,
   "primesExtra": 1788222184505,
@@ -16426,6 +16426,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788456486175,
+   "u": "Diego Herrera",
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 0"
+  },
   {
    "t": 1788456484693,
    "u": "Diego Herrera",
@@ -17920,11 +17925,6 @@
    "a": "Suppression du compte Marcus Johnson",
    "t": 1787330837180,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Juan Sanchez",
-   "t": 1787330834395,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18250,7 +18250,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-03T17:28:05.530Z",
+  "maj": "2026-09-03T17:28:10.816Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18276,7 +18276,7 @@
  "quotasCom": {
   "sem": 36,
   "achats": {
-   "Emma Collins-rodriguez": 1
+   "Emma Collins-rodriguez": 0
   },
   "vendus": 0,
   "parPers": 0,
