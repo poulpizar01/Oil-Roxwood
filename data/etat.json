@@ -16102,9 +16102,7 @@
     "moi",
     "profil",
     "quotashist",
-    "agenda",
-    "maj",
-    "dlogs"
+    "agenda"
    ]
   },
   "semaine": 36,
@@ -16193,10 +16191,7 @@
     "moi",
     "profil",
     "quotashist",
-    "agenda",
-    "maj",
-    "dlogs",
-    "journal"
+    "agenda"
    ]
   },
   "prixBidonCom": 50,
@@ -16240,8 +16235,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489435130,
- "_rev": "t81wd27ji0a-mtmcfku6",
+ "_maj": 1788489437840,
+ "_rev": "zgbdezkx6jc-mtmcfmtz",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16250,13 +16245,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489435130,
+  "journal": 1788489437840,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489435130,
+  "settings": 1788489437840,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16271,6 +16266,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489438411,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « maj » → aucun accès"
+  },
+  {
+   "t": 1788489437620,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « dlogs » → aucun accès"
+  },
+  {
+   "t": 1788489437025,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « journal » → aucun accès"
+  },
+  {
+   "t": 1788489436388,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « journal » → lecture seule 👁"
+  },
   {
    "t": 1788489435701,
    "u": "Diego Herrera",
@@ -17750,26 +17765,6 @@
    "a": "Contrat de travail généré : Alejandro Varrgas (Runner)",
    "t": 1787352032325,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Joseph Purple (Runner)",
-   "t": 1787340682842,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 1 bidon(s) — Employé Liam Collins (vendeur : Thomas Boyer)",
-   "t": 1787340285991,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 30 bidon(s) — Citoyen (vendeur : Emma Collins)",
-   "t": 1787334782643,
-   "u": "Emma Collins"
-  },
-  {
-   "a": "Palier fiscal : retour au calcul automatique",
-   "t": 1787332383694,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18095,7 +18090,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:37:15.966Z",
+  "maj": "2026-09-04T02:37:18.551Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
