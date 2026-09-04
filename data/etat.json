@@ -16106,7 +16106,7 @@
    "RH": 0,
    "Patron": 70000,
    "Co Patron": 50000,
-   "Comptable": 50000,
+   "Comptable": 0,
    "Graphiste": 0,
    "Commercial": 0,
    "Responsable Commercial": 0,
@@ -16221,8 +16221,8 @@
   "postesV4": 1
  },
  "_cid": "p6b0loisdy9",
- "_maj": 1788490412924,
- "_rev": "z3dfl760fid-mtmd1l4z",
+ "_maj": 1788490465303,
+ "_rev": "4tay66nf1wj-mtmd1r63",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16237,7 +16237,7 @@
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788490364946,
+  "settings": 1788490465303,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -18077,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:54:22.787Z",
+  "maj": "2026-09-04T02:54:30.603Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
