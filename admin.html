@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-71</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-72</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -507,12 +507,21 @@ function serveurDiscord(){
 /* `membreRoles` vaut null quand on n'a PAS PU savoir (serveur non réglé, permission
    refusée, personne absente du serveur) et [] quand la personne est bien là mais sans
    aucun rôle. Confondre les deux ferait entrer des gens sur une panne. */
-function roleDepuisDiscord(membreRoles){
-  if(!Array.isArray(membreRoles)) return null;
-  const set=new Set(membreRoles.map(String));
+/* Trois réponses possibles, et les confondre était un trou de sécurité :
+     undefined → on n'a pas pu savoir (serveur non réglé, permission refusée,
+                 personne absente du serveur) — on ne touche à rien
+     null      → sur le serveur, mais aucun rôle reconnu — la porte se ferme
+     'rh'      → le rôle du dashboard qui correspond
+   Avant, « aucun rôle » et « on ne sait pas » rendaient tous les deux null, et
+   le code ne faisait rien dans les deux cas : quelqu'un à qui on retirait tous
+   ses rôles Discord gardait son accès au dashboard indéfiniment. */
+function roleDiscordConnu(roles){
+  if(!Array.isArray(roles)) return undefined;
+  const set=new Set(roles.map(String));
   const m=rolesDiscord().find(x=>x&&x.id&&set.has(String(x.id))&&ROLES[x.role]);
   return m?m.role:null;
 }
+function roleDepuisDiscord(membreRoles){ return roleDiscordConnu(membreRoles)||null; }
 try{ if(window.RoxwoodGH&&RoxwoodGH.configurerServeur) RoxwoodGH.configurerServeur(serveurDiscord()); }catch(e){}
 /* ---- Réglages (Paramètres → Connexion par rôle Discord) ---- */
 function rdMaj(liste,note){
@@ -755,7 +764,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-71';
+const APP_VERSION='C-72';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -802,8 +811,10 @@ async function checkDiscordAuth(){
     let u=(S.users||[]).find(x=>x.did===did)
         ||(S.users||[]).find(x=>String(x.user).toLowerCase()===String(pseudo).toLowerCase());
 
-    // Ce que le serveur Discord dit de cette personne (null = information indisponible)
-    const roleDsc=roleDepuisDiscord(id.roles);
+    // Ce que le serveur Discord dit de cette personne
+    //   undefined = on n'a pas pu savoir · null = plus aucun rôle · 'rh' = le rôle
+    const roleDsc=roleDiscordConnu(id.roles);
+    const sansRole=(roleDsc===null);            // constaté, pas supposé
 
     if(!u&&!(S.users&&S.users.length)){
       // premier lancement : le premier connecté devient Direction
@@ -823,6 +834,27 @@ async function checkDiscordAuth(){
       if(RoxwoodGH.peutEcrire()) await sbPushNow();
       sendLog('🔐 Accès ouvert par rôle Discord',
               `**${pseudo}** entre en **${ROLES[roleDsc]}** — rôle reconnu sur le serveur`, 0x5865F2);
+    }
+
+    /* Le rôle a disparu du serveur Discord : l'accès se ferme.
+       On ne le fait que si l'information est certaine (sansRole, pas undefined),
+       et selon la même convention que l'alignement des rôles : automatique pour
+       les comptes ouverts par ce chemin, soumis à la case des Paramètres pour
+       ceux créés à la main. Le dernier compte Direction n'est jamais exclu —
+       sinon plus personne ne peut rouvrir la porte. */
+    if(u&&sansRole){
+      const syncOn0=!!(S.settings&&S.settings.rolesDiscordSync);
+      const dernierPatron=u.role==='direction'&&(S.users||[]).filter(x=>x.role==='direction'&&x!==u).length===0;
+      if((u.auto||syncOn0)&&!dernierPatron){
+        sendLog('🚫 Accès refusé — plus aucun rôle',
+                `**${pseudo}** a tenté d'entrer : aucun rôle reconnu sur le serveur.\nSon compte reste dans Paramètres → Comptes d'accès, à supprimer si le départ est définitif.`,
+                0xff5c5c);
+        jlog(`Accès refusé à ${pseudo} : plus aucun rôle Discord reconnu`);
+        const dz=document.getElementById('lg_denied');
+        if(dz){ dz.style.display='block';
+          dz.innerHTML='🚫 <b>Accès fermé.</b><br>Tu n\'as plus de rôle reconnu sur le serveur Discord d\'Oil Roxwood.<br>Si c\'est une erreur, préviens la direction.'; }
+        return;
+      }
     }
 
     if(u){
@@ -3631,6 +3663,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-72',d:'04/09/2026',t:'Perdre son rôle ferme la porte',items:[
+   ['🚫','Un départ n\'était pas un départ','Le rôle Discord ouvrait l\'accès, mais le perdre ne le fermait pas. Quelqu\'un à qui on retirait tous ses rôles gardait son compte et entrait comme avant, indéfiniment. La cause : le code confondait « cette personne n\'a plus aucun rôle » et « on n\'a pas pu savoir » — deux situations qui rendaient la même réponse, et devant lesquelles il ne faisait rien.'],
+   ['🔍','La différence est maintenant faite','Information indisponible : on ne touche à rien, un incident réseau ne doit exclure personne. Absence de rôle constatée : l\'accès se ferme, la direction est prévenue sur Discord, et le compte reste dans Paramètres pour être supprimé si le départ est définitif.'],
+   ['👑','Le dernier patron ne s\'exclut jamais','Comme pour la rétrogradation automatique : si le dernier compte Direction perdait ses rôles, il garderait l\'accès. Sinon plus personne ne pourrait rouvrir la porte.'],
+ ]},
  {v:'C-71',d:'04/09/2026',t:'Chaque rôle Discord voit son métier',items:[
    ['🔐','Les permissions repensées, rôle par rôle','Depuis que l\'entrée se fait par rôle Discord, les accès pouvaient être calés dessus pour de bon. Les RH voient les personnes et ce qu\'on leur doit, pas la compta. Le Comptable voit l\'argent de l\'entreprise, pas les dossiers du personnel. Les Commerciaux voient le commerce. Le Responsable Runner encadre la production sans accéder à la paie détaillée ni aux fiches RH. Le principe : on n\'ouvre pas un onglet « au cas où » — ces feuilles portent des téléphones, des RIB et les comptes de la société.'],
    ['🔔','« Demandes d\'accès » supprimée','Elle servait à valider les arrivées une par une. Le rôle Discord le fait désormais tout seul, et sa table n\'était plus alimentée depuis la sortie de Supabase. Le repli n\'a pas changé : quelqu\'un sans rôle reconnu déclenche une mention à la direction sur Discord, qui peut toujours créer le compte à la main dans Paramètres → Comptes d\'accès.'],
