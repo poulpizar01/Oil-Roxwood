@@ -16200,9 +16200,9 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "zonbg59snoj",
- "_maj": 1788484187868,
- "_rev": "rfhtcom3y3c-mtm9b74v",
+ "_cid": "gila39ze88v",
+ "_maj": 1788484449596,
+ "_rev": "oesihxmof-mtm9gptx",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16225,7 +16225,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788484187868
+  "_tables": 1788484449596
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18054,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:09:52.735Z",
+  "maj": "2026-09-04T01:14:10.245Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -23641,6 +23641,41 @@
     "role": "direction",
     "vu": "2026-09-04T01:09:47.868Z",
     "id": 1788484189076
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:10:38.861Z",
+    "id": 1788484239276
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:11:53.881Z",
+    "id": 1788484314771
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:12:52.314Z",
+    "id": 1788484373126
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:13:16.424Z",
+    "id": 1788484397268
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:14:09.574Z",
+    "id": 1788484449989
    }
   ],
   "oilroxwood_demandes": [],
@@ -24045,6 +24080,17 @@
     "tel": "O",
     "rib": "O",
     "idU": "O",
+    "grade": "Direction",
+    "recrut": "Diego Herrera",
+    "arrivee": "2026-09-04"
+   },
+   {
+    "id": 1788484358109,
+    "nom": "test",
+    "discord": "438358976141328404",
+    "tel": "000000000",
+    "rib": "000000",
+    "idU": "000000",
     "grade": "Direction",
     "recrut": "Diego Herrera",
     "arrivee": "2026-09-04"
