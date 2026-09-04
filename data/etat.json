@@ -16176,8 +16176,7 @@
     "maj"
    ],
    "assistdir": [
-    "effectif",
-    "historique"
+    "effectif"
    ]
   },
   "prixBidonCom": 50,
@@ -16222,8 +16221,8 @@
   "postesV4": 1
  },
  "_cid": "p6b0loisdy9",
- "_maj": 1788490363433,
- "_rev": "mnglzx5oj9m-mtmczhum",
+ "_maj": 1788490364946,
+ "_rev": "rvjgj789a2-mtmcznk2",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16232,13 +16231,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788490363433,
+  "journal": 1788490364946,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788490363433,
+  "settings": 1788490364946,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16254,6 +16253,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788490366058,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → aucun accès"
+  },
+  {
+   "t": 1788490365247,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → lecture seule 👁"
+  },
   {
    "t": 1788490364545,
    "u": "Diego Herrera",
@@ -17743,16 +17752,6 @@
    "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
    "t": 1787479123048,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : John Alvarez (Runner)",
-   "t": 1787476894321,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 10 bidon(s) — Citoyen Scott Mate (vendeur : Thomas Boyer)",
-   "t": 1787430006191,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18078,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:52:45.214Z",
+  "maj": "2026-09-04T02:52:52.610Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
