@@ -8521,33 +8521,6 @@
     "discord": ".tioflo"
    },
    {
-    "idU": "209818",
-    "nom": "Elijah Davis",
-    "tel": "555984151",
-    "comm": "recruté et parti au bout de 2h",
-    "date": "2026-02-16",
-    "grade": "Démission",
-    "discord": "zenox_mz"
-   },
-   {
-    "idU": "320981",
-    "nom": "Wade Jackson",
-    "tel": "555154905",
-    "comm": "//",
-    "date": "2026-02-16",
-    "grade": "Démission",
-    "discord": "wm.lvt"
-   },
-   {
-    "idU": "353005",
-    "nom": "Pablo Rodriguez",
-    "tel": "555272175",
-    "comm": "part 15 min apres le recrutement",
-    "date": "2026-03-01",
-    "grade": "Démission",
-    "discord": "le_w__"
-   },
-   {
     "idU": "327481",
     "nom": "Amine Doé",
     "tel": "555590771",
@@ -16354,14 +16327,14 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ev9a7hrrn7i",
- "_maj": 1788482633977,
- "_rev": "kyfodtvfhsh-mtm8dvti",
+ "_maj": 1788482645839,
+ "_rev": "3qdscl0ddfk-mtm8e256",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788482633977,
+  "sheets": 1788482645839,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788482311899,
@@ -18207,7 +18180,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:43:58.422Z",
+  "maj": "2026-09-04T00:44:06.618Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
