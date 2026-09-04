@@ -2921,7 +2921,7 @@
     "actif": true,
     "avert": "",
     "grade": "RH",
-    "recrut": "",
+    "recrut": "Diego Herrera",
     "arrivee": "2026-06-22",
     "contrat": true,
     "discord": "438358976141328404",
@@ -16201,17 +16201,17 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "njlj8qw4mi",
- "_maj": 1788483961205,
- "_rev": "rtj3majnzq-mtm9694k",
+ "_maj": 1788483962271,
+ "_rev": "1xgw1y6yiqb-mtm96dgu",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788482737234,
+  "sheets": 1788483962271,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788482311899,
+  "journal": 1788483962271,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
@@ -16225,11 +16225,16 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788483961205
+  "_tables": 1788483962271
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788483963492,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 0 fiche(s) créée(s) · des cases vides complétées"
+  },
   {
    "t": 1788482312436,
    "u": "Diego Herrera",
@@ -17724,11 +17729,6 @@
    "a": "Suppression du compte henry carry",
    "t": 1787330848416,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte endrew paslase",
-   "t": 1787330846725,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18054,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:06:02.036Z",
+  "maj": "2026-09-04T01:06:07.662Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
