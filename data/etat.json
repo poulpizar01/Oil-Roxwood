@@ -8548,42 +8548,6 @@
     "discord": "squix16380"
    },
    {
-    "idU": "355005",
-    "nom": "Matheo Ducky",
-    "tel": "555445030",
-    "comm": "Prefere donner sa vie a son deuxieme job",
-    "date": "2026-03-13",
-    "grade": "Intérimaire",
-    "discord": "just_nocx"
-   },
-   {
-    "idU": "2810",
-    "nom": "Brandon Smith",
-    "tel": "555489556",
-    "comm": "recruter parti 2h apres",
-    "date": "2026-04-04",
-    "grade": "Intérimaire",
-    "discord": "ttixer974_99900"
-   },
-   {
-    "idU": "198154",
-    "nom": "Leroy Woods",
-    "tel": "555677451",
-    "comm": "Prend le seum pour la radio Obligatoire Connard X10",
-    "date": "2026-04-06",
-    "grade": "Intérimaire",
-    "discord": "wht_binks676"
-   },
-   {
-    "idU": "357895",
-    "nom": "Lautaro Ferran",
-    "tel": "555982209",
-    "comm": "Demisson 2h apres",
-    "date": "2026-04-07",
-    "grade": "intérimaire",
-    "discord": "hely_rp"
-   },
-   {
     "idU": "351868",
     "nom": "Pablo ESC",
     "tel": "",
@@ -16282,14 +16246,14 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ev9a7hrrn7i",
- "_maj": 1788482672928,
- "_rev": "aid3mhst1bl-mtm8eq3e",
+ "_maj": 1788482707637,
+ "_rev": "vh9aefeg3e-mtm8fgwo",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788482672928,
+  "sheets": 1788482707637,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788482311899,
@@ -16306,7 +16270,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788482607943
+  "_tables": 1788482697948
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18135,7 +18099,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:44:37.658Z",
+  "maj": "2026-09-04T00:45:12.408Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -23582,6 +23546,13 @@
     "role": "direction",
     "vu": "2026-09-04T00:43:27.943Z",
     "id": 1788482608735
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T00:44:57.948Z",
+    "id": 1788482698744
    }
   ],
   "oilroxwood_demandes": [],
