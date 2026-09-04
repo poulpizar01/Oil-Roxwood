@@ -16120,6 +16120,10 @@
     "cloture",
     "reunions",
     "ftablette",
+    "felig",
+    "fventes",
+    "frh",
+    "fblacklist",
     "factures",
     "relances",
     "prodder",
@@ -16199,8 +16203,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "gila39ze88v",
- "_maj": 1788485071824,
- "_rev": "3j6ocb4td3x-mtm9u2d7",
+ "_maj": 1788485074469,
+ "_rev": "xd1767xwj7l-mtm9u4hn",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16209,13 +16213,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788485071824,
+  "journal": 1788485074469,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788485071824,
+  "settings": 1788485074469,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16228,6 +16232,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788485075563,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « fblacklist » → accès complet ✓"
+  },
+  {
+   "t": 1788485075205,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « frh » → accès complet ✓"
+  },
+  {
+   "t": 1788485074430,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « fventes » → accès complet ✓"
+  },
+  {
+   "t": 1788485074033,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « felig » → accès complet ✓"
+  },
   {
    "t": 1788485072918,
    "u": "Diego Herrera",
@@ -17707,26 +17731,6 @@
    "a": "Suppression du compte balam itzam",
    "t": 1787330868270,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Rachild Badoury",
-   "t": 1787330866441,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Luiz Gonzalez",
-   "t": 1787330862586,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Ray buffalo",
-   "t": 1787330859931,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Ajaw Akbal",
-   "t": 1787330858132,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18052,7 +18056,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:24:33.019Z",
+  "maj": "2026-09-04T01:24:35.771Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
