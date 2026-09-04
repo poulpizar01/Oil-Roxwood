@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-65</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-66</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -296,6 +296,13 @@ function save(){
   });
   localStorage.setItem(LS_KEY, JSON.stringify(S)); sbQueue();
 }
+/* Tables dont le bot est le seul auteur.
+   `_tables` se fusionne EN BLOC : pour toute la section, la version la plus
+   récente gagne. Un navigateur qui enregistre un contrat juste après une
+   écriture du bot ferait donc disparaître la table des coffres de sa copie —
+   puis l'effacerait du dépôt à son prochain envoi. Ces tables-là n'ont qu'un
+   auteur, il n'y a rien à arbitrer : on les reprend toujours du dépôt. */
+const TABLES_BOT=['oilroxwood_coffres'];
 function mergeRemote(rem){
   // fusion section par section : pour chacune, la plus récente gagne
   let changed=false, localNewer=false;
@@ -309,6 +316,15 @@ function mergeRemote(rem){
     if(rt>lt){ if(rem[k]!==undefined) S[k]=rem[k]; S._majSec[k]=rt; S._fp[k]=fpOf(S[k]); changed=true; }
     else if(lt>rt) localNewer=true;
   });
+  if(rem._tables){
+    S._tables=S._tables||{};
+    TABLES_BOT.forEach(k=>{
+      if(rem._tables[k]===undefined) return;
+      if(JSON.stringify(S._tables[k])!==JSON.stringify(rem._tables[k])){
+        S._tables[k]=rem._tables[k]; changed=true;
+      }
+    });
+  }
   S._maj=Math.max(S._maj||0,rem._maj||0);
   palDirty();
   return {changed,localNewer};
@@ -684,7 +700,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-65';
+const APP_VERSION='C-66';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3465,6 +3481,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-66',d:'04/09/2026',t:'La table des coffres ne s\'efface plus',items:[
+   ['🧩','Un trou dans la fusion','Les tables annexes se synchronisent en bloc : pour toute la section, la version la plus récente gagne. Un navigateur qui enregistrait quelque chose juste après une écriture du bot faisait donc disparaître la table des coffres de sa copie — puis l\'effaçait du dépôt à son envoi suivant. Les tables dont le bot est le seul auteur sont désormais toujours reprises du dépôt : il n\'y a rien à arbitrer.'],
+   ['🏷️','Le menu dit ce qu\'il sait','Le filtre « Coffre » affiche combien de coffres sont nommés, et signale en clair quand la table du bot n\'est pas encore arrivée — au lieu de laisser une liste de coordonnées faire croire à une panne.'],
+ ]},
  {v:'C-65',d:'04/09/2026',t:'Les coffres par leur nom',items:[
    ['🗄','La position devient un nom','Les logs du serveur n\'écrivent pas le nom du coffre, ils écrivent ses coordonnées. Les seize coffres de l\'entreprise sont baptisés dans le bot ; il publie maintenant sa table de correspondance dans l\'état partagé, et le dashboard traduit. « Transfo Raffineur D » au lieu de « -1843.83, 6518.10, 15.74 ».'],
    ['🔍','Filtrer sur un coffre précis','Le menu « Coffre » des Logs en direct liste les vrais noms. Un coffre pas encore baptisé apparaît par ses coordonnées — et prendra son nom tout seul dès que tu le nommeras côté bot, sans rien toucher au site.'],
@@ -5539,9 +5559,13 @@ function dlRender(){
     <div><label style="font-size:.66rem">Action</label><select class="field"${fl('type')} style="width:160px;padding:6px 10px" onchange="dlMajF('type',this.value)">
       <option value="">Toutes</option>${typesDispo.map(t=>`<option value="${esc(t)}" ${DL.f.type===t?'selected':''}>${dlLbl(t)[0]} ${esc(dlLbl(t)[1])}</option>`).join('')}</select></div>
     ${(()=>{ /* le menu n'apparaît que si le robot a repéré des coffres nommés (C-61) */
-      const cs=dlCoffresDispo(L);
-      return cs.length?`<div><label style="font-size:.66rem">Coffre</label><select class="field"${fl('coffre')} style="width:170px;padding:6px 10px" onchange="dlMajF('coffre',this.value)">
-        <option value="">Tous</option>${cs.map(c=>`<option value="${esc(c)}" ${DL.f.coffre===c?'selected':''}>${esc(c)}</option>`).join('')}</select></div>`:'';
+      const cs=dlCoffresDispo(L), nommes=coffresConnus().filter(k=>k.nom).length;
+      // si la table du bot n'est pas encore arrivee, le menu n'affiche que des
+      // coordonnees : on le dit, plutot que de laisser croire a un bug.
+      const note=cs.length&&!nommes
+        ? `<div style="font-size:.6rem;color:var(--accent);margin-top:3px">table des noms pas encore reçue</div>` : '';
+      return cs.length?`<div><label style="font-size:.66rem">Coffre${nommes?` <span style="color:var(--muted)">(${nommes} nommés)</span>`:''}</label><select class="field"${fl('coffre')} style="width:200px;padding:6px 10px" onchange="dlMajF('coffre',this.value)">
+        <option value="">Tous</option>${cs.map(c=>`<option value="${esc(c)}" ${DL.f.coffre===c?'selected':''}>${esc(c)}</option>`).join('')}</select>${note}</div>`:'';
     })()}
     <div><label style="font-size:.66rem">Joueur</label><input class="field"${fl('joueur')} style="width:170px;padding:6px 10px" placeholder="Rechercher un joueur…" value="${esc(DL.f.joueur)}" onchange="dlMajF('joueur',this.value)"></div>
     <div><label style="font-size:.66rem">Date début</label><input type="date" class="field"${fl('du')} style="width:150px;padding:6px 10px" value="${esc(DL.f.du)}" onchange="dlMajF('du',this.value,true)"></div>
