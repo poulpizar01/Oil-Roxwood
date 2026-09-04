@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-69</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-71</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -72,7 +72,6 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
     <button class="nav-item" data-view="frh">🗂️ <span class="txt">Fiches RH</span></button>
     <button class="nav-item" data-view="fblacklist">⛔ <span class="txt">Blacklist</span></button>
-    <button class="nav-item" data-view="acces">🔔 <span class="txt">Demandes d'accès</span></button>
     <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
     <button class="nav-item" data-view="felig">✅ <span class="txt">Éligibilité</span></button>
     <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
@@ -199,6 +198,7 @@ function purgeSupprimees(){
   return n>0;
 }
 purgeSupprimees();
+migrerPerms();
 appliquerGrades();   // les réglages de la direction priment sur les valeurs d'usine
 // Réinitialisation unique du mot de passe (juillet 2026) : retour à « roxwood ».
 if(!localStorage.getItem('orx_pwfix1')){
@@ -232,7 +232,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1','_permsFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -569,15 +569,32 @@ function avatarHTML(qui, style){
 }
 /* Onglets visibles par rôle — la Direction voit tout, un Membre ne voit que la vue d'ensemble */
 const PERMS={
+  /* Chaque rôle du dashboard correspond à un rôle du serveur Discord, et ne voit
+     que son métier. Le principe : on n'ouvre pas un onglet « au cas où » — les
+     fiches du personnel portent téléphones et RIB, la compta porte les comptes
+     de l'entreprise. Tout reste réglable case par case dans Paramètres →
+     Permissions par rôle ; ceci n'est que le point de départ. */
+
+  // Patron, Co Patron : tout, y compris la clôture et les réglages.
   direction:['overview','effectif','semaine','historique','cloture','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
-  rh:       ['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','acces','factures','relances','prodder','quotascom','moi','profil','quotashist','agenda','maj','dlogs'],
-  comptable:['overview','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','bilan','moi','profil','quotashist','agenda','maj'],
-  commercial:['overview','reunions','factures','relances','ftablette','felig','fventes','frh','fblacklist','fcompta','prodder','quotascom','moi','profil','quotashist','agenda','maj'],
-  /* Responsable Runner : encadre les runners au quotidien. Par défaut il voit
-     l'effectif, les runs, la semaine et les feuilles — mais pas le bilan, pas les
-     factures, pas la paie. Tout se règle case par case dans Paramètres → Permissions. */
-  resprunner:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
-  membre:   ['effectif','reunions','moi','profil','quotashist','agenda','maj'] // lecture seule + stats perso + boîte à idées + agenda
+
+  // RH : les personnes et ce qu'on leur doit. Ni compta, ni facturation.
+  //      La semaine reste ouverte : c'est là qu'ils lisent les salaires à payer.
+  rh:       ['overview','effectif','semaine','historique','reunions','frh','fblacklist','felig','ftablette','moi','profil','quotashist','agenda','maj','dlogs'],
+
+  // Comptable : l'argent de l'entreprise. Pas les dossiers du personnel.
+  comptable:['overview','reunions','factures','relances','bilan','fcompta','frecues','moi','profil','quotashist','agenda','maj'],
+
+  // Commercial et Responsable commercial : le commerce, rien d'autre.
+  commercial:['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','maj'],
+
+  // Responsable Runner : il encadre la production au quotidien. Effectif,
+  //      éligibilité, tablette et logs — mais ni la paie détaillée, ni les
+  //      factures, ni les fiches du personnel.
+  resprunner:['overview','effectif','semaine','historique','reunions','felig','ftablette','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
+
+  // Runner : lecture de l'entreprise et son espace personnel.
+  membre:   ['overview','effectif','reunions','moi','profil','quotashist','agenda','maj']
 };
 function isMembre(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return false; // clé de secours = Direction
@@ -596,7 +613,45 @@ function allowedViews(){
 /* Filet de sécurité après une suppression de rubrique : les permissions
    personnalisées enregistrées peuvent encore citer une vue qui n'existe plus.
    Sans ce filtre, show('todo') planterait pour qui avait réglé ses droits à la main. */
-function vueExiste(v){ return PERMS.direction.includes(v)||v==='acces'; }
+/* La rubrique « Demandes d'accès » a été retirée : on entre par rôle Discord.
+   Ce qui reste pour un inconnu : une mention à la direction sur Discord, et la
+   création manuelle du compte dans Paramètres → Comptes d'accès. */
+function vueExiste(v){ return PERMS.direction.includes(v); }
+/* ---- Réparation des permissions enregistrées (C-71) ----
+   Les listes personnalisées de Paramètres → Permissions par rôle citent des
+   rubriques par leur nom. Or plusieurs ont disparu ou changé de nom depuis :
+   « Feuilles » s'est scindée en six rubriques (C-59), « Runs » a été supprimée
+   (C-58), « Achats Fer » a fusionné avec les quotas (C-51), et Suggestions,
+   Ma to-do, Ancienneté RH ont été retirées (C-50).
+
+   Ces noms morts étaient simplement ignorés — donc un rôle réglé sur
+   « Feuilles » n'avait plus accès à AUCUNE feuille sans que personne ne s'en
+   aperçoive. On réécrit donc les listes une fois, en gardant les choix faits :
+   « Feuilles » redonne les six feuilles, le reste est nettoyé. */
+const SHEET_VUES_TOUTES=['ftablette','felig','fventes','frh','fblacklist','fcompta'];
+const VUES_DISPARUES=['acces','runs','fer','retention','todo','feedback','tv'];
+function migrerPerms(){
+  if(S._permsFix1) return false;
+  S._permsFix1=true;
+  let touche=0;
+  ['permsCustom','permsRO'].forEach(cle=>{
+    const c=S.settings&&S.settings[cle];
+    if(!c) return;
+    Object.keys(c).forEach(role=>{
+      const av=Array.isArray(c[role])?c[role]:[];
+      if(!av.length) return;
+      const ap=[];
+      av.forEach(v=>{
+        if(VUES_DISPARUES.includes(v)) return;
+        if(v==='feuilles'){ SHEET_VUES_TOUTES.forEach(x=>{ if(!ap.includes(x)) ap.push(x); }); return; }
+        if(!ap.includes(v)) ap.push(v);
+      });
+      if(JSON.stringify(ap)!==JSON.stringify(av)){ c[role]=ap; touche++; }
+    });
+  });
+  if(touche) jlog(`Permissions : ${touche} liste(s) de rôle remises à jour (rubriques renommées ou supprimées)`);
+  return touche>0;
+}
 function permsDe(role){
   const c=S.settings&&S.settings.permsCustom;
   const l=(c&&Array.isArray(c[role])&&c[role].length)?c[role]:PERMS[role];
@@ -700,7 +755,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-69';
+const APP_VERSION='C-71';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -980,7 +1035,6 @@ document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>show(
     cloture:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"/>',
     effectif:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 15.5c2.8.2 4.5 2 4.5 4.5"/>',
     feuilles:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/>',
-    acces:'<path d="M18 8a6 6 0 1 0-12 0c0 7-2 8-2 8h16s-2-1-2-8"/><path d="M10.5 20a1.8 1.8 0 0 0 3 0"/>',
     factures:'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>',
     relances:'<path d="M5 4h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
     bilan:'<path d="M3 21h18M4 9h16M12 3L3 9h18zM6 9v8M10 9v8M14 9v8M18 9v8"/>',
@@ -1024,12 +1078,13 @@ let VIEW='overview';
 function show(v){
   appliquerGrades();   // une synchro a pu changer les barèmes depuis le dernier rendu
   if(purgeSupprimees()&&!isMembre()){ save(); sbQueue(); }   // rubriques supprimées : leurs données ne reviennent pas
+  if(migrerPerms()&&!isMembre()){ save(); sbQueue(); }       // listes de permissions citant d'anciennes rubriques
   const al=allowedViews();
   if(!al.includes(v)) v=al[0]||'overview'; // vue non autorisée → première vue permise
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,acces,agenda,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,agenda,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
 }
 function rerender(){ show(VIEW); }
@@ -1461,22 +1516,24 @@ function importerRecrues(){
   const file=((S._tables&&S._tables.oilroxwood_recrues)||[]);
   if(!file.length||!S.sheets||!S.sheets.rh) return {ajoutes:0,completes:0};
   const rh=S.sheets.rh;
-  let ajoutes=0, completes=0;
+  let ajoutes=0, completes=0; const noms=[];
   file.forEach(r=>{
     const idu=chiffres(r.idU), did=String(r.discord||'').trim();
     const existe=rh.find(x=>(idu&&chiffres(x.idU)===idu)||(did&&String(x.discord||'').trim()===did));
     if(existe){
       // on complète, on n'écrase pas : le travail des RH prime
+      let n=0;
       ['tel','rib','idU','grade','recrut','arrivee','discord'].forEach(k=>{
-        if(!String(existe[k]||'').trim()&&String(r[k]||'').trim()){ existe[k]=r[k]; completes=1; }
+        if(!String(existe[k]||'').trim()&&String(r[k]||'').trim()){ existe[k]=r[k]; n++; }
       });
+      if(n){ completes+=n; noms.push(existe.nom||r.nom); }
       return;
     }
     const neuf=JSON.parse(JSON.stringify(SHEETS_DEF.rh.nouveau));
     ['nom','tel','rib','idU','grade','recrut','arrivee','discord'].forEach(k=>{ if(r[k]) neuf[k]=r[k]; });
-    rh.unshift(neuf); ajoutes++;
+    rh.unshift(neuf); ajoutes++; noms.push(neuf.nom);
   });
-  return {ajoutes,completes};
+  return {ajoutes,completes,noms:[...new Set(noms)]};
 }
 function recruesAuto(nom){
   /* Fiches RH où la personne est « Recruteur », arrivées depuis le début de la
@@ -1828,9 +1885,15 @@ async function feuilles(){
   if(curSheet==='rh'&&!isMembre()&&!sheetRO('rh')){
     const imp=importerRecrues();
     if(imp.ajoutes||imp.completes){
-      jlog(`Recrutements Discord : ${imp.ajoutes} fiche(s) créée(s)${imp.completes?' · des cases vides complétées':''}`);
+      const qui=imp.noms.slice(0,3).join(', ')+(imp.noms.length>3?'…':'');
+      jlog(`Recrutements Discord : ${imp.ajoutes} fiche(s) créée(s), ${imp.completes} case(s) complétée(s) — ${qui}`);
       save(); sbPushNow();
-      if(imp.ajoutes) toast(`👥 ${imp.ajoutes} recrue(s) ajoutée(s) depuis Discord`);
+      /* On annonce aussi les complétions : une recrue déjà en fiche — un retour,
+         ou un test fait sur soi-même — ne crée aucune ligne. Sans ce message on
+         croit que rien ne s'est passé, alors que des cases ont été remplies. */
+      toast(imp.ajoutes
+        ? `👥 ${imp.ajoutes} recrue(s) ajoutée(s) depuis Discord — ${qui}`
+        : `👥 ${imp.completes} case(s) complétée(s) depuis Discord — ${qui} (déjà en fiche)`);
     }
   }
   // l'Éligibilité affiche les grades d'aujourd'hui, pas ceux figés à la clôture
@@ -3568,6 +3631,14 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-71',d:'04/09/2026',t:'Chaque rôle Discord voit son métier',items:[
+   ['🔐','Les permissions repensées, rôle par rôle','Depuis que l\'entrée se fait par rôle Discord, les accès pouvaient être calés dessus pour de bon. Les RH voient les personnes et ce qu\'on leur doit, pas la compta. Le Comptable voit l\'argent de l\'entreprise, pas les dossiers du personnel. Les Commerciaux voient le commerce. Le Responsable Runner encadre la production sans accéder à la paie détaillée ni aux fiches RH. Le principe : on n\'ouvre pas un onglet « au cas où » — ces feuilles portent des téléphones, des RIB et les comptes de la société.'],
+   ['🔔','« Demandes d\'accès » supprimée','Elle servait à valider les arrivées une par une. Le rôle Discord le fait désormais tout seul, et sa table n\'était plus alimentée depuis la sortie de Supabase. Le repli n\'a pas changé : quelqu\'un sans rôle reconnu déclenche une mention à la direction sur Discord, qui peut toujours créer le compte à la main dans Paramètres → Comptes d\'accès.'],
+   ['⚙️','Rien n\'est figé','Ce découpage n\'est qu\'un point de départ : chaque case se change dans Paramètres → Permissions par rôle, et les feuilles gardent leur réglage fin (plein accès · lecture seule · caché).'],
+ ]},
+ {v:'C-70',d:'04/09/2026',t:'L\'import de recrues dit ce qu\'il fait',items:[
+   ['💬','Le silence trompait','Quand la personne est déjà en fiche — un retour dans l\'entreprise, ou un test fait sur soi-même — aucune ligne n\'est créée : on complète seulement ses cases vides. L\'écran ne disait alors rien du tout, et on croyait que l\'import n\'avait pas fonctionné. Il annonce désormais les deux cas, avec les noms concernés.'],
+ ]},
  {v:'C-69',d:'04/09/2026',t:'Le pointage ne double plus les recrues',items:[
    ['🔗','Rattrapage par le nom','Une recrue transmise par le bot n\'a pas toujours d\'ID unique — le candidat ne l\'a pas forcément renseigné. Le collage du pointage, ne trouvant rien à rapprocher, créait alors une seconde ligne pour la même personne. Il la retrouve maintenant par son nom et lui attribue l\'ID au passage.'],
    ['🧯','Prudent par construction','Le rattrapage n\'agit que s\'il existe exactement une ligne portant ce nom, et qu\'elle est sans ID. Deux homonymes, ou un nom déjà identifié : on ne touche à rien.'],
@@ -4617,28 +4688,10 @@ function quotashist(){
 }
 
 /* ================== DEMANDES D'ACCÈS (vue RH) ================== */
-async function acces(){
-  let DEM=[];
-  try{
-    if(SYNC.cli){ const {data}=await SYNC.cli.from('oilroxwood_demandes').select('*').order('date'); DEM=data||[]; }
-  }catch(e){}
-  if(VIEW!=='acces') return;
-  $('#main').innerHTML=`
-  <div class="topbar"><div><h2>Demandes d'accès</h2><div class="sub">Valide les nouveaux membres — le rôle attribué est « Membre », la direction peut l'ajuster ensuite</div></div>
-    <button class="btn btn-ghost" onclick="acces()">🔄 Actualiser</button></div>
-  <div class="panel" style="max-width:680px">
-    ${DEM.length?DEM.map(p=>`<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)">
-      <span>👤 <b>${esc(p.pseudo)}</b> <small style="color:var(--muted)">· demande du ${frDate(String(p.date||'').slice(0,10))}</small></span>
-      <span style="white-space:nowrap">
-        <button class="btn btn-sm btn-gold" onclick="approvePending('${esc(p.did)}','${esc(p.pseudo)}')">✓ Valider</button>
-        <button class="btn btn-sm btn-red" onclick="refusePending('${esc(p.did)}','${esc(p.pseudo)}')">✕ Refuser</button>
-      </span>
-    </div>`).join(''):'<div class="empty">Aucune demande en attente 🎉<br>Les nouvelles demandes apparaissent ici en direct.</div>'}
-    <p style="color:var(--muted);font-size:.78rem;margin-top:14px">À la validation, la personne entre automatiquement (rôle Membre) et reçoit un MP Discord de bienvenue.</p>
-  </div>`;
-}
-
-/* ================== VISITE GUIDÉE (attribution des accès) ================== */
+/* La vue « Demandes d'accès » a été supprimée en C-71 : l'entrée se fait par
+   rôle Discord. La table oilroxwood_demandes n'a jamais été alimentée depuis la
+   sortie de Supabase ; un inconnu déclenche une mention à la direction, qui crée
+   le compte dans Paramètres → Comptes d'accès. */
 let TOUR=null;
 function tourSteps(){
   const al=allowedViews(), stp=[];
@@ -6103,14 +6156,14 @@ async function approvePending(did,pseudo){
   try{ await SYNC.cli.from('oilroxwood_demandes').delete().eq('did',did); }catch(e){}
   // MP de bienvenue envoyé par le robot au prochain passage (file d'attente oilroxwood_notifs)
   try{ await SYNC.cli.from('oilroxwood_notifs').insert({did,msg:`✅ **Ton accès à l'espace membre Oil Roxwood est validé !**\nConnecte-toi ici : ${location.origin+location.pathname}\nBienvenue dans l'équipe 🛢️`}); }catch(e){}
-  (VIEW==='acces'?acces:params)();
+  params();
   toast('✅ '+pseudo+' validé — il entre automatiquement (rôle Membre, modifiable ci-dessous)');
   sendLog('✅ Accès validé', `**${pseudo}** a maintenant accès au dashboard (Membre)`, 0x3ddc84);
 }
 async function refusePending(did,pseudo){
   try{ await SYNC.cli.from('oilroxwood_demandes').delete().eq('did',did); }catch(e){}
   jlog(`Demande d'accès refusée : ${pseudo}`); save();
-  (VIEW==='acces'?acces:params)(); toast('Demande de '+pseudo+' refusée');
+  params(); toast('Demande de '+pseudo+' refusée');
 }
 function delUser(id){
   const u=S.users.find(x=>x.id===id); if(!u) return;
