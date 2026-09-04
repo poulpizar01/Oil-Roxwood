@@ -16201,8 +16201,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ev9a7hrrn7i",
- "_maj": 1788483164168,
- "_rev": "516pqzpgdpo-mtm8pmxm",
+ "_maj": 1788483245168,
+ "_rev": "hwzkd8r4fu5-mtm8s7fe",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16225,7 +16225,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788483164168
+  "_tables": 1788483245168
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18054,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:53:06.778Z",
+  "maj": "2026-09-04T00:55:06.650Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -23543,6 +23543,13 @@
     "role": "direction",
     "vu": "2026-09-04T00:52:44.168Z",
     "id": 1788483165049
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T00:54:05.167Z",
+    "id": 1788483246781
    }
   ],
   "oilroxwood_demandes": [],
