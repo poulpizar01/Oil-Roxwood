@@ -16200,9 +16200,9 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "bot",
+ "_cid": "5beubsomv6i",
  "_maj": 1788484358597,
- "_rev": "mbgz22cdh3t-mtm9dtdr",
+ "_rev": "pvtf44fmp4d-mtm9eua6",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -18054,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:11:54.879Z",
+  "maj": "2026-09-04T01:12:42.702Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
