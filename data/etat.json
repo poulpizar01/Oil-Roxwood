@@ -16221,8 +16221,8 @@
   "postesV4": 1
  },
  "_cid": "hwebbzysvl",
- "_maj": 1788525639714,
- "_rev": "siq6gsujps-mtmxznks",
+ "_maj": 1788525649977,
+ "_rev": "04bw8w0dmxxk-mtmxzt3v",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16245,7 +16245,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788525639714,
+  "_tables": 1788525649977,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055
@@ -18077,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T12:40:44.572Z",
+  "maj": "2026-09-04T12:40:51.739Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -26977,6 +26977,19 @@
     "commercial": "@role",
     "hebdo": true,
     "id": 1788477254652
+   },
+   {
+    "uid": "826526979204841482",
+    "titre": "test",
+    "type": "contrat",
+    "date": "2026-09-04",
+    "deb": "15:00",
+    "fin": "16:00",
+    "note": "",
+    "partage": false,
+    "commercial": "@role",
+    "hebdo": true,
+    "id": 1788525651475
    }
   ],
   "oilroxwood_bot_ordres": [
