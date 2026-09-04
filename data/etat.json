@@ -16109,8 +16109,9 @@
    "Comptable": 50000,
    "Graphiste": 0,
    "Commercial": 0,
-   "Web Master": 0,
-   "Responsable Commercial": 0
+   "Responsable Commercial": 0,
+   "Assistant de Direction": 0,
+   "Responsable Runner": 0
   },
   "primeBase": 5000,
   "prixRecrue": 4000,
@@ -16175,7 +16176,8 @@
     "maj"
    ],
    "assistdir": [
-    "effectif"
+    "effectif",
+    "historique"
    ]
   },
   "prixBidonCom": 50,
@@ -16216,11 +16218,12 @@
   ],
   "rolesDiscordV": 4,
   "capBidons": 50,
-  "salonContrats": "1328076154586009660"
+  "salonContrats": "1328076154586009660",
+  "postesV4": 1
  },
  "_cid": "p6b0loisdy9",
- "_maj": 1788490324055,
- "_rev": "bi9n0b9q81m-mtmcympr",
+ "_maj": 1788490363433,
+ "_rev": "mnglzx5oj9m-mtmczhum",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16229,13 +16232,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489906303,
+  "journal": 1788490363433,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489906303,
+  "settings": 1788490363433,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16251,6 +16254,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788490364545,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → accès complet ✓"
+  },
   {
    "t": 1788489907021,
    "u": "Diego Herrera",
@@ -17745,11 +17753,6 @@
    "a": "Vente rapide sans facture : 10 bidon(s) — Citoyen Scott Mate (vendeur : Thomas Boyer)",
    "t": 1787430006191,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 30 bidon(s) — Employé Scott Mate (vendeur : Thomas Boyer)",
-   "t": 1787429980279,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18075,7 +18078,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:52:04.864Z",
+  "maj": "2026-09-04T02:52:45.214Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
