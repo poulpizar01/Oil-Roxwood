@@ -16096,8 +16096,7 @@
    "commercial": [],
    "respcom": [],
    "assistdir": [
-    "overview",
-    "effectif"
+    "historique"
    ]
   },
   "semaine": 36,
@@ -16179,9 +16178,7 @@
     "maj"
    ],
    "assistdir": [
-    "overview",
     "effectif",
-    "semaine",
     "historique",
     "reunions",
     "ftablette",
@@ -16246,8 +16243,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489408801,
- "_rev": "yp5141ed3g9-mtmcf0oj",
+ "_maj": 1788489412398,
+ "_rev": "06ejufshmuiq-mtmcf35h",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16256,13 +16253,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489408801,
+  "journal": 1788489412398,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489408801,
+  "settings": 1788489412398,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16277,6 +16274,36 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489412969,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → lecture seule 👁"
+  },
+  {
+   "t": 1788489412248,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « semaine » → aucun accès"
+  },
+  {
+   "t": 1788489411320,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → accès complet ✓"
+  },
+  {
+   "t": 1788489411163,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « semaine » → lecture seule 👁"
+  },
+  {
+   "t": 1788489410640,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → aucun accès"
+  },
+  {
+   "t": 1788489410049,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « overview » → aucun accès"
+  },
   {
    "t": 1788489409372,
    "u": "Diego Herrera",
@@ -17746,36 +17773,6 @@
    "a": "Suppression du compte Laurent Lewis",
    "t": 1787330911322,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Javier Martinez",
-   "t": 1787330909286,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Bula",
-   "t": 1787330906401,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Erjonihno",
-   "t": 1787330904407,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte El Barjot",
-   "t": 1787330902642,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Rutroz",
-   "t": 1787330901055,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Pachat",
-   "t": 1787330899584,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18101,7 +18098,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:36:49.843Z",
+  "maj": "2026-09-04T02:36:53.045Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
