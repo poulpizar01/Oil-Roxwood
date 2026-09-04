@@ -16117,18 +16117,14 @@
     "effectif",
     "semaine",
     "historique",
-    "feuilles",
+    "ftablette",
     "factures",
     "relances",
-    "retention",
     "prodder",
     "quotascom",
-    "fer",
     "moi",
     "quotashist",
-    "todo",
     "agenda",
-    "feedback",
     "maj",
     "dlogs"
    ],
@@ -16201,8 +16197,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "gila39ze88v",
- "_maj": 1788484988956,
- "_rev": "grxza5cqj1v-mtm9sd36",
+ "_maj": 1788485002187,
+ "_rev": "n2cni6lbcw-mtm9skoe",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16211,13 +16207,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788484895362,
+  "journal": 1788485002187,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788482311899,
+  "settings": 1788485002187,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16230,6 +16226,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788485002806,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « ftablette » → accès complet ✓"
+  },
   {
    "t": 1788484895980,
    "u": "Diego Herrera",
@@ -17724,11 +17725,6 @@
    "a": "Suppression du compte le rho",
    "t": 1787330854245,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Zooket Abelawi",
-   "t": 1787330852309,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18054,7 +18050,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:23:13.602Z",
+  "maj": "2026-09-04T01:23:23.438Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
