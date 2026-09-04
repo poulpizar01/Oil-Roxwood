@@ -2921,7 +2921,7 @@
     "actif": true,
     "avert": "",
     "grade": "RH",
-    "recrut": "",
+    "recrut": "Diego Herrera",
     "arrivee": "2026-06-22",
     "contrat": true,
     "discord": "438358976141328404",
@@ -16200,18 +16200,18 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "u2q3cksa8x",
- "_maj": 1788483623950,
- "_rev": "z8euvil9d5-mtm902i3",
+ "_cid": "zonbg59snoj",
+ "_maj": 1788484098851,
+ "_rev": "jc20b70tlys-mtm997ba",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788482737234,
+  "sheets": 1788483962271,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788482311899,
+  "journal": 1788483962271,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
@@ -16225,11 +16225,16 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788483623950
+  "_tables": 1788484098851
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788483963492,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 0 fiche(s) créée(s) · des cases vides complétées"
+  },
   {
    "t": 1788482312436,
    "u": "Diego Herrera",
@@ -17724,11 +17729,6 @@
    "a": "Suppression du compte henry carry",
    "t": 1787330848416,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte endrew paslase",
-   "t": 1787330846725,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18054,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:01:13.515Z",
+  "maj": "2026-09-04T01:08:19.654Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -23585,6 +23585,55 @@
     "role": "direction",
     "vu": "2026-09-04T01:00:23.949Z",
     "id": 1788483624752
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:01:53.986Z",
+    "id": 1788483715451
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:03:24.043Z",
+    "id": 1788483805364
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:04:53.949Z",
+    "id": 1788483894867
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:06:01.188Z",
+    "id": 1788483961841
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:06:22.538Z",
+    "id": 1788483982870
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:07:01.001Z",
+    "id": 1788484021968
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:08:18.829Z",
+    "id": 1788484099683
    }
   ],
   "oilroxwood_demandes": [],
@@ -23979,6 +24028,19 @@
     "id": "-3090.06, 6818.50, 43.97",
     "pos": "-3090.06, 6818.50, 43.97",
     "nom": "Recolte Patrons"
+   }
+  ],
+  "oilroxwood_recrues": [
+   {
+    "id": 1788483950097,
+    "nom": "O",
+    "discord": "438358976141328404",
+    "tel": "O",
+    "rib": "O",
+    "idU": "O",
+    "grade": "Direction",
+    "recrut": "Diego Herrera",
+    "arrivee": "2026-09-04"
    }
   ]
  },
