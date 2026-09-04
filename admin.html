@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-67</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-68</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -302,7 +302,7 @@ function save(){
    écriture du bot ferait donc disparaître la table des coffres de sa copie —
    puis l'effacerait du dépôt à son prochain envoi. Ces tables-là n'ont qu'un
    auteur, il n'y a rien à arbitrer : on les reprend toujours du dépôt. */
-const TABLES_BOT=['oilroxwood_coffres'];
+const TABLES_BOT=['oilroxwood_coffres','oilroxwood_recrues'];
 function mergeRemote(rem){
   // fusion section par section : pour chacune, la plus récente gagne
   let changed=false, localNewer=false;
@@ -700,7 +700,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-67';
+const APP_VERSION='C-68';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1441,6 +1441,43 @@ function lundiSemaineTravail(){
   const b=dateParis(), db=(b.getDay()+6)%7;  // introuvable : lundi calendaire
   return new Date(b.getFullYear(),b.getMonth(),b.getDate()-db);
 }
+/* ---- Les recrutements arrivent tout seuls dans la fiche RH (C-68) ----
+   Quand une candidature est validée sur Discord, le bot connaît déjà tout ce
+   que la fiche demande : nom, identifiant Discord, téléphone, RIB, ID unique,
+   grade, recruteur. Il les dépose dans `_tables.oilroxwood_recrues` ; on les
+   récupère ici.
+
+   Deux précautions, parce que cette feuille appartient aux RH :
+   · On ne crée jamais de doublon — une recrue déjà présente est reconnue à son
+     ID unique (chiffres seuls : certains sont saisis « 276 376 »), ou à défaut
+     à son identifiant Discord.
+   · On ne réécrit jamais par-dessus une case déjà remplie. Si les RH ont
+     corrigé un RIB à la main, leur version reste. On ne fait que compléter
+     les cases vides.
+   Le bot n'écrit que dans la file, jamais dans la feuille ; le dashboard ne
+   touche jamais à la file. Aucune écriture concurrente n'est donc possible. */
+function chiffres(v){ return String(v||'').replace(/\D/g,''); }
+function importerRecrues(){
+  const file=((S._tables&&S._tables.oilroxwood_recrues)||[]);
+  if(!file.length||!S.sheets||!S.sheets.rh) return {ajoutes:0,completes:0};
+  const rh=S.sheets.rh;
+  let ajoutes=0, completes=0;
+  file.forEach(r=>{
+    const idu=chiffres(r.idU), did=String(r.discord||'').trim();
+    const existe=rh.find(x=>(idu&&chiffres(x.idU)===idu)||(did&&String(x.discord||'').trim()===did));
+    if(existe){
+      // on complète, on n'écrase pas : le travail des RH prime
+      ['tel','rib','idU','grade','recrut','arrivee','discord'].forEach(k=>{
+        if(!String(existe[k]||'').trim()&&String(r[k]||'').trim()){ existe[k]=r[k]; completes=1; }
+      });
+      return;
+    }
+    const neuf=JSON.parse(JSON.stringify(SHEETS_DEF.rh.nouveau));
+    ['nom','tel','rib','idU','grade','recrut','arrivee','discord'].forEach(k=>{ if(r[k]) neuf[k]=r[k]; });
+    rh.unshift(neuf); ajoutes++;
+  });
+  return {ajoutes,completes};
+}
 function recruesAuto(nom){
   /* Fiches RH où la personne est « Recruteur », arrivées depuis le début de la
      semaine de travail. Pas de borne de fin : tout ce qui arrive avant la
@@ -1787,6 +1824,15 @@ async function feuilles(){
   await ensureSheets();
   await ensureFact(); // base clients pour la colonne Client des ventes
   if(!sheetAllowed(curSheet)) curSheet=Object.keys(SHEETS_DEF).find(sheetAllowed)||'tablette';
+  // les recrues validées sur Discord entrent dans la feuille RH à son ouverture
+  if(curSheet==='rh'&&!isMembre()&&!sheetRO('rh')){
+    const imp=importerRecrues();
+    if(imp.ajoutes||imp.completes){
+      jlog(`Recrutements Discord : ${imp.ajoutes} fiche(s) créée(s)${imp.completes?' · des cases vides complétées':''}`);
+      save(); sbPushNow();
+      if(imp.ajoutes) toast(`👥 ${imp.ajoutes} recrue(s) ajoutée(s) depuis Discord`);
+    }
+  }
   // l'Éligibilité affiche les grades d'aujourd'hui, pas ceux figés à la clôture
   if(curSheet==='eligibilite'&&!isMembre()){
     const c=eligSyncGrades();
@@ -3511,6 +3557,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-68',d:'04/09/2026',t:'La fiche RH se remplit toute seule',items:[
+   ['👥','Une candidature validée devient une ligne RH','Le bot connaît déjà tout au moment où il souhaite la bienvenue : nom, identifiant Discord, téléphone, RIB, ID unique, grade, recruteur. Il les dépose dans le dépôt ; la fiche RH les récupère à son ouverture. Plus rien à recopier.'],
+   ['🛡️','Sans jamais écraser le travail des RH','Une recrue déjà présente est reconnue à son ID unique — ou à son identifiant Discord. On ne fait alors que remplir les cases vides : un RIB corrigé à la main reste tel quel. Et réimporter deux fois ne crée pas de doublon.'],
+   ['💰','Le salaire recruteur suit','La colonne « Recruteur » étant renseignée d\'office, le compteur de recrues et la paie du recruteur se calculent sans intervention.'],
+ ]},
  {v:'C-67',d:'04/09/2026',t:'Les recrutements ne s\'effacent plus le lundi',items:[
    ['👥','Le compteur suivait le calendrier, pas la semaine de travail','Les recrues étaient comptées entre le lundi et le dimanche du calendrier. Or la semaine de travail n\'avance qu\'à la clôture. Le lundi à 00h00, les recrutements de la semaine encore ouverte sortaient donc de la fenêtre et le salaire recruteur tombait à zéro — précisément au moment où les RH en avaient besoin pour payer.'],
    ['🗓️','Tant que ce n\'est pas clôturé, ça reste','La fenêtre part du début de la semaine de travail et n\'a plus de fin : c\'est la clôture qui tire le trait, plus le dimanche soir. Un recrutement du lundi matin, avant la clôture, compte encore pour la semaine qui s\'achève.'],
