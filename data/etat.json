@@ -2921,7 +2921,7 @@
     "actif": true,
     "avert": "",
     "grade": "RH",
-    "recrut": "Diego Herrera",
+    "recrut": "",
     "arrivee": "2026-06-22",
     "contrat": true,
     "discord": "438358976141328404",
@@ -16221,14 +16221,14 @@
   "postesV4": 1
  },
  "_cid": "hwebbzysvl",
- "_maj": 1788525459723,
- "_rev": "ja2dwgzjcjn-mtmxvsu7",
+ "_maj": 1788525476465,
+ "_rev": "yegvxp2qgb-mtmxw5p1",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788484895362,
+  "sheets": 1788525476465,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788490364946,
@@ -18077,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T12:37:44.767Z",
+  "maj": "2026-09-04T12:38:01.429Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
