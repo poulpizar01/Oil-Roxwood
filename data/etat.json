@@ -13973,6 +13973,7 @@
    "maj": "2026-09-02T01:14:03.773Z"
   }
  },
+ "affiches": [],
  "pending": [],
  "fer": [
   {
@@ -16136,6 +16137,7 @@
     "profil",
     "quotashist",
     "agenda",
+    "affiches",
     "maj",
     "dlogs",
     "journal",
@@ -16156,6 +16158,7 @@
     "moi",
     "quotashist",
     "agenda",
+    "affiches",
     "maj"
    ],
    "respcom": [
@@ -16173,10 +16176,12 @@
     "moi",
     "quotashist",
     "agenda",
+    "affiches",
     "maj"
    ],
    "assistdir": [
-    "effectif"
+    "effectif",
+    "affiches"
    ]
   },
   "prixBidonCom": 50,
@@ -16220,9 +16225,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "jgtsdt6qagi",
- "_maj": 1788556083764,
- "_rev": "wzbde2i22vs-mtng5fd4",
+ "_cid": "0vvssvbzpm2r",
+ "_maj": 1788558239936,
+ "_rev": "7fq7ndh8dod-mtnheff4",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16231,13 +16236,13 @@
   "sheets": 1788525476465,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788490364946,
+  "journal": 1788557789855,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788490465303,
+  "settings": 1788557789855,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16245,14 +16250,21 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788556083764,
+  "_tables": 1788558239936,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1788490324055
+  "_rolesFix77": 1788490324055,
+  "affiches": 1788557789855,
+  "_affFix1": 1788557789855
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788557789796,
+   "u": "Diego Herrera",
+   "a": "Affiches : rubrique ouverte à 4 rôle(s) aux permissions personnalisées"
+  },
   {
    "t": 1788490366058,
    "u": "Diego Herrera",
@@ -17747,11 +17759,6 @@
    "a": "Demande d'accès refusée : .Lucas",
    "t": 1787479124290,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
-   "t": 1787479123048,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18077,7 +18084,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T21:09:06.952Z",
+  "maj": "2026-09-04T21:44:06.544Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -28116,6 +28123,48 @@
     "role": "direction",
     "vu": "2026-09-04T21:08:03.764Z",
     "id": 1788556085900
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T21:36:29.817Z",
+    "id": 1788557790391
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T21:37:59.912Z",
+    "id": 1788557879953
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T21:39:29.910Z",
+    "id": 1788557970809
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T21:40:59.904Z",
+    "id": 1788558060665
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T21:42:29.934Z",
+    "id": 1788558150254
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T21:43:59.936Z",
+    "id": 1788558240496
    }
   ],
   "oilroxwood_demandes": [],
@@ -28551,5 +28600,6 @@
  "reunions": [],
  "_permsFix1": true,
  "_rolesFix4": true,
- "_rolesFix77": true
+ "_rolesFix77": true,
+ "_affFix1": true
 }
