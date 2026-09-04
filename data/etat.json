@@ -16093,7 +16093,8 @@
   "limite": 24000,
   "permsRO": {
    "rh": [],
-   "commercial": []
+   "commercial": [],
+   "respcom": []
   },
   "semaine": 36,
   "webhook": "",
@@ -16140,6 +16141,23 @@
     "params"
    ],
    "commercial": [
+    "overview",
+    "ftablette",
+    "felig",
+    "fventes",
+    "frh",
+    "fblacklist",
+    "fcompta",
+    "factures",
+    "relances",
+    "prodder",
+    "quotascom",
+    "moi",
+    "quotashist",
+    "agenda",
+    "maj"
+   ],
+   "respcom": [
     "overview",
     "ftablette",
     "felig",
@@ -16209,9 +16227,9 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "0s2pbkkgxo9k",
- "_maj": 1788489345824,
- "_rev": "knr96a52st-mtmcdra6",
+ "_cid": "ylz59rxdeb",
+ "_maj": 1788489352546,
+ "_rev": "h1udzyzxkun-mtmcdt7o",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16220,13 +16238,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788487848854,
+  "journal": 1788489352546,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788487848854,
+  "settings": 1788489352546,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16234,12 +16252,18 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788489345824,
-  "_permsFix1": 1788487775674
+  "_tables": 1788489352546,
+  "_permsFix1": 1788487775674,
+  "_rolesFix4": 1788489352546
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489352498,
+   "u": "Diego Herrera",
+   "a": "Responsable commercial : réglages repris du rôle Commercial"
+  },
   {
    "t": 1788487849569,
    "u": "Diego Herrera",
@@ -17734,11 +17758,6 @@
    "a": "Suppression du compte Lexize",
    "t": 1787330887284,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Solapix",
-   "t": 1787330885520,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18064,7 +18083,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:35:51.006Z",
+  "maj": "2026-09-04T02:35:53.508Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -24057,6 +24076,13 @@
     "role": "direction",
     "vu": "2026-09-04T02:35:45.824Z",
     "id": 1788489347698
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:35:52.520Z",
+    "id": 1788489352591
    }
   ],
   "oilroxwood_demandes": [],
@@ -24479,5 +24505,6 @@
   ]
  },
  "reunions": [],
- "_permsFix1": true
+ "_permsFix1": true,
+ "_rolesFix4": true
 }
