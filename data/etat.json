@@ -8575,15 +8575,6 @@
     "discord": "ytachu"
    },
    {
-    "idU": "22299",
-    "nom": "Sema Duhood",
-    "tel": "55522257",
-    "comm": "s'inscrit au session mais ne vient jamais",
-    "date": "2026-06-22",
-    "grade": "rien",
-    "discord": "semasavastano"
-   },
-   {
     "idU": "362726",
     "nom": "Mohamed Deziz",
     "tel": "555933088",
@@ -16210,14 +16201,14 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ev9a7hrrn7i",
- "_maj": 1788482720342,
- "_rev": "zthdw7nrvc-mtm8fqif",
+ "_maj": 1788482737234,
+ "_rev": "owoyofklbv-mtm8g3o9",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788482720342,
+  "sheets": 1788482737234,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788482311899,
@@ -18063,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:45:24.855Z",
+  "maj": "2026-09-04T00:45:41.913Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
