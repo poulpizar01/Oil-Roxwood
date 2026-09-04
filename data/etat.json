@@ -8539,24 +8539,6 @@
     "discord": "bibi.93t_82367"
    },
    {
-    "idU": "297010",
-    "nom": "Jo Ander",
-    "tel": "555034967",
-    "comm": "recruter et part le lendemain",
-    "date": "2026-03-16",
-    "grade": "Intérimaire",
-    "discord": "theop0811"
-   },
-   {
-    "idU": "301118",
-    "nom": "Paul Dézousa",
-    "tel": "555205366",
-    "comm": "recruter et part le lendemain",
-    "date": "2026-03-16",
-    "grade": "Intérimaire",
-    "discord": "diablogame"
-   },
-   {
     "idU": "354792",
     "nom": "Farid Delfino",
     "tel": "555758589",
@@ -16300,14 +16282,14 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ev9a7hrrn7i",
- "_maj": 1788482665445,
- "_rev": "fkh13sx0e6t-mtm8ek1b",
+ "_maj": 1788482672928,
+ "_rev": "aid3mhst1bl-mtm8eq3e",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788482665445,
+  "sheets": 1788482672928,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788482311899,
@@ -18153,7 +18135,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:44:29.807Z",
+  "maj": "2026-09-04T00:44:37.658Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
