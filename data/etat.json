@@ -16109,7 +16109,7 @@
    "Comptable": 50000,
    "Graphiste": 0,
    "Commercial": 0,
-   "Web Master": 30000,
+   "Web Master": 0,
    "Responsable Commercial": 0
   },
   "primeBase": 5000,
@@ -16222,8 +16222,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "aa5toqpyz06",
- "_maj": 1788489648939,
- "_rev": "xvkpvs3n2jk-mtmck8mv",
+ "_maj": 1788489664644,
+ "_rev": "2qkofj0vuie-mtmckkrk",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16238,7 +16238,7 @@
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489446800,
+  "settings": 1788489664644,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -18077,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:40:53.431Z",
+  "maj": "2026-09-04T02:41:09.152Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
