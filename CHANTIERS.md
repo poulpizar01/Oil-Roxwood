@@ -65,6 +65,8 @@ compteur.
 | 🚨 Correction du blocage total du dashboard | C-73 |
 | Clé du développeur — un compte entre toujours | C-74 |
 | **Le rôle Discord est la seule source des accès** | C-75 |
+| 🚨 Le jeton d'écriture est enfin vérifié en écriture | C-76 |
+| Responsable commercial et Assistant de direction | C-76 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -93,6 +95,10 @@ tant qu'il n'est pas en ligne, l'équipe reste dehors. C-74 et C-75 partent avec
 **Les secrets GitHub Actions.** ✅ Réglé — les trois salons répondent 3/3. La
 première tentative avait échoué parce que la ligne entière `BOT_TOKEN=...`
 avait été collée dans le secret au lieu de la valeur seule.
+
+**L'identifiant du rôle « Assistant de direction ».** Sa ligne existe déjà dans
+Paramètres → Connexion par rôle Discord, vide. Colle l'identifiant quand le rôle
+sera créé sur le serveur.
 
 **Le compte de service GitHub.** Pour que le RH et les commerciaux puissent
 écrire sans avoir ton jeton personnel : créer un compte `oilroxwood-saisie`,
@@ -130,6 +136,13 @@ Le jeton d'écriture GitHub est posé dans le navigateur de Thomas : ce qui est
 réglé dans Paramètres part enfin dans le dépôt. **Chaque personne qui doit
 modifier quelque chose a besoin de son propre jeton** (clic sur le voyant rond
 à côté d'ESPACE MEMBRE). Sans jeton, l'accès reste en lecture seule.
+
+**Un jeton enregistré n'était pas un jeton qui écrit.** Le contrôle vérifiait la
+lecture ; le dépôt étant public, il disait « valide » à des jetons sans aucun
+droit. Le RH a saisi dans le vide. Depuis C-76 le contrôle interroge
+`permissions.push` sur le dépôt, un bandeau rouge apparaît si les envois ne
+passent pas, et le bouton **« Vérifier que j'écris vraiment »** tranche à la
+demande. À faire refaire par chaque personne qui a un jeton.
 
 Depuis C-75, **entrer et écrire sont deux choses séparées** : le rôle Discord
 ouvre la porte, le jeton donne le stylo. Retirer le rôle ferme la porte à la

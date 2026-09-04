@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-75</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-76</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -199,6 +199,7 @@ function purgeSupprimees(){
 }
 purgeSupprimees();
 migrerPerms();
+migrerRoles4();
 appliquerGrades();   // les réglages de la direction priment sur les valeurs d'usine
 // Réinitialisation unique du mot de passe (juillet 2026) : retour à « roxwood ».
 if(!localStorage.getItem('orx_pwfix1')){
@@ -232,7 +233,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1','_permsFix1'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1','_permsFix1','_rolesFix4'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -392,6 +393,34 @@ function sbQueue(){
 addEventListener('beforeunload',()=>{ if(SYNC.t){ clearTimeout(SYNC.t); SYNC.t=null; sbPushNow(); } });
 
 /* ---- écriture : on relit, on fusionne, on écrit si le SHA n'a pas bougé ---- */
+/* Une saisie qui ne part pas doit se voir. Avant, elle ne laissait qu'un point
+   rouge et une bulle d'aide « Dépôt occupé » — de quoi travailler une heure en
+   croyant enregistrer, et tout perdre. On va donc demander à GitHub la vraie
+   raison, et on la dit en toutes lettres, une fois, sans harceler. */
+async function signalerAccesRefuse(discret){
+  if(SYNC.alerte) return;              // une seule fois par session
+  let d={ok:false,code:'reseau',msg:'Cause inconnue.'};
+  try{ d=await RoxwoodGH.verifierAcces(); }catch(e){}
+  if(d.ok){ if(!discret) syncDot(false,'Envoi refusé alors que le jeton est valide — réessaie dans un instant'); return; }
+  // GitHub injoignable : c'est peut-être juste le wifi. On ne condamne pas un
+  // jeton correct sur une coupure, et on laisse le prochain envoi retenter.
+  if(d.code==='reseau'){ syncDot(false,'GitHub injoignable — modifications gardées en local, nouvel essai automatique'); return; }
+  SYNC.alerte=true;
+  syncDot(false,'Tes modifications ne partent pas — '+d.msg);
+  toast('🚫 Tes modifications ne sont PAS enregistrées — '+d.msg, 14000);
+  try{
+    const b=document.createElement('div');
+    b.id='bandeauEcriture';
+    b.style.cssText='position:fixed;left:0;right:0;top:0;z-index:9999;background:#7a1414;color:#fff;'
+      +'padding:11px 46px 11px 16px;font-size:.85rem;line-height:1.45;box-shadow:0 2px 14px rgba(0,0,0,.5)';
+    b.innerHTML='<b>⚠️ Rien de ce que tu saisis n\'est enregistré.</b> '+esc(d.msg)
+      +' <span style="opacity:.85">Tes modifications restent dans ce navigateur en attendant.</span>'
+      +'<button onclick="this.parentNode.remove()" style="position:absolute;right:10px;top:8px;background:none;'
+      +'border:0;color:#fff;font-size:1.2rem;cursor:pointer" title="Masquer">✕</button>';
+    if(!document.getElementById('bandeauEcriture')) document.body.appendChild(b);
+  }catch(e){}
+}
+
 async function sbPushNow(force){
   if(!SYNC.on) return;
   if(!RoxwoodGH.peutEcrire()){ syncDot(null,'Lecture seule — aucun jeton d\'écriture'); return; }
@@ -401,7 +430,15 @@ async function sbPushNow(force){
   try{
     let ok=false;
     for(let essai=0; essai<5 && !ok; essai++){
-      const {data:rem, sha}=await RoxwoodGH.lireAvecSha();
+      const lu=await RoxwoodGH.lireAvecSha();
+      const {data:rem, sha}=lu;
+      // 404 sur le fichier : soit première installation, soit jeton sans accès.
+      // La lecture publique tranche — si le fichier est là, c'est le jeton.
+      if(lu.absent){
+        let existe=false;
+        try{ existe=!!(await RoxwoodGH.lire()); }catch(e){}
+        if(existe){ await signalerAccesRefuse(); return; }
+      }
       if(rem&&rem._majSec&&S._majSec&&((S.runners&&S.runners.length)||(S.users&&S.users.length))){
         if(mergeRemote(rem).changed){
           localStorage.setItem(LS_KEY,JSON.stringify(S));
@@ -418,11 +455,17 @@ async function sbPushNow(force){
       if(r&&r.conflit){ await new Promise(x=>setTimeout(x,300+Math.random()*400)); continue; }
       SYNC.sha=r&&r.sha; ok=true;
     }
-    if(ok) syncDot(true,'Synchronisé · '+new Date().toLocaleTimeString('fr-FR'));
-    else{ syncDot(false,'Dépôt occupé — nouvel essai automatique'); clearTimeout(SYNC.t); SYNC.t=setTimeout(sbPushNow,4000); }
+    if(ok){ syncDot(true,'Synchronisé · '+new Date().toLocaleTimeString('fr-FR')); SYNC.alerte=false; }
+    else{
+      // cinq refus d'affilée : ce n'est plus de l'affluence, on va chercher pourquoi
+      syncDot(false,'Dépôt occupé — nouvel essai automatique');
+      clearTimeout(SYNC.t); SYNC.t=setTimeout(sbPushNow,4000);
+      signalerAccesRefuse(true);
+    }
   }catch(e){
     const m=String(e&&e.message||e);
     syncDot(false, /401|403|Bad credentials/i.test(m) ? 'Jeton GitHub refusé — vérifie-le dans Paramètres' : 'Échec d\'envoi — modifs gardées en local');
+    if(/401|403|404|Bad credentials|Not Found/i.test(m)) signalerAccesRefuse();
   }
   finally{
     SYNC.pushing=false;
@@ -457,7 +500,11 @@ async function sha(t){
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
-const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Commercial',resprunner:'Responsable Runner',membre:'Membre'};
+/* L'ORDRE de cette liste est celui des colonnes dans la grille des permissions.
+   Il va du plus large au plus étroit, pour qu'on lise la grille de gauche à droite
+   comme on descend l'organigramme. */
+const ROLES={direction:'Direction',assistdir:'Assistant de direction',rh:'RH',comptable:'Comptable',
+             respcom:'Responsable commercial',commercial:'Commercial',resprunner:'Responsable Runner',membre:'Membre'};
 
 /* ================== CONNEXION PAR RÔLE DISCORD ==================
    Plutôt que d'attendre qu'un admin valide chaque arrivée à la main, on peut
@@ -478,9 +525,10 @@ const ROLES={direction:'Direction',rh:'RH',comptable:'Comptable',commercial:'Com
 const ROLES_DISCORD_DEF=[
   {id:'1245400912835510286', role:'direction'},   // Patron
   {id:'1468694481153818674', role:'direction'},   // Co Patron
+  {id:'',                    role:'assistdir'},   // Assistant de direction — identifiant à coller
   {id:'1246581064219230250', role:'rh'},          // RH
   {id:'1472927781192208518', role:'comptable'},   // Comptable
-  {id:'1498757191044305086', role:'commercial'},  // Responsable commercial
+  {id:'1498757191044305086', role:'respcom'},     // Responsable commercial
   {id:'1246586673140203601', role:'commercial'},  // Commercial
   {id:'1487435766547349604', role:'resprunner'},  // Responsable Runner
   {id:'1513313167931871362', role:'membre'},      // Runner
@@ -490,11 +538,25 @@ const ROLES_DISCORD_DEF=[
 ];
 /* Mise à jour unique de la table : la première version n'avait qu'une ligne.
    On tamponne pour ne le faire qu'une fois, sans écraser les réglages suivants. */
-const ROLES_DISCORD_VER=3;   // v3 : identifiant du rôle RH renseigné
+const ROLES_DISCORD_VER=4;   // v4 : Responsable commercial et Assistant de direction distingués
 function rolesDiscord(){
   const st=S.settings||{};
   if(st.rolesDiscordV!==ROLES_DISCORD_VER){
-    st.rolesDiscord=ROLES_DISCORD_DEF.map(x=>({...x}));
+    const av=Array.isArray(st.rolesDiscord)?st.rolesDiscord:null;
+    if(!av||!av.length){
+      st.rolesDiscord=ROLES_DISCORD_DEF.map(x=>({...x}));
+    }else{
+      /* Une table déjà réglée ne se remplace pas : on ne sait pas ce qui y a été
+         ajouté à la main. On corrige les deux lignes concernées, et rien d'autre. */
+      const l=av.map(x=>({...x}));
+      const rc=l.find(x=>String(x.id)==='1498757191044305086');
+      if(rc&&rc.role==='commercial') rc.role='respcom';
+      if(!l.some(x=>x.role==='assistdir')){
+        const i=l.map(x=>x.role).lastIndexOf('direction');
+        l.splice(i<0?0:i+1,0,{id:'',role:'assistdir'});
+      }
+      st.rolesDiscord=l;
+    }
     st.rolesDiscordV=ROLES_DISCORD_VER;
     try{ save(); }catch(e){}
   }
@@ -600,8 +662,18 @@ const PERMS={
   // Comptable : l'argent de l'entreprise. Pas les dossiers du personnel.
   comptable:['overview','reunions','factures','relances','bilan','fcompta','frecues','moi','profil','quotashist','agenda','maj'],
 
-  // Commercial et Responsable commercial : le commerce, rien d'autre.
+  // Assistant de direction : le bras droit. Tout ce que voit la Direction, sauf
+  //      les deux gestes qui n'appartiennent qu'au patron : clôturer la semaine
+  //      (irréversible, elle fige les salaires) et changer les Paramètres.
+  assistdir:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal'],
+
+  // Commercial : le commerce, rien d'autre.
   commercial:['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','maj'],
+
+  // Responsable commercial : pour l'instant exactement un commercial. Le rôle
+  //      existe pour qu'on puisse lui ouvrir des cases sans les ouvrir à toute
+  //      l'équipe — Paramètres → Permissions par rôle, colonne par colonne.
+  respcom:  ['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','maj'],
 
   // Responsable Runner : il encadre la production au quotidien. Effectif,
   //      éligibilité, tablette et logs — mais ni la paie détaillée, ni les
@@ -672,6 +744,38 @@ function migrerPerms(){
     });
   });
   if(touche) jlog(`Permissions : ${touche} liste(s) de rôle remises à jour (rubriques renommées ou supprimées)`);
+  return touche>0;
+}
+
+/* ---- C-76 : deux rôles de plus, sans rien retirer à personne ----
+
+   « Responsable commercial » et « Assistant de direction » existaient sur
+   Discord mais pas ici : le responsable tombait dans « Commercial » et voyait
+   donc exactement ce que voient ses commerciaux, sans moyen de lui ouvrir
+   quoi que ce soit sans l'ouvrir à toute l'équipe.
+
+   Le piège, en les créant : le responsable commercial serait retombé sur les
+   permissions d'USINE du nouveau rôle, plus étroites que celles que Thomas
+   avait réglées à la main pour les commerciaux — il aurait donc PERDU des
+   accès en étant promu. On recopie donc les réglages du rôle Commercial vers
+   le nouveau rôle : « comme un commercial », au sens de ce qui est réglé
+   aujourd'hui, pas au sens du fichier d'origine.
+
+   Comme migrerPerms(), tout vit à l'intérieur de la fonction : elle est
+   appelée tout en haut du fichier, où rien de ce qui est déclaré plus bas
+   n'existe encore. */
+function migrerRoles4(){
+  if(S._rolesFix4) return false;
+  S._rolesFix4=true;
+  let touche=0;
+  ['permsCustom','permsRO','sheetPerms'].forEach(cle=>{
+    const c=S.settings&&S.settings[cle];
+    if(!c||typeof c!=='object') return;
+    if(c.commercial!==undefined&&c.respcom===undefined){
+      c.respcom=JSON.parse(JSON.stringify(c.commercial)); touche++;
+    }
+  });
+  if(touche) jlog('Responsable commercial : réglages repris du rôle Commercial');
   return touche>0;
 }
 function permsDe(role){
@@ -777,7 +881,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-75';
+const APP_VERSION='C-76';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -930,7 +1034,7 @@ const fmt = n => (n||0).toLocaleString('fr-FR');
 const frDate = d => { const m=String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/); return m?`${m[3]}/${m[2]}/${m[1]}`:String(d||''); };
 const money = n => fmt(Math.round(n)) + ' $';
 const esc = t => String(t??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2600); }
+function toast(m,duree){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),duree||2600); }
 function presBadge(u,v){
   let b=document.getElementById('presBadge');
   if(!b){ b=document.createElement('div'); b.id='presBadge';
@@ -1881,7 +1985,10 @@ const nn = x => +x||0;
 /* feuilles interdites par rôle (en plus des restrictions de vues) */
 /* permissions fines par feuille : 'x' = plein accès · 'ro' = lecture seule · 'off' = caché
    défauts historiques + compta réservée Patron/Comptable ; personnalisable dans Paramètres */
-const SHEET_DEF_PERMS={ commercial:{rh:'off',blacklist:'off',compta:'off'}, rh:{compta:'off'},
+const SHEET_DEF_PERMS={ commercial:{rh:'off',blacklist:'off',compta:'off'},
+  respcom:{rh:'off',blacklist:'off',compta:'off'},   // un responsable commercial reste un commercial
+  assistdir:{},                                      // le bras droit voit les six feuilles
+  rh:{compta:'off'},
   /* Responsable Runner : il pilote la production, il ne touche ni à la paie ni aux
      dossiers du personnel. RH en lecture, compta et ventes fermées par défaut. */
   resprunner:{rh:'ro',compta:'off',ventesSem:'off'} };
@@ -3688,6 +3795,13 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-76',d:'04/09/2026',t:'Un jeton qui ment, et deux rôles qui manquaient',items:[
+   ['🚨','Le contrôle du jeton se trompait de question','Quand quelqu\'un enregistrait son jeton, le dashboard vérifiait qu\'il permettait de LIRE le dépôt. Or le dépôt est public : n\'importe quel jeton le lit, même un jeton sans le moindre droit dessus. Le contrôle répondait donc « ✅ Jeton valide » à des jetons incapables d\'écrire une seule ligne. C\'est ce qui est arrivé au RH : il a saisi, tout s\'affichait chez lui, et rien n\'est jamais parti. On demande désormais à GitHub la seule chose qui compte — ce jeton a-t-il le droit d\'écrire ICI.'],
+   ['🔊','Une saisie perdue ne peut plus être silencieuse','L\'échec ne laissait qu\'un point rouge et une bulle « Dépôt occupé », de quoi travailler une heure en croyant enregistrer. Maintenant : un bandeau rouge en haut de l\'écran, qui dit en toutes lettres que rien n\'est enregistré et pourquoi. Une simple coupure de réseau, elle, ne déclenche pas d\'alarme et n\'accuse pas un jeton correct.'],
+   ['🧪','« Vérifier que j\'écris vraiment »','Un bouton dans Paramètres, à cliquer quand on doute. Il distingue les cas : jeton expiré, compte non collaborateur, jeton « fine-grained » créé sur un autre compte — celui-là ne marchera jamais sur le dépôt de quelqu\'un d\'autre, il faut un jeton CLASSIQUE avec la portée public_repo. Les instructions de la fenêtre le disent enfin.'],
+   ['🎖️','Responsable commercial et Assistant de direction','Ces deux rôles existaient sur Discord mais pas ici : le responsable commercial tombait dans « Commercial » et voyait exactement ce que voient ses commerciaux, sans moyen de lui ouvrir une rubrique sans l\'ouvrir à toute l\'équipe. Ils ont désormais leur colonne dans la grille des permissions. Le responsable commercial démarre avec les réglages actuels du rôle Commercial — pas ceux d\'usine, pour qu\'une promotion ne fasse rien perdre.'],
+   ['🪪','L\'assistant de direction attend son identifiant','Sa ligne est déjà dans la table des rôles Discord, vide. Colle l\'identifiant du rôle quand tu l\'auras créé, et il entrera tout seul. En attendant, il voit tout sauf la clôture de semaine et les Paramètres.'],
+ ]},
  {v:'C-75',d:'04/09/2026',t:'Un seul endroit décide qui entre',items:[
    ['🎖️','Le rôle Discord, et rien d\'autre','L\'écran « Comptes d\'accès » permettait encore de créer un compte à la main, de le renommer, de lui donner un rôle et de le supprimer. Deux systèmes décidaient donc de la même chose, et quand ils n\'étaient pas d\'accord, personne ne savait lequel avait raison. Il n\'en reste qu\'un : le rôle sur le serveur Discord. Donner un accès, c\'est attribuer le rôle ; le retirer, c\'est retirer le rôle.'],
    ['👀','La liste reste, en lecture','Le panneau affiche toujours qui a un accès, avec son rôle et son identifiant Discord — pour vérifier d\'un coup d\'œil, pas pour modifier. La correspondance rôle Discord → rôle du dashboard se règle juste en dessous, et c\'est le seul réglage qui compte.'],
@@ -5285,7 +5399,7 @@ function nomsCommerciaux(){
   const m=new Map(), add=n=>{ n=String(n||'').trim(); if(n&&!m.has(n.toLowerCase())) m.set(n.toLowerCase(),n); };
   (S.runners||[]).filter(r=>estCommercial(r)).forEach(r=>add(r.nom));
   ((S.sheets&&S.sheets.rh)||[]).forEach(x=>{ if(/commercial/i.test(String(x.grade||''))) add(x.nom); });
-  (S.users||[]).filter(u=>u.role==='commercial').forEach(u=>add(u.user));
+  (S.users||[]).filter(u=>u.role==='commercial'||u.role==='respcom').forEach(u=>add(u.user));
   const l=[...m.values()].sort((a,b)=>a.localeCompare(b));
   return l.length?l:nomsPostes();
 }
@@ -6008,10 +6122,13 @@ async function params(){
         <p style="color:var(--muted);font-size:.85rem;margin-bottom:12px">
           Un seul jeton sert à tout : enregistrer les données et publier les stats sur le site.
           ${RoxwoodGH.peutEcrire()
-            ? '<b style="color:var(--green)">Jeton actif</b> — tu peux modifier et publier.'
+            ? '<b style="color:var(--green)">Un jeton est enregistré.</b> Enregistré ne veut pas dire accepté — le bouton ci-dessous demande à GitHub s\'il a vraiment le droit d\'écrire.'
             : '<b style="color:var(--red)">Aucun jeton</b> — le dashboard est en lecture seule.'}
         </p>
-        <button class="btn btn-ghost" onclick="roxwoodJeton()">${RoxwoodGH.peutEcrire()?'Changer ou retirer le jeton':'Ajouter un jeton'}</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-ghost" onclick="roxwoodJeton()">${RoxwoodGH.peutEcrire()?'Changer ou retirer le jeton':'Ajouter un jeton'}</button>
+          ${RoxwoodGH.peutEcrire()?'<button class="btn btn-gold" onclick="roxwoodJeton();setTimeout(roxwoodJetonTest,60)">Vérifier que j\'écris vraiment</button>':''}
+        </div>
       </div>
       <div class="panel" style="margin-bottom:18px">
         <h3>📡 Logs Discord (compte entreprise)</h3>
@@ -6348,32 +6465,83 @@ function roxwoodJeton(){
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
     <button class="btn btn-gold btn-sm" onclick="roxwoodJetonSave()">Enregistrer</button>
-    ${actuel?`<button class="btn btn-red btn-sm" onclick="RoxwoodGH.poserJeton('');closeModal();toast('Jeton retiré — lecture seule');syncDot(null,'Lecture seule')">Retirer</button>`:''}
+    ${actuel?`<button class="btn btn-ghost btn-sm" onclick="roxwoodJetonTest()">Tester le jeton actuel</button>
+    <button class="btn btn-red btn-sm" onclick="RoxwoodGH.poserJeton('');closeModal();toast('Jeton retiré — lecture seule');syncDot(null,'Lecture seule')">Retirer</button>`:''}
   </div>
+  <div id="ghDiag"></div>
   <details style="font-size:.82rem;color:var(--muted)">
     <summary style="cursor:pointer;color:var(--accent)">Comment créer un jeton ?</summary>
-    <ol style="margin:10px 0 0 18px;line-height:1.8">
-      <li>GitHub → photo de profil → <b>Settings</b></li>
-      <li>Tout en bas : <b>Developer settings</b></li>
+    <p style="margin:10px 0 0">
+      <b style="color:var(--accent)">Il y a deux cas, et se tromper de cas ne produit aucune erreur visible :
+      le jeton semble marcher et rien ne s'enregistre.</b>
+    </p>
+    <p style="margin:10px 0 0"><b>Tu es ${esc((window.ROXWOOD_CFG||{}).owner||'le propriétaire')} — le dépôt est à toi :</b></p>
+    <ol style="margin:6px 0 0 18px;line-height:1.8">
+      <li>GitHub → photo de profil → <b>Settings</b> → tout en bas <b>Developer settings</b></li>
       <li><b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b></li>
       <li>Expiration : 1 an · Repository access : <b>Only select repositories</b> → <b>${(window.ROXWOOD_CFG||{}).repo||'Oil-Roxwood'}</b></li>
       <li>Permissions → Repository permissions → <b>Contents : Read and write</b></li>
-      <li>Generate, puis copie le jeton ici. GitHub ne le réaffichera jamais.</li>
+      <li>Generate, puis colle-le ici. GitHub ne le réaffichera jamais.</li>
     </ol>
+    <p style="margin:12px 0 0"><b>Tu es quelqu'un d'autre (RH, commercial, comptable) :</b></p>
+    <ol style="margin:6px 0 0 18px;line-height:1.8">
+      <li>Il faut d'abord que ${esc((window.ROXWOOD_CFG||{}).owner||'le propriétaire')} t'ajoute en
+          <b>collaborateur</b> du dépôt (Settings → Collaborators), rôle <b>Write</b>, et que tu acceptes l'invitation.</li>
+      <li>Ensuite : <b>Personal access tokens</b> → <b style="color:var(--accent)">Tokens (classic)</b> →
+          <b>Generate new token (classic)</b> — surtout pas « fine-grained ».</li>
+      <li>Coche la portée <b>public_repo</b>. Generate, puis colle-le ici.</li>
+    </ol>
+    <p style="margin:10px 0 0;color:var(--accent)">
+      Pourquoi pas « fine-grained » dans ce cas : ces jetons ne donnent accès qu'aux dépôts
+      du compte qui les crée. Sur le dépôt de quelqu'un d'autre, ils ne voient rien — et GitHub
+      répond « introuvable » plutôt que « interdit ».
+    </p>
   </details>`);
 }
+/* On vérifiait le jeton en LISANT. Or le dépôt est public : un jeton sans le
+   moindre droit dessus lit le fichier sans problème. Le contrôle disait donc
+   « ✅ Jeton valide » à des jetons incapables d'écrire une seule ligne — et la
+   personne travaillait des heures dans le vide. On demande maintenant à GitHub
+   la seule chose qui compte : ce jeton a-t-il le droit d'écrire ICI. */
 async function roxwoodJetonSave(){
   const v=(document.getElementById('ghTok').value||'').trim();
   if(!v) return toast('⚠️ Colle un jeton');
+  const avant=RoxwoodGH.jeton();
   RoxwoodGH.poserJeton(v);
-  try{
-    await RoxwoodGH.lireAvecSha();          // vérifie tout de suite qu'il est accepté
-    closeModal(); toast('✅ Jeton valide — écriture activée'); syncDot(true,'Synchronisé');
-    sbPushNow();
-  }catch(e){
-    RoxwoodGH.poserJeton('');
-    toast('❌ Jeton refusé : '+(e.message||e));
+  const d=await RoxwoodGH.verifierAcces();
+  if(!d.ok&&d.code==='reseau'){
+    // On garde le jeton : l'accuser parce que le réseau a hoqueté serait pire
+    // que de ne rien dire. Le bouton « Tester » permettra de trancher plus tard.
+    const z=document.getElementById('ghDiag');
+    if(z) z.innerHTML=`<div style="background:rgba(220,160,40,.14);border:1px solid rgba(220,160,40,.5);border-radius:8px;padding:11px 13px;font-size:.82rem;line-height:1.5;margin-bottom:14px">
+      <b style="color:#e0a33c">⚠️ Jeton enregistré, mais pas vérifié.</b><br>${esc(d.msg)}<br>
+      Reviens ici et clique sur « Tester le jeton actuel » quand la connexion sera revenue.</div>`;
+    return toast('⚠️ Jeton enregistré — vérification impossible pour l\'instant', 7000);
   }
+  if(!d.ok){
+    RoxwoodGH.poserJeton(avant||'');
+    const z=document.getElementById('ghDiag');
+    if(z) z.innerHTML=`<div style="background:rgba(200,40,40,.14);border:1px solid rgba(200,40,40,.5);border-radius:8px;padding:11px 13px;font-size:.82rem;line-height:1.5;margin-bottom:14px">
+      <b style="color:var(--red)">❌ Ce jeton ne peut pas écrire.</b><br>${esc(d.msg)}</div>`;
+    return toast('❌ Jeton refusé — il ne peut pas écrire dans le dépôt', 8000);
+  }
+  const b=document.getElementById('bandeauEcriture'); if(b) b.remove();
+  SYNC.alerte=false;
+  closeModal(); toast('✅ Jeton vérifié — écriture autorisée'); syncDot(true,'Synchronisé');
+  sbPushNow();
+}
+/* Le même contrôle, à la demande : « est-ce que ça marche, là, maintenant ? » */
+async function roxwoodJetonTest(){
+  const z=document.getElementById('ghDiag');
+  if(z) z.innerHTML='<div style="color:var(--muted);font-size:.82rem;margin-bottom:14px">Vérification auprès de GitHub…</div>';
+  const d=await RoxwoodGH.verifierAcces();
+  const etat = d.ok ? 'ok' : (d.code==='reseau' ? 'flou' : 'ko');
+  const coul = {ok:['rgba(60,170,110,.13)','rgba(60,170,110,.5)','var(--green)','✅ Écriture autorisée.'],
+                flou:['rgba(220,160,40,.14)','rgba(220,160,40,.5)','#e0a33c','⚠️ Impossible de vérifier — GitHub est injoignable.'],
+                ko:['rgba(200,40,40,.14)','rgba(200,40,40,.5)','var(--red)','❌ Ce jeton ne peut pas écrire.']}[etat];
+  if(z) z.innerHTML=`<div style="background:${coul[0]};border:1px solid ${coul[1]};border-radius:8px;padding:11px 13px;font-size:.82rem;line-height:1.5;margin-bottom:14px">
+    <b style="color:${coul[2]}">${coul[3]}</b><br>${esc(d.msg)}</div>`;
+  if(vert){ const b=document.getElementById('bandeauEcriture'); if(b) b.remove(); SYNC.alerte=false; }
 }
 // le voyant de synchro ouvre le réglage du jeton
 document.addEventListener('click',e=>{ if(e.target&&e.target.id==='syncDot'){ e.preventDefault(); e.stopPropagation(); roxwoodJeton(); } });

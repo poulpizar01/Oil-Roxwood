@@ -58,18 +58,64 @@
       });
   }
 
-  /* Lecture authentifiée : donne aussi le SHA, indispensable pour écrire. */
+  /* Lecture authentifiée : donne aussi le SHA, indispensable pour écrire.
+
+     Attention au 404 : sur cette adresse il veut dire DEUX choses très
+     différentes — « le fichier n'existe pas encore » (première installation)
+     ou « ton jeton n'a pas accès à ce dépôt ». GitHub répond volontairement
+     la même chose dans les deux cas, pour ne pas révéler l'existence d'un
+     dépôt à quelqu'un qui n'y a pas droit. On renvoie donc le drapeau
+     `absent`, et c'est `verifierAcces()` qui tranche. */
   function lireAvecSha() {
     return fetch(API + "?ref=" + CFG.branche + "&t=" + Date.now(),
                  { headers: enTetes(true), cache: "no-store" })
       .then(function (r) {
-        if (r.status === 404) return { data: null, sha: null };
+        if (r.status === 404) return { data: null, sha: null, absent: true };
         if (!r.ok) return r.json().then(function (j) { throw new Error(j.message || "HTTP " + r.status); });
         return r.json().then(function (j) {
           var d = null;
           try { d = JSON.parse(depuisB64(j.content)); } catch (e) {}
           return { data: d, sha: j.sha };
         });
+      });
+  }
+
+  /* ---------- le jeton peut-il vraiment écrire ICI ? ----------
+
+     Lire n'est pas écrire. Le dépôt est public : n'importe quel jeton, même
+     un jeton sans le moindre droit dessus, lit le fichier sans problème.
+     Vérifier un jeton en lisant ne prouve donc rien — c'est exactement
+     l'erreur qui a fait croire à un RH que son jeton marchait alors que
+     chacune de ses saisies restait dans son navigateur.
+
+     On interroge le dépôt lui-même : GitHub y répond `permissions.push`,
+     qui est la seule réponse qui compte.                                  */
+  function verifierAcces() {
+    if (!jeton()) return Promise.resolve({ ok: false, code: "aucun",
+      msg: "Aucun jeton enregistré — le dashboard est en lecture seule." });
+    return fetch("https://api.github.com/repos/" + CFG.owner + "/" + CFG.repo + "?t=" + Date.now(),
+                 { headers: enTetes(true), cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 401) return { ok: false, code: "invalide",
+          msg: "Jeton refusé par GitHub : expiré, révoqué, ou mal recopié (un espace, un retour à la ligne)." };
+        if (r.status === 403) return { ok: false, code: "interdit",
+          msg: "GitHub refuse ce jeton sur ce dépôt. S'il est « fine-grained » et créé sur un autre compte que " + CFG.owner + ", il ne marchera jamais ici." };
+        if (r.status === 404) return { ok: false, code: "invisible",
+          msg: "Ce jeton ne voit pas le dépôt " + CFG.owner + "/" + CFG.repo + ". Deux causes : le compte n'est pas collaborateur du dépôt, ou c'est un jeton « fine-grained » — ceux-là ne donnent accès qu'aux dépôts du compte qui les a créés. Il faut un jeton CLASSIQUE avec la portée public_repo." };
+        if (!r.ok) return { ok: false, code: "http" + r.status,
+          msg: "GitHub a répondu HTTP " + r.status + "." };
+        return r.json().then(function (j) {
+          var perm = j.permissions || {};
+          if (perm.push || perm.admin || perm.maintain)
+            return { ok: true, code: "ok",
+              msg: "Écriture autorisée sur " + CFG.owner + "/" + CFG.repo + "." };
+          return { ok: false, code: "lecture",
+            msg: "Ce jeton voit le dépôt mais n'a pas le droit d'y écrire. Il manque soit l'invitation en collaborateur avec le rôle Write, soit la permission « Contents : Read and write » sur le jeton." };
+        });
+      })
+      .catch(function (e) {
+        return { ok: false, code: "reseau",
+          msg: "Impossible de joindre GitHub : " + (e && e.message || e) };
       });
   }
 
@@ -363,6 +409,7 @@
     CFG: CFG,
     lire: lire,
     lireAvecSha: lireAvecSha,
+    verifierAcces: verifierAcces,
     ecrire: ecrire,
     jeton: jeton,
     poserJeton: poserJeton,
