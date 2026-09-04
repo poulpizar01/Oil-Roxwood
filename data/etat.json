@@ -16200,8 +16200,8 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "5beubsomv6i",
- "_maj": 1788484313898,
+ "_cid": "bot",
+ "_maj": 1788484358597,
  "_rev": "mbgz22cdh3t-mtm9dtdr",
  "_majSec": {
   "fer": 1788222184505,
@@ -16225,7 +16225,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788484313898
+  "_tables": 1788484358597
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -24059,6 +24059,17 @@
     "tel": "O",
     "rib": "O",
     "idU": "O",
+    "grade": "Direction",
+    "recrut": "Diego Herrera",
+    "arrivee": "2026-09-04"
+   },
+   {
+    "id": 1788484358109,
+    "nom": "test",
+    "discord": "438358976141328404",
+    "tel": "000000000",
+    "rib": "000000",
+    "idU": "000000",
     "grade": "Direction",
     "recrut": "Diego Herrera",
     "arrivee": "2026-09-04"
