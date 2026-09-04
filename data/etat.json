@@ -16099,7 +16099,12 @@
     "prodder",
     "quotascom",
     "frecues",
-    "moi"
+    "moi",
+    "profil",
+    "quotashist",
+    "agenda",
+    "maj",
+    "dlogs"
    ]
   },
   "semaine": 36,
@@ -16235,8 +16240,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489432042,
- "_rev": "l3x8r4mj8ef-mtmcfipd",
+ "_maj": 1788489435130,
+ "_rev": "t81wd27ji0a-mtmcfku6",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16245,13 +16250,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489432042,
+  "journal": 1788489435130,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489432042,
+  "settings": 1788489435130,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16266,6 +16271,31 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489435701,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « dlogs » → lecture seule 👁"
+  },
+  {
+   "t": 1788489435107,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1788489434486,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « agenda » → lecture seule 👁"
+  },
+  {
+   "t": 1788489433890,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotashist » → lecture seule 👁"
+  },
+  {
+   "t": 1788489433235,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « profil » → lecture seule 👁"
+  },
   {
    "t": 1788489432613,
    "u": "Diego Herrera",
@@ -17740,31 +17770,6 @@
    "a": "Palier fiscal : retour au calcul automatique",
    "t": 1787332383694,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : mathisdht76",
-   "t": 1787330997714,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Louis Hayes",
-   "t": 1787330990424,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Naïm Velazquez",
-   "t": 1787330988284,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Djawad Tal",
-   "t": 1787330986410,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Helena Rhosé",
-   "t": 1787330977792,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18090,7 +18095,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:37:13.201Z",
+  "maj": "2026-09-04T02:37:15.966Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
