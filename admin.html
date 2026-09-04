@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-66</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-67</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -700,7 +700,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-66';
+const APP_VERSION='C-67';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1412,14 +1412,43 @@ function salaireDe(r){
   const C=caps();
   return Math.min(base, r.poste&&/patron/i.test(r.poste)?C.patSal:C.empSal);
 }
+/* ---- Le début de la semaine de TRAVAIL (C-67) ----
+   Ce n'est pas le lundi du calendrier. La semaine de travail n'avance qu'à la
+   clôture : tant qu'elle n'est pas faite, on est encore dans la semaine
+   précédente, même un mardi.
+
+   `recruesAuto` prenait le lundi calendaire. Le lundi à 00h00, les
+   recrutements de la semaine encore ouverte sortaient donc de la fenêtre, et
+   le salaire recruteur tombait à zéro sous les yeux des RH — au moment précis
+   où ils en avaient besoin pour payer.
+
+   La date exacte est notée à chaque clôture (`settings.semaineDebut`). Pour
+   les états d'avant, on la retrouve en remontant les lundis jusqu'à tomber sur
+   le numéro de semaine enregistré. */
+function lundiSemaineTravail(){
+  const note=String((S.settings&&S.settings.semaineDebut)||'').slice(0,10);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(note)){
+    const [a,m,j]=note.split('-').map(Number);
+    return new Date(a,m-1,j);
+  }
+  const cible=+((S.settings&&S.settings.semaine))||semaineCal();
+  const d=dateParis(), dw=(d.getDay()+6)%7;
+  let lun=new Date(d.getFullYear(),d.getMonth(),d.getDate()-dw);
+  for(let i=0;i<60;i++){                     // au plus un an en arrière
+    if(isoWeek(lun)===cible) return lun;
+    lun=new Date(lun.getFullYear(),lun.getMonth(),lun.getDate()-7);
+  }
+  const b=dateParis(), db=(b.getDay()+6)%7;  // introuvable : lundi calendaire
+  return new Date(b.getFullYear(),b.getMonth(),b.getDate()-db);
+}
 function recruesAuto(nom){
-  // recrues comptées automatiquement : fiches RH où la personne est « Recruteur » et dont l'arrivée tombe dans la semaine en cours (heure de Paris)
-  const base=dateParis(), dw=(base.getDay()+6)%7;
-  const lun=new Date(base.getFullYear(),base.getMonth(),base.getDate()-dw);
-  const dim=new Date(lun.getTime()+6*86400000);
-  const f=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-  const fl=f(lun), fd=f(dim), low=String(nom||'').toLowerCase().trim();
-  return ((S.sheets&&S.sheets.rh)||[]).filter(x=>String(x.recrut||'').toLowerCase().trim()===low&&x.arrivee&&String(x.arrivee)>=fl&&String(x.arrivee)<=fd).length;
+  /* Fiches RH où la personne est « Recruteur », arrivées depuis le début de la
+     semaine de travail. Pas de borne de fin : tout ce qui arrive avant la
+     clôture compte pour la semaine ouverte — c'est la clôture qui tire le
+     trait, pas le dimanche soir. */
+  const fl=jourISO(lundiSemaineTravail()), low=String(nom||'').toLowerCase().trim();
+  return ((S.sheets&&S.sheets.rh)||[])
+    .filter(x=>String(x.recrut||'').toLowerCase().trim()===low&&x.arrivee&&String(x.arrivee)>=fl).length;
 }
 function setRecrues(id,v){
   const r=S.runners.find(x=>x.id===id);
@@ -1494,7 +1523,7 @@ async function semaine(){
       <td>${okk?'<span class="up">✔ atteint</span>':`<span style="color:var(--muted)">${fmt(g.quota-r.barils)} restants</span>`}</td>
       <td>×${g.mult}</td>
       <td class="${okk?'gold':''}" style="font-weight:700">${okk?money(pr):'—'}${okk&&i<3?`<div style="font-size:.7rem;color:var(--muted)">dont TOP ${i+1} : ${money(S.settings.top[i])}</div>`:''}</td>
-      <td>${r.poste?`<b>${recruesAuto(r.nom)}</b> <small style="color:var(--muted)" title="Compté automatiquement : fiches RH où ${esc(r.nom)} est Recruteur, arrivées cette semaine">auto</small>`:'<span style="color:var(--muted)">—</span>'}</td>
+      <td>${r.poste?`<b>${recruesAuto(r.nom)}</b> <small style="color:var(--muted)" title="Compté automatiquement : fiches RH où ${esc(r.nom)} est Recruteur, arrivées depuis le début de la semaine de travail (remise à zéro à la clôture, pas le lundi)">auto</small>`:'<span style="color:var(--muted)">—</span>'}</td>
       <td>${sal?money(sal):'—'}</td>
       <td style="font-weight:700">${sal+pr?money(sal+pr):'—'}</td>
     </tr>`;};
@@ -1572,6 +1601,7 @@ function closeWeek(){
   }
   S.runners.forEach(r=>{ r.barils=0; r.runs=[]; r.recrues=0; r.lastSync=0; });
   S.settings.semaine=semaineCal();
+  S.settings.semaineDebut=lundiCourant();   // point de départ de la nouvelle semaine de travail
   qcArchive(); // quotas commerciaux : la semaine close part dans l'historique
   if(S.sheets&&S.sheets.ventesSem) S.sheets.ventesSem=S.sheets.ventesSem.filter(v=>!/^employ/i.test(String(v.client||''))); // commandes employés remises à zéro
   save(); rerender();
@@ -3481,6 +3511,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-67',d:'04/09/2026',t:'Les recrutements ne s\'effacent plus le lundi',items:[
+   ['👥','Le compteur suivait le calendrier, pas la semaine de travail','Les recrues étaient comptées entre le lundi et le dimanche du calendrier. Or la semaine de travail n\'avance qu\'à la clôture. Le lundi à 00h00, les recrutements de la semaine encore ouverte sortaient donc de la fenêtre et le salaire recruteur tombait à zéro — précisément au moment où les RH en avaient besoin pour payer.'],
+   ['🗓️','Tant que ce n\'est pas clôturé, ça reste','La fenêtre part du début de la semaine de travail et n\'a plus de fin : c\'est la clôture qui tire le trait, plus le dimanche soir. Un recrutement du lundi matin, avant la clôture, compte encore pour la semaine qui s\'achève.'],
+   ['📌','La date de départ est notée à la clôture','Plus de déduction : chaque clôture enregistre le point de départ de la nouvelle semaine. Pour les états antérieurs, il est retrouvé à partir du numéro de semaine.'],
+ ]},
  {v:'C-66',d:'04/09/2026',t:'La table des coffres ne s\'efface plus',items:[
    ['🧩','Un trou dans la fusion','Les tables annexes se synchronisent en bloc : pour toute la section, la version la plus récente gagne. Un navigateur qui enregistrait quelque chose juste après une écriture du bot faisait donc disparaître la table des coffres de sa copie — puis l\'effaçait du dépôt à son envoi suivant. Les tables dont le bot est le seul auteur sont désormais toujours reprises du dépôt : il n\'y a rien à arbitrer.'],
    ['🏷️','Le menu dit ce qu\'il sait','Le filtre « Coffre » affiche combien de coffres sont nommés, et signale en clair quand la table du bot n\'est pas encore arrivée — au lieu de laisser une liste de coordonnées faire croire à une panne.'],
