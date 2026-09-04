@@ -16092,7 +16092,9 @@
   "impot": 0.32,
   "limite": 24000,
   "permsRO": {
-   "rh": [],
+   "rh": [
+    "params"
+   ],
    "commercial": []
   },
   "semaine": 36,
@@ -16130,6 +16132,7 @@
     "bilan",
     "prodder",
     "quotascom",
+    "frecues",
     "moi",
     "profil",
     "quotashist",
@@ -16208,8 +16211,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "gila39ze88v",
- "_maj": 1788485080005,
- "_rev": "q8eolxaty3q-mtm9u90a",
+ "_maj": 1788485085219,
+ "_rev": "qqvci0fw2z-mtm9udbl",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16218,13 +16221,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788485080005,
+  "journal": 1788485085219,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788485080005,
+  "settings": 1788485085219,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16237,6 +16240,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788485086313,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « frecues » → accès complet ✓"
+  },
+  {
+   "t": 1788485082919,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « params » → lecture seule 👁"
+  },
   {
    "t": 1788485081098,
    "u": "Diego Herrera",
@@ -17726,16 +17739,6 @@
    "a": "Suppression du compte Jz",
    "t": 1787330880701,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte xRosx | N.D",
-   "t": 1787330879087,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte John Nolan",
-   "t": 1787330877219,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18061,7 +18064,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:24:41.626Z",
+  "maj": "2026-09-04T01:24:47.217Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
