@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-72</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-73</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -637,11 +637,18 @@ function vueExiste(v){ return PERMS.direction.includes(v); }
    « Feuilles » n'avait plus accès à AUCUNE feuille sans que personne ne s'en
    aperçoive. On réécrit donc les listes une fois, en gardant les choix faits :
    « Feuilles » redonne les six feuilles, le reste est nettoyé. */
-const SHEET_VUES_TOUTES=['ftablette','felig','fventes','frh','fblacklist','fcompta'];
-const VUES_DISPARUES=['acces','runs','fer','retention','todo','feedback','tv'];
 function migrerPerms(){
   if(S._permsFix1) return false;
   S._permsFix1=true;
+  /* Les listes vivent DANS la fonction, pas à côté. Elles étaient déclarées en
+     `const` juste au-dessus, mais migrerPerms() est appelée bien plus haut dans
+     le fichier, au chargement : un `const` n'existe pas encore à ce moment-là,
+     et la fonction levait une erreur qui arrêtait tout le script — écran de
+     connexion figé, plus personne ne pouvait entrer. Le piège n'apparaissait
+     qu'avec des permissions personnalisées enregistrées : sans elles, la
+     fonction sortait avant d'atteindre ces lignes. */
+  const SHEET_VUES_TOUTES=['ftablette','felig','fventes','frh','fblacklist','fcompta'];
+  const VUES_DISPARUES=['acces','runs','fer','retention','todo','feedback','tv'];
   let touche=0;
   ['permsCustom','permsRO'].forEach(cle=>{
     const c=S.settings&&S.settings[cle];
@@ -764,7 +771,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-72';
+const APP_VERSION='C-73';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3663,6 +3670,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-73',d:'04/09/2026',t:'Correction urgente — plus personne ne pouvait entrer',items:[
+   ['🚨','Le script s\'arrêtait au chargement','La réparation des permissions introduite en C-71 s\'appuyait sur deux listes déclarées plus bas dans le fichier. Or elle est appelée tout en haut, au démarrage : ces listes n\'existaient pas encore, la fonction levait une erreur, et le script mourait avant d\'avoir défini quoi que ce soit. Écran de connexion figé pour tout le monde.'],
+   ['🧪','Pourquoi mes essais ne l\'ont pas vu','Ils tournaient sur un état vierge, sans permissions personnalisées — la fonction sortait avant d\'atteindre les lignes fautives. Il fallait des réglages réels pour la déclencher. Les listes vivent désormais à l\'intérieur de la fonction, où elles ne peuvent plus manquer.'],
+ ]},
  {v:'C-72',d:'04/09/2026',t:'Perdre son rôle ferme la porte',items:[
    ['🚫','Un départ n\'était pas un départ','Le rôle Discord ouvrait l\'accès, mais le perdre ne le fermait pas. Quelqu\'un à qui on retirait tous ses rôles gardait son compte et entrait comme avant, indéfiniment. La cause : le code confondait « cette personne n\'a plus aucun rôle » et « on n\'a pas pu savoir » — deux situations qui rendaient la même réponse, et devant lesquelles il ne faisait rien.'],
    ['🔍','La différence est maintenant faite','Information indisponible : on ne touche à rien, un incident réseau ne doit exclure personne. Absence de rôle constatée : l\'accès se ferme, la direction est prévenue sur Discord, et le compte reste dans Paramètres pour être supprimé si le départ est définitif.'],
