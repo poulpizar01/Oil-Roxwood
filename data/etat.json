@@ -16095,11 +16095,7 @@
    "rh": [],
    "commercial": [],
    "respcom": [],
-   "assistdir": [
-    "factures",
-    "relances",
-    "bilan"
-   ]
+   "assistdir": []
   },
   "semaine": 36,
   "webhook": "",
@@ -16181,9 +16177,6 @@
    ],
    "assistdir": [
     "effectif",
-    "factures",
-    "relances",
-    "bilan",
     "prodder",
     "quotascom",
     "frecues",
@@ -16237,8 +16230,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489424256,
- "_rev": "xz36mrglhc-mtmcfch4",
+ "_maj": 1788489426034,
+ "_rev": "ha9g9otra2-mtmcfgl6",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16247,13 +16240,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489424256,
+  "journal": 1788489426034,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489424256,
+  "settings": 1788489426034,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16268,6 +16261,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489426605,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « bilan » → aucun accès"
+  },
+  {
+   "t": 1788489426019,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « relances » → aucun accès"
+  },
+  {
+   "t": 1788489425432,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « factures » → aucun accès"
+  },
   {
    "t": 1788489424827,
    "u": "Diego Herrera",
@@ -17752,21 +17760,6 @@
    "a": "Suppression du compte Franck Parker",
    "t": 1787330956487,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Bobby Rousseau",
-   "t": 1787330954898,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Tikuan john",
-   "t": 1787330953034,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Reed Burns",
-   "t": 1787330950470,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18092,7 +18085,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:37:05.128Z",
+  "maj": "2026-09-04T02:37:10.458Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
