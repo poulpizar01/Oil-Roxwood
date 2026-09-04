@@ -8476,24 +8476,6 @@
     "discord": "768412115056066560"
    },
    {
-    "idU": "2812",
-    "nom": "Mike Tchoup ",
-    "tel": "555-762664",
-    "comm": "faux plan recrutement",
-    "date": "2026-08-02",
-    "grade": "",
-    "discord": "994976973996687450"
-   },
-   {
-    "idU": "320467",
-    "nom": "Ezio Carlo",
-    "tel": "555826000",
-    "comm": "",
-    "date": "2025-11-29",
-    "grade": "Démission",
-    "discord": "brasco.294"
-   },
-   {
     "idU": "292803",
     "nom": "Tony Ryu",
     "tel": "555653475",
@@ -16399,14 +16381,14 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ev9a7hrrn7i",
- "_maj": 1788482607943,
- "_rev": "nsm2nifbhws-mtm8dbt5",
+ "_maj": 1788482621840,
+ "_rev": "bhz0tpdwwu5-mtm8dmgi",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788222184505,
+  "sheets": 1788482621840,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788482311899,
@@ -18252,7 +18234,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:43:32.489Z",
+  "maj": "2026-09-04T00:43:46.290Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
