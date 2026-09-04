@@ -16093,7 +16093,11 @@
   "limite": 24000,
   "permsRO": {
    "rh": [],
-   "commercial": []
+   "commercial": [],
+   "respcom": [],
+   "assistdir": [
+    "effectif"
+   ]
   },
   "semaine": 36,
   "webhook": "",
@@ -16155,6 +16159,26 @@
     "quotashist",
     "agenda",
     "maj"
+   ],
+   "respcom": [
+    "overview",
+    "ftablette",
+    "felig",
+    "fventes",
+    "frh",
+    "fblacklist",
+    "fcompta",
+    "factures",
+    "relances",
+    "prodder",
+    "quotascom",
+    "moi",
+    "quotashist",
+    "agenda",
+    "maj"
+   ],
+   "assistdir": [
+    "effectif"
    ]
   },
   "prixBidonCom": 50,
@@ -16169,6 +16193,10 @@
     "role": "direction"
    },
    {
+    "id": "",
+    "role": "assistdir"
+   },
+   {
     "id": "1246581064219230250",
     "role": "rh"
    },
@@ -16178,7 +16206,7 @@
    },
    {
     "id": "1498757191044305086",
-    "role": "commercial"
+    "role": "respcom"
    },
    {
     "id": "1246586673140203601",
@@ -16187,31 +16215,15 @@
    {
     "id": "1487435766547349604",
     "role": "resprunner"
-   },
-   {
-    "id": "1513313167931871362",
-    "role": "membre"
-   },
-   {
-    "id": "1246584841785446480",
-    "role": "membre"
-   },
-   {
-    "id": "1246585410461896879",
-    "role": "membre"
-   },
-   {
-    "id": "1288434147257483275",
-    "role": "membre"
    }
   ],
-  "rolesDiscordV": 3,
+  "rolesDiscordV": 4,
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "0s2pbkkgxo9k",
- "_maj": 1788489255821,
- "_rev": "8ssc0ll7ug7-mtmcbtpw",
+ "_cid": "ylz59rxdeb",
+ "_maj": 1788489446800,
+ "_rev": "q10qcjaveyo-mtmcfxkw",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16220,13 +16232,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788487848854,
+  "journal": 1788489446800,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788487848854,
+  "settings": 1788489446800,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16234,12 +16246,288 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788489255821,
-  "_permsFix1": 1788487775674
+  "_tables": 1788489441956,
+  "_permsFix1": 1788487775674,
+  "_rolesFix4": 1788489352546
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489447371,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → lecture seule 👁"
+  },
+  {
+   "t": 1788489442425,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « prodder » → aucun accès"
+  },
+  {
+   "t": 1788489441865,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotascom » → aucun accès"
+  },
+  {
+   "t": 1788489441306,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frecues » → aucun accès"
+  },
+  {
+   "t": 1788489440743,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « moi » → aucun accès"
+  },
+  {
+   "t": 1788489440153,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « profil » → aucun accès"
+  },
+  {
+   "t": 1788489439606,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotashist » → aucun accès"
+  },
+  {
+   "t": 1788489438972,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « agenda » → aucun accès"
+  },
+  {
+   "t": 1788489438411,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « maj » → aucun accès"
+  },
+  {
+   "t": 1788489437620,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « dlogs » → aucun accès"
+  },
+  {
+   "t": 1788489437025,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « journal » → aucun accès"
+  },
+  {
+   "t": 1788489436388,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « journal » → lecture seule 👁"
+  },
+  {
+   "t": 1788489435701,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « dlogs » → lecture seule 👁"
+  },
+  {
+   "t": 1788489435107,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1788489434486,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « agenda » → lecture seule 👁"
+  },
+  {
+   "t": 1788489433890,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotashist » → lecture seule 👁"
+  },
+  {
+   "t": 1788489433235,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « profil » → lecture seule 👁"
+  },
+  {
+   "t": 1788489432613,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « moi » → lecture seule 👁"
+  },
+  {
+   "t": 1788489431957,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frecues » → lecture seule 👁"
+  },
+  {
+   "t": 1788489431284,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotascom » → lecture seule 👁"
+  },
+  {
+   "t": 1788489430661,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « prodder » → lecture seule 👁"
+  },
+  {
+   "t": 1788489426605,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « bilan » → aucun accès"
+  },
+  {
+   "t": 1788489426019,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « relances » → aucun accès"
+  },
+  {
+   "t": 1788489425432,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « factures » → aucun accès"
+  },
+  {
+   "t": 1788489424827,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fcompta » → aucun accès"
+  },
+  {
+   "t": 1788489424219,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fblacklist » → aucun accès"
+  },
+  {
+   "t": 1788489423573,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frh » → aucun accès"
+  },
+  {
+   "t": 1788489422888,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « bilan » → lecture seule 👁"
+  },
+  {
+   "t": 1788489422258,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « relances » → lecture seule 👁"
+  },
+  {
+   "t": 1788489421595,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « factures » → lecture seule 👁"
+  },
+  {
+   "t": 1788489420975,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fcompta » → lecture seule 👁"
+  },
+  {
+   "t": 1788489420315,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fblacklist » → lecture seule 👁"
+  },
+  {
+   "t": 1788489419662,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frh » → lecture seule 👁"
+  },
+  {
+   "t": 1788489419030,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fventes » → aucun accès"
+  },
+  {
+   "t": 1788489418319,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fventes » → lecture seule 👁"
+  },
+  {
+   "t": 1788489417581,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « felig » → aucun accès"
+  },
+  {
+   "t": 1788489416964,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « felig » → lecture seule 👁"
+  },
+  {
+   "t": 1788489416325,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « ftablette » → aucun accès"
+  },
+  {
+   "t": 1788489415646,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « ftablette » → lecture seule 👁"
+  },
+  {
+   "t": 1788489414999,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « reunions » → aucun accès"
+  },
+  {
+   "t": 1788489414343,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « reunions » → lecture seule 👁"
+  },
+  {
+   "t": 1788489413698,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → aucun accès"
+  },
+  {
+   "t": 1788489412969,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → lecture seule 👁"
+  },
+  {
+   "t": 1788489412248,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « semaine » → aucun accès"
+  },
+  {
+   "t": 1788489411320,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → accès complet ✓"
+  },
+  {
+   "t": 1788489411163,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « semaine » → lecture seule 👁"
+  },
+  {
+   "t": 1788489410640,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → aucun accès"
+  },
+  {
+   "t": 1788489410049,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « overview » → aucun accès"
+  },
+  {
+   "t": 1788489409372,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → lecture seule 👁"
+  },
+  {
+   "t": 1788489408710,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « overview » → lecture seule 👁"
+  },
+  {
+   "t": 1788489391034,
+   "u": "Diego Herrera",
+   "a": "Rôles Discord : 1246584841785446480 retiré"
+  },
+  {
+   "t": 1788489387570,
+   "u": "Diego Herrera",
+   "a": "Rôles Discord : 1288434147257483275 retiré"
+  },
+  {
+   "t": 1788489385486,
+   "u": "Diego Herrera",
+   "a": "Rôles Discord : 1246585410461896879 retiré"
+  },
+  {
+   "t": 1788489383213,
+   "u": "Diego Herrera",
+   "a": "Rôles Discord : 1513313167931871362 retiré"
+  },
+  {
+   "t": 1788489352498,
+   "u": "Diego Herrera",
+   "a": "Responsable commercial : réglages repris du rôle Commercial"
+  },
   {
    "t": 1788487849569,
    "u": "Diego Herrera",
@@ -17464,281 +17752,6 @@
    "a": "Demande d'accès refusée : Momoow",
    "t": 1787399663282,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : Momoow",
-   "t": 1787399663182,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 1 708",
-   "t": 1787380433188,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Vente rapide sans facture : 250 bidon(s) — Citoyen (vendeur : Julio Collins)",
-   "t": 1787379462515,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Demande d'accès refusée : Momoow",
-   "t": 1787361066252,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
-   "t": 1787361051791,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Contrat de travail généré : John Daltone (Runner)",
-   "t": 1787357181560,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Sevan Vargas (Runner)",
-   "t": 1787352064174,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Alejandro Varrgas (Runner)",
-   "t": 1787352032325,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Joseph Purple (Runner)",
-   "t": 1787340682842,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 1 bidon(s) — Employé Liam Collins (vendeur : Thomas Boyer)",
-   "t": 1787340285991,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 30 bidon(s) — Citoyen (vendeur : Emma Collins)",
-   "t": 1787334782643,
-   "u": "Emma Collins"
-  },
-  {
-   "a": "Palier fiscal : retour au calcul automatique",
-   "t": 1787332383694,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : mathisdht76",
-   "t": 1787330997714,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Louis Hayes",
-   "t": 1787330990424,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Naïm Velazquez",
-   "t": 1787330988284,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Djawad Tal",
-   "t": 1787330986410,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Helena Rhosé",
-   "t": 1787330977792,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Diego Mendez",
-   "t": 1787330974279,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Robin Canella",
-   "t": 1787330972361,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Santi Show",
-   "t": 1787330958388,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Franck Parker",
-   "t": 1787330956487,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Bobby Rousseau",
-   "t": 1787330954898,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Tikuan john",
-   "t": 1787330953034,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Reed Burns",
-   "t": 1787330950470,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Myra Carter",
-   "t": 1787330948646,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Morino Collins",
-   "t": 1787330942960,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Scott Ramirez",
-   "t": 1787330941133,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Elyra Steel",
-   "t": 1787330939477,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Xavier Collins",
-   "t": 1787330937692,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Araceli Vega",
-   "t": 1787330935734,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Ray Callahan",
-   "t": 1787330934192,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Marcus Brooks",
-   "t": 1787330932489,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Rico Garcia",
-   "t": 1787330930866,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Fred Montaigue",
-   "t": 1787330928827,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Amia Collins",
-   "t": 1787330926916,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Enzo Pollo",
-   "t": 1787330925400,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte John Roy",
-   "t": 1787330923574,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Momoow",
-   "t": 1787330921743,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte NoPCl_a",
-   "t": 1787330916899,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Tyrese Haywood",
-   "t": 1787330914918,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Maxime Letourneur",
-   "t": 1787330913049,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Laurent Lewis",
-   "t": 1787330911322,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Javier Martinez",
-   "t": 1787330909286,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Bula",
-   "t": 1787330906401,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Erjonihno",
-   "t": 1787330904407,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte El Barjot",
-   "t": 1787330902642,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Rutroz",
-   "t": 1787330901055,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Pachat",
-   "t": 1787330899584,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte .Lucas",
-   "t": 1787330898017,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Shคrk~ov€rl0rD",
-   "t": 1787330896166,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Marmotte",
-   "t": 1787330894262,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte M E H D I 🥷🌀",
-   "t": 1787330892461,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Strya Ryuzen",
-   "t": 1787330890200,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Lexize",
-   "t": 1787330887284,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Solapix",
-   "t": 1787330885520,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18064,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:34:20.852Z",
+  "maj": "2026-09-04T02:37:32.480Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -24050,6 +24063,27 @@
     "role": "direction",
     "vu": "2026-09-04T02:34:15.821Z",
     "id": 1788489258023
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:35:45.824Z",
+    "id": 1788489347698
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:35:52.520Z",
+    "id": 1788489352591
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:37:21.956Z",
+    "id": 1788489443158
    }
   ],
   "oilroxwood_demandes": [],
@@ -24472,5 +24506,6 @@
   ]
  },
  "reunions": [],
- "_permsFix1": true
+ "_permsFix1": true,
+ "_rolesFix4": true
 }
