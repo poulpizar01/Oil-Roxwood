@@ -67,6 +67,7 @@ compteur.
 | **Le rôle Discord est la seule source des accès** | C-75 |
 | 🚨 Le jeton d'écriture est enfin vérifié en écriture | C-76 |
 | Responsable commercial et Assistant de direction | C-76 |
+| Le jeton d'écriture passe dans « Mon profil » | C-76 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 

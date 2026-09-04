@@ -3798,6 +3798,7 @@ const CHANGELOG=[
  {v:'C-76',d:'04/09/2026',t:'Un jeton qui ment, et deux rôles qui manquaient',items:[
    ['🚨','Le contrôle du jeton se trompait de question','Quand quelqu\'un enregistrait son jeton, le dashboard vérifiait qu\'il permettait de LIRE le dépôt. Or le dépôt est public : n\'importe quel jeton le lit, même un jeton sans le moindre droit dessus. Le contrôle répondait donc « ✅ Jeton valide » à des jetons incapables d\'écrire une seule ligne. C\'est ce qui est arrivé au RH : il a saisi, tout s\'affichait chez lui, et rien n\'est jamais parti. On demande désormais à GitHub la seule chose qui compte — ce jeton a-t-il le droit d\'écrire ICI.'],
    ['🔊','Une saisie perdue ne peut plus être silencieuse','L\'échec ne laissait qu\'un point rouge et une bulle « Dépôt occupé », de quoi travailler une heure en croyant enregistrer. Maintenant : un bandeau rouge en haut de l\'écran, qui dit en toutes lettres que rien n\'est enregistré et pourquoi. Une simple coupure de réseau, elle, ne déclenche pas d\'alarme et n\'accuse pas un jeton correct.'],
+   ['🚪','Le jeton quitte les Paramètres','Il vivait dans Paramètres, avec les barèmes, les prix et les permissions de tout le monde. Pour qu\'un RH ou un commercial puisse coller SON jeton, il fallait donc lui ouvrir toute cette page : on donnait les clés de la maison pour le laisser ranger son bureau. Le jeton est personnel — il est maintenant dans « Mon profil », que tout le monde a déjà.'],
    ['🧪','« Vérifier que j\'écris vraiment »','Un bouton dans Paramètres, à cliquer quand on doute. Il distingue les cas : jeton expiré, compte non collaborateur, jeton « fine-grained » créé sur un autre compte — celui-là ne marchera jamais sur le dépôt de quelqu\'un d\'autre, il faut un jeton CLASSIQUE avec la portée public_repo. Les instructions de la fenêtre le disent enfin.'],
    ['🎖️','Responsable commercial et Assistant de direction','Ces deux rôles existaient sur Discord mais pas ici : le responsable commercial tombait dans « Commercial » et voyait exactement ce que voient ses commerciaux, sans moyen de lui ouvrir une rubrique sans l\'ouvrir à toute l\'équipe. Ils ont désormais leur colonne dans la grille des permissions. Le responsable commercial démarre avec les réglages actuels du rôle Commercial — pas ceux d\'usine, pour qu\'une promotion ne fasse rien perdre.'],
    ['🪪','L\'assistant de direction attend son identifiant','Sa ligne est déjà dans la table des rôles Discord, vide. Colle l\'identifiant du rôle quand tu l\'auras créé, et il entrera tout seul. En attendant, il voit tout sauf la clôture de semaine et les Paramètres.'],
@@ -5196,12 +5197,38 @@ function profilTitreAuto(nom){
   return r?gTitle(r):(posteDe(nom)||'');
 }
 
+/* ---- Le jeton d'écriture appartient à la personne, pas à l'entreprise ----
+
+   Il vivait dans Paramètres. Conséquence absurde : pour qu'un RH ou un
+   commercial puisse coller SON jeton, il fallait lui ouvrir les Paramètres —
+   c'est-à-dire les barèmes, les prix, les permissions de tout le monde. On
+   donnait les clés de la maison pour laisser quelqu'un ranger son bureau.
+
+   Le jeton est personnel, il ne quitte jamais le navigateur de son
+   propriétaire, et personne d'autre ne peut le voir : sa place est dans
+   « Mon profil », que tout le monde a déjà. */
+function panneauJeton(){
+  const a=RoxwoodGH.peutEcrire();
+  return `<div class="panel" style="margin-top:18px">
+    <h3>🔑 Mon jeton d'écriture</h3>
+    <p style="color:var(--muted);font-size:.8rem;line-height:1.55;margin-bottom:12px">
+      ${a ? '<b style="color:var(--green)">Un jeton est enregistré sur ce navigateur.</b> Enregistré ne veut pas dire accepté : le bouton ci-dessous demande à GitHub s\'il a vraiment le droit d\'écrire.'
+          : '<b style="color:var(--red)">Aucun jeton sur ce navigateur.</b> Tu vois tout, tu ne modifies rien : ce que tu saisis reste chez toi et ne part pas.'}
+      <br>Il est propre à ce navigateur, il ne part nulle part, et personne d\'autre — moi compris — ne peut le lire.
+    </p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn ${a?'btn-ghost':'btn-gold'}" onclick="roxwoodJeton()">${a?'Changer ou retirer mon jeton':'Ajouter mon jeton'}</button>
+      ${a?'<button class="btn btn-gold" onclick="roxwoodJeton();setTimeout(roxwoodJetonTest,60)">Vérifier que j\'écris vraiment</button>':''}
+    </div>
+  </div>`;
+}
 function profil(){
   const nom=profilNom();
   if(!nom){
     $('#main').innerHTML=`
     <div class="topbar"><div><h2>Mon profil</h2><div class="sub">Ta fiche, telle que les autres la voient</div></div></div>
-    <div class="panel" style="max-width:560px"><div class="empty">Connecte-toi avec ton compte Discord pour retrouver ta fiche.</div></div>`;
+    <div class="panel" style="max-width:560px"><div class="empty">Connecte-toi avec ton compte Discord pour retrouver ta fiche.</div></div>
+    <div style="max-width:560px">${panneauJeton()}</div>`;
     return;
   }
   const pf=profilDe(nom)||{};
@@ -5272,6 +5299,8 @@ function profil(){
       </div>
 
       <button class="btn btn-gold" style="width:100%;margin-top:18px" onclick="profilSave()">Enregistrer mon profil</button>
+
+      ${panneauJeton()}
     </div>
   </div>`;
   profilApercu();
@@ -6118,17 +6147,12 @@ async function params(){
         </tbody></table>
       </div>
       <div class="panel" style="margin-bottom:18px">
-        <h3>🔑 Jeton d'écriture</h3>
-        <p style="color:var(--muted);font-size:.85rem;margin-bottom:12px">
-          Un seul jeton sert à tout : enregistrer les données et publier les stats sur le site.
-          ${RoxwoodGH.peutEcrire()
-            ? '<b style="color:var(--green)">Un jeton est enregistré.</b> Enregistré ne veut pas dire accepté — le bouton ci-dessous demande à GitHub s\'il a vraiment le droit d\'écrire.'
-            : '<b style="color:var(--red)">Aucun jeton</b> — le dashboard est en lecture seule.'}
+        <h3>🔑 Le jeton d'écriture a déménagé</h3>
+        <p style="color:var(--muted);font-size:.85rem;line-height:1.55">
+          Il est désormais dans <b style="color:var(--ink)">👤 Mon profil</b>, que tout le monde a.
+          Il n'y a plus besoin d'ouvrir les Paramètres à quelqu'un pour qu'il puisse coller le sien.
         </p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn btn-ghost" onclick="roxwoodJeton()">${RoxwoodGH.peutEcrire()?'Changer ou retirer le jeton':'Ajouter un jeton'}</button>
-          ${RoxwoodGH.peutEcrire()?'<button class="btn btn-gold" onclick="roxwoodJeton();setTimeout(roxwoodJetonTest,60)">Vérifier que j\'écris vraiment</button>':''}
-        </div>
+        <button class="btn btn-ghost" style="margin-top:10px" onclick="show('profil')">Aller à Mon profil</button>
       </div>
       <div class="panel" style="margin-bottom:18px">
         <h3>📡 Logs Discord (compte entreprise)</h3>
@@ -6466,7 +6490,7 @@ function roxwoodJeton(){
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
     <button class="btn btn-gold btn-sm" onclick="roxwoodJetonSave()">Enregistrer</button>
     ${actuel?`<button class="btn btn-ghost btn-sm" onclick="roxwoodJetonTest()">Tester le jeton actuel</button>
-    <button class="btn btn-red btn-sm" onclick="RoxwoodGH.poserJeton('');closeModal();toast('Jeton retiré — lecture seule');syncDot(null,'Lecture seule')">Retirer</button>`:''}
+    <button class="btn btn-red btn-sm" onclick="RoxwoodGH.poserJeton('');closeModal();toast('Jeton retiré — lecture seule');syncDot(null,'Lecture seule');try{if(typeof VIEW!=='undefined'&&VIEW==='profil')profil();}catch(e){}">Retirer</button>`:''}
   </div>
   <div id="ghDiag"></div>
   <details style="font-size:.82rem;color:var(--muted)">
@@ -6528,6 +6552,7 @@ async function roxwoodJetonSave(){
   const b=document.getElementById('bandeauEcriture'); if(b) b.remove();
   SYNC.alerte=false;
   closeModal(); toast('✅ Jeton vérifié — écriture autorisée'); syncDot(true,'Synchronisé');
+  try{ if(typeof VIEW!=='undefined'&&VIEW==='profil') profil(); }catch(e){}
   sbPushNow();
 }
 /* Le même contrôle, à la demande : « est-ce que ça marche, là, maintenant ? » */
