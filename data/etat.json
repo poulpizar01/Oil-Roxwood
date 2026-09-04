@@ -16136,7 +16136,8 @@
     "agenda",
     "maj",
     "dlogs",
-    "journal"
+    "journal",
+    "params"
    ],
    "commercial": [
     "overview",
@@ -16209,8 +16210,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "mfxvsgxpjm8",
- "_maj": 1788487847717,
- "_rev": "qrbxc6yej3-mtmbhkib",
+ "_maj": 1788487848854,
+ "_rev": "wm8z114oq08-mtmbhora",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16219,13 +16220,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788487847717,
+  "journal": 1788487848854,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788487847717,
+  "settings": 1788487848854,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16239,6 +16240,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788487849569,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « params » → accès complet ✓"
+  },
   {
    "t": 1788487848431,
    "u": "Diego Herrera",
@@ -17733,11 +17739,6 @@
    "a": "Suppression du compte Solapix",
    "t": 1787330885520,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Ripperman_TV",
-   "t": 1787330884065,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18063,7 +18064,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:10:49.235Z",
+  "maj": "2026-09-04T02:10:54.742Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
