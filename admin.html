@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-68</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-69</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -700,7 +700,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-68';
+const APP_VERSION='C-69';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -2123,6 +2123,17 @@ function rhApplyPaste(){
     const idU=rec.idU; seen.add(idU);
     const ds=rec.ds||new Date().toISOString().slice(0,10);
     let row=S.sheets.rh.find(x=>String(x.idU||'').replace(/\D/g,'')===idU);
+    /* Rattrapage par le nom (C-69) — uniquement quand aucun ID ne correspond.
+       Une recrue transmise par le bot n'a pas toujours d'ID unique : le candidat
+       ne l'a pas forcément renseigné dans le formulaire. Sans ce rattrapage, le
+       pointage créait une seconde ligne pour la même personne.
+       On reste prudent : il faut une seule ligne portant ce nom, et elle doit
+       être sans ID — sinon on ne touche à rien, un homonyme est vite arrivé. */
+    if(!row&&rec.nom){
+        const cible=normNom(rec.nom);
+        const cands=S.sheets.rh.filter(x=>normNom(x.nom)===cible&&!String(x.idU||'').replace(/\D/g,''));
+        if(cands.length===1){ row=cands[0]; row.idU=idU; nomUpd++; }
+    }
     if(row){
       row.dernierService=ds; // le pointage collé fait foi (permet aussi de corriger une date erronée)
       row.flagOut=false;
@@ -3557,6 +3568,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-69',d:'04/09/2026',t:'Le pointage ne double plus les recrues',items:[
+   ['🔗','Rattrapage par le nom','Une recrue transmise par le bot n\'a pas toujours d\'ID unique — le candidat ne l\'a pas forcément renseigné. Le collage du pointage, ne trouvant rien à rapprocher, créait alors une seconde ligne pour la même personne. Il la retrouve maintenant par son nom et lui attribue l\'ID au passage.'],
+   ['🧯','Prudent par construction','Le rattrapage n\'agit que s\'il existe exactement une ligne portant ce nom, et qu\'elle est sans ID. Deux homonymes, ou un nom déjà identifié : on ne touche à rien.'],
+ ]},
  {v:'C-68',d:'04/09/2026',t:'La fiche RH se remplit toute seule',items:[
    ['👥','Une candidature validée devient une ligne RH','Le bot connaît déjà tout au moment où il souhaite la bienvenue : nom, identifiant Discord, téléphone, RIB, ID unique, grade, recruteur. Il les dépose dans le dépôt ; la fiche RH les récupère à son ouverture. Plus rien à recopier.'],
    ['🛡️','Sans jamais écraser le travail des RH','Une recrue déjà présente est reconnue à son ID unique — ou à son identifiant Discord. On ne fait alors que remplir les cases vides : un RIB corrigé à la main reste tel quel. Et réimporter deux fois ne crée pas de doublon.'],
