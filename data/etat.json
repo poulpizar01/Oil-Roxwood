@@ -16109,16 +16109,13 @@
    "Comptable": 50000,
    "Graphiste": 0,
    "Commercial": 0,
-   "Web Master": 30000,
+   "Web Master": 0,
    "Responsable Commercial": 0
   },
   "primeBase": 5000,
   "prixRecrue": 4000,
   "permsCustom": {
    "rh": [
-    "overview",
-    "effectif",
-    "semaine",
     "historique",
     "cloture",
     "reunions",
@@ -16221,9 +16218,9 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "ylz59rxdeb",
- "_maj": 1788489446800,
- "_rev": "ur8h8daqnti-mtmcgrmh",
+ "_cid": "nlg4kjylhnm",
+ "_maj": 1788490254954,
+ "_rev": "78ndkk3xdss-mtmcx8ap",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16232,13 +16229,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489446800,
+  "journal": 1788489906303,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489446800,
+  "settings": 1788489906303,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16246,13 +16243,43 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788489441956,
+  "_tables": 1788490254954,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489907021,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « overview » → aucun accès"
+  },
+  {
+   "t": 1788489906196,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « semaine » → aucun accès"
+  },
+  {
+   "t": 1788489905608,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « semaine » → lecture seule 👁"
+  },
+  {
+   "t": 1788489904790,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « effectif » → aucun accès"
+  },
+  {
+   "t": 1788489904138,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « effectif » → lecture seule 👁"
+  },
+  {
+   "t": 1788489903160,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « overview » → lecture seule 👁"
+  },
   {
    "t": 1788489447371,
    "u": "Diego Herrera",
@@ -17722,36 +17749,6 @@
    "a": "Vente rapide sans facture : 30 bidon(s) — Employé Scott Mate (vendeur : Thomas Boyer)",
    "t": 1787429980279,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Solapix",
-   "t": 1787414972306,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Issac Bennet (Runner)",
-   "t": 1787414416243,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Joackim Salvador (Runner)",
-   "t": 1787414378487,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : bluefor",
-   "t": 1787399665311,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : M E H D I 🥷🇩🇿",
-   "t": 1787399664041,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : Momoow",
-   "t": 1787399663282,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18077,7 +18074,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:38:11.417Z",
+  "maj": "2026-09-04T02:50:59.522Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -24084,6 +24081,111 @@
     "role": "direction",
     "vu": "2026-09-04T02:37:21.956Z",
     "id": 1788489443158
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:38:38.526Z",
+    "id": 1788489519469
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:38:41.149Z",
+    "id": 1788489522032
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:38:44.220Z",
+    "id": 1788489524741
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:38:47.407Z",
+    "id": 1788489527555
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:38:48.871Z",
+    "id": 1788489529439
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:38:50.323Z",
+    "id": 1788489531164
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:39:19.649Z",
+    "id": 1788489560536
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:40:48.939Z",
+    "id": 1788489650395
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:42:18.944Z",
+    "id": 1788489740641
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:43:48.941Z",
+    "id": 1788489829670
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:44:55.669Z",
+    "id": 1788489895897
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:46:24.954Z",
+    "id": 1788489985741
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:47:54.955Z",
+    "id": 1788490075760
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:49:24.956Z",
+    "id": 1788490166343
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:50:54.954Z",
+    "id": 1788490256502
    }
   ],
   "oilroxwood_demandes": [],
