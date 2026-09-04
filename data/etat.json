@@ -16200,8 +16200,8 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "u2q3cksa8x",
- "_maj": 1788483893950,
+ "_cid": "bot",
+ "_maj": 1788483950654,
  "_rev": "y5sru5bhxoe-mtm94vth",
  "_majSec": {
   "fer": 1788222184505,
@@ -16225,7 +16225,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788483893950
+  "_tables": 1788483950654
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -24000,6 +24000,19 @@
     "id": "-3090.06, 6818.50, 43.97",
     "pos": "-3090.06, 6818.50, 43.97",
     "nom": "Recolte Patrons"
+   }
+  ],
+  "oilroxwood_recrues": [
+   {
+    "id": 1788483950097,
+    "nom": "O",
+    "discord": "438358976141328404",
+    "tel": "O",
+    "rib": "O",
+    "idU": "O",
+    "grade": "Direction",
+    "recrut": "Diego Herrera",
+    "arrivee": "2026-09-04"
    }
   ]
  },
