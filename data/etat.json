@@ -16211,10 +16211,6 @@
     "role": "resprunner"
    },
    {
-    "id": "1513313167931871362",
-    "role": "membre"
-   },
-   {
     "id": "1246584841785446480",
     "role": "membre"
    },
@@ -16232,8 +16228,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489360306,
- "_rev": "udlqs78arc-mtmce1za",
+ "_maj": 1788489382642,
+ "_rev": "8oui8nif637-mtmcegpm",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16242,13 +16238,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489352546,
+  "journal": 1788489382642,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489360306,
+  "settings": 1788489382642,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16263,6 +16259,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489383213,
+   "u": "Diego Herrera",
+   "a": "Rôles Discord : 1513313167931871362 retiré"
+  },
   {
    "t": 1788489352498,
    "u": "Diego Herrera",
@@ -17757,11 +17758,6 @@
    "a": "Suppression du compte Strya Ryuzen",
    "t": 1787330890200,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Lexize",
-   "t": 1787330887284,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18087,7 +18083,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:36:04.870Z",
+  "maj": "2026-09-04T02:36:23.962Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
