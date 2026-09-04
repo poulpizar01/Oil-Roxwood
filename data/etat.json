@@ -16209,10 +16209,6 @@
    {
     "id": "1487435766547349604",
     "role": "resprunner"
-   },
-   {
-    "id": "1246584841785446480",
-    "role": "membre"
    }
   ],
   "rolesDiscordV": 4,
@@ -16220,8 +16216,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489386999,
- "_rev": "qoylvzgsfb-mtmcejz3",
+ "_maj": 1788489390463,
+ "_rev": "9qyvsepnzfr-mtmcempd",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16230,13 +16226,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489386999,
+  "journal": 1788489390463,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489386999,
+  "settings": 1788489390463,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16251,6 +16247,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489391034,
+   "u": "Diego Herrera",
+   "a": "Rôles Discord : 1246584841785446480 retiré"
+  },
   {
    "t": 1788489387570,
    "u": "Diego Herrera",
@@ -17745,11 +17746,6 @@
    "a": "Suppression du compte Shคrk~ov€rl0rD",
    "t": 1787330896166,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Marmotte",
-   "t": 1787330894262,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18075,7 +18071,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:36:28.191Z",
+  "maj": "2026-09-04T02:36:31.729Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
