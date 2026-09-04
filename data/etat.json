@@ -16094,7 +16094,11 @@
   "permsRO": {
    "rh": [],
    "commercial": [],
-   "respcom": []
+   "respcom": [],
+   "assistdir": [
+    "overview",
+    "effectif"
+   ]
   },
   "semaine": 36,
   "webhook": "",
@@ -16173,6 +16177,32 @@
     "quotashist",
     "agenda",
     "maj"
+   ],
+   "assistdir": [
+    "overview",
+    "effectif",
+    "semaine",
+    "historique",
+    "reunions",
+    "ftablette",
+    "felig",
+    "fventes",
+    "frh",
+    "fblacklist",
+    "fcompta",
+    "factures",
+    "relances",
+    "bilan",
+    "prodder",
+    "quotascom",
+    "frecues",
+    "moi",
+    "profil",
+    "quotashist",
+    "agenda",
+    "maj",
+    "dlogs",
+    "journal"
    ]
   },
   "prixBidonCom": 50,
@@ -16216,8 +16246,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489390463,
- "_rev": "llqjd31q0j-mtmceu02",
+ "_maj": 1788489408801,
+ "_rev": "yp5141ed3g9-mtmcf0oj",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16226,13 +16256,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489390463,
+  "journal": 1788489408801,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489390463,
+  "settings": 1788489408801,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16247,6 +16277,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489409372,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → lecture seule 👁"
+  },
+  {
+   "t": 1788489408710,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « overview » → lecture seule 👁"
+  },
   {
    "t": 1788489391034,
    "u": "Diego Herrera",
@@ -17736,16 +17776,6 @@
    "a": "Suppression du compte Pachat",
    "t": 1787330899584,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte .Lucas",
-   "t": 1787330898017,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Shคrk~ov€rl0rD",
-   "t": 1787330896166,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18071,7 +18101,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:36:41.186Z",
+  "maj": "2026-09-04T02:36:49.843Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
