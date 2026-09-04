@@ -16114,7 +16114,6 @@
   "prixRecrue": 4000,
   "permsCustom": {
    "rh": [
-    "acces",
     "overview",
     "effectif",
     "semaine",
@@ -16144,17 +16143,19 @@
    ],
    "commercial": [
     "overview",
-    "feuilles",
+    "ftablette",
+    "felig",
+    "fventes",
+    "frh",
+    "fblacklist",
+    "fcompta",
     "factures",
     "relances",
     "prodder",
     "quotascom",
-    "fer",
     "moi",
     "quotashist",
-    "todo",
     "agenda",
-    "feedback",
     "maj"
    ]
   },
@@ -16210,9 +16211,9 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "4mviezwt92q",
- "_maj": 1788487024860,
- "_rev": "jpv1enfiiqf-mtmb189j",
+ "_cid": "mfxvsgxpjm8",
+ "_maj": 1788487775674,
+ "_rev": "kxvux4hat2b-mtmbg0ei",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16221,13 +16222,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788485085219,
+  "journal": 1788487775674,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788485085219,
+  "settings": 1788487775674,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16235,11 +16236,17 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788487024860
+  "_tables": 1788487775674,
+  "_permsFix1": 1788487775674
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788487775501,
+   "u": "Diego Herrera",
+   "a": "Permissions : 2 liste(s) de rôle remises à jour (rubriques renommées ou supprimées)"
+  },
   {
    "t": 1788485086313,
    "u": "Diego Herrera",
@@ -17734,11 +17741,6 @@
    "a": "Suppression du compte Diego Tierzo",
    "t": 1787330882405,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Jz",
-   "t": 1787330880701,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18064,7 +18066,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:58:06.871Z",
+  "maj": "2026-09-04T02:09:36.522Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -23910,6 +23912,20 @@
     "role": "direction",
     "vu": "2026-09-04T01:57:04.860Z",
     "id": 1788487026441
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T01:59:00.855Z",
+    "id": 1788487142865
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:09:35.553Z",
+    "id": 1788487775992
    }
   ],
   "oilroxwood_demandes": [],
@@ -24331,5 +24347,6 @@
    }
   ]
  },
- "reunions": []
+ "reunions": [],
+ "_permsFix1": true
 }
