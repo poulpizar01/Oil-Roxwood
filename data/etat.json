@@ -16117,6 +16117,8 @@
     "effectif",
     "semaine",
     "historique",
+    "cloture",
+    "reunions",
     "ftablette",
     "factures",
     "relances",
@@ -16197,8 +16199,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "gila39ze88v",
- "_maj": 1788485002187,
- "_rev": "ixg36nr1oy-mtm9smy0",
+ "_maj": 1788485071824,
+ "_rev": "3j6ocb4td3x-mtm9u2d7",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16207,13 +16209,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788485002187,
+  "journal": 1788485071824,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788485002187,
+  "settings": 1788485071824,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16226,6 +16228,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788485072918,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « reunions » → accès complet ✓"
+  },
+  {
+   "t": 1788485072274,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « cloture » → accès complet ✓"
+  },
   {
    "t": 1788485002806,
    "u": "Diego Herrera",
@@ -17715,16 +17727,6 @@
    "a": "Suppression du compte Ajaw Akbal",
    "t": 1787330858132,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte John Kuss",
-   "t": 1787330856106,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte le rho",
-   "t": 1787330854245,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18050,7 +18052,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:23:26.376Z",
+  "maj": "2026-09-04T01:24:33.019Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
