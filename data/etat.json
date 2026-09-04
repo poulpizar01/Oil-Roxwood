@@ -16187,6 +16187,10 @@
     "role": "direction"
    },
    {
+    "id": "",
+    "role": "assistdir"
+   },
+   {
     "id": "1246581064219230250",
     "role": "rh"
    },
@@ -16196,7 +16200,7 @@
    },
    {
     "id": "1498757191044305086",
-    "role": "commercial"
+    "role": "respcom"
    },
    {
     "id": "1246586673140203601",
@@ -16223,13 +16227,13 @@
     "role": "membre"
    }
   ],
-  "rolesDiscordV": 3,
+  "rolesDiscordV": 4,
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489352546,
- "_rev": "h1udzyzxkun-mtmcdt7o",
+ "_maj": 1788489360306,
+ "_rev": "udlqs78arc-mtmce1za",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16244,7 +16248,7 @@
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489352546,
+  "settings": 1788489360306,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -18083,7 +18087,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:35:53.508Z",
+  "maj": "2026-09-04T02:36:04.870Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
