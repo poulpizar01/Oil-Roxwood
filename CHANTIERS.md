@@ -71,6 +71,7 @@ compteur.
 | Saisie fluide : la page ne se redessine plus à chaque case | C-77 |
 | Une seule grille de permissions | C-77 |
 | Postes : +3 postes, Web Master retiré | C-77 |
+| **Contrats hebdomadaires reconduits + registre des contrats** | C-78 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 

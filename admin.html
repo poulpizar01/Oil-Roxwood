@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-77</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-78</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -888,7 +888,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-77';
+const APP_VERSION='C-78';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -3919,6 +3919,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-78',d:'04/09/2026',t:'Hebdomadaire veut enfin dire hebdomadaire',items:[
+   ['🔁','Un contrat hebdomadaire se rejoue dans le calendrier','La case « hebdomadaire » ne servait qu\'au bot. Le calendrier, lui, ne montrait le contrat qu\'à sa date d\'origine : on cochait « toutes les semaines », on avançait d\'une semaine, et la case était vide — alors que le rappel Discord partait bien. Deux versions de la vérité au même endroit. Les occurrences suivantes apparaissent maintenant, en pointillés avec un 🔁, et un clic ouvre le contrat d\'origine : il n\'y a toujours qu\'une ligne enregistrée, pas des copies.'],
+   ['🕐','Le jour tient à travers le changement d\'heure','La reconduction se calcule sur le jour de la semaine, pas sur un écart en millisecondes. Entre mars et octobre, sept jours ne font pas toujours 7 × 24 h à Paris — un contrat du dimanche aurait fini par glisser au samedi.'],
+   ['📜','Registre des contrats sous le planning','Le planning montre une semaine ; un contrat hebdomadaire vit au-delà. Le registre répond à « quels contrats avons-nous, et quand tombe le prochain ? » : rythme, horaire, qui est prévenu, prochaine occurrence, et l\'heure exacte du rappel Discord — pas la promesse « 3 h avant », l\'heure réelle, avec un avertissement quand elle est déjà passée ou qu\'aucun salon n\'est réglé.'],
+   ['⏹','Arrêter une reconduction sans rien perdre','Un bouton dans le registre : le contrat reste à l\'agenda à sa date d\'origine, mais ne se rejoue plus. Jusqu\'ici il fallait le supprimer, donc effacer sa trace.'],
+ ]},
  {v:'C-77',d:'04/09/2026',t:'Une page qui ne clignote plus',items:[
    ['✍️','Écrire dans une case ne redessine plus la page','Chaque case quittée relançait le dessin du tableau entier. Sur la fiche RH — 95 lignes, 15 colonnes — cela voulait dire environ 1400 champs jetés et recréés à chaque saisie : l\'écran clignote, le curseur saute, on perd sa place. Maintenant seules les deux choses réellement concernées bougent : les colonnes calculées de la ligne modifiée, et les totaux du bas. Le reste du tableau ne bouge pas d\'un pixel.'],
    ['🔎','La recherche ne recrée plus son propre champ','Elle refaisait la page à chaque lettre, y compris la case où l\'on tape — il fallait rattraper le curseur à la main après coup. Elle ne remplace plus que les lignes du tableau.'],
@@ -5585,6 +5591,42 @@ function agKey(){ const cu=currentUser(); return cu?String(cu.did||cu.user):Stri
 function agMonday(off){ const n=new Date(), d=(n.getDay()+6)%7; return new Date(n.getFullYear(),n.getMonth(),n.getDate()-d+off*7); }
 function agISO(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 function agMin(h){ const m=String(h||'').match(/^(\d{1,2}):(\d{2})/); return m?(+m[1]*60+ +m[2]):0; }
+
+/* ---- Un contrat hebdomadaire se rejoue vraiment (C-78) ----
+
+   La case « hebdomadaire » ne servait qu'au bot : le calendrier, lui, ne
+   montrait le contrat qu'à sa date d'origine. On cochait « toutes les
+   semaines », on avançait d'une semaine, et la case était vide — alors que le
+   ping, lui, partait bien. Deux versions de la vérité au même endroit.
+
+   Une occurrence n'est pas une copie : il n'y a toujours qu'UNE ligne
+   enregistrée. On calcule à l'affichage les jours qu'elle occupe. Le test est
+   volontairement fait sur le JOUR DE LA SEMAINE et non sur un écart en
+   millisecondes : entre mars et octobre, sept jours ne font pas toujours
+   7 × 24 h à Paris, et un contrat du dimanche finirait par glisser au samedi. */
+function agDateObj(iso){ const [a,m,j]=String(iso||'').slice(0,10).split('-').map(Number);
+  return (a&&m&&j)?new Date(a,m-1,j,12,0,0):null; }   // midi : à l'abri des changements d'heure
+function agJourSem(iso){ const d=agDateObj(iso); return d?d.getDay():-1; }
+function agTombeLe(e,iso){
+  if(e.date===iso) return true;
+  if(!e.hebdo||e.type!=='contrat') return false;
+  if(String(e.date).slice(0,10)>iso) return false;          // pas encore commencé
+  return agJourSem(e.date)===agJourSem(iso);                 // même jour de la semaine = N semaines plus tard
+}
+function agReconduit(e,iso){ return e.date!==iso; }          // occurrence, pas l'original
+/* La prochaine fois que ce contrat aura lieu, et l'heure de son rappel. */
+function contratProchaine(e){
+  const d=agDateObj(e.date); if(!d) return null;
+  const [h,m]=String(e.deb||'0:0').split(':').map(n=>parseInt(n,10)||0);
+  let debut=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m,0,0);
+  if(e.hebdo){
+    let garde=0;
+    while(debut.getTime()<=Date.now()&&garde++<520){
+      const n=new Date(debut); n.setDate(n.getDate()+7); n.setHours(h,m,0,0); debut=n;
+    }
+  }
+  return debut;
+}
 function agHM(mn){ mn=((mn%1440)+1440)%1440; return `${String(Math.floor(mn/60)).padStart(2,'0')}:${String(mn%60).padStart(2,'0')}`; }
 async function agLoad(){
   AG_ERR=false; AG_SHARED=[];
@@ -5631,14 +5673,15 @@ async function agenda(){
         ${days.map(d=>{
           const iso=agISO(d);
           return `<div class="ag-col ${iso===todayIso?'today':''}" onclick="agNew('${iso}',event)">
-            ${(AG_EVS||[]).filter(e=>e.date===iso).map(e=>{
+            ${(AG_EVS||[]).filter(e=>agTombeLe(e,iso)).map(e=>{
               const t=AG_TYPES[e.type]||AG_TYPES.autre;
+              const rec=agReconduit(e,iso);   // occurrence d'un contrat hebdomadaire
               const top=agMin(e.deb)/60*H, hgt=Math.max(24,(Math.max(agMin(e.fin),agMin(e.deb)+30)-agMin(e.deb))/60*H-2);
-              return `<div class="ag-ev" style="top:${top}px;height:${hgt}px;background:${e.partage?'rgba(242,183,5,.20)':t.c+'26'};border-color:${e.partage?'#F2B705':t.c};color:var(--ink);${e.partage?'border-width:2px':''}"
-                onclick="event.stopPropagation();agEdit(${e.id})" title="${esc(e.titre)}${e.commercial?' · à prévenir : '+esc(agComLibelle(e.commercial)):''}${e.hebdo?' · hebdomadaire':''}${e.partage?' · partagé avec la direction':''}">
-                <span style="color:${t.c}">${esc(e.deb||'')}</span> ${e.partage?'📢 ':''}${esc(e.titre)}${e.note?`<small>${esc(e.note)}</small>`:''}</div>`;
+              return `<div class="ag-ev" style="top:${top}px;height:${hgt}px;background:${e.partage?'rgba(242,183,5,.20)':t.c+'26'};border-color:${e.partage?'#F2B705':t.c};color:var(--ink);${e.partage?'border-width:2px':''}${rec?';border-style:dashed':''}"
+                onclick="event.stopPropagation();agEdit(${e.id})" title="${esc(e.titre)}${e.commercial?' · à prévenir : '+esc(agComLibelle(e.commercial)):''}${e.hebdo?' · se reconduit chaque semaine (créé le '+esc(frDate(e.date))+')':''}${e.partage?' · partagé avec la direction':''}">
+                <span style="color:${t.c}">${esc(e.deb||'')}</span> ${e.partage?'📢 ':''}${rec?'🔁 ':''}${esc(e.titre)}${e.note?`<small>${esc(e.note)}</small>`:''}</div>`;
             }).join('')}
-            ${(AG_TEAM?AG_SHARED:[]).filter(e=>e.date===iso).map(e=>{
+            ${(AG_TEAM?AG_SHARED:[]).filter(e=>agTombeLe(e,iso)).map(e=>{
               const top=agMin(e.deb)/60*H, hgt=Math.max(24,(Math.max(agMin(e.fin),agMin(e.deb)+30)-agMin(e.deb))/60*H-2);
               return `<div class="ag-ev" style="top:${top}px;height:${hgt}px;background:repeating-linear-gradient(45deg,rgba(242,183,5,.22),rgba(242,183,5,.22) 6px,rgba(242,183,5,.10) 6px,rgba(242,183,5,.10) 12px);border-color:#F2B705;color:var(--ink);border-width:2px"
                 onclick="event.stopPropagation()" title="Partagé par ${esc(agProprio(e.uid))} — ${esc(e.titre)}${e.note?' · '+esc(e.note):''}">
@@ -5649,8 +5692,88 @@ async function agenda(){
       </div>
     </div>
   </div>
-  <p style="color:var(--muted);font-size:.75rem;margin-top:10px">Clique sur une case pour ajouter un événement, sur un événement pour le modifier. Chaque compte Discord ne voit que son propre agenda.</p>`;
+  <p style="color:var(--muted);font-size:.75rem;margin:10px 0 18px">Clique sur une case pour ajouter un événement, sur un événement pour le modifier. Chaque compte Discord ne voit que son propre agenda.</p>
+  ${registreContrats()}`;
   const sc=$('#agScroll'); if(sc) sc.scrollTop=7.5*H;
+}
+
+/* ---- Le registre des contrats ----
+
+   Le planning montre une semaine ; un contrat hebdomadaire, lui, vit au-delà.
+   Sans une liste, il n'existait aucun endroit pour répondre à « quels contrats
+   avons-nous, et quand tombe le prochain ? » — il fallait naviguer de semaine
+   en semaine et se fier à sa mémoire. Le registre répond aux deux, et affiche
+   l'heure réelle du rappel plutôt que la promesse « 3 h avant ». */
+const JOURS_FR=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+function registreContrats(){
+  const miens=(AG_EVS||[]).filter(e=>e.type==='contrat');
+  const autres=(AG_TEAM?AG_SHARED:[]).filter(e=>e.type==='contrat');
+  const tous=[...miens.map(e=>({e,mien:true})),...autres.map(e=>({e,mien:false}))];
+  if(!tous.length) return `<div class="panel">
+    <h3>📜 Registre des contrats</h3>
+    <div class="empty">Aucun contrat à l'agenda. Crée un événement de type « Contrat » : il apparaîtra ici,
+    et le bot préviendra le commercial 3 h avant.</div></div>`;
+
+  const maintenant=Date.now();
+  tous.forEach(x=>{ x.proch=contratProchaine(x.e); });
+  // à venir d'abord, du plus proche au plus lointain ; les contrats passés à la fin
+  tous.sort((a,b)=>{
+    const pa=a.proch&&a.proch.getTime()>=maintenant, pb=b.proch&&b.proch.getTime()>=maintenant;
+    if(pa!==pb) return pa?-1:1;
+    return (a.proch?a.proch.getTime():0)-(b.proch?b.proch.getTime():0);
+  });
+  const actifs=tous.filter(x=>x.proch&&x.proch.getTime()>=maintenant).length;
+  const heb=tous.filter(x=>x.e.hebdo).length;
+
+  const dt=d=>d?d.toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}):'—';
+  const salon=salonContrats();
+
+  const lignes=tous.map(({e,mien,proch})=>{
+    const passe=!proch||proch.getTime()<maintenant;
+    const rappel=proch?new Date(proch.getTime()-3*3600e3):null;
+    const rappelPasse=!rappel||rappel.getTime()<maintenant;
+    let etatRappel;
+    if(!salon) etatRappel='<span style="color:var(--red,#ff5c5c)">aucun salon réglé</span>';
+    else if(passe) etatRappel='<span style="color:var(--muted)">terminé</span>';
+    else if(rappelPasse) etatRappel='<span style="color:#e0a33c">l\'heure du rappel est déjà passée</span>';
+    else etatRappel=`<span style="color:var(--green)">${esc(dt(rappel))}</span>`;
+    return `<tr style="${passe?'opacity:.55':''}">
+      <td><b>${esc(e.titre)}</b>${e.note?`<br><small style="color:var(--muted)">${esc(e.note)}</small>`:''}
+        ${mien?'':`<br><small style="color:#F2B705">📢 partagé par ${esc(agProprio(e.uid))}</small>`}</td>
+      <td>${e.hebdo
+        ? `<span class="badge bgrole">🔁 chaque ${esc(JOURS_FR[agJourSem(e.date)]||'semaine')}</span><br><small style="color:var(--muted)">depuis le ${esc(frDate(e.date))}</small>`
+        : `<span class="badge">une seule fois</span><br><small style="color:var(--muted)">${esc(frDate(e.date))}</small>`}</td>
+      <td style="white-space:nowrap">${esc(e.deb||'')}${e.fin?' → '+esc(e.fin):''}</td>
+      <td>${e.commercial?esc(agComLibelle(e.commercial)):'<span style="color:var(--muted)">personne</span>'}</td>
+      <td>${passe?'<span style="color:var(--muted)">—</span>':esc(dt(proch))}</td>
+      <td style="font-size:.78rem">${etatRappel}</td>
+      <td style="text-align:right;white-space:nowrap">${mien?`
+        <button class="btn btn-sm btn-ghost" onclick="agEdit(${e.id})" title="Modifier ce contrat">✎</button>
+        ${e.hebdo?`<button class="btn btn-sm btn-ghost" onclick="agStopHebdo(${e.id})" title="Arrêter la reconduction — le contrat reste à sa date d'origine">⏹</button>`:''}`
+        :'<span style="color:var(--muted);font-size:.78rem">lecture</span>'}</td>
+    </tr>`;
+  }).join('');
+
+  return `<div class="panel" style="overflow-x:auto">
+    <h3>📜 Registre des contrats <small style="color:var(--muted);font-weight:400;font-size:.8rem">— ${tous.length} au total · ${actifs} à venir · ${heb} hebdomadaire(s)</small></h3>
+    <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px">
+      ${salon?'Le bot vérifie chaque minute et annonce chaque contrat <b>3 h avant</b> dans le salon réglé en Paramètres. Si le bot est arrêté, aucun rappel ne part.'
+             :'⚠️ <b style="color:var(--red,#ff5c5c)">Aucun salon de contrats réglé dans Paramètres</b> — aucun rappel ne partira, quels que soient les contrats ci-dessous.'}
+    </p>
+    <table><thead><tr>
+      <th>Contrat</th><th>Rythme</th><th>Horaire</th><th>Qui est prévenu</th><th>Prochaine fois</th><th>Rappel Discord</th><th></th>
+    </tr></thead><tbody>${lignes}</tbody></table>
+  </div>`;
+}
+async function agStopHebdo(id){
+  const e=(AG_EVS||[]).find(x=>x.id===id); if(!e) return;
+  if(!confirm(`Arrêter la reconduction de « ${e.titre} » ?\n\nIl restera à l'agenda à sa date d'origine (${frDate(e.date)}), mais ne se rejouera plus les semaines suivantes.`)) return;
+  try{
+    const {error}=await SYNC.cli.from('oilroxwood_agenda').update({hebdo:false}).eq('id',id);
+    if(error) throw error;
+    await agLoad(); agenda(); sbPushNow();
+    toast('⏹ Reconduction arrêtée — le contrat ne se rejouera plus');
+  }catch(err){ toast('❌ Modification impossible'); }
 }
 function agNav(d){ AG_OFF=d===0?0:AG_OFF+d; agenda(); }
 function agNew(iso,ev){
