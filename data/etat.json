@@ -16096,7 +16096,7 @@
    "commercial": [],
    "respcom": [],
    "assistdir": [
-    "historique"
+    "ftablette"
    ]
   },
   "semaine": 36,
@@ -16179,8 +16179,6 @@
    ],
    "assistdir": [
     "effectif",
-    "historique",
-    "reunions",
     "ftablette",
     "felig",
     "fventes",
@@ -16243,8 +16241,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489412398,
- "_rev": "06ejufshmuiq-mtmcf35h",
+ "_maj": 1788489415075,
+ "_rev": "ymx6r4afim9-mtmcf57x",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16253,13 +16251,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489412398,
+  "journal": 1788489415075,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489412398,
+  "settings": 1788489415075,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16274,6 +16272,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489415646,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « ftablette » → lecture seule 👁"
+  },
+  {
+   "t": 1788489414999,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « reunions » → aucun accès"
+  },
+  {
+   "t": 1788489414343,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « reunions » → lecture seule 👁"
+  },
+  {
+   "t": 1788489413698,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → aucun accès"
+  },
   {
    "t": 1788489412969,
    "u": "Diego Herrera",
@@ -17753,26 +17771,6 @@
    "a": "Suppression du compte Momoow",
    "t": 1787330921743,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte NoPCl_a",
-   "t": 1787330916899,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Tyrese Haywood",
-   "t": 1787330914918,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Maxime Letourneur",
-   "t": 1787330913049,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Laurent Lewis",
-   "t": 1787330911322,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18098,7 +18096,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:36:53.045Z",
+  "maj": "2026-09-04T02:36:55.725Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
