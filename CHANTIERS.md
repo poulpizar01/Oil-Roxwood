@@ -68,6 +68,9 @@ compteur.
 | 🚨 Le jeton d'écriture est enfin vérifié en écriture | C-76 |
 | Responsable commercial et Assistant de direction | C-76 |
 | Le jeton d'écriture passe dans « Mon profil » | C-76 |
+| Saisie fluide : la page ne se redessine plus à chaque case | C-77 |
+| Une seule grille de permissions | C-77 |
+| Postes : +3 postes, Web Master retiré | C-77 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -96,6 +99,12 @@ tant qu'il n'est pas en ligne, l'équipe reste dehors. C-74 et C-75 partent avec
 **Les secrets GitHub Actions.** ✅ Réglé — les trois salons répondent 3/3. La
 première tentative avait échoué parce que la ligne entière `BOT_TOKEN=...`
 avait été collée dans le secret au lieu de la valeur seule.
+
+**Vérifier la colonne RH de la grille des permissions.** Il y avait deux
+grilles qui se contredisaient : celle des onglets disait « RH voit la Compta »,
+celle des feuilles la cachait quand même. Depuis C-77 il n'en reste qu'une, et
+c'est la visible qui gagne — donc le RH voit maintenant Compta et Blacklist,
+parce que c'est ce qui était coché. Si ce n'est pas voulu, un clic sur la case.
 
 **L'identifiant du rôle « Assistant de direction ».** Sa ligne existe déjà dans
 Paramètres → Connexion par rôle Discord, vide. Colle l'identifiant quand le rôle

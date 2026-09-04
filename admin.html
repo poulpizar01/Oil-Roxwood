@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-76</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-77</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -233,7 +233,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1','_permsFix1','_rolesFix4'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1','_permsFix1','_rolesFix77'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -693,9 +693,8 @@ function allowedViews(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return PERMS.direction; // clé de secours
   if(!S.users||!S.users.length) return PERMS.direction; // phase d'installation : tout ouvert
   const cu=currentUser();
-  const base = cu ? (permsDe(cu.role)||PERMS.membre) : PERMS.membre; // session sans compte : minimum
-  // une feuille reglee sur « cache » dans Parametres retire aussi son entree de menu
-  return base.filter(v=>!SHEET_VIEWS[v]||sheetAllowed(SHEET_VIEWS[v]));
+  // Depuis C-77 les feuilles n'ont plus de réglage séparé : leur rubrique fait foi.
+  return cu ? (permsDe(cu.role)||PERMS.membre) : PERMS.membre; // session sans compte : minimum
 }
 /* Filet de sécurité après une suppression de rubrique : les permissions
    personnalisées enregistrées peuvent encore citer une vue qui n'existe plus.
@@ -765,10 +764,10 @@ function migrerPerms(){
    appelée tout en haut du fichier, où rien de ce qui est déclaré plus bas
    n'existe encore. */
 function migrerRoles4(){
-  if(S._rolesFix4) return false;
-  S._rolesFix4=true;
+  if(S._rolesFix77) return false;
+  S._rolesFix77=true;
   let touche=0;
-  ['permsCustom','permsRO','sheetPerms'].forEach(cle=>{
+  ['permsCustom','permsRO'].forEach(cle=>{
     const c=S.settings&&S.settings[cle];
     if(!c||typeof c!=='object') return;
     if(c.commercial!==undefined&&c.respcom===undefined){
@@ -776,6 +775,14 @@ function migrerRoles4(){
     }
   });
   if(touche) jlog('Responsable commercial : réglages repris du rôle Commercial');
+  /* Les « permissions fines par feuille » n'existent plus (C-77) : les laisser
+     dans l'état serait un réglage fantôme, invisible et sans écran pour le
+     corriger. On les efface, la grille des onglets fait foi. */
+  if(S.settings&&S.settings.sheetPerms!==undefined){
+    delete S.settings.sheetPerms;
+    jlog('Permissions fines par feuille supprimées — la grille des onglets fait foi');
+    touche++;
+  }
   return touche>0;
 }
 function permsDe(role){
@@ -881,7 +888,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-76';
+const APP_VERSION='C-77';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1077,7 +1084,9 @@ function weekRange(){
   return `du ${f(mon)} au ${f(sun)}`;
 }
 const DIR_GRADE={nom:'Direction',quota:0,mult:2.5,montee:null,cls:'bg3'}; // postes : quota 0, ×2.5, pas de montée
-const WM_GRADE={nom:'Web Master',quota:0,mult:2,montee:null,cls:'bgrole'};   // sous-direction : quota 0, ×2 + prime fixe
+/* Le grade « Web Master » a été retiré en C-77 : le poste n'existe plus dans
+   l'entreprise. Un membre à poste relève désormais de DIR_GRADE comme les
+   autres. Sa prime fixe et sa ligne de salaire ont disparu avec lui. */
 const STG_GRADE={nom:'Stagiaire',quota:3000,mult:1,montee:null,cls:'bgstg'}; // période d'essai : règles d'Intérimaire, titularisation manuelle
 function rhRowOf(nom){ const l=String(nom||'').toLowerCase().trim(); return ((S.sheets&&S.sheets.rh)||[]).find(x=>String(x.nom||'').toLowerCase().trim()===l)||null; }
 /* vivier des « membres à poste » pour les menus déroulants (émetteurs, recruteur, vendeurs…) :
@@ -1102,17 +1111,26 @@ function posteDe(n){
   return '';
 }
 function estStagiaire(r){ if(!r||r.poste) return false; if(r.stagiaire) return true; const row=rhRowOf(r.nom); return !!(row&&/stagiaire/i.test(String(row.grade||''))); }
-function estWebmaster(r){ return !!(r.poste&&/web\s*master/i.test(r.poste)); }
-function grade(r){ return estWebmaster(r)?WM_GRADE:estStagiaire(r)?STG_GRADE:(r.poste?DIR_GRADE:GRADES[r.grade]); }
+function grade(r){ return estStagiaire(r)?STG_GRADE:(r.poste?DIR_GRADE:GRADES[r.grade]); }
 function gTitle(r){ return r.poste||grade(r).nom; } // rang réel (Patron, Commercial…) ou grade raffineur
 function gCls(r){ return r.poste?'bgrole':grade(r).cls; } // rôles spéciaux (Direction, RH, Commercial…) = badge gris neutre
 function quotaOK(r){ return r.barils >= grade(r).quota; }
+/* Les postes de l'organigramme, dans l'ordre où on les lit. La liste sert de
+   point de départ ; chaque montant se règle dans Paramètres. */
+const POSTES_DEF={'Patron':70000,'Co Patron':70000,'Assistant de Direction':0,'Comptable':50000,
+  'RH':0,'Responsable Commercial':0,'Commercial':0,'Responsable Runner':0,'Graphiste':0};
 function salairesPoste(){
-  if(!S.settings.salPoste) S.settings.salPoste={
-    'Patron':70000,'Co Patron':70000,'Comptable':50000,'RH':0,
-    'Responsable Commercial':0,'Commercial':0,'Graphiste':0,'Web Master':0};
-  if(S.settings.salPoste['Web Master']===undefined) S.settings.salPoste['Web Master']=0; // migration
-  return S.settings.salPoste;
+  if(!S.settings.salPoste) S.settings.salPoste={...POSTES_DEF};
+  const sp=S.settings.salPoste;
+  /* Ajouts et retraits du 4 septembre 2026, faits une seule fois : on complète
+     les postes manquants sans toucher aux montants déjà réglés, et on retire
+     « Web Master », dont le poste n'existe plus. */
+  if(!S.settings.postesV4){
+    S.settings.postesV4=1;
+    ['Assistant de Direction','Responsable Runner'].forEach(k=>{ if(sp[k]===undefined) sp[k]=0; });
+    delete sp['Web Master'];
+  }
+  return sp;
 }
 function salFixeDe(rang){
   const sp=salairesPoste();
@@ -1171,8 +1189,7 @@ function primeProj(r){
   if(PRIMES_OFF) return 0;
   if(!quotaOK(r)) return 0;
   const cap = r.poste && /patron/i.test(r.poste) ? caps().patPrime : caps().empPrime;
-  const fixe = estWebmaster(r) ? (S.settings.primeWebmaster??0) : 0; // prime fixe Web Master (Paramètres)
-  return Math.min(r.barils * grade(r).mult + fixe, cap);
+  return Math.min(r.barils * grade(r).mult, cap);
 }
 function seuilMontee(r){ const next=GRADES[r.grade+1]; return next?next.montee:null; } // seuil = montée du grade VISÉ
 function eligible(r){ const s=seuilMontee(r); return !r.poste && !estStagiaire(r) && s!==null && r.barils >= s; } // montée hebdo — jamais pour la direction ni les stagiaires (titularisation manuelle)
@@ -1236,17 +1253,48 @@ function applyLang(){
 }
 applyLang();
 let VIEW='overview';
+/* ---- Redessiner sans faire sauter l'écran ----
+
+   Beaucoup de gestes (cocher une case, changer un menu, filtrer) refont la vue
+   entière. C'est simple et sûr, mais brutal : la page remonte en haut et le
+   champ où l'on était disparaît, puisqu'il est recréé. D'où l'impression de
+   clignotement à chaque clic.
+
+   On note donc, avant de redessiner, où on en était — hauteur de défilement,
+   champ actif, position du curseur dedans — et on le remet après. Uniquement
+   quand on redessine LA MÊME vue : changer de rubrique doit bien repartir du
+   haut. Aucune vue n'a besoin d'être modifiée pour en profiter. */
+function repereEcran(){
+  const a=document.activeElement;
+  const o={y:window.scrollY||window.pageYOffset||0};
+  if(a&&a.id&&a.closest&&a.closest('#main')){
+    o.id=a.id;
+    try{ o.s=a.selectionStart; o.e=a.selectionEnd; }catch(e){}
+  }
+  return o;
+}
+function restaureEcran(o){
+  if(!o) return;
+  if(o.id){
+    const el=document.getElementById(o.id);
+    if(el){ try{ el.focus({preventScroll:true}); if(o.s!=null&&el.setSelectionRange) el.setSelectionRange(o.s,o.e); }catch(e){} }
+  }
+  if(o.y) window.scrollTo(0,o.y);
+}
 function show(v){
   appliquerGrades();   // une synchro a pu changer les barèmes depuis le dernier rendu
   if(purgeSupprimees()&&!isMembre()){ save(); sbQueue(); }   // rubriques supprimées : leurs données ne reviennent pas
   if(migrerPerms()&&!isMembre()){ save(); sbQueue(); }       // listes de permissions citant d'anciennes rubriques
   const al=allowedViews();
   if(!al.includes(v)) v=al[0]||'overview'; // vue non autorisée → première vue permise
+  const memeVue=(v===VIEW);
+  const repere=memeVue?repereEcran():null;
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
   ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,agenda,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
+  restaureEcran(repere);
 }
 function rerender(){ show(VIEW); }
 /* ---- rafraîchissement « poli » : jamais pendant une saisie ou un modal ouvert ---- */
@@ -1379,7 +1427,7 @@ function effectif(){
     return over.length?`<div class="warn">⚠️ Limite de ${fmt(S.settings.limite)} pétroles atteinte pour : ${over.map(r=>esc(r.nom)).join(', ')}</div>`:'';
   })()}
   <div class="panel" style="margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-    <input class="field" id="effSearchInput" style="max-width:220px" placeholder="🔍 Rechercher…" value="${esc(search)}" oninput="search=this.value;effectif()">
+    <input class="field" id="effSearchInput" style="max-width:220px" placeholder="🔍 Rechercher…" value="${esc(search)}" oninput="chercherEffectif(this.value)">
     <select class="field" style="max-width:200px" onchange="filterG=this.value;effectif()">
       <option value="-1">Tous les grades</option>
       ${GRADES.map((g,i)=>`<option value="${i}" ${String(filterG)===String(i)?'selected':''}>${g.nom}</option>`).join('')}
@@ -1985,38 +2033,31 @@ const nn = x => +x||0;
 /* feuilles interdites par rôle (en plus des restrictions de vues) */
 /* permissions fines par feuille : 'x' = plein accès · 'ro' = lecture seule · 'off' = caché
    défauts historiques + compta réservée Patron/Comptable ; personnalisable dans Paramètres */
-const SHEET_DEF_PERMS={ commercial:{rh:'off',blacklist:'off',compta:'off'},
-  respcom:{rh:'off',blacklist:'off',compta:'off'},   // un responsable commercial reste un commercial
-  assistdir:{},                                      // le bras droit voit les six feuilles
-  rh:{compta:'off'},
-  /* Responsable Runner : il pilote la production, il ne touche ni à la paie ni aux
-     dossiers du personnel. RH en lecture, compta et ventes fermées par défaut. */
-  resprunner:{rh:'ro',compta:'off',ventesSem:'off'} };
-function sheetPerm(role,k){
-  if(!role||role==='direction'||role==='comptable'&&k==='compta') {}
-  const c=S.settings&&S.settings.sheetPerms&&S.settings.sheetPerms[role];
-  if(c&&c[k]) return c[k];
-  return (SHEET_DEF_PERMS[role]&&SHEET_DEF_PERMS[role][k])||'x';
-}
+/* ---- Une seule grille de permissions (C-77) ----
+
+   Il y en avait deux, et elles réglaient la même chose. Depuis C-59, chaque
+   feuille EST une rubrique du menu (Tablette, Éligibilité, Ventes, RH,
+   Blacklist, Compta) : la grille « Permissions par rôle » lui donne déjà ses
+   trois états — accès complet ✓, lecture seule 👁, aucun accès —. La grille
+   « Permissions fines » faisait exactement le même travail par-dessous, et les
+   deux pouvaient se contredire : une case verte en haut, une feuille cachée en
+   bas, sans que rien n'explique pourquoi la rubrique n'apparaissait pas.
+
+   La feuille suit donc désormais sa rubrique, et rien d'autre. */
+const VUE_DE_FEUILLE={tablette:'ftablette',eligibilite:'felig',ventesSem:'fventes',
+                      rh:'frh',blacklist:'fblacklist',compta:'fcompta'};
 function sheetAllowed(k){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return true;
   const cu=currentUser(); if(!cu) return true;
   if(cu.role==='direction') return true;
-  return sheetPerm(cu.role,k)!=='off';
+  const v=VUE_DE_FEUILLE[k]; if(!v) return true;
+  return permsDe(cu.role).includes(v);
 }
 function sheetRO(k){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return false;
   const cu=currentUser(); if(!cu||cu.role==='direction') return false;
-  return sheetPerm(cu.role,k)==='ro';
-}
-function sheetPermToggle(role,k){
-  S.settings.sheetPerms=S.settings.sheetPerms||{};
-  S.settings.sheetPerms[role]=S.settings.sheetPerms[role]||{};
-  const cur=sheetPerm(role,k);
-  const next=cur==='x'?'ro':cur==='ro'?'off':'x';
-  S.settings.sheetPerms[role][k]=next;
-  jlog(`Permissions feuilles : ${ROLES[role]||role} · « ${k} » → ${next==='x'?'plein accès':next==='ro'?'lecture seule':'caché'}`);
-  save(); sbPushNow(); params();
+  const v=VUE_DE_FEUILLE[k]; if(!v) return false;
+  return permRO(cu.role).includes(v);
 }
 /* ---- Une feuille = une rubrique du menu (C-59) ----
    Les six tableaux vivaient sous une seule entree « Feuilles », avec des onglets.
@@ -2040,6 +2081,66 @@ function fblacklist(){ return ouvrirFeuille('blacklist'); }
 function fcompta(){ return ouvrirFeuille('compta'); }
 
 let curSheet='tablette', sheetSearch='', sheetFull=false;
+/* ---- Le tableau d'une feuille, calculé à part ----
+
+   Extrait de feuilles() pour qu'une recherche ou une saisie puisse refaire
+   uniquement le contenu du tableau, sans redessiner la page autour. */
+function corpsFeuille(){
+  const def=SHEETS_DEF[curSheet], rows=(S.sheets&&S.sheets[curSheet])||[];
+  const cols=(def.lite&&!sheetFull)?def.cols.filter(c=>def.lite.includes(c.k)):def.cols;
+  const q=sheetSearch.toLowerCase();
+  const idx=rows.map((r,i)=>i).filter(i=>!q||Object.values(rows[i]).join(' ').toLowerCase().includes(q));
+  const dragOk=def.drag&&!q; // glisser-déposer désactivé pendant une recherche
+  const head=(dragOk?'<th style="width:26px"></th>':'')+cols.map(c=>`<th ${c.t==='num'||c.t==='calc'?'style="text-align:right"':''}>${c.l}</th>`).join('');
+  const body=idx.map(i=>{
+    const r=rows[i];
+    const tds=cols.map(c=>{
+      if(c.t==='calc') return `<td class="calc" data-k="${c.k}">${fmt(Math.round(c.f(r)))}</td>`;
+      if(c.t==='bool') return `<td style="text-align:center"><input type="checkbox" ${r[c.k]?'checked':''} onchange="cellEdit(${i},'${c.k}',this.checked)"></td>`;
+      if(c.t==='num')  return `<td><input type="number" value="${nn(r[c.k])}" onchange="cellEdit(${i},'${c.k}',+this.value||0)"></td>`;
+      if(c.t==='client') return `<td><input type="text" list="dlSheetClients" value="${esc(r[c.k])}" placeholder="Client…" onchange="cellEdit(${i},'${c.k}',this.value)"></td>`;
+      if(c.t==='html') return `<td>${c.f(r)}</td>`;
+      if(c.t==='choice') return `<td><select style="background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 8px;font-size:.82rem" onchange="cellEdit(${i},'${c.k}',this.value)">${(typeof c.opts==='function'?c.opts():c.opts).map(o=>`<option ${r[c.k]===o?'selected':''}>${esc(o)}</option>`).join('')}</select></td>`;
+      if(c.t==='date'){ const d=/^\d{4}-\d{2}-\d{2}/.test(r[c.k]||'')?String(r[c.k]).slice(0,10):'';
+        return `<td><input type="date" value="${d}" onchange="cellEdit(${i},'${c.k}',this.value)"></td>`; }
+      return `<td><input type="text" value="${esc(r[c.k])}" onchange="cellEdit(${i},'${c.k}',this.value)"></td>`;
+    }).join('');
+    const handle=dragOk?`<td draggable="true" style="cursor:grab;color:var(--muted);text-align:center" title="Glisser pour déplacer la ligne" ondragstart="dragI=${i}">⠿</td>`:'';
+    return `<tr data-i="${i}" ${dragOk?`ondragover="event.preventDefault()" ondrop="dropRow(${i})"`:''}>${handle}${tds}<td style="text-align:right"><button class="btn btn-sm btn-red" onclick="rowDel(${i})">✕</button></td></tr>`;
+  }).join('');
+  const foot=def.tot.length?`<tfoot><tr>${dragOk?'<td></td>':''}<td data-tot="n">Total (${idx.length} lignes)</td>${cols.slice(1).map(c=>{
+    if(!def.tot.includes(c.k)) return '<td></td>';
+    const s=idx.reduce((a,i)=>a+(c.t==='calc'?c.f(rows[i]):nn(rows[i][c.k])),0);
+    return `<td data-tot="${c.k}">${fmt(Math.round(s))}</td>`;
+  }).join('')}<td></td></tr></tfoot>`:'';
+  return {def,rows,cols,q,idx,dragOk,head,body,foot};
+}
+
+/* La recherche ne redessine que les lignes : le champ de saisie n'est pas
+   recréé, donc le curseur ne saute plus et la frappe reste fluide. */
+function chercherFeuille(v){
+  const avant=!!sheetSearch;
+  sheetSearch=v;
+  const def=SHEETS_DEF[curSheet];
+  const tab=document.querySelector('#main table.sheet');
+  // la colonne « poignée » apparaît ou disparaît : là, il faut tout refaire
+  if(!tab||(def&&def.drag&&(!!v)!==avant)) return feuilles();
+  const r=corpsFeuille();
+  const tb=tab.querySelector('tbody');
+  if(tb) tb.innerHTML=r.body||`<tr><td colspan="${r.cols.length+2}"><div class="empty">Aucune ligne</div></td></tr>`;
+  const tf=tab.querySelector('tfoot');
+  if(r.foot){ if(tf) tf.outerHTML=r.foot; else tab.insertAdjacentHTML('beforeend',r.foot); }
+  else if(tf) tf.remove();
+}
+
+/* La recherche de l'Effectif refait la vue, mais le curseur et le défilement
+   sont remis en place : on tape sans que l'écran ne bouge sous les doigts. */
+function chercherEffectif(v){
+  search=v;
+  const r=repereEcran();
+  effectif();
+  restaureEcran(r);
+}
 async function feuilles(){
   if(!S.sheets) $('#main').innerHTML='<div class="panel"><div class="empty">Chargement des feuilles…</div></div>';
   await ensureSheets();
@@ -2066,32 +2167,7 @@ async function feuilles(){
     if(c.length){ jlog(`Éligibilité : ${c.length} grade(s) réalignés sur l'effectif — ${c.slice(0,4).join(' · ')}${c.length>4?'…':''}`); save(); sbQueue(); }
   }
   const def=SHEETS_DEF[curSheet], rows=S.sheets[curSheet];
-  const cols=(def.lite&&!sheetFull)?def.cols.filter(c=>def.lite.includes(c.k)):def.cols;
-  const q=sheetSearch.toLowerCase();
-  const idx=rows.map((r,i)=>i).filter(i=>!q||Object.values(rows[i]).join(' ').toLowerCase().includes(q));
-  const dragOk=def.drag&&!q; // glisser-déposer désactivé pendant une recherche
-  const head=(dragOk?'<th style="width:26px"></th>':'')+cols.map(c=>`<th ${c.t==='num'||c.t==='calc'?'style="text-align:right"':''}>${c.l}</th>`).join('');
-  const body=idx.map(i=>{
-    const r=rows[i];
-    const tds=cols.map(c=>{
-      if(c.t==='calc') return `<td class="calc">${fmt(Math.round(c.f(r)))}</td>`;
-      if(c.t==='bool') return `<td style="text-align:center"><input type="checkbox" ${r[c.k]?'checked':''} onchange="cellEdit(${i},'${c.k}',this.checked)"></td>`;
-      if(c.t==='num')  return `<td><input type="number" value="${nn(r[c.k])}" onchange="cellEdit(${i},'${c.k}',+this.value||0)"></td>`;
-      if(c.t==='client') return `<td><input type="text" list="dlSheetClients" value="${esc(r[c.k])}" placeholder="Client…" onchange="cellEdit(${i},'${c.k}',this.value)"></td>`;
-      if(c.t==='html') return `<td>${c.f(r)}</td>`;
-      if(c.t==='choice') return `<td><select style="background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 8px;font-size:.82rem" onchange="cellEdit(${i},'${c.k}',this.value)">${(typeof c.opts==='function'?c.opts():c.opts).map(o=>`<option ${r[c.k]===o?'selected':''}>${esc(o)}</option>`).join('')}</select></td>`;
-      if(c.t==='date'){ const d=/^\d{4}-\d{2}-\d{2}/.test(r[c.k]||'')?String(r[c.k]).slice(0,10):'';
-        return `<td><input type="date" value="${d}" onchange="cellEdit(${i},'${c.k}',this.value)"></td>`; }
-      return `<td><input type="text" value="${esc(r[c.k])}" onchange="cellEdit(${i},'${c.k}',this.value)"></td>`;
-    }).join('');
-    const handle=dragOk?`<td draggable="true" style="cursor:grab;color:var(--muted);text-align:center" title="Glisser pour déplacer la ligne" ondragstart="dragI=${i}">⠿</td>`:'';
-    return `<tr ${dragOk?`ondragover="event.preventDefault()" ondrop="dropRow(${i})"`:''}>${handle}${tds}<td style="text-align:right"><button class="btn btn-sm btn-red" onclick="rowDel(${i})">✕</button></td></tr>`;
-  }).join('');
-  const foot=def.tot.length?`<tfoot><tr>${dragOk?'<td></td>':''}<td>Total (${idx.length} lignes)</td>${cols.slice(1).map(c=>{
-    if(!def.tot.includes(c.k)) return '<td></td>';
-    const s=idx.reduce((a,i)=>a+(c.t==='calc'?c.f(rows[i]):nn(rows[i][c.k])),0);
-    return `<td>${fmt(Math.round(s))}</td>`;
-  }).join('')}<td></td></tr></tfoot>`:'';
+  const {cols,idx,dragOk,head,body,foot}=corpsFeuille();
   $('#main').innerHTML=`
   <div class="topbar">
     <div><h2>${def.ico} ${def.label}</h2><div class="sub">${rows.length} ligne(s) · modifiable directement, sauvegardé automatiquement</div></div>
@@ -2111,12 +2187,13 @@ async function feuilles(){
   ${def.note?`<div class="warn" style="border-color:rgba(232,98,44,.35);background:rgba(232,98,44,.07);color:var(--accent)">ℹ️ ${def.note}</div>`:''}
   ${sheetRO(curSheet)?'<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">👁 Feuille en consultation seule pour ton rôle</div>':''}
   <div class="panel ${sheetRO(curSheet)?'ro-zone':''}" style="padding:10px 16px;overflow-x:auto">
-    <input class="field" id="sheetSearchInput" style="max-width:240px;margin:6px 0 10px" placeholder="🔍 Rechercher…" value="${esc(sheetSearch)}" oninput="sheetSearch=this.value;feuilles()">
+    <input class="field" id="sheetSearchInput" style="max-width:240px;margin:6px 0 10px" placeholder="🔍 Rechercher…" value="${esc(sheetSearch)}" oninput="chercherFeuille(this.value)">
     <table class="sheet"><thead><tr>${head}<th></th></tr></thead><tbody>${body||`<tr><td colspan="${cols.length+2}"><div class="empty">Aucune ligne</div></td></tr>`}</tbody>${foot}</table>
   </div>
   <datalist id="dlSheetClients">${((S.fact&&S.fact.clients)||[]).map(c=>`<option value="${esc(c.nom)}">`).join('')}</datalist>`;
-  // frappe fluide : le curseur reste dans la recherche
-  if(sheetSearch){ const el=document.getElementById('sheetSearchInput'); if(el){ el.focus(); el.setSelectionRange(el.value.length,el.value.length); } }
+  // le champ de recherche n'est plus recréé à chaque frappe (chercherFeuille) ;
+  // ce rattrapage ne sert que quand on revient sur la feuille avec un filtre actif
+  if(sheetSearch){ const el=document.getElementById('sheetSearchInput'); if(el&&document.activeElement!==el){ el.focus(); el.setSelectionRange(el.value.length,el.value.length); } }
 }
 let dragI=null;
 function dropRow(j){
@@ -2126,7 +2203,52 @@ function dropRow(j){
   arr.splice(j,0,m);
   dragI=null; save(); feuilles();
 }
-function cellEdit(i,k,val){ S.sheets[curSheet][i][k]=val; save(); if(curSheet==='tablette') syncRunners(false); feuilles(); }
+/* ---- Écrire dans une case ne redessine plus la page ----
+
+   Avant : chaque case quittée relançait feuilles(), qui reconstruit le tableau
+   entier. Sur la fiche RH, 95 lignes × 15 colonnes, cela veut dire ~1400
+   champs jetés et recréés à chaque saisie — l'écran cligne, le curseur saute,
+   et on perd sa place dans la page.
+
+   En réalité une case modifiée n'a d'effet visible que sur deux choses : les
+   colonnes calculées de SA ligne, et les totaux en bas. On met donc à jour ces
+   deux-là, et rien d'autre. Le reste du tableau ne bouge pas d'un pixel, et la
+   case où l'on vient d'arriver garde le curseur. */
+function cellEdit(i,k,val){
+  S.sheets[curSheet][i][k]=val;
+  save();
+  if(curSheet==='tablette') syncRunners(false);
+  majCalculsFeuille(i);
+}
+/* Recalcule les colonnes « calc » d'une ligne et les totaux, sur place. */
+function majCalculsFeuille(i){
+  const def=SHEETS_DEF[curSheet], rows=S.sheets&&S.sheets[curSheet];
+  const tab=document.querySelector('#main table.sheet');
+  if(!def||!rows||!tab) return;
+  const tr=tab.querySelector(`tbody tr[data-i="${i}"]`);
+  if(tr) tr.querySelectorAll('td.calc[data-k]').forEach(td=>{
+    const c=def.cols.find(x=>x.k===td.dataset.k);
+    if(c&&typeof c.f==='function'){ try{ td.textContent=fmt(Math.round(c.f(rows[i]))); }catch(e){} }
+  });
+  majTotauxFeuille();
+}
+/* Les totaux du bas, recalculés sur les lignes réellement affichées. */
+function majTotauxFeuille(){
+  const def=SHEETS_DEF[curSheet], rows=S.sheets&&S.sheets[curSheet];
+  const tab=document.querySelector('#main table.sheet');
+  if(!def||!rows||!tab||!def.tot.length) return;
+  const q=String(sheetSearch||'').toLowerCase();
+  const idx=rows.map((r,i)=>i).filter(i=>!q||Object.values(rows[i]).join(' ').toLowerCase().includes(q));
+  const nb=tab.querySelector('tfoot td[data-tot="n"]');
+  if(nb) nb.textContent=`Total (${idx.length} lignes)`;
+  def.tot.forEach(k=>{
+    const td=tab.querySelector(`tfoot td[data-tot="${CSS.escape(k)}"]`);
+    if(!td) return;
+    const c=def.cols.find(x=>x.k===k); if(!c) return;
+    const t=idx.reduce((a,i)=>a+(c.t==='calc'?c.f(rows[i]):nn(rows[i][k])),0);
+    td.textContent=fmt(Math.round(t));
+  });
+}
 function rowAdd(){ S.sheets[curSheet].unshift(JSON.parse(JSON.stringify(SHEETS_DEF[curSheet].nouveau))); save(); feuilles(); }
 function rowDel(i){ if(confirm('Supprimer cette ligne ?')){ S.sheets[curSheet].splice(i,1); save(); if(curSheet==='tablette') syncRunners(false); feuilles(); } }
 
@@ -3313,16 +3435,18 @@ function barEdit(i,k,v){
   palDirty(); jlog(`Barème d'imposition modifié : tranche ${i+1} (${k})`); save(); sbPushNow();
 }
 function bilanOrdGrade(rang){
-  // ordre : Patron / Co Patron / Comptable / RH / Resp. Commercial / Commerciaux / Web Master / Expert / Confirmé / Raffineur / Intérimaire / —
+  // ordre : Patron / Co Patron / Assistant de direction / Comptable / RH /
+  //         Resp. Commercial / Commerciaux / Resp. Runner / Expert / Confirmé /
+  //         Raffineur / Intérimaire / —
   const s=String(rang||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
   if(!s.trim()) return 12;
   if(/co[\s-]*patron/.test(s)) return 1;
   if(/patron/.test(s)) return 0;
+  if(/assistant/.test(s)&&/direction/.test(s)) return 1.5; // le bras droit, juste après les patrons
   if(/comptable/.test(s)) return 2;
   if(/\brh\b|ressources\s*humaines/.test(s)) return 3;
   if(/resp/.test(s)&&/commercial/.test(s)) return 4;
   if(/commercial/.test(s)) return 5;
-  if(/web\s*master/.test(s)) return 6;
   if(/resp/.test(s)&&/runner/.test(s)) return 6.5; // Responsable Runner : au-dessus d'Expert
   if(/expert/.test(s)) return 7;
   if(/confirme/.test(s)) return 8;
@@ -3795,6 +3919,14 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-77',d:'04/09/2026',t:'Une page qui ne clignote plus',items:[
+   ['✍️','Écrire dans une case ne redessine plus la page','Chaque case quittée relançait le dessin du tableau entier. Sur la fiche RH — 95 lignes, 15 colonnes — cela voulait dire environ 1400 champs jetés et recréés à chaque saisie : l\'écran clignote, le curseur saute, on perd sa place. Maintenant seules les deux choses réellement concernées bougent : les colonnes calculées de la ligne modifiée, et les totaux du bas. Le reste du tableau ne bouge pas d\'un pixel.'],
+   ['🔎','La recherche ne recrée plus son propre champ','Elle refaisait la page à chaque lettre, y compris la case où l\'on tape — il fallait rattraper le curseur à la main après coup. Elle ne remplace plus que les lignes du tableau.'],
+   ['📍','Redessiner ne fait plus remonter la page','Quand une vue se redessine (une case cochée, un menu changé, une mise à jour reçue), la hauteur de défilement, le champ actif et la position du curseur dedans sont remis en place. Changer de rubrique repart bien du haut, comme avant.'],
+   ['🗂️','Une seule grille de permissions','Il y en avait deux qui réglaient la même chose : « Permissions par rôle » et « Permissions fines — feuilles ». Depuis C-59 chaque feuille est une rubrique du menu, donc la première fait déjà tout le travail — et les deux pouvaient se contredire : case verte en haut, feuille cachée en bas, sans que rien n\'explique pourquoi la rubrique n\'apparaissait pas. La seconde a été supprimée, et les réglages fantômes qu\'elle avait laissés sont effacés.'],
+   ['💼','Salaires fixes : trois postes de plus, un de moins','Assistant de Direction, Responsable Runner et Responsable Commercial ont leur ligne. Web Master a été retiré — poste, grade, prime fixe et ligne des règles de grades compris.'],
+   ['📐','Deux tableaux repliables','Le barème d\'imposition et la grille des permissions sont hauts et rarement touchés. Ils sont désormais repliés par défaut ; un clic sur le titre les ouvre. Le choix est retenu, par navigateur.'],
+ ]},
  {v:'C-76',d:'04/09/2026',t:'Un jeton qui ment, et deux rôles qui manquaient',items:[
    ['🚨','Le contrôle du jeton se trompait de question','Quand quelqu\'un enregistrait son jeton, le dashboard vérifiait qu\'il permettait de LIRE le dépôt. Or le dépôt est public : n\'importe quel jeton le lit, même un jeton sans le moindre droit dessus. Le contrôle répondait donc « ✅ Jeton valide » à des jetons incapables d\'écrire une seule ligne. C\'est ce qui est arrivé au RH : il a saisi, tout s\'affichait chez lui, et rien n\'est jamais parti. On demande désormais à GitHub la seule chose qui compte — ce jeton a-t-il le droit d\'écrire ICI.'],
    ['🔊','Une saisie perdue ne peut plus être silencieuse','L\'échec ne laissait qu\'un point rouge et une bulle « Dépôt occupé », de quoi travailler une heure en croyant enregistrer. Maintenant : un bandeau rouge en haut de l\'écran, qui dit en toutes lettres que rien n\'est enregistré et pourquoi. Une simple coupure de réseau, elle, ne déclenche pas d\'alarme et n\'accuse pas un jeton correct.'],
@@ -6088,6 +6220,30 @@ function importAll(){
 }
 
 /* ================== PARAMÈTRES ================== */
+/* ---- Panneaux repliables ----
+
+   Deux tableaux des Paramètres sont hauts et rarement touchés : la grille des
+   permissions et le barème d'imposition. Repliés par défaut, ils rendent la
+   page lisible ; l'état est mémorisé dans ce navigateur, pas dans les données
+   partagées — c'est un confort d'affichage, pas un réglage d'entreprise. */
+function replie(cle){
+  try{ return localStorage.getItem('orx_replie_'+cle)!=='0'; }catch(e){ return true; }
+}
+function replier(cle){
+  const on=!replie(cle);
+  try{ localStorage.setItem('orx_replie_'+cle, on?'1':'0'); }catch(e){}
+  const c=document.getElementById('rp_'+cle), f=document.getElementById('fl_'+cle);
+  if(c) c.hidden=on;
+  if(f) f.textContent=on?'▸ Afficher':'▾ Masquer';
+}
+function enteteRepliable(cle,titre,extra){
+  return `<h3 style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+    <span style="cursor:pointer;user-select:none" onclick="replier('${cle}')">${titre}</span>
+    <span style="display:flex;gap:8px;align-items:center">${extra||''}
+      <button class="btn btn-sm btn-ghost" id="fl_${cle}" onclick="replier('${cle}')">${replie(cle)?'▸ Afficher':'▾ Masquer'}</button>
+    </span></h3>`;
+}
+
 /* Plus de demandes d'accès à traiter : depuis C-75 c'est le rôle Discord qui
    ouvre la porte. Personne ne « demande » un accès — on lui donne le rôle. */
 async function params(){
@@ -6100,7 +6256,6 @@ async function params(){
         <div class="f-row"><label class="f-lbl">Prix du pétrole ($/u)</label><input class="field" id="p_prix" type="number" value="${S.settings.prix}"></div>
         <div class="f-row"><label class="f-lbl">Salaire par recrue ($)</label><input class="field" id="p_rec" type="number" value="${prixRecrue()}"></div>
         <div class="f-row"><label class="f-lbl">$ par bidon produit (commerciaux)</label><input class="field" id="p_bid" type="number" value="${S.settings.prixBidonCom??45}"></div>
-        <div class="f-row"><label class="f-lbl">Prime fixe Web Master ($)</label><input class="field" id="p_wm" type="number" value="${S.settings.primeWebmaster??0}"></div>
         <div class="f-row"><label class="f-lbl">Limite pétroles</label><input class="field" id="p_lim" type="number" value="${S.settings.limite}"></div>
         <div class="f-row"><label class="f-lbl">N° de semaine</label><input class="field" id="p_sem" type="number" value="${S.settings.semaine}"></div>
         <div class="f-row"><label class="f-lbl">🎯 Objectif collectif (barils/sem., 0 = off)</label><input class="field" id="p_obj" type="number" value="${S.settings.objectif??0}"></div>
@@ -6248,8 +6403,9 @@ async function params(){
     </p>
   </div>
   <div class="panel" style="margin-top:18px;overflow-x:auto">
-    <h3 style="display:flex;justify-content:space-between;align-items:center">🔐 Permissions par rôle
-      ${(S.settings.permsCustom||S.settings.permsRO)?`<button class="btn btn-sm btn-ghost" onclick="if(confirm('Revenir aux permissions par défaut pour tous les rôles ?')){delete S.settings.permsCustom;delete S.settings.permsRO;jlog('Permissions : retour aux valeurs par défaut');save();sbPushNow();applyPerms();applyRO();params();}">↺ Permissions par défaut</button>`:''}</h3>
+    ${enteteRepliable('perms','🔐 Permissions par rôle',
+      (S.settings.permsCustom||S.settings.permsRO)?`<button class="btn btn-sm btn-ghost" onclick="if(confirm('Revenir aux permissions par défaut pour tous les rôles ?')){delete S.settings.permsCustom;delete S.settings.permsRO;jlog('Permissions : retour aux valeurs par défaut');save();sbPushNow();applyPerms();applyRO();params();}">↺ Permissions par défaut</button>`:'')}
+    <div id="rp_perms" ${replie('perms')?'hidden':''}>
     <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px"><b>Clique sur une case</b> pour donner ou retirer un onglet à un rôle — appliqué immédiatement à tous les comptes du rôle. Le rôle de chaque personne vient de son rôle Discord (correspondance ci-dessus) — il ne se règle plus compte par compte.</p>
     ${(()=>{
       const roles=Object.entries(ROLES); // dérivé de ROLES : un rôle ajouté apparaît ici tout seul
@@ -6262,35 +6418,24 @@ async function params(){
       </tbody></table>
       <p style="color:var(--muted);font-size:.74rem;margin-top:8px">Chaque clic fait tourner l'état : <b style="color:var(--muted)">—</b> aucun accès → <b style="color:var(--green)">✓</b> accès complet → <b style="color:#5aa0ff">👁</b> lecture seule (l'onglet est visible mais toutes les modifications sont désactivées) → <b style="color:var(--muted)">—</b>. 🔒 verrouillé.${(S.settings.permsCustom||S.settings.permsRO)?' <b style="color:var(--accent)">Permissions personnalisées actives.</b>':''}</p>`;
     })()}
+    </div>
   </div>
   <div class="panel" style="margin-top:18px;overflow-x:auto">
-    <h3>🗂️ Permissions fines — feuilles</h3>
-    <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px">Onglet par onglet de la page Feuilles, pour chaque rôle : <b style="color:var(--green)">✓</b> plein accès → <b style="color:#5aa0ff">👁</b> lecture seule → <b style="color:var(--muted)">—</b> caché (clic pour faire tourner). La Direction a toujours tout.</p>
-    ${(()=>{
-      const roles=Object.entries(ROLES).filter(([k])=>k!=='direction'&&k!=='membre'); // la Direction a tout, un Membre n'a pas la page Feuilles
-      return `<table><thead><tr><th>Feuille</th>${roles.map(([,l])=>`<th style="text-align:center">${l}</th>`).join('')}</tr></thead><tbody>
-      ${Object.entries(SHEETS_DEF).map(([k,d])=>`<tr><td><b>${d.ico} ${d.label}</b></td>
-        ${roles.map(([rk])=>{ const v=sheetPerm(rk,k);
-          return `<td onclick="sheetPermToggle('${rk}','${k}')" style="text-align:center;font-weight:700;cursor:pointer;color:${v==='x'?'var(--green)':v==='ro'?'#5aa0ff':'var(--muted)'}" title="Cliquer pour changer">${v==='x'?'✓':v==='ro'?'👁':'—'}</td>`;
-        }).join('')}</tr>`).join('')}
-      </tbody></table>`;
-    })()}
-  </div>
-  <div class="panel" style="margin-top:18px;overflow-x:auto">
-    <h3 style="display:flex;justify-content:space-between;align-items:center">📐 Barème progressif d'imposition (référence)
-      <button class="btn btn-sm btn-ghost" onclick="if(confirm('Restaurer le barème par défaut (valeurs de Thomas) ?')){S.settings.bareme=JSON.parse(JSON.stringify(BAREME_DEF));palDirty();jlog('Barème d\\'imposition restauré aux valeurs par défaut');save();sbPushNow();params();}">↺ Valeurs par défaut</button></h3>
+    ${enteteRepliable('bareme','📐 Barème progressif d\'imposition (référence)',
+      `<button class="btn btn-sm btn-ghost" onclick="if(confirm('Restaurer le barème par défaut (valeurs de Thomas) ?')){S.settings.bareme=JSON.parse(JSON.stringify(BAREME_DEF));palDirty();jlog('Barème d\\'imposition restauré aux valeurs par défaut');save();sbPushNow();params();}">↺ Valeurs par défaut</button>`)}
+    <div id="rp_bareme" ${replie('bareme')?'hidden':''}>
     <p style="color:var(--muted);font-size:.78rem;margin-bottom:10px">Le palier actif est choisi automatiquement selon le bénéfice après primes (visible sur la page Bilan compta). Modifie ici les tranches de référence si les règles du serveur changent.</p>
     <table><thead><tr><th>#</th><th>Bénéfice min</th><th>Bénéfice max</th><th>Taux %</th><th>Sal. max emp.</th><th>Sal. max dir.</th><th>Prime max emp.</th><th>Prime max dir.</th></tr></thead><tbody>
     ${bareme().map((t,i)=>`<tr><td style="color:var(--muted)">${i+1}</td>
       ${[['min',t.min],['max',t.max],['taux',Math.round(t.taux*100)],['se',t.se],['sp',t.sp],['pe',t.pe],['pp',t.pp]].map(([k,v])=>`<td><input class="field" type="number" style="padding:5px 8px;min-width:86px;text-align:right" value="${v}" onchange="barEdit(${i},'${k}',this.value)"></td>`).join('')}
     </tr>`).join('')}</tbody></table>
+    </div>
   </div>
   <div class="panel" style="margin-top:18px">
     <h3>📐 Règles de grades (rappel)</h3>
     <table><thead><tr><th>Grade</th><th>Quota hebdo</th><th>Multiplicateur prime</th><th>Montée de grade</th></tr></thead><tbody>
     ${GRADES.map((g,i)=>`<tr><td><span class="badge ${g.cls}">${g.nom}</span></td><td>${fmt(g.quota)} barils</td><td>×${g.mult}</td><td>${g.merite?'🏅 attribué au mérite par la direction — pas de montée automatique':i>0?fmt(g.montee)+' barils/sem. pour y accéder':'grade d\'entrée'}</td></tr>`).join('')}
     <tr><td><span class="badge bg3">Direction &amp; postes</span> <small style="color:var(--muted)">Patron, RH, commerciaux…</small></td><td>0 barils (aucun quota)</td><td>×${DIR_GRADE.mult}</td><td>—</td></tr>
-    <tr><td><span class="badge bgrole">Web Master</span> <small style="color:var(--muted)">sous-direction</small></td><td>0 barils (aucun quota)</td><td>×${WM_GRADE.mult} + prime fixe (Paramètres)</td><td>—</td></tr>
     <tr><td><span class="badge bgstg">Stagiaire</span> <small style="color:var(--muted)">période d'essai</small></td><td>${fmt(STG_GRADE.quota)} barils</td><td>×${STG_GRADE.mult}</td><td>titularisation manuelle → Intérimaire (bouton 🎓 dans l'Effectif)</td></tr>
     </tbody></table>
   </div>`;
@@ -6300,7 +6445,6 @@ function saveParams(){
   S.settings.prix=numOr($('#p_prix').value,5);
   S.settings.prixRecrue=numOr($('#p_rec').value,4000);
   S.settings.prixBidonCom=numOr($('#p_bid').value,45);
-  S.settings.primeWebmaster=numOr($('#p_wm').value,0);
   S.settings.limite=numOr($('#p_lim').value,24000);
   S.settings.semaine=+$('#p_sem').value||semaineCal();
   S.settings.top=[numOr($('#p_t1').value,15000),numOr($('#p_t2').value,10000),numOr($('#p_t3').value,5000)];
