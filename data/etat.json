@@ -16221,8 +16221,8 @@
   "postesV4": 1
  },
  "_cid": "hwebbzysvl",
- "_maj": 1788525735995,
- "_rev": "fykox45vcmn-mtmy1pvn",
+ "_maj": 1788525798539,
+ "_rev": "ox1ag28qsxn-mtmy302p",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16245,7 +16245,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788525735995,
+  "_tables": 1788525798539,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055
@@ -18077,7 +18077,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T12:42:20.867Z",
+  "maj": "2026-09-04T12:43:20.737Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -26964,7 +26964,7 @@
     "titre": "test",
     "type": "contrat",
     "date": "2026-09-04",
-    "deb": "16:00",
+    "deb": "17:45",
     "fin": "18:00",
     "note": "",
     "partage": true,
