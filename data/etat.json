@@ -16096,7 +16096,10 @@
    "commercial": [],
    "respcom": [],
    "assistdir": [
-    "fventes"
+    "frh",
+    "fblacklist",
+    "fcompta",
+    "factures"
    ]
   },
   "semaine": 36,
@@ -16179,7 +16182,6 @@
    ],
    "assistdir": [
     "effectif",
-    "fventes",
     "frh",
     "fblacklist",
     "fcompta",
@@ -16239,8 +16241,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489417748,
- "_rev": "j9j0adqn6b-mtmcf7ob",
+ "_maj": 1788489421024,
+ "_rev": "1s488mcyv5y-mtmcf9wo",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16249,13 +16251,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489417748,
+  "journal": 1788489421024,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489417748,
+  "settings": 1788489421024,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16270,6 +16272,31 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489421595,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « factures » → lecture seule 👁"
+  },
+  {
+   "t": 1788489420975,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fcompta » → lecture seule 👁"
+  },
+  {
+   "t": 1788489420315,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fblacklist » → lecture seule 👁"
+  },
+  {
+   "t": 1788489419662,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frh » → lecture seule 👁"
+  },
+  {
+   "t": 1788489419030,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « fventes » → aucun accès"
+  },
   {
    "t": 1788489418319,
    "u": "Diego Herrera",
@@ -17744,31 +17771,6 @@
    "a": "Suppression du compte Xavier Collins",
    "t": 1787330937692,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Araceli Vega",
-   "t": 1787330935734,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Ray Callahan",
-   "t": 1787330934192,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Marcus Brooks",
-   "t": 1787330932489,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Rico Garcia",
-   "t": 1787330930866,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Fred Montaigue",
-   "t": 1787330928827,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18094,7 +18096,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:36:58.907Z",
+  "maj": "2026-09-04T02:37:01.800Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
