@@ -73,6 +73,7 @@ compteur.
 | Postes : +3 postes, Web Master retiré | C-77 |
 | **Contrats hebdomadaires reconduits + registre des contrats** | C-78 |
 | Bibliothèque d'affiches publicitaires | C-79 |
+| Menu réorganisé par métier (7 pôles) | C-80 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -101,6 +102,12 @@ tant qu'il n'est pas en ligne, l'équipe reste dehors. C-74 et C-75 partent avec
 **Les secrets GitHub Actions.** ✅ Réglé — les trois salons répondent 3/3. La
 première tentative avait échoué parce que la ligne entière `BOT_TOKEN=...`
 avait été collée dans le secret au lieu de la valeur seule.
+
+**Vérifier les colonnes RH et Commercial de la grille des permissions.**
+Aujourd'hui le RH a accès à **tout**, Paramètres compris, et le Commercial voit
+les Fiches RH, la Blacklist et les Dépenses & retraits. Ce sont des réglages
+faits à la main le 4 septembre au petit matin ; si ce n'était pas voulu, un clic
+par case suffit.
 
 **Vérifier la colonne RH de la grille des permissions.** Il y avait deux
 grilles qui se contredisaient : celle des onglets disait « RH voit la Compta »,

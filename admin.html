@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-79</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-80</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -62,40 +62,40 @@ window.ROXWOOD_CFG = {
          faisait que répéter une affordance existante. Le voyant de synchro reste
          cliquable à l'intérieur : son gestionnaire arrête la navigation. -->
     <div class="brand"><a href="index.html" target="_blank" rel="noopener" title="Ouvrir le site public dans un nouvel onglet" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit;min-width:0"><img src="assets/logo.png" alt="" width="32" height="32" style="object-fit:contain"> <span>OIL <b>ROXWOOD</b><small>ESPACE MEMBRE <span id="syncDot" title="État de la synchro — cliquer pour régler le jeton" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--muted);margin-left:5px;vertical-align:middle;cursor:pointer"></span></small></span></a></div>
-    <div class="nav-sec" data-sec="pilotage" onclick="navToggle('pilotage')">Pilotage <span class="chev">▾</span></div>
-    <button class="nav-item active" data-view="overview">📊 <span class="txt">Vue d'ensemble</span></button>
-    <button class="nav-item" data-view="semaine">💰 <span class="txt">Semaine &amp; Primes</span></button>
-    <button class="nav-item" data-view="cloture">🗓️ <span class="txt">Clôture du lundi</span></button>
-    <button class="nav-item" data-view="historique">📈 <span class="txt">Historique</span></button>
-    <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
     <div class="nav-sec" data-sec="rh" onclick="navToggle('rh')">Ressources humaines <span class="chev">▾</span></div>
-    <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
     <button class="nav-item" data-view="frh">🗂️ <span class="txt">Fiches RH</span></button>
+    <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
     <button class="nav-item" data-view="fblacklist">⛔ <span class="txt">Blacklist</span></button>
-    <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
-    <button class="nav-item" data-view="felig">✅ <span class="txt">Éligibilité</span></button>
     <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
-    <button class="nav-item" data-view="fventes">🛒 <span class="txt">Ventes de la semaine</span></button>
     <button class="nav-item" data-view="factures">🧾 <span class="txt">Factures</span></button>
     <button class="nav-item" data-view="relances">📞 <span class="txt">Relances</span></button>
+    <button class="nav-item" data-view="fventes">🛒 <span class="txt">Ventes de la semaine</span></button>
     <button class="nav-item" data-view="quotascom">⚖️ <span class="txt">Quotas &amp; fer</span></button>
     <button class="nav-item" data-view="prodder">🗡️ <span class="txt">Produits dérivés</span></button>
-    <div class="nav-sec" data-sec="gestion" onclick="navToggle('gestion')">Gestion <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="compta" onclick="navToggle('compta')">Compta <span class="chev">▾</span></div>
     <button class="nav-item" data-view="ftablette">🖥️ <span class="txt">Tablette</span></button>
     <button class="nav-item" data-view="fcompta">💸 <span class="txt">Dépenses &amp; retraits</span></button>
-    <button class="nav-item" data-view="bilan">🏦 <span class="txt">Bilan compta</span></button>
     <button class="nav-item" data-view="frecues">📥 <span class="txt">Factures reçues</span></button>
-    <div class="nav-sec" data-sec="perso" onclick="navToggle('perso')">Perso <span class="chev">▾</span></div>
-    <button class="nav-item" data-view="moi">🙋 <span class="txt">Ma semaine</span></button>
-    <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
+    <button class="nav-item" data-view="bilan">🏦 <span class="txt">Bilan compta</span></button>
+    <button class="nav-item" data-view="cloture">🗓️ <span class="txt">Clôture du lundi</span></button>
+    <button class="nav-item" data-view="semaine">💰 <span class="txt">Semaine &amp; Primes</span></button>
+    <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
+    <button class="nav-item active" data-view="overview">📊 <span class="txt">Vue d'ensemble</span></button>
+    <button class="nav-item" data-view="felig">✅ <span class="txt">Éligibilité</span></button>
+    <button class="nav-item" data-view="historique">📈 <span class="txt">Historique</span></button>
+    <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
+    <div class="nav-sec" data-sec="quotas" onclick="navToggle('quotas')">Quotas <span class="chev">▾</span></div>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
+    <div class="nav-sec" data-sec="perso" onclick="navToggle('perso')">Perso <span class="chev">▾</span></div>
+    <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
+    <button class="nav-item" data-view="moi">🙋 <span class="txt">Ma semaine</span></button>
     <button class="nav-item" data-view="agenda">📅 <span class="txt">Mon agenda</span></button>
     <button class="nav-item" data-view="affiches">🖼️ <span class="txt">Affiches</span></button>
-    <button class="nav-item" data-view="maj">🆕 <span class="txt">Mises à jour</span></button>
     <div class="nav-sec" data-sec="systeme" onclick="navToggle('systeme')">Système <span class="chev">▾</span></div>
     <button class="nav-item" data-view="dlogs">📡 <span class="txt">Logs en direct</span></button>
     <button class="nav-item" data-view="journal">📜 <span class="txt">Journal</span></button>
     <button class="nav-item" data-view="params">⚙️ <span class="txt">Paramètres</span></button>
+    <button class="nav-item" data-view="maj">🆕 <span class="txt">Mises à jour</span></button>
     <div class="spacer"></div>
     <button class="nav-item" onclick="localStorage.setItem('orx_lang',localStorage.getItem('orx_lang')==='en'?'fr':'en');applyLang()" title="Changer la langue de l'interface / Switch interface language">🌐 <span class="txt" data-nolang="1">FR / EN</span></button>
     <div id="whoami" style="padding:8px 14px;font-size:.78rem;color:var(--muted)"></div>
@@ -656,7 +656,16 @@ const PERMS={
      Permissions par rôle ; ceci n'est que le point de départ. */
 
   // Patron, Co Patron : tout, y compris la clôture et les réglages.
-  direction:['overview','effectif','semaine','historique','cloture','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','affiches','maj','dlogs','journal','params'],
+  /* L'ORDRE de cette liste est celui des lignes dans la grille des permissions.
+     Il suit le menu, pôle par pôle, pour qu'on règle les droits en lisant la
+     même chose des deux côtés. */
+  direction:['frh','effectif','fblacklist',
+             'factures','relances','fventes','quotascom','prodder',
+             'ftablette','fcompta','frecues','bilan','cloture','semaine',
+             'overview','felig','historique','reunions',
+             'quotashist',
+             'profil','moi','agenda','affiches',
+             'dlogs','journal','params','maj'],
 
   // RH : les personnes et ce qu'on leur doit. Ni compta, ni facturation.
   //      La semaine reste ouverte : c'est là qu'ils lisent les salaires à payer.
@@ -919,7 +928,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-79';
+const APP_VERSION='C-80';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1266,7 +1275,7 @@ document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>show(
   });
 })();
 /* ---- langue de l'interface (v1 : navigation & sections) ---- */
-const I18N_EN={"Vue d'ensemble":'Overview','Semaine & Primes':'Week & Bonuses','Historique':'History','Clôture du lundi':'Monday closing','Effectif':'Workforce','Runs':'Runs','Feuilles':'Sheets','Tablette':'Tablet','Éligibilité':'Eligibility','Ventes de la semaine':'Weekly sales','Fiches RH':'HR records','Blacklist':'Blacklist','Dépenses & retraits':'Expenses & withdrawals','Ancienneté RH':'HR seniority',"Demandes d'accès":'Access requests','Factures':'Invoices','Relances':'Follow-ups','Bilan compta':'Accounting','Produits dérivés':'Merchandise','Quotas commerciaux':'Sales quotas','Achats Fer':'Iron purchases','Factures reçues':'Received invoices','Ma semaine':'My week','Quotas 3 semaines':'Quotas (3 weeks)','Ma to-do':'My to-do','Mon agenda':'My agenda','Suggestions / Bugs':'Suggestions / Bugs','Mises à jour':'Updates','Logs Discord':'Discord logs','Logs en direct':'Live logs','Journal':'Activity log','Paramètres':'Settings','TV du dépôt':'Depot TV','Retour au site':'Back to site','Déconnexion':'Log out','Pilotage':'Steering','Gestion':'Management','Commerce':'Sales','Perso':'Personal','Système':'System','Accès rapides':'Quick access'};
+const I18N_EN={"Vue d'ensemble":'Overview','Semaine & Primes':'Week & Bonuses','Historique':'History','Clôture du lundi':'Monday closing','Effectif':'Workforce','Runs':'Runs','Feuilles':'Sheets','Tablette':'Tablet','Éligibilité':'Eligibility','Ventes de la semaine':'Weekly sales','Fiches RH':'HR records','Blacklist':'Blacklist','Dépenses & retraits':'Expenses & withdrawals','Ancienneté RH':'HR seniority',"Demandes d'accès":'Access requests','Factures':'Invoices','Relances':'Follow-ups','Bilan compta':'Accounting','Produits dérivés':'Merchandise','Quotas commerciaux':'Sales quotas','Achats Fer':'Iron purchases','Factures reçues':'Received invoices','Ma semaine':'My week','Quotas 3 semaines':'Quotas (3 weeks)','Ma to-do':'My to-do','Mon agenda':'My agenda','Suggestions / Bugs':'Suggestions / Bugs','Mises à jour':'Updates','Logs Discord':'Discord logs','Logs en direct':'Live logs','Journal':'Activity log','Paramètres':'Settings','TV du dépôt':'Depot TV','Retour au site':'Back to site','Déconnexion':'Log out','Pilotage':'Steering','Gestion':'Management','Commerce':'Sales','Compta':'Accounting','Quotas':'Quotas','Ressources humaines':'Human resources','Responsable Runner':'Runner manager','Affiches':'Posters','Comptes-rendus':'Reports','Mon profil':'My profile','Quotas & fer':'Quotas & iron','Perso':'Personal','Système':'System','Accès rapides':'Quick access'};
 function applyLang(){
   const en=localStorage.getItem('orx_lang')==='en';
   document.querySelectorAll('.nav-item .txt').forEach(e=>{
@@ -3951,6 +3960,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-80',d:'04/09/2026',t:'Le menu rangé par métier',items:[
+   ['🗂','Sept pôles, refaits selon l\'organigramme','Ressources humaines · Commerce · Compta · Responsable Runner · Quotas · Perso · Système. « Pilotage » et « Gestion » disparaissent : c\'étaient des étiquettes de commodité, pas des métiers — on y cherchait la Tablette sans savoir si elle relevait de la gestion ou de la compta.'],
+   ['🔀','Ce qui a bougé','La Tablette, les Factures reçues, le Bilan, la Clôture du lundi et Semaine & Primes passent en Compta. La Vue d\'ensemble, l\'Historique et les Comptes-rendus rejoignent l\'Éligibilité chez le Responsable Runner. Les Quotas 3 semaines quittent Perso pour leur propre pôle. Les Mises à jour passent en Système, à côté du Journal.'],
+   ['📋','La grille des permissions suit le même ordre','Les lignes de Paramètres → Permissions par rôle sont rangées comme le menu, pôle par pôle. On règle les droits en lisant la même chose des deux côtés — avant, il fallait traduire mentalement d\'un ordre à l\'autre.'],
+ ]},
  {v:'C-79',d:'04/09/2026',t:'Les affiches ont enfin un endroit',items:[
    ['🖼️','Une bibliothèque commune','Nouvelle rubrique dans le pôle Perso. Tout le monde voit les mêmes affiches : un commercial ouvre, prend celle du moment, copie son lien et la publie. Elles vivaient jusqu\'ici dans Discord, où elles se perdent au fil des messages.'],
    ['📤','On envoie le fichier depuis son ordinateur','Une ou plusieurs images à la fois. Elles deviennent de vrais fichiers du dépôt — pas du texte encodé dans la base partagée : une affiche pèse 1 à 3 Mo, et la base est relue en entier par chaque navigateur ouvert toutes les 45 secondes. Trois affiches rangées dedans et le dashboard devenait inutilisable pour tout le monde.'],
