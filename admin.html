@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-78</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-79</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -90,6 +90,7 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
     <button class="nav-item" data-view="agenda">📅 <span class="txt">Mon agenda</span></button>
+    <button class="nav-item" data-view="affiches">🖼️ <span class="txt">Affiches</span></button>
     <button class="nav-item" data-view="maj">🆕 <span class="txt">Mises à jour</span></button>
     <div class="nav-sec" data-sec="systeme" onclick="navToggle('systeme')">Système <span class="chev">▾</span></div>
     <button class="nav-item" data-view="dlogs">📡 <span class="txt">Logs en direct</span></button>
@@ -200,6 +201,7 @@ function purgeSupprimees(){
 purgeSupprimees();
 migrerPerms();
 migrerRoles4();
+migrerAffiches();
 appliquerGrades();   // les réglages de la direction priment sur les valeurs d'usine
 // Réinitialisation unique du mot de passe (juillet 2026) : retour à « roxwood ».
 if(!localStorage.getItem('orx_pwfix1')){
@@ -217,6 +219,7 @@ function defaults(){
     fact:null,
     users:[],
     profils:{},
+    affiches:[],
     pending:[],
     fer:[],
     settings:{prix:10, primeBase:5000, top:[15000,10000,5000], limite:24000, semaine:1,
@@ -233,7 +236,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','_qcFix1','_wkFix1','_permsFix1','_rolesFix77'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -653,35 +656,35 @@ const PERMS={
      Permissions par rôle ; ceci n'est que le point de départ. */
 
   // Patron, Co Patron : tout, y compris la clôture et les réglages.
-  direction:['overview','effectif','semaine','historique','cloture','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal','params'],
+  direction:['overview','effectif','semaine','historique','cloture','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','affiches','maj','dlogs','journal','params'],
 
   // RH : les personnes et ce qu'on leur doit. Ni compta, ni facturation.
   //      La semaine reste ouverte : c'est là qu'ils lisent les salaires à payer.
-  rh:       ['overview','effectif','semaine','historique','reunions','frh','fblacklist','felig','ftablette','moi','profil','quotashist','agenda','maj','dlogs'],
+  rh:       ['overview','effectif','semaine','historique','reunions','frh','fblacklist','felig','ftablette','moi','profil','quotashist','agenda','affiches','maj','dlogs'],
 
   // Comptable : l'argent de l'entreprise. Pas les dossiers du personnel.
-  comptable:['overview','reunions','factures','relances','bilan','fcompta','frecues','moi','profil','quotashist','agenda','maj'],
+  comptable:['overview','reunions','factures','relances','bilan','fcompta','frecues','moi','profil','quotashist','agenda','affiches','maj'],
 
   // Assistant de direction : le bras droit. Tout ce que voit la Direction, sauf
   //      les deux gestes qui n'appartiennent qu'au patron : clôturer la semaine
   //      (irréversible, elle fige les salaires) et changer les Paramètres.
-  assistdir:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','maj','dlogs','journal'],
+  assistdir:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','affiches','maj','dlogs','journal'],
 
   // Commercial : le commerce, rien d'autre.
-  commercial:['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','maj'],
+  commercial:['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','affiches','maj'],
 
   // Responsable commercial : pour l'instant exactement un commercial. Le rôle
   //      existe pour qu'on puisse lui ouvrir des cases sans les ouvrir à toute
   //      l'équipe — Paramètres → Permissions par rôle, colonne par colonne.
-  respcom:  ['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','maj'],
+  respcom:  ['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','affiches','maj'],
 
   // Responsable Runner : il encadre la production au quotidien. Effectif,
   //      éligibilité, tablette et logs — mais ni la paie détaillée, ni les
   //      factures, ni les fiches du personnel.
-  resprunner:['overview','effectif','semaine','historique','reunions','felig','ftablette','prodder','moi','profil','quotashist','agenda','maj','dlogs'],
+  resprunner:['overview','effectif','semaine','historique','reunions','felig','ftablette','prodder','moi','profil','quotashist','agenda','affiches','maj','dlogs'],
 
   // Runner : lecture de l'entreprise et son espace personnel.
-  membre:   ['overview','effectif','reunions','moi','profil','quotashist','agenda','maj']
+  membre:   ['overview','effectif','reunions','moi','profil','quotashist','agenda','affiches','maj']
 };
 function isMembre(){
   if(sessionStorage.getItem('orx_user')==='SECOURS') return false; // clé de secours = Direction
@@ -744,6 +747,34 @@ function migrerPerms(){
   });
   if(touche) jlog(`Permissions : ${touche} liste(s) de rôle remises à jour (rubriques renommées ou supprimées)`);
   return touche>0;
+}
+
+/* ---- Une rubrique neuve doit atteindre ceux qui ont réglé leurs droits ----
+
+   Piège découvert à l'essai : dès qu'un rôle a des permissions personnalisées
+   enregistrées, c'est CETTE liste qui fait foi — la liste d'usine n'est plus
+   lue du tout. Une rubrique ajoutée après coup n'apparaît donc jamais pour lui.
+   Chez Thomas, Commercial, Responsable commercial et RH sont dans ce cas : sans
+   cette reprise, ils n'auraient pas vu les Affiches, et personne n'aurait su
+   pourquoi. On l'ouvre une fois, elle reste réglable case par case ensuite.
+
+   Comme migrerPerms(), tout vit dans la fonction : elle est appelée tout en
+   haut du fichier, avant que quoi que ce soit déclaré plus bas n'existe. */
+function migrerAffiches(){
+  if(S._affFix1) return false;
+  S._affFix1=true;
+  const c=S.settings&&S.settings.permsCustom;
+  if(!c||typeof c!=='object') return false;
+  let n=0;
+  Object.keys(c).forEach(role=>{
+    const l=c[role];
+    if(!Array.isArray(l)||!l.length||l.includes('affiches')) return;
+    const i=l.indexOf('maj');          // à sa place dans le pôle Perso
+    if(i>=0) l.splice(i,0,'affiches'); else l.push('affiches');
+    n++;
+  });
+  if(n) jlog(`Affiches : rubrique ouverte à ${n} rôle(s) aux permissions personnalisées`);
+  return n>0;
 }
 
 /* ---- C-76 : deux rôles de plus, sans rien retirer à personne ----
@@ -888,7 +919,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-78';
+const APP_VERSION='C-79';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1285,6 +1316,7 @@ function show(v){
   appliquerGrades();   // une synchro a pu changer les barèmes depuis le dernier rendu
   if(purgeSupprimees()&&!isMembre()){ save(); sbQueue(); }   // rubriques supprimées : leurs données ne reviennent pas
   if(migrerPerms()&&!isMembre()){ save(); sbQueue(); }       // listes de permissions citant d'anciennes rubriques
+  if(migrerAffiches()&&!isMembre()){ save(); sbQueue(); }    // rubrique Affiches ajoutée après coup
   const al=allowedViews();
   if(!al.includes(v)) v=al[0]||'overview'; // vue non autorisée → première vue permise
   const memeVue=(v===VIEW);
@@ -1292,7 +1324,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,agenda,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,agenda,affiches,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
   restaureEcran(repere);
 }
@@ -3919,6 +3951,13 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-79',d:'04/09/2026',t:'Les affiches ont enfin un endroit',items:[
+   ['🖼️','Une bibliothèque commune','Nouvelle rubrique dans le pôle Perso. Tout le monde voit les mêmes affiches : un commercial ouvre, prend celle du moment, copie son lien et la publie. Elles vivaient jusqu\'ici dans Discord, où elles se perdent au fil des messages.'],
+   ['📤','On envoie le fichier depuis son ordinateur','Une ou plusieurs images à la fois. Elles deviennent de vrais fichiers du dépôt — pas du texte encodé dans la base partagée : une affiche pèse 1 à 3 Mo, et la base est relue en entier par chaque navigateur ouvert toutes les 45 secondes. Trois affiches rangées dedans et le dashboard devenait inutilisable pour tout le monde.'],
+   ['🎯','Le texte des affiches reste net','Une affiche déjà raisonnable (moins de 1800 px et 2,5 Mo) est gardée telle quelle, octet pour octet : transparence conservée, lettres nettes. Seules les images trop grandes sont réduites, et on garde alors du PNG ou du JPEG celui qui pèse le moins.'],
+   ['🔗','Copier le lien, ouvrir en grand','Chaque affiche a son adresse publique, prête à coller sur Discord. Consulter et copier ne demande aucun jeton ; ajouter, si. Une affiche ne se supprime que par la personne qui l\'a ajoutée, ou par la Direction.'],
+   ['🧩','Piège évité','Un rôle dont les permissions ont été réglées à la main ne lit plus la liste d\'usine : une rubrique ajoutée après coup ne lui apparaît jamais. Commercial, Responsable commercial et RH étaient dans ce cas — ils n\'auraient pas vu les Affiches, sans que rien ne l\'explique. La rubrique leur est ouverte une fois, et reste réglable ensuite.'],
+ ]},
  {v:'C-78',d:'04/09/2026',t:'Hebdomadaire veut enfin dire hebdomadaire',items:[
    ['🔁','Un contrat hebdomadaire se rejoue dans le calendrier','La case « hebdomadaire » ne servait qu\'au bot. Le calendrier, lui, ne montrait le contrat qu\'à sa date d\'origine : on cochait « toutes les semaines », on avançait d\'une semaine, et la case était vide — alors que le rappel Discord partait bien. Deux versions de la vérité au même endroit. Les occurrences suivantes apparaissent maintenant, en pointillés avec un 🔁, et un clic ouvre le contrat d\'origine : il n\'y a toujours qu\'une ligne enregistrée, pas des copies.'],
    ['🕐','Le jour tient à travers le changement d\'heure','La reconduction se calcule sur le jour de la semaine, pas sur un écart en millisecondes. Entre mars et octobre, sept jours ne font pas toujours 7 × 24 h à Paris — un contrat du dimanche aurait fini par glisser au samedi.'],
@@ -5871,6 +5910,178 @@ async function agSave(id){
 async function agDel(id){
   try{ await SYNC.cli.from('oilroxwood_agenda').delete().eq('id',id); }catch(e){}
   closeModal(); await agLoad(); agenda(); toast('🗑 Événement supprimé');
+}
+
+/* ================== AFFICHES PUBLICITAIRES ==================
+
+   Une bibliothèque commune : tout le monde voit les mêmes affiches, et celui
+   qui a un jeton d'écriture peut en ajouter. Elles vivaient jusqu'ici dans
+   Discord, où elles se perdent au fil des messages.
+
+   L'image devient un VRAI fichier du dépôt (assets/affiches/…) et l'état ne
+   garde que son chemin. C'est la même règle que les photos de factures, pour
+   la même raison : une affiche pèse 1 à 3 Mo, et l'état partagé est relu en
+   entier par chaque navigateur ouvert toutes les 45 secondes. Trois affiches
+   rangées en base64 dedans, et le dashboard devient inutilisable pour tout le
+   monde. Ici, contrairement aux factures, on REFUSE le repli en base64 : mieux
+   vaut une affiche non enregistrée qu'un état partagé qu'on ne peut plus lire. */
+let AFF_Q='';
+function affiches(){
+  const l=(S.affiches||[]);
+  const q=AFF_Q.toLowerCase().trim();
+  const vus=l.filter(a=>!q||((a.titre||'')+' '+(a.note||'')+' '+(a.par||'')).toLowerCase().includes(q));
+  const peut=RoxwoodGH.peutEcrire()&&!isMembre();
+  const ro=isRO('affiches');
+  $('#main').innerHTML=`
+  <div class="topbar">
+    <div><h2>🖼️ Affiches</h2><div class="sub">La publicité de l'entreprise — ${l.length} affiche(s)${q?` · ${vus.length} trouvée(s)`:''}</div></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <input class="field" id="affQ" style="max-width:220px" placeholder="🔍 Rechercher…" value="${esc(AFF_Q)}" oninput="chercherAffiches(this.value)">
+      ${(peut&&!ro)?`<button class="btn btn-gold" onclick="document.getElementById('affFile').click()">＋ Ajouter une affiche</button>
+      <input type="file" id="affFile" accept="image/*" multiple style="display:none" onchange="affAjouter(this)">`:''}
+    </div>
+  </div>
+  ${(!peut&&!ro)?`<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">
+    👁 Tu peux consulter et copier les affiches. Pour en <b>ajouter</b>, il faut un jeton d'écriture — dans <b>Mon profil</b>.</div>`:''}
+  ${!l.length?`<div class="panel"><div class="empty">Aucune affiche pour l'instant.${(peut&&!ro)?' Clique sur « Ajouter une affiche » : choisis une ou plusieurs images sur ton ordinateur.':''}</div></div>`
+   :!vus.length?`<div class="panel"><div class="empty">Aucune affiche ne correspond à « ${esc(AFF_Q)} ».</div></div>`
+   :`<div id="affGrille" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
+      ${vus.map(a=>`<div class="panel" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:var(--panel-2);cursor:zoom-in;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden"
+             onclick="affVoir(${a.id})">
+          <img src="${esc(affSrc(a))}" alt="${esc(a.titre||'affiche')}" loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;display:block"
+               onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\\'color:var(--muted);font-size:.78rem;padding:14px;text-align:center\\'>🖼️ image introuvable<br><small>le fichier a été supprimé du dépôt</small></div>'">
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="font-weight:700;font-size:.86rem;line-height:1.3">${esc(a.titre||'Sans titre')}</div>
+          ${a.note?`<div style="color:var(--muted);font-size:.76rem;margin-top:3px">${esc(a.note)}</div>`:''}
+          <div style="color:var(--muted);font-size:.72rem;margin-top:6px">${esc(a.par||'?')} · ${esc(frDate(a.date))}</div>
+        </div>
+      </div>`).join('')}
+    </div>`}
+  <p style="color:var(--muted);font-size:.75rem;margin-top:14px">
+    Les images sont rangées dans le dépôt, pas dans la base : elles ne ralentissent rien.
+    Clique sur une affiche pour l'agrandir, copier son lien ou la publier sur Discord.</p>`;
+}
+function chercherAffiches(v){ AFF_Q=v; const r=repereEcran(); affiches(); restaureEcran(r); }
+/* Chemin du dépôt → adresse publique que <img> et Discord comprennent. */
+function affSrc(a){
+  if(!a) return '';
+  const c=String(a.chemin||'');
+  if(/^(https?:|data:)/.test(c)) return c;
+  const C=window.ROXWOOD_CFG||{};
+  return `https://raw.githubusercontent.com/${C.owner}/${C.repo}/${C.branche||'main'}/${c}`;
+}
+/* Une affiche porte du texte, et le texte est ce qui souffre le plus d'une
+   recompression : on n'y touche donc pas quand ce n'est pas nécessaire.
+
+   · Déjà raisonnable (≤ 1800 px de côté et ≤ 2,5 Mo) : on garde le fichier tel
+     quel, octet pour octet. Transparence conservée, lettres nettes.
+   · Trop grande : on ramène à 1800 px, puis on garde du PNG ou du JPEG celui
+     qui pèse le moins — le PNG gagne sur les aplats, le JPEG sur les photos. */
+const AFF_MAX_PX=1800, AFF_MAX_OCTETS=2.5*1024*1024;
+function affLireTelQuel(file){
+  return new Promise((ok,ko)=>{
+    const rd=new FileReader();
+    rd.onerror=()=>ko(new Error('lecture impossible'));
+    rd.onload=()=>ok(rd.result);
+    rd.readAsDataURL(file);
+  });
+}
+function affPrepare(file){
+  return new Promise((ok,ko)=>{
+    const img=new Image();
+    img.onerror=()=>{ URL.revokeObjectURL(img.src); ko(new Error('image illisible')); };
+    img.onload=async()=>{
+      const grand=Math.max(img.width,img.height);
+      URL.revokeObjectURL(img.src);
+      if(grand<=AFF_MAX_PX&&file.size<=AFF_MAX_OCTETS){
+        try{ return ok(await affLireTelQuel(file)); }catch(e){ /* on recompresse alors */ }
+      }
+      const k=Math.min(1,AFF_MAX_PX/grand);
+      const cv=document.createElement('canvas');
+      cv.width=Math.max(1,Math.round(img.width*k)); cv.height=Math.max(1,Math.round(img.height*k));
+      const ctx=cv.getContext('2d');
+      ctx.imageSmoothingQuality='high';
+      ctx.drawImage(img,0,0,cv.width,cv.height);
+      const jpg=cv.toDataURL('image/jpeg',.92);
+      let png=''; try{ png=cv.toDataURL('image/png'); }catch(e){}
+      ok((png&&png.length<jpg.length)?png:jpg);
+    };
+    img.src=URL.createObjectURL(file);
+  });
+}
+async function affAjouter(inp){
+  const fichiers=[...(inp.files||[])]; inp.value='';
+  if(!fichiers.length) return;
+  if(!RoxwoodGH.peutEcrire()) return toast('⚠️ Il faut un jeton d\'écriture — Mon profil');
+  const moi=(currentUser()||{}).user||'?';
+  let ok=0, ko=[];
+  for(const f of fichiers){
+    toast(`⏳ Envoi de ${f.name}…`, 60000);
+    try{
+      const data=await affPrepare(f);
+      const ext=(/^data:image\/(\w+)/.exec(data)||[,'jpg'])[1].replace('jpeg','jpg');
+      const chemin=`assets/affiches/${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+      const r=await RoxwoodGH.televerser(chemin, data, `🖼️ Affiche : ${f.name}`);
+      if(!r.chemin){ ko.push(`${f.name} — ${r.erreur}`); continue; }
+      S.affiches=S.affiches||[];
+      S.affiches.unshift({id:Date.now()+Math.floor(Math.random()*999), chemin,
+        titre:String(f.name).replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').trim().slice(0,70),
+        note:'', par:moi, date:jourISO(new Date())});
+      ok++;
+    }catch(e){ ko.push(`${f.name} — ${e.message||e}`); }
+  }
+  if(ok){ jlog(`${ok} affiche(s) ajoutée(s)`); save(); await sbPushNow(); }
+  affiches();
+  if(ok&&!ko.length) toast(`🖼️ ${ok} affiche(s) ajoutée(s)`);
+  else if(ok) toast(`🖼️ ${ok} ajoutée(s) · ${ko.length} refusée(s) : ${ko[0]}`, 9000);
+  else toast(`❌ Envoi refusé : ${ko[0]||'raison inconnue'}`, 9000);
+}
+function affVoir(id){
+  const a=(S.affiches||[]).find(x=>x.id===id); if(!a) return;
+  const moi=(currentUser()||{}).user||'';
+  const mien=String(a.par||'')===moi||((currentUser()||{}).role==='direction');
+  const peut=RoxwoodGH.peutEcrire()&&!isMembre()&&!isRO('affiches');
+  openModal(`<h3>🖼️ ${esc(a.titre||'Affiche')}</h3>
+  <div style="text-align:center;background:var(--panel-2);border-radius:10px;padding:10px;margin-bottom:14px">
+    <img src="${esc(affSrc(a))}" alt="" style="max-width:100%;max-height:56vh;border-radius:6px;display:block;margin:0 auto">
+  </div>
+  <div class="f-row"><label class="f-lbl">Titre</label>
+    <input class="field" id="affT" value="${esc(a.titre||'')}" ${peut?'':'disabled'}></div>
+  <div class="f-row"><label class="f-lbl">Note (à quoi elle sert, où l'utiliser…)</label>
+    <textarea class="field" id="affN" style="min-height:64px" ${peut?'':'disabled'}>${esc(a.note||'')}</textarea></div>
+  <p style="color:var(--muted);font-size:.76rem;margin:-4px 0 14px">Ajoutée par <b>${esc(a.par||'?')}</b> le ${esc(frDate(a.date))}.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-ghost btn-sm" onclick="affCopier(${a.id})">🔗 Copier le lien</button>
+    <a class="btn btn-ghost btn-sm" href="${esc(affSrc(a))}" target="_blank" rel="noopener">↗ Ouvrir en grand</a>
+    ${peut?`<button class="btn btn-gold btn-sm" onclick="affSave(${a.id})">Enregistrer</button>`:''}
+    ${(peut&&mien)?`<button class="btn btn-red btn-sm" style="margin-left:auto" onclick="affSuppr(${a.id})">🗑 Supprimer</button>`:''}
+  </div>
+  ${(peut&&!mien)?'<p style="color:var(--muted);font-size:.74rem;margin-top:10px">Seule la personne qui a ajouté cette affiche — ou la Direction — peut la supprimer.</p>':''}`);
+}
+function affCopier(id){
+  const a=(S.affiches||[]).find(x=>x.id===id); if(!a) return;
+  const u=affSrc(a);
+  const fini=()=>toast('🔗 Lien copié — colle-le sur Discord');
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(fini,()=>prompt('Copie ce lien :',u));
+  else prompt('Copie ce lien :',u);
+}
+function affSave(id){
+  const a=(S.affiches||[]).find(x=>x.id===id); if(!a) return;
+  a.titre=String(($('#affT')||{}).value||'').trim().slice(0,70);
+  a.note=String(($('#affN')||{}).value||'').trim().slice(0,240);
+  jlog(`Affiche modifiée : ${a.titre||'sans titre'}`);
+  save(); sbPushNow(); closeModal(); affiches(); toast('🖼️ Affiche enregistrée');
+}
+function affSuppr(id){
+  const a=(S.affiches||[]).find(x=>x.id===id); if(!a) return;
+  if(!confirm(`Supprimer l'affiche « ${a.titre||'sans titre'} » ?\n\nLe fichier est retiré du dépôt : les liens déjà collés sur Discord cesseront de fonctionner.`)) return;
+  pieceJointeSuppr(a.chemin, 'Affiche retirée');
+  S.affiches=(S.affiches||[]).filter(x=>x.id!==id);
+  jlog(`Affiche supprimée : ${a.titre||'sans titre'}`);
+  save(); sbPushNow(); closeModal(); affiches(); toast('🗑 Affiche supprimée');
 }
 
 /* ================== LOGS DISCORD ================== */

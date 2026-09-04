@@ -72,6 +72,7 @@ compteur.
 | Une seule grille de permissions | C-77 |
 | Postes : +3 postes, Web Master retiré | C-77 |
 | **Contrats hebdomadaires reconduits + registre des contrats** | C-78 |
+| Bibliothèque d'affiches publicitaires | C-79 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
