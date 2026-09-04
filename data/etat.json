@@ -16295,7 +16295,7 @@
   },
   "semaine": 36,
   "webhook": "",
-  "objectif": 275000,
+  "objectif": 375000,
   "salPoste": {
    "RH": 0,
    "Patron": 70000,
@@ -16398,9 +16398,9 @@
   "capBidons": 50,
   "salonContrats": "1328076154586009660"
  },
- "_cid": "bot",
- "_maj": 1788481985468,
- "_rev": "nthh84u4ako-mtm7zax6",
+ "_cid": "6zxz6drxx2u",
+ "_maj": 1788482313930,
+ "_rev": "k7u1neh9n4o-mtm870ww",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16409,13 +16409,13 @@
   "sheets": 1788222184505,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788475057204,
+  "journal": 1788482311899,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788475057204,
+  "settings": 1788482311899,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16423,11 +16423,21 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788481985468
+  "_tables": 1788482313930
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788482312436,
+   "u": "Diego Herrera",
+   "a": "Modification des paramètres"
+  },
+  {
+   "t": 1788482302607,
+   "u": "Diego Herrera",
+   "a": "Modification des paramètres"
+  },
   {
    "t": 1788475058527,
    "u": "Diego Herrera",
@@ -17917,16 +17927,6 @@
    "a": "Suppression du compte endrew paslase",
    "t": 1787330846725,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Enzo Morreti",
-   "t": 1787330844305,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Reese Miltod",
-   "t": 1787330839383,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18252,11 +18252,11 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:32:38.154Z",
+  "maj": "2026-09-04T00:38:38.432Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
-  "objectif": 275000,
+  "objectif": 375000,
   "effectif": 0,
   "clientsServis": 73,
   "top3": [],
@@ -23650,6 +23650,27 @@
     "role": "direction",
     "vu": "2026-09-04T00:32:33.918Z",
     "id": 1788481954965
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T00:35:33.912Z",
+    "id": 1788482134763
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T00:37:03.917Z",
+    "id": 1788482224757
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T00:38:33.930Z",
+    "id": 1788482315257
    }
   ],
   "oilroxwood_demandes": [],
