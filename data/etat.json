@@ -16095,7 +16095,12 @@
    "rh": [],
    "commercial": [],
    "respcom": [],
-   "assistdir": []
+   "assistdir": [
+    "prodder",
+    "quotascom",
+    "frecues",
+    "moi"
+   ]
   },
   "semaine": 36,
   "webhook": "",
@@ -16230,8 +16235,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489426034,
- "_rev": "ha9g9otra2-mtmcfgl6",
+ "_maj": 1788489432042,
+ "_rev": "l3x8r4mj8ef-mtmcfipd",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16240,13 +16245,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489426034,
+  "journal": 1788489432042,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489426034,
+  "settings": 1788489432042,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16261,6 +16266,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489432613,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « moi » → lecture seule 👁"
+  },
+  {
+   "t": 1788489431957,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frecues » → lecture seule 👁"
+  },
+  {
+   "t": 1788489431284,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotascom » → lecture seule 👁"
+  },
+  {
+   "t": 1788489430661,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « prodder » → lecture seule 👁"
+  },
   {
    "t": 1788489426605,
    "u": "Diego Herrera",
@@ -17740,26 +17765,6 @@
    "a": "Suppression du compte Helena Rhosé",
    "t": 1787330977792,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Diego Mendez",
-   "t": 1787330974279,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Robin Canella",
-   "t": 1787330972361,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Santi Show",
-   "t": 1787330958388,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Franck Parker",
-   "t": 1787330956487,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18085,7 +18090,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:37:10.458Z",
+  "maj": "2026-09-04T02:37:13.201Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
