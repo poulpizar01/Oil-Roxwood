@@ -16201,17 +16201,17 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "gila39ze88v",
- "_maj": 1788484449596,
- "_rev": "o6sbe15im3m-mtm9hqvo",
+ "_maj": 1788484535521,
+ "_rev": "ookhjc71icj-mtm9iks9",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788483962271,
+  "sheets": 1788484535521,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788483962271,
+  "journal": 1788484535521,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
@@ -16230,6 +16230,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788484536140,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 0 fiche(s) créée(s) · des cases vides complétées"
+  },
   {
    "t": 1788483963492,
    "u": "Diego Herrera",
@@ -17724,11 +17729,6 @@
    "a": "Suppression du compte Lukas Myngard",
    "t": 1787330850339,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte henry carry",
-   "t": 1787330848416,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18054,7 +18054,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T01:14:58.260Z",
+  "maj": "2026-09-04T01:15:37.017Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
