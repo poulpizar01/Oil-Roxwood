@@ -16295,7 +16295,7 @@
   },
   "semaine": 36,
   "webhook": "",
-  "objectif": 374997,
+  "objectif": 375000,
   "salPoste": {
    "RH": 0,
    "Patron": 70000,
@@ -16399,8 +16399,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "6zxz6drxx2u",
- "_maj": 1788482302070,
- "_rev": "u2u7pp94te-mtm86rle",
+ "_maj": 1788482311899,
+ "_rev": "0hbeup1xgubm-mtm86wp2",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16409,13 +16409,13 @@
   "sheets": 1788222184505,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788482302070,
+  "journal": 1788482311899,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788222184505,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788482302070,
+  "settings": 1788482311899,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16428,6 +16428,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788482312436,
+   "u": "Diego Herrera",
+   "a": "Modification des paramètres"
+  },
   {
    "t": 1788482302607,
    "u": "Diego Herrera",
@@ -17922,11 +17927,6 @@
    "a": "Suppression du compte endrew paslase",
    "t": 1787330846725,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Suppression du compte Enzo Morreti",
-   "t": 1787330844305,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18252,11 +18252,11 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T00:38:26.354Z",
+  "maj": "2026-09-04T00:38:32.966Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
-  "objectif": 374997,
+  "objectif": 375000,
   "effectif": 0,
   "clientsServis": 73,
   "top3": [],
