@@ -16095,9 +16095,7 @@
    "rh": [],
    "commercial": [],
    "respcom": [],
-   "assistdir": [
-    "prodder"
-   ]
+   "assistdir": []
   },
   "semaine": 36,
   "webhook": "",
@@ -16178,8 +16176,7 @@
     "maj"
    ],
    "assistdir": [
-    "effectif",
-    "prodder"
+    "effectif"
    ]
   },
   "prixBidonCom": 50,
@@ -16223,8 +16220,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489441294,
- "_rev": "fq44dn3r8mu-mtmcfpg1",
+ "_maj": 1788489441956,
+ "_rev": "k78dgb792s-mtmcftg3",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16233,13 +16230,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489441294,
+  "journal": 1788489441854,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489441294,
+  "settings": 1788489441854,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16247,13 +16244,18 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788489352546,
+  "_tables": 1788489441956,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489442425,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « prodder » → aucun accès"
+  },
   {
    "t": 1788489441865,
    "u": "Diego Herrera",
@@ -17748,11 +17750,6 @@
    "a": "Demande d'accès refusée : Momoow",
    "t": 1787399663182,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 1 708",
-   "t": 1787380433188,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -18078,7 +18075,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:37:21.937Z",
+  "maj": "2026-09-04T02:37:27.123Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -24078,6 +24075,13 @@
     "role": "direction",
     "vu": "2026-09-04T02:35:52.520Z",
     "id": 1788489352591
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-04T02:37:21.956Z",
+    "id": 1788489443158
    }
   ],
   "oilroxwood_demandes": [],
