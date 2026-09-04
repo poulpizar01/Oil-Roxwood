@@ -1,4 +1,4 @@
-# 📋 Chantiers — état au 3 septembre 2026, minuit
+# 📋 Chantiers — état au 4 septembre 2026, 2 h du matin
 
 > Les dix points du 2 septembre sont faits. Le bot et le site se parlent enfin,
 > et les rappels de contrat partent. Ce qui reste tient en deux listes.
@@ -58,6 +58,13 @@ compteur.
 | Logs sur 3 jours, filtre par coffre | C-61 · C-62 |
 | Le contrat annonce l'heure de son rappel | C-63 |
 | **Les rappels de contrat passent au bot Discord** | C-64 |
+| Coffres nommés dans les logs, filtre par coffre | C-65 · C-66 |
+| Recrutements comptés sur la semaine de travail, pas le lundi calendaire | C-67 |
+| **La fiche RH se remplit toute seule depuis Discord** | C-68 · C-70 |
+| Perdre son rôle Discord ferme la porte | C-71 · C-72 |
+| 🚨 Correction du blocage total du dashboard | C-73 |
+| Clé du développeur — un compte entre toujours | C-74 |
+| **Le rôle Discord est la seule source des accès** | C-75 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -79,26 +86,23 @@ rattrape tout contrat encore dans sa fenêtre de 3 h.
 
 ## 🔧 À faire par Thomas
 
-**Les secrets GitHub Actions.** C'est le dernier vrai blocage.
-`data/discord-logs.json` est figé au **31 août** : le workflow tourne bien (runs
-verts) mais le script sort aussitôt faute de secrets, et le run reste vert. Donc
-la rubrique Logs Discord et le relevé du fer sont morts. Dans **Settings →
-Secrets and variables → Actions** :
+**Envoyer les dernières versions — c'est la seule urgence.** `push.bat`.
+C-73 corrige le blocage qui empêchait *tout le monde* d'ouvrir le dashboard :
+tant qu'il n'est pas en ligne, l'équipe reste dehors. C-74 et C-75 partent avec.
 
-| Nom | Valeur |
-|---|---|
-| `DISCORD_BOT_TOKEN` | le token du bot, depuis `/root/Bot/.env` |
-| `DISCORD_CHANNEL_ID` | `1245400913066066099,1245400913473179729,1245400913473179732` |
-| `DISCORD_GUILD_ID` | `1245400912835510283` |
+**Les secrets GitHub Actions.** ✅ Réglé — les trois salons répondent 3/3. La
+première tentative avait échoué parce que la ligne entière `BOT_TOKEN=...`
+avait été collée dans le secret au lieu de la valeur seule.
 
-Puis **Actions → Sync logs Discord → Run workflow**, et vérifier que l'étape
-*Récupérer les messages du salon* annonce des messages au lieu de « manquant ».
+**Le compte de service GitHub.** Pour que le RH et les commerciaux puissent
+écrire sans avoir ton jeton personnel : créer un compte `oilroxwood-saisie`,
+l'ajouter en collaborateur du dépôt, et lui faire un jeton **classique** avec la
+portée `public_repo`. Un jeton *fine-grained* ne marche pas pour un
+collaborateur — il ne donne accès qu'aux dépôts que le compte possède.
 
-**Envoyer les dernières versions.** `push.bat` — C-64 attend dans le dossier.
-
-**Faire le ménage.** `git rm tv.html scripts/dm_feedback.py`. Et sur le VPS, le
+**Faire le ménage.** `git rm tv.html scripts/dm_feedback.py`. Sur le VPS, le
 fichier parasite `~/'ystemctl restart botoilroxwood'`, né d'une commande mal
-tapée.
+tapée. Et dans la fiche RH, les deux lignes de test (« O » et « test »).
 
 ---
 
@@ -108,8 +112,11 @@ tapée.
 sont réparés (C-57, C-62), mais rien n'a encore été confronté à de vraies
 données : le robot GitHub est à l'arrêt faute de secrets.
 
-**Recrutements automatiques depuis Discord.** Dépendait de la mise à jour du
-bot. C'est levé.
+**La fusion par section peut écraser une saisie.** Quand deux navigateurs
+enregistrent, c'est la section *entière* la plus récente qui gagne, pas la ligne.
+Les tables du bot sont déjà protégées (`TABLES_BOT`) ; la section `sheets` ne
+l'est pas, et c'est la cause probable de la Tablette du RH qui n'apparaissait
+pas. À traiter avec la même mécanique, ligne par ligne.
 
 **La clôture du lundi.** Le seul point de la liste d'origine jamais traité.
 Thomas voulait d'abord voir comment elle fonctionne aujourd'hui, étape par
@@ -123,6 +130,10 @@ Le jeton d'écriture GitHub est posé dans le navigateur de Thomas : ce qui est
 réglé dans Paramètres part enfin dans le dépôt. **Chaque personne qui doit
 modifier quelque chose a besoin de son propre jeton** (clic sur le voyant rond
 à côté d'ESPACE MEMBRE). Sans jeton, l'accès reste en lecture seule.
+
+Depuis C-75, **entrer et écrire sont deux choses séparées** : le rôle Discord
+ouvre la porte, le jeton donne le stylo. Retirer le rôle ferme la porte à la
+visite suivante ; retirer le jeton ne suffit pas, et inversement.
 
 Ne jamais lancer le bot sur deux machines à la fois : deux instances sur le même
 token se déconnectent mutuellement en boucle.
