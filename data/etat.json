@@ -16096,13 +16096,7 @@
    "commercial": [],
    "respcom": [],
    "assistdir": [
-    "prodder",
-    "quotascom",
-    "frecues",
-    "moi",
-    "profil",
-    "quotashist",
-    "agenda"
+    "prodder"
    ]
   },
   "semaine": 36,
@@ -16185,13 +16179,7 @@
    ],
    "assistdir": [
     "effectif",
-    "prodder",
-    "quotascom",
-    "frecues",
-    "moi",
-    "profil",
-    "quotashist",
-    "agenda"
+    "prodder"
    ]
   },
   "prixBidonCom": 50,
@@ -16235,8 +16223,8 @@
   "salonContrats": "1328076154586009660"
  },
  "_cid": "ylz59rxdeb",
- "_maj": 1788489437840,
- "_rev": "zgbdezkx6jc-mtmcfmtz",
+ "_maj": 1788489441294,
+ "_rev": "fq44dn3r8mu-mtmcfpg1",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16245,13 +16233,13 @@
   "sheets": 1788484895362,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788489437840,
+  "journal": 1788489441294,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788446621667,
   "imported": 1788222184505,
-  "settings": 1788489437840,
+  "settings": 1788489441294,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16266,6 +16254,36 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788489441865,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotascom » → aucun accès"
+  },
+  {
+   "t": 1788489441306,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « frecues » → aucun accès"
+  },
+  {
+   "t": 1788489440743,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « moi » → aucun accès"
+  },
+  {
+   "t": 1788489440153,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « profil » → aucun accès"
+  },
+  {
+   "t": 1788489439606,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotashist » → aucun accès"
+  },
+  {
+   "t": 1788489438972,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « agenda » → aucun accès"
+  },
   {
    "t": 1788489438411,
    "u": "Diego Herrera",
@@ -17735,36 +17753,6 @@
    "a": "Fer acheté noté : Julio Collins → 1 708",
    "t": 1787380433188,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Vente rapide sans facture : 250 bidon(s) — Citoyen (vendeur : Julio Collins)",
-   "t": 1787379462515,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Demande d'accès refusée : Momoow",
-   "t": 1787361066252,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
-   "t": 1787361051791,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Contrat de travail généré : John Daltone (Runner)",
-   "t": 1787357181560,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Sevan Vargas (Runner)",
-   "t": 1787352064174,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Alejandro Varrgas (Runner)",
-   "t": 1787352032325,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18090,7 +18078,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-04T02:37:18.551Z",
+  "maj": "2026-09-04T02:37:21.937Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
