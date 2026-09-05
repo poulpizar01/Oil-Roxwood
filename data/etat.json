@@ -16225,8 +16225,8 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "hzlk2wbs65u",
- "_maj": 1788644609827,
+ "_cid": "bot",
+ "_maj": 1788644678487,
  "_rev": "6pkwlsi5zmn-mtowut5k",
  "_majSec": {
   "fer": 1788222184505,
@@ -16250,7 +16250,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788644609827,
+  "_tables": 1788644678487,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -31295,6 +31295,17 @@
     "idU": "0",
     "grade": "Direction",
     "recrut": "Diego Herrera",
+    "arrivee": "2026-09-05"
+   },
+   {
+    "id": 1788644677845,
+    "nom": "Lip Stuarts",
+    "discord": "729961412142563380",
+    "tel": "555 216 520",
+    "rib": "560091",
+    "idU": "378579",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
     "arrivee": "2026-09-05"
    }
   ],
