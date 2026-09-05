@@ -1,6 +1,33 @@
 {
- "maj": "2026-09-05T08:35:22.684919Z",
+ "maj": "2026-09-05T12:02:36.308813Z",
  "achats": [
+  {
+   "id": "1545754800782577776",
+   "t": "2026-09-05 11:17",
+   "nom": "Laurent Roquel",
+   "quantite": 145,
+   "montant": 725,
+   "texte": "Achat fer\na acheté 145x fer pour 725$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 7369\nplayerDiscord : 707695913187016785\nplayerName : BoldCat6073\nplayerCharacter : Laurent Roquel\nplayerId : 282695\nitemId : iron",
+   "did": "707695913187016785"
+  },
+  {
+   "id": "1545754551649304658",
+   "t": "2026-09-05 11:16",
+   "nom": "Laurent Roquel",
+   "quantite": 125,
+   "montant": 625,
+   "texte": "Achat fer\na acheté 125x fer pour 625$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 7369\nplayerDiscord : 707695913187016785\nplayerName : BoldCat6073\nplayerCharacter : Laurent Roquel\nplayerId : 282695\nitemId : iron\nAchat fer\na acheté 100x fer pour 500$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : ",
+   "did": "707695913187016785"
+  },
+  {
+   "id": "1545754302763761707",
+   "t": "2026-09-05 11:15",
+   "nom": "Laurent Roquel",
+   "quantite": 125,
+   "montant": 625,
+   "texte": "Achat fer\na acheté 125x fer pour 625$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 7369\nplayerDiscord : 707695913187016785\nplayerName : BoldCat6073\nplayerCharacter : Laurent Roquel\nplayerId : 282695\nitemId : iron\nAchat fer\na acheté 125x fer pour 625$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : ",
+   "did": "707695913187016785"
+  },
   {
    "id": "1543669694056370261",
    "t": "2026-08-30 17:12",
