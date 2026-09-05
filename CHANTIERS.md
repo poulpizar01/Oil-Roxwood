@@ -74,6 +74,7 @@ compteur.
 | **Contrats hebdomadaires reconduits + registre des contrats** | C-78 |
 | Bibliothèque d'affiches publicitaires | C-79 |
 | Menu réorganisé par métier (7 pôles) | C-80 |
+| Absences Discord reprises automatiquement — *côté site fait, cog bot à brancher* | C-81 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -114,6 +115,32 @@ grilles qui se contredisaient : celle des onglets disait « RH voit la Compta »
 celle des feuilles la cachait quand même. Depuis C-77 il n'en reste qu'une, et
 c'est la visible qui gagne — donc le RH voit maintenant Compta et Blacklist,
 parce que c'est ce qui était coché. Si ce n'est pas voulu, un clic sur la case.
+
+**Brancher les absences (C-81).** Tout est prêt, il reste à poser les fichiers
+sur le VPS. Depuis le PC :
+
+```
+scp "C:\Users\thoma\OneDrive\Bureau\BOT\cogs\site_bridge.py" root@178.104.236.198:/root/Bot/cogs/
+scp -r "C:\Users\thoma\OneDrive\Bureau\BOT\patch_absences" root@178.104.236.198:/root/
+```
+
+Puis sur le VPS :
+
+```
+python3 /root/patch_absences/patcher.py
+python3 -m py_compile /root/Bot/cogs/absences.py /root/Bot/cogs/site_bridge.py
+systemctl restart botoilroxwood
+journalctl -u botoilroxwood -n 20 --no-pager
+```
+
+`patcher.py` sauvegarde l'original en `absences.py.avant`, refuse d'agir si le
+fichier ne ressemble pas à ce qui est attendu, et compile le résultat avant de
+remplacer quoi que ce soit. Le relancer deux fois ne fait rien.
+
+**Le champ « Date » du formulaire Discord est du texte libre.** Le pont lit
+`12/09/2026`, `12-09`, `12 septembre`, `1er octobre`, `2026-09-12`. Ce qu'il ne
+sait pas lire (« lundi prochain ») fait apparaître un message éphémère au RH :
+absence acceptée, mais à saisir à la main.
 
 **L'identifiant du rôle « Assistant de direction ».** Sa ligne existe déjà dans
 Paramètres → Connexion par rôle Discord, vide. Colle l'identifiant quand le rôle

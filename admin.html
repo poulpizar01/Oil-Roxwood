@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-80</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-81</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -306,7 +306,7 @@ function save(){
    écriture du bot ferait donc disparaître la table des coffres de sa copie —
    puis l'effacerait du dépôt à son prochain envoi. Ces tables-là n'ont qu'un
    auteur, il n'y a rien à arbitrer : on les reprend toujours du dépôt. */
-const TABLES_BOT=['oilroxwood_coffres','oilroxwood_recrues'];
+const TABLES_BOT=['oilroxwood_coffres','oilroxwood_recrues','oilroxwood_absences'];
 function mergeRemote(rem){
   // fusion section par section : pour chacune, la plus récente gagne
   let changed=false, localNewer=false;
@@ -928,7 +928,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-80';
+const APP_VERSION='C-81';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1326,6 +1326,11 @@ function show(v){
   if(purgeSupprimees()&&!isMembre()){ save(); sbQueue(); }   // rubriques supprimées : leurs données ne reviennent pas
   if(migrerPerms()&&!isMembre()){ save(); sbQueue(); }       // listes de permissions citant d'anciennes rubriques
   if(migrerAffiches()&&!isMembre()){ save(); sbQueue(); }    // rubrique Affiches ajoutée après coup
+  if(!isMembre()){                                           // absences validées sur Discord
+    const abs=importerAbsences();
+    if(abs){ jlog(`Absences Discord reprises : ${abs.join(' · ')}`); save(); sbQueue();
+             setTimeout(()=>toast(`🌴 ${abs.length} absence(s) reprise(s) depuis Discord — ${abs.join(', ')}`,7000),400); }
+  }
   const al=allowedViews();
   if(!al.includes(v)) v=al[0]||'overview'; // vue non autorisée → première vue permise
   const memeVue=(v===VIEW);
@@ -3960,6 +3965,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-81',d:'05/09/2026',t:'Une absence validée sur Discord se déclare toute seule',items:[
+   ['🌴','Fini la double saisie','Le RH validait l\'absence sur Discord, puis venait la re-saisir ici. Deux fois le même geste, donc un jour sur deux la deuxième fois n\'avait pas lieu : le dashboard rétrogradait quelqu\'un en congé, le pointage l\'affichait en démission probable, et personne ne comprenait pourquoi. Le bot dépose maintenant l\'absence validée, le site la reprend.'],
+   ['🪪','C\'est le bot qui traduit l\'identité','Le dashboard connaît les gens par leur nom RP, Discord par un identifiant. La traduction se fait côté bot, qui a la fiche sous la main au moment de valider : il regarde les comptes d\'accès, puis la colonne « discord » de la fiche RH — remplie toute seule depuis que les recrutements s\'y déversent.'],
+   ['🛡️','Ni doublon, ni boucle','Une absence déjà saisie à la main aux mêmes dates n\'est pas reprise une seconde fois. Et une absence trop ancienne est ignorée à l\'import : sinon le ménage automatique l\'effaçait, l\'import la remettait, indéfiniment.'],
+   ['👁','On voit d\'où elle vient','Dans la fenêtre Absences, une ligne venue de Discord porte la mention, le nom de qui a validé, et le motif s\'il y en avait un.'],
+ ]},
  {v:'C-80',d:'04/09/2026',t:'Le menu rangé par métier',items:[
    ['🗂','Sept pôles, refaits selon l\'organigramme','Ressources humaines · Commerce · Compta · Responsable Runner · Quotas · Perso · Système. « Pilotage » et « Gestion » disparaissent : c\'étaient des étiquettes de commodité, pas des métiers — on y cherchait la Tablette sans savoir si elle relevait de la gestion ou de la compta.'],
    ['🔀','Ce qui a bougé','La Tablette, les Factures reçues, le Bilan, la Clôture du lundi et Semaine & Primes passent en Compta. La Vue d\'ensemble, l\'Historique et les Comptes-rendus rejoignent l\'Éligibilité chez le Responsable Runner. Les Quotas 3 semaines quittent Perso pour leur propre pôle. Les Mises à jour passent en Système, à côté du Journal.'],
@@ -4971,6 +4982,45 @@ function absSemPrec(nom){
   const low=String(nom||'').toLowerCase().trim();
   return (S.absences||[]).find(a=>String(a.nom||'').toLowerCase().trim()===low&&a.du<=sp.au&&a.au>=sp.du)||null;
 }
+/* ---- Les absences validées sur Discord se déclarent toutes seules ----
+
+   Le RH validait une absence sur Discord, puis venait la re-saisir ici. Deux
+   fois le même geste, donc un jour sur deux la deuxième fois n'a pas lieu : le
+   dashboard rétrograde quelqu'un en congé, le pointage l'affiche en démission
+   probable, et personne ne comprend pourquoi.
+
+   Le bot dépose l'absence validée dans une file (`_tables.oilroxwood_absences`)
+   et le site la reprend. Deux garde-fous :
+   · l'identité tient au NOM RP, pas à l'identifiant Discord — c'est le nom que
+     portent l'Effectif et la fiche RH ; c'est le bot qui fait la traduction,
+     parce que lui seul a la fiche sous la main au moment de valider ;
+   · une absence déjà terminée avant la semaine passée n'est pas reprise, sinon
+     absPurge() l'effacerait et l'import la ferait revenir à chaque passage. */
+function importerAbsences(){
+  const file=((S._tables&&S._tables.oilroxwood_absences)||[]);
+  if(!file.length) return null;
+  const sp=semainePrec();
+  S.absences=S.absences||[];
+  const ajoutes=[];
+  file.forEach(r=>{
+    const nom=String(r.nom||'').trim();
+    const du=String(r.du||'').slice(0,10), au=String(r.au||'').slice(0,10);
+    if(!nom||!/^\d{4}-\d{2}-\d{2}$/.test(du)||!/^\d{4}-\d{2}-\d{2}$/.test(au)) return;
+    if(au<du) return;
+    if(au<sp.du) return;                       // trop ancienne : absPurge l'effacerait aussitôt
+    const src=String(r.id||'');
+    const low=nom.toLowerCase();
+    const deja=S.absences.find(a=>
+      (src&&String(a.srcId||'')===src) ||
+      (String(a.nom||'').toLowerCase().trim()===low&&a.du===du&&a.au===au));
+    if(deja) return;
+    S.absences.push({id:Date.now()+Math.floor(Math.random()*9999),nom,du,au,srcId:src,
+      motif:String(r.motif||'').trim().slice(0,140), par:String(r.par||'').trim(), auto:true});
+    ajoutes.push(nom);
+  });
+  return ajoutes.length?ajoutes:null;
+}
+
 /* Une absence terminée avant la semaine passée n'apprend plus rien : on l'efface.
    Renvoie le nombre de lignes retirées. */
 function absPurge(){
@@ -4992,7 +5042,8 @@ function absModal(){
   const enCours=tri.filter(a=>a.au>=auj);       // en cours ou à venir
   const finies=tri.filter(a=>a.au<auj);         // terminées, gardées une semaine pour l'Effectif
   openModal(`<h3>🌴 Absences déclarées</h3>
-  <p style="color:var(--muted);font-size:.8rem;margin-bottom:14px">Une absence déclarée bloque la descente de grade, désactive l'alerte « démission ? » du pointage RH et retire les commerciaux du partage des quotas.</p>
+  <p style="color:var(--muted);font-size:.8rem;margin-bottom:14px">Une absence déclarée bloque la descente de grade, désactive l'alerte « démission ? » du pointage RH et retire les commerciaux du partage des quotas.
+  <br><b style="color:var(--accent)">Les absences validées sur Discord arrivent ici toutes seules</b> — inutile de les re-saisir.</p>
   <div class="f-row"><label class="f-lbl">Membre (fiche RH)</label>
     <select class="field" id="abN">${noms.map(n=>`<option>${esc(n)}</option>`).join('')}</select></div>
   <div class="f-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -5002,7 +5053,7 @@ function absModal(){
   <button class="btn btn-gold" style="width:100%;margin-bottom:16px" onclick="absAdd()">Déclarer l'absence</button>
   ${enCours.length?`<label class="f-lbl">En cours et à venir</label>
   ${enCours.map(a=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.85rem">
-    <span>🌴 <b>${esc(a.nom)}</b> · du ${frDate(a.du)} au ${frDate(a.au)}</span>
+    <span>🌴 <b>${esc(a.nom)}</b> · du ${frDate(a.du)} au ${frDate(a.au)}${a.auto?' <small style="color:var(--accent)">· validée sur Discord'+(a.par?' par '+esc(a.par):'')+'</small>':''}${a.motif?`<br><small style="color:var(--muted);margin-left:20px">${esc(a.motif)}</small>`:''}</span>
     <span style="white-space:nowrap">
       ${(a.du<=auj&&auj<=a.au)?`<button class="btn btn-sm btn-gold" onclick="absRetour(${a.id})" title="Clôt l'absence à hier : la personne redevient active dès maintenant">✔ De retour</button> `:''}
       <button class="btn btn-sm btn-red" onclick="absDel(${a.id})">✕</button>
