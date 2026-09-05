@@ -2921,7 +2921,7 @@
     "actif": true,
     "avert": "",
     "grade": "RH",
-    "recrut": "",
+    "recrut": "Diego Herrera",
     "arrivee": "2026-06-22",
     "contrat": true,
     "discord": "438358976141328404",
@@ -16226,17 +16226,17 @@
   "postesV4": 1
  },
  "_cid": "hzlk2wbs65u",
- "_maj": 1788621738375,
- "_rev": "scwntqgate-mtoj7co6",
+ "_maj": 1788621763084,
+ "_rev": "2yly66nfbt7-mtoj7tcy",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788525476465,
+  "sheets": 1788621763084,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788604803672,
+  "journal": 1788621763084,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16260,6 +16260,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788621762787,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 0 fiche(s) créée(s), 1 case(s) complétée(s) — Thomas Boyer"
+  },
   {
    "t": 1788604803635,
    "u": "Diego Herrera",
@@ -17754,11 +17759,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787479126795,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : 🐦‍🔥 DragonsBallTv 🐦‍🔥",
-   "t": 1787479125603,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18094,7 +18094,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-05T15:22:21.798Z",
+  "maj": "2026-09-05T15:22:43.426Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
