@@ -16225,9 +16225,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bot",
- "_maj": 1788604786370,
- "_rev": "vxiwx608p7-mto93i0o",
+ "_cid": "fjybe4mfld",
+ "_maj": 1788604803672,
+ "_rev": "9q4a0ugfjo-mto94b4h",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16236,11 +16236,11 @@
   "sheets": 1788525476465,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788557789855,
+  "journal": 1788604803672,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
-  "absences": 1788446621667,
+  "absences": 1788604803672,
   "imported": 1788222184505,
   "settings": 1788557789855,
   "closeUndo": 1788222184505,
@@ -16250,7 +16250,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788604786370,
+  "_tables": 1788604803672,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -16260,6 +16260,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788604803635,
+   "u": "Diego Herrera",
+   "a": "Absences Discord reprises : Diego Herrera"
+  },
   {
    "t": 1788557789796,
    "u": "Diego Herrera",
@@ -17754,11 +17759,6 @@
    "a": "Demande d'accès refusée : 🐦‍🔥 DragonsBallTv 🐦‍🔥",
    "t": 1787479125603,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : .Lucas",
-   "t": 1787479124290,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18081,10 +18081,20 @@
    "du": "2026-08-25",
    "id": 1788126618598,
    "nom": "John Clair"
+  },
+  {
+   "id": 1788604804728,
+   "nom": "Diego Herrera",
+   "du": "2026-09-05",
+   "au": "2026-09-06",
+   "srcId": "1788604785919",
+   "motif": "test",
+   "par": "⚫ Diego Herrera",
+   "auto": true
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-05T10:39:25.944Z",
+  "maj": "2026-09-05T10:40:03.665Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -28466,6 +28476,13 @@
     "role": "direction",
     "vu": "2026-09-05T10:39:22.399Z",
     "id": 1788604762754
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-05T10:40:02.888Z",
+    "id": 1788604803881
    }
   ],
   "oilroxwood_demandes": [],
