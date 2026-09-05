@@ -2906,7 +2906,7 @@
     "actif": true,
     "avert": "",
     "grade": "Co Patron",
-    "recrut": "",
+    "recrut": "Diego Herrera",
     "arrivee": "2025-08-31",
     "contrat": true,
     "discord": "826526979204841482",
@@ -16226,17 +16226,17 @@
   "postesV4": 1
  },
  "_cid": "hzlk2wbs65u",
- "_maj": 1788622829852,
- "_rev": "v90mi7drbre-mtojupmn",
+ "_maj": 1788622831549,
+ "_rev": "5laivgq3t5q-mtojuuvr",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788621763084,
+  "sheets": 1788622831549,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788621763084,
+  "journal": 1788622831549,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16250,7 +16250,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788622829852,
+  "_tables": 1788622831549,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -16260,6 +16260,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788622831875,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 0 fiche(s) créée(s), 1 case(s) complétée(s) — Diego Herrera"
+  },
   {
    "t": 1788621762787,
    "u": "Diego Herrera",
@@ -17754,11 +17759,6 @@
    "a": "Contrat de travail généré : Yuri Jing (Runner)",
    "t": 1787479155591,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787479126795,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18094,7 +18094,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-05T15:40:31.679Z",
+  "maj": "2026-09-05T15:40:38.487Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
