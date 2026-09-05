@@ -16240,8 +16240,8 @@
   "postesV4": 1
  },
  "_cid": "hzlk2wbs65u",
- "_maj": 1788646217775,
- "_rev": "065bf3eq9qds-mtoxs1u1",
+ "_maj": 1788646238735,
+ "_rev": "21c4eogk5msj-mtoxsflm",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16250,11 +16250,11 @@
   "sheets": 1788644791050,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788644791050,
+  "journal": 1788646238735,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
-  "absences": 1788604803672,
+  "absences": 1788646238735,
   "imported": 1788222184505,
   "settings": 1788557789855,
   "closeUndo": 1788222184505,
@@ -16274,6 +16274,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788646239031,
+   "u": "Diego Herrera",
+   "a": "Absences Discord reprises : Diego Herrera"
+  },
+  {
+   "t": 1788646239010,
+   "u": "Diego Herrera",
+   "a": "Absence supprimée : Diego Herrera (du 05/09/2026 au 06/09/2026)"
+  },
   {
    "t": 1788644791386,
    "u": "Diego Herrera",
@@ -17763,16 +17773,6 @@
    "a": "Contrat de travail généré : Abdel Hafy (Runner)",
    "t": 1787484303170,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Morino Collins du 24/08/2026 au 30/08/2026",
-   "t": 1787479810372,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Issac Bennet du 22/08/2026 au 23/08/2026",
-   "t": 1787479777832,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18097,7 +18097,7 @@
    "nom": "John Clair"
   },
   {
-   "id": 1788604804728,
+   "id": 1788646246448,
    "nom": "Diego Herrera",
    "du": "2026-09-05",
    "au": "2026-09-06",
@@ -18108,7 +18108,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-05T22:10:22.153Z",
+  "maj": "2026-09-05T22:10:39.994Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
