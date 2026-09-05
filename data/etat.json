@@ -2850,6 +2850,20 @@
  "sheets": {
   "rh": [
    {
+    "nom": "Lip Stuarts",
+    "grade": "Intérimaire",
+    "tel": "555 216 520",
+    "rib": "560091",
+    "idU": "378579",
+    "arrivee": "2026-09-05",
+    "discord": "729961412142563380",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
     "idU": "232050",
     "nom": "Stella Collins",
     "rib": "374543",
@@ -16226,17 +16240,17 @@
   "postesV4": 1
  },
  "_cid": "hzlk2wbs65u",
- "_maj": 1788644789829,
- "_rev": "44oh87lhihk-mtowxdt0",
+ "_maj": 1788644791050,
+ "_rev": "b673cconpwu-mtowxit7",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788622831549,
+  "sheets": 1788644791050,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788622831549,
+  "journal": 1788644791050,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16250,7 +16264,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788644789829,
+  "_tables": 1788644791050,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -16260,6 +16274,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788644791386,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 1 fiche(s) créée(s), 0 case(s) complétée(s) — Lip Stuarts"
+  },
   {
    "t": 1788622831875,
    "u": "Diego Herrera",
@@ -17754,11 +17773,6 @@
    "a": "Absence déclarée : Issac Bennet du 22/08/2026 au 23/08/2026",
    "t": 1787479777832,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Yuri Jing (Runner)",
-   "t": 1787479155591,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18094,7 +18108,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-05T21:46:31.332Z",
+  "maj": "2026-09-05T21:46:37.819Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
