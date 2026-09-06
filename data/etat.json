@@ -16240,7 +16240,7 @@
   "postesV4": 1
  },
  "_cid": "bot",
- "_maj": 1788653745810,
+ "_maj": 1788653912990,
  "_rev": "3wynrkwkhrj-mtp01bqs",
  "_majSec": {
   "fer": 1788222184505,
@@ -16264,7 +16264,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788653745810,
+  "_tables": 1788653912990,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -31749,6 +31749,17 @@
     "tel": "555099881",
     "rib": "559915",
     "idU": "378432",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-06"
+   },
+   {
+    "id": 1788653912416,
+    "nom": "Pablo Escocha",
+    "discord": "474805631824560129",
+    "tel": "560060",
+    "rib": "560060",
+    "idU": "378555",
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-06"
