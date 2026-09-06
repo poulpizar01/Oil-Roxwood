@@ -16239,9 +16239,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "hzlk2wbs65u",
+ "_cid": "edbl5b946w",
  "_maj": 1788705628854,
- "_rev": "96soxvbyjhr-mtpx5dqj",
+ "_rev": "ojc5uriu7jr-mtpx5vfl",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16250,11 +16250,11 @@
   "sheets": 1788644791050,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788702929793,
+  "journal": 1788646588896,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
-  "absences": 1788702929793,
+  "absences": 1788646588896,
   "imported": 1788222184505,
   "settings": 1788557789855,
   "closeUndo": 1788222184505,
@@ -16264,7 +16264,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788705628854,
+  "_tables": 1788646588895,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -18128,7 +18128,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-06T14:40:30.667Z",
+  "maj": "2026-09-06T14:40:53.601Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
