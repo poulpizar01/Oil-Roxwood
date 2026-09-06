@@ -2850,6 +2850,34 @@
  "sheets": {
   "rh": [
    {
+    "nom": "Pablo Escocha",
+    "grade": "Intérimaire",
+    "tel": "560060",
+    "rib": "560060",
+    "idU": "378555",
+    "arrivee": "2026-09-06",
+    "discord": "474805631824560129",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Maximilien Hover",
+    "grade": "Intérimaire",
+    "tel": "555099881",
+    "rib": "559915",
+    "idU": "378432",
+    "arrivee": "2026-09-06",
+    "discord": "341239110058639370",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
     "nom": "Lip Stuarts",
     "grade": "Intérimaire",
     "tel": "555 216 520",
@@ -3209,7 +3237,7 @@
     "actif": true,
     "avert": "",
     "grade": "Intérimaire",
-    "recrut": "",
+    "recrut": "Thomas Boyer",
     "arrivee": "2026-06-18",
     "contrat": true,
     "discord": "1239697350138658919",
@@ -16241,16 +16269,16 @@
  },
  "_cid": "edbl5b946w",
  "_maj": 1788705628854,
- "_rev": "ojc5uriu7jr-mtpx5vfl",
+ "_rev": "xvkqhaga94m-mtpx6d6y",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788644791050,
+  "sheets": 1788646610879,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788646588896,
+  "journal": 1788646610879,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16274,6 +16302,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788705675560,
+   "u": "Diego Herrera",
+   "a": "Recrutements Discord : 2 fiche(s) créée(s), 1 case(s) complétée(s) — Maximilien Hover, Pablo Escocha, Adam Wade"
+  },
   {
    "t": 1788702930898,
    "u": "Diego Herrera",
@@ -17768,11 +17801,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787498499673,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 4 bidon(s) — Employé tony clarck (vendeur : Julio Collins)",
-   "t": 1787498304536,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -18128,7 +18156,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-06T14:40:53.601Z",
+  "maj": "2026-09-06T14:41:16.618Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
