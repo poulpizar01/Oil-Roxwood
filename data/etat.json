@@ -16240,7 +16240,7 @@
   "postesV4": 1
  },
  "_cid": "bot",
- "_maj": 1788660447774,
+ "_maj": 1788660453592,
  "_rev": "3wynrkwkhrj-mtp01bqs",
  "_majSec": {
   "fer": 1788222184505,
@@ -16264,7 +16264,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788660447774,
+  "_tables": 1788660453592,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -31771,6 +31771,17 @@
     "tel": "555-803-364",
     "rib": "560114",
     "idU": "361708",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-06"
+   },
+   {
+    "id": 1788660452726,
+    "nom": "ivar frost",
+    "discord": "1239697350138658919",
+    "tel": "555 226 629",
+    "rib": "560115",
+    "idU": "370366",
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-06"
