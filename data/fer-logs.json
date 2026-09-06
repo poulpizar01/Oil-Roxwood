@@ -1,6 +1,15 @@
 {
- "maj": "2026-09-06T17:42:39.264952Z",
+ "maj": "2026-09-06T19:30:46.948300Z",
  "achats": [
+  {
+   "id": "1546225473691062324",
+   "t": "2026-09-06 18:28",
+   "nom": "Stella Collins",
+   "quantite": 118,
+   "montant": 590,
+   "texte": "Achat fer\na acheté 118x fer pour 590$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 2960\nplayerDiscord : 948542221429379112\nplayerName : IcyToad7886\nplayerCharacter : Stella Collins\nplayerId : 232050\nitemId : iron",
+   "did": "948542221429379112"
+  },
   {
    "id": "1546178162398863361",
    "t": "2026-09-06 15:20",
