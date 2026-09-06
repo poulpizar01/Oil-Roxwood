@@ -1,6 +1,24 @@
 {
- "maj": "2026-09-06T12:40:52.424704Z",
+ "maj": "2026-09-06T15:44:54.374232Z",
  "achats": [
+  {
+   "id": "1546178162398863361",
+   "t": "2026-09-06 15:20",
+   "nom": "Emma Collins-rodriguez",
+   "quantite": 52,
+   "montant": 260,
+   "texte": "Achat fer\na acheté 52x fer pour 260$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 953\nplayerDiscord : 1053366471574687844\nplayerName : SlowMouse3303\nplayerCharacter : Emma Collins-rodriguez\nplayerId : 227799\nitemId : iron",
+   "did": "1053366471574687844"
+  },
+  {
+   "id": "1546177924036698221",
+   "t": "2026-09-06 15:19",
+   "nom": "William Rodriguez-collins",
+   "quantite": 125,
+   "montant": 625,
+   "texte": "Achat fer\na acheté 125x fer pour 625$\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 1447\nplayerDiscord : 235844738656239616\nplayerName : Wiken\nplayerCharacter : William Rodriguez-collins\nplayerId : 46658\nitemId : iron\nAchat fer\na acheté 150x fer pour 750$\njobId : 76\njobName : Oil RoxWood\nplayerNetI",
+   "did": "235844738656239616"
+  },
   {
    "id": "1546133104349945949",
    "t": "2026-09-06 12:20",
