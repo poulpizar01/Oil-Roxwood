@@ -16239,8 +16239,8 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "t1kuf5ageh",
- "_maj": 1788650009866,
+ "_cid": "bot",
+ "_maj": 1788653745810,
  "_rev": "3wynrkwkhrj-mtp01bqs",
  "_majSec": {
   "fer": 1788222184505,
@@ -16264,7 +16264,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788650009866,
+  "_tables": 1788653745810,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -31741,6 +31741,17 @@
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-05"
+   },
+   {
+    "id": 1788653745349,
+    "nom": "Maximilien Hover",
+    "discord": "341239110058639370",
+    "tel": "555099881",
+    "rib": "559915",
+    "idU": "378432",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-06"
    }
   ],
   "oilroxwood_absences": [
