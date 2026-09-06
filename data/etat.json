@@ -2861,7 +2861,11 @@
     "contrat": false,
     "recrut": "Thomas Boyer",
     "dernierService": "",
-    "flagOut": false
+    "flagOut": false,
+    "contratGen": {
+     "t": 1788711331304,
+     "par": "Diego Herrera"
+    }
    },
    {
     "nom": "Maximilien Hover",
@@ -16268,17 +16272,17 @@
   "postesV4": 1
  },
  "_cid": "edbl5b946w",
- "_maj": 1788711321616,
- "_rev": "chfw3vtuw2q-mtq0jhnv",
+ "_maj": 1788711331305,
+ "_rev": "ushvo30ntar-mtq0jm0b",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788222184505,
-  "sheets": 1788646610879,
+  "sheets": 1788711331305,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788702929793,
+  "journal": 1788711331305,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16302,6 +16306,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788711332401,
+   "u": "Diego Herrera",
+   "a": "Contrat de travail généré : Pablo Escocha (Runner)"
+  },
   {
    "t": 1788702930898,
    "u": "Diego Herrera",
@@ -17796,11 +17805,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787498499673,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 4 bidon(s) — Employé tony clarck (vendeur : Julio Collins)",
-   "t": 1787498304536,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -18156,7 +18160,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-06T16:15:27.787Z",
+  "maj": "2026-09-06T16:15:33.420Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
