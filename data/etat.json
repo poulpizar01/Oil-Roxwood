@@ -16239,9 +16239,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bot",
- "_maj": 1788702794028,
- "_rev": "qrg2yhxv4v-mtpvfnu6",
+ "_cid": "hzlk2wbs65u",
+ "_maj": 1788702809680,
+ "_rev": "kit9laer8vg-mtpvgxy0",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16250,11 +16250,11 @@
   "sheets": 1788644791050,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788646238735,
+  "journal": 1788702809680,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
-  "absences": 1788646238735,
+  "absences": 1788702809680,
   "imported": 1788222184505,
   "settings": 1788557789855,
   "closeUndo": 1788222184505,
@@ -16274,6 +16274,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788702810785,
+   "u": "Diego Herrera",
+   "a": "Absences Discord reprises : Lucas Vettel"
+  },
   {
    "t": 1788646239031,
    "u": "Diego Herrera",
@@ -17768,11 +17773,6 @@
    "a": "Fer acheté noté : Emma Collins-rodriguez → 1 500",
    "t": 1787498183419,
    "u": "Emma Collins"
-  },
-  {
-   "a": "Contrat de travail généré : Abdel Hafy (Runner)",
-   "t": 1787484303170,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18105,10 +18105,20 @@
    "motif": "test",
    "par": "⚫ Diego Herrera",
    "auto": true
+  },
+  {
+   "id": 1788702817165,
+   "nom": "Lucas Vettel",
+   "du": "2026-09-05",
+   "au": "2026-09-07",
+   "srcId": "1788702793387",
+   "motif": "",
+   "par": "⚫ Thomas Boyer",
+   "auto": true
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-06T13:52:31.086Z",
+  "maj": "2026-09-06T13:53:30.840Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
