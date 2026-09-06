@@ -16239,8 +16239,8 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "hzlk2wbs65u",
- "_maj": 1788702809680,
+ "_cid": "bot",
+ "_maj": 1788702818163,
  "_rev": "t4p5pvdu5tg-mtpvh0ti",
  "_majSec": {
   "fer": 1788222184505,
@@ -16264,7 +16264,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788702794028,
+  "_tables": 1788702818163,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -32423,6 +32423,15 @@
     "du": "2026-09-05",
     "au": "2026-09-07",
     "motif": "",
+    "par": "⚫ Thomas Boyer"
+   },
+   {
+    "id": 1788702817827,
+    "nom": "Adel Dulax",
+    "discord": "554036471825301555",
+    "du": "2026-09-02",
+    "au": "2026-09-07",
+    "motif": "Prolongation de travail a l’étranger",
     "par": "⚫ Thomas Boyer"
    }
   ]
