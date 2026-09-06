@@ -16267,9 +16267,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "edbl5b946w",
+ "_cid": "hzlk2wbs65u",
  "_maj": 1788705628854,
- "_rev": "37aop8ucajb-mtpx6f7w",
+ "_rev": "0609sfszws5-mtpx6oa7",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16278,11 +16278,11 @@
   "sheets": 1788646610879,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788646610879,
+  "journal": 1788702929793,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
-  "absences": 1788646588896,
+  "absences": 1788702929793,
   "imported": 1788222184505,
   "settings": 1788557789855,
   "closeUndo": 1788222184505,
@@ -16292,7 +16292,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788646588895,
+  "_tables": 1788705628854,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -16302,11 +16302,6 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1788705675560,
-   "u": "Diego Herrera",
-   "a": "Recrutements Discord : 2 fiche(s) créée(s), 1 case(s) complétée(s) — Maximilien Hover, Pablo Escocha, Adam Wade"
-  },
   {
    "t": 1788702930898,
    "u": "Diego Herrera",
@@ -17801,6 +17796,11 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787498499673,
    "u": "Thomas Boyer"
+  },
+  {
+   "a": "Vente rapide sans facture : 4 bidon(s) — Employé tony clarck (vendeur : Julio Collins)",
+   "t": 1787498304536,
+   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -18156,7 +18156,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-06T14:41:19.244Z",
+  "maj": "2026-09-06T14:41:30.991Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
