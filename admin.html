@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-81</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-82</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -52,6 +52,36 @@ window.ROXWOOD_CFG = {
     <p id="lg_hint" style="display:none">Premier lancement : le premier connecté via Discord devient le compte Direction.</p>
     <a class="retour" href="index.html">← Retour au site Oil Roxwood</a>
   </div>
+</div>
+
+<!-- ============ CHARGEMENT ============
+     Une pompe a balancier, une cuve qui se remplit, et une ligne de texte
+     qui suit les vraies etapes. Voir roxwood-app.css pour le pourquoi. -->
+<div id="chargement" aria-live="polite" aria-busy="true">
+  <div class="chg-marque">OIL <b>ROXWOOD</b></div>
+  <svg class="chg-pompe" viewBox="0 0 240 150" role="img" aria-label="Pompe à pétrole en fonctionnement">
+    <!-- le sol et le socle -->
+    <line class="sol" x1="12" y1="126" x2="228" y2="126"/>
+    <rect class="socle" x="106" y="120" width="70" height="6"/>
+    <!-- le mât en A qui porte le balancier -->
+    <path class="bati" d="M113 126 L140 58 L167 126"/>
+    <line class="bati" x1="124" y1="97" x2="156" y2="97"/>
+    <!-- la tige polie, dans la tête de puits : elle monte et descend -->
+    <g class="chg-tige">
+      <line class="tige" x1="52" y1="74" x2="52" y2="122"/>
+      <rect class="cable" x="49" y="70" width="6" height="8" rx="1"/>
+    </g>
+    <rect class="puits" x="41" y="106" width="22" height="20" rx="2"/>
+    <!-- le balancier : tête de cheval à gauche, contrepoids à droite -->
+    <g class="chg-bras">
+      <line class="balancier" x1="62" y1="58" x2="196" y2="58"/>
+      <path class="tete" d="M64 51 q-18 1 -19 22 q10 6 19 0 z"/>
+      <circle class="contrepoids" cx="199" cy="58" r="15"/>
+      <circle class="axe" cx="140" cy="58" r="7"/>
+    </g>
+  </svg>
+  <div class="chg-cuve"><i id="chgBarre"></i></div>
+  <p class="chg-txt" id="chgTxt">Ouverture des vannes…</p>
 </div>
 
 <!-- ============ APP ============ -->
@@ -86,6 +116,8 @@ window.ROXWOOD_CFG = {
     <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
     <div class="nav-sec" data-sec="quotas" onclick="navToggle('quotas')">Quotas <span class="chev">▾</span></div>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
+    <div class="nav-sec" data-sec="vitrine" onclick="navToggle('vitrine')">Vitrine <span class="chev">▾</span></div>
+    <button class="nav-item" data-view="produits">🛢️ <span class="txt">Nouveaux produits</span></button>
     <div class="nav-sec" data-sec="perso" onclick="navToggle('perso')">Perso <span class="chev">▾</span></div>
     <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
     <button class="nav-item" data-view="moi">🙋 <span class="txt">Ma semaine</span></button>
@@ -202,6 +234,7 @@ purgeSupprimees();
 migrerPerms();
 migrerRoles4();
 migrerAffiches();
+migrerProduits();
 appliquerGrades();   // les réglages de la direction priment sur les valeurs d'usine
 // Réinitialisation unique du mot de passe (juillet 2026) : retour à « roxwood ».
 if(!localStorage.getItem('orx_pwfix1')){
@@ -220,6 +253,7 @@ function defaults(){
     users:[],
     profils:{},
     affiches:[],
+    produits:[],
     pending:[],
     fer:[],
     settings:{prix:10, primeBase:5000, top:[15000,10000,5000], limite:24000, semaine:1,
@@ -236,7 +270,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','produits','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1','_prodFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -664,7 +698,7 @@ const PERMS={
              'ftablette','fcompta','frecues','bilan','cloture','semaine',
              'overview','felig','historique','reunions',
              'quotashist',
-             'profil','moi','agenda','affiches',
+             'produits','profil','moi','agenda','affiches',
              'dlogs','journal','params','maj'],
 
   // RH : les personnes et ce qu'on leur doit. Ni compta, ni facturation.
@@ -677,15 +711,15 @@ const PERMS={
   // Assistant de direction : le bras droit. Tout ce que voit la Direction, sauf
   //      les deux gestes qui n'appartiennent qu'au patron : clôturer la semaine
   //      (irréversible, elle fige les salaires) et changer les Paramètres.
-  assistdir:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','profil','quotashist','agenda','affiches','maj','dlogs','journal'],
+  assistdir:['overview','effectif','semaine','historique','reunions','ftablette','felig','fventes','frh','fblacklist','fcompta','factures','relances','bilan','prodder','quotascom','frecues','moi','produits','profil','quotashist','agenda','affiches','maj','dlogs','journal'],
 
   // Commercial : le commerce, rien d'autre.
-  commercial:['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','affiches','maj'],
+  commercial:['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','produits','profil','quotashist','agenda','affiches','maj'],
 
   // Responsable commercial : pour l'instant exactement un commercial. Le rôle
   //      existe pour qu'on puisse lui ouvrir des cases sans les ouvrir à toute
   //      l'équipe — Paramètres → Permissions par rôle, colonne par colonne.
-  respcom:  ['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','profil','quotashist','agenda','affiches','maj'],
+  respcom:  ['overview','reunions','fventes','factures','relances','quotascom','prodder','moi','produits','profil','quotashist','agenda','affiches','maj'],
 
   // Responsable Runner : il encadre la production au quotidien. Effectif,
   //      éligibilité, tablette et logs — mais ni la paie détaillée, ni les
@@ -783,6 +817,26 @@ function migrerAffiches(){
     n++;
   });
   if(n) jlog(`Affiches : rubrique ouverte à ${n} rôle(s) aux permissions personnalisées`);
+  return n>0;
+}
+
+/* Même reprise pour « Nouveaux produits », mais réservée aux rôles qui l'ont
+   d'usine : le catalogue de la vitrine n'est pas l'affaire de tout le monde. */
+function migrerProduits(){
+  if(S._prodFix1) return false;
+  S._prodFix1=true;
+  const c=S.settings&&S.settings.permsCustom;
+  if(!c||typeof c!=='object') return false;
+  const CONCERNES=['direction','assistdir','respcom','commercial'];
+  let n=0;
+  CONCERNES.forEach(role=>{
+    const l=c[role];
+    if(!Array.isArray(l)||!l.length||l.includes('produits')) return;
+    const i=l.indexOf('profil');
+    if(i>=0) l.splice(i,0,'produits'); else l.push('produits');
+    n++;
+  });
+  if(n) jlog(`Nouveaux produits : rubrique ouverte à ${n} rôle(s) aux permissions personnalisées`);
   return n>0;
 }
 
@@ -891,9 +945,44 @@ function whoami(){
   const cu=currentUser(), wu=document.getElementById('whoami');
   if(wu) wu.innerHTML=cu?`${avatarHTML(cu)}<span style="min-width:0"><b style="color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(cu.user)}</b><small>${ROLES[cu.role]||cu.role}</small></span>`:'';
 }
+/* ---- L'ecran de chargement ----
+
+   Il ne simule rien : chaque etape est appelee la ou le travail a lieu.
+   Une barre qui avance toute seule pendant que le reseau rame est un
+   mensonge poli ; celle-ci s'arrete quand le depot s'arrete, et on voit
+   alors sur quoi ca coince.
+
+   Un plancher de 900 ms evite le clignotement quand tout est deja en
+   cache : un ecran qui apparait et disparait en 80 ms se lit comme un
+   bug d'affichage, pas comme un chargement.                        */
+let CHG_DEBUT=0;
+function chgOuvrir(){
+  const el=document.getElementById('chargement');
+  if(!el) return;
+  CHG_DEBUT=Date.now();
+  el.classList.remove('parti'); el.classList.add('on');
+  chgEtape('Ouverture des vannes', 8);
+}
+function chgEtape(txt, pct){
+  const t=document.getElementById('chgTxt'), b=document.getElementById('chgBarre');
+  if(t) t.innerHTML=esc(txt)+' <b>…</b>';
+  if(b) b.style.right=Math.max(0,Math.min(100,100-(+pct||0)))+'%';
+}
+function chgFermer(){
+  const el=document.getElementById('chargement');
+  if(!el||!el.classList.contains('on')) return;
+  chgEtape('Dépôt en ligne', 100);
+  const reste=Math.max(0, 900-(Date.now()-CHG_DEBUT));
+  setTimeout(()=>{
+    el.classList.add('parti');
+    setTimeout(()=>{ el.classList.remove('on','parti'); el.removeAttribute('aria-busy'); }, 500);
+  }, reste);
+}
+
 function enter(){
   document.getElementById('login').style.display='none';
   document.getElementById('app').style.display='block';
+  chgOuvrir();
   whoami();
   applyPerms(); navBadges();
   const bell=document.getElementById('nfBell'); if(bell) bell.style.display='flex';
@@ -914,11 +1003,18 @@ function enter(){
   show('overview');
   // effectif ← tablette (le pull Supabase a déjà eu lieu au chargement de la page)
   setTimeout(async()=>{
-    initSync();
-    await ensureSheets();
-    const r=isMembre()?null:syncRunners(true);
-    if(!S.settings.semaine) S.settings.semaine=semaineCal(); // idem : jamais de bascule automatique
-    rerender();
+    try{
+      chgEtape('Connexion au dépôt', 28);
+      initSync();
+      chgEtape('Relevé des feuilles', 52);
+      await ensureSheets();
+      chgEtape('Comptage des barils', 80);
+      const r=isMembre()?null:syncRunners(true);
+      if(!S.settings.semaine) S.settings.semaine=semaineCal(); // idem : jamais de bascule automatique
+      rerender();
+    } finally {
+      chgFermer();   // même si une étape échoue : on ne laisse jamais l'écran bloqué
+    }
   }, 50);
 }
 function logout(){
@@ -928,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-81';
+const APP_VERSION='C-82';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1326,6 +1422,7 @@ function show(v){
   if(purgeSupprimees()&&!isMembre()){ save(); sbQueue(); }   // rubriques supprimées : leurs données ne reviennent pas
   if(migrerPerms()&&!isMembre()){ save(); sbQueue(); }       // listes de permissions citant d'anciennes rubriques
   if(migrerAffiches()&&!isMembre()){ save(); sbQueue(); }    // rubrique Affiches ajoutée après coup
+  if(migrerProduits()&&!isMembre()){ save(); sbQueue(); }    // rubrique Nouveaux produits, idem
   if(!isMembre()){                                           // absences validées sur Discord
     const abs=importerAbsences();
     if(abs){ jlog(`Absences Discord reprises : ${abs.join(' · ')}`); save(); sbQueue();
@@ -1338,7 +1435,7 @@ function show(v){
   VIEW=v;
   document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   destroyCharts();
-  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,agenda,affiches,maj,dlogs,journal,params})[v]();
+  ({overview,effectif,semaine,historique,cloture,reunions,ftablette,felig,fventes,frh,fblacklist,fcompta,factures,relances,bilan,prodder,quotascom,frecues,moi,profil,quotashist,agenda,affiches,produits,maj,dlogs,journal,params})[v]();
   try{ nfRefresh(); applyRO(); }catch(e){}
   restaureEcran(repere);
 }
@@ -1988,6 +2085,11 @@ function statsData(){
        Retiré. Pour le remettre, décommenter la ligne ci-dessous.
        runners:S.runners.map(r=>({nom:r.nom,grade:r.grade,poste:r.poste||null,barils:r.barils,total:r.total})), */
     runners:[],
+    /* Le catalogue de la vitrine : uniquement les fiches cochées « en ligne ».
+       On y met l'adresse publique de la photo, pas le chemin du dépôt : le site
+       n'a pas à savoir comment nos fichiers sont rangés. */
+    produits:(S.produits||[]).filter(p=>p&&p.actif!==false&&p.nom).map(p=>({
+      nom:p.nom, desc:p.desc||'', prix:p.prix||'', photo:p.chemin?affSrc(p):''})),
     /* L'équipe : uniquement les personnes qui ont coché la case dans Mon profil. */
     equipe:Object.values(S.profils||{})
       .filter(p=>p&&p.public&&p.nom)
@@ -3965,6 +4067,13 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-82',d:'08/09/2026',t:'Un catalogue sur la vitrine, une pompe à l\'entrée',items:[
+   ['🛢️','Nouveaux produits','Nouveau pôle <b>Vitrine</b> dans le menu, avec une rubrique où l\'on tient le catalogue : photo, nom, description, prix. Le site public affiche les fiches cochées « en ligne ». Le catalogue vit dans le dashboard et pas dans le HTML du site — sinon il faudrait un développeur pour changer un prix, et le prix ne changerait jamais.'],
+   ['⏸','Préparer sans montrer','Une fiche décochée reste ici, invisible du public : on prépare trois produits tranquillement, on les met en ligne quand ils sont prêts. Et rien ne part sur le site avant un clic sur « Publier sur le site » — l\'écran le rappelle, parce qu\'un catalogue qui ne part pas est pire que pas de catalogue.'],
+   ['🎨','Le prix est du texte libre','« 1 200 $ », « à partir de 800 $ », « sur devis ». Un champ numérique aurait interdit la moitié de ce qu\'on veut annoncer.'],
+   ['⛏️','Un écran de chargement','Après la connexion, le dashboard lit le dépôt, les feuilles, recalcule l\'effectif — une à deux secondes pendant lesquelles on voyait un écran vide et on croyait qu\'il manquait des données. Une pompe à balancier tourne maintenant pendant ce temps, avec une jauge et une ligne de texte.'],
+   ['📊','La jauge ne ment pas','Elle suit les vraies étapes — connexion au dépôt, relevé des feuilles, comptage des barils — et elle s\'arrête quand le dépôt s\'arrête. Une barre qui avance toute seule pendant que le réseau rame est un mensonge poli : ici, si ça coince, on voit sur quoi.'],
+ ]},
  {v:'C-81',d:'05/09/2026',t:'Une absence validée sur Discord se déclare toute seule',items:[
    ['🌴','Fini la double saisie','Le RH validait l\'absence sur Discord, puis venait la re-saisir ici. Deux fois le même geste, donc un jour sur deux la deuxième fois n\'avait pas lieu : le dashboard rétrogradait quelqu\'un en congé, le pointage l\'affichait en démission probable, et personne ne comprenait pourquoi. Le bot dépose maintenant l\'absence validée, le site la reprend.'],
    ['🪪','C\'est le bot qui traduit l\'identité','Le dashboard connaît les gens par leur nom RP, Discord par un identifiant. La traduction se fait côté bot, qui a la fiche sous la main au moment de valider : il regarde les comptes d\'accès, puis la colonne « discord » de la fiche RH — remplie toute seule depuis que les recrutements s\'y déversent.'],
@@ -6147,6 +6256,152 @@ function affSuppr(id){
   S.affiches=(S.affiches||[]).filter(x=>x.id!==id);
   jlog(`Affiche supprimée : ${a.titre||'sans titre'}`);
   save(); sbPushNow(); closeModal(); affiches(); toast('🗑 Affiche supprimée');
+}
+
+/* ================== NOUVEAUX PRODUITS (vitrine) ==================
+
+   Le catalogue montre sur le site public ce que l'entreprise vend en ce moment.
+   Il vit ici, pas dans le HTML de la vitrine : sinon il faudrait un dev pour
+   changer un prix, et le prix ne changerait jamais.
+
+   Une fiche n'apparaît sur le site qu'apres « Publier sur le site » (Vue
+   d'ensemble) : c'est le meme geste que pour les stats, et il vaut mieux qu'on
+   puisse preparer trois produits tranquillement avant de les montrer. L'ecran
+   le rappelle, parce qu'un catalogue qui ne part pas est pire que pas de
+   catalogue. */
+function produitsListe(){ return (S.produits=S.produits||[]); }
+function prodPeut(){ return RoxwoodGH.peutEcrire()&&!isMembre()&&!isRO('produits'); }
+function produits(){
+  const l=produitsListe();
+  const actifs=l.filter(p=>p.actif!==false).length;
+  const peut=prodPeut();
+  $('#main').innerHTML=`
+  <div class="topbar">
+    <div><h2>🛢️ Nouveaux produits</h2><div class="sub">Ce que la vitrine annonce — ${l.length} fiche(s) · ${actifs} en ligne</div></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      ${peut?`<button class="btn btn-gold" onclick="prodEdit()">＋ Nouveau produit</button>`:''}
+      <button class="btn btn-ghost" onclick="publishStats()" title="Envoie les fiches actives vers le site public">📤 Publier sur le site</button>
+    </div>
+  </div>
+  ${!peut?`<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">
+    👁 Consultation seule. Pour modifier le catalogue, il faut un jeton d'écriture — dans <b>Mon profil</b>.</div>`:''}
+  <div class="warn" style="border-color:rgba(232,160,32,.35);background:rgba(232,160,32,.06);color:var(--accent)">
+    ℹ️ Une fiche modifiée ici n'apparaît sur le site qu'après <b>« Publier sur le site »</b>. Tant que tu n'as pas publié, tu prépares tranquillement.</div>
+  ${!l.length?`<div class="panel"><div class="empty">Aucun produit.${peut?' Clique sur « Nouveau produit » pour en créer un.':''}</div></div>`
+   :`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+      ${l.map((p,i)=>`<div class="panel" style="padding:0;overflow:hidden;display:flex;flex-direction:column;${p.actif===false?'opacity:.5':''}">
+        <div style="background:var(--panel-2);aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          ${p.chemin?`<img src="${esc(affSrc(p))}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">`
+                    :'<span style="color:var(--muted);font-size:.78rem">aucune photo</span>'}
+        </div>
+        <div style="padding:11px 13px 13px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline">
+            <b style="font-size:.92rem;line-height:1.25">${esc(p.nom||'Sans nom')}</b>
+            <span style="font-family:var(--f-mono);color:var(--accent);white-space:nowrap">${p.prix?esc(String(p.prix)):'—'}</span>
+          </div>
+          ${p.desc?`<div style="color:var(--muted);font-size:.78rem;margin-top:5px;line-height:1.45">${esc(p.desc)}</div>`:''}
+          <div style="margin-top:auto;padding-top:10px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <span class="badge ${p.actif===false?'':'bgrole'}" style="font-size:.68rem">${p.actif===false?'⏸ hors ligne':'● en ligne'}</span>
+            ${peut?`<span style="margin-left:auto;white-space:nowrap">
+              ${i>0?`<button class="btn btn-sm btn-ghost" onclick="prodMonter(${i})" title="Remonter dans la vitrine">↑</button>`:''}
+              <button class="btn btn-sm btn-ghost" onclick="prodEdit(${p.id})">✎</button>
+            </span>`:''}
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>`}`;
+}
+function prodMonter(i){
+  const l=produitsListe(); if(i<=0||!l[i]) return;
+  [l[i-1],l[i]]=[l[i],l[i-1]];
+  jlog(`Vitrine : « ${l[i-1].nom||'?'} » remonté`);
+  save(); sbPushNow(); produits();
+}
+function prodEdit(id){
+  const l=produitsListe();
+  const p=l.find(x=>x.id===id)||{id:null,nom:'',desc:'',prix:'',chemin:'',actif:true};
+  openModal(`<h3>${id?'✎ Modifier le produit':'🛢️ Nouveau produit'}</h3>
+  <div id="prodApercu" style="background:var(--panel-2);border-radius:10px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:14px">
+    ${p.chemin?`<img src="${esc(affSrc(p))}" alt="" style="width:100%;height:100%;object-fit:cover">`
+              :'<span style="color:var(--muted);font-size:.8rem">Aucune photo — clique sur « Choisir une photo »</span>'}
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('prodFile').click()">📷 Choisir une photo</button>
+    <input type="file" id="prodFile" accept="image/*" style="display:none" onchange="prodPhoto(this)">
+    ${p.chemin?`<button class="btn btn-ghost btn-sm" onclick="prodPhotoRetirer()">Retirer la photo</button>`:''}
+    <span id="prodPhotoNote" style="font-size:.76rem;color:var(--muted);align-self:center"></span>
+  </div>
+  <div class="f-row"><label class="f-lbl">Nom du produit</label>
+    <input class="field" id="pr_nom" value="${esc(p.nom||'')}" placeholder="Bidon 20 L raffiné" maxlength="60"></div>
+  <div class="f-row"><label class="f-lbl">Description courte</label>
+    <textarea class="field" id="pr_desc" style="min-height:70px" maxlength="220" placeholder="À quoi ça sert, pour qui, ce qui le distingue.">${esc(p.desc||'')}</textarea></div>
+  <div class="f-row"><label class="f-lbl">Prix affiché</label>
+    <input class="field" id="pr_prix" value="${esc(p.prix||'')}" placeholder="1 200 $ / unité" maxlength="40"></div>
+  <p style="color:var(--muted);font-size:.74rem;margin:-4px 0 14px">Texte libre : « 1 200 $ », « à partir de 800 $ », « sur devis »…</p>
+  <label style="display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:16px;padding:10px 14px;border-radius:10px;border:1px dashed rgba(242,183,5,.5);background:rgba(242,183,5,.06)">
+    <input type="checkbox" id="pr_actif" style="width:19px;height:19px;accent-color:#F2B705" ${p.actif===false?'':'checked'}>
+    <span style="font-size:.85rem">Afficher sur le site public<br><small style="color:var(--muted)">décoche pour préparer un produit sans le montrer encore</small></span>
+  </label>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-gold" style="flex:1" onclick="prodSave(${id||'null'})">Enregistrer</button>
+    ${id?`<button class="btn btn-ghost" style="color:#f87171" onclick="prodSuppr(${id})">🗑 Supprimer</button>`:''}
+  </div>`);
+  PROD_PHOTO = p.chemin || '';
+}
+let PROD_PHOTO='';
+async function prodPhoto(inp){
+  const f=(inp.files||[])[0]; inp.value='';
+  if(!f) return;
+  if(!RoxwoodGH.peutEcrire()) return toast('⚠️ Il faut un jeton d\'écriture — Mon profil');
+  const note=document.getElementById('prodPhotoNote');
+  if(note) note.textContent='Envoi en cours…';
+  try{
+    const data=await affPrepare(f);          // même préparation que les affiches
+    const ext=(/^data:image\/(\w+)/.exec(data)||[,'jpg'])[1].replace('jpeg','jpg');
+    const chemin=`assets/produits/${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+    const r=await RoxwoodGH.televerser(chemin, data, `🛢️ Photo produit : ${f.name}`);
+    if(!r.chemin){ if(note) note.textContent=''; return toast('❌ Envoi refusé : '+r.erreur, 8000); }
+    PROD_PHOTO=chemin;
+    const z=document.getElementById('prodApercu');
+    if(z) z.innerHTML=`<img src="${esc(affSrc({chemin}))}" alt="" style="width:100%;height:100%;object-fit:cover">`;
+    if(note) note.textContent='Photo envoyée';
+  }catch(e){ if(note) note.textContent=''; toast('❌ '+(e.message||e), 8000); }
+}
+function prodPhotoRetirer(){
+  PROD_PHOTO='';
+  const z=document.getElementById('prodApercu');
+  if(z) z.innerHTML='<span style="color:var(--muted);font-size:.8rem">Aucune photo</span>';
+  const n=document.getElementById('prodPhotoNote'); if(n) n.textContent='Photo retirée — enregistre pour valider';
+}
+function prodSave(id){
+  const nom=String(($('#pr_nom')||{}).value||'').trim();
+  if(!nom) return toast('⚠️ Donne un nom au produit');
+  const l=produitsListe();
+  const champs={nom, desc:String(($('#pr_desc')||{}).value||'').trim().slice(0,220),
+    prix:String(($('#pr_prix')||{}).value||'').trim().slice(0,40),
+    chemin:PROD_PHOTO, actif:!!(($('#pr_actif')||{}).checked)};
+  const ex=l.find(x=>x.id===id);
+  if(ex){
+    // la photo remplacée ne sert plus à personne : on la retire du dépôt
+    if(ex.chemin&&ex.chemin!==champs.chemin) pieceJointeSuppr(ex.chemin,'Photo produit remplacée');
+    Object.assign(ex,champs);
+    jlog(`Produit modifié : ${nom}`);
+  } else {
+    l.unshift(Object.assign({id:Date.now()+Math.floor(Math.random()*999),
+      par:(currentUser()||{}).user||'', date:jourISO(new Date())}, champs));
+    jlog(`Produit créé : ${nom}`);
+  }
+  save(); sbPushNow(); closeModal(); produits();
+  toast(champs.actif?'🛢️ Enregistré — clique sur « Publier sur le site » pour le montrer':'🛢️ Enregistré (hors ligne)');
+}
+function prodSuppr(id){
+  const l=produitsListe(); const p=l.find(x=>x.id===id); if(!p) return;
+  if(!confirm(`Supprimer « ${p.nom||'ce produit'} » ?\n\nIl disparaîtra du site à la prochaine publication.`)) return;
+  if(p.chemin) pieceJointeSuppr(p.chemin,'Photo produit retirée');
+  S.produits=l.filter(x=>x.id!==id);
+  jlog(`Produit supprimé : ${p.nom||'sans nom'}`);
+  save(); sbPushNow(); closeModal(); produits();
+  toast('🗑 Produit supprimé — republie pour mettre le site à jour');
 }
 
 /* ================== LOGS DISCORD ================== */

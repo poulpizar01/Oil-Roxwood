@@ -60,6 +60,7 @@
     <a href="#organigramme">Organigramme</a>
     <a href="#devenir-client">Devenir client</a>
     <a href="#direct" id="navDirect" hidden>En direct</a>
+    <a href="#produits" id="navProduits" hidden>Nos produits</a>
     <a href="#grades">Grades &amp; Salaires</a>
     <a href="#recrutement">Recrutement</a>
     <a href="#contact">Contact</a>
@@ -297,6 +298,20 @@
     </div>
 
     <div id="dirTop" class="cards" style="margin-top:clamp(30px,4vw,50px)" hidden></div>
+  </div>
+</section>
+
+<!-- ================= NOUVEAUX PRODUITS =================
+     Rempli depuis data/stats-public.json, publié par l'espace membre.
+     Tant qu'aucun produit n'est en ligne, la section reste cachée : mieux
+     vaut pas de rubrique qu'une rubrique vide. -->
+<section id="produits" hidden>
+  <span class="geant" style="bottom:2vw;left:-6vw" aria-hidden="true">CATALOGUE</span>
+  <div class="wrap">
+    <span class="tag sec-kicker rev">Au dépôt</span>
+    <h2 class="rev">Nos <span class="creux">nouveaux produits</span></h2>
+    <p class="sec-intro rev">Ce qui sort de la raffinerie en ce moment. Pour commander, passe par le dépôt ou le Discord.</p>
+    <div id="prodGrille" class="cards"></div>
   </div>
 </section>
 

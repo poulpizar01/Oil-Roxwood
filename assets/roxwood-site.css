@@ -346,3 +346,18 @@ footer{border-top:1px solid var(--trait-fort);padding:32px 0 46px;position:relat
   .step .num{font-size:64px}
   [data-tilt]{--base:0deg!important}
 }
+
+
+/* ============================================================
+   NOUVEAUX PRODUITS — la carte porte une photo, ce que la carte
+   ordinaire ne prevoyait pas. On garde son cadre, sa teinte et son
+   inclinaison ; on ajoute l'image en haut et le prix en pied.
+   ============================================================ */
+.prod-photo{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;
+  border:1px solid var(--trait-fort);margin:0 0 clamp(14px,1.6vw,20px);
+  background:var(--plaque);filter:saturate(.92) contrast(1.04)}
+.card .prod-prix{display:block;margin-top:auto;padding-top:14px;
+  font-family:var(--mono,ui-monospace,monospace);color:var(--ambre);
+  font-size:clamp(15px,1.5vw,18px);letter-spacing:.02em}
+.card .prod-desc{color:var(--fumee);line-height:1.6}
+#prodGrille > .card{display:flex;flex-direction:column}

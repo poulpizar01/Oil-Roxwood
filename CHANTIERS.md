@@ -74,7 +74,9 @@ compteur.
 | **Contrats hebdomadaires reconduits + registre des contrats** | C-78 |
 | Bibliothèque d'affiches publicitaires | C-79 |
 | Menu réorganisé par métier (7 pôles) | C-80 |
-| Absences Discord reprises automatiquement — *côté site fait, cog bot à brancher* | C-81 |
+| Absences Discord reprises automatiquement | C-81 |
+| Catalogue « Nouveaux produits » sur la vitrine | C-82 |
+| Écran de chargement (pompe à balancier) | C-82 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 

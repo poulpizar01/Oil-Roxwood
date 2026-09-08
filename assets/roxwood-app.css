@@ -575,3 +575,69 @@ tbody tr:nth-child(7){animation-delay:.20s}tbody tr:nth-child(8){animation-delay
 /* La fiche de profil : deux colonnes au bureau, une seule dès que ça serre. */
 .profil-grid{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}
 @media(max-width:860px){ .profil-grid{grid-template-columns:1fr} }
+
+
+/* ============================================================
+   ECRAN DE CHARGEMENT — LA POMPE A BALANCIER
+
+   Ce qui se passe apres la connexion n'est pas instantane : on lit le
+   depot, les feuilles, on recalcule l'effectif. Sans rien a l'ecran,
+   on voyait un dashboard vide pendant une a deux secondes et on
+   croyait qu'il manquait des donnees.
+
+   Le texte suit les VRAIES etapes, il n'est pas decoratif : quand il
+   s'arrete sur « Lecture du depot », c'est que le depot est lent.
+   ============================================================ */
+#chargement{
+  position:fixed; inset:0; z-index:5000; display:none;
+  align-items:center; justify-content:center; flex-direction:column; gap:22px;
+  background:radial-gradient(130% 95% at 50% 34%, #1c130b 0%, var(--brut,#080605) 66%);
+  opacity:1; transition:opacity .45s ease;
+}
+#chargement.on{display:flex}
+#chargement.parti{opacity:0; pointer-events:none}
+
+.chg-marque{
+  font-family:var(--f-display,serif); font-size:clamp(20px,2.4vw,27px); font-weight:800;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--cendre,#70645B);
+}
+.chg-marque b{color:var(--ink,#F3EADF); font-weight:800}
+
+.chg-pompe{width:min(360px,74vw); height:auto; overflow:visible}
+.chg-pompe .sol{stroke:var(--cendre,#70645B); stroke-width:2; opacity:.45}
+.chg-pompe .socle{fill:var(--cendre,#70645B); opacity:.35}
+.chg-pompe .bati{fill:none; stroke:var(--cendre,#70645B); stroke-width:6.5;
+  stroke-linejoin:round; stroke-linecap:round}
+.chg-pompe .balancier{stroke:var(--accent,#E8A020); stroke-width:8; stroke-linecap:round}
+.chg-pompe .tete{fill:var(--accent,#E8A020)}
+.chg-pompe .contrepoids{fill:var(--accent,#E8A020)}
+.chg-pompe .axe{fill:var(--brut,#080605); stroke:var(--accent,#E8A020); stroke-width:3}
+.chg-pompe .tige{stroke:var(--ink,#F3EADF); stroke-width:4; stroke-linecap:round; opacity:.8}
+.chg-pompe .cable{fill:var(--ink,#F3EADF); opacity:.8}
+.chg-pompe .puits{fill:var(--panel-3,#241C17); stroke:var(--cendre,#70645B); stroke-width:2}
+
+/* Le balancier bascule autour de son axe, la tige suit. Meme duree, phases
+   opposees : quand la tete de cheval monte, la tige monte avec elle. */
+.chg-bras{transform-origin:140px 58px; animation:chgBascule 2.6s ease-in-out infinite}
+.chg-tige{animation:chgTige 2.6s ease-in-out infinite}
+@keyframes chgBascule{0%,100%{transform:rotate(-11deg)} 50%{transform:rotate(11deg)}}
+@keyframes chgTige{0%,100%{transform:translateY(14px)} 50%{transform:translateY(-14px)}}
+
+.chg-cuve{
+  width:min(300px,64vw); height:12px; position:relative; overflow:hidden; margin-top:6px;
+  background:var(--panel-2,#1E1713); border:1px solid var(--trait-fort,#3A2E25);
+}
+.chg-cuve i{
+  position:absolute; inset:0 100% 0 0; display:block;
+  background:linear-gradient(90deg,#8a5410,var(--accent,#E8A020));
+  transition:right .7s cubic-bezier(.4,0,.2,1);
+}
+.chg-txt{
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:11.5px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--muted,#A2948A); min-height:1.2em; text-align:center;
+}
+.chg-txt b{color:var(--accent,#E8A020); font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .chg-bras,.chg-tige{animation:none}
+}

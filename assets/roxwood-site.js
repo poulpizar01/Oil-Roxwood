@@ -389,6 +389,7 @@
     .then(function (d) {
       if (!d) return;
       equipe(d.equipe);                              // l'équipe ne dépend pas de la production
+      catalogue(d.produits);                         // les produits non plus
       if (!d.totalBarils) return;                    // rien de publié : la section reste cachée
       sec.hidden = false;
       if ($("navDirect")) $("navDirect").hidden = false;
@@ -426,6 +427,52 @@
       document.querySelectorAll("#direct .rev").forEach(function (el) { el.classList.add("vue"); });
     })
     .catch(function () { /* pas de stats : la vitrine reste telle quelle */ });
+
+  /* Le catalogue — les fiches cochées « en ligne » dans l'espace membre.
+
+     Le texte vient de ce qu'on a saisi dans le dashboard : on le pose en
+     texte, jamais en HTML, et une photo n'est acceptee qu'en https. C'est la
+     meme regle que pour l'equipe, pour la meme raison — ce fichier est public,
+     et un jour quelqu'un collera une balise dans un champ sans y penser. */
+  function catalogue(liste) {
+    var sec = document.getElementById("produits"),
+        grille = document.getElementById("prodGrille");
+    if (!sec || !grille || !Array.isArray(liste) || !liste.length) return;
+    var https = function (u) { return /^https:\/\/[^\s"'<>]+$/i.test(String(u || "")) ? String(u) : ""; };
+    grille.textContent = "";
+    liste.forEach(function (p) {
+      if (!p || !p.nom) return;
+      var carte = document.createElement("div");
+      carte.className = "card";
+      var photo = https(p.photo);
+      if (photo) {
+        var img = document.createElement("img");
+        img.className = "prod-photo"; img.src = photo; img.alt = "";
+        img.loading = "lazy"; img.decoding = "async";
+        img.onerror = function () { img.remove(); };
+        carte.appendChild(img);
+      }
+      var h = document.createElement("h3");
+      h.textContent = String(p.nom);
+      carte.appendChild(h);
+      if (p.desc) {
+        var d = document.createElement("p");
+        d.className = "prod-desc"; d.textContent = String(p.desc);
+        carte.appendChild(d);
+      }
+      if (p.prix) {
+        var pr = document.createElement("b");
+        pr.className = "prod-prix"; pr.textContent = String(p.prix);
+        carte.appendChild(pr);
+      }
+      grille.appendChild(carte);
+    });
+    if (!grille.children.length) return;
+    sec.hidden = false;
+    if (document.getElementById("navProduits")) document.getElementById("navProduits").hidden = false;
+    document.querySelectorAll("#produits .rev").forEach(function (el) { el.classList.add("vue"); });
+    if (window.Roxwood) Roxwood.habiller(grille, { tilt: ".card" });
+  }
 
   /* L'équipe — uniquement les gens qui ont coché la case dans « Mon profil ».
      Le texte vient de ce qu'ils ont écrit eux-mêmes : on le pose en texte, jamais
