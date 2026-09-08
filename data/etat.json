@@ -14020,7 +14020,18 @@
   }
  },
  "affiches": [],
- "produits": [],
+ "produits": [
+  {
+   "id": 1788911770246,
+   "par": "Diego Herrera",
+   "date": "2026-09-09",
+   "nom": "vv",
+   "desc": "vv",
+   "prix": "180000",
+   "chemin": "assets/produits/1788911762546-ppr2w.jpg",
+   "actif": true
+  }
+ ],
  "pending": [],
  "fer": [
   {
@@ -16276,8 +16287,8 @@
   "postesV4": 1
  },
  "_cid": "owy7eqjlzh",
- "_maj": 1788911744092,
- "_rev": "v4s7ejer1vj-mttbv7pe",
+ "_maj": 1788911769058,
+ "_rev": "ys8954zovbj-mttbvowb",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16286,7 +16297,7 @@
   "sheets": 1788711331305,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788911738862,
+  "journal": 1788911769058,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16306,12 +16317,17 @@
   "_rolesFix77": 1788490324055,
   "affiches": 1788557789855,
   "_affFix1": 1788557789855,
-  "produits": 1788911738862,
+  "produits": 1788911769058,
   "_prodFix1": 1788911738862
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788911770002,
+   "u": "Diego Herrera",
+   "a": "Produit créé : vv"
+  },
   {
    "t": 1788911738826,
    "u": "Diego Herrera",
@@ -17806,11 +17822,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787498514646,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787498501103,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18166,7 +18177,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-08T23:55:49.058Z",
+  "maj": "2026-09-08T23:56:11.339Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18175,7 +18186,14 @@
   "clientsServis": 73,
   "top3": [],
   "runners": [],
-  "produits": [],
+  "produits": [
+   {
+    "nom": "vv",
+    "desc": "vv",
+    "prix": "180000",
+    "photo": "https://raw.githubusercontent.com/poulpizar01/Oil-Roxwood/main/assets/produits/1788911762546-ppr2w.jpg"
+   }
+  ],
   "equipe": [
    {
     "nom": "Diego Herrera",
