@@ -14020,6 +14020,7 @@
   }
  },
  "affiches": [],
+ "produits": [],
  "pending": [],
  "fer": [
   {
@@ -16205,7 +16206,8 @@
     "quotashist",
     "agenda",
     "affiches",
-    "maj"
+    "maj",
+    "produits"
    ],
    "respcom": [
     "overview",
@@ -16223,11 +16225,13 @@
     "quotashist",
     "agenda",
     "affiches",
-    "maj"
+    "maj",
+    "produits"
    ],
    "assistdir": [
     "effectif",
-    "affiches"
+    "affiches",
+    "produits"
    ]
   },
   "prixBidonCom": 50,
@@ -16271,9 +16275,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "pqo6xrq1evf",
- "_maj": 1788911733475,
- "_rev": "o8h87wy99u-mttbuz5m",
+ "_cid": "iqepdtu7pio",
+ "_maj": 1788911738862,
+ "_rev": "zqctk751fuf-mttbv1y5",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16282,13 +16286,13 @@
   "sheets": 1788711331305,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788711331305,
+  "journal": 1788911738862,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788702929793,
   "imported": 1788222184505,
-  "settings": 1788557789855,
+  "settings": 1788911738862,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16296,16 +16300,23 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788911733475,
+  "_tables": 1788911738862,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
   "affiches": 1788557789855,
-  "_affFix1": 1788557789855
+  "_affFix1": 1788557789855,
+  "produits": 1788911738862,
+  "_prodFix1": 1788911738862
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788911738826,
+   "u": "Diego Herrera",
+   "a": "Nouveaux produits : rubrique ouverte à 3 rôle(s) aux permissions personnalisées"
+  },
   {
    "t": 1788711332401,
    "u": "Diego Herrera",
@@ -17800,11 +17811,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787498501103,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787498499673,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18160,7 +18166,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-08T23:55:37.978Z",
+  "maj": "2026-09-08T23:55:41.597Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18169,6 +18175,7 @@
   "clientsServis": 73,
   "top3": [],
   "runners": [],
+  "produits": [],
   "equipe": [
    {
     "nom": "Diego Herrera",
@@ -35626,6 +35633,13 @@
     "role": "direction",
     "vu": "2026-09-08T23:55:33.475Z",
     "id": 1788911734143
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:55:38.841Z",
+    "id": 1788911739647
    }
   ],
   "oilroxwood_demandes": [],
@@ -36157,5 +36171,6 @@
  "_permsFix1": true,
  "_rolesFix4": true,
  "_rolesFix77": true,
- "_affFix1": true
+ "_affFix1": true,
+ "_prodFix1": true
 }
