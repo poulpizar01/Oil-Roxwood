@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-95</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-96</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -1027,7 +1027,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-95';
+const APP_VERSION='C-96';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -4413,6 +4413,55 @@ async function reuPublierGo(id){
 }
 
 /* ================== ACHATS DE FER (Direction) ================== */
+/* ---- Reprise automatique du relevé du bot (C-96) ----
+
+   Le bot lit le salon Discord toutes les cinq minutes et dépose les achats
+   dans data/fer-logs.json. Mais rien ne les faisait entrer dans le dashboard :
+   il fallait cliquer « Importer depuis le salon ». Un relevé automatique de
+   bout en bout, sauf le dernier mètre, qui attendait un geste humain — et
+   personne ne pense à cliquer un bouton qui ne réclame rien.
+
+   Le symptôme, le 9 septembre : l'achat de Stella était dans le fichier depuis
+   11 h 41, et la page annonçait « 0 achat relevé » toute la matinée.
+
+   Au passage, la réparation des anciennes lignes : jusqu'en C-57, le relevé
+   ne trouvait pas le nom et attribuait tout au webhook, d'où trois cents
+   achats au nom de « Logs - Achat fer ». Quand un identifiant de message
+   correspond, on lui rend son vrai nom. */
+function ferNomBidon(n){ return /^logs?\b|^logs? - achat fer$|achat fer$/i.test(String(n||'').trim()); }
+let FER_SYNC_T=0;
+async function ferSyncAuto(){
+  if(isMembre()) return 0;
+  try{
+    const r=await fetch('data/fer-logs.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok) return 0;
+    const d=await r.json();
+    if(!d||!d.achats||!d.achats.length) return 0;
+    S.fer=S.fer||[];
+    const parId=new Map(S.fer.map(x=>[String(x.id),x]));
+    let neufs=0, repares=0;
+    d.achats.forEach(a=>{
+      if(!a||!a.id) return;
+      const dedans=parId.get(String(a.id));
+      if(dedans){
+        if(a.nom&&ferNomBidon(dedans.nom)&&!ferNomBidon(a.nom)){
+          dedans.nom=a.nom;
+          if(a.did) dedans.did=String(a.did);
+          repares++;
+        }
+        return;
+      }
+      const l={id:a.id,t:a.t,nom:a.nom,quantite:nn(a.quantite),montant:nn(a.montant)};
+      if(a.did) l.did=String(a.did);
+      S.fer.push(l); parId.set(String(a.id),l); neufs++;
+    });
+    if(neufs||repares){
+      save(); sbQueue();
+      jlog(`Achats de fer : ${neufs} relevé(s) repris du salon${repares?`, ${repares} nom(s) réparé(s)`:''}`);
+    }
+    return neufs+repares;
+  }catch(e){ return 0; }
+}
 async function ferImportSalon(){
   try{
     const r=await fetch('data/fer-logs.json?ts='+Date.now(),{cache:'no-store'});
@@ -4470,6 +4519,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-96',d:'09/09/2026',t:'Le dernier m\u00e8tre du rel\u00e8ve-fer',items:[
+   ['\U0001F50C','Un rel\u00e9v\u00e9 automatique qui attendait un clic','Le bot lit le salon toutes les cinq minutes et d\u00e9pose les achats dans <code>data/fer-logs.json</code>. Mais rien ne les faisait entrer dans le dashboard : il fallait cliquer « Importer depuis le salon ». Automatique de bout en bout, sauf le dernier m\u00e8tre — et personne ne pense \u00e0 cliquer un bouton qui ne r\u00e9clame rien. Ce matin, l\'achat de Stella \u00e9tait dans le fichier depuis 11 h 41 et la page annon\u00e7ait « 0 achat relev\u00e9 ». La reprise se fait maintenant \u00e0 l\'ouverture de la page ; les deux boutons restent, pour forcer ou pour coller des logs \u00e0 la main.'],
+   ['\U0001FA79','Trois cents achats retrouvent leur auteur','Jusqu\'en C-57, le rel\u00e8ve ne savait pas lire le nom et attribuait tout au webhook : trois cents lignes sign\u00e9es « Logs - Achat fer ». Quand l\'identifiant du message correspond \u00e0 celui du bot, la ligne retrouve son vrai nom. Sur tes donn\u00e9es : <b>271 r\u00e9par\u00e9es</b>, 48 achats manquants ajout\u00e9s, 29 lignes trop anciennes pour \u00eatre rattach\u00e9es.'],
+ ]},
  {v:'C-95',d:'09/09/2026',t:'Les coups de main comptent',items:[
    ['\U0001F91D','Acheter du fer sans avoir de quota','Le besoin de la semaine est un besoin d\'entreprise : deux fer par bidon vendu, quel que soit celui qui va au magasin. Il n\'\u00e9tait pourtant sold\u00e9 que par les commerciaux \u2014 « Fer restant \u00b7 \u00e9quipe » additionnait leurs manques un par un. Quand un membre de la direction en achetait pour d\u00e9panner, l\'achat n\'apparaissait nulle part : pas de quota, donc pas de ligne, et le reste ne bougeait pas d\'un fer. On voyait la d\u00e9pense sortir de la caisse sans jamais la voir arriver sur l\'objectif.'],
    ['\U0001F4CA','Un besoin d\'\u00e9quipe, et des noms','« Fer restant » se calcule maintenant sur le besoin total moins tout ce qui a \u00e9t\u00e9 achet\u00e9, par qui que ce soit. Une nouvelle rubrique <b>Coups de main</b> nomme ceux qui ont achet\u00e9 hors \u00e9quipe commerciale, avec leur quantit\u00e9 et leur d\u00e9pense. Le tableau par commercial, lui, ne bouge pas : chacun reste comptable de sa part.'],
@@ -5405,6 +5458,12 @@ function quotascom(){
     const v=importerVentes();
     if(v&&v.ajoutees){ jlog(`Ventes : ${v.ajoutees} facture(s) reprise(s)`); save(); sbQueue(); }
   }
+  /* Le relevé du bot entre ici, sans qu'on ait à cliquer. L'horodatage est posé
+     avant l'appel : le redessin qui suit ne peut donc pas relancer la reprise. */
+  if(Date.now()-FER_SYNC_T>120000){
+    FER_SYNC_T=Date.now();
+    ferSyncAuto().then(n=>{ if(n&&VIEW==='quotascom') quotascom(); });
+  }
   // l'archivage/remise à zéro ne se fait plus QU'À LA CLÔTURE — un simple changement de numéro de semaine ne vide plus la feuille
   S.quotasCom=S.quotasCom||{sem:S.settings.semaine,achats:{}};
   S.quotasCom.sem=S.settings.semaine; // suit l'étiquette de semaine sans rien effacer
@@ -5526,7 +5585,7 @@ function quotascom(){
       <td style="text-align:right"><button class="btn btn-sm btn-red" onclick="ferDel('${r.id}')">✕</button></td>
     </tr>`).join('')}</tbody></table>
     ${ferSem.length>80?`<p style="color:var(--muted);font-size:.76rem;margin-top:8px">80 achats affichés sur ${ferSem.length}.</p>`:''}`
-    :`<div class="empty">Aucun achat relevé depuis lundi — utilise « Importer depuis le salon » ou colle les logs.</div>`}
+    :`<div class="empty">Aucun achat relevé depuis lundi. Le relevé du bot est repris automatiquement à l'ouverture de cette page — les boutons ci-dessus ne servent qu'à forcer la reprise ou à rattraper des logs à la main.</div>`}
   </div>
   ${(S.quotasComHist||[]).length?`<div class="panel" style="margin-top:18px">
     <h3>🗓 Historique des semaines précédentes</h3>
