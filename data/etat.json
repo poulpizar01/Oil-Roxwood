@@ -16296,9 +16296,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "iqepdtu7pio",
+ "_cid": "gsxaxxek0dg",
  "_maj": 1788913597013,
- "_rev": "pwld283h1ub-mttcz70v",
+ "_rev": "re3pswn7k8-mttcz9rz",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16328,7 +16328,8 @@
   "affiches": 1788557789855,
   "_affFix1": 1788557789855,
   "produits": 1788913587505,
-  "_prodFix1": 1788911738862
+  "_prodFix1": 1788911738862,
+  "_recruesIgnore": 1788913597013
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18187,7 +18188,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T00:26:54.415Z",
+  "maj": "2026-09-09T00:26:57.984Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
