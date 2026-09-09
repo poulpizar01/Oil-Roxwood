@@ -16983,7 +16983,7 @@
   "postesV4": 1
  },
  "_cid": "bot",
- "_maj": 1788980490660,
+ "_maj": 1788986348945,
  "_rev": "iaqgli4brtl-mtu5t80k",
  "_majSec": {
   "fer": 1788952559812,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788980490660,
+  "_tables": 1788986348945,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -38711,6 +38711,17 @@
     "tel": "555 132 899",
     "rib": "559815",
     "idU": "378344",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-09"
+   },
+   {
+    "id": 1788986348201,
+    "nom": "Tarek Rodriguez",
+    "discord": "1026082196500521012",
+    "tel": "555 601 545",
+    "rib": "560 906",
+    "idU": "251746",
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-09"
