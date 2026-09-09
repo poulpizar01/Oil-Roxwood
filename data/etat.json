@@ -414,7 +414,7 @@
     },
     {
      "ok": false,
-     "nom": "Adam Wade",
+     "nom": "ivar frost",
      "poste": false,
      "quota": 3000,
      "barils": 0
@@ -850,7 +850,7 @@
     },
     {
      "ok": false,
-     "nom": "Adam Wade",
+     "nom": "ivar frost",
      "poste": false,
      "quota": 3000,
      "barils": 0
@@ -1196,7 +1196,7 @@
     },
     {
      "ok": false,
-     "nom": "Adam Wade",
+     "nom": "ivar frost",
      "poste": false,
      "quota": 3000,
      "barils": 628
@@ -1577,7 +1577,7 @@
     },
     {
      "ok": false,
-     "nom": "Adam Wade",
+     "nom": "ivar frost",
      "poste": false,
      "quota": 3000,
      "barils": 914
@@ -1958,7 +1958,7 @@
     },
     {
      "ok": true,
-     "nom": "Johnatan Rodriguez",
+     "nom": "Bjorn Frost",
      "poste": false,
      "quota": 3000,
      "barils": 3192
@@ -2161,7 +2161,7 @@
     },
     {
      "ok": false,
-     "nom": "Adam Wade",
+     "nom": "ivar frost",
      "poste": false,
      "quota": 3000,
      "barils": 306
@@ -2311,7 +2311,7 @@
     },
     {
      "ok": true,
-     "nom": "Johnatan Rodriguez",
+     "nom": "Bjorn Frost",
      "poste": false,
      "quota": 3000,
      "barils": 10039
@@ -3235,7 +3235,7 @@
    },
    {
     "idU": "370766",
-    "nom": "Adam Wade",
+    "nom": "ivar frost",
     "rib": "548724",
     "tel": "555 563 655",
     "actif": true,
@@ -3671,7 +3671,7 @@
    },
    {
     "idU": "361708",
-    "nom": "Johnatan Rodriguez",
+    "nom": "Bjorn Frost",
     "rib": "536445",
     "tel": "555-162-191",
     "avert": "",
@@ -8008,7 +8008,7 @@
     "lun": 0,
     "mar": 0,
     "mer": 0,
-    "nom": "Adam Wade",
+    "nom": "ivar frost",
     "sam": 0,
     "ven": 0
    },
@@ -10652,7 +10652,7 @@
    },
    {
     "don": "",
-    "nom": "Johnatan Rodriguez",
+    "nom": "Bjorn Frost",
     "date": "",
     "grade": "Raffineur",
     "menus": false,
@@ -16287,17 +16287,17 @@
   "postesV4": 1
  },
  "_cid": "pw3ek9n1gtg",
- "_maj": 1788912888294,
- "_rev": "nln6buuryj-mttcjqcz",
+ "_maj": 1788912897604,
+ "_rev": "x0g1bpfy5ah-mttcjurm",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
-  "weeks": 1788912888294,
-  "sheets": 1788912888294,
+  "weeks": 1788912897604,
+  "sheets": 1788912897604,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788912888294,
+  "journal": 1788912897604,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16319,11 +16319,21 @@
   "_affFix1": 1788557789855,
   "produits": 1788911769058,
   "_prodFix1": 1788911738862,
-  "_recruesIgnore": 1788912888294
+  "_recruesIgnore": 1788912897604
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788912898431,
+   "u": "Diego Herrera",
+   "a": "Renommage : Adam Wade → ivar frost · feuille rh (1), feuille prodSem (1), historique des semaines (5)"
+  },
+  {
+   "t": 1788912896814,
+   "u": "Diego Herrera",
+   "a": "Renommage : Johnatan Rodriguez → Bjorn Frost · feuille rh (1), feuille eligibilite (1), historique des semaines (2)"
+  },
   {
    "t": 1788912889122,
    "u": "Diego Herrera",
@@ -17813,16 +17823,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787498519482,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787498517656,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787498516152,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18178,7 +18178,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T00:14:52.979Z",
+  "maj": "2026-09-09T00:14:58.690Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -36287,6 +36287,8 @@
   "1788483950097",
   "1788484358109",
   "1788622713571",
-  "1788545207836"
+  "1788545207836",
+  "1788660447296",
+  "1788660452726"
  ]
 }
