@@ -512,7 +512,14 @@
       a.appendChild(txt);
       zone.appendChild(a);
     });
-    if (zone.children.length) band.hidden = false;
+    if (!zone.children.length) return;
+    band.hidden = false;
+    /* Le hero reserve une large marge basse pour laisser respirer la
+       silhouette de la raffinerie. Avec le bandeau en plus, le contenu
+       descendait sous la ligne de flottaison — on l'avait sous les yeux
+       sans le voir. On resserre, mais seulement quand il y a un bandeau. */
+    var hero = document.getElementById("accueil");
+    if (hero) hero.classList.add("a-neuf");
   }
   function vignetteVide() {
     var v = document.createElement("span");

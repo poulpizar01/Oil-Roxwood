@@ -81,6 +81,7 @@ compteur.
 | Recrues revenues sous un autre nom : détection + renommage global | C-84 |
 | Catalogue publié à l'enregistrement, sans écraser les stats | C-85 |
 | La page Produits montre ce qui est réellement en ligne | C-86 |
+| Bandeau des nouveautés : visible et au-dessus de la ligne de flottaison | C-87 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
