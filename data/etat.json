@@ -14078,1899 +14078,2170 @@
   {
    "t": "2026-08-22 06:25",
    "id": "1540607766895263850",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-21 10:44",
    "id": "1540310739326214154",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-08-20 15:09",
    "id": "1540014829455020144",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 280,
-   "quantite": 56
+   "quantite": 56,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-20 15:08",
    "id": "1540014590912503942",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-20 14:54",
    "id": "1540011034457280565",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-20 14:53",
    "id": "1540010786729099269",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-19 17:53",
    "id": "1539693932865261713",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-19 10:31",
    "id": "1539582626367537222",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 70,
-   "quantite": 14
+   "quantite": 14,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-19 10:29",
    "id": "1539582103103217728",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-19 10:28",
    "id": "1539581853416296489",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-16 16:50",
    "id": "1538590712742813758",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 590,
-   "quantite": 118
+   "quantite": 118,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-16 16:32",
    "id": "1538586183117045863",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-16 16:31",
    "id": "1538585938727272561",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-16 16:25",
    "id": "1538584412415987780",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-08-16 16:19",
    "id": "1538582912650182755",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-16 16:18",
    "id": "1538582654335844468",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-16 16:13",
    "id": "1538581396992430176",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-08-16 15:55",
    "id": "1538576867030995027",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-16 15:54",
    "id": "1538576600197636151",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-16 15:45",
    "id": "1538574350704181264",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-16 15:44",
    "id": "1538574088870563921",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-16 15:30",
    "id": "1538570595950665770",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-16 15:29",
    "id": "1538570339217309789",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-16 15:12",
    "id": "1538566052303081478",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-16 06:34",
    "id": "1538435796661706854",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 330,
-   "quantite": 66
+   "quantite": 66,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-14 20:53",
    "id": "1537927174399590462",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 610,
-   "quantite": 122
+   "quantite": 122,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-14 20:44",
    "id": "1537924911601811502",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-14 20:43",
    "id": "1537924676242645069",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-14 20:42",
    "id": "1537924438572400773",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-08-10 10:18",
    "id": "1536317723980595256",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-10 09:50",
    "id": "1536310666351214657",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-10 09:49",
    "id": "1536310412306292749",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-08-08 22:00",
    "id": "1535769736451719275",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-08 21:40",
    "id": "1535764695540179079",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-08 21:39",
    "id": "1535764437976485997",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-08 21:23",
    "id": "1535760411033604210",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 450,
-   "quantite": 90
+   "quantite": 90,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-08-08 21:22",
    "id": "1535760178325229633",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-08-08 21:21",
    "id": "1535759917032411273",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-08-02 20:59",
    "id": "1533580105496920095",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 120,
-   "quantite": 24
+   "quantite": 24,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-08-02 18:28",
    "id": "1533542081090289697",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-02 18:27",
    "id": "1533541849560518835",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-01 12:04",
    "id": "1533083073573556478",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-08-01 12:03",
    "id": "1533082818845085741",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-08-01 11:57",
    "id": "1533081330273747028",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-08-01 11:56",
    "id": "1533081064338227309",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-31 21:47",
    "id": "1532867244957241580",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-31 11:46",
    "id": "1532715964687187973",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-31 09:48",
    "id": "1532686503799554069",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 10,
-   "quantite": 2
+   "quantite": 2,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-31 01:08",
    "id": "1532555398853165239",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-31 00:51",
    "id": "1532551363131740195",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-30 21:36",
    "id": "1532502068483326195",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 21:22",
    "id": "1531049081839947818",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 21:21",
    "id": "1531048819309940791",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-26 14:37",
    "id": "1530947157685964872",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 685,
-   "quantite": 137
+   "quantite": 137,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-26 14:36",
    "id": "1530946902508437722",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-26 14:32",
    "id": "1530945896957739061",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-26 14:31",
    "id": "1530945651641159773",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-26 14:18",
    "id": "1530942376632123579",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-26 12:55",
    "id": "1530921392051327101",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 12:54",
    "id": "1530921155224146046",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 12:19",
    "id": "1530912323580071972",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-26 10:26",
    "id": "1530884125680992318",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 250,
-   "quantite": 50
+   "quantite": 50,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-26 10:14",
    "id": "1530880873547825248",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-26 10:01",
    "id": "1530877598476013653",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-26 09:59",
    "id": "1530877330019450974",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-26 07:52",
    "id": "1530845364675153972",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 55,
-   "quantite": 11
+   "quantite": 11,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 07:40",
    "id": "1530842344801177668",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 07:26",
    "id": "1530838828170870859",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-26 07:13",
    "id": "1530835544668508245",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-25 09:00",
    "id": "1530500059676938373",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 250,
-   "quantite": 50
+   "quantite": 50,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-24 21:52",
    "id": "1530331982213415049",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-24 21:47",
    "id": "1530330724727783506",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-24 21:40",
    "id": "1530328728188489773",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-24 00:49",
    "id": "1530014034919690361",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 670,
-   "quantite": 134
+   "quantite": 134,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-23 23:44",
    "id": "1529997669181816980",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-23 23:41",
    "id": "1529996918351204373",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-23 12:47",
    "id": "1529832231147671607",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-23 11:46",
    "id": "1529816885439500350",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-23 11:45",
    "id": "1529816618136506372",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-22 19:23",
    "id": "1529569522368123034",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-22 19:22",
    "id": "1529569284974579798",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-22 19:04",
    "id": "1529564729167708362",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 400,
-   "quantite": 80
+   "quantite": 80,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-22 19:03",
    "id": "1529564512162807844",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 650,
-   "quantite": 130
+   "quantite": 130,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-22 19:02",
    "id": "1529564238174228519",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-22 18:23",
    "id": "1529554425226596365",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-22 18:22",
    "id": "1529554149971333156",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 13:16",
    "id": "1528390174785011824",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 55,
-   "quantite": 11
+   "quantite": 11,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 12:44",
    "id": "1528382108303622265",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 12:42",
    "id": "1528381606929235983",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 12:08",
    "id": "1528373051127763033",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 12:04",
    "id": "1528372035544416430",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 12:03",
    "id": "1528371791565684779",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 12:00",
    "id": "1528371028542099522",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 11:59",
    "id": "1528370786073575446",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-19 10:40",
    "id": "1528350896138748026",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 370,
-   "quantite": 74
+   "quantite": 74,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-18 14:50",
    "id": "1528051435961323653",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 340,
-   "quantite": 68
+   "quantite": 68,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-18 12:13",
    "id": "1528011843719790679",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-18 11:51",
    "id": "1528006301022556277",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-18 00:05",
    "id": "1527828629642416149",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 745,
-   "quantite": 149
+   "quantite": 149,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 23:57",
    "id": "1527826628078600315",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 23:39",
    "id": "1527822098410635544",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 23:24",
    "id": "1527818314787852426",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 23:23",
    "id": "1527818094914048101",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 23:12",
    "id": "1527815299015901297",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 23:11",
    "id": "1527815048020627590",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 22:57",
    "id": "1527811530027171962",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-17 12:23",
    "id": "1527651841259864198",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-16 19:35",
    "id": "1527398193048977650",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-16 16:16",
    "id": "1527348108533694570",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-16 14:20",
    "id": "1527318930362728511",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-15 20:26",
    "id": "1527048689980539033",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-07-15 20:26",
    "id": "1527048688634036434",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-07-14 06:09",
    "id": "1526470762729574466",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-07-12 20:18",
    "id": "1525959624791036025",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 510,
-   "quantite": 102
+   "quantite": 102,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-12 20:17",
    "id": "1525959379206017185",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 15,
-   "quantite": 3
+   "quantite": 3,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-07-12 19:53",
    "id": "1525953346081390764",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 740,
-   "quantite": 148
+   "quantite": 148,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-07-12 19:52",
    "id": "1525953084025733235",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-07-12 19:50",
    "id": "1525952608106315820",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 760,
-   "quantite": 152
+   "quantite": 152,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-12 19:49",
    "id": "1525952311845982307",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-12 19:30",
    "id": "1525947543429840990",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-12 19:14",
    "id": "1525943518714007636",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-12 19:13",
    "id": "1525943277881135158",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-11 21:08",
    "id": "1525609785935003794",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-05 15:22",
    "id": "1523348457996288185",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-05 13:53",
    "id": "1523325917068529725",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 250,
-   "quantite": 50
+   "quantite": 50,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-05 13:50",
    "id": "1523325190145179892",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 35,
-   "quantite": 7
+   "quantite": 7,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-05 13:34",
    "id": "1523321155555954775",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-05 13:18",
    "id": "1523317153707720706",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 100,
-   "quantite": 20
+   "quantite": 20,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-05 13:17",
    "id": "1523316876585734251",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 650,
-   "quantite": 130
+   "quantite": 130,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-07-04 20:53",
    "id": "1523069234362581157",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-04 20:52",
    "id": "1523068997992448214",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-07-04 20:24",
    "id": "1523061939415023775",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-07-04 20:23",
    "id": "1523061702684315737",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-07-04 20:19",
    "id": "1523060693564264662",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-04 20:18",
    "id": "1523060459346071660",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-07-04 20:17",
    "id": "1523060193422737541",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-07-04 20:17",
    "id": "1523060148959187006",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-29 15:40",
    "id": "1521178660575645749",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-28 18:10",
    "id": "1520853984242307186",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 800,
-   "quantite": 160
+   "quantite": 160,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-28 16:06",
    "id": "1520822817078378660",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 16:05",
    "id": "1520822554678263820",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 15:36",
    "id": "1520815254177583312",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 15:32",
    "id": "1520814247817511011",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 15:31",
    "id": "1520813981487337597",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 15:28",
    "id": "1520813243977830603",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 15:27",
    "id": "1520812999097716831",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-28 13:12",
    "id": "1520779025705074760",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-28 13:00",
    "id": "1520776006992924684",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 650,
-   "quantite": 130
+   "quantite": 130,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-28 12:37",
    "id": "1520770218580902174",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-27 10:46",
    "id": "1520379838022815818",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-27 10:27",
    "id": "1520375059070451733",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 265,
-   "quantite": 53
+   "quantite": 53,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-27 10:26",
    "id": "1520374794514731072",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-27 10:11",
    "id": "1520371024850456589",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 255,
-   "quantite": 51
+   "quantite": 51,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-27 10:10",
    "id": "1520370776103194709",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-27 00:06",
    "id": "1520218792754548848",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 420,
-   "quantite": 84
+   "quantite": 84,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-27 00:05",
    "id": "1520218542509654134",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:59",
    "id": "1520217045663219773",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:58",
    "id": "1520216785939468311",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:58",
    "id": "1520216734257254410",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:19",
    "id": "1520206961394712709",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 600,
-   "quantite": 120
+   "quantite": 120,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:18",
    "id": "1520206713779781863",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 640,
-   "quantite": 128
+   "quantite": 128,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-26 23:10",
    "id": "1520204722416386100",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 800,
-   "quantite": 160
+   "quantite": 160,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:09",
    "id": "1520204460607930548",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-26 23:07",
    "id": "1520203980951654486",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-24 11:04",
    "id": "1519297164134715465",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-24 10:52",
    "id": "1519294153408778355",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-21 11:38",
    "id": "1518218609841668252",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-21 11:23",
    "id": "1518214854282838090",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-21 11:22",
    "id": "1518214609230888962",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-21 11:04",
    "id": "1518210057706147934",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-21 11:03",
    "id": "1518209812838613174",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-20 20:17",
    "id": "1517986841943474301",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-20 11:27",
    "id": "1517853434223792146",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 11:21",
    "id": "1517851934738874511",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 800,
-   "quantite": 160
+   "quantite": 160,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 11:20",
    "id": "1517851683865235577",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 10:58",
    "id": "1517846130539368642",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 800,
-   "quantite": 160
+   "quantite": 160,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 10:57",
    "id": "1517845882635030575",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 10:56",
    "id": "1517845637113057334",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 10:51",
    "id": "1517844365345554463",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-20 10:50",
    "id": "1517844123594526802",
-   "nom": "Logs - Achat fer",
+   "nom": "Julio Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "767332288744128512"
   },
   {
    "t": "2026-06-19 18:57",
    "id": "1517604332730847369",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-18 18:11",
    "id": "1517230392594141386",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-18 18:10",
    "id": "1517230111882215626",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-18 17:55",
    "id": "1517226356021137608",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 10,
-   "quantite": 2
+   "quantite": 2,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-18 17:54",
    "id": "1517226106120310947",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 375,
-   "quantite": 75
+   "quantite": 75,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-18 17:53",
    "id": "1517225884883353834",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-14 18:39",
    "id": "1515787789160157196",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-14 18:21",
    "id": "1515783285484159117",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-14 12:26",
    "id": "1515693922372947978",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-14 12:14",
    "id": "1515690881674514543",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 260,
-   "quantite": 52
+   "quantite": 52,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-14 12:13",
    "id": "1515690642230214736",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-06-14 11:48",
    "id": "1515684342838333530",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-14 11:47",
    "id": "1515684090899071088",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-14 11:44",
    "id": "1515683353972703264",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-14 11:33",
    "id": "1515680596675006565",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-14 11:32",
    "id": "1515680336686878720",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-14 11:31",
    "id": "1515680092242837544",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-09 15:42",
    "id": "1513931218125852804",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-06-09 15:41",
    "id": "1513930967239102464",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-06-09 15:40",
    "id": "1513930877363552276",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-06-09 15:39",
    "id": "1513930470604144680",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-06-09 15:38",
    "id": "1513930234918080512",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-06-09 15:37",
    "id": "1513929975852564744",
-   "nom": "Logs - Achat fer",
+   "nom": "Tyler Collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "593431852291850281"
   },
   {
    "t": "2026-06-09 15:34",
    "id": "1513929230864355430",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-09 15:33",
    "id": "1513928964538896484",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-06-09 15:22",
    "id": "1513926208964792500",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-06-09 15:21",
    "id": "1513925945046597643",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 725,
-   "quantite": 145
+   "quantite": 145,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-06-08 12:41",
    "id": "1513523244253184182",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-07 17:35",
    "id": "1513234896561246399",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-07 17:34",
    "id": "1513234618017648651",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-07 17:18",
    "id": "1513230591565500417",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-06-07 16:40",
    "id": "1513221057983545386",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-06-07 10:59",
    "id": "1513135357653159946",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-07 10:43",
    "id": "1513131335391121628",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 680,
-   "quantite": 136
+   "quantite": 136,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-07 10:42",
    "id": "1513131075352657971",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-07 10:12",
    "id": "1513123502004244632",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-07 10:11",
    "id": "1513123263918768310",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-06-06 17:42",
    "id": "1512874396950335519",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 440,
-   "quantite": 88
+   "quantite": 88,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-06-06 17:41",
    "id": "1512874142721118238",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-06-06 17:24",
    "id": "1512869859938013244",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-06-06 16:59",
    "id": "1512863594570580119",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-31 20:07",
    "id": "1510736578857795614",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 500,
-   "quantite": 100
+   "quantite": 100,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-31 20:07",
    "id": "1510736377480744972",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-31 19:49",
    "id": "1510732090482753677",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-30 19:46",
    "id": "1510368813017862225",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 16:18",
    "id": "1510316452727623880",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-30 16:04",
    "id": "1510312949816754408",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-30 15:27",
    "id": "1510303617293488219",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 350,
-   "quantite": 70
+   "quantite": 70,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 15:26",
    "id": "1510303376515268609",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 15:25",
    "id": "1510303115893674166",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 15:21",
    "id": "1510302118009901157",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 15:20",
    "id": "1510301876611055756",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 15:09",
    "id": "1510299088099348711",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-30 15:08",
    "id": "1510298838844575938",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-30 15:06",
    "id": "1510298340582232066",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 350,
-   "quantite": 70
+   "quantite": 70,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 15:05",
    "id": "1510298081466515659",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 15:04",
    "id": "1510297854441164952",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 14:40",
    "id": "1510291796729659582",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 14:36",
    "id": "1510290801890951289",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 14:35",
    "id": "1510290548538478776",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 14:32",
    "id": "1510289792095748167",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 375,
-   "quantite": 75
+   "quantite": 75,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 14:31",
    "id": "1510289549744668783",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-30 14:26",
    "id": "1510288286600663040",
-   "nom": "Logs - Achat fer",
+   "nom": "Stella Collins",
    "montant": 700,
-   "quantite": 140
+   "quantite": 140,
+   "did": "948542221429379112"
   },
   {
    "t": "2026-05-30 11:19",
    "id": "1510241226371371098",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 11:18",
    "id": "1510240979851022378",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 10:15",
    "id": "1510225112799117483",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 10:14",
    "id": "1510224853221900289",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 10:01",
    "id": "1510221603248803850",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 10:00",
    "id": "1510221347257847888",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 09:47",
    "id": "1510218051780345919",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 09:46",
    "id": "1510217820816801853",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 09:34",
    "id": "1510214791212437575",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 09:19",
    "id": "1510211011876094082",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-30 09:18",
    "id": "1510210749237297244",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-29 23:09",
    "id": "1510057529021960244",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-24 19:30",
    "id": "1508190597188681858",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 200,
-   "quantite": 40
+   "quantite": 40,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-24 17:05",
    "id": "1508153860273999924",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 200,
-   "quantite": 40
+   "quantite": 40,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-24 15:41",
    "id": "1508132746340597970",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 400,
-   "quantite": 80
+   "quantite": 80,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-05-23 22:32",
    "id": "1507873971008442520",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 330,
-   "quantite": 66
+   "quantite": 66,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-23 21:59",
    "id": "1507865681025175622",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 675,
-   "quantite": 135
+   "quantite": 135,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-23 21:58",
    "id": "1507865415261487174",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-23 21:57",
    "id": "1507865180678131933",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-23 21:44",
    "id": "1507861887352832124",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-23 21:43",
    "id": "1507861624512450623",
-   "nom": "Logs - Achat fer",
+   "nom": "Laurent Roquel",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "707695913187016785"
   },
   {
    "t": "2026-05-23 21:40",
    "id": "1507860890987270344",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 420,
-   "quantite": 84
+   "quantite": 84,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-23 20:31",
    "id": "1507843549159493652",
-   "nom": "Logs - Achat fer",
+   "nom": "Juan Sanchez",
    "montant": 750,
-   "quantite": 150
+   "quantite": 150,
+   "did": "690537200689086537"
   },
   {
    "t": "2026-05-23 19:46",
    "id": "1507832205634965524",
-   "nom": "Logs - Achat fer",
+   "nom": "Emma Collins-rodriguez",
    "montant": 420,
-   "quantite": 84
+   "quantite": 84,
+   "did": "1053366471574687844"
   },
   {
    "t": "2026-05-23 19:45",
    "id": "1507831944635875538",
-   "nom": "Logs - Achat fer",
+   "nom": "William Rodriguez-collins",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "235844738656239616"
   },
   {
    "t": "2026-05-23 13:33",
    "id": "1507738168722456767",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-23 13:03",
    "id": "1507730612369489983",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-23 12:49",
    "id": "1507727073438076959",
-   "nom": "Logs - Achat fer",
+   "nom": "Jules Leroy",
    "montant": 625,
-   "quantite": 125
+   "quantite": 125,
+   "did": "472490761053798405"
   },
   {
    "t": "2026-05-23 12:48",
@@ -16712,10 +16983,10 @@
   "postesV4": 1
  },
  "_cid": "d9h8bp3eymm",
- "_maj": 1788952554924,
- "_rev": "pbcs9y499yr-mtu05upp",
+ "_maj": 1788952559812,
+ "_rev": "i9u59p6v8dm-mtu061gk",
  "_majSec": {
-  "fer": 1788951572747,
+  "fer": 1788952559812,
   "fact": 1788947099473,
   "users": 1788445633699,
   "weeks": 1788912897604,
@@ -16730,7 +17001,7 @@
   "imported": 1788222184505,
   "settings": 1788911738862,
   "closeUndo": 1788222184505,
-  "quotasCom": 1788947109119,
+  "quotasCom": 1788952559681,
   "bilanExtra": 1788222184505,
   "bilanForce": 1788222184505,
   "primesExtra": 1788222184505,
@@ -16751,6 +17022,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788952560784,
+   "u": "Diego Herrera",
+   "a": "Achats de fer : 0 relevé(s) repris du salon, 271 nom(s) réparé(s)"
+  },
   {
    "t": 1788918247956,
    "u": "Diego Herrera",
@@ -18245,11 +18521,6 @@
    "a": "Contrat de travail généré : Wallace Crawfard (Runner)",
    "t": 1787498851567,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787498642620,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18545,7 +18816,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T11:15:56.221Z",
+  "maj": "2026-09-09T11:16:04.964Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18589,7 +18860,7 @@
   },
   "vendus": 4000,
   "parPers": 800,
-  "ferPers": 1600
+  "ferPers": 1572
  },
  "bilanExtra": [
   {
