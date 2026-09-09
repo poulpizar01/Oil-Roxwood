@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-96</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-97</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -636,6 +636,58 @@ function roleDiscordConnu(roles){
   return m?m.role:null;
 }
 function roleDepuisDiscord(membreRoles){ return roleDiscordConnu(membreRoles)||null; }
+
+/* ---- Alignement des rôles sans attendre la reconnexion (C-97) ----
+
+   Jusqu'ici les rôles d'une personne n'étaient lus qu'au moment où elle passait
+   par Discord — et son identité, rôles compris, était mise en cache dans son
+   navigateur. Un commercial promu RH restait donc commercial sur le site
+   jusqu'à sa prochaine vraie connexion, c'est-à-dire parfois des jours. Depuis
+   C-75 il n'y a plus de panneau pour le corriger à la main : une seule source
+   de vérité, mais qu'on ne pouvait consulter qu'à l'arrivée de l'intéressé.
+
+   Le bot est dans le serveur en permanence et publie data/roles-discord.json.
+   On s'en sert pour réaligner les comptes existants, avec exactement les mêmes
+   garde-fous que la connexion :
+     · le dernier compte Direction n'est jamais rétrogradé ;
+     · la clé du développeur n'est jamais touchée ;
+     · aucun rôle reconnu ⇒ on ne fait rien. Fermer un accès en l'absence de la
+       personne se déciderait autrement ; ici on ne fait que suivre une
+       promotion ou une mutation.
+   Et seul un compte capable d'écrire s'en charge : sinon la correction resterait
+   dans un navigateur, sans jamais rejoindre les autres. */
+async function alignerRolesBot(){
+  try{
+    if(!RoxwoodGH.peutEcrire()) return 0;
+    const r=await fetch('data/roles-discord.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok) return 0;
+    const d=await r.json();
+    const membres=(d&&d.membres)||null;
+    if(!membres) return 0;
+    let n=0;
+    (S.users||[]).forEach(u=>{
+      const did=String(u.did||''); if(!did||estDev(did)) return;
+      const roles=membres[did]; if(!Array.isArray(roles)) return;   // absent du relevé : on ne suppose rien
+      const cible=roleDiscordConnu(roles);
+      if(!cible||cible===u.role) return;                            // aucun rôle reconnu : on ne ferme pas ici
+      if(u.role==='direction'&&(S.users||[]).filter(x=>x.role==='direction'&&x!==u).length===0) return;
+      const avant=u.role; u.role=cible; n++;
+      jlog(`Rôle aligné depuis Discord (relevé du bot) : ${u.user} · ${ROLES[avant]||avant} → ${ROLES[cible]}`);
+      sendLog('🎖️ Rôle mis à jour',
+              `**${u.user}** passe de **${ROLES[avant]||avant}** à **${ROLES[cible]}** — relevé sur le serveur Discord`,
+              0x5865F2);
+    });
+    if(n){
+      save(); sbQueue();
+      /* Si c'est le rôle de la personne devant l'écran qui a changé, ses menus
+         et ses droits doivent suivre dans la seconde, pas au prochain F5. */
+      if(typeof applyPerms==='function') applyPerms();
+      if(typeof navBadges==='function') navBadges();
+      if(typeof rerender==='function') rerender();
+    }
+    return n;
+  }catch(e){ return 0; }
+}
 try{ if(window.RoxwoodGH&&RoxwoodGH.configurerServeur) RoxwoodGH.configurerServeur(serveurDiscord()); }catch(e){}
 /* ---- Réglages (Paramètres → Connexion par rôle Discord) ---- */
 function rdMaj(liste,note){
@@ -991,6 +1043,7 @@ function enter(){
   const bell=document.getElementById('nfBell'); if(bell) bell.style.display='flex';
   nfRefresh();
   przLoad().then(()=>{ if(VIEW==='effectif') rerender(); }); setInterval(przLoad,5*60*1000); // présence Discord (widget) rafraîchie
+  alignerRolesBot(); setInterval(alignerRolesBot,5*60*1000);  // rôles Discord relevés par le bot (C-97)
   hbSend(); hbLoad(); setInterval(()=>{ hbSend(); hbLoad(); },90*1000); // présence sur le SITE (battement de cœur)
   // visite guidée automatique pour les comptes de gestion récents (créés il y a moins de 7 jours)
   setTimeout(()=>{
@@ -1027,7 +1080,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-96';
+const APP_VERSION='C-97';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -4519,6 +4572,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-97',d:'09/09/2026',t:'Une promotion n’attend plus la reconnexion',items:[
+   ['🎖️','Le rôle suivait avec des jours de retard','Le site ne lisait les rôles d\'une personne qu\'au moment où elle passait par Discord — et gardait son identité, rôles compris, en cache dans son navigateur. Un commercial passé RH restait commercial ici jusqu\'à sa prochaine vraie connexion. Depuis C-75 il n\'y a plus de panneau pour corriger à la main : une seule source de vérité, mais qu\'on ne pouvait consulter qu\'à l\'arrivée de l\'intéressé.'],
+   ['🤖','Le bot regarde à sa place','Il est dans le serveur en permanence et voit les rôles de tout le monde sans que personne se connecte. Il publie <code>data/roles-discord.json</code> toutes les cinq minutes ; le dashboard réaligne les comptes tout seul, et prévient sur Discord. Une promotion arrive donc sur le site en quelques minutes.'],
+   ['🛡️','Ce qu\'il ne fait pas','Il ne publie que les personnes qui ont déjà un compte — le dépôt est public, on n\'y ajoute aucun identifiant qui n\'y soit déjà. Il ne ferme aucun accès : « plus aucun rôle » reste une décision prise à la connexion, en présence de la personne. Le dernier compte Direction n\'est jamais rétrogradé, et la clé du développeur n\'est jamais touchée.'],
+ ]},
  {v:'C-96',d:'09/09/2026',t:'Le dernier mètre du relève-fer',items:[
    ['🔌','Un relévé automatique qui attendait un clic','Le bot lit le salon toutes les cinq minutes et dépose les achats dans <code>data/fer-logs.json</code>. Mais rien ne les faisait entrer dans le dashboard : il fallait cliquer « Importer depuis le salon ». Automatique de bout en bout, sauf le dernier mètre — et personne ne pense à cliquer un bouton qui ne réclame rien. Ce matin, l\'achat de Stella était dans le fichier depuis 11 h 41 et la page annonçait « 0 achat relevé ». La reprise se fait maintenant à l\'ouverture de la page ; les deux boutons restent, pour forcer ou pour coller des logs à la main.'],
    ['🩹','Trois cents achats retrouvent leur auteur','Jusqu\'en C-57, le relève ne savait pas lire le nom et attribuait tout au webhook : trois cents lignes signées « Logs - Achat fer ». Quand l\'identifiant du message correspond à celui du bot, la ligne retrouve son vrai nom. Sur tes données : <b>271 réparées</b>, 48 achats manquants ajoutés, 29 lignes trop anciennes pour être rattachées.'],
