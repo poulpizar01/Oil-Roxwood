@@ -16286,9 +16286,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "iqepdtu7pio",
+ "_cid": "pw3ek9n1gtg",
  "_maj": 1788912897604,
- "_rev": "3knl74iw07i-mttcjwo9",
+ "_rev": "cpbedrjple-mttcjywy",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16318,7 +16318,8 @@
   "affiches": 1788557789855,
   "_affFix1": 1788557789855,
   "produits": 1788911769058,
-  "_prodFix1": 1788911738862
+  "_prodFix1": 1788911738862,
+  "_recruesIgnore": 1788912897604
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18177,7 +18178,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T00:15:01.161Z",
+  "maj": "2026-09-09T00:15:04.066Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -36281,5 +36282,13 @@
  "_rolesFix4": true,
  "_rolesFix77": true,
  "_affFix1": true,
- "_prodFix1": true
+ "_prodFix1": true,
+ "_recruesIgnore": [
+  "1788483950097",
+  "1788484358109",
+  "1788622713571",
+  "1788545207836",
+  "1788660447296",
+  "1788660452726"
+ ]
 }
