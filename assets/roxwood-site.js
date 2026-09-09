@@ -390,14 +390,26 @@
       if (!d) return;
       equipe(d.equipe);                              // l'équipe ne dépend pas de la production
       catalogue(d.produits);                         // les produits non plus
-      if (!d.totalBarils) return;                    // rien de publié : la section reste cachée
+
+      /* La section entiere disparaissait des que les barils tombaient a zero
+         — c'est-a-dire tous les lundis, apres la cloture, quand la tablette
+         repart de zero. Or « 73 commandes livrees » et l'objectif de la
+         semaine, eux, restent vrais : on cachait la meilleure preuve que
+         l'entreprise tourne parce qu'un seul compteur etait a zero.
+         Il suffit desormais qu'UN chiffre ait quelque chose a dire. */
+      var chiffres = [d.totalBarils, d.effectif, d.clientsServis, d.objectif]
+                       .some(function (n) { return Number(n) > 0; })
+                     || (d.top3 && d.top3.length);
+      if (!chiffres) return;
       sec.hidden = false;
       if ($("navDirect")) $("navDirect").hidden = false;
 
       $("dirSem").textContent = d.semaine ? ("n° " + d.semaine) : "en cours";
-      $("dirBarils").textContent = F(d.totalBarils);
-      $("dirEffectif").textContent = F(d.effectif);
-      $("dirClients").textContent = F(d.clientsServis);
+      /* Un tiret dit « la semaine commence », un zero dit « c'est en panne ». */
+      var chiffre = function (n) { return Number(n) > 0 ? F(n) : "—"; };
+      $("dirBarils").textContent = chiffre(d.totalBarils);
+      $("dirEffectif").textContent = chiffre(d.effectif);
+      $("dirClients").textContent = chiffre(d.clientsServis);
 
       if (d.maj) {
         var j = new Date(d.maj);
@@ -406,7 +418,7 @@
           + " à " + j.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) + ".";
       }
 
-      if (d.objectif > 0) {
+      if (d.objectif > 0 && d.totalBarils > 0) {
         var pct = Math.min(100, (d.totalBarils / d.objectif) * 100);
         $("dirObjWrap").hidden = false;
         $("dirObjTxt").textContent = F(d.totalBarils) + " / " + F(d.objectif) + " barils · " + Math.round(pct) + " %";

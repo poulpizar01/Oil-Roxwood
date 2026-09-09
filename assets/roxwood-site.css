@@ -445,3 +445,26 @@ footer{border-top:1px solid var(--trait-fort);padding:32px 0 46px;position:relat
   .hero-neuf-vign,.hero-neuf-vide{width:52px;height:52px}
   .hero-neuf-nom{font-size:14.5px}
 }
+
+
+/* ============================================================
+   ACCESSIBILITÉ — quelques manques releves a l'audit du 9/09
+
+   · Lien d'evitement : au clavier, il fallait traverser les neuf
+     entrees du menu avant d'atteindre la page. Il n'apparait qu'au
+     focus, donc invisible a la souris.
+   · Cibles tactiles : six liens faisaient moins de 32 px de haut sur
+     telephone. On ne change pas leur dessin, on elargit la zone.
+   ============================================================ */
+.evitement{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  background:var(--ambre);color:#120C05;padding:12px 20px;
+  font-family:var(--mono,ui-monospace,monospace);font-size:13px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+}
+.evitement:focus{left:12px;top:12px}
+
+@media (max-width:760px){
+  .nav-links a,.contact-chip,footer .pied a{min-height:34px;display:inline-flex;align-items:center}
+  .ruban .defile,.tag,.sec-kicker{font-size:11px}
+}

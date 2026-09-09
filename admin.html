@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-87</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-88</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -1024,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-87';
+const APP_VERSION='C-88';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -4249,6 +4249,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-88',d:'09/09/2026',t:'Le site public repris en main',items:[
+   ['📊','« Le dépôt en direct » ne disparaît plus','La section entière s\'effaçait dès que les barils tombaient à zéro — c\'est-à-dire tous les lundis après la clôture. On cachait ainsi les 73 commandes livrées et l\'objectif de la semaine, la meilleure preuve que l\'entreprise tourne, parce qu\'un seul compteur était vide. Il suffit maintenant qu\'un chiffre ait quelque chose à dire ; les compteurs à zéro affichent un tiret, qui dit « la semaine commence » plutôt que « c\'est en panne ».'],
+   ['🤖','Le bot publie les chiffres du site','Ils dépendaient d\'un clic sur « Publier sur le site », donc de personne : au 9 septembre le fichier public datait du 7. Le dashboard dépose déjà le paquet tout prêt à chaque enregistrement — le bot le recopie, et seulement quand ce qui se voit a changé. Un simple ré-enregistrement ne déclenche aucun commit.'],
+   ['⚡','Les polices ne bloquent plus l\'affichage','Trois familles Google en feuille de style classique : le navigateur attendait Google avant de peindre quoi que ce soit. Page blanche de plusieurs centaines de millisecondes en 4G — et page blanche tout court si Google est injoignable. Elles se chargent désormais de côté, les polices de repli tiennent l\'affiche.'],
+   ['♿','Navigation au clavier et référencement','Un lien « Aller au contenu » apparaît à la première tabulation : il fallait traverser les neuf entrées du menu avant d\'atteindre la page. Plus une adresse canonique, une fiche Organization pour les moteurs, et des zones cliquables élargies sur téléphone.'],
+ ]},
  {v:'C-87',d:'09/09/2026',t:'Les nouveautés se voient enfin',items:[
    ['👀','Le bandeau était trop sage','De petites plaques sombres posées sur le sol noir de l\'illustration : on les avait sous les yeux sans les voir. Bord ambre, vignette deux fois plus grande, pastille « NOUVEAU » sur chaque fiche, et une plaque assez opaque pour se détacher de la raffinerie derrière.'],
    ['📐','Et il passait sous la ligne de flottaison','Le hero est ancré en bas et réserve de larges marges à la silhouette : le bandeau ajouté en fin de bloc tombait hors de l\'écran. Il reprend maintenant sa place en haut et en bas — mais seulement quand il y a quelque chose à annoncer. Vérifié sur 1600×900, 1366×768 et un téléphone : entièrement visible sans faire défiler.'],

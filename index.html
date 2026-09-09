@@ -23,6 +23,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#e8a020">
+<link rel="canonical" href="https://poulpizar01.github.io/Oil-Roxwood/">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -40,18 +41,38 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Les polices ne bloquent plus l'affichage. Elles arrivaient en feuille de
+     style classique : le navigateur attendait Google avant de peindre quoi que
+     ce soit — une page blanche de plusieurs centaines de millisecondes en 4G,
+     et une page blanche TOUT COURT si Google est injoignable. On les charge
+     maintenant de côté ; les piles de repli de roxwood-core.css (Oswald,
+     Arial Narrow, Impact…) tiennent l'affiche en attendant, et display=swap
+     fait la bascule sans à-coup. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="assets/roxwood-core.css">
 <link rel="stylesheet" href="assets/roxwood-site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization",
+ "name":"Oil Roxwood",
+ "url":"https://poulpizar01.github.io/Oil-Roxwood/",
+ "logo":"https://poulpizar01.github.io/Oil-Roxwood/assets/logo.png",
+ "description":"Collecte, transport et revente de pétrole sur Roxwood County — serveur RP FlashbackFA.",
+ "areaServed":"Roxwood County",
+ "sameAs":["https://discord.com/invite/99AuEX3Kpz"],
+ "contactPoint":{"@type":"ContactPoint","telephone":"986","contactType":"Commandes","areaServed":"Roxwood County"}}
+</script>
 </head>
 <body>
+<a class="evitement" href="#accueil">Aller au contenu</a>
 
 <div id="pipeline"></div>
 <span class="cartouche" aria-hidden="true">Oil Roxwood · Roxwood County · Est. 2026</span>
 
 <nav class="barre">
   <a class="logo" href="#accueil">
-    <img src="assets/logo.png" alt="Logo Oil Roxwood" width="34" height="34">
+    <img src="assets/logo.png" alt="Logo Oil Roxwood" width="34" height="34" decoding="async" fetchpriority="high">
     <span>OIL <b>ROXWOOD</b></span>
   </a>
   <button class="burger" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
@@ -456,7 +477,7 @@
 <footer>
   <div class="wrap pied">
     <a class="logo" href="#accueil">
-      <img src="assets/logo.png" alt="" width="30" height="30">
+      <img src="assets/logo.png" alt="" width="30" height="30" loading="lazy" decoding="async">
       <span>OIL <b>ROXWOOD</b></span>
     </a>
     <p>Entreprise RP sur FlashbackFA · Site non officiel, aucun lien avec une entreprise réelle — © 2026 · <a href="admin.html">Espace membre</a></p>

@@ -82,6 +82,7 @@ compteur.
 | Catalogue publié à l'enregistrement, sans écraser les stats | C-85 |
 | La page Produits montre ce qui est réellement en ligne | C-86 |
 | Bandeau des nouveautés : visible et au-dessus de la ligne de flottaison | C-87 |
+| Site public : « En direct » réparé, stats publiées par le bot, polices non bloquantes | C-88 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -148,6 +149,19 @@ remplacer quoi que ce soit. Le relancer deux fois ne fait rien.
 `12/09/2026`, `12-09`, `12 septembre`, `1er octobre`, `2026-09-12`. Ce qu'il ne
 sait pas lire (« lundi prochain ») fait apparaître un message éphémère au RH :
 absence acceptée, mais à saisir à la main.
+
+**Deux choses à faire sur le site public, de ton côté.**
+1. La fiche de test « vv » est visible de tous sur la vitrine — à corriger ou supprimer.
+2. Une seule personne sur onze a coché « Afficher ma carte sur le site » dans
+   Mon profil : l'organigramme est presque vide. Un message dans le salon staff
+   et il se remplit.
+
+**Transférer le pont mis à jour** (publication automatique des stats) :
+
+```
+scp "C:\Users\thoma\OneDrive\Bureau\BOT\cogs\site_bridge.py" root@178.104.236.198:/root/Bot/cogs/
+```
+puis `systemctl restart botoilroxwood`.
 
 **L'identifiant du rôle « Assistant de direction ».** Sa ligne existe déjà dans
 Paramètres → Connexion par rôle Discord, vide. Colle l'identifiant quand le rôle
