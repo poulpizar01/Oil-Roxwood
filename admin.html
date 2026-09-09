@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-93</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-94</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -137,7 +137,7 @@ window.ROXWOOD_CFG = {
 </div>
 
 <div id="verBanner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:2000;background:linear-gradient(90deg,#E8622C,#B8431E);color:#fff;text-align:center;padding:10px;font-weight:700;font-size:.9rem;box-shadow:0 4px 20px rgba(0,0,0,.4)">
-  ⚠️ Une nouvelle version du dashboard est disponible — <a href="#" onclick="location.reload(true);return false" style="color:#fff;text-decoration:underline">recharger maintenant (Ctrl+F5)</a>
+  ⚠️ Une nouvelle version du dashboard est disponible — <a href="#" onclick="rechargerVraiment();return false" style="color:#fff;text-decoration:underline">recharger maintenant</a>
 </div>
 <div id="printZone"></div>
 <button id="nfBell" onclick="nfToggle()" title="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-2 8-2 8h16s-2-1-2-8"/><path d="M10.5 20a1.8 1.8 0 0 0 3 0"/></svg><span id="nfBadge"></span></button>
@@ -1027,7 +1027,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-93';
+const APP_VERSION='C-94';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -1035,6 +1035,17 @@ const APP_VERSION='C-93';
    dépôt est poussé. Recharger n'y changeait alors rien : la page revenait
    identique, le bandeau aussi. On compare le numéro, pas le texte. */
 function numVersion(v){ const m=String(v||'').match(/(\d+)/); return m?+m[1]:0; }
+/* Le lien du bandeau appelait location.reload(true). L'argument « forcer » a
+   été retiré des navigateurs il y a des années : Chrome l'ignore poliment et
+   fait un rechargement ordinaire, qui a le droit de reprendre la page dans le
+   cache. GitHub Pages la sert avec dix minutes de validité — le bandeau
+   proposait donc de recharger une page que le navigateur allait resservir à
+   l'identique, bandeau compris. Une adresse jamais vue, elle, ne peut pas
+   venir du cache. */
+function rechargerVraiment(){
+  const u=location.pathname+'?v='+Date.now()+location.hash;
+  location.replace(u);
+}
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner'); if(!b) return;
@@ -4459,11 +4470,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
- {v:'C-93',d:'09/09/2026',t:'Le ménage, et un effectif qui ne disparaît plus',items:[
+ {v:'C-94',d:'09/09/2026',t:'Le ménage, et un effectif qui ne disparaît plus',items:[
    ['👥','La vitrine annonçait « — » employés','Le nombre publié comptait la Tablette, qui se vide à chaque clôture : du lundi jusqu\'au premier pointage, le site affichait un tiret alors que l\'entreprise n\'avait perdu personne. Il compte désormais le registre RH, qui ne se vide pas — sorties et liste noire déduites. Aujourd\'hui cela fait <b>98</b> au lieu de rien.'],
    ['🗑️','Sept scripts vraiment partis','La suppression annoncée en C-92 n\'était faite que de mon côté : je peux écrire sur ton disque, pas y effacer. Les sept fichiers étaient donc toujours là, et le workflow les appelait encore toutes les deux à quatre heures — dont <code>fetch_fer_logs.py</code>, qui réécrivait par-dessus ce que le bot venait de publier. C\'est réglé : le workflow ne fait plus qu\'une chose, les logs Discord.'],
    ['👤','Une même personne connectée onze fois','« Sur le site maintenant » affichait Diego Herrera onze fois de suite. La table des présences n\'a pas de contrainte d\'unicité : chaque battement de cœur, toutes les 90 secondes, y ajoutait une ligne au lieu de remplacer la précédente. Un quart d\'heure de connexion = onze pastilles. On ne retient plus qu\'un battement par personne, le plus récent.'],
-   ['🔕','Le bandeau de version qui ne partait plus','Il comparait deux textes : il s\'allumait donc aussi quand la page ouverte était <i>plus récente</i> que le dépôt — le cas juste après une livraison, avant le push. Recharger ne servait à rien, la page revenait identique et le bandeau avec. Il compare maintenant les numéros et ne parle que dans le bon sens.'],
+   ['🔕','Le bandeau de version qui ne partait plus','Deux défauts superposés. Il comparait deux textes, donc il s\'allumait aussi quand la page ouverte était <i>plus récente</i> que le dépôt ; il compare maintenant les numéros. Et surtout son lien appelait <code>location.reload(true)</code> : l\'argument « forcer » a été retiré des navigateurs il y a des années, Chrome l\'ignore et recharge normalement — avec le droit de reprendre la page dans le cache, que GitHub Pages garde dix minutes. Le bandeau proposait donc de recharger une page que le navigateur resservait à l\'identique, bandeau compris. Le lien change maintenant d\'adresse, ce qu\'aucun cache ne peut deviner.'],
  ]},
  {v:'C-92',d:'09/09/2026',t:'Le robot GitHub rendu à sa juste place',items:[
    ['🤖','Trois relevés passent au bot','Les <b>achats de fer</b>, la <b>présence Discord</b> et les <b>rappels d\'agenda</b> quittent GitHub Actions pour le bot, qui est connecté en permanence. Le fer se relève toutes les 5 minutes au lieu de 2 à 4 heures, la présence toutes les 2 minutes, et les rappels d\'agenda chaque minute — c\'est la seule cadence qui permette de tenir la promesse « une heure avant ». Ce rappel-là ne pouvait tout simplement pas fonctionner avant.'],
