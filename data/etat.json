@@ -14022,6 +14022,16 @@
  "affiches": [],
  "produits": [
   {
+   "id": 1788913588617,
+   "par": "Diego Herrera",
+   "date": "2026-09-09",
+   "nom": "11",
+   "desc": "",
+   "prix": "",
+   "chemin": "assets/produits/1788913582777-4rxwt.jpg",
+   "actif": true
+  },
+  {
    "id": 1788911770246,
    "par": "Diego Herrera",
    "date": "2026-09-09",
@@ -16286,9 +16296,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "owy7eqjlzh",
- "_maj": 1788913559981,
- "_rev": "ym2mkd9fpsh-mttcyb21",
+ "_cid": "gsxaxxek0dg",
+ "_maj": 1788913587505,
+ "_rev": "lcg0mj95m7g-mttcynic",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16297,7 +16307,7 @@
   "sheets": 1788912897604,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788912897604,
+  "journal": 1788913587505,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16317,12 +16327,18 @@
   "_rolesFix77": 1788490324055,
   "affiches": 1788557789855,
   "_affFix1": 1788557789855,
-  "produits": 1788911769058,
-  "_prodFix1": 1788911738862
+  "produits": 1788913587505,
+  "_prodFix1": 1788911738862,
+  "_recruesIgnore": 1788913559981
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788913588396,
+   "u": "Diego Herrera",
+   "a": "Produit créé : 11"
+  },
   {
    "t": 1788912898431,
    "u": "Diego Herrera",
@@ -17817,11 +17833,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787498641301,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787498519482,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18177,7 +18188,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T00:26:12.985Z",
+  "maj": "2026-09-09T00:26:29.124Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18187,6 +18198,12 @@
   "top3": [],
   "runners": [],
   "produits": [
+   {
+    "nom": "11",
+    "desc": "",
+    "prix": "",
+    "photo": "https://raw.githubusercontent.com/poulpizar01/Oil-Roxwood/main/assets/produits/1788913582777-4rxwt.jpg"
+   },
    {
     "nom": "vv",
     "desc": "vv",
