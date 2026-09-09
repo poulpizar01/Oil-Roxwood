@@ -85,6 +85,7 @@ compteur.
 | Site public : « En direct » réparé, stats publiées par le bot, polices non bloquantes | C-88 |
 | Ventes de la semaine reprises depuis les factures | C-89 · C-90 |
 | Produits dérivés exclus du salaire de production | C-91 |
+| **Fer, présence et rappels d'agenda passent au bot · 7 scripts supprimés** | C-92 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -151,6 +152,23 @@ remplacer quoi que ce soit. Le relancer deux fois ne fait rien.
 `12/09/2026`, `12-09`, `12 septembre`, `1er octobre`, `2026-09-12`. Ce qu'il ne
 sait pas lire (« lundi prochain ») fait apparaître un message éphémère au RH :
 absence acceptée, mais à saisir à la main.
+
+**Installer le nouveau cog (C-92).** Deux fichiers à transférer, puis une ligne
+à ajouter dans `main.py` :
+
+```
+scp "C:\Users\thoma\OneDrive\Bureau\BOT\cogs\releves_site.py" root@178.104.236.198:/root/Bot/cogs/
+```
+
+Sur le VPS, ajouter à la suite des autres `load_extension` :
+
+```python
+        await bot.load_extension("cogs.releves_site")
+```
+
+puis `python3 -m py_compile /root/Bot/cogs/releves_site.py && systemctl restart botoilroxwood`.
+
+Au journal, chercher : *Releves site actifs — fer, presence, rappels d'agenda*.
 
 **Piste ouverte : le salon des paiements de factures** (`1245400913066066098`).
 Chaque paiement y est journalisé avec le montant, qui a encaissé

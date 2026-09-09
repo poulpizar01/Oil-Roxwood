@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-91</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-92</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -227,7 +227,10 @@ let S = load();
 function purgeSupprimees(){
   const t=S._tables; if(!t) return false;
   let n=0;
-  ['oilroxwood_todo','oilroxwood_feedback'].forEach(k=>{ if(k in t){ delete t[k]; n++; } });
+  /* oilroxwood_notifs rejoint la liste en C-92 : sa file d'attente n'est plus
+     alimentée depuis C-75, quand les demandes d'accès ont laissé la place aux
+     rôles Discord, et le script qui la vidait a été supprimé. */
+  ['oilroxwood_todo','oilroxwood_feedback','oilroxwood_notifs'].forEach(k=>{ if(k in t){ delete t[k]; n++; } });
   return n>0;
 }
 purgeSupprimees();
@@ -1024,7 +1027,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-91';
+const APP_VERSION='C-92';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -4429,6 +4432,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-92',d:'09/09/2026',t:'Le robot GitHub rendu à sa juste place',items:[
+   ['🤖','Trois relevés passent au bot','Les <b>achats de fer</b>, la <b>présence Discord</b> et les <b>rappels d\'agenda</b> quittent GitHub Actions pour le bot, qui est connecté en permanence. Le fer se relève toutes les 5 minutes au lieu de 2 à 4 heures, la présence toutes les 2 minutes, et les rappels d\'agenda chaque minute — c\'est la seule cadence qui permette de tenir la promesse « une heure avant ». Ce rappel-là ne pouvait tout simplement pas fonctionner avant.'],
+   ['🗑️','Sept scripts supprimés','<code>publish_stats.py</code> faisait doublon avec le bot depuis C-88. <code>rappels_contrats.py</code> dormait depuis C-64. <code>send_notifs.py</code> vidait une file que plus rien n\'alimente depuis C-75. <code>import_tables.py</code> était l\'outil de sortie de Supabase, son travail est fait. Les trois autres sont partis avec leur portage. Le dossier scripts passe de onze fichiers à quatre.'],
+   ['🧭','Ce qui reste sur GitHub, et pourquoi','Les <b>logs en direct</b> : deux cents lignes d\'analyse de texte réglées sur des messages qu\'on ne peut pas rejouer hors production — les déplacer risquerait de casser la rubrique pour gagner de la fraîcheur sur un écran de consultation. Les <b>rappels de quota</b> : vendredi 18 h, une fois par semaine, le retard est sans effet. La <b>sauvegarde quotidienne</b> : elle doit survivre à une panne du bot, la lui confier serait la perdre le jour où elle sert.'],
+ ]},
  {v:'C-91',d:'09/09/2026',t:'Les produits dérivés ne gonflent plus la paie',items:[
    ['🗡️','Un katana n\'est pas un bidon','La reprise des factures comptait toutes les lignes. Aujourd\'hui tes 73 factures ne contiennent que des bidons, donc rien n\'était faux — mais le jour où quelqu\'un ajoute une ligne de dérivés à une facture, le salaire de production et le fer à racheter auraient gonflé tout seuls, sans que personne ne pense à vérifier. Seules les lignes de bidons comptent désormais ; les autres sont écartées et l\'écran dit combien.'],
    ['🧾','Ce que le salon des factures peut, et ne peut pas','Le log annonce « paiement d\'une facture de 6240 » : un montant, pas une quantité ni un produit. 6240 vaut 50 bidons au tarif employé ou 33,3 au tarif client — le second est impossible, mais 28080 vaut aussi bien 150 bidons à 180 $ que 225 à 120 $. On ne peut donc pas fabriquer une vente à partir d\'un paiement. Ce qu\'il permet, en revanche, c\'est de repérer les paiements sans facture correspondante : les ventes qui ont échappé au dashboard.'],
