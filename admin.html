@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-85</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-86</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -1024,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-85';
+const APP_VERSION='C-86';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -2273,8 +2273,12 @@ async function publierProduits(discret){
       return true;
     }
     const e=await r.json().catch(()=>({}));
-    toast('⚠️ Catalogue non publié ('+(e.message||r.status)+') — vérifie ton jeton', 8000);
-  }catch(e){ toast('⚠️ Erreur réseau — catalogue non publié', 7000); }
+    // « Not Found » sur un depot public veut dire « ton jeton n'y a pas droit » :
+    // on va chercher la vraie raison plutot que de laisser deviner.
+    let pourquoi=e.message||('HTTP '+r.status);
+    try{ const d=await RoxwoodGH.verifierAcces(); if(!d.ok) pourquoi=d.msg; }catch(x){}
+    toast('⚠️ Catalogue NON publié — '+pourquoi, 12000);
+  }catch(e){ toast('⚠️ Catalogue NON publié — GitHub injoignable ('+(e.message||e)+')', 9000); }
   return false;
 }
 
@@ -4245,6 +4249,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-86',d:'09/09/2026',t:'L\'écran dit ce qui est vraiment en ligne',items:[
+   ['🔎','« Enregistré » n\'est pas « en ligne »','L\'écran confondait les deux : une fiche cochée « en ligne » s\'affichait comme telle même si la publication n\'était jamais partie. On croyait le site à jour, il ne l\'était pas, et rien ne permettait de s\'en apercevoir. La page lit désormais le fichier public — le vrai, à l\'adresse que lit la vitrine — et compare.'],
+   ['🚨','Un écart se voit','Bandeau rouge nommant les fiches absentes du site, pastille par carte, et un bouton pour publier sur-le-champ. Quand tout concorde, le bandeau passe au vert et le dit.'],
+   ['🗝️','Un refus s\'explique','Si la publication échoue, le message ne dit plus « vérifie ton jeton » : il va chercher la raison exacte auprès de GitHub — jeton expiré, compte non collaborateur, jeton fine-grained créé sur un autre compte.'],
+ ]},
  {v:'C-85',d:'09/09/2026',t:'Le catalogue part tout seul',items:[
    ['📤','Enregistrer suffit','Le catalogue attendait un clic sur « Publier sur le site ». Premier produit créé, pas de clic, rien sur la vitrine — et on croit à une panne. Cocher « Afficher sur le site public » puis enregistrer ne laisse aucun doute sur l\'intention : ça part maintenant tout de suite.'],
    ['🛡️','Et ça ne touche plus aux chiffres','« Publier sur le site » réécrit tout le fichier public, y compris les barils et l\'effectif, calculés depuis la tablette chargée dans CE navigateur. Un commercial mettant le catalogue à jour un lundi, tablette vide, aurait remis la production du site à zéro sans le savoir. Le catalogue ne réécrit désormais que sa propre part du fichier — vérifié : 370 374 barils publiés restent 370 374 après une publication de catalogue.'],
@@ -6465,23 +6474,59 @@ function affSuppr(id){
    catalogue. */
 function produitsListe(){ return (S.produits=S.produits||[]); }
 function prodPeut(){ return RoxwoodGH.peutEcrire()&&!isMembre()&&!isRO('produits'); }
-function produits(){
+
+/* ---- Ce qui est VRAIMENT en ligne ----
+
+   « Enregistré » et « en ligne » sont deux choses différentes, et l'écran les
+   confondait : une fiche cochée « en ligne » s'affichait comme telle même si
+   la publication n'était jamais partie. On croyait le site à jour, il ne
+   l'était pas, et rien à l'écran ne permettait de s'en apercevoir.
+
+   On lit donc le fichier public — celui que la vitrine lit, à la même
+   adresse — et on compare. La pastille de chaque fiche dit l'état réel. */
+let PROD_ENLIGNE=null;   // null = pas encore lu
+async function prodLirePublie(){
+  const C=window.ROXWOOD_CFG||{};
+  try{
+    const r=await fetch(`https://raw.githubusercontent.com/${C.owner}/${C.repo}/${C.branche||'main'}/data/stats-public.json?t=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) throw 0;
+    const d=await r.json();
+    PROD_ENLIGNE=Array.isArray(d.produits)?d.produits.map(x=>String(x&&x.nom||'')):[];
+  }catch(e){ PROD_ENLIGNE=null; }
+  return PROD_ENLIGNE;
+}
+function prodEstEnLigne(p){
+  if(!PROD_ENLIGNE) return null;                       // on n'a pas pu lire
+  return PROD_ENLIGNE.includes(String(p&&p.nom||''));
+}
+async function produits(){
   const l=produitsListe();
   const actifs=l.filter(p=>p.actif!==false).length;
   const peut=prodPeut();
+  if(PROD_ENLIGNE===null) prodLirePublie().then(()=>{ if(VIEW==='produits') produits(); });
+  const manquants=(PROD_ENLIGNE===null)?[]:l.filter(p=>p.actif!==false&&!prodEstEnLigne(p));
+  const enTrop=(PROD_ENLIGNE===null)?[]:PROD_ENLIGNE.filter(n=>!l.some(p=>p.actif!==false&&p.nom===n));
   $('#main').innerHTML=`
   <div class="topbar">
     <div><h2>🛢️ Nouveaux produits</h2><div class="sub">Ce que la vitrine annonce — ${l.length} fiche(s) · ${actifs} en ligne</div></div>
     <div style="display:flex;gap:10px;align-items:center">
       ${peut?`<button class="btn btn-gold" onclick="prodEdit()">＋ Nouveau produit</button>`:''}
-      <button class="btn btn-ghost" onclick="publierProduits()" title="Renvoie les fiches en ligne vers le site public, sans toucher aux chiffres de production">📤 Republier le catalogue</button>
+      <button class="btn btn-ghost" onclick="publierProduits().then(()=>{PROD_ENLIGNE=null;produits();})" title="Renvoie les fiches en ligne vers le site public, sans toucher aux chiffres de production">📤 Republier le catalogue</button>
     </div>
   </div>
   ${!peut?`<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">
     👁 Consultation seule. Pour modifier le catalogue, il faut un jeton d'écriture — dans <b>Mon profil</b>.</div>`:''}
-  <div class="warn" style="border-color:rgba(232,160,32,.35);background:rgba(232,160,32,.06);color:var(--accent)">
-    ℹ️ Enregistrer un produit l'envoie <b>tout de suite</b> sur le site public. Pour préparer une fiche sans la montrer,
-    décoche « Afficher sur le site public » : elle reste ici. Le bouton <b>Republier</b> ne sert qu'en cas de doute.</div>
+  ${(PROD_ENLIGNE===null)?`<div class="warn" style="border-color:rgba(160,160,160,.3);background:rgba(160,160,160,.06);color:var(--muted)">
+      ⏳ Lecture du fichier public…</div>`
+   :(manquants.length||enTrop.length)?`<div class="warn" style="border-color:rgba(255,92,92,.5);background:rgba(255,92,92,.09);color:#ffb0b0">
+      <b>⚠️ Le site public n'est pas à jour.</b>
+      ${manquants.length?`${manquants.length} fiche(s) cochée(s) « en ligne » n'y sont pas encore : <b>${manquants.map(p=>esc(p.nom)).join(', ')}</b>.`:''}
+      ${enTrop.length?` ${enTrop.length} fiche(s) y traînent encore alors qu'elles ne devraient plus : <b>${enTrop.map(esc).join(', ')}</b>.`:''}
+      <br><button class="btn btn-sm btn-gold" style="margin-top:9px" onclick="publierProduits().then(()=>{PROD_ENLIGNE=null;produits();})">📤 Publier maintenant</button>
+    </div>`
+   :`<div class="warn" style="border-color:rgba(60,170,110,.4);background:rgba(60,170,110,.07);color:#8fd8b0">
+      ✅ Le site public affiche exactement ces ${actifs} fiche(s). Enregistrer un produit l'y envoie tout de suite ;
+      pour en préparer un sans le montrer, décoche « Afficher sur le site public ».</div>`}
   ${!l.length?`<div class="panel"><div class="empty">Aucun produit.${peut?' Clique sur « Nouveau produit » pour en créer un.':''}</div></div>`
    :`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
       ${l.map((p,i)=>`<div class="panel" style="padding:0;overflow:hidden;display:flex;flex-direction:column;${p.actif===false?'opacity:.5':''}">
@@ -6496,7 +6541,12 @@ function produits(){
           </div>
           ${p.desc?`<div style="color:var(--muted);font-size:.78rem;margin-top:5px;line-height:1.45">${esc(p.desc)}</div>`:''}
           <div style="margin-top:auto;padding-top:10px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-            <span class="badge ${p.actif===false?'':'bgrole'}" style="font-size:.68rem">${p.actif===false?'⏸ hors ligne':'● en ligne'}</span>
+            ${(()=>{ const e=prodEstEnLigne(p);
+              if(p.actif===false) return '<span class="badge" style="font-size:.68rem">⏸ non publié (volontaire)</span>';
+              if(e===null) return '<span class="badge" style="font-size:.68rem">● coché en ligne</span>';
+              return e ? '<span class="badge bgrole" style="font-size:.68rem;color:#8fd8b0">✅ sur le site</span>'
+                       : '<span class="badge" style="font-size:.68rem;color:#ffb0b0">⚠️ pas encore sur le site</span>';
+            })()}
             ${peut?`<span style="margin-left:auto;white-space:nowrap">
               ${i>0?`<button class="btn btn-sm btn-ghost" onclick="prodMonter(${i})" title="Remonter dans la vitrine">↑</button>`:''}
               <button class="btn btn-sm btn-ghost" onclick="prodEdit(${p.id})">✎</button>
@@ -6588,7 +6638,7 @@ function prodSave(id){
   }
   save(); sbPushNow(); closeModal(); produits();
   toast('🛢️ Enregistré — publication du catalogue…');
-  publierProduits(true).then(()=>produits());
+  publierProduits(true).then(()=>{ PROD_ENLIGNE=null; produits(); });
 }
 function prodSuppr(id){
   const l=produitsListe(); const p=l.find(x=>x.id===id); if(!p) return;
@@ -6598,7 +6648,7 @@ function prodSuppr(id){
   jlog(`Produit supprimé : ${p.nom||'sans nom'}`);
   save(); sbPushNow(); closeModal(); produits();
   toast('🗑 Produit supprimé — mise à jour du site…');
-  publierProduits(true).then(()=>produits());
+  publierProduits(true).then(()=>{ PROD_ENLIGNE=null; produits(); });
 }
 
 /* ================== LOGS DISCORD ================== */

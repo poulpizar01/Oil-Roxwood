@@ -80,6 +80,7 @@ compteur.
 | Nouveautés annoncées dès le hero de la vitrine | C-83 |
 | Recrues revenues sous un autre nom : détection + renommage global | C-84 |
 | Catalogue publié à l'enregistrement, sans écraser les stats | C-85 |
+| La page Produits montre ce qui est réellement en ligne | C-86 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
