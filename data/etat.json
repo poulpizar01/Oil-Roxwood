@@ -16982,8 +16982,8 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "d9h8bp3eymm",
- "_maj": 1788954899870,
+ "_cid": "bot",
+ "_maj": 1788954908473,
  "_rev": "syfydndunyr-mtu1k3z9",
  "_majSec": {
   "fer": 1788952559812,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788954899870,
+  "_tables": 1788954908473,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -38366,6 +38366,17 @@
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-06"
+   },
+   {
+    "id": 1788954907766,
+    "nom": "Bratan LEONETI",
+    "discord": "870991671960145920",
+    "tel": "555-770-230",
+    "rib": "560414",
+    "idU": "378834",
+    "grade": "Intérimaire",
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "arrivee": "2026-09-09"
    }
   ],
   "oilroxwood_absences": [
