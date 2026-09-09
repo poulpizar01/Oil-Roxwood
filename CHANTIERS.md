@@ -83,6 +83,7 @@ compteur.
 | La page Produits montre ce qui est réellement en ligne | C-86 |
 | Bandeau des nouveautés : visible et au-dessus de la ligne de flottaison | C-87 |
 | Site public : « En direct » réparé, stats publiées par le bot, polices non bloquantes | C-88 |
+| Ventes relevées par le bot → feuille de la semaine | C-89 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -149,6 +150,25 @@ remplacer quoi que ce soit. Le relancer deux fois ne fait rien.
 `12/09/2026`, `12-09`, `12 septembre`, `1er octobre`, `2026-09-12`. Ce qu'il ne
 sait pas lire (« lundi prochain ») fait apparaître un message éphémère au RH :
 absence acceptée, mais à saisir à la main.
+
+**Brancher les ventes (C-89) — la dernière ligne.** Le site et le pont sont
+prêts et éprouvés ; il manque l'appel dans le cog qui lit les ventes. Sur le VPS :
+
+```
+wc -l /root/Bot/cogs/webhooks_activite.py; grep -n "def \|vente\|db\.\|quantite" /root/Bot/cogs/webhooks_activite.py | head -40
+```
+
+L'appel à poser, là où une vente est reconnue :
+
+```python
+pont = self.bot.get_cog("SiteBridgeCog")
+if pont:
+    await pont.ajouter_vente(vendeur=nom_personnage, quantite=nb_bidons,
+                             client=nom_client, ref=str(message.id))
+```
+
+`ref` doit être stable (l'id du message de log convient) : c'est lui qui empêche
+la même vente d'entrer deux fois.
 
 **Deux choses à faire sur le site public, de ton côté.**
 1. La fiche de test « vv » est visible de tous sur la vitrine — à corriger ou supprimer.

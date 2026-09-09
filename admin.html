@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-88</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-89</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -270,7 +270,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','produits','_recruesIgnore','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1','_prodFix1'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','produits','_recruesIgnore','ventesAlias','_ventesIgnore','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1','_prodFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -1024,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-88';
+const APP_VERSION='C-89';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1651,7 +1651,18 @@ function saveRunner(id){
   save(); closeModal(); rerender(); toast('✅ Runner enregistré');
 }
 /* ---- Répercussion automatique des grades sur la feuille RH ---- */
-function normNom(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
+/* Clé de comparaison des noms : minuscules, sans accents, espaces normalisés.
+
+   L'espace multiple a été ajouté après un essai de reprise des ventes :
+   « laurent  roquel », relevé tel quel dans un log, ne correspondait à personne
+   et la vente partait en attente. Personne ne s'appelle avec deux espaces —
+   les replier ne peut que rapprocher deux écritures de la même personne, jamais
+   confondre deux personnes. Vaut aussi pour les absences, les renommages, les
+   profils et les quotas, qui passent tous par ici. */
+function normNom(s){
+  return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/\s+/g,' ').trim();
+}
 function syncRhGrade(r){
   // met à jour la colonne Grade de la feuille RH (correspondance par Discord, sinon par nom)
   if(!r||!S.sheets||!S.sheets.rh) return false;
@@ -1864,6 +1875,79 @@ function lundiSemaineTravail(){
    Le bot n'écrit que dans la file, jamais dans la feuille ; le dashboard ne
    touche jamais à la file. Aucune écriture concurrente n'est donc possible. */
 function chiffres(v){ return String(v||'').replace(/\D/g,''); }
+/* ================== VENTES RELEVÉES PAR LE BOT ==================
+
+   La feuille « Ventes de la semaine » commande toute la paie commerciale :
+   salaire de production, quota de bidons à reproduire, fer à racheter. Elle se
+   remplissait à la main, et l'historique le montre — sur sept semaines closes,
+   deux n'ont aucune trace de production commerciale. Ce n'est pas une faute :
+   c'est ce qu'une corvée hebdomadaire produit à la longue.
+
+   Le bot voit passer les ventes. Il les dépose dans une file, le site les
+   reprend. Trois précautions, apprises des reprises précédentes :
+
+   · bornée à la SEMAINE DE TRAVAIL en cours — la feuille est remise à zéro à
+     la clôture ; réimporter les ventes d'avant la ferait regonfler toute seule ;
+   · dédoublonnage par l'identifiant de la vente, jamais par son contenu — deux
+     ventes identiques le même jour, ça existe ;
+   · un vendeur non reconnu n'est PAS jeté. Le journal du bot montre quatre
+     ventes de « Victor Sulivane » perdues en deux jours faute de correspondance.
+     Elles arrivent ici et attendent qu'on dise de qui il s'agit. */
+function ventesAlias(){ return (S.ventesAlias=S.ventesAlias||{}); }
+function nomsVendeurs(){
+  /* Qui peut vendre : l'effectif, la fiche RH, et les comptes d'accès. On ne
+     restreint pas aux commerciaux — un patron qui vend doit être reconnu. */
+  const m=new Map(); const add=n=>{ n=String(n||'').trim(); if(n) m.set(normNom(n),n); };
+  (S.runners||[]).forEach(r=>add(r.nom));
+  ((S.sheets&&S.sheets.rh)||[]).forEach(x=>add(x.nom));
+  (S.users||[]).forEach(u=>add(u.user));
+  return m;
+}
+function vendeurConnu(nom){
+  const cle=normNom(nom); if(!cle) return '';
+  const al=ventesAlias()[cle];
+  if(al) return al;
+  return nomsVendeurs().get(cle)||'';
+}
+function importerVentes(){
+  const file=((S._tables&&S._tables.oilroxwood_ventes)||[]);
+  if(!file.length||!S.sheets) return null;
+  const lundi=jourISO(lundiSemaineTravail());
+  const ign=(S._ventesIgnore||[]).map(String);
+  S.sheets.ventesSem=S.sheets.ventesSem||[];
+  const feuille=S.sheets.ventesSem;
+  const dejaLa=new Set(feuille.map(x=>String(x.src||'')).filter(Boolean));
+  let ajoutees=0; const orphelines=[];
+  file.forEach(v=>{
+    const src=String(v.id||''); if(!src||dejaLa.has(src)||ign.includes(src)) return;
+    const date=String(v.date||'').slice(0,10);
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<lundi) return;   // hors semaine de travail
+    const qte=Math.round(+v.qte||0); if(qte<=0) return;
+    const qui=vendeurConnu(v.nom);
+    if(!qui){ orphelines.push({src, brut:String(v.nom||'?'), qte, date, client:String(v.client||'')}); return; }
+    feuille.push({date, client:String(v.client||'').trim(), quantite:qte, qui, src});
+    dejaLa.add(src); ajoutees++;
+  });
+  if(ajoutees) feuille.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  return {ajoutees, orphelines};
+}
+/* On dit une fois de qui il s'agit, et toutes les ventes suivantes de ce nom
+   se rangent seules — y compris celles qui attendent déjà. */
+function venteRattacher(brut, qui){
+  if(!qui) return;
+  ventesAlias()[normNom(brut)]=qui;
+  const r=importerVentes();
+  jlog(`Ventes : « ${brut} » rattaché à ${qui}${r&&r.ajoutees?` — ${r.ajoutees} vente(s) reprise(s)`:''}`);
+  save(); sbPushNow(); feuilles();
+  toast(`✅ « ${brut} » = ${qui}${r&&r.ajoutees?` · ${r.ajoutees} vente(s) reprise(s)`:''}`, 7000);
+}
+function venteIgnorer(src){
+  S._ventesIgnore=[...new Set([...(S._ventesIgnore||[]),String(src)])].slice(-300);
+  VENTES_ORPH=VENTES_ORPH.filter(x=>String(x.src)!==String(src));
+  save(); sbPushNow(); feuilles();
+  toast('Vente écartée — elle ne sera plus proposée');
+}
+
 /* ---- Reprise des recrutements validés sur Discord ----
 
    Trois issues possibles pour une recrue de la file, et la troisième est
@@ -2296,7 +2380,12 @@ const SHEETS_DEF = {
     tot:[], nouveau:{nom:'',grade:'',menus:false,boissons:false,bidons:false,date:'',don:'',permis:''}},
   ventesSem:{ico:'🛒',label:'Ventes de la semaine',cols:[
     {k:'date',l:'Date',t:'date'},{k:'client',l:'Client',t:'client'},
-    {k:'quantite',l:'Quantité',t:'num'},{k:'qui',l:'Qui ?',t:'text'}],
+    {k:'quantite',l:'Quantité',t:'num'},{k:'qui',l:'Qui ?',t:'text'},
+    /* D'où vient la ligne : relevée par le bot, ou tapée à la main. Utile le
+       jour où un montant surprend — on sait tout de suite quoi aller vérifier. */
+    {k:'_src',l:'Origine',t:'html',f:r=>r.src
+      ? '<span class="badge bgrole" style="font-size:.66rem" title="Relevée automatiquement dans les logs">🤖 relevé</span>'
+      : '<span class="badge" style="font-size:.66rem" title="Saisie dans le dashboard">✍️ saisie</span>'}],
     tot:['quantite'], nouveau:{date:'',client:'',quantite:0,qui:''}},
   rh:{ico:'🗂️',label:'Fiches RH',drag:true,cols:[
     {k:'_ctr',l:'📄',t:'html',f:r=>{
@@ -2469,6 +2558,17 @@ async function feuilles(){
     }
     RECRUES_RENOM = imp.renommages || [];
   }
+  /* Les ventes relevées par le bot entrent à l'ouverture de la feuille — c'est
+     là qu'on les regarde, et c'est de cette feuille que sort la paie. */
+  if(curSheet==='ventesSem'&&!isMembre()&&!sheetRO('ventesSem')){
+    const v=importerVentes();
+    VENTES_ORPH = (v&&v.orphelines)||[];
+    if(v&&v.ajoutees){
+      jlog(`Ventes Discord : ${v.ajoutees} vente(s) reprise(s)`);
+      save(); sbPushNow();
+      toast(`🛒 ${v.ajoutees} vente(s) reprise(s) depuis les logs`);
+    }
+  }
   // l'Éligibilité affiche les grades d'aujourd'hui, pas ceux figés à la clôture
   if(curSheet==='eligibilite'&&!isMembre()){
     const c=eligSyncGrades();
@@ -2492,6 +2592,26 @@ async function feuilles(){
       <button class="btn btn-red" onclick="sheetReset()">♻️ Réinitialiser</button>
     </div>
   </div>
+  ${(curSheet==='ventesSem'&&VENTES_ORPH.length)?`
+  <div class="panel" style="margin-bottom:14px;border-color:rgba(255,92,92,.5);background:rgba(255,92,92,.07)">
+    <h3 style="font-size:.98rem">🛒 ${VENTES_ORPH.length} vente(s) sans vendeur reconnu</h3>
+    <p style="color:var(--muted);font-size:.79rem;line-height:1.55;margin-bottom:12px">
+      Le bot a relevé ces ventes, mais le nom qu'il a lu ne correspond à personne dans l'Effectif,
+      la fiche RH ou les comptes d'accès. Elles ne comptent donc ni dans les bidons vendus, ni dans la paie.
+      <b style="color:var(--accent)">Dis une fois de qui il s'agit</b> — les ventes suivantes de ce nom se rangeront seules.
+    </p>
+    ${VENTES_ORPH.map(o=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:9px 0;border-top:1px solid var(--line)">
+      <span style="font-size:.86rem"><b>${esc(o.brut)}</b> — ${fmt(o.qte)} bidon(s)${o.client?` · ${esc(o.client)}`:''}
+        <br><small style="color:var(--muted)">${esc(frDate(o.date))}</small></span>
+      <span style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+        <select class="field" style="padding:5px 9px;max-width:210px" onchange="if(this.value)venteRattacher('${esc(o.brut).replace(/'/g,"\\'")}',this.value)">
+          <option value="">— c'est en réalité…</option>
+          ${[...nomsVendeurs().values()].sort((a,b)=>a.localeCompare(b)).map(n=>`<option>${esc(n)}</option>`).join('')}
+        </select>
+        <button class="btn btn-sm btn-ghost" onclick="venteIgnorer('${esc(o.src)}')" title="Vente d'un tiers, ou relevé erroné">Écarter</button>
+      </span>
+    </div>`).join('')}
+  </div>`:''}
   ${(curSheet==='rh'&&RECRUES_RENOM.length)?`
   <div class="panel" style="margin-bottom:14px;border-color:rgba(232,160,32,.45);background:rgba(232,160,32,.05)">
     <h3 style="font-size:.98rem">🪪 ${RECRUES_RENOM.length} recrue(s) déjà en fiche, sous un autre nom</h3>
@@ -2525,6 +2645,8 @@ async function feuilles(){
 /* Les changements de nom repérés au dernier import : la vue les affiche,
    et seules les Fiches RH s'en servent. Vidée à chaque import. */
 let RECRUES_RENOM=[];
+/* Les ventes dont le vendeur n'a pas été reconnu : elles attendent un nom. */
+let VENTES_ORPH=[];
 let dragI=null;
 function dropRow(j){
   if(dragI===null||dragI===j){ dragI=null; return; }
@@ -4249,6 +4371,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-89',d:'09/09/2026',t:'Les ventes remontent des logs',items:[
+   ['🛒','La feuille qui décide de la paie se remplit seule','« Ventes de la semaine » commande le salaire de production, le quota de bidons à reproduire et le fer à racheter — et elle se tapait à la main. L\'historique disait ce que ça donne : sur sept semaines closes, deux sans aucune trace de production commerciale. Le bot dépose désormais chaque vente relevée, le site la reprend à l\'ouverture de la feuille.'],
+   ['🪪','Un vendeur non reconnu n\'est plus perdu','Le journal du bot montrait quatre ventes de « Victor Sulivane » évaporées en deux jours, faute de correspondance. Elles arrivent maintenant dans un encadré : on dit une fois de qui il s\'agit, la vente entre, et toutes les suivantes de ce nom se rangent seules. Le bot ne devine jamais à notre place — se tromper de nom, c\'est créditer la paie de quelqu\'un d\'autre.'],
+   ['🧷','Trois garde-fous','Bornée à la semaine de travail, sinon la clôture vide la feuille et la reprise la regonfle. Dédoublonnage par l\'identifiant de la vente, jamais par son contenu — deux ventes identiques le même jour, ça existe. Et une colonne « Origine » distingue le relevé du bot de la saisie manuelle, pour savoir quoi vérifier le jour où un montant surprend.'],
+   ['␣','Les noms tolèrent les espaces en trop','« laurent  roquel » relevé dans un log ne correspondait à personne et partait en attente. Les espaces multiples sont désormais repliés partout où l\'on compare des noms — absences, renommages, profils, quotas.'],
+ ]},
  {v:'C-88',d:'09/09/2026',t:'Le site public repris en main',items:[
    ['📊','« Le dépôt en direct » ne disparaît plus','La section entière s\'effaçait dès que les barils tombaient à zéro — c\'est-à-dire tous les lundis après la clôture. On cachait ainsi les 73 commandes livrées et l\'objectif de la semaine, la meilleure preuve que l\'entreprise tourne, parce qu\'un seul compteur était vide. Il suffit maintenant qu\'un chiffre ait quelque chose à dire ; les compteurs à zéro affichent un tiret, qui dit « la semaine commence » plutôt que « c\'est en panne ».'],
    ['🤖','Le bot publie les chiffres du site','Ils dépendaient d\'un clic sur « Publier sur le site », donc de personne : au 9 septembre le fichier public datait du 7. Le dashboard dépose déjà le paquet tout prêt à chaque enregistrement — le bot le recopie, et seulement quand ce qui se voit a changé. Un simple ré-enregistrement ne déclenche aucun commit.'],
