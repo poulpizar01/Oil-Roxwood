@@ -4519,13 +4519,14 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
- {v:'C-96',d:'09/09/2026',t:'Le dernier m\u00e8tre du rel\u00e8ve-fer',items:[
-   ['\U0001F50C','Un rel\u00e9v\u00e9 automatique qui attendait un clic','Le bot lit le salon toutes les cinq minutes et d\u00e9pose les achats dans <code>data/fer-logs.json</code>. Mais rien ne les faisait entrer dans le dashboard : il fallait cliquer « Importer depuis le salon ». Automatique de bout en bout, sauf le dernier m\u00e8tre — et personne ne pense \u00e0 cliquer un bouton qui ne r\u00e9clame rien. Ce matin, l\'achat de Stella \u00e9tait dans le fichier depuis 11 h 41 et la page annon\u00e7ait « 0 achat relev\u00e9 ». La reprise se fait maintenant \u00e0 l\'ouverture de la page ; les deux boutons restent, pour forcer ou pour coller des logs \u00e0 la main.'],
-   ['\U0001FA79','Trois cents achats retrouvent leur auteur','Jusqu\'en C-57, le rel\u00e8ve ne savait pas lire le nom et attribuait tout au webhook : trois cents lignes sign\u00e9es « Logs - Achat fer ». Quand l\'identifiant du message correspond \u00e0 celui du bot, la ligne retrouve son vrai nom. Sur tes donn\u00e9es : <b>271 r\u00e9par\u00e9es</b>, 48 achats manquants ajout\u00e9s, 29 lignes trop anciennes pour \u00eatre rattach\u00e9es.'],
+ {v:'C-96',d:'09/09/2026',t:'Le dernier mètre du relève-fer',items:[
+   ['🔌','Un relévé automatique qui attendait un clic','Le bot lit le salon toutes les cinq minutes et dépose les achats dans <code>data/fer-logs.json</code>. Mais rien ne les faisait entrer dans le dashboard : il fallait cliquer « Importer depuis le salon ». Automatique de bout en bout, sauf le dernier mètre — et personne ne pense à cliquer un bouton qui ne réclame rien. Ce matin, l\'achat de Stella était dans le fichier depuis 11 h 41 et la page annonçait « 0 achat relevé ». La reprise se fait maintenant à l\'ouverture de la page ; les deux boutons restent, pour forcer ou pour coller des logs à la main.'],
+   ['🩹','Trois cents achats retrouvent leur auteur','Jusqu\'en C-57, le relève ne savait pas lire le nom et attribuait tout au webhook : trois cents lignes signées « Logs - Achat fer ». Quand l\'identifiant du message correspond à celui du bot, la ligne retrouve son vrai nom. Sur tes données : <b>271 réparées</b>, 48 achats manquants ajoutés, 29 lignes trop anciennes pour être rattachées.'],
+   ['⚖️','Un coup de main allège vraiment la charge','Depuis C-95 les achats hors équipe commerciale comptaient pour l\'entreprise, mais les cinq gardaient leurs 1 600 fer chacun : la somme des parts dépassait le besoin réel, et l\'entreprise aurait acheté le fer deux fois. Ce qui reste à acheter est maintenant redivisé entre les commerciaux présents — les 140 fer de Stella font passer chacun de 1 600 à <b>1 572</b>. Le nombre de bidons à produire ne bouge pas : le fer entre dans le stock commun, la production reste à faire.'],
  ]},
  {v:'C-95',d:'09/09/2026',t:'Les coups de main comptent',items:[
-   ['\U0001F91D','Acheter du fer sans avoir de quota','Le besoin de la semaine est un besoin d\'entreprise : deux fer par bidon vendu, quel que soit celui qui va au magasin. Il n\'\u00e9tait pourtant sold\u00e9 que par les commerciaux \u2014 « Fer restant \u00b7 \u00e9quipe » additionnait leurs manques un par un. Quand un membre de la direction en achetait pour d\u00e9panner, l\'achat n\'apparaissait nulle part : pas de quota, donc pas de ligne, et le reste ne bougeait pas d\'un fer. On voyait la d\u00e9pense sortir de la caisse sans jamais la voir arriver sur l\'objectif.'],
-   ['\U0001F4CA','Un besoin d\'\u00e9quipe, et des noms','« Fer restant » se calcule maintenant sur le besoin total moins tout ce qui a \u00e9t\u00e9 achet\u00e9, par qui que ce soit. Une nouvelle rubrique <b>Coups de main</b> nomme ceux qui ont achet\u00e9 hors \u00e9quipe commerciale, avec leur quantit\u00e9 et leur d\u00e9pense. Le tableau par commercial, lui, ne bouge pas : chacun reste comptable de sa part.'],
+   ['🤝','Acheter du fer sans avoir de quota','Le besoin de la semaine est un besoin d\'entreprise : deux fer par bidon vendu, quel que soit celui qui va au magasin. Il n\'était pourtant soldé que par les commerciaux — « Fer restant · équipe » additionnait leurs manques un par un. Quand un membre de la direction en achetait pour dépanner, l\'achat n\'apparaissait nulle part : pas de quota, donc pas de ligne, et le reste ne bougeait pas d\'un fer. On voyait la dépense sortir de la caisse sans jamais la voir arriver sur l\'objectif.'],
+   ['📊','Un besoin d\'équipe, et des noms','« Fer restant » se calcule maintenant sur le besoin total moins tout ce qui a été acheté, par qui que ce soit. Une nouvelle rubrique <b>Coups de main</b> nomme ceux qui ont acheté hors équipe commerciale, avec leur quantité et leur dépense. Le tableau par commercial, lui, ne bouge pas : chacun reste comptable de sa part.'],
  ]},
  {v:'C-94',d:'09/09/2026',t:'Le ménage, et un effectif qui ne disparaît plus',items:[
    ['👥','La vitrine annonçait « — » employés','Le nombre publié comptait la Tablette, qui se vide à chaque clôture : du lundi jusqu\'au premier pointage, le site affichait un tiret alors que l\'entreprise n\'avait perdu personne. Il compte désormais le registre RH, qui ne se vide pas — sorties et liste noire déduites. Aujourd\'hui cela fait <b>98</b> au lieu de rien.'],
@@ -5486,9 +5487,7 @@ function quotascom(){
   const coms=commerciauxActifs();
   const vendus=bidonsVendusSem();
   const parPers=coms.length?Math.ceil(vendus/coms.length):0; // bidons à reproduire par commercial
-  const ferPers=parPers*2;                                   // fer nécessaire = double des bidons
-  // photographie continue (utilisée par l'archivage)
-  if(S.quotasCom.vendus!==vendus||S.quotasCom.parPers!==parPers){ Object.assign(S.quotasCom,{vendus,parPers,ferPers}); save(); }
+  const ferBrut=parPers*2;                                   // fer nécessaire = double des bidons
   /* Ce qui compte pour chacun : le relevé du bot, et rien d'autre.
      La colonne « Noté à la main » a été retirée en C-57. Elle datait de
      l'époque où le relevé ne fonctionnait pas — il cherchait un nom en gras
@@ -5511,8 +5510,14 @@ function quotascom(){
      d'un fer. On voyait la dépense sortir de la caisse sans jamais la voir
      arriver sur l'objectif.
      Les achats hors commerciaux comptent désormais pour l'équipe, et ceux qui
-     les ont faits sont nommés. Le tableau par commercial, lui, ne change pas :
-     chacun reste comptable de sa part. */
+     les ont faits sont nommés.
+
+     Et ils allègent vraiment la charge (C-96) : un coup de main qui laisserait
+     les parts intactes ne serait pas un coup de main, ce serait de l'avance —
+     l'entreprise achèterait le fer deux fois. Ce qui reste à acheter est donc
+     redivisé entre les commerciaux présents. Le nombre de bidons à produire,
+     lui, ne bouge pas : le fer est du stock commun, celui de Stella entre dans
+     le même pot, mais la production reste à faire. */
   const clefsComs=new Set(), didsComs=new Set();
   coms.forEach(c=>{ clefsComs.add(normNom(c.nom)); ferDidsDe(c.nom).forEach(d=>didsComs.add(String(d))); });
   const aides=new Map();
@@ -5528,8 +5533,16 @@ function quotascom(){
   });
   const listeAides=[...aides.values()].sort((a,b)=>b.q-a.q);
   const ferAide=listeAides.reduce((a,x)=>a+x.q,0);
-  const besoinEquipe=ferPers*coms.length;
+  const besoinEquipe=ferBrut*coms.length;
+  /* La part de chacun, une fois les coups de main déduits et le reste redivisé.
+     Arrondi au supérieur : mieux vaut un fer de trop dans le stock qu'un bidon
+     qu'on ne peut pas produire le dimanche soir. */
+  const ferPers=coms.length?Math.max(0,Math.ceil((besoinEquipe-ferAide)/coms.length)):0;
   const resteEquipe=Math.max(0,besoinEquipe-ferQte);
+  // photographie continue (utilisée par l'archivage)
+  if(S.quotasCom.vendus!==vendus||S.quotasCom.parPers!==parPers||S.quotasCom.ferPers!==ferPers){
+    Object.assign(S.quotasCom,{vendus,parPers,ferPers}); save();
+  }
   $('#main').innerHTML=`
   <div class="topbar">
     <div><h2>Quotas &amp; achats de fer</h2><div class="sub">Semaine ${S.settings.semaine} · objectif calculé sur « Ventes de la semaine » (2 fer par bidon) · achats relevés par le bot depuis le salon Discord</div></div>
@@ -5540,7 +5553,7 @@ function quotascom(){
   </div>
   <div class="grid g4" style="margin-bottom:18px">
     <div class="panel kpi"><div class="lbl">Bidons vendus · semaine</div><div class="val">${fmt(vendus)}</div><div class="delta">${coms.length} commercial(aux) actif(s)</div></div>
-    <div class="panel kpi"><div class="lbl">Fer à acheter / pers.</div><div class="val gold">${fmt(ferPers)}</div><div class="delta">${fmt(parPers)} bidons à produire chacun</div></div>
+    <div class="panel kpi"><div class="lbl">Fer à acheter / pers.</div><div class="val gold">${fmt(ferPers)}</div><div class="delta">${fmt(parPers)} bidons à produire chacun${ferAide?` · ${fmt(ferBrut)} avant coups de main`:''}</div></div>
     <div class="panel kpi"><div class="lbl">Fer acheté · équipe</div><div class="val">${fmt(ferQte)}</div><div class="delta">${ferSem.length} achat(s) relevés${ferAide?` · dont ${fmt(ferAide)} en coups de main`:''}</div></div>
     <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${resteEquipe===0&&coms.length?'up':''}">${fmt(resteEquipe)}</div><div class="delta">besoin : ${fmt(besoinEquipe)}${ferMontant?` · ${money(ferMontant)} dépensés`:''}</div></div>
   </div>
@@ -5572,7 +5585,7 @@ function quotascom(){
     </tr>`).join('')}
     <tr><td><b>Total</b></td><td style="text-align:right;font-weight:800">${fmt(ferAide)}</td><td colspan="2"></td></tr>
     </tbody></table>
-    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">Ces achats ne sont le quota de personne — leurs auteurs n'ont pas de part à produire. Ils comptent en revanche pour l'entreprise : le besoin de la semaine est de ${fmt(besoinEquipe)} fer, et c'est ce total-là qu'ils font baisser.</p>
+    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">Leurs auteurs n'ont pas de part à produire — ces achats ne sont le quota de personne. Ils allègent en revanche celle des autres : sur les ${fmt(besoinEquipe)} fer nécessaires cette semaine, ${fmt(ferAide)} sont déjà couverts, et le reste est redivisé entre les ${coms.length} commerciaux — ${fmt(ferBrut)} chacun au départ, <b>${fmt(ferPers)}</b> maintenant. Le nombre de bidons à produire, lui, ne bouge pas : le fer entre dans le stock commun, la production reste à faire.</p>
   </div>`:''}
   <div class="panel" style="margin-top:18px;padding:8px 16px;overflow-x:auto">
     <h3 style="padding:12px 0 4px">📜 Achats de fer relevés cette semaine (${ferSem.length})</h3>
@@ -7271,7 +7284,7 @@ window.dlCSV=function(){
   const lignes=[['date','type','employe','quantite','montant','details','meta'].join(';')]
     .concat(L.map(m=>[m.ts,m.type,m.employe||'',m.quantite||'',m.montant||'',
       String(m.details||'').replace(/\r?\n/g,' '),JSON.stringify(m.meta||{})].map(esc2).join(';')));
-  const blob=new Blob(['\ufeff'+lignes.join('\r\n')],{type:'text/csv;charset=utf-8'});
+  const blob=new Blob(['﻿'+lignes.join('\r\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
   a.download='logs-oilroxwood-'+new Date().toISOString().slice(0,10)+'.csv';
