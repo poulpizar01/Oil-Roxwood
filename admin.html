@@ -1028,11 +1028,17 @@ function logout(){
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
 const APP_VERSION='C-93';
+/* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
+   Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
+   sens — quand la page ouverte était PLUS récente que version.json, ce qui
+   arrive entre le moment où le fichier arrive sur le disque et celui où le
+   dépôt est poussé. Recharger n'y changeait alors rien : la page revenait
+   identique, le bandeau aussi. On compare le numéro, pas le texte. */
+function numVersion(v){ const m=String(v||'').match(/(\d+)/); return m?+m[1]:0; }
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
-    const b=document.getElementById('verBanner');
-    if(d&&d.v&&d.v!==APP_VERSION){ if(b) b.style.display='block'; }
-    else if(b) b.style.display='none';
+    const b=document.getElementById('verBanner'); if(!b) return;
+    b.style.display=(d&&d.v&&numVersion(d.v)>numVersion(APP_VERSION))?'block':'none';
   }).catch(()=>{});
   test();
   setInterval(test, 5*60*1000); // re-vérifie toutes les 5 min
@@ -4456,7 +4462,8 @@ const CHANGELOG=[
  {v:'C-93',d:'09/09/2026',t:'Le ménage, et un effectif qui ne disparaît plus',items:[
    ['👥','La vitrine annonçait « — » employés','Le nombre publié comptait la Tablette, qui se vide à chaque clôture : du lundi jusqu\'au premier pointage, le site affichait un tiret alors que l\'entreprise n\'avait perdu personne. Il compte désormais le registre RH, qui ne se vide pas — sorties et liste noire déduites. Aujourd\'hui cela fait <b>98</b> au lieu de rien.'],
    ['🗑️','Sept scripts vraiment partis','La suppression annoncée en C-92 n\'était faite que de mon côté : je peux écrire sur ton disque, pas y effacer. Les sept fichiers étaient donc toujours là, et le workflow les appelait encore toutes les deux à quatre heures — dont <code>fetch_fer_logs.py</code>, qui réécrivait par-dessus ce que le bot venait de publier. C\'est réglé : le workflow ne fait plus qu\'une chose, les logs Discord.'],
-   ['🕵️','La présence n\'a jamais marché','Ni avec le bot, ni avant lui. Les deux lisent la même adresse publique — le widget du serveur Discord — et il n\'a jamais été activé : <code>presence.json</code> est vide depuis le premier jour. La fonction reste en veille : elle prévient une fois au démarrage puis se tait. Un interrupteur dans les paramètres du serveur suffirait à la réveiller.'],
+   ['👤','Une même personne connectée onze fois','« Sur le site maintenant » affichait Diego Herrera onze fois de suite. La table des présences n\'a pas de contrainte d\'unicité : chaque battement de cœur, toutes les 90 secondes, y ajoutait une ligne au lieu de remplacer la précédente. Un quart d\'heure de connexion = onze pastilles. On ne retient plus qu\'un battement par personne, le plus récent.'],
+   ['🔕','Le bandeau de version qui ne partait plus','Il comparait deux textes : il s\'allumait donc aussi quand la page ouverte était <i>plus récente</i> que le dépôt — le cas juste après une livraison, avant le push. Recharger ne servait à rien, la page revenait identique et le bandeau avec. Il compare maintenant les numéros et ne parle que dans le bon sens.'],
  ]},
  {v:'C-92',d:'09/09/2026',t:'Le robot GitHub rendu à sa juste place',items:[
    ['🤖','Trois relevés passent au bot','Les <b>achats de fer</b>, la <b>présence Discord</b> et les <b>rappels d\'agenda</b> quittent GitHub Actions pour le bot, qui est connecté en permanence. Le fer se relève toutes les 5 minutes au lieu de 2 à 4 heures, la présence toutes les 2 minutes, et les rappels d\'agenda chaque minute — c\'est la seule cadence qui permette de tenir la promesse « une heure avant ». Ce rappel-là ne pouvait tout simplement pas fonctionner avant.'],
@@ -5767,7 +5774,19 @@ async function hbLoad(){
   try{
     const lim=new Date(nowSrv()-3*60*1000).toISOString();
     const {data}=await SYNC.cli.from('oilroxwood_online').select('*').gte('vu',lim);
-    ONLINE=data||[];
+    /* La table n'a pas de contrainte d'unicité sur `uid` : l'upsert y ajoute
+       une ligne de plus à chaque battement au lieu d'en remplacer une. Toutes
+       les 90 secondes, donc, un doublon — une personne connectée depuis un
+       quart d'heure s'affichait onze fois d'affilée. On ne garde qu'un
+       battement par personne, le plus récent. */
+    const parPersonne=new Map();
+    (data||[]).forEach(o=>{
+      const k=String((o&&(o.uid||o.nom))||'').toLowerCase().trim();
+      if(!k) return;
+      const vu=parPersonne.get(k);
+      if(!vu||String(o.vu||'')>String(vu.vu||'')) parPersonne.set(k,o);
+    });
+    ONLINE=[...parPersonne.values()];
   }catch(e){ ONLINE=[]; }
 }
 function surSite(nom){
