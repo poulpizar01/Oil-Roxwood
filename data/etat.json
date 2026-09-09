@@ -169,7 +169,7 @@
     },
     {
      "ok": false,
-     "nom": "Rico Garcia",
+     "nom": "Marco Sanchez",
      "poste": false,
      "quota": 3000,
      "barils": 2724
@@ -822,7 +822,7 @@
     },
     {
      "ok": false,
-     "nom": "Rico Garcia",
+     "nom": "Marco Sanchez",
      "poste": false,
      "quota": 3000,
      "barils": 0
@@ -2423,7 +2423,7 @@
     },
     {
      "ok": true,
-     "nom": "Rico Garcia",
+     "nom": "Marco Sanchez",
      "poste": false,
      "quota": 3000,
      "barils": 5210
@@ -4155,7 +4155,7 @@
    },
    {
     "idU": "142012",
-    "nom": "Rico Garcia",
+    "nom": "Marco Sanchez",
     "rib": "362031",
     "tel": "555-033-464",
     "avert": "",
@@ -4838,7 +4838,7 @@
    },
    {
     "idU": "142012",
-    "nom": "Rico Garcia",
+    "nom": "Marco Sanchez",
     "rib": "362031",
     "tel": "555033464",
     "comm": "",
@@ -6048,7 +6048,7 @@
    },
    {
     "idU": "142012",
-    "nom": "Rico Garcia",
+    "nom": "Marco Sanchez",
     "rib": "362031",
     "tel": "555033464",
     "comm": "",
@@ -10712,7 +10712,7 @@
    },
    {
     "don": "",
-    "nom": "Rico Garcia",
+    "nom": "Marco Sanchez",
     "date": "",
     "grade": "Raffineur",
     "menus": false,
@@ -16287,17 +16287,17 @@
   "postesV4": 1
  },
  "_cid": "pw3ek9n1gtg",
- "_maj": 1788912869399,
- "_rev": "2q4wpe6z1ox-mttcjbre",
+ "_maj": 1788912888294,
+ "_rev": "lr2cgdl14-mttcjo0p",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
   "users": 1788445633699,
-  "weeks": 1788222184505,
-  "sheets": 1788711331305,
+  "weeks": 1788912888294,
+  "sheets": 1788912888294,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788911769058,
+  "journal": 1788912888294,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
@@ -16319,11 +16319,16 @@
   "_affFix1": 1788557789855,
   "produits": 1788911769058,
   "_prodFix1": 1788911738862,
-  "_recruesIgnore": 1788912869399
+  "_recruesIgnore": 1788912888294
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788912889122,
+   "u": "Diego Herrera",
+   "a": "Renommage : Rico Garcia → Marco Sanchez · feuille rh (1), feuille histEmp (2), feuille eligibilite (1), historique des semaines (3)"
+  },
   {
    "t": 1788911770002,
    "u": "Diego Herrera",
@@ -17818,11 +17823,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787498516152,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787498514646,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -18178,7 +18178,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T00:14:34.058Z",
+  "maj": "2026-09-09T00:14:49.945Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -36286,6 +36286,7 @@
  "_recruesIgnore": [
   "1788483950097",
   "1788484358109",
-  "1788622713571"
+  "1788622713571",
+  "1788545207836"
  ]
 }
