@@ -1,5 +1,5 @@
 {
- "maj": "2026-09-07T02:02:30.800Z",
+ "maj": "2026-09-09T00:47:10.296Z",
  "semaine": 36,
  "totalBarils": 0,
  "ca": 0,
@@ -8,14 +8,6 @@
  "clientsServis": 73,
  "top3": [],
  "runners": [],
- "equipe": [
-  {
-   "nom": "Diego Herrera",
-   "titre": "Co Patron",
-   "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
-   "bio": ""
-  }
- ],
  "produits": [
   {
    "nom": "11",
@@ -30,5 +22,12 @@
    "photo": "https://raw.githubusercontent.com/poulpizar01/Oil-Roxwood/main/assets/produits/1788911762546-ppr2w.jpg"
   }
  ],
- "majProduits": "2026-09-09T00:26:37.364Z"
+ "equipe": [
+  {
+   "nom": "Diego Herrera",
+   "titre": "Co Patron",
+   "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+   "bio": ""
+  }
+ ]
 }
