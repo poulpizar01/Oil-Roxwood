@@ -472,6 +472,53 @@
     if (document.getElementById("navProduits")) document.getElementById("navProduits").hidden = false;
     document.querySelectorAll("#produits .rev").forEach(function (el) { el.classList.add("vue"); });
     if (window.Roxwood) Roxwood.habiller(grille, { tilt: ".card" });
+    bandeauNeuf(liste, https);
+  }
+
+  /* Le bandeau du hero : les trois dernieres nouveautes, visibles sans
+     descendre. Trois et pas plus — au-dela, ce n'est plus une nouveaute,
+     c'est un catalogue, et le catalogue est deja plus bas. */
+  function bandeauNeuf(liste, https) {
+    var band = document.getElementById("heroNeuf"),
+        zone = document.getElementById("heroNeufListe");
+    if (!band || !zone) return;
+    zone.textContent = "";
+    liste.slice(0, 3).forEach(function (p) {
+      if (!p || !p.nom) return;
+      var a = document.createElement("a");
+      a.className = "hero-neuf-item";
+      a.href = "#produits";
+      a.title = p.desc ? String(p.desc) : String(p.nom);
+      var photo = https(p.photo);
+      if (photo) {
+        var img = document.createElement("img");
+        img.className = "hero-neuf-vign"; img.src = photo; img.alt = "";
+        img.loading = "lazy"; img.decoding = "async";
+        img.onerror = function () { img.replaceWith(vignetteVide()); };
+        a.appendChild(img);
+      } else {
+        a.appendChild(vignetteVide());
+      }
+      var txt = document.createElement("span");
+      txt.className = "hero-neuf-txt";
+      var nom = document.createElement("b");
+      nom.className = "hero-neuf-nom"; nom.textContent = String(p.nom);
+      txt.appendChild(nom);
+      if (p.prix) {
+        var pr = document.createElement("span");
+        pr.className = "hero-neuf-prix"; pr.textContent = String(p.prix);
+        txt.appendChild(pr);
+      }
+      a.appendChild(txt);
+      zone.appendChild(a);
+    });
+    if (zone.children.length) band.hidden = false;
+  }
+  function vignetteVide() {
+    var v = document.createElement("span");
+    v.className = "hero-neuf-vide";
+    v.textContent = "\uD83D\uDEE2\uFE0F";     // 🛢️
+    return v;
   }
 
   /* L'équipe — uniquement les gens qui ont coché la case dans « Mon profil ».

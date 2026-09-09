@@ -85,6 +85,14 @@
       <a href="#recrutement" class="btn" style="background:var(--ambre);color:#120C05"><span>Rejoindre l'équipe</span></a>
       <a href="#presentation" class="btn"><span>Découvrir l'entreprise</span></a>
     </div>
+
+    <!-- Les nouveautés, dès l'accueil. Remplies depuis data/stats-public.json ;
+         tant qu'aucun produit n'est en ligne, le bandeau n'existe pas — un
+         encart vide sous le titre ferait plus de mal que pas d'encart. -->
+    <div class="hero-neuf" id="heroNeuf" hidden>
+      <span class="hero-neuf-tag">Nouveau au dépôt</span>
+      <div class="hero-neuf-liste" id="heroNeufListe"></div>
+    </div>
   </div>
 </header>
 

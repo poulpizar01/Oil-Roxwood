@@ -361,3 +361,68 @@ footer{border-top:1px solid var(--trait-fort);padding:32px 0 46px;position:relat
   font-size:clamp(15px,1.5vw,18px);letter-spacing:.02em}
 .card .prod-desc{color:var(--fumee);line-height:1.6}
 #prodGrille > .card{display:flex;flex-direction:column}
+
+
+/* ============================================================
+   NOUVEAUTÉS DANS LE HERO
+
+   Ce qui vient de sortir doit se voir sans descendre : c'est la
+   premiere chose qu'un client cherche. On reste discret pour ne pas
+   concurrencer le titre — une ligne de plaques sombres, la photo en
+   vignette, le prix en ambre. Le detail est plus bas, dans #produits.
+   ============================================================ */
+.hero-neuf{margin-top:clamp(26px,3.4vw,40px);position:relative;z-index:3;max-width:min(760px,92%)}
+.hero-neuf-tag{
+  display:inline-block;font-family:var(--mono,ui-monospace,monospace);
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ambre);border:1px solid var(--ambre);
+  background:color-mix(in srgb, var(--plaque) 82%, transparent);
+  padding:5px 11px;margin-bottom:12px;
+}
+.hero-neuf-liste{display:flex;flex-wrap:wrap;gap:10px}
+/* La plaque doit rester lisible par-dessus la silhouette de la raffinerie,
+   de jour comme de nuit — d'ou une couleur de theme et non une teinte figee.
+   La premiere version etait un aplat sombre : superbe la nuit, une tache
+   noire en plein jour. */
+.hero-neuf-item{
+  display:flex;align-items:center;gap:11px;text-decoration:none;
+  padding:8px 15px 8px 8px;min-width:0;
+  background:color-mix(in srgb, var(--plaque) 88%, transparent);
+  border:1px solid var(--trait-fort,#B9A88F);
+  box-shadow:0 6px 18px rgba(0,0,0,.16);
+  backdrop-filter:blur(6px);
+  transition:border-color .25s var(--ease,ease),transform .25s var(--ease,ease),box-shadow .25s;
+}
+.hero-neuf-item:hover{
+  border-color:var(--ambre); transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(0,0,0,.24);
+}
+@supports not (background:color-mix(in srgb,red 50%,transparent)){
+  .hero-neuf-item{background:var(--plaque)}
+}
+.hero-neuf-vign{
+  width:42px;height:42px;flex:none;object-fit:cover;display:block;
+  background:var(--plaque-2);border:1px solid var(--trait);
+}
+.hero-neuf-vide{
+  width:42px;height:42px;flex:none;display:flex;align-items:center;justify-content:center;
+  background:var(--plaque-2);border:1px solid var(--trait);
+  font-size:17px;opacity:.7;
+}
+.hero-neuf-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hero-neuf-nom{
+  color:var(--vapeur,#F3EADF);font-size:13.5px;font-weight:600;line-height:1.2;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:26ch;
+}
+.hero-neuf-prix{
+  font-family:var(--mono,ui-monospace,monospace);font-size:11.5px;
+  color:var(--ambre);letter-spacing:.03em;white-space:nowrap;
+}
+
+@media (max-width:760px){
+  .hero-neuf{max-width:100%}
+  .hero-neuf-liste{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero-neuf-liste::-webkit-scrollbar{display:none}
+  .hero-neuf-item{flex:0 0 auto}
+}
