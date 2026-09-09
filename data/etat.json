@@ -16287,8 +16287,8 @@
   "postesV4": 1
  },
  "_cid": "pw3ek9n1gtg",
- "_maj": 1788912862032,
- "_rev": "0oao7ts7zydn-mttcj3pq",
+ "_maj": 1788912865590,
+ "_rev": "he2f14j0cmp-mttcj60q",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16319,7 +16319,7 @@
   "_affFix1": 1788557789855,
   "produits": 1788911769058,
   "_prodFix1": 1788911738862,
-  "_recruesIgnore": 1788912862032
+  "_recruesIgnore": 1788912865590
  },
  "_qcFix1": true,
  "_wkFix1": true,
@@ -18178,7 +18178,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T00:14:23.630Z",
+  "maj": "2026-09-09T00:14:26.618Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -36284,6 +36284,7 @@
  "_affFix1": true,
  "_prodFix1": true,
  "_recruesIgnore": [
-  "1788483950097"
+  "1788483950097",
+  "1788484358109"
  ]
 }
