@@ -1,8 +1,38 @@
 name: Sync logs Discord
 
+# ═══════════════════════════════════════════════════════════════════════
+#  IL NE RESTE QU'UNE TÂCHE ICI, ET C'EST VOULU.
+#
+#  GitHub met les tâches planifiées des dépôts publics en file d'attente :
+#  ce workflow demande « toutes les 15 minutes » et passe en réalité toutes
+#  les 2 à 4 heures. Ce retard était sans conséquence pour un écran de
+#  consultation, mais fatal pour tout ce qui promet une heure précise.
+#
+#  Sont donc passés au bot Discord (cogs/site_bridge.py, cogs/releves_site.py),
+#  qui est connecté en permanence et vérifie chaque minute :
+#
+#    · les rappels de contrat        → C-64
+#    · les chiffres du site public   → C-88   (publish_stats.py supprimé)
+#    · les achats de fer             → C-92   (fetch_fer_logs.py supprimé)
+#    · la présence Discord           → C-92   (fetch_presence.py supprimé)
+#    · les rappels d'agenda          → C-92   (agenda_reminders.py supprimé)
+#
+#  Ont été supprimés sans remplacement :
+#
+#    · send_notifs.py    — sa file n'est plus alimentée depuis C-75, quand les
+#                          demandes d'accès ont disparu au profit des rôles Discord
+#    · import_tables.py  — outil de migration Supabase, son travail est fait
+#    · rappels_contrats.py — en veille depuis C-64, le bot fait mieux
+#
+#  Les logs en direct restent ici : deux cents lignes d'analyse de texte réglées
+#  sur des messages qu'on ne peut pas rejouer hors production. Les déplacer
+#  ferait courir le risque de casser la rubrique pour gagner de la fraîcheur sur
+#  un écran qu'on consulte — mauvais échange.
+# ═══════════════════════════════════════════════════════════════════════
+
 on:
   schedule:
-    - cron: '*/15 * * * *'   # toutes les 15 minutes
+    - cron: '*/15 * * * *'   # demandé toutes les 15 min, servi toutes les 2 à 4 h
   workflow_dispatch:          # lancement manuel possible
 
 permissions:
@@ -18,40 +48,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Récupérer les messages du salon
+      - name: Récupérer les messages des salons
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
         run: python scripts/fetch_discord_logs.py || true
-
-      - name: Récupérer les achats de Fer
-        env:
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          DISCORD_FER_CHANNEL_ID: ${{ secrets.DISCORD_FER_CHANNEL_ID }}
-        run: python scripts/fetch_fer_logs.py || true
-
-      - name: Publier les stats du dashboard (automatique)
-        run: python3 scripts/publish_stats.py || true
-
-      - name: Présence Discord (widget serveur)
-        env:
-          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
-        run: python3 scripts/fetch_presence.py || true
-
-      - name: Rappels de contrats (salon, 3h avant)
-        env:
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-        run: python3 scripts/rappels_contrats.py || true
-
-      - name: Rappels d'agenda (MP 1h avant)
-        env:
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-        run: python3 scripts/agenda_reminders.py || true
-
-      - name: Notifications Discord (accès validés…)
-        env:
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-        run: python3 scripts/send_notifs.py || true
 
       - name: Commit si changement
         run: |
@@ -59,6 +60,6 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add -A data/ ':!data/etat.json'
           git diff --cached --quiet && exit 0
-          git commit -m "🤖 MAJ automatique (logs, stats, présence)"
+          git commit -m "🤖 MAJ automatique (logs Discord)"
           git pull --rebase origin main || true
           git push origin HEAD:main
