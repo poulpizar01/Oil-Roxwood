@@ -14020,6 +14020,18 @@
   }
  },
  "affiches": [],
+ "produits": [
+  {
+   "id": 1788911770246,
+   "par": "Diego Herrera",
+   "date": "2026-09-09",
+   "nom": "vv",
+   "desc": "vv",
+   "prix": "180000",
+   "chemin": "assets/produits/1788911762546-ppr2w.jpg",
+   "actif": true
+  }
+ ],
  "pending": [],
  "fer": [
   {
@@ -16205,7 +16217,8 @@
     "quotashist",
     "agenda",
     "affiches",
-    "maj"
+    "maj",
+    "produits"
    ],
    "respcom": [
     "overview",
@@ -16223,11 +16236,13 @@
     "quotashist",
     "agenda",
     "affiches",
-    "maj"
+    "maj",
+    "produits"
    ],
    "assistdir": [
     "effectif",
-    "affiches"
+    "affiches",
+    "produits"
    ]
   },
   "prixBidonCom": 50,
@@ -16271,9 +16286,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "pqo6xrq1evf",
- "_maj": 1788911459826,
- "_rev": "pjquv6os0s-mttbqbt7",
+ "_cid": "ehb4i8d18eq",
+ "_maj": 1788912055686,
+ "_rev": "dh77mzkg0sq-mttc1wkw",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788222184505,
@@ -16282,13 +16297,13 @@
   "sheets": 1788711331305,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788711331305,
+  "journal": 1788911769058,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
   "absences": 1788702929793,
   "imported": 1788222184505,
-  "settings": 1788557789855,
+  "settings": 1788911738862,
   "closeUndo": 1788222184505,
   "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
@@ -16296,16 +16311,28 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788911459826,
+  "_tables": 1788912055686,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
   "affiches": 1788557789855,
-  "_affFix1": 1788557789855
+  "_affFix1": 1788557789855,
+  "produits": 1788911769058,
+  "_prodFix1": 1788911738862
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1788911770002,
+   "u": "Diego Herrera",
+   "a": "Produit créé : vv"
+  },
+  {
+   "t": 1788911738826,
+   "u": "Diego Herrera",
+   "a": "Nouveaux produits : rubrique ouverte à 3 rôle(s) aux permissions personnalisées"
+  },
   {
    "t": 1788711332401,
    "u": "Diego Herrera",
@@ -17795,16 +17822,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787498514646,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787498501103,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787498499673,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -18160,7 +18177,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-08T23:52:01.099Z",
+  "maj": "2026-09-09T00:01:01.232Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18169,6 +18186,14 @@
   "clientsServis": 73,
   "top3": [],
   "runners": [],
+  "produits": [
+   {
+    "nom": "vv",
+    "desc": "vv",
+    "prix": "180000",
+    "photo": "https://raw.githubusercontent.com/poulpizar01/Oil-Roxwood/main/assets/produits/1788911762546-ppr2w.jpg"
+   }
+  ],
   "equipe": [
    {
     "nom": "Diego Herrera",
@@ -35605,6 +35630,69 @@
     "role": "direction",
     "vu": "2026-09-08T23:50:59.826Z",
     "id": 1788911460565
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:52:59.830Z",
+    "id": 1788911581007
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:53:59.826Z",
+    "id": 1788911641025
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:55:33.475Z",
+    "id": 1788911734143
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:55:38.841Z",
+    "id": 1788911739647
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:55:44.025Z",
+    "id": 1788911745544
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:57:14.205Z",
+    "id": 1788911835883
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:57:55.302Z",
+    "id": 1788911876107
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-08T23:59:25.677Z",
+    "id": 1788911966379
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-09T00:00:55.686Z",
+    "id": 1788912056851
    }
   ],
   "oilroxwood_demandes": [],
@@ -36136,5 +36224,6 @@
  "_permsFix1": true,
  "_rolesFix4": true,
  "_rolesFix77": true,
- "_affFix1": true
+ "_affFix1": true,
+ "_prodFix1": true
 }
