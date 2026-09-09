@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-89</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-91</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -1024,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-89';
+const APP_VERSION='C-91';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1909,27 +1909,84 @@ function vendeurConnu(nom){
   if(al) return al;
   return nomsVendeurs().get(cle)||'';
 }
+/* ---- D'où viennent les ventes, au juste ? ----
+
+   Première tentative : les brancher sur le relevé « Vente run » du bot. C'était
+   la mauvaise source, et il valait mieux s'en apercevoir avant de payer
+   quelqu'un dessus. Ce relevé compte du PÉTROLE RAFFINÉ vendu par les runners —
+   c'est leur production, elle se suit dans la Tablette. « Ventes de la semaine »
+   compte des BIDONS D'ESSENCE vendus à des clients ; c'est de ce chiffre que
+   sortent les bidons à reproduire et le fer à racheter.
+
+   La bonne source était déjà là : les factures. Elles portent le client, la
+   date, la quantité et l'émetteur — c'est-à-dire, mot pour mot, les quatre
+   colonnes de la feuille qu'on retapait à la main. Aucun robot à écrire, aucun
+   fichier à transférer : les données n'ont jamais quitté le dashboard.
+
+   La file du bot reste lue au cas où il enverrait un jour de vraies ventes de
+   bidons ; les deux sources se dédoublonnent par leur origine. */
+/* Une ligne de facture compte-t-elle dans la paie commerciale ?
+
+   Seulement si c'est du bidon. Les produits dérivés — katanas, couteaux et le
+   reste — se vendent aussi sur facture, mais ils n'entrent ni dans le salaire de
+   production ni dans le fer à racheter : on ne fabrique pas un katana avec du
+   pétrole. Aujourd'hui les 73 factures ne contiennent que des bidons, donc la
+   règle ne change rien ; elle existe pour le jour où quelqu'un ajoutera une
+   ligne de dérivés à une facture, et où personne ne penserait à vérifier que la
+   paie n'a pas gonflé toute seule. */
+function estBidon(ligne){
+  const ref=String((ligne&&ligne.ref)||'').toUpperCase();
+  const desc=normNom((ligne&&ligne.desc)||'');
+  if(/bidon|essence|petrole|carburant/.test(desc)) return true;
+  return /^CMD\b/.test(ref) && !/derive|katana|couteau|preservatif/.test(desc);
+}
 function importerVentes(){
-  const file=((S._tables&&S._tables.oilroxwood_ventes)||[]);
-  if(!file.length||!S.sheets) return null;
+  if(!S.sheets) return null;
   const lundi=jourISO(lundiSemaineTravail());
   const ign=(S._ventesIgnore||[]).map(String);
   S.sheets.ventesSem=S.sheets.ventesSem||[];
   const feuille=S.sheets.ventesSem;
   const dejaLa=new Set(feuille.map(x=>String(x.src||'')).filter(Boolean));
+  /* Une ligne tapée à la main avant l'import ne doit pas se retrouver en double :
+     même jour, même client, même quantité, c'est la même vente. */
+  const dejaFrappe=new Set(feuille.filter(x=>!x.src)
+    .map(x=>`${x.date}|${normNom(x.client)}|${nn(x.quantite)}`));
   let ajoutees=0; const orphelines=[];
-  file.forEach(v=>{
-    const src=String(v.id||''); if(!src||dejaLa.has(src)||ign.includes(src)) return;
+  const poser=(src,date,client,qte,qui)=>{
+    if(dejaLa.has(src)||ign.includes(src)) return;
+    if(dejaFrappe.has(`${date}|${normNom(client)}|${qte}`)) return;
+    feuille.push({date, client:String(client||'').trim(), quantite:qte, qui, src});
+    dejaLa.add(src); ajoutees++;
+  };
+
+  // 1. les factures de la semaine de travail — BIDONS SEULEMENT
+  let ecartees=0;
+  ((S.fact&&S.fact.factures)||[]).forEach(f=>{
+    const date=String(f.date||'').slice(0,10);
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<lundi) return;
+    let qte=0, autres=0;
+    (f.lignes||[]).forEach(l=>{ if(estBidon(l)) qte+=nn(l.qte); else autres+=nn(l.qte); });
+    ecartees+=autres;
+    qte=Math.round(qte);
+    if(qte<=0) return;
+    poser('f'+f.num, date, f.client, qte, String(f.emetteur||'').trim());
+  });
+
+  // 2. la file du bot, si un jour il relève des ventes de bidons
+  ((S._tables&&S._tables.oilroxwood_ventes)||[]).forEach(v=>{
+    const src=String(v.id||''); if(!src) return;
     const date=String(v.date||'').slice(0,10);
-    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<lundi) return;   // hors semaine de travail
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<lundi) return;
     const qte=Math.round(+v.qte||0); if(qte<=0) return;
     const qui=vendeurConnu(v.nom);
-    if(!qui){ orphelines.push({src, brut:String(v.nom||'?'), qte, date, client:String(v.client||'')}); return; }
-    feuille.push({date, client:String(v.client||'').trim(), quantite:qte, qui, src});
-    dejaLa.add(src); ajoutees++;
+    if(!qui){ if(!ign.includes(src)&&!dejaLa.has(src))
+        orphelines.push({src, brut:String(v.nom||'?'), qte, date, client:String(v.client||'')});
+      return; }
+    poser(src, date, v.client, qte, qui);
   });
+
   if(ajoutees) feuille.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
-  return {ajoutees, orphelines};
+  return {ajoutees, orphelines, ecartees};
 }
 /* On dit une fois de qui il s'agit, et toutes les ventes suivantes de ce nom
    se rangent seules — y compris celles qui attendent déjà. */
@@ -2564,9 +2621,10 @@ async function feuilles(){
     const v=importerVentes();
     VENTES_ORPH = (v&&v.orphelines)||[];
     if(v&&v.ajoutees){
-      jlog(`Ventes Discord : ${v.ajoutees} vente(s) reprise(s)`);
+      const hors=v.ecartees?` · ${fmt(v.ecartees)} article(s) hors bidons non comptés`:'';
+      jlog(`Ventes : ${v.ajoutees} facture(s) reprise(s)${hors}`);
       save(); sbPushNow();
-      toast(`🛒 ${v.ajoutees} vente(s) reprise(s) depuis les logs`);
+      toast(`🛒 ${v.ajoutees} vente(s) reprise(s) depuis les factures${hors}`, hors?8000:2600);
     }
   }
   // l'Éligibilité affiche les grades d'aujourd'hui, pas ceux figés à la clôture
@@ -4371,6 +4429,15 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-91',d:'09/09/2026',t:'Les produits dérivés ne gonflent plus la paie',items:[
+   ['🗡️','Un katana n\'est pas un bidon','La reprise des factures comptait toutes les lignes. Aujourd\'hui tes 73 factures ne contiennent que des bidons, donc rien n\'était faux — mais le jour où quelqu\'un ajoute une ligne de dérivés à une facture, le salaire de production et le fer à racheter auraient gonflé tout seuls, sans que personne ne pense à vérifier. Seules les lignes de bidons comptent désormais ; les autres sont écartées et l\'écran dit combien.'],
+   ['🧾','Ce que le salon des factures peut, et ne peut pas','Le log annonce « paiement d\'une facture de 6240 » : un montant, pas une quantité ni un produit. 6240 vaut 50 bidons au tarif employé ou 33,3 au tarif client — le second est impossible, mais 28080 vaut aussi bien 150 bidons à 180 $ que 225 à 120 $. On ne peut donc pas fabriquer une vente à partir d\'un paiement. Ce qu\'il permet, en revanche, c\'est de repérer les paiements sans facture correspondante : les ventes qui ont échappé au dashboard.'],
+ ]},
+ {v:'C-90',d:'09/09/2026',t:'Les ventes viennent des factures',items:[
+   ['🧾','La bonne source était déjà là','« Ventes de la semaine » se remplit désormais depuis les factures : elles portent le client, la date, la quantité et l\'émetteur — mot pour mot les quatre colonnes qu\'on retapait à la main. Aucun robot à écrire, aucun fichier à transférer, les données n\'ont jamais quitté le dashboard.'],
+   ['🛑','Ce qu\'on a failli brancher, et pourquoi non','La première piste était le relevé « Vente run » du bot. Mauvaise source : il compte du <b>pétrole raffiné</b> vendu par les runners — leur production, qui se suit dans la Tablette. La feuille, elle, compte des <b>bidons d\'essence</b> vendus à des clients, et c\'est d\'elle que sortent les bidons à reproduire et le fer à racheter. Les brancher l\'un sur l\'autre aurait payé les commerciaux sur le travail des runners.'],
+   ['🔁','Ni doublon, ni écrasement','Une ligne déjà tapée à la main — même jour, même client, même quantité — n\'est pas reprise une seconde fois, et elle garde sa mention « saisie ». Rouvrir la feuille n\'ajoute jamais rien. La page Quotas &amp; fer fait la même reprise, pour ne pas afficher un quota périmé quand personne n\'a ouvert la feuille.'],
+ ]},
  {v:'C-89',d:'09/09/2026',t:'Les ventes remontent des logs',items:[
    ['🛒','La feuille qui décide de la paie se remplit seule','« Ventes de la semaine » commande le salaire de production, le quota de bidons à reproduire et le fer à racheter — et elle se tapait à la main. L\'historique disait ce que ça donne : sur sept semaines closes, deux sans aucune trace de production commerciale. Le bot dépose désormais chaque vente relevée, le site la reprend à l\'ouverture de la feuille.'],
    ['🪪','Un vendeur non reconnu n\'est plus perdu','Le journal du bot montrait quatre ventes de « Victor Sulivane » évaporées en deux jours, faute de correspondance. Elles arrivent maintenant dans un encadré : on dit une fois de qui il s\'agit, la vente entre, et toutes les suivantes de ce nom se rangent seules. Le bot ne devine jamais à notre place — se tromper de nom, c\'est créditer la paie de quelqu\'un d\'autre.'],
@@ -5275,6 +5342,13 @@ function qcArchive(){
   S.quotasCom={sem:S.settings.semaine,achats:{}};
 }
 function quotascom(){
+  /* Cette page lit « Ventes de la semaine ». Si personne n'a ouvert la feuille
+     depuis la dernière facture, elle afficherait un quota périmé — on reprend
+     donc les factures ici aussi, c'est le même geste et il ne coûte rien. */
+  if(!isMembre()&&!sheetRO('ventesSem')){
+    const v=importerVentes();
+    if(v&&v.ajoutees){ jlog(`Ventes : ${v.ajoutees} facture(s) reprise(s)`); save(); sbQueue(); }
+  }
   // l'archivage/remise à zéro ne se fait plus QU'À LA CLÔTURE — un simple changement de numéro de semaine ne vide plus la feuille
   S.quotasCom=S.quotasCom||{sem:S.settings.semaine,achats:{}};
   S.quotasCom.sem=S.settings.semaine; // suit l'étiquette de semaine sans rien effacer

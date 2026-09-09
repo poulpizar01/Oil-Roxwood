@@ -83,7 +83,8 @@ compteur.
 | La page Produits montre ce qui est réellement en ligne | C-86 |
 | Bandeau des nouveautés : visible et au-dessus de la ligne de flottaison | C-87 |
 | Site public : « En direct » réparé, stats publiées par le bot, polices non bloquantes | C-88 |
-| Ventes relevées par le bot → feuille de la semaine | C-89 |
+| Ventes de la semaine reprises depuis les factures | C-89 · C-90 |
+| Produits dérivés exclus du salaire de production | C-91 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
@@ -151,24 +152,22 @@ remplacer quoi que ce soit. Le relancer deux fois ne fait rien.
 sait pas lire (« lundi prochain ») fait apparaître un message éphémère au RH :
 absence acceptée, mais à saisir à la main.
 
-**Brancher les ventes (C-89) — la dernière ligne.** Le site et le pont sont
-prêts et éprouvés ; il manque l'appel dans le cog qui lit les ventes. Sur le VPS :
+**Piste ouverte : le salon des paiements de factures** (`1245400913066066098`).
+Chaque paiement y est journalisé avec le montant, qui a encaissé
+(`playerCharacter`) et qui a payé (`targetPlayerCharacter`). On ne peut pas en
+tirer une vente — un montant ne dit ni la quantité ni le produit, et 28 080 $
+vaut aussi bien 150 bidons à 180 $ que 225 à 120 $. Ce qu'on pourrait en tirer :
+**la liste des paiements sans facture correspondante**, c'est-à-dire les ventes
+qui ont échappé au dashboard. Les virements bancaires n'y apparaissant pas, une
+part restera manuelle — mais elle serait au moins visible au lieu d'être
+supposée. À décider.
 
-```
-wc -l /root/Bot/cogs/webhooks_activite.py; grep -n "def \|vente\|db\.\|quantite" /root/Bot/cogs/webhooks_activite.py | head -40
-```
-
-L'appel à poser, là où une vente est reconnue :
-
-```python
-pont = self.bot.get_cog("SiteBridgeCog")
-if pont:
-    await pont.ajouter_vente(vendeur=nom_personnage, quantite=nb_bidons,
-                             client=nom_client, ref=str(message.id))
-```
-
-`ref` doit être stable (l'id du message de log convient) : c'est lui qui empêche
-la même vente d'entrer deux fois.
+**Les ventes : plus rien à brancher.** La piste « Vente run » du bot était la
+mauvaise — elle compte du pétrole raffiné vendu par les runners, pas des bidons
+vendus à des clients. La feuille se remplit maintenant depuis les factures, qui
+portent déjà client, date, quantité et émetteur. `ajouter_vente()` reste dans le
+pont si un jour le bot relève de vraies ventes de bidons, mais **ne branche pas
+`_traiter_vente` dessus** : ça paierait les commerciaux sur le travail des runners.
 
 **Deux choses à faire sur le site public, de ton côté.**
 1. La fiche de test « vv » est visible de tous sur la vitrine — à corriger ou supprimer.
