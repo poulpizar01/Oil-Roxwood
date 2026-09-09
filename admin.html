@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-83</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-84</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -270,7 +270,7 @@ function load(){
    les contrats et les médias depuis la sortie de Supabase. Sans lui, mergeRemote
    ne reprenait JAMAIS ces tables du dépôt — le dernier qui enregistrait écrasait
    les lignes ajoutées par un autre admin, et toute écriture du bot était perdue. */
-const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','produits','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1','_prodFix1'];
+const SEC_KEYS=['runners','weeks','sheets','fact','users','profils','pending','fer','_tables','settings','absences','primesExtra','quotasCom','quotasComHist','journal','bilanExtra','closeUndo','bilanForce','prodDer','imported','affiches','produits','_recruesIgnore','_qcFix1','_wkFix1','_permsFix1','_rolesFix77','_affFix1','_prodFix1'];
 /* ---- heure de référence : celle du serveur Supabase, pas celle du PC ----
    Un utilisateur avec une horloge décalée datait ses modifs « dans le futur » et écrasait tout. */
 let CLOCK_SKEW=0;
@@ -1024,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-83';
+const APP_VERSION='C-84';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -1864,11 +1864,30 @@ function lundiSemaineTravail(){
    Le bot n'écrit que dans la file, jamais dans la feuille ; le dashboard ne
    touche jamais à la file. Aucune écriture concurrente n'est donc possible. */
 function chiffres(v){ return String(v||'').replace(/\D/g,''); }
+/* ---- Reprise des recrutements validés sur Discord ----
+
+   Trois issues possibles pour une recrue de la file, et la troisième est
+   celle qui a fait croire que « les recrues ne se mettent pas toutes » :
+
+   1. Personne inconnue      → on crée sa fiche.
+   2. Fiche déjà là, complète → rien à faire.
+   3. Fiche déjà là MAIS SOUS UN AUTRE NOM. Même identifiant unique, même
+      compte Discord, nom RP différent : c'est un changement de nom, pas une
+      nouvelle personne. On refusait le doublon — à juste titre — mais en
+      silence : le RH validait « Bjorn Frost » et ne le trouvait nulle part,
+      parce que la ligne s'appelait toujours « Johnatan Rodriguez ».
+
+   On ne renomme pas tout seul. Le nom est la clé de TOUT le dashboard —
+   effectif, tablette, éligibilité, absences, quotas, historique. Le changer
+   à un seul endroit casserait tout le reste, et le changer partout sans
+   demander, sur une simple homonymie d'identifiant, serait pire. On signale
+   donc, et c'est le RH qui tranche en un clic. */
 function importerRecrues(){
   const file=((S._tables&&S._tables.oilroxwood_recrues)||[]);
-  if(!file.length||!S.sheets||!S.sheets.rh) return {ajoutes:0,completes:0};
+  if(!file.length||!S.sheets||!S.sheets.rh) return {ajoutes:0,completes:0,renommages:[]};
   const rh=S.sheets.rh;
-  let ajoutes=0, completes=0; const noms=[];
+  const ignores=(S._recruesIgnore||[]).map(String);
+  let ajoutes=0, completes=0; const noms=[], renommages=[];
   file.forEach(r=>{
     const idu=chiffres(r.idU), did=String(r.discord||'').trim();
     const existe=rh.find(x=>(idu&&chiffres(x.idU)===idu)||(did&&String(x.discord||'').trim()===did));
@@ -1879,13 +1898,99 @@ function importerRecrues(){
         if(!String(existe[k]||'').trim()&&String(r[k]||'').trim()){ existe[k]=r[k]; n++; }
       });
       if(n){ completes+=n; noms.push(existe.nom||r.nom); }
+      const neufNom=String(r.nom||'').trim();
+      if(neufNom&&normNom(neufNom)!==normNom(existe.nom)&&!ignores.includes(String(r.id)))
+        renommages.push({src:String(r.id||''), ancien:String(existe.nom||''), nouveau:neufNom,
+                         idU:String(r.idU||''), discord:did});
       return;
     }
     const neuf=JSON.parse(JSON.stringify(SHEETS_DEF.rh.nouveau));
     ['nom','tel','rib','idU','grade','recrut','arrivee','discord'].forEach(k=>{ if(r[k]) neuf[k]=r[k]; });
     rh.unshift(neuf); ajoutes++; noms.push(neuf.nom);
   });
-  return {ajoutes,completes,noms:[...new Set(noms)]};
+  return {ajoutes,completes,noms:[...new Set(noms)],renommages};
+}
+
+/* ---- Renommer quelqu'un PARTOUT ----
+
+   Le dashboard identifie les gens par leur nom, dans une douzaine d'endroits.
+   Corriger un nom dans la seule fiche RH, c'est perdre son effectif, ses
+   quotas, ses absences et son historique du même coup — la personne réapparaît
+   comme une inconnue sans passé. Cette fonction fait le tour complet, y compris
+   l'historique des semaines closes : c'est la même personne, elle garde ce
+   qu'elle a produit. Elle rend le détail de ce qu'elle a touché, pour qu'on
+   puisse le dire plutôt que de l'affirmer. */
+function renommerPartout(ancien, nouveau){
+  const A=normNom(ancien), N=String(nouveau||'').trim();
+  if(!A||!N) return null;
+  const bilan={};
+  const compte=(zone,n)=>{ if(n) bilan[zone]=(bilan[zone]||0)+n; };
+  const renLignes=(arr,zone)=>{
+    if(!Array.isArray(arr)) return;
+    let n=0; arr.forEach(x=>{ if(x&&normNom(x.nom)===A){ x.nom=N; n++; } });
+    compte(zone,n);
+  };
+  renLignes(S.runners,'effectif');
+  renLignes(S.absences,'absences');
+  renLignes(S.fer,'achats de fer');
+  renLignes(S.bilanExtra,'bilan');
+  renLignes(S.primesExtra,'primes');
+  Object.entries(S.sheets||{}).forEach(([k,v])=>renLignes(v,'feuille '+k));
+  (S.weeks||[]).forEach(w=>renLignes(w&&w.detail,'historique des semaines'));
+  // le recruteur d'une fiche RH porte aussi un nom
+  let nr=0;
+  ((S.sheets&&S.sheets.rh)||[]).forEach(x=>{ if(x&&normNom(x.recrut)===A){ x.recrut=N; nr++; } });
+  compte('colonne « recruteur »',nr);
+  // le profil est rangé sous une clé dérivée du nom
+  if(S.profils&&S.profils[A]){
+    const pf=S.profils[A]; delete S.profils[A];
+    pf.nom=N; S.profils[normNom(N)]=pf; compte('profil public',1);
+  }
+  // les quotas commerciaux sont indexés par nom
+  const qc=S.quotasCom&&S.quotasCom.achats;
+  if(qc&&typeof qc==='object'){
+    let n=0;
+    Object.keys(qc).forEach(k=>{ if(normNom(k)===A){ qc[N]=qc[k]; delete qc[k]; n++; } });
+    compte('quotas commerciaux',n);
+  }
+  // le compte d'accès, s'il en a un
+  let nu=0;
+  (S.users||[]).forEach(u=>{ if(u&&normNom(u.user)===A){ u.user=N; nu++; } });
+  compte('compte d\'accès',nu);
+  return bilan;
+}
+function recrueRenommer(src, ancien, nouveau){
+  if(!confirm(`Renommer « ${ancien} » en « ${nouveau} » partout ?\n\n`
+    +`C'est la même personne : même identifiant unique et même compte Discord.\n`
+    +`Son effectif, ses quotas, ses absences et son historique la suivent.`)) return;
+  const b=renommerPartout(ancien,nouveau);
+  if(!b) return toast('⚠️ Renommage impossible');
+  const zones=Object.entries(b).filter(([,n])=>n).map(([z,n])=>`${z} (${n})`);
+  S._recruesIgnore=[...new Set([...(S._recruesIgnore||[]),String(src)])];
+  jlog(`Renommage : ${ancien} → ${nouveau} · ${zones.join(', ')||'aucune ligne'}`);
+  save(); sbPushNow(); feuilles();
+  toast(`✏️ ${nouveau} — ${zones.length?zones.join(' · '):'aucune ligne à changer'}`, 9000);
+}
+/* Un essai, ou une validation faite sur soi-meme pour tester : ni renommage
+   ni fiche neuve, juste ne plus le proposer. */
+function recrueIgnorer(src){
+  S._recruesIgnore=[...new Set([...(S._recruesIgnore||[]),String(src)])].slice(-200);
+  RECRUES_RENOM=RECRUES_RENOM.filter(x=>String(x.src)!==String(src));
+  save(); sbPushNow(); feuilles();
+  toast('Ignoré — ce rapprochement ne sera plus proposé');
+}
+function recruePasLaMeme(src, nouveau){
+  const file=((S._tables&&S._tables.oilroxwood_recrues)||[]);
+  const r=file.find(x=>String(x.id)===String(src));
+  S._recruesIgnore=[...new Set([...(S._recruesIgnore||[]),String(src)])];
+  if(r&&S.sheets&&S.sheets.rh){
+    const neuf=JSON.parse(JSON.stringify(SHEETS_DEF.rh.nouveau));
+    ['nom','tel','rib','idU','grade','recrut','arrivee','discord'].forEach(k=>{ if(r[k]) neuf[k]=r[k]; });
+    S.sheets.rh.unshift(neuf);
+    jlog(`Recrue ${nouveau} : fiche créée séparément (personne différente)`);
+  }
+  save(); sbPushNow(); feuilles();
+  toast(`✅ Fiche créée pour ${nouveau}`);
 }
 function recruesAuto(nom){
   /* Fiches RH où la personne est « Recruteur », arrivées depuis le début de la
@@ -2308,6 +2413,7 @@ async function feuilles(){
         ? `👥 ${imp.ajoutes} recrue(s) ajoutée(s) depuis Discord — ${qui}`
         : `👥 ${imp.completes} case(s) complétée(s) depuis Discord — ${qui} (déjà en fiche)`);
     }
+    RECRUES_RENOM = imp.renommages || [];
   }
   // l'Éligibilité affiche les grades d'aujourd'hui, pas ceux figés à la clôture
   if(curSheet==='eligibilite'&&!isMembre()){
@@ -2332,6 +2438,25 @@ async function feuilles(){
       <button class="btn btn-red" onclick="sheetReset()">♻️ Réinitialiser</button>
     </div>
   </div>
+  ${(curSheet==='rh'&&RECRUES_RENOM.length)?`
+  <div class="panel" style="margin-bottom:14px;border-color:rgba(232,160,32,.45);background:rgba(232,160,32,.05)">
+    <h3 style="font-size:.98rem">🪪 ${RECRUES_RENOM.length} recrue(s) déjà en fiche, sous un autre nom</h3>
+    <p style="color:var(--muted);font-size:.79rem;line-height:1.55;margin-bottom:12px">
+      Même identifiant unique <b>et</b> même compte Discord : c'est la même personne, qui a changé de nom RP.
+      Aucune fiche n'a été créée — sinon elle serait en double. Le nom sert de clé partout dans le dashboard
+      (effectif, tablette, éligibilité, absences, quotas, historique) : le renommage se fait en une fois, partout,
+      ou pas du tout.
+    </p>
+    ${RECRUES_RENOM.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:9px 0;border-top:1px solid var(--line)">
+      <span style="font-size:.86rem"><b>${esc(r.ancien)}</b> <span style="color:var(--muted)">→</span> <b style="color:var(--accent)">${esc(r.nouveau)}</b>
+        <br><small style="color:var(--muted);font-family:var(--f-mono);font-size:.72rem">ID ${esc(r.idU||'—')} · Discord ${esc(r.discord||'—')}</small></span>
+      <span style="display:flex;gap:7px;flex-wrap:wrap">
+        <button class="btn btn-sm btn-gold" onclick="recrueRenommer('${esc(r.src)}','${esc(r.ancien).replace(/'/g,"\\'")}','${esc(r.nouveau).replace(/'/g,"\\'")}')">Renommer partout</button>
+        <button class="btn btn-sm btn-ghost" onclick="recruePasLaMeme('${esc(r.src)}','${esc(r.nouveau).replace(/'/g,"\\'")}')" title="Deux personnes différentes qui partagent un identifiant : crée une fiche à part">Fiche séparée</button>
+        <button class="btn btn-sm btn-ghost" onclick="recrueIgnorer('${esc(r.src)}')" title="Ne plus proposer — pour un essai ou une validation faite sur soi-même">Ignorer</button>
+      </span>
+    </div>`).join('')}
+  </div>`:''}
   ${def.note?`<div class="warn" style="border-color:rgba(232,98,44,.35);background:rgba(232,98,44,.07);color:var(--accent)">ℹ️ ${def.note}</div>`:''}
   ${sheetRO(curSheet)?'<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">👁 Feuille en consultation seule pour ton rôle</div>':''}
   <div class="panel ${sheetRO(curSheet)?'ro-zone':''}" style="padding:10px 16px;overflow-x:auto">
@@ -2343,6 +2468,9 @@ async function feuilles(){
   // ce rattrapage ne sert que quand on revient sur la feuille avec un filtre actif
   if(sheetSearch){ const el=document.getElementById('sheetSearchInput'); if(el&&document.activeElement!==el){ el.focus(); el.setSelectionRange(el.value.length,el.value.length); } }
 }
+/* Les changements de nom repérés au dernier import : la vue les affiche,
+   et seules les Fiches RH s'en servent. Vidée à chaque import. */
+let RECRUES_RENOM=[];
 let dragI=null;
 function dropRow(j){
   if(dragI===null||dragI===j){ dragI=null; return; }
@@ -4067,6 +4195,12 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-84',d:'09/09/2026',t:'Les recrues qui « ne se mettaient pas »',items:[
+   ['🪪','Elles étaient là, sous leur ancien nom','Trois recrutements validés sur Discord ne créaient aucune ligne : Marco Sanchez, Bjorn Frost et ivar frost avaient déjà une fiche — au nom de Rico Garcia, Johnatan Rodriguez et Adam Wade. Même identifiant unique, même compte Discord : la même personne, revenue sous un autre nom RP. L\'import refusait le doublon, à juste titre, mais en silence — on validait et on ne trouvait rien.'],
+   ['🔔','Le refus se voit maintenant','Les Fiches RH affichent un encadré : ancien nom, nouveau nom, identifiant, compte Discord. Trois choix — renommer partout, créer une fiche séparée (deux personnes qui partagent un identifiant), ou ignorer (un essai, une validation faite sur soi-même).'],
+   ['🔗','Renommer, c\'est renommer partout','Le nom est la clé du dashboard entier. Le corriger dans la seule fiche RH ferait perdre à la personne son effectif, ses quotas, ses absences et son historique : elle repartirait de zéro, comme une inconnue. Le bouton fait le tour complet — les onze feuilles, l\'effectif, les absences, les achats de fer, les quotas commerciaux, le profil public, la colonne « recruteur » des autres, le compte d\'accès, et l\'historique des semaines closes.'],
+   ['🧾','Et il dit ce qu\'il a touché','Le message d\'après-coup liste les zones et le nombre de lignes changées, plutôt qu\'un « c\'est fait » qu\'il faudrait croire sur parole.'],
+ ]},
  {v:'C-83',d:'09/09/2026',t:'Les nouveautés dès la première image',items:[
    ['✨','Un bandeau dans le hero','Les trois derniers produits s\'affichent maintenant sous les boutons d\'accueil, sans avoir à descendre — vignette, nom, prix, et un clic mène à la fiche complète. Trois et pas plus : au-delà ce n\'est plus une nouveauté, c\'est un catalogue, et le catalogue est juste en dessous.'],
    ['🌗','Lisible de jour comme de nuit','La première version posait des plaques sombres : superbe sur le thème nuit, une tache noire en plein jour. Les plaques suivent désormais le thème du visiteur.'],
