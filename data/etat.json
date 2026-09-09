@@ -16328,8 +16328,8 @@
   "postesV4": 1
  },
  "_cid": "2pxla894636",
- "_maj": 1788947099484,
- "_rev": "q1de7gfvybh-mttwwz4f",
+ "_maj": 1788947109119,
+ "_rev": "xf79xnorx9-mttwx6qu",
  "_majSec": {
   "fer": 1788222184505,
   "fact": 1788947099473,
@@ -16346,7 +16346,7 @@
   "imported": 1788222184505,
   "settings": 1788911738862,
   "closeUndo": 1788222184505,
-  "quotasCom": 1788456486084,
+  "quotasCom": 1788947109119,
   "bilanExtra": 1788222184505,
   "bilanForce": 1788222184505,
   "primesExtra": 1788222184505,
@@ -18161,7 +18161,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T09:45:03.183Z",
+  "maj": "2026-09-09T09:45:13.062Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -18203,9 +18203,9 @@
   "achats": {
    "Emma Collins-rodriguez": 0
   },
-  "vendus": 0,
-  "parPers": 0,
-  "ferPers": 0
+  "vendus": 4000,
+  "parPers": 800,
+  "ferPers": 1600
  },
  "bilanExtra": [
   {
