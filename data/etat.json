@@ -9286,7 +9286,15 @@
     "entreprise": "klan-ozumiya"
    }
   ],
-  "ventesSem": [],
+  "ventesSem": [
+   {
+    "date": "2026-09-09",
+    "client": "Oil Roxwood",
+    "quantite": 4000,
+    "qui": "Diego Herrera",
+    "fact": 253086
+   }
+  ],
   "collection": [
    {
     "nom": "Nom",
@@ -11899,7 +11907,7 @@
     "rib": "20076",
     "tel": "986",
     "adresse": "Roxwood",
-    "lastCmd": "2026-08-30"
+    "lastCmd": "2026-09-09"
    },
    {
     "nom": "Ombra Nera",
@@ -12257,8 +12265,31 @@
     "prix": 120
    }
   ],
-  "compteur": 253086,
+  "compteur": 253087,
   "factures": [
+   {
+    "num": 253086,
+    "date": "2026-09-09",
+    "client": "Oil Roxwood",
+    "emetteur": "Diego Herrera",
+    "postop": false,
+    "lignes": [
+     {
+      "ref": "CMD",
+      "qte": 4000,
+      "tva": 0.05,
+      "pu": 180,
+      "ht": 720000,
+      "ttc": 756000,
+      "desc": "bidons d'essence "
+     }
+    ],
+    "offert": 0,
+    "ht": 720000,
+    "ttc": 756000,
+    "poids": 8000,
+    "statut": "attente"
+   },
    {
     "ht": 18000,
     "num": 253084,
@@ -16297,14 +16328,14 @@
   "postesV4": 1
  },
  "_cid": "2pxla894636",
- "_maj": 1788947035944,
- "_rev": "7gt391hbhp2-mttwvm6e",
+ "_maj": 1788947099484,
+ "_rev": "kbjagiyjcn-mttwwx2s",
  "_majSec": {
   "fer": 1788222184505,
-  "fact": 1788222184505,
+  "fact": 1788947099473,
   "users": 1788445633699,
   "weeks": 1788912897604,
-  "sheets": 1788912897604,
+  "sheets": 1788947099473,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788918247565,
@@ -18130,13 +18161,13 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T09:43:59.750Z",
+  "maj": "2026-09-09T09:45:00.532Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
   "objectif": 375000,
   "effectif": 98,
-  "clientsServis": 73,
+  "clientsServis": 74,
   "top3": [],
   "runners": [],
   "produits": [
