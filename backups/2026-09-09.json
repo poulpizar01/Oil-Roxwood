@@ -9286,15 +9286,7 @@
     "entreprise": "klan-ozumiya"
    }
   ],
-  "ventesSem": [
-   {
-    "date": "2026-09-09",
-    "client": "Oil Roxwood",
-    "quantite": 4000,
-    "qui": "Diego Herrera",
-    "fact": 253086
-   }
-  ],
+  "ventesSem": [],
   "collection": [
    {
     "nom": "Nom",
@@ -11907,7 +11899,7 @@
     "rib": "20076",
     "tel": "986",
     "adresse": "Roxwood",
-    "lastCmd": "2026-09-09"
+    "lastCmd": "2026-08-30"
    },
    {
     "nom": "Ombra Nera",
@@ -12265,31 +12257,8 @@
     "prix": 120
    }
   ],
-  "compteur": 253087,
+  "compteur": 253086,
   "factures": [
-   {
-    "num": 253086,
-    "date": "2026-09-09",
-    "client": "Oil Roxwood",
-    "emetteur": "Diego Herrera",
-    "postop": false,
-    "lignes": [
-     {
-      "ref": "CMD",
-      "qte": 4000,
-      "tva": 0.05,
-      "pu": 180,
-      "ht": 720000,
-      "ttc": 756000,
-      "desc": "bidons d'essence "
-     }
-    ],
-    "offert": 0,
-    "ht": 720000,
-    "ttc": 756000,
-    "poids": 8000,
-    "statut": "attente"
-   },
    {
     "ht": 18000,
     "num": 253084,
@@ -16327,15 +16296,15 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "2pxla894636",
- "_maj": 1788949195785,
- "_rev": "rtka8ndkw0n-mtty5xo6",
+ "_cid": "c45aa4j83i5",
+ "_maj": 1788921951058,
+ "_rev": "7gkx2tnlsfa-mtthyxll",
  "_majSec": {
   "fer": 1788222184505,
-  "fact": 1788947099473,
+  "fact": 1788222184505,
   "users": 1788445633699,
   "weeks": 1788912897604,
-  "sheets": 1788947099473,
+  "sheets": 1788912897604,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
   "journal": 1788918247565,
@@ -16346,13 +16315,13 @@
   "imported": 1788222184505,
   "settings": 1788911738862,
   "closeUndo": 1788222184505,
-  "quotasCom": 1788947109119,
+  "quotasCom": 1788456486084,
   "bilanExtra": 1788222184505,
   "bilanForce": 1788222184505,
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1788949195785,
+  "_tables": 1788921951058,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -18161,13 +18130,13 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T10:20:00.822Z",
+  "maj": "2026-09-09T02:46:40.281Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
   "objectif": 375000,
   "effectif": 98,
-  "clientsServis": 74,
+  "clientsServis": 73,
   "top3": [],
   "runners": [],
   "produits": [
@@ -18203,9 +18172,9 @@
   "achats": {
    "Emma Collins-rodriguez": 0
   },
-  "vendus": 4000,
-  "parPers": 800,
-  "ferPers": 1600
+  "vendus": 0,
+  "parPers": 0,
+  "ferPers": 0
  },
  "bilanExtra": [
   {
@@ -36516,230 +36485,6 @@
     "role": "direction",
     "vu": "2026-09-09T02:45:51.043Z",
     "id": 1788921951767
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:34:30.061Z",
-    "id": 1788946471162
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:36:00.420Z",
-    "id": 1788946560935
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:37:30.420Z",
-    "id": 1788946650987
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:39:00.429Z",
-    "id": 1788946741608
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:40:30.421Z",
-    "id": 1788946830936
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:40:55.798Z",
-    "id": 1788946856610
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:42:26.003Z",
-    "id": 1788946946440
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:43:55.944Z",
-    "id": 1788947035990
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:45:25.939Z",
-    "id": 1788947125874
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:46:55.990Z",
-    "id": 1788947216155
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:48:25.996Z",
-    "id": 1788947305935
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:49:58.994Z",
-    "id": 1788947399848
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:51:59.883Z",
-    "id": 1788947520539
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:52:59.869Z",
-    "id": 1788947580093
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:54:59.880Z",
-    "id": 1788947700377
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:55:59.891Z",
-    "id": 1788947760555
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:58:00.111Z",
-    "id": 1788947880251
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T09:59:00.084Z",
-    "id": 1788947940524
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:01:00.005Z",
-    "id": 1788948060086
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:01:59.909Z",
-    "id": 1788948120846
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:03:59.856Z",
-    "id": 1788948240877
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:04:59.862Z",
-    "id": 1788948300800
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:06:59.963Z",
-    "id": 1788948420853
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:07:59.890Z",
-    "id": 1788948480261
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:09:25.876Z",
-    "id": 1788948566326
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:10:59.836Z",
-    "id": 1788948660355
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:12:59.837Z",
-    "id": 1788948780832
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:13:59.758Z",
-    "id": 1788948840181
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:15:59.768Z",
-    "id": 1788948960745
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:16:59.774Z",
-    "id": 1788949020524
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:18:33.481Z",
-    "id": 1788949114334
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-09T10:19:55.785Z",
-    "id": 1788949196189
    }
   ],
   "oilroxwood_demandes": [],
