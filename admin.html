@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-94</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-95</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -1027,7 +1027,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-94';
+const APP_VERSION='C-95';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -4470,6 +4470,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-95',d:'09/09/2026',t:'Les coups de main comptent',items:[
+   ['\U0001F91D','Acheter du fer sans avoir de quota','Le besoin de la semaine est un besoin d\'entreprise : deux fer par bidon vendu, quel que soit celui qui va au magasin. Il n\'\u00e9tait pourtant sold\u00e9 que par les commerciaux \u2014 « Fer restant \u00b7 \u00e9quipe » additionnait leurs manques un par un. Quand un membre de la direction en achetait pour d\u00e9panner, l\'achat n\'apparaissait nulle part : pas de quota, donc pas de ligne, et le reste ne bougeait pas d\'un fer. On voyait la d\u00e9pense sortir de la caisse sans jamais la voir arriver sur l\'objectif.'],
+   ['\U0001F4CA','Un besoin d\'\u00e9quipe, et des noms','« Fer restant » se calcule maintenant sur le besoin total moins tout ce qui a \u00e9t\u00e9 achet\u00e9, par qui que ce soit. Une nouvelle rubrique <b>Coups de main</b> nomme ceux qui ont achet\u00e9 hors \u00e9quipe commerciale, avec leur quantit\u00e9 et leur d\u00e9pense. Le tableau par commercial, lui, ne bouge pas : chacun reste comptable de sa part.'],
+ ]},
  {v:'C-94',d:'09/09/2026',t:'Le ménage, et un effectif qui ne disparaît plus',items:[
    ['👥','La vitrine annonçait « — » employés','Le nombre publié comptait la Tablette, qui se vide à chaque clôture : du lundi jusqu\'au premier pointage, le site affichait un tiret alors que l\'entreprise n\'avait perdu personne. Il compte désormais le registre RH, qui ne se vide pas — sorties et liste noire déduites. Aujourd\'hui cela fait <b>98</b> au lieu de rien.'],
    ['🗑️','Sept scripts vraiment partis','La suppression annoncée en C-92 n\'était faite que de mon côté : je peux écrire sur ton disque, pas y effacer. Les sept fichiers étaient donc toujours là, et le workflow les appelait encore toutes les deux à quatre heures — dont <code>fetch_fer_logs.py</code>, qui réécrivait par-dessus ce que le bot venait de publier. C\'est réglé : le workflow ne fait plus qu\'une chose, les logs Discord.'],
@@ -5433,14 +5437,40 @@ function quotascom(){
      Une fois le relevé réparé, garder une saisie parallèle, c'était garder
      deux vérités pour un même chiffre. Les anciennes valeurs restent dans
      l'historique, elles ne sont simplement plus modifiables. */
-  const ferRetenu=c=>ferReleveSem(c.nom);
-  const totAchete=coms.reduce((a,c)=>a+ferRetenu(c),0);
-  const totReste=coms.reduce((a,c)=>a+Math.max(0,ferPers-ferRetenu(c)),0);
   const lundi=lundiCourant();
   const ferSem=(S.fer||[]).filter(r=>String(r.t||'').slice(0,10)>=lundi)
                           .sort((a,b)=>String(b.t).localeCompare(String(a.t)));
   const ferMontant=ferSem.reduce((a,r)=>a+nn(r.montant),0);
   const ferQte=ferSem.reduce((a,r)=>a+nn(r.quantite),0);
+  /* ---- Les coups de main (C-95) ----
+     Le besoin de fer de la semaine est un besoin d'entreprise : deux fer par
+     bidon vendu, quel que soit celui qui va au magasin. Il n'était pourtant
+     soldé que par les commerciaux — « Fer restant · équipe » additionnait
+     leurs manques un par un. Quand un membre de la direction en achetait pour
+     dépanner, son achat n'apparaissait nulle part : il n'a pas de quota, donc
+     pas de ligne dans le tableau, et le reste de l'équipe ne bougeait pas
+     d'un fer. On voyait la dépense sortir de la caisse sans jamais la voir
+     arriver sur l'objectif.
+     Les achats hors commerciaux comptent désormais pour l'équipe, et ceux qui
+     les ont faits sont nommés. Le tableau par commercial, lui, ne change pas :
+     chacun reste comptable de sa part. */
+  const clefsComs=new Set(), didsComs=new Set();
+  coms.forEach(c=>{ clefsComs.add(normNom(c.nom)); ferDidsDe(c.nom).forEach(d=>didsComs.add(String(d))); });
+  const aides=new Map();
+  ferSem.forEach(r=>{
+    const n=normNom(r.nom);
+    if(clefsComs.has(n)) return;
+    if(r.did&&didsComs.has(String(r.did))) return;
+    const k=n||('did:'+r.did);
+    if(!k) return;
+    const a=aides.get(k)||{nom:r.nom||'(sans nom)',q:0,m:0,n:0};
+    a.q+=nn(r.quantite); a.m+=nn(r.montant); a.n++;
+    aides.set(k,a);
+  });
+  const listeAides=[...aides.values()].sort((a,b)=>b.q-a.q);
+  const ferAide=listeAides.reduce((a,x)=>a+x.q,0);
+  const besoinEquipe=ferPers*coms.length;
+  const resteEquipe=Math.max(0,besoinEquipe-ferQte);
   $('#main').innerHTML=`
   <div class="topbar">
     <div><h2>Quotas &amp; achats de fer</h2><div class="sub">Semaine ${S.settings.semaine} · objectif calculé sur « Ventes de la semaine » (2 fer par bidon) · achats relevés par le bot depuis le salon Discord</div></div>
@@ -5452,8 +5482,8 @@ function quotascom(){
   <div class="grid g4" style="margin-bottom:18px">
     <div class="panel kpi"><div class="lbl">Bidons vendus · semaine</div><div class="val">${fmt(vendus)}</div><div class="delta">${coms.length} commercial(aux) actif(s)</div></div>
     <div class="panel kpi"><div class="lbl">Fer à acheter / pers.</div><div class="val gold">${fmt(ferPers)}</div><div class="delta">${fmt(parPers)} bidons à produire chacun</div></div>
-    <div class="panel kpi"><div class="lbl">Fer acheté · équipe</div><div class="val">${fmt(ferQte)}</div><div class="delta">${ferSem.length} achat(s) relevés cette semaine</div></div>
-    <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${totReste===0&&coms.length?'up':''}">${fmt(totReste)}</div><div class="delta">${ferMontant?money(ferMontant)+' dépensés':fmt(totAchete)+' fer relevé(s)'}</div></div>
+    <div class="panel kpi"><div class="lbl">Fer acheté · équipe</div><div class="val">${fmt(ferQte)}</div><div class="delta">${ferSem.length} achat(s) relevés${ferAide?` · dont ${fmt(ferAide)} en coups de main`:''}</div></div>
+    <div class="panel kpi"><div class="lbl">Fer restant · équipe</div><div class="val ${resteEquipe===0&&coms.length?'up':''}">${fmt(resteEquipe)}</div><div class="delta">besoin : ${fmt(besoinEquipe)}${ferMontant?` · ${money(ferMontant)} dépensés`:''}</div></div>
   </div>
   <div class="panel">
     <h3>Suivi par commercial</h3>
@@ -5472,6 +5502,19 @@ function quotascom(){
     <p style="color:var(--muted);font-size:.76rem;margin-top:10px">La colonne <b>Fer acheté</b> vient des achats postés dans le salon Discord depuis lundi, relevés automatiquement — il n'y a rien à saisir. Un tiret veut dire qu'aucun achat n'a été relevé au nom de cette personne : c'est le nom de la fiche RP qui fait le lien. Remise à zéro à la clôture, l'ancienne semaine part dans l'historique.</p>`
     :'<div class="empty">Aucun commercial actif dans l\'effectif (poste contenant « commercial »)</div>'}
   </div>
+  ${listeAides.length?`<div class="panel" style="margin-top:18px">
+    <h3>🤝 Coups de main <small style="color:var(--muted);font-weight:400">— achats faits hors équipe commerciale</small></h3>
+    <table><thead><tr><th>Qui</th><th style="text-align:right">Fer acheté</th><th style="text-align:right">Dépensé</th><th style="text-align:right">Achats</th></tr></thead><tbody>
+    ${listeAides.map(a=>`<tr>
+      <td><b>${esc(a.nom)}</b></td>
+      <td style="text-align:right;font-weight:800;color:#4A9D6F">${fmt(a.q)}</td>
+      <td style="text-align:right" class="gold">${money(a.m)}</td>
+      <td style="text-align:right;color:var(--muted)">${a.n}</td>
+    </tr>`).join('')}
+    <tr><td><b>Total</b></td><td style="text-align:right;font-weight:800">${fmt(ferAide)}</td><td colspan="2"></td></tr>
+    </tbody></table>
+    <p style="color:var(--muted);font-size:.76rem;margin-top:10px">Ces achats ne sont le quota de personne — leurs auteurs n'ont pas de part à produire. Ils comptent en revanche pour l'entreprise : le besoin de la semaine est de ${fmt(besoinEquipe)} fer, et c'est ce total-là qu'ils font baisser.</p>
+  </div>`:''}
   <div class="panel" style="margin-top:18px;padding:8px 16px;overflow-x:auto">
     <h3 style="padding:12px 0 4px">📜 Achats de fer relevés cette semaine (${ferSem.length})</h3>
     ${ferSem.length?`<table><thead><tr><th>Date</th><th>Employé</th><th style="text-align:right">Quantité</th><th style="text-align:right">Montant</th><th></th></tr></thead><tbody>
