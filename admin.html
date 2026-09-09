@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-84</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-85</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -1024,7 +1024,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-84';
+const APP_VERSION='C-85';
 function checkVersion(){
   const test=()=>fetch('version.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const b=document.getElementById('verBanner');
@@ -2226,6 +2226,56 @@ async function publishStats(){
       toast('⚠️ Échec ('+(e.message||r.status)+') — vérifie ton jeton');
     }
   }catch(e){ toast('⚠️ Erreur réseau pendant la publication'); }
+}
+
+/* ---- Publier le CATALOGUE, et lui seul ----
+
+   Le catalogue partait avec « Publier sur le site », qui réécrit tout le
+   fichier public. Deux ennuis, et le premier s'est produit dès le premier
+   produit créé : on ajoute une fiche, on ne clique pas, et rien n'apparaît —
+   on croit à une panne. Le second est plus vicieux : ce bouton republie AUSSI
+   les chiffres de production, calculés depuis l'effectif chargé dans CE
+   navigateur. Un commercial qui met le catalogue à jour un lundi, tablette
+   vide, remettrait les barils du site à zéro sans le savoir.
+
+   On ne réécrit donc que la clé `produits`, en gardant le reste du fichier tel
+   qu'il est. Et ça part tout seul quand on enregistre : cocher « Afficher sur
+   le site public » ne laisse aucun doute sur l'intention. */
+async function publierProduits(discret){
+  if(!RoxwoodGH.peutEcrire()){
+    if(!discret) toast('⚠️ Il faut un jeton d\'écriture — Mon profil');
+    return false;
+  }
+  const C=window.ROXWOOD_CFG||{};
+  const api=`https://api.github.com/repos/${C.owner}/${C.repo}/contents/data/stats-public.json`;
+  const hdr={Authorization:'Bearer '+RoxwoodGH.jeton(),Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  try{
+    let sha, actuel={};
+    const g=await fetch(api+'?t='+Date.now(),{headers:hdr,cache:'no-store'});
+    if(g.ok){
+      const j=await g.json(); sha=j.sha;
+      try{
+        const bin=atob(String(j.content||'').replace(/\s/g,''));
+        const o=new Uint8Array(bin.length);
+        for(let i=0;i<bin.length;i++) o[i]=bin.charCodeAt(i);
+        actuel=JSON.parse(new TextDecoder().decode(o))||{};
+      }catch(e){ actuel={}; }
+    }
+    actuel.produits=statsData().produits;
+    actuel.majProduits=new Date(nowSrv()).toISOString();
+    const octets=new TextEncoder().encode(JSON.stringify(actuel,null,1));
+    let bin=''; octets.forEach(o=>bin+=String.fromCharCode(o));
+    const body={message:'🛢️ Catalogue mis à jour',content:btoa(bin),branch:C.branche||'main'};
+    if(sha) body.sha=sha;
+    const r=await fetch(api,{method:'PUT',headers:hdr,body:JSON.stringify(body)});
+    if(r.ok){
+      toast(`✅ Catalogue publié — ${actuel.produits.length} produit(s) en ligne, visibles sur le site dans ~1 min`, 7000);
+      return true;
+    }
+    const e=await r.json().catch(()=>({}));
+    toast('⚠️ Catalogue non publié ('+(e.message||r.status)+') — vérifie ton jeton', 8000);
+  }catch(e){ toast('⚠️ Erreur réseau — catalogue non publié', 7000); }
+  return false;
 }
 
 /* ================== FEUILLES (tableur) ================== */
@@ -4195,6 +4245,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-85',d:'09/09/2026',t:'Le catalogue part tout seul',items:[
+   ['📤','Enregistrer suffit','Le catalogue attendait un clic sur « Publier sur le site ». Premier produit créé, pas de clic, rien sur la vitrine — et on croit à une panne. Cocher « Afficher sur le site public » puis enregistrer ne laisse aucun doute sur l\'intention : ça part maintenant tout de suite.'],
+   ['🛡️','Et ça ne touche plus aux chiffres','« Publier sur le site » réécrit tout le fichier public, y compris les barils et l\'effectif, calculés depuis la tablette chargée dans CE navigateur. Un commercial mettant le catalogue à jour un lundi, tablette vide, aurait remis la production du site à zéro sans le savoir. Le catalogue ne réécrit désormais que sa propre part du fichier — vérifié : 370 374 barils publiés restent 370 374 après une publication de catalogue.'],
+   ['🔁','Un bouton « Republier » demeure','Pour les cas de doute, ou après une correction faite ailleurs. Il ne fait que renvoyer les fiches en ligne.'],
+ ]},
  {v:'C-84',d:'09/09/2026',t:'Les recrues qui « ne se mettaient pas »',items:[
    ['🪪','Elles étaient là, sous leur ancien nom','Trois recrutements validés sur Discord ne créaient aucune ligne : Marco Sanchez, Bjorn Frost et ivar frost avaient déjà une fiche — au nom de Rico Garcia, Johnatan Rodriguez et Adam Wade. Même identifiant unique, même compte Discord : la même personne, revenue sous un autre nom RP. L\'import refusait le doublon, à juste titre, mais en silence — on validait et on ne trouvait rien.'],
    ['🔔','Le refus se voit maintenant','Les Fiches RH affichent un encadré : ancien nom, nouveau nom, identifiant, compte Discord. Trois choix — renommer partout, créer une fiche séparée (deux personnes qui partagent un identifiant), ou ignorer (un essai, une validation faite sur soi-même).'],
@@ -6419,13 +6474,14 @@ function produits(){
     <div><h2>🛢️ Nouveaux produits</h2><div class="sub">Ce que la vitrine annonce — ${l.length} fiche(s) · ${actifs} en ligne</div></div>
     <div style="display:flex;gap:10px;align-items:center">
       ${peut?`<button class="btn btn-gold" onclick="prodEdit()">＋ Nouveau produit</button>`:''}
-      <button class="btn btn-ghost" onclick="publishStats()" title="Envoie les fiches actives vers le site public">📤 Publier sur le site</button>
+      <button class="btn btn-ghost" onclick="publierProduits()" title="Renvoie les fiches en ligne vers le site public, sans toucher aux chiffres de production">📤 Republier le catalogue</button>
     </div>
   </div>
   ${!peut?`<div class="warn" style="border-color:rgba(90,160,255,.35);background:rgba(90,160,255,.07);color:#9fc3ff">
     👁 Consultation seule. Pour modifier le catalogue, il faut un jeton d'écriture — dans <b>Mon profil</b>.</div>`:''}
   <div class="warn" style="border-color:rgba(232,160,32,.35);background:rgba(232,160,32,.06);color:var(--accent)">
-    ℹ️ Une fiche modifiée ici n'apparaît sur le site qu'après <b>« Publier sur le site »</b>. Tant que tu n'as pas publié, tu prépares tranquillement.</div>
+    ℹ️ Enregistrer un produit l'envoie <b>tout de suite</b> sur le site public. Pour préparer une fiche sans la montrer,
+    décoche « Afficher sur le site public » : elle reste ici. Le bouton <b>Republier</b> ne sert qu'en cas de doute.</div>
   ${!l.length?`<div class="panel"><div class="empty">Aucun produit.${peut?' Clique sur « Nouveau produit » pour en créer un.':''}</div></div>`
    :`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
       ${l.map((p,i)=>`<div class="panel" style="padding:0;overflow:hidden;display:flex;flex-direction:column;${p.actif===false?'opacity:.5':''}">
@@ -6531,7 +6587,8 @@ function prodSave(id){
     jlog(`Produit créé : ${nom}`);
   }
   save(); sbPushNow(); closeModal(); produits();
-  toast(champs.actif?'🛢️ Enregistré — clique sur « Publier sur le site » pour le montrer':'🛢️ Enregistré (hors ligne)');
+  toast('🛢️ Enregistré — publication du catalogue…');
+  publierProduits(true).then(()=>produits());
 }
 function prodSuppr(id){
   const l=produitsListe(); const p=l.find(x=>x.id===id); if(!p) return;
@@ -6540,7 +6597,8 @@ function prodSuppr(id){
   S.produits=l.filter(x=>x.id!==id);
   jlog(`Produit supprimé : ${p.nom||'sans nom'}`);
   save(); sbPushNow(); closeModal(); produits();
-  toast('🗑 Produit supprimé — republie pour mettre le site à jour');
+  toast('🗑 Produit supprimé — mise à jour du site…');
+  publierProduits(true).then(()=>produits());
 }
 
 /* ================== LOGS DISCORD ================== */

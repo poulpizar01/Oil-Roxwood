@@ -79,6 +79,7 @@ compteur.
 | Écran de chargement (pompe à balancier) | C-82 |
 | Nouveautés annoncées dès le hero de la vitrine | C-83 |
 | Recrues revenues sous un autre nom : détection + renommage global | C-84 |
+| Catalogue publié à l'enregistrement, sans écraser les stats | C-85 |
 
 ### Pourquoi les rappels ont changé de mains (C-64)
 
