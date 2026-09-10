@@ -1049,6 +1049,15 @@ function navToggle(k){
 function navSecKey(e,k){
   if(e.key==='Enter'||e.key===' '){ e.preventDefault(); navToggle(k); }
 }
+// Même besoin ailleurs dans le dashboard : des <td>/<div>/<th>/<img>... cliquables
+// (ouvrir une fiche, trier une colonne, agrandir une photo...) sans équivalent
+// clavier. Plutôt que dupliquer chaque onclick dans un onkeydown séparé — deux
+// endroits à tenir synchronisés, deux façons de se tromper — on rejoue le clic
+// natif sur l'élément qui a le focus : le navigateur exécute alors exactement
+// le même onclick que la souris aurait déclenché.
+function actKey(e){
+  if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.currentTarget.click(); }
+}
 function applyPerms(){
   const al=allowedViews(), col=navCollapsed();
   const isMob=window.matchMedia&&matchMedia('(max-width:760px)').matches; // mobile : jamais replié (titres cachés)
@@ -1621,14 +1630,14 @@ function overview(){
     </div>
   </div>
   <div class="grid g4" style="margin-bottom:18px">
-    <div class="panel kpi link" onclick="show('effectif')" title="Ouvrir l'Effectif"><div class="lbl">Effectif</div><div class="val">${R.length}</div><div class="delta">${R.filter(r=>r.grade===3&&!r.poste).length} expert(s)${R.filter(r=>r.grade===GR_RESP&&!r.poste).length?` · ${R.filter(r=>r.grade===GR_RESP&&!r.poste).length} resp. runner`:''}</div></div>
-    <div class="panel kpi link" onclick="show('semaine')" title="Ouvrir Semaine & Primes"><div class="lbl">Barils · semaine</div><div class="val">${fmt(tot)}</div><div class="delta">${lastW?`sem. préc. : ${fmt(lastW.total)}`:weekRange()}</div></div>
-    <div class="panel kpi link" onclick="show('bilan')" title="Ouvrir le Bilan compta"><div class="lbl">Chiffre d'affaires</div><div class="val gold">${money(tot*S.settings.prix)}</div><div class="delta">à ${S.settings.prix} $/unité</div></div>
-    <div class="panel kpi link" onclick="show('semaine')" title="Ouvrir Semaine & Primes"><div class="lbl">Quotas atteints</div><div class="val ${ok===R.length&&R.length?'up':''}">${ok}<span style="font-size:1rem;color:var(--muted)">/${R.length}</span></div><div class="delta">primes projetées : ${money(R.reduce((a,r)=>a+primeProj(r),0)+(S.primesExtra||[]).reduce((a,p)=>a+nn(p.montant),0))}</div></div>
+    <div class="panel kpi link" onclick="show('effectif')" onkeydown="actKey(event)" tabindex="0" role="button" title="Ouvrir l'Effectif"><div class="lbl">Effectif</div><div class="val">${R.length}</div><div class="delta">${R.filter(r=>r.grade===3&&!r.poste).length} expert(s)${R.filter(r=>r.grade===GR_RESP&&!r.poste).length?` · ${R.filter(r=>r.grade===GR_RESP&&!r.poste).length} resp. runner`:''}</div></div>
+    <div class="panel kpi link" onclick="show('semaine')" onkeydown="actKey(event)" tabindex="0" role="button" title="Ouvrir Semaine & Primes"><div class="lbl">Barils · semaine</div><div class="val">${fmt(tot)}</div><div class="delta">${lastW?`sem. préc. : ${fmt(lastW.total)}`:weekRange()}</div></div>
+    <div class="panel kpi link" onclick="show('bilan')" onkeydown="actKey(event)" tabindex="0" role="button" title="Ouvrir le Bilan compta"><div class="lbl">Chiffre d'affaires</div><div class="val gold">${money(tot*S.settings.prix)}</div><div class="delta">à ${S.settings.prix} $/unité</div></div>
+    <div class="panel kpi link" onclick="show('semaine')" onkeydown="actKey(event)" tabindex="0" role="button" title="Ouvrir Semaine & Primes"><div class="lbl">Quotas atteints</div><div class="val ${ok===R.length&&R.length?'up':''}">${ok}<span style="font-size:1rem;color:var(--muted)">/${R.length}</span></div><div class="delta">primes projetées : ${money(R.reduce((a,r)=>a+primeProj(r),0)+(S.primesExtra||[]).reduce((a,p)=>a+nn(p.montant),0))}</div></div>
   </div>
   ${ONLINE.length?`<div class="panel" style="margin-bottom:18px;padding:12px 18px;font-size:.85rem;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
     <b>🟢 Sur le site maintenant :</b>
-    ${ONLINE.map(o=>`<span class="chip" style="cursor:pointer" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(o.nom)}'))">${esc(o.nom)} <small style="color:var(--muted)">· ${ROLES[o.role]||o.role||''}</small></span>`).join('')}
+    ${ONLINE.map(o=>`<span class="chip" style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(o.nom)}'))">${esc(o.nom)} <small style="color:var(--muted)">· ${ROLES[o.role]||o.role||''}</small></span>`).join('')}
   </div>`:''}
   ${(()=>{const o=S.settings.objectif||0; if(!o) return '';
     const pc=Math.min(100,Math.round(tot/o*100));
@@ -1651,7 +1660,7 @@ function overview(){
     <h3 style="padding:12px 0 4px">📋 Production de la semaine — toute l'équipe</h3>
     ${R.length?`<table><thead><tr><th>Nom</th><th>Barils vendus</th><th style="min-width:180px">Quota</th></tr></thead><tbody>
     ${sorted.map(r=>{const q=grade(r).quota,pc=q?Math.min(100,Math.round(r.barils/q*100)):100;return `<tr style="${r.barils===0?'opacity:.5':''}">
-      <td style="cursor:pointer" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))"><b>${esc(r.nom)}</b></td>
+      <td style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))"><b>${esc(r.nom)}</b></td>
       <td>${fmt(r.barils)}</td>
       <td><div class="prog" style="max-width:150px"><i class="${pc>=100?'full':pc<40?'low':''}" style="width:${pc}%"></i></div><div class="pct">${pc}% du quota</div></td>
     </tr>`}).join('')}
@@ -1742,7 +1751,7 @@ function rowRunner(r){
   const ab=absDe(r.nom);          // absence déclarée en cours ?
   const abPrec=ab?null:absSemPrec(r.nom);   // sinon : était-il absent la semaine passée ?
   if(r._ghost) return `<tr style="opacity:.55">
-    <td style="cursor:pointer" title="Ouvrir la fiche employé" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))">${przDot(r)}<b>${esc(r.nom)}</b><div style="color:var(--muted);font-size:.76rem">@${esc(r.discord)}</div></td>
+    <td style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" title="Ouvrir la fiche employé" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))">${przDot(r)}<b>${esc(r.nom)}</b><div style="color:var(--muted);font-size:.76rem">@${esc(r.discord)}</div></td>
     <td><span class="badge ${gCls(r)}">${esc(gTitle(r))}</span><div style="font-size:.7rem;color:var(--muted);font-weight:700;margin-top:3px">💤 aucune prise de service</div>${ab?`<div style="font-size:.7rem;color:#22d3ee;font-weight:700;margin-top:3px">💤 absent jusqu'au ${frDate(ab.au)}</div>`:''}</td>
     <td><div class="prog"><i style="width:0%"></i></div><div class="pct">0 / ${fmt(g.quota)} (0%)</div></td>
     ${isMembre()?'':`<td>0</td><td style="text-align:right;white-space:nowrap;color:var(--muted);font-size:.78rem">
@@ -1752,7 +1761,7 @@ function rowRunner(r){
       apparaîtra ici après son 1ᵉʳ pointage</td>`}
   </tr>`;
   return `<tr>
-    <td style="cursor:pointer" title="Ouvrir la fiche employé" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))">${przDot(r)}<b>${esc(r.nom)}</b><div style="color:var(--muted);font-size:.76rem">@${esc(r.discord)}</div></td>
+    <td style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" title="Ouvrir la fiche employé" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))">${przDot(r)}<b>${esc(r.nom)}</b><div style="color:var(--muted);font-size:.76rem">@${esc(r.discord)}</div></td>
     <td><span class="badge ${gCls(r)}">${esc(gTitle(r))}</span>${(r.absent||ab)?`<div style="font-size:.7rem;color:#22d3ee;font-weight:700;margin-top:3px">💤 ${ab?`absent du ${frDate(ab.du)} au ${frDate(ab.au)}`:'Congé / absence'}</div>`
       :abPrec?`<div style="font-size:.7rem;color:#8fb4d9;font-weight:700;margin-top:3px" title="Sa production de la semaine passée est à lire en tenant compte de ça">🌴 était absent la semaine dernière (${frDate(abPrec.du)} → ${frDate(abPrec.au)})</div>`:''}${!r.poste&&eligible(r)?`<span class="promo-flag">▲ Montée dispo (${fmt(seuilMontee(r))} barils atteints)</span>`:''}</td>
     <td><div class="prog"><i class="${pc>=100?'full':pc<40?'low':''}" style="width:${pc}%"></i></div><div class="pct">${fmt(r.barils)} / ${fmt(g.quota)} (${pc}%)</div></td>
@@ -2347,20 +2356,20 @@ async function semaine(){
     <h3 style="padding:10px 0 0">Classement de la semaine</h3>
     <input class="field" id="semSearchInput" style="max-width:260px;margin:8px 0 4px" placeholder="🔍 Rechercher un employé…" value="${esc(semSearch)}" oninput="semSearch=this.value;semaine()">
     ${visibles.length?`<table><thead><tr>
-      <th onclick="semSort('rang')" style="cursor:pointer" title="Trier">#${fl('rang')}</th>
-      <th onclick="semSort('nom')" style="cursor:pointer" title="Trier">Runner${fl('nom')}</th>
-      <th onclick="semSort('grade')" style="cursor:pointer" title="Trier">Grade${fl('grade')}</th>
-      <th onclick="semSort('barils')" style="cursor:pointer" title="Trier">Barils${fl('barils')}</th>
+      <th onclick="semSort('rang')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">#${fl('rang')}</th>
+      <th onclick="semSort('nom')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">Runner${fl('nom')}</th>
+      <th onclick="semSort('grade')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">Grade${fl('grade')}</th>
+      <th onclick="semSort('barils')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">Barils${fl('barils')}</th>
       <th>Quota</th><th>Multiplicateur</th>
-      <th onclick="semSort('prime')" style="cursor:pointer" title="Trier">Prime projetée${fl('prime')}</th>
+      <th onclick="semSort('prime')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">Prime projetée${fl('prime')}</th>
       <th>Recrues<br><small style="text-transform:none;letter-spacing:0">(direction · ${money(prixRecrue())}/recrue)</small></th>
-      <th onclick="semSort('salaire')" style="cursor:pointer" title="Trier">Salaire${fl('salaire')}</th>
-      <th onclick="semSort('total')" style="cursor:pointer" title="Trier">Total${fl('total')}</th>
+      <th onclick="semSort('salaire')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">Salaire${fl('salaire')}</th>
+      <th onclick="semSort('total')" onkeydown="actKey(event)" tabindex="0" role="button" style="cursor:pointer" title="Trier">Total${fl('total')}</th>
     </tr></thead><tbody>
     ${(()=>{
       const ligne=(it,grise)=>{const {r,g,okk,i,sal,pr}=it;return `<tr style="${grise?'opacity:.5':''}">
       <td>${i<3&&r.barils>0?['🥇','🥈','🥉'][i]:i+1}</td>
-      <td style="cursor:pointer" title="Ouvrir la fiche" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))"><b>${esc(r.nom)}</b></td>
+      <td style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" title="Ouvrir la fiche" onclick="ficheEmp(decodeURIComponent('${encodeURIComponent(r.nom)}'))"><b>${esc(r.nom)}</b></td>
       <td><span class="badge ${gCls(r)}">${esc(gTitle(r))}</span></td>
       <td>${fmt(r.barils)}</td>
       <td>${okk?'<span class="up">✔ atteint</span>':`<span style="color:var(--muted)">${fmt(g.quota-r.barils)} restants</span>`}</td>
@@ -3673,7 +3682,7 @@ function fHist(){
   ${F.map((f,i)=>`<tr>
     <td><b>n°${f.num}</b></td><td>${frDate(f.date)}</td><td>${esc(f.client)}${f.postop?' <span title="Livraison Post OP">🚚</span>':''}</td>
     <td class="gold" style="font-weight:700">${money(f.ttc)}</td><td>${esc(f.emetteur||'—')}</td>
-    <td><span class="badge ${f.statut==='payee'?'bg3':'bg0'}" style="cursor:pointer" title="Cliquer pour changer" onclick="togglePay(${i})">${f.statut==='payee'?'✔ Payée':'⏳ En attente'}</span></td>
+    <td><span class="badge ${f.statut==='payee'?'bg3':'bg0'}" style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" title="Cliquer pour changer" onclick="togglePay(${i})">${f.statut==='payee'?'✔ Payée':'⏳ En attente'}</span></td>
     <td style="text-align:right;white-space:nowrap">
       <button class="btn btn-sm btn-ghost" onclick="fEdit(${f.num})" title="Modifier cette facture">✎</button>
       <button class="btn btn-sm btn-ghost" onclick="printFact(S.fact.factures[${i}])">🖨️</button>
@@ -3888,7 +3897,7 @@ async function relances(){
     <h3 style="padding:12px 0 4px">💰 Clients à relancer (déjà commandé)</h3>
     ${rows.length?`<table><thead><tr><th>Client</th><th>Dernière commande</th><th>Inactif</th><th>Contact</th><th>Statut</th><th style="text-align:right"></th></tr></thead><tbody>
     ${rows.map(x=>`<tr>
-      <td>${dot(x)} <b style="cursor:pointer" title="Ouvrir la fiche client" onclick="ficheClient(${x.i})">${esc(x.c.nom)}</b>${(x.c.notes||[]).length?`<div style="color:var(--muted);font-size:.74rem;margin-top:2px">📝 ${esc(x.c.notes[x.c.notes.length-1].txt.slice(0,70))}${x.c.notes[x.c.notes.length-1].txt.length>70?'…':''}</div>`:''}</td>
+      <td>${dot(x)} <b style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" title="Ouvrir la fiche client" onclick="ficheClient(${x.i})">${esc(x.c.nom)}</b>${(x.c.notes||[]).length?`<div style="color:var(--muted);font-size:.74rem;margin-top:2px">📝 ${esc(x.c.notes[x.c.notes.length-1].txt.slice(0,70))}${x.c.notes[x.c.notes.length-1].txt.length>70?'…':''}</div>`:''}</td>
       <td>${frDate(x.c.lastCmd)}</td>
       <td><b class="${x.a>=90?'down':'gold'}">${x.a} j</b></td>
       <td style="color:var(--muted);font-size:.8rem">${x.c.tel?'📞 '+esc(x.c.tel):'—'}</td>
@@ -3907,7 +3916,7 @@ async function relances(){
     <h3 style="padding:12px 0 4px">🌱 Prospects — jamais commandé (${jamais.length})</h3>
     ${jamais.length?`<table><thead><tr><th>Client</th><th>Contact</th><th>Statut</th><th style="text-align:right"></th></tr></thead><tbody>
     ${jamais.map(x=>`<tr>
-      <td>${x.c.relance?'🟢':'🟠'} <b style="cursor:pointer" title="Ouvrir la fiche client" onclick="ficheClient(${x.i})">${esc(x.c.nom)}</b>${(x.c.notes||[]).length?`<div style="color:var(--muted);font-size:.74rem;margin-top:2px">📝 ${esc(x.c.notes[x.c.notes.length-1].txt.slice(0,70))}${x.c.notes[x.c.notes.length-1].txt.length>70?'…':''}</div>`:''}</td>
+      <td>${x.c.relance?'🟢':'🟠'} <b style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" title="Ouvrir la fiche client" onclick="ficheClient(${x.i})">${esc(x.c.nom)}</b>${(x.c.notes||[]).length?`<div style="color:var(--muted);font-size:.74rem;margin-top:2px">📝 ${esc(x.c.notes[x.c.notes.length-1].txt.slice(0,70))}${x.c.notes[x.c.notes.length-1].txt.length>70?'…':''}</div>`:''}</td>
       <td style="color:var(--muted);font-size:.8rem">${x.c.tel?'📞 '+esc(x.c.tel):'—'}</td>
       <td>${x.c.relance
         ?`<span class="badge" style="background:rgba(74,157,111,.14);color:var(--green)">démarchage en cours · ${esc(x.c.relance.par)} · ${frDate(x.c.relance.date)}</span>`
@@ -3984,7 +3993,7 @@ async function relNotes(i){
       <button class="btn btn-sm btn-ghost" style="color:#f87171" onclick="relNoteDel(${i},${n.t})">✕</button>
     </div>
     <div style="margin-top:4px;line-height:1.5">${esc(n.txt)}</div>
-    ${imgs.length?`<div style="margin-top:6px">${imgs.map(m=>`<img src="${m.img}" alt="Capture jointe à la note" style="height:64px;border-radius:6px;margin-right:6px;cursor:zoom-in" onclick="cmZoom(${m.id})">`).join('')}</div>`:''}
+    ${imgs.length?`<div style="margin-top:6px">${imgs.map(m=>`<img src="${m.img}" alt="Capture jointe à la note" style="height:64px;border-radius:6px;margin-right:6px;cursor:zoom-in" tabindex="0" role="button" onkeydown="actKey(event)" onclick="cmZoom(${m.id})">`).join('')}</div>`:''}
   </div>`;}).join(''):'<div class="empty" style="padding:10px">Aucune note pour ce client — sois le premier à documenter le contact 📞</div>'}`);
 }
 async function relNoteAdd(i){
@@ -4046,7 +4055,7 @@ async function ficheClient(i){
     📞 ${esc(c.tel||'—')} · 🏦 RIB ${esc(c.rib||'—')}${c.adresse?`<br>📍 ${esc(c.adresse)}`:''}
   </div>
   <div style="margin-bottom:14px"><label class="f-lbl">Lieu de livraison</label>
-    ${lieu?`<img src="${lieu.img}" alt="Photo du lieu de livraison" style="width:100%;max-height:190px;object-fit:cover;border-radius:10px;cursor:zoom-in" onclick="cmZoom(${lieu.id})" title="Agrandir">`
+    ${lieu?`<img src="${lieu.img}" alt="Photo du lieu de livraison" style="width:100%;max-height:190px;object-fit:cover;border-radius:10px;cursor:zoom-in" tabindex="0" role="button" onkeydown="actKey(event)" onclick="cmZoom(${lieu.id})" title="Agrandir">`
     :'<div class="empty" style="padding:10px">Aucune capture du lieu de livraison</div>'}
     <label class="btn btn-ghost btn-sm" style="margin-top:8px;display:inline-block;cursor:pointer">🖼️ ${lieu?'Remplacer':'Ajouter'} la capture
       <input type="file" accept="image/*" style="display:none" onchange="fcLieu(${i},this)"></label>
@@ -4417,7 +4426,7 @@ function reunions(){
   </div>
   ${L.length?`<div class="grid g2">${L.map(r=>{
     const nA=(r.actions||[]).length, nD=(r.decisions||[]).length;
-    return `<div class="panel link" style="cursor:pointer" onclick="reuVoir('${r.id}')">
+    return `<div class="panel link" style="cursor:pointer" tabindex="0" role="button" onkeydown="actKey(event)" onclick="reuVoir('${r.id}')">
       <div style="display:flex;align-items:flex-start;gap:12px;justify-content:space-between">
         <div style="min-width:0">
           <div style="font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">
@@ -5389,7 +5398,7 @@ async function frecues(){
     const rows=L.filter(f=>String(f.entreprise||'?').trim()===en);
     const open=FR_OUVERT[en]!==false;
     return `<div class="panel" style="margin-bottom:14px">
-      <h3 style="cursor:pointer;display:flex;justify-content:space-between" onclick="FR_OUVERT['${esc(en)}']=${open?'false':'true'};frecues()">
+      <h3 style="cursor:pointer;display:flex;justify-content:space-between" onclick="FR_OUVERT['${esc(en)}']=${open?'false':'true'};frecues()" onkeydown="actKey(event)" tabindex="0" role="button" aria-expanded="${open?'true':'false'}">
         <span>🏢 ${esc(en)} <small style="color:var(--muted)">· ${rows.length} facture(s)${rows.some(r=>nn(r.montant))?` · total ${money(rows.reduce((a,r)=>a+nn(r.montant),0))}`:''}</small></span>
         <span style="color:var(--muted)">${open?'▾':'▸'}</span></h3>
       ${open?`<table><thead><tr><th>Date</th><th>Montant</th><th>Note</th><th>Pièce</th><th>Par</th><th style="text-align:right"></th></tr></thead><tbody>
@@ -5397,7 +5406,7 @@ async function frecues(){
         <td style="white-space:nowrap">${frDate(f.date)}</td>
         <td>${nn(f.montant)?money(f.montant):'—'}</td>
         <td style="color:var(--muted);font-size:.84rem">${esc(f.note||'—')}</td>
-        <td>${f.img?`<img src="${f.img}" alt="Facture reçue — photo" style="height:44px;border-radius:6px;cursor:zoom-in;vertical-align:middle" onclick="frZoom(${f.id})" title="Agrandir">`:''}
+        <td>${f.img?`<img src="${f.img}" alt="Facture reçue — photo" style="height:44px;border-radius:6px;cursor:zoom-in;vertical-align:middle" tabindex="0" role="button" onkeydown="actKey(event)" onclick="frZoom(${f.id})" title="Agrandir">`:''}
             ${f.lien?` <a href="${esc(f.lien)}" target="_blank" rel="noopener" style="color:var(--accent)">🔗 lien</a>`:''}
             ${!f.img&&!f.lien?'—':''}</td>
         <td style="color:var(--muted);font-size:.8rem">${esc(f.auteur||'—')}</td>
@@ -6203,7 +6212,7 @@ function nfRender(){
   const p=document.getElementById('nfPanel'), N=notifs(), seen=nfSeen();
   p.innerHTML=`<h3 style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px">Notifications
     ${N.length?`<button class="btn btn-sm btn-ghost" onclick="nfAllRead()">Tout marquer lu</button>`:''}</h3>
-  ${N.length?N.map(x=>`<div onclick="document.getElementById('nfPanel').style.display='none';show('${x.v}')" style="display:flex;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);cursor:pointer;align-items:flex-start">
+  ${N.length?N.map(x=>`<div onclick="document.getElementById('nfPanel').style.display='none';show('${x.v}')" onkeydown="actKey(event)" tabindex="0" role="button" style="display:flex;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);cursor:pointer;align-items:flex-start">
     <span style="width:9px;height:9px;border-radius:50%;background:${x.g};flex:none;margin-top:5px"></span>
     <span style="min-width:0"><b style="font-size:.84rem">${esc(x.t)}${seen.includes(x.k)?'':' <span style="color:var(--accent);font-size:.65rem;font-weight:800">NOUVEAU</span>'}</b>
     <div style="color:var(--muted);font-size:.76rem;margin-top:2px">${esc(x.d)}</div></span>
@@ -6636,13 +6645,13 @@ async function agenda(){
         <div>${[...Array(24)].map((_,h)=>`<div style="height:${H}px;font-size:.68rem;color:var(--muted);text-align:right;padding:3px 8px 0 0">${String(h).padStart(2,'0')}:00</div>`).join('')}</div>
         ${days.map(d=>{
           const iso=agISO(d);
-          return `<div class="ag-col ${iso===todayIso?'today':''}" onclick="agNew('${iso}',event)">
+          return `<div class="ag-col ${iso===todayIso?'today':''}" onclick="agNew('${iso}',event)" onkeydown="actKey(event)" tabindex="0" role="button" aria-label="Ajouter un événement le ${iso}">
             ${(AG_EVS||[]).filter(e=>agTombeLe(e,iso)).map(e=>{
               const t=AG_TYPES[e.type]||AG_TYPES.autre;
               const rec=agReconduit(e,iso);   // occurrence d'un contrat hebdomadaire
               const top=agMin(e.deb)/60*H, hgt=Math.max(24,(Math.max(agMin(e.fin),agMin(e.deb)+30)-agMin(e.deb))/60*H-2);
               return `<div class="ag-ev" style="top:${top}px;height:${hgt}px;background:${e.partage?'rgba(242,183,5,.20)':t.c+'26'};border-color:${e.partage?'#F2B705':t.c};color:var(--ink);${e.partage?'border-width:2px':''}${rec?';border-style:dashed':''}"
-                onclick="event.stopPropagation();agEdit(${e.id})" title="${esc(e.titre)}${e.commercial?' · à prévenir : '+esc(agComLibelle(e.commercial)):''}${e.hebdo?' · se reconduit chaque semaine (créé le '+esc(frDate(e.date))+')':''}${e.partage?' · partagé avec la direction':''}">
+                onclick="event.stopPropagation();agEdit(${e.id})" onkeydown="event.stopPropagation();actKey(event)" tabindex="0" role="button" title="${esc(e.titre)}${e.commercial?' · à prévenir : '+esc(agComLibelle(e.commercial)):''}${e.hebdo?' · se reconduit chaque semaine (créé le '+esc(frDate(e.date))+')':''}${e.partage?' · partagé avec la direction':''}">
                 <span style="color:${t.c}">${esc(e.deb||'')}</span> ${e.partage?'📢 ':''}${rec?'🔁 ':''}${esc(e.titre)}${e.note?`<small>${esc(e.note)}</small>`:''}</div>`;
             }).join('')}
             ${(AG_TEAM?AG_SHARED:[]).filter(e=>agTombeLe(e,iso)).map(e=>{
@@ -7373,7 +7382,7 @@ function dlRow(m){
     meta=Object.entries(m.meta).slice(0,2)
       .map(([k,v])=>esc(k)+' : '+esc(typeof v==='object'?JSON.stringify(v):String(v))).join(' · ');
   }
-  return `<tr data-dlid="${esc(String(m.id))}" class="${String(DL.sel)===String(m.id)?'dl-sel':''}" onclick="dlDetails('${esc(String(m.id))}')">
+  return `<tr data-dlid="${esc(String(m.id))}" class="${String(DL.sel)===String(m.id)?'dl-sel':''}" onclick="dlDetails('${esc(String(m.id))}')" onkeydown="actKey(event)" tabindex="0" role="button">
     <td style="white-space:nowrap;color:var(--muted);font-size:.76rem">${new Date(m.ts).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
     <td style="white-space:nowrap">${T[0]} <span style="font-size:.75rem">${esc(T[1])}</span></td>
     <td><b>${esc(m.employe||'—')}</b>${dlCoffre(m)?`<div style="font-size:.7rem;color:var(--accent)">🗄 ${esc(dlCoffre(m))}</div>`:''}</td>
@@ -7544,8 +7553,8 @@ function dlRender(){
         <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0"><span id="dl-nb" style="font-size:.8rem;color:var(--muted)">${fmt(filtres.length)} résultat(s)</span>
         ${(DL.f.domaine||DL.f.type||DL.f.joueur||DL.f.du||DL.f.q)?'<button class="btn btn-sm btn-ghost" onclick="dlReset()">✕ Effacer les filtres</button>':''}</div>
         <table><thead><tr>
-          <th class="dl-th-tri" onclick="dlTriCol('ts')">Date${triIco('ts')}</th><th>Type</th><th>Qui</th><th>Détails</th>
-          <th class="dl-th-tri" onclick="dlTriCol('quantite')">Quantité${triIco('quantite')}</th><th style="text-align:right">Import</th></tr></thead>
+          <th class="dl-th-tri" onclick="dlTriCol('ts')" onkeydown="actKey(event)" tabindex="0" role="button">Date${triIco('ts')}</th><th>Type</th><th>Qui</th><th>Détails</th>
+          <th class="dl-th-tri" onclick="dlTriCol('quantite')" onkeydown="actKey(event)" tabindex="0" role="button">Quantité${triIco('quantite')}</th><th style="text-align:right">Import</th></tr></thead>
         <tbody id="dl-tbody">${pageL.map(dlRow).join('')||'<tr><td colspan="6" style="color:var(--muted);padding:14px">Aucun résultat avec ces filtres.</td></tr>'}</tbody></table>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0 4px">
           <span style="font-size:.78rem;color:var(--muted)">Afficher
@@ -7862,7 +7871,7 @@ async function params(){
       return `<table><thead><tr><th>Onglet</th>${roles.map(([,l])=>`<th style="text-align:center">${l}</th>`).join('')}</tr></thead><tbody>
       ${PERMS.direction.map(v=>`<tr><td><b>${lbl(v)}</b></td>${roles.map(([k])=>{
         const on=permsDe(k).includes(v), ro=permRO(k).includes(v), verrou=(k==='direction'&&v==='params');
-        return `<td onclick="permToggle('${k}','${v}')" title="${verrou?'Verrouillé — la Direction garde les Paramètres':'Cliquer pour passer à : '+(!on?'accès complet ✓':!ro?'lecture seule 👁':'aucun accès —')}" style="text-align:center;font-weight:700;cursor:${verrou?'not-allowed':'pointer'};color:${!on?'var(--muted)':ro?'#5aa0ff':'var(--green)'}">${verrou?'🔒':!on?'—':ro?'👁':'✓'}</td>`;
+        return `<td onclick="permToggle('${k}','${v}')" onkeydown="actKey(event)" tabindex="0" role="button" title="${verrou?'Verrouillé — la Direction garde les Paramètres':'Cliquer pour passer à : '+(!on?'accès complet ✓':!ro?'lecture seule 👁':'aucun accès —')}" style="text-align:center;font-weight:700;cursor:${verrou?'not-allowed':'pointer'};color:${!on?'var(--muted)':ro?'#5aa0ff':'var(--green)'}">${verrou?'🔒':!on?'—':ro?'👁':'✓'}</td>`;
       }).join('')}</tr>`).join('')}
       </tbody></table>
       <p style="color:var(--muted);font-size:.74rem;margin-top:8px">Chaque clic fait tourner l'état : <b style="color:var(--muted)">—</b> aucun accès → <b style="color:var(--green)">✓</b> accès complet → <b style="color:#5aa0ff">👁</b> lecture seule (l'onglet est visible mais toutes les modifications sont désactivées) → <b style="color:var(--muted)">—</b>. 🔒 verrouillé.${(S.settings.permsCustom||S.settings.permsRO)?' <b style="color:var(--accent)">Permissions personnalisées actives.</b>':''}</p>`;
