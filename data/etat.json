@@ -16983,7 +16983,7 @@
   "postesV4": 1
  },
  "_cid": "bot",
- "_maj": 1789071152123,
+ "_maj": 1789071250486,
  "_rev": "iaqgli4brtl-mtu5t80k",
  "_majSec": {
   "fer": 1788952559812,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1789071152123,
+  "_tables": 1789071250486,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -38744,6 +38744,17 @@
     "tel": "555 340 550",
     "rib": "440600",
     "idU": "285798",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-10"
+   },
+   {
+    "id": 1789071249920,
+    "nom": "Drew Miller",
+    "discord": "1105562321935405117",
+    "tel": "555007779",
+    "rib": "479193",
+    "idU": "192622",
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-10"
