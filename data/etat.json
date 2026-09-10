@@ -16983,7 +16983,7 @@
   "postesV4": 1
  },
  "_cid": "bot",
- "_maj": 1789026093328,
+ "_maj": 1789028278225,
  "_rev": "iaqgli4brtl-mtu5t80k",
  "_majSec": {
   "fer": 1788952559812,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1789026093328,
+  "_tables": 1789028278225,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -38725,6 +38725,17 @@
     "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-09-09"
+   },
+   {
+    "id": 1789028277714,
+    "nom": "Romelu Louka",
+    "discord": "1431659354519634023",
+    "tel": "555654025",
+    "rib": "558474",
+    "idU": "377944",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-10"
    }
   ],
   "oilroxwood_absences": [
