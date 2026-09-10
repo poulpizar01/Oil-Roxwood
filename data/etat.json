@@ -16983,7 +16983,7 @@
   "postesV4": 1
  },
  "_cid": "bot",
- "_maj": 1789028278225,
+ "_maj": 1789061348133,
  "_rev": "iaqgli4brtl-mtu5t80k",
  "_majSec": {
   "fer": 1788952559812,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1789028278225,
+  "_tables": 1789061348133,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -38774,6 +38774,15 @@
     "au": "2026-09-19",
     "motif": "",
     "par": "⚫ Thomas Boyer"
+   },
+   {
+    "id": 1789061347532,
+    "nom": "Jack Hamilton",
+    "discord": "879819996614766622",
+    "du": "2026-09-10",
+    "au": "2027-08-13",
+    "motif": "AUCUN AGENT DE DISPO POUR POSER MON STUFF",
+    "par": "⚫ Juan Sanchez"
    }
   ]
  },
