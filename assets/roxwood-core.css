@@ -31,6 +31,11 @@
   --flamme:#E0521A;
   --accent:#C97A0C;
   --accent-2:#A8620A;
+  /* --ambre sert aussi de FOND sous du texte sombre (boutons, rubans) : l'assombrir
+     réglerait le texte posé dessus mais casserait le contraste inverse (texte
+     sombre sur fond ambre, ~6:1 aujourd'hui, tomberait à ~3.3:1). D'où un jeton
+     séparé, uniquement pour de l'ambre écrit en texte sur le fond clair du jour. */
+  --ambre-texte:#8E5608;
 
   --ok:#2F7A55;
   --alerte:#B3352F;
@@ -81,6 +86,7 @@ html.dark{
 
   --ambre:#E8A020;
   --ambre-clair:#F7C463;
+  --ambre-texte:#E8A020; /* déjà large­ment au-dessus du seuil AA de nuit — pas besoin d'assombrir */
   --flamme:#FF6A2B;
   --accent:#E8A020;
   --accent-2:#F7C463;
@@ -175,7 +181,7 @@ h1,h2,h3,h4{font-family:var(--f-display);font-weight:800;margin:0;line-height:.9
   border-block:2px solid #0A0806;
   transform:rotate(-1.15deg) scaleX(1.06);
 }
-.ruban.inverse{transform:rotate(1deg) scaleX(1.06);background:var(--acier);color:var(--ambre);border-color:var(--trait-fort)}
+.ruban.inverse{transform:rotate(1deg) scaleX(1.06);background:var(--acier);color:var(--ambre-texte);border-color:var(--trait-fort)}
 .defile{display:flex;width:max-content;animation:defile 34s linear infinite}
 .ruban.inverse .defile{animation-duration:44s;animation-direction:reverse}
 .defile > div{display:flex;align-items:center;padding:11px 0}
@@ -190,7 +196,7 @@ h1,h2,h3,h4{font-family:var(--f-display);font-weight:800;margin:0;line-height:.9
 .tag{
   display:inline-flex;align-items:center;gap:9px;position:relative;
   font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--ambre);
+  text-transform:uppercase;color:var(--ambre-texte);
   border:1px solid var(--trait-fort);background:rgba(232,160,32,.07);padding:7px 14px;
 }
 .tag::before,.tag::after{content:"";position:absolute;width:3px;height:3px;background:var(--trait-fort);border-radius:50%;top:3px}
@@ -211,7 +217,7 @@ html.dark .geant{-webkit-text-stroke-color:rgba(232,160,32,.11)}
   font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;text-decoration:none;cursor:pointer;
   padding:13px 22px;border-radius:var(--radius);
-  border:1px solid var(--ambre);color:var(--ambre);background:transparent;
+  border:1px solid var(--ambre);color:var(--ambre-texte);background:transparent;
   position:relative;overflow:hidden;
   transition:color .3s var(--ease),border-color .3s,transform .18s var(--ease),box-shadow .25s;
 }

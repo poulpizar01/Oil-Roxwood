@@ -13,7 +13,7 @@ html{color-scheme:dark}
   --plaque:#16110E; --plaque-2:#1E1713; --plaque-3:#241C17; --acier:#241C17;
   --line:#2E241E; --trait:#2E241E; --trait-fort:#4A362A;
   --ink:#F3EADF; --vapeur:#F3EADF; --muted:#A2948A; --fumee:#A2948A; --cendre:#897B70; /* éclairci pour tenir 4.5:1 sur --panel (AA) — était #70645B, ~3.3:1 */
-  --accent:#E8A020; --accent-2:#F7C463; --ambre:#E8A020; --ambre-clair:#F7C463; --flamme:#FF6A2B;
+  --accent:#E8A020; --accent-2:#F7C463; --ambre:#E8A020; --ambre-clair:#F7C463; --ambre-texte:#E8A020; --flamme:#FF6A2B;
   --or1:#F7C463; --or2:#E8A020; --or3:#B8752A; --or4:#7A4A18;
   --neon-p:#E8A020; --neon-c:#F7C463; --neon-v:#B8752A;
   --green:#4FA97B; --ok:#4FA97B; --red:#D9534F; --alerte:#D9534F;
