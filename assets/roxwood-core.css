@@ -76,7 +76,7 @@ html.dark{
   --ink:#F3EADF;
   --vapeur:#F3EADF;
   --fumee:#A2948A;
-  --cendre:#70645B;
+  --cendre:#897B70; /* éclairci pour tenir 4.5:1 sur --plaque (AA) — était #70645B, ~3.3:1 */
   --white:#16110E;
 
   --ambre:#E8A020;

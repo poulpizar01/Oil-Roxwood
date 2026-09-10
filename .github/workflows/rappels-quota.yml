@@ -38,11 +38,24 @@ jobs:
 
       - name: Retenir qui a déjà été rappelé
         if: ${{ !inputs.test }}
+        # Le seul envoi réel à ce jour (04/09) a raté cette étape : le commit
+        # local a bien été fait, mais git push a échoué (probablement une
+        # collision avec un autre commit automatique) et n'a jamais été retenté.
+        # Résultat, data/rappels-seen.json n'a jamais atteint le dépôt : le
+        # marqueur anti-doublon ne survit à aucun lancement. On retente donc
+        # plusieurs fois avant d'abandonner, comme push.bat le fait déjà côté humain.
         run: |
           git config user.name "oilroxwood-bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A data/rappels-seen.json
           git diff --cached --quiet && exit 0
           git commit -m "🤖 Rappels de quota envoyés"
-          git pull --rebase origin main || true
-          git push origin HEAD:main
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push refusé (tentative $i/5) — nouvel essai dans 5 s"
+            sleep 5
+          done
+          echo "::error::Impossible de publier data/rappels-seen.json après 5 tentatives — les personnes déjà relancées pourraient l'être une seconde fois au prochain lancement."
+          exit 1

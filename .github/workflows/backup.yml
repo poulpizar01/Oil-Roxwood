@@ -24,7 +24,12 @@ jobs:
           else
             echo "data/etat.json absent — rien à sauvegarder"
           fi
-          ls -1t backups/*.json 2>/dev/null | tail -n +31 | xargs -r rm -f
+          # Tri par nom (AAAA-MM-JJ.json), pas par date de modification : juste
+          # après actions/checkout, tous les fichiers déjà présents ont la même
+          # date de modification (celle du checkout), donc "ls -t" ne peut pas
+          # les départager de façon fiable et risquerait de garder les 30
+          # mauvais fichiers. Le nom, lui, est déjà chronologique.
+          ls -1 backups/*.json 2>/dev/null | sort -r | tail -n +31 | xargs -r rm -f
 
       - name: Commit
         run: |

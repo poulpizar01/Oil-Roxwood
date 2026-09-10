@@ -43,7 +43,7 @@ window.ROXWOOD_CFG = {
     <span class="enseigne" aria-hidden="true">ACCÈS</span>
     <img src="assets/logo.png" alt="Oil Roxwood">
     <h1>OIL <b>ROXWOOD</b></h1>
-    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-97</span></small></p>
+    <p>Espace membre — connexion sécurisée<br><small>version <span id="verTag">C-98</span></small></p>
     <button type="button" class="btn-discord" onclick="loginDiscord()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4c1.7.4 2.5 1 3.3 1.7A16.2 16.2 0 0 0 12 3.8a16.2 16.2 0 0 0-6.5 1.3c.8-.7 1.7-1.3 3.3-1.7L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.4 20.4 0 0 0 .1 18.1a19.9 19.9 0 0 0 6 3l.5-.7a12.6 12.6 0 0 1-2.6-1.3l.6-.4a14.2 14.2 0 0 0 12.8 0l.6.4c-.8.5-1.7 1-2.6 1.3l.5.7a19.9 19.9 0 0 0 6-3A20.4 20.4 0 0 0 20.3 4.4zM8.7 15.4c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.9 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.9-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>
       Se connecter avec Discord
@@ -92,38 +92,38 @@ window.ROXWOOD_CFG = {
          faisait que répéter une affordance existante. Le voyant de synchro reste
          cliquable à l'intérieur : son gestionnaire arrête la navigation. -->
     <div class="brand"><a href="index.html" target="_blank" rel="noopener" title="Ouvrir le site public dans un nouvel onglet" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit;min-width:0"><img src="assets/logo.png" alt="" width="32" height="32" style="object-fit:contain"> <span>OIL <b>ROXWOOD</b><small>ESPACE MEMBRE <span id="syncDot" title="État de la synchro — cliquer pour régler le jeton" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--muted);margin-left:5px;vertical-align:middle;cursor:pointer"></span></small></span></a></div>
-    <div class="nav-sec" data-sec="rh" onclick="navToggle('rh')">Ressources humaines <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="rh" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('rh')" onkeydown="navSecKey(event,'rh')">Ressources humaines <span class="chev">▾</span></div>
     <button class="nav-item" data-view="frh">🗂️ <span class="txt">Fiches RH</span></button>
     <button class="nav-item" data-view="effectif">👥 <span class="txt">Effectif</span></button>
     <button class="nav-item" data-view="fblacklist">⛔ <span class="txt">Blacklist</span></button>
-    <div class="nav-sec" data-sec="commerce" onclick="navToggle('commerce')">Commerce <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="commerce" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('commerce')" onkeydown="navSecKey(event,'commerce')">Commerce <span class="chev">▾</span></div>
     <button class="nav-item" data-view="factures">🧾 <span class="txt">Factures</span></button>
     <button class="nav-item" data-view="relances">📞 <span class="txt">Relances</span></button>
     <button class="nav-item" data-view="fventes">🛒 <span class="txt">Ventes de la semaine</span></button>
     <button class="nav-item" data-view="quotascom">⚖️ <span class="txt">Quotas &amp; fer</span></button>
     <button class="nav-item" data-view="prodder">🗡️ <span class="txt">Produits dérivés</span></button>
-    <div class="nav-sec" data-sec="compta" onclick="navToggle('compta')">Compta <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="compta" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('compta')" onkeydown="navSecKey(event,'compta')">Compta <span class="chev">▾</span></div>
     <button class="nav-item" data-view="ftablette">🖥️ <span class="txt">Tablette</span></button>
     <button class="nav-item" data-view="fcompta">💸 <span class="txt">Dépenses &amp; retraits</span></button>
     <button class="nav-item" data-view="frecues">📥 <span class="txt">Factures reçues</span></button>
     <button class="nav-item" data-view="bilan">🏦 <span class="txt">Bilan compta</span></button>
     <button class="nav-item" data-view="cloture">🗓️ <span class="txt">Clôture du lundi</span></button>
     <button class="nav-item" data-view="semaine">💰 <span class="txt">Semaine &amp; Primes</span></button>
-    <div class="nav-sec" data-sec="terrain" onclick="navToggle('terrain')">Responsable Runner <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="terrain" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('terrain')" onkeydown="navSecKey(event,'terrain')">Responsable Runner <span class="chev">▾</span></div>
     <button class="nav-item active" data-view="overview">📊 <span class="txt">Vue d'ensemble</span></button>
     <button class="nav-item" data-view="felig">✅ <span class="txt">Éligibilité</span></button>
     <button class="nav-item" data-view="historique">📈 <span class="txt">Historique</span></button>
     <button class="nav-item" data-view="reunions">📋 <span class="txt">Comptes-rendus</span></button>
-    <div class="nav-sec" data-sec="quotas" onclick="navToggle('quotas')">Quotas <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="quotas" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('quotas')" onkeydown="navSecKey(event,'quotas')">Quotas <span class="chev">▾</span></div>
     <button class="nav-item" data-view="quotashist">📊 <span class="txt">Quotas 3 semaines</span></button>
-    <div class="nav-sec" data-sec="vitrine" onclick="navToggle('vitrine')">Vitrine <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="vitrine" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('vitrine')" onkeydown="navSecKey(event,'vitrine')">Vitrine <span class="chev">▾</span></div>
     <button class="nav-item" data-view="produits">🛢️ <span class="txt">Nouveaux produits</span></button>
-    <div class="nav-sec" data-sec="perso" onclick="navToggle('perso')">Perso <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="perso" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('perso')" onkeydown="navSecKey(event,'perso')">Perso <span class="chev">▾</span></div>
     <button class="nav-item" data-view="profil">👤 <span class="txt">Mon profil</span></button>
     <button class="nav-item" data-view="moi">🙋 <span class="txt">Ma semaine</span></button>
     <button class="nav-item" data-view="agenda">📅 <span class="txt">Mon agenda</span></button>
     <button class="nav-item" data-view="affiches">🖼️ <span class="txt">Affiches</span></button>
-    <div class="nav-sec" data-sec="systeme" onclick="navToggle('systeme')">Système <span class="chev">▾</span></div>
+    <div class="nav-sec" data-sec="systeme" tabindex="0" role="button" aria-expanded="true" onclick="navToggle('systeme')" onkeydown="navSecKey(event,'systeme')">Système <span class="chev">▾</span></div>
     <button class="nav-item" data-view="dlogs">📡 <span class="txt">Logs en direct</span></button>
     <button class="nav-item" data-view="journal">📜 <span class="txt">Journal</span></button>
     <button class="nav-item" data-view="params">⚙️ <span class="txt">Paramètres</span></button>
@@ -146,7 +146,7 @@ window.ROXWOOD_CFG = {
   <input class="field" id="gkIn" placeholder="🔍 Employé, client, facture, page…  (↑↓ naviguer · ↵ ouvrir · Échap fermer)" oninput="gkList()" onkeydown="gkKey(event)" autocomplete="off">
   <div id="gkRes" style="margin-top:8px"></div>
 </div></div>
-<div id="modalBg" onclick="if(event.target===this)closeModal()"><div class="modal" id="modalBox"></div></div>
+<div id="modalBg" onclick="if(event.target===this)closeModal()"><div class="modal" id="modalBox" role="dialog" aria-modal="true" tabindex="-1"></div></div>
 <div id="toast"></div>
 
 <script src="assets/roxwood-ui.js"></script>
@@ -656,6 +656,20 @@ function roleDepuisDiscord(membreRoles){ return roleDiscordConnu(membreRoles)||n
        promotion ou une mutation.
    Et seul un compte capable d'écrire s'en charge : sinon la correction resterait
    dans un navigateur, sans jamais rejoindre les autres. */
+/* Traduction d'un rôle du dashboard vers le grade écrit sur la fiche RH.
+   « direction » est volontairement absent : voir le commentaire plus bas. */
+/* « resprunner » est volontairement absent : voir la quatrième prudence plus bas. */
+const GRADE_DE_ROLE={rh:'RH',comptable:'Comptable',respcom:'Responsable Commercial',
+                     commercial:'Commercial',
+                     assistdir:'Assistant de Direction'};
+/* Un grade de fiche RH est soit un POSTE, soit un grade de runner. Seuls les
+   postes se décident sur Discord ; les grades de runner se gagnent aux barils
+   et ne doivent jamais être touchés ici. */
+function estPosteRH(g){
+  const s=normNom(g);
+  if(!s||s==='-') return false;
+  return !/raffineur|interimaire|stagiaire/.test(s);
+}
 async function alignerRolesBot(){
   try{
     if(!RoxwoodGH.peutEcrire()) return 0;
@@ -677,6 +691,64 @@ async function alignerRolesBot(){
               `**${u.user}** passe de **${ROLES[avant]||avant}** à **${ROLES[cible]}** — relevé sur le serveur Discord`,
               0x5865F2);
     });
+
+    /* ---- Le grade de la fiche RH suit aussi (C-98) ----
+
+       Le rôle d'accès et le grade RH sont deux choses différentes, et c'est ce
+       qui piégeait : Juan avait quitté le poste de commercial sur Discord, mais
+       sa fiche RH disait toujours « Commercial ». Or c'est elle, et elle seule,
+       qui décide qui apparaît dans Quotas & fer. Il gardait donc 1 600 fer à
+       acheter pour un poste qu'il n'occupait plus, et sa part gonflait celle
+       des quatre autres.
+
+       Quatre prudences :
+        · « direction » n'est pas traduit : deux rôles Discord y mènent, Patron
+          et Co Patron, et rien dans la table ne dit lequel. Écraser au hasard
+          perdrait une information qu'on ne pourrait pas retrouver.
+        · un Patron ou un Co Patron n'est jamais rétrogradé par une tâche de fond.
+        · quand le poste disparaît sans qu'un autre le remplace, on écrit « - »
+          plutôt qu'un grade de runner : le site ne sait pas si la personne
+          redevient Intérimaire ou Raffineur Expert, et l'inventer effacerait
+          une ancienneté réelle. Le tiret dit « poste à renseigner ».
+        · Responsable Runner ne se joue pas ici : ce grade s'attribue et se
+          retire à la main (voir demote()), aux barils, jamais sur relevé
+          Discord. On l'ignore dans les deux sens — ni auto-attribué, ni
+          auto-retiré — comme « direction ».
+       roleDiscordConnu() rend `null` aussi bien pour « rôle reconnu mais basique »
+       que pour « aucun rôle de la table ne correspond » (id vide, rôle pas encore
+       ajouté…) — deux situations très différentes qu'on ne peut pas distinguer
+       d'ici. Par prudence on traite tout `null` comme « on ne sait pas » et on ne
+       touche à rien, exactement comme le fait la boucle des rôles d'accès
+       au-dessus : sans ça, la ligne à l'identifiant vide de l'Assistant de
+       direction (id Discord pas encore collé, cf. Paramètres) aurait effacé
+       le poste de quiconque l'occupe déjà. */
+    const rhLignes=(S.sheets&&S.sheets.rh)||[];
+    const majGrades=[];
+    rhLignes.forEach(x=>{
+      const did=String((x&&x.discord)||'').replace(/\D/g,''); if(!did) return;
+      const roles=membres[did]; if(!Array.isArray(roles)) return;   // absent du relevé : on ne suppose rien
+      const cible=roleDiscordConnu(roles);
+      if(!cible) return;                                            // rôle non reconnu : on ne sait pas, on ne ferme pas ici
+      if(cible==='direction'||cible==='resprunner') return;         // Patron/Co Patron et Responsable Runner : jamais décidés ici
+      const grade=String(x.grade||'').trim();
+      if(/patron/.test(normNom(grade))) return;                     // ni rétrogradation d'un patron
+      if(/responsable runner/.test(normNom(grade))) return;         // grade de mérite déjà en poste : on n'y touche pas
+      const attendu=GRADE_DE_ROLE[cible]||null;                     // null pour « membre »
+      if(attendu){ if(normNom(grade)===normNom(attendu)) return; }
+      else if(!estPosteRH(grade)) return;                           // déjà sans poste : rien à corriger
+      const avant=grade||'(vide)';
+      x.grade=attendu||'-';
+      majGrades.push(`${x.nom} · ${avant} → ${x.grade}`);
+      n++;
+    });
+    if(majGrades.length){
+      jlog(`Grades RH alignés sur Discord : ${majGrades.join(' ; ')}`);
+      sendLog('🧾 Fiches RH mises à jour',
+              majGrades.map(s=>'• '+s).join('\n').slice(0,3900)
+              + '\n\nUn « - » veut dire que la personne n\'a plus de poste sur Discord : son grade de runner est à saisir.',
+              0x5865F2);
+    }
+
     if(n){
       save(); sbQueue();
       /* Si c'est le rôle de la personne devant l'écran qui a changé, ses menus
@@ -972,6 +1044,11 @@ function navToggle(k){
   localStorage.setItem('orx_navcol',JSON.stringify(c));
   applyPerms();
 }
+// Les titres de section (.nav-sec) sont des <div>, pas des boutons : au clavier
+// seul Entrée/Espace doit les activer, comme un vrai bouton le ferait.
+function navSecKey(e,k){
+  if(e.key==='Enter'||e.key===' '){ e.preventDefault(); navToggle(k); }
+}
 function applyPerms(){
   const al=allowedViews(), col=navCollapsed();
   const isMob=window.matchMedia&&matchMedia('(max-width:760px)').matches; // mobile : jamais replié (titres cachés)
@@ -987,6 +1064,7 @@ function applyPerms(){
       el=el.nextElementSibling;
     }
     h.style.display=any?'':'none'; // titre masqué si aucun onglet autorisé dans la section
+    h.setAttribute('aria-expanded',closed?'false':'true');
     const ch=h.querySelector('.chev'); if(ch) ch.style.transform=closed?'rotate(-90deg)':'';
   });
 }
@@ -1080,7 +1158,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-97';
+const APP_VERSION='C-98';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -2445,20 +2523,28 @@ async function publishStats(){
   const data=statsData();
   toast('📡 Publication en cours…');
   try{
-    let sha;
-    const g=await fetch(api+'?t='+Date.now(),{headers:hdr,cache:'no-store'});
-    if(g.ok) sha=(await g.json()).sha;
-    const octets=new TextEncoder().encode(JSON.stringify(data,null,1));
-    let bin=''; octets.forEach(o=>bin+=String.fromCharCode(o));
-    const body={message:'📊 Publication des stats publiques',content:btoa(bin),branch:C.branche||'main'};
-    if(sha) body.sha=sha;
-    const r=await fetch(api,{method:'PUT',headers:hdr,body:JSON.stringify(body)});
-    if(r.ok){
-      toast('✅ Stats publiées — visibles sur le site dans ~1 min');
-      sendLog('📊 Stats publiées','Le site public affiche maintenant la semaine '+S.settings.semaine,0x3ddc84);
-    } else {
+    // Un essai, puis un second si le SHA a bougé entre-temps (409 : quelqu'un
+    // d'autre a publié à la même seconde) — sans ça la publication se perdait
+    // en silence et le message renvoyait vers le jeton, sans rapport avec la cause.
+    for(let essai=0; essai<2; essai++){
+      let sha;
+      const g=await fetch(api+'?t='+Date.now(),{headers:hdr,cache:'no-store'});
+      if(g.ok) sha=(await g.json()).sha;
+      const octets=new TextEncoder().encode(JSON.stringify(data,null,1));
+      let bin=''; octets.forEach(o=>bin+=String.fromCharCode(o));
+      const body={message:'📊 Publication des stats publiques',content:btoa(bin),branch:C.branche||'main'};
+      if(sha) body.sha=sha;
+      const r=await fetch(api,{method:'PUT',headers:hdr,body:JSON.stringify(body)});
+      if(r.ok){
+        toast('✅ Stats publiées — visibles sur le site dans ~1 min');
+        sendLog('📊 Stats publiées','Le site public affiche maintenant la semaine '+S.settings.semaine,0x3ddc84);
+        return;
+      }
+      if(r.status===409&&essai===0) continue;  // sha changé entre-temps : on relit et on retente une fois
       const e=await r.json().catch(()=>({}));
-      toast('⚠️ Échec ('+(e.message||r.status)+') — vérifie ton jeton');
+      toast(r.status===409?'⚠️ Quelqu\'un d\'autre publiait au même moment — réessaie'
+                           :'⚠️ Échec ('+(e.message||r.status)+') — vérifie ton jeton');
+      return;
     }
   }catch(e){ toast('⚠️ Erreur réseau pendant la publication'); }
 }
@@ -2485,34 +2571,42 @@ async function publierProduits(discret){
   const api=`https://api.github.com/repos/${C.owner}/${C.repo}/contents/data/stats-public.json`;
   const hdr={Authorization:'Bearer '+RoxwoodGH.jeton(),Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
   try{
-    let sha, actuel={};
-    const g=await fetch(api+'?t='+Date.now(),{headers:hdr,cache:'no-store'});
-    if(g.ok){
-      const j=await g.json(); sha=j.sha;
-      try{
-        const bin=atob(String(j.content||'').replace(/\s/g,''));
-        const o=new Uint8Array(bin.length);
-        for(let i=0;i<bin.length;i++) o[i]=bin.charCodeAt(i);
-        actuel=JSON.parse(new TextDecoder().decode(o))||{};
-      }catch(e){ actuel={}; }
+    // Deux essais : si le SHA a bougé entre la lecture et l'écriture (409,
+    // quelqu'un d'autre a publié à la même seconde), on relit le contenu à jour
+    // et on refusionne avant de retenter — sinon la seconde tentative écraserait
+    // ce que l'autre venait d'écrire.
+    for(let essai=0; essai<2; essai++){
+      let sha, actuel={};
+      const g=await fetch(api+'?t='+Date.now(),{headers:hdr,cache:'no-store'});
+      if(g.ok){
+        const j=await g.json(); sha=j.sha;
+        try{
+          const bin=atob(String(j.content||'').replace(/\s/g,''));
+          const o=new Uint8Array(bin.length);
+          for(let i=0;i<bin.length;i++) o[i]=bin.charCodeAt(i);
+          actuel=JSON.parse(new TextDecoder().decode(o))||{};
+        }catch(e){ actuel={}; }
+      }
+      actuel.produits=statsData().produits;
+      actuel.majProduits=new Date(nowSrv()).toISOString();
+      const octets=new TextEncoder().encode(JSON.stringify(actuel,null,1));
+      let bin=''; octets.forEach(o=>bin+=String.fromCharCode(o));
+      const body={message:'🛢️ Catalogue mis à jour',content:btoa(bin),branch:C.branche||'main'};
+      if(sha) body.sha=sha;
+      const r=await fetch(api,{method:'PUT',headers:hdr,body:JSON.stringify(body)});
+      if(r.ok){
+        toast(`✅ Catalogue publié — ${actuel.produits.length} produit(s) en ligne, visibles sur le site dans ~1 min`, 7000);
+        return true;
+      }
+      if(r.status===409&&essai===0) continue;
+      const e=await r.json().catch(()=>({}));
+      // « Not Found » sur un depot public veut dire « ton jeton n'y a pas droit » :
+      // on va chercher la vraie raison plutot que de laisser deviner.
+      let pourquoi=r.status===409?'quelqu\'un d\'autre publiait au même moment — réessaie':(e.message||('HTTP '+r.status));
+      if(r.status!==409){ try{ const d=await RoxwoodGH.verifierAcces(); if(!d.ok) pourquoi=d.msg; }catch(x){} }
+      toast('⚠️ Catalogue NON publié — '+pourquoi, 12000);
+      return false;
     }
-    actuel.produits=statsData().produits;
-    actuel.majProduits=new Date(nowSrv()).toISOString();
-    const octets=new TextEncoder().encode(JSON.stringify(actuel,null,1));
-    let bin=''; octets.forEach(o=>bin+=String.fromCharCode(o));
-    const body={message:'🛢️ Catalogue mis à jour',content:btoa(bin),branch:C.branche||'main'};
-    if(sha) body.sha=sha;
-    const r=await fetch(api,{method:'PUT',headers:hdr,body:JSON.stringify(body)});
-    if(r.ok){
-      toast(`✅ Catalogue publié — ${actuel.produits.length} produit(s) en ligne, visibles sur le site dans ~1 min`, 7000);
-      return true;
-    }
-    const e=await r.json().catch(()=>({}));
-    // « Not Found » sur un depot public veut dire « ton jeton n'y a pas droit » :
-    // on va chercher la vraie raison plutot que de laisser deviner.
-    let pourquoi=e.message||('HTTP '+r.status);
-    try{ const d=await RoxwoodGH.verifierAcces(); if(!d.ok) pourquoi=d.msg; }catch(x){}
-    toast('⚠️ Catalogue NON publié — '+pourquoi, 12000);
   }catch(e){ toast('⚠️ Catalogue NON publié — GitHub injoignable ('+(e.message||e)+')', 9000); }
   return false;
 }
@@ -3011,7 +3105,7 @@ function contratGen(idU){
   const C=(x1,x2,y,txt,size)=>`<span style="position:absolute;left:${x1}px;top:${y-2}px;width:${x2-x1}px;text-align:center;font-size:${size}px;line-height:1;font-weight:700;color:#282624;font-family:'EB Garamond',Georgia,serif">${esc(txt)}</span>`;
   const HTML=`
   <div style="position:relative;width:793px;height:1121px">
-    <img src="${new URL('assets/contrat-template.png',location.href).href}" style="position:absolute;inset:0;width:793px;height:1121px">
+    <img src="${new URL('assets/contrat-template.png',location.href).href}" alt="" style="position:absolute;inset:0;width:793px;height:1121px">
     ${T(112,402,nomF||prenom,19)}
     ${T(141,427,prenom,19)}
     ${T(263,452,String(row.idU||'').trim(),19)}
@@ -3656,8 +3750,6 @@ function filtreBase(q){
 /* ---- impression ---- */
 function printFact(f){
   try{
-  console.log('[OilRoxwood] impression facture', JSON.parse(JSON.stringify(f)));
-  console.log('[OilRoxwood] lignes de la facture :', JSON.parse(JSON.stringify(f.lignes||'AUCUNE')));
   const c=cli(f.client)||{adresse:'',tel:'',rib:''};
   let lignes=(f.lignes||[]).filter(l=>nn(l.qte)>0||nn(l.ht)>0);
   if(!lignes.length) lignes=(f.lignes||[]); // ne jamais imprimer un tableau vide si des lignes existent
@@ -3691,7 +3783,7 @@ function printFact(f){
   const INV_HTML=`<div class="inv">
     <div class="inv-head">
       <div style="display:flex;gap:16px;align-items:center">
-        <img src="${new URL('assets/logo.png',location.href)}" style="width:80px;height:80px;object-fit:contain">
+        <img src="${new URL('assets/logo.png',location.href)}" alt="" style="width:80px;height:80px;object-fit:contain">
         <div><h1>OIL <b>ROXWOOD</b></h1>
         <div class="co">${SOCIETE.lieu}<br>Téléphone : ${SOCIETE.tel} · RIB : ${SOCIETE.rib}</div></div>
       </div>
@@ -3726,7 +3818,6 @@ function printFact(f){
   if(!w){ alert('Autorise les pop-ups pour ce site afin d\'imprimer les factures.'); return; }
   w.document.write(`<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Facture n°${f.num} — Oil Roxwood</title><style>${INV_CSS}</style></head><body>${INV_HTML}<script>window.onload=()=>setTimeout(()=>window.print(),300);<\/script></body></html>`);
   w.document.close();
-  console.log('[OilRoxwood] facture ouverte dans une fenêtre dédiée ·', lignes.length, 'ligne(s)');
   }catch(e){
     alert('Erreur pendant la préparation de la facture : '+e.message);
     console.error('[OilRoxwood] printFact', e);
@@ -3862,7 +3953,7 @@ function lightbox(src){
     l.onclick=()=>l.style.display='none';
     document.body.appendChild(l);
   }
-  l.innerHTML=`<img src="${src}" style="max-width:96vw;max-height:96vh;border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.8)">`;
+  l.innerHTML=`<img src="${src}" alt="Photo agrandie" style="max-width:96vw;max-height:96vh;border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.8)">`;
   l.style.display='flex';
 }
 function cmZoom(id){
@@ -3879,7 +3970,7 @@ async function relNotes(i){
   openModal(`<h3>📝 Suivi du démarchage — ${esc(c.nom)}</h3>
   <textarea class="field" id="rnTxt" style="min-height:70px" placeholder="Ex. : appelé le 13/07, intéressé par 200 bidons, rappeler jeudi…"></textarea>
   <div ondragover="event.preventDefault()" ondrop="rnDrop(event)" style="border:2px dashed var(--line);border-radius:10px;padding:${RN_IMGS.length?'8px':'14px'};margin-top:10px;text-align:center;color:var(--muted);font-size:.78rem">
-    ${RN_IMGS.length?RN_IMGS.map((d,k)=>`<span style="position:relative;display:inline-block;margin:3px"><img src="${d}" style="height:56px;border-radius:6px">
+    ${RN_IMGS.length?RN_IMGS.map((d,k)=>`<span style="position:relative;display:inline-block;margin:3px"><img src="${d}" alt="Capture jointe à la note" style="height:56px;border-radius:6px">
       <button onclick="RN_IMGS.splice(${k},1);relNotes(${i})" style="position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:.6rem;cursor:pointer">✕</button></span>`).join('')
     :'🖼️ Colle une capture (Ctrl+V), glisse-la ici, ou '}
     <label style="color:var(--accent);cursor:pointer;text-decoration:underline">choisis un fichier<input type="file" accept="image/*" multiple style="display:none" onchange="[...this.files].forEach(f=>frResize(f,d=>{RN_IMGS.push(d);relNotes(${i});}));this.value=''"></label>
@@ -3893,7 +3984,7 @@ async function relNotes(i){
       <button class="btn btn-sm btn-ghost" style="color:#f87171" onclick="relNoteDel(${i},${n.t})">✕</button>
     </div>
     <div style="margin-top:4px;line-height:1.5">${esc(n.txt)}</div>
-    ${imgs.length?`<div style="margin-top:6px">${imgs.map(m=>`<img src="${m.img}" style="height:64px;border-radius:6px;margin-right:6px;cursor:zoom-in" onclick="cmZoom(${m.id})">`).join('')}</div>`:''}
+    ${imgs.length?`<div style="margin-top:6px">${imgs.map(m=>`<img src="${m.img}" alt="Capture jointe à la note" style="height:64px;border-radius:6px;margin-right:6px;cursor:zoom-in" onclick="cmZoom(${m.id})">`).join('')}</div>`:''}
   </div>`;}).join(''):'<div class="empty" style="padding:10px">Aucune note pour ce client — sois le premier à documenter le contact 📞</div>'}`);
 }
 async function relNoteAdd(i){
@@ -3955,7 +4046,7 @@ async function ficheClient(i){
     📞 ${esc(c.tel||'—')} · 🏦 RIB ${esc(c.rib||'—')}${c.adresse?`<br>📍 ${esc(c.adresse)}`:''}
   </div>
   <div style="margin-bottom:14px"><label class="f-lbl">Lieu de livraison</label>
-    ${lieu?`<img src="${lieu.img}" style="width:100%;max-height:190px;object-fit:cover;border-radius:10px;cursor:zoom-in" onclick="cmZoom(${lieu.id})" title="Agrandir">`
+    ${lieu?`<img src="${lieu.img}" alt="Photo du lieu de livraison" style="width:100%;max-height:190px;object-fit:cover;border-radius:10px;cursor:zoom-in" onclick="cmZoom(${lieu.id})" title="Agrandir">`
     :'<div class="empty" style="padding:10px">Aucune capture du lieu de livraison</div>'}
     <label class="btn btn-ghost btn-sm" style="margin-top:8px;display:inline-block;cursor:pointer">🖼️ ${lieu?'Remplacer':'Ajouter'} la capture
       <input type="file" accept="image/*" style="display:none" onchange="fcLieu(${i},this)"></label>
@@ -4572,6 +4663,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-98',d:'09/09/2026',t:'Le grade de la fiche RH suit Discord',items:[
+   ['🧾','Un quota pour un poste qu\'on n\'occupe plus','Juan n\'était plus commercial, et gardait 1 600 fer à acheter. Parce que le rôle d\'accès et le grade de la fiche RH sont deux choses différentes : C-97 alignait le premier, mais c\'est le second, et lui seul, qui décide qui apparaît dans Quotas &amp; fer. Sa fiche disait toujours « Commercial », donc il comptait dans la division — et sa part gonflait celle des autres. Le grade suit maintenant Discord comme le rôle.'],
+   ['🛡️','Quatre prudences','« Direction » n\'est pas traduit : deux rôles Discord y mènent, Patron et Co Patron, et rien ne dit lequel. Un patron n\'est jamais rétrogradé par une tâche de fond, ni un Responsable Runner — ce grade s\'attribue et se retire à la main, aux barils, jamais sur relevé Discord. Quand un poste disparaît sans qu\'un autre le remplace, on écrit « - » plutôt qu\'un grade de runner inventé : le site ne sait pas si la personne redevient Intérimaire ou Raffineur Expert, et le deviner effacerait une ancienneté réelle. Et un rôle Discord non reconnu (identifiant pas encore renseigné, nouveau rôle…) ne ferme plus rien : par prudence, ce qu\'on ne sait pas identifier n\'est jamais traité comme « plus de poste ».'],
+   ['🔍','Les grades de runner ne bougent jamais','Ils se gagnent aux barils, pas sur Discord. Simulé sur tes 98 fiches, dans le pire cas où le bot les couvre toutes : <b>une seule correction</b>, celle de Juan. Les 44 Intérimaires, 22 Raffineurs, 12 Confirmés et 9 Experts sont laissés intacts.'],
+ ]},
  {v:'C-97',d:'09/09/2026',t:'Une promotion n’attend plus la reconnexion',items:[
    ['🎖️','Le rôle suivait avec des jours de retard','Le site ne lisait les rôles d\'une personne qu\'au moment où elle passait par Discord — et gardait son identité, rôles compris, en cache dans son navigateur. Un commercial passé RH restait commercial ici jusqu\'à sa prochaine vraie connexion. Depuis C-75 il n\'y a plus de panneau pour corriger à la main : une seule source de vérité, mais qu\'on ne pouvait consulter qu\'à l\'arrivée de l\'intéressé.'],
    ['🤖','Le bot regarde à sa place','Il est dans le serveur en permanence et voit les rôles de tout le monde sans que personne se connecte. Il publie <code>data/roles-discord.json</code> toutes les cinq minutes ; le dashboard réaligne les comptes tout seul, et prévient sur Discord. Une promotion arrive donc sur le site en quelques minutes.'],
@@ -5267,7 +5363,7 @@ async function frecues(){
     <div><h2>Factures reçues</h2><div class="sub">Archives Direction · ${L.length} facture(s) · ${ents.length} entreprise(s)</div></div>
     <button class="btn btn-ghost" onclick="FR_CACHE=null;frecues()">🔄 Recharger</button>
   </div>
-  ${L._err?`<div class="panel" style="border-color:rgba(255,92,92,.4);margin-bottom:14px;color:#ffb0b0;font-size:.85rem">⚠️ La table <b>oilroxwood_frecues</b> n'existe pas encore — exécute le SQL de SETUP-SUPABASE.md.</div>`:''}
+  ${L._err?`<div class="panel" style="border-color:rgba(255,92,92,.4);margin-bottom:14px;color:#ffb0b0;font-size:.85rem">⚠️ Lecture des factures reçues impossible pour le moment — recharge la page. Si ça persiste, préviens la direction.</div>`:''}
   <div class="panel" style="margin-bottom:18px">
     <h3>＋ Archiver une facture reçue</h3>
     <div class="grid g3" style="gap:10px">
@@ -5283,7 +5379,7 @@ async function frecues(){
     </div>
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
       <div style="flex:1;min-width:220px;border:2px dashed var(--line);border-radius:12px;padding:${FR_IMG?'8px':'22px'};text-align:center;color:var(--muted);font-size:.85rem">
-        ${FR_IMG?`<img src="${FR_IMG}" style="max-height:160px;max-width:100%;border-radius:8px"><br><button class="btn btn-sm btn-ghost" style="margin-top:8px" onclick="FR_IMG=null;frecues()">✕ Retirer l'image</button>`
+        ${FR_IMG?`<img src="${FR_IMG}" alt="Aperçu de la facture à archiver" style="max-height:160px;max-width:100%;border-radius:8px"><br><button class="btn btn-sm btn-ghost" style="margin-top:8px" onclick="FR_IMG=null;frecues()">✕ Retirer l'image</button>`
         :`🖼️ Colle une capture ici avec <b>Ctrl+V</b> — ou <label style="color:var(--accent);cursor:pointer;text-decoration:underline">choisis un fichier<input type="file" accept="image/*" style="display:none" onchange="frFile(this)"></label>`}
       </div>
       <button class="btn btn-gold" style="padding:14px 26px" onclick="frAdd()">💾 Archiver la facture</button>
@@ -5301,7 +5397,7 @@ async function frecues(){
         <td style="white-space:nowrap">${frDate(f.date)}</td>
         <td>${nn(f.montant)?money(f.montant):'—'}</td>
         <td style="color:var(--muted);font-size:.84rem">${esc(f.note||'—')}</td>
-        <td>${f.img?`<img src="${f.img}" style="height:44px;border-radius:6px;cursor:zoom-in;vertical-align:middle" onclick="frZoom(${f.id})" title="Agrandir">`:''}
+        <td>${f.img?`<img src="${f.img}" alt="Facture reçue — photo" style="height:44px;border-radius:6px;cursor:zoom-in;vertical-align:middle" onclick="frZoom(${f.id})" title="Agrandir">`:''}
             ${f.lien?` <a href="${esc(f.lien)}" target="_blank" rel="noopener" style="color:var(--accent)">🔗 lien</a>`:''}
             ${!f.img&&!f.lien?'—':''}</td>
         <td style="color:var(--muted);font-size:.8rem">${esc(f.auteur||'—')}</td>
@@ -6016,8 +6112,11 @@ function przDot(r){
   if(surSite(r.nom)) return '<span title="Connecté sur le site en ce moment" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);margin-right:5px;vertical-align:middle"></span>';
   const row=r._ghost?null:rhRowOf(r.nom);
   const on=enLigne(r.discord,r.nom,row&&row.discord);
+  /* Plein pour en ligne, creux pour hors ligne : une forme différente, pas
+     seulement une couleur différente — un daltonien ou un écran mal calibré
+     doit pouvoir faire la différence sans le tooltip. */
   return on===null?'':(on?'<span title="En ligne sur Discord" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:5px;vertical-align:middle"></span>'
-    :'<span title="Hors ligne Discord" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4a525c;margin-right:5px;vertical-align:middle"></span>');
+    :'<span title="Hors ligne Discord" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:transparent;border:1.5px solid #4a525c;margin-right:5px;vertical-align:middle"></span>');
 }
 
 /* ================== FICHE EMPLOYÉ UNIFIÉE ================== */
@@ -6106,8 +6205,8 @@ function nfRender(){
     ${N.length?`<button class="btn btn-sm btn-ghost" onclick="nfAllRead()">Tout marquer lu</button>`:''}</h3>
   ${N.length?N.map(x=>`<div onclick="document.getElementById('nfPanel').style.display='none';show('${x.v}')" style="display:flex;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);cursor:pointer;align-items:flex-start">
     <span style="width:9px;height:9px;border-radius:50%;background:${x.g};flex:none;margin-top:5px"></span>
-    <span style="min-width:0"><b style="font-size:.84rem">${x.t}${seen.includes(x.k)?'':' <span style="color:var(--accent);font-size:.65rem;font-weight:800">NOUVEAU</span>'}</b>
-    <div style="color:var(--muted);font-size:.76rem;margin-top:2px">${x.d}</div></span>
+    <span style="min-width:0"><b style="font-size:.84rem">${esc(x.t)}${seen.includes(x.k)?'':' <span style="color:var(--accent);font-size:.65rem;font-weight:800">NOUVEAU</span>'}</b>
+    <div style="color:var(--muted);font-size:.76rem;margin-top:2px">${esc(x.d)}</div></span>
   </div>`).join(''):'<div class="empty" style="padding:14px">Rien à signaler — tout roule 🛢️</div>'}`;
 }
 function nfToggle(){
@@ -6526,7 +6625,7 @@ async function agenda(){
     </div>
   </div>
   ${AG_ERR?`<div class="panel" style="border-color:rgba(255,92,92,.4);margin-bottom:14px;color:#ffb0b0;font-size:.85rem">
-    ⚠️ La table <b>oilroxwood_agenda</b> n'existe pas encore dans Supabase — demande à la direction d'exécuter le SQL indiqué dans SETUP-SUPABASE.md.</div>`:''}
+    ⚠️ Lecture de l'agenda impossible pour le moment — recharge la page. Si ça persiste, préviens la direction.</div>`:''}
   <div class="panel" style="padding:0;overflow:hidden">
     <div class="ag-grid" style="border-bottom:1px solid var(--line);background:var(--panel-2)">
       <div class="ag-gh" style="font-size:.72rem;color:var(--muted)">Heure</div>
@@ -7852,10 +7951,18 @@ function resetAll(){
 }
 
 /* ================== MODAL ================== */
-function openModal(html){ $('#modalBox').innerHTML=html; $('#modalBg').classList.add('open'); }
+let MODAL_RETOUR=null; // élément à refocaliser une fois la fenêtre refermée
+function openModal(html){
+  MODAL_RETOUR=document.activeElement;
+  $('#modalBox').innerHTML=html;
+  $('#modalBg').classList.add('open');
+  $('#modalBox').focus(); // porte le focus clavier dans la fenêtre : sans ça il reste sur l'élément derrière, invisible sous le fond
+}
 function closeModal(){
   $('#modalBg').classList.remove('open');
   RN_CTX=null; // fin d'édition de note client
+  if(MODAL_RETOUR&&document.body.contains(MODAL_RETOUR)) MODAL_RETOUR.focus();
+  MODAL_RETOUR=null;
   setTimeout(()=>{ if(typeof RERENDER_WAIT!=='undefined'&&RERENDER_WAIT&&!editionEnCours()){ RERENDER_WAIT=false; rerender(); } },150);
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
