@@ -18057,10 +18057,11 @@
    ],
    "membre": [
     "overview",
+    "felig",
     "reunions",
-    "moi",
-    "profil",
     "quotashist",
+    "profil",
+    "moi",
     "agenda",
     "affiches",
     "maj"
@@ -18108,8 +18109,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146202123,
- "_rev": "yqev883mdne-mtx7gi6z",
+ "_maj": 1789146215057,
+ "_rev": "c3ntxdytspe-mtx7gok1",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18118,13 +18119,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146202123,
+  "journal": 1789146215057,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146202123,
+  "settings": 1789146215057,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18147,6 +18148,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146216841,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « felig » → accès complet ✓"
+  },
   {
    "t": 1789146203907,
    "u": "Diego Herrera",
@@ -19641,11 +19647,6 @@
    "a": "Contrat de travail généré : Alexander Hayes (Runner)",
    "t": 1787599788889,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Packito Brown (Runner)",
-   "t": 1787599759476,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19971,7 +19972,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:03:29.051Z",
+  "maj": "2026-09-11T17:03:37.297Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
