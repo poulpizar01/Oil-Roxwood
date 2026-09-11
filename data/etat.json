@@ -17932,9 +17932,7 @@
   "permsRO": {
    "rh": [],
    "commercial": [],
-   "respcom": [
-    "fcompta"
-   ],
+   "respcom": [],
    "assistdir": [],
    "comptable": [],
    "resprunner": [],
@@ -17985,7 +17983,6 @@
     "fventes",
     "frh",
     "fblacklist",
-    "fcompta",
     "factures",
     "relances",
     "prodder",
@@ -18006,7 +18003,6 @@
     "quotascom",
     "prodder",
     "ftablette",
-    "fcompta",
     "overview",
     "felig",
     "quotashist",
@@ -18109,8 +18105,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146161335,
- "_rev": "22ow4htr2kh-mtx7fiy8",
+ "_maj": 1789146164254,
+ "_rev": "b23wt5k0f54-mtx7flbm",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18119,13 +18115,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146161335,
+  "journal": 1789146164254,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146161335,
+  "settings": 1789146164254,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18148,6 +18144,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146166038,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « fcompta » → aucun accès"
+  },
+  {
+   "t": 1789146165019,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « fcompta » → lecture seule 👁"
+  },
+  {
+   "t": 1789146164025,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « fcompta » → aucun accès"
+  },
   {
    "t": 1789146163119,
    "u": "Diego Herrera",
@@ -19632,21 +19643,6 @@
    "a": "Vente rapide sans facture : 1 bidon(s) — Citoyen Liam Collins (vendeur : Thomas Boyer)",
    "t": 1787517524022,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Fer acheté noté : Juan Sanchez → 1 914",
-   "t": 1787514028986,
-   "u": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
-  },
-  {
-   "a": "Contrat de travail généré : Junior Winchester (Runner)",
-   "t": 1787505480987,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Fer acheté noté : Juan Sanchez → 1 602",
-   "t": 1787504962503,
-   "u": "Stella Collins"
   }
  ],
  "prodDer": {
@@ -19972,7 +19968,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:02:43.376Z",
+  "maj": "2026-09-11T17:02:46.450Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
