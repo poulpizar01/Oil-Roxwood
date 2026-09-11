@@ -17934,7 +17934,9 @@
    "commercial": [],
    "respcom": [],
    "assistdir": [],
-   "comptable": [],
+   "comptable": [
+    "maj"
+   ],
    "resprunner": [
     "felig"
    ],
@@ -17977,8 +17979,7 @@
     "moi",
     "agenda",
     "affiches",
-    "params",
-    "maj"
+    "params"
    ],
    "commercial": [
     "frh",
@@ -18128,8 +18129,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146338571,
- "_rev": "q1k0ovokg49-mtx7jbti",
+ "_maj": 1789146341146,
+ "_rev": "8wmkd0wwpco-mtx7jdsj",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18138,13 +18139,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146338571,
+  "journal": 1789146341146,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146338571,
+  "settings": 1789146341146,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18167,6 +18168,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146342929,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1789146342215,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « maj » → aucun accès"
+  },
+  {
+   "t": 1789146341532,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « maj » → lecture seule 👁"
+  },
   {
    "t": 1789146340355,
    "u": "Diego Herrera",
@@ -19651,21 +19667,6 @@
    "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
    "t": 1787992343072,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : elsaa",
-   "t": 1787992341879,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Marlon Grant (Runner)",
-   "t": 1787955209414,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 550",
-   "t": 1787954470018,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19991,7 +19992,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:40.758Z",
+  "maj": "2026-09-11T17:05:43.315Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
