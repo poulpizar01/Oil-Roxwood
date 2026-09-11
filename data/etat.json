@@ -17961,7 +17961,6 @@
     "fblacklist",
     "factures",
     "prodder",
-    "bilan",
     "cloture",
     "felig",
     "historique",
@@ -18019,6 +18018,7 @@
     "prodder",
     "ftablette",
     "frecues",
+    "bilan",
     "produits",
     "agenda",
     "affiches"
@@ -18105,8 +18105,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146173801,
- "_rev": "h94mr4gwllt-mtx7fuz2",
+ "_maj": 1789146179478,
+ "_rev": "rzy0lw2jj3-mtx7fx86",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18115,13 +18115,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146173801,
+  "journal": 1789146179478,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146173801,
+  "settings": 1789146179478,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18144,6 +18144,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146181262,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « bilan » → aucun accès"
+  },
+  {
+   "t": 1789146180495,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « bilan » → lecture seule 👁"
+  },
+  {
+   "t": 1789146179569,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « bilan » → accès complet ✓"
+  },
   {
    "t": 1789146175585,
    "u": "Diego Herrera",
@@ -19628,21 +19643,6 @@
    "a": "Contrat de travail généré : Thomas Cortello (Runner)",
    "t": 1787576124567,
    "u": "Stella Collins"
-  },
-  {
-   "a": "Contrat de travail généré : Luca Morel (Runner)",
-   "t": 1787576117640,
-   "u": "Stella Collins"
-  },
-  {
-   "a": "Palier fiscal : retour au calcul automatique",
-   "t": 1787570501400,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Palier fiscal forcé : palier 10 (automatique attendu : 4)",
-   "t": 1787570494994,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -19968,7 +19968,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:02:58.958Z",
+  "maj": "2026-09-11T17:03:01.878Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
