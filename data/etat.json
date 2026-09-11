@@ -17936,7 +17936,7 @@
    "assistdir": [],
    "comptable": [],
    "resprunner": [
-    "prodder"
+    "ftablette"
    ]
   },
   "semaine": 36,
@@ -18052,7 +18052,6 @@
     "reunions",
     "felig",
     "ftablette",
-    "prodder",
     "moi",
     "profil",
     "quotashist",
@@ -18104,8 +18103,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146103994,
- "_rev": "zfqwibwz5b-mtx7eath",
+ "_maj": 1789146106899,
+ "_rev": "syp1i895zy-mtx7ed1y",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18114,13 +18113,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146103994,
+  "journal": 1789146106899,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146103994,
+  "settings": 1789146106899,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18143,6 +18142,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146108683,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « ftablette » → lecture seule 👁"
+  },
+  {
+   "t": 1789146106763,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « prodder » → aucun accès"
+  },
   {
    "t": 1789146105778,
    "u": "Diego Herrera",
@@ -19632,16 +19641,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503776084,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503768477,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503768301,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19967,7 +19966,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:46.181Z",
+  "maj": "2026-09-11T17:01:49.078Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
