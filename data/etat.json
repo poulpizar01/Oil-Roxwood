@@ -17958,7 +17958,6 @@
     "fblacklist",
     "factures",
     "relances",
-    "quotascom",
     "prodder",
     "ftablette",
     "fcompta",
@@ -18020,6 +18019,7 @@
     "effectif",
     "fblacklist",
     "factures",
+    "prodder",
     "produits",
     "agenda",
     "affiches"
@@ -18067,8 +18067,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146090883,
- "_rev": "qah75wrvw6-mtx7e30j",
+ "_maj": 1789146099049,
+ "_rev": "xjns4d9exts-mtx7e713",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18077,13 +18077,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146090883,
+  "journal": 1789146099049,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146090883,
+  "settings": 1789146099049,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18106,6 +18106,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146100833,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « prodder » → accès complet ✓"
+  },
+  {
+   "t": 1789146097857,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « quotascom » → aucun accès"
+  },
+  {
+   "t": 1789146096985,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « quotascom » → lecture seule 👁"
+  },
   {
    "t": 1789146092667,
    "u": "Diego Herrera",
@@ -19590,21 +19605,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787503767768,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503767610,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503767428,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503767236,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19930,7 +19930,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:36.067Z",
+  "maj": "2026-09-11T17:01:41.271Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
