@@ -17942,8 +17942,7 @@
     "felig",
     "overview",
     "quotashist",
-    "affiches",
-    "maj"
+    "affiches"
    ]
   },
   "semaine": 36,
@@ -18078,8 +18077,7 @@
     "profil",
     "moi",
     "agenda",
-    "affiches",
-    "maj"
+    "affiches"
    ]
   },
   "prixBidonCom": 50,
@@ -18124,8 +18122,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146346840,
- "_rev": "714n652ybbm-mtx7ji78",
+ "_maj": 1789146347448,
+ "_rev": "2fgm22jrxj-mtx7jm35",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18134,13 +18132,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146346840,
+  "journal": 1789146347448,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146346840,
+  "settings": 1789146347448,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18163,6 +18161,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146349232,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « maj » → aucun accès"
+  },
   {
    "t": 1789146348624,
    "u": "Diego Herrera",
@@ -19657,11 +19660,6 @@
    "a": "Fer acheté noté : Emma Collins-rodriguez → 690",
    "t": 1788014453835,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 690",
-   "t": 1788014446168,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19987,7 +19985,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:49.028Z",
+  "maj": "2026-09-11T17:05:54.065Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
