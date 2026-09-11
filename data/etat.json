@@ -17936,9 +17936,7 @@
    "assistdir": [],
    "comptable": [],
    "resprunner": [],
-   "membre": [
-    "effectif"
-   ]
+   "membre": []
   },
   "semaine": 36,
   "webhook": "",
@@ -18047,7 +18045,6 @@
    ],
    "resprunner": [
     "overview",
-    "effectif",
     "semaine",
     "historique",
     "reunions",
@@ -18062,7 +18059,6 @@
    ],
    "membre": [
     "overview",
-    "effectif",
     "reunions",
     "moi",
     "profil",
@@ -18114,8 +18110,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146111129,
- "_rev": "58qnw69dycw-mtx7eghf",
+ "_maj": 1789146114180,
+ "_rev": "8v11jgwzu16-mtx7einp",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18124,13 +18120,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146111129,
+  "journal": 1789146114180,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146111129,
+  "settings": 1789146114180,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18153,6 +18149,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146115964,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « effectif » → aucun accès"
+  },
+  {
+   "t": 1789146115260,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « effectif » → lecture seule 👁"
+  },
+  {
+   "t": 1789146113751,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « effectif » → aucun accès"
+  },
   {
    "t": 1789146112913,
    "u": "Diego Herrera",
@@ -19637,21 +19648,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503781251,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503776924,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503776758,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503776434,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19977,7 +19973,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:53.523Z",
+  "maj": "2026-09-11T17:01:56.341Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
