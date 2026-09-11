@@ -17958,7 +17958,6 @@
     "fblacklist",
     "factures",
     "relances",
-    "fventes",
     "quotascom",
     "prodder",
     "ftablette",
@@ -18068,8 +18067,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146084737,
- "_rev": "0e66fom630o6-mtx7dyb0",
+ "_maj": 1789146090883,
+ "_rev": "5mpb8edup3u-mtx7e0zv",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18078,13 +18077,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146084737,
+  "journal": 1789146090883,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146084737,
+  "settings": 1789146090883,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18107,6 +18106,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146092667,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « fventes » → aucun accès"
+  },
+  {
+   "t": 1789146091415,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « fventes » → lecture seule 👁"
+  },
   {
    "t": 1789146086521,
    "u": "Diego Herrera",
@@ -19596,16 +19605,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503767236,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503767118,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503765826,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19931,7 +19930,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:29.964Z",
+  "maj": "2026-09-11T17:01:33.452Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
