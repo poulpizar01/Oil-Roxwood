@@ -17931,12 +17931,12 @@
   "limite": 24000,
   "permsRO": {
    "rh": [],
-   "commercial": [],
-   "respcom": [],
-   "assistdir": [],
-   "comptable": [
+   "commercial": [
     "maj"
    ],
+   "respcom": [],
+   "assistdir": [],
+   "comptable": [],
    "resprunner": [
     "felig"
    ],
@@ -18018,8 +18018,7 @@
     "profil",
     "moi",
     "agenda",
-    "affiches",
-    "maj"
+    "affiches"
    ],
    "assistdir": [
     "effectif",
@@ -18059,8 +18058,7 @@
     "moi",
     "agenda",
     "affiches",
-    "dlogs",
-    "maj"
+    "dlogs"
    ],
    "resprunner": [
     "overview",
@@ -18129,8 +18127,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146341146,
- "_rev": "8wmkd0wwpco-mtx7jdsj",
+ "_maj": 1789146343883,
+ "_rev": "uh3rtpuokc-mtx7jfwu",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18139,13 +18137,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146341146,
+  "journal": 1789146343883,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146341146,
+  "settings": 1789146343883,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18168,6 +18166,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146345667,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1789146344833,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « maj » → aucun accès"
+  },
+  {
+   "t": 1789146344361,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1789146343563,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « maj » → aucun accès"
+  },
   {
    "t": 1789146342929,
    "u": "Diego Herrera",
@@ -19647,26 +19665,6 @@
    "a": "Absence déclarée : Lucas Vettel du 29/08/2026 au 31/08/2026",
    "t": 1788012152138,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Alexis Lavollette du 29/08/2026 au 09/09/2026",
-   "t": 1787992407835,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Xavier Collins",
-   "t": 1787992345530,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : nico",
-   "t": 1787992344340,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
-   "t": 1787992343072,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19992,7 +19990,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:43.315Z",
+  "maj": "2026-09-11T17:05:46.062Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
