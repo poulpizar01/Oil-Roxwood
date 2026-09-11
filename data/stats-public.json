@@ -1,12 +1,25 @@
 {
- "maj": "2026-09-09T09:45:29.653Z",
+ "maj": "2026-09-11T12:35:23.043Z",
  "semaine": 36,
- "totalBarils": 0,
- "ca": 0,
+ "totalBarils": 119331,
+ "ca": 596655,
  "objectif": 375000,
- "effectif": 98,
+ "effectif": 111,
  "clientsServis": 74,
- "top3": [],
+ "top3": [
+  {
+   "nom": "Alex Turner",
+   "barils": 22780
+  },
+  {
+   "nom": "Eden Birds",
+   "barils": 10149
+  },
+  {
+   "nom": "Victor Sulivane",
+   "barils": 8776
+  }
+ ],
  "runners": [],
  "produits": [
   {
