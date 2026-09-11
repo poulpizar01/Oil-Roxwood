@@ -17935,8 +17935,9 @@
    "respcom": [],
    "assistdir": [],
    "comptable": [],
-   "resprunner": [
-    "ftablette"
+   "resprunner": [],
+   "membre": [
+    "effectif"
    ]
   },
   "semaine": 36,
@@ -18051,7 +18052,6 @@
     "historique",
     "reunions",
     "felig",
-    "ftablette",
     "moi",
     "profil",
     "quotashist",
@@ -18059,6 +18059,17 @@
     "affiches",
     "maj",
     "dlogs"
+   ],
+   "membre": [
+    "overview",
+    "effectif",
+    "reunions",
+    "moi",
+    "profil",
+    "quotashist",
+    "agenda",
+    "affiches",
+    "maj"
    ]
   },
   "prixBidonCom": 50,
@@ -18103,8 +18114,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146106899,
- "_rev": "syp1i895zy-mtx7ed1y",
+ "_maj": 1789146111129,
+ "_rev": "58qnw69dycw-mtx7eghf",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18113,13 +18124,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146106899,
+  "journal": 1789146111129,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146106899,
+  "settings": 1789146111129,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18142,6 +18153,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146112913,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « effectif » → lecture seule 👁"
+  },
+  {
+   "t": 1789146109439,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « ftablette » → aucun accès"
+  },
   {
    "t": 1789146108683,
    "u": "Diego Herrera",
@@ -19631,16 +19652,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503776434,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503776228,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503776084,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19966,7 +19977,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:49.078Z",
+  "maj": "2026-09-11T17:01:53.523Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
