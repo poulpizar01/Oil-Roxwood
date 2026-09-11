@@ -93,7 +93,7 @@ Le détail de la refonte et la liste complète du vocabulaire de classes sont da
 
 ```bash
 git init -b main
-git remote add origin https://github.com/poulpizar01/Oil-Roxwood.git
+git remote add origin https://github.com/Shop-Entreprise-FBFA/Oil-Roxwood.git
 git add -A
 git commit -m "Premier commit"
 git push -u origin main

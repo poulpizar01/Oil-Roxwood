@@ -115,7 +115,7 @@ npm install puppeteer
 const puppeteer = require('puppeteer');
 
 async function posterRapportImage(payload) {
-  const url = 'https://poulpizar01.github.io/Oil-Roxwood/' + (payload.page || 'tv.html');
+  const url = 'https://Shop-Entreprise-FBFA.github.io/Oil-Roxwood/' + (payload.page || 'tv.html');
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 675, deviceScaleFactor: 2 });

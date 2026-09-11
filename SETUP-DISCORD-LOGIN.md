@@ -25,8 +25,8 @@ connecte au dashboard avec son compte Discord.
    - active le provider
    - colle le **Client ID** et le **Client Secret** → Save
 2. **Authentication → URL Configuration** :
-   - **Site URL** : `https://poulpizar01.github.io/Oil-Roxwood/admin.html`
-   - **Redirect URLs** → ajoute : `https://poulpizar01.github.io/Oil-Roxwood/admin.html`
+   - **Site URL** : `https://Shop-Entreprise-FBFA.github.io/Oil-Roxwood/admin.html`
+   - **Redirect URLs** → ajoute : `https://Shop-Entreprise-FBFA.github.io/Oil-Roxwood/admin.html`
 
 ## Comment ça marche
 

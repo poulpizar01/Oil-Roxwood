@@ -45,7 +45,7 @@ SEUIL = float(os.environ.get("ORX_RAPPELS_SEUIL", "100"))
 TEST = os.environ.get("ORX_RAPPELS_TEST", "") == "1"
 SEEN = "data/rappels-seen.json"
 API = "https://discord.com/api/v10"
-UA = "DiscordBot (https://github.com/poulpizar01/Oil-Roxwood, 1.0)"
+UA = "DiscordBot (https://github.com/Shop-Entreprise-FBFA/Oil-Roxwood, 1.0)"
 
 # Doit rester identique au tableau GRADES d'admin.html.
 GRADES = [
