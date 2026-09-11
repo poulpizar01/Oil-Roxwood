@@ -17933,9 +17933,7 @@
    "rh": [],
    "commercial": [],
    "respcom": [],
-   "assistdir": [
-    "effectif"
-   ]
+   "assistdir": []
   },
   "semaine": 36,
   "webhook": "",
@@ -18019,7 +18017,6 @@
     "produits"
    ],
    "assistdir": [
-    "effectif",
     "fblacklist",
     "factures",
     "produits",
@@ -18069,8 +18066,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146062124,
- "_rev": "wlk519m6lff-mtx7dgut",
+ "_maj": 1789146081251,
+ "_rev": "01zu3y0jhye4-mtx7dta6",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18079,13 +18076,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146035621,
+  "journal": 1789146081251,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146035621,
+  "settings": 1789146081251,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18108,6 +18105,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146083035,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « effectif » → aucun accès"
+  },
   {
    "t": 1789146037405,
    "u": "Diego Herrera",
@@ -19602,11 +19604,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787503763562,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503762311,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19932,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:07.349Z",
+  "maj": "2026-09-11T17:01:23.454Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
