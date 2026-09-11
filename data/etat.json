@@ -18011,6 +18011,7 @@
     "overview",
     "felig",
     "historique",
+    "reunions",
     "quotashist",
     "produits",
     "moi",
@@ -18119,8 +18120,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146254961,
- "_rev": "6erz86bhgwk-mtx7hjbp",
+ "_maj": 1789146257155,
+ "_rev": "5usgnm2zjwi-mtx7hl09",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18129,13 +18130,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146254961,
+  "journal": 1789146257155,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146254961,
+  "settings": 1789146257155,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18158,6 +18159,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146258939,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « reunions » → accès complet ✓"
+  },
   {
    "t": 1789146256745,
    "u": "Diego Herrera",
@@ -19652,11 +19658,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787769709609,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787769708529,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19982,7 +19983,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:04:17.173Z",
+  "maj": "2026-09-11T17:04:19.353Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
