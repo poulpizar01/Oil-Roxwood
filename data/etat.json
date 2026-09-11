@@ -18021,6 +18021,7 @@
    "assistdir": [
     "effectif",
     "fblacklist",
+    "factures",
     "produits",
     "agenda",
     "affiches"
@@ -18068,8 +18069,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146030024,
- "_rev": "lgw4xuiueh-mtx7cs24",
+ "_maj": 1789146035621,
+ "_rev": "am5tnwahrnf-mtx7cu2b",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18078,13 +18079,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146030024,
+  "journal": 1789146035621,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146030024,
+  "settings": 1789146035621,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18107,6 +18108,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146037405,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « factures » → accès complet ✓"
+  },
   {
    "t": 1789146031808,
    "u": "Diego Herrera",
@@ -19601,11 +19607,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503762311,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503761174,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19931,7 +19932,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:00:35.212Z",
+  "maj": "2026-09-11T17:00:37.811Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
