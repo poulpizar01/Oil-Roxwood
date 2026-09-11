@@ -15134,13 +15134,13 @@
    "public": false,
    "maj": "2026-09-11T12:36:49.002Z"
   },
-  "stella collins": {
-   "nom": "Stella Collins",
+  "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿": {
+   "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
    "photo": "",
    "titre": "",
    "bio": "",
    "public": true,
-   "maj": "2026-09-11T23:54:00.900Z"
+   "maj": "2026-09-11T23:54:31.263Z"
   }
  },
  "affiches": [],
@@ -17990,7 +17990,8 @@
     "params"
    ],
    "commercial": [
-    "effectif",
+    "frh",
+    "fblacklist",
     "factures",
     "relances",
     "fventes",
@@ -18007,6 +18008,8 @@
     "affiches"
    ],
    "respcom": [
+    "frh",
+    "fblacklist",
     "factures",
     "relances",
     "fventes",
@@ -18128,9 +18131,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "qotb160ovyc",
- "_maj": 1789171029982,
- "_rev": "9fqevc3vt9p-mtxm8otf",
+ "_cid": "rtlgdmlsla",
+ "_maj": 1789171011608,
+ "_rev": "g8dvpczujhv-mtxm901n",
  "_majSec": {
   "fer": 1789170394751,
   "fact": 1789170394751,
@@ -18139,21 +18142,21 @@
   "sheets": 1789170394751,
   "_qcFix1": 1789170394751,
   "_wkFix1": 1789170394751,
-  "journal": 1789170926264,
+  "journal": 1789170394751,
   "pending": 1789170394751,
   "prodDer": 1789170394751,
   "runners": 1789170394751,
   "absences": 1789170394751,
   "imported": 1789170394751,
-  "settings": 1789170926264,
+  "settings": 1789170394751,
   "closeUndo": 1789170394751,
   "quotasCom": 1789170394751,
   "bilanExtra": 1789170394751,
   "bilanForce": 1789170394751,
   "primesExtra": 1789170394751,
   "quotasComHist": 1789170394751,
-  "profils": 1789170840900,
-  "_tables": 1789171029982,
+  "profils": 1789170871263,
+  "_tables": 1789171011608,
   "_permsFix1": 1789170394751,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789170394751,
@@ -18168,56 +18171,6 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789170929039,
-   "u": "Stella Collins",
-   "a": "Permissions : Responsable commercial · « fblacklist » → aucun accès"
-  },
-  {
-   "t": 1789170928522,
-   "u": "Stella Collins",
-   "a": "Permissions : Responsable commercial · « fblacklist » → lecture seule 👁"
-  },
-  {
-   "t": 1789170927179,
-   "u": "Stella Collins",
-   "a": "Permissions : Responsable commercial · « frh » → aucun accès"
-  },
-  {
-   "t": 1789170926486,
-   "u": "Stella Collins",
-   "a": "Permissions : Responsable commercial · « frh » → lecture seule 👁"
-  },
-  {
-   "t": 1789170918909,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « fblacklist » → aucun accès"
-  },
-  {
-   "t": 1789170918001,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « effectif » → accès complet ✓"
-  },
-  {
-   "t": 1789170917861,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « fblacklist » → lecture seule 👁"
-  },
-  {
-   "t": 1789170915433,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « frh » → aucun accès"
-  },
-  {
-   "t": 1789170914519,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « frh » → lecture seule 👁"
-  },
-  {
-   "t": 1789170381484,
-   "u": "Stella Collins",
-   "a": "Réinitialisation de la feuille « Tablette » (45 lignes)"
-  },
   {
    "t": 1789146349232,
    "u": "Diego Herrera",
@@ -19667,6 +19620,56 @@
    "a": "Fer acheté noté : Emma Collins-rodriguez → 700",
    "t": 1788078843789,
    "u": "Julio Collins"
+  },
+  {
+   "a": "Contrat de travail généré : Wagner Rischtoffen (Runner)",
+   "t": 1788040901207,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Nills Truduk (Runner)",
+   "t": 1788040794296,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Carlos dupont (Runner)",
+   "t": 1788040763101,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Vente rapide sans facture : 20 bidon(s) — Citoyen (vendeur : Julio Collins)",
+   "t": 1788035377752,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Vente rapide sans facture : 1 bidon(s) — Employé Ray Buffalo (vendeur : Thomas Boyer)",
+   "t": 1788022266051,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Vente rapide sans facture : 2 bidon(s) — Employé rodriguez johnatan (vendeur : Julio Collins)",
+   "t": 1788021909222,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Contrat de travail généré : Miles Cole (Runner)",
+   "t": 1788017703216,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Hirsute Maasai (Runner)",
+   "t": 1788017653425,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Fer acheté noté : Juan Sanchez → 319",
+   "t": 1788014461043,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 690",
+   "t": 1788014453835,
+   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19992,7 +19995,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T23:57:18.627Z",
+  "maj": "2026-09-11T23:57:33.179Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -20030,15 +20033,15 @@
   ],
   "equipe": [
    {
-    "nom": "Stella Collins",
-    "titre": "Patron",
-    "photo": "https://cdn.discordapp.com/avatars/948542221429379112/9ead2c2f20a0b9980c9b59116b06f67e.png",
-    "bio": ""
-   },
-   {
     "nom": "Diego Herrera",
     "titre": "Co Patron",
     "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+    "bio": ""
+   },
+   {
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "titre": "RH",
+    "photo": "https://cdn.discordapp.com/avatars/690537200689086537/89422621d14f87124a4e8ea64b0ac191.png",
     "bio": ""
    }
   ]
@@ -42274,11 +42277,11 @@
     "id": 1789170975925
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:57:09.982Z",
-    "id": 1789171032570
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T23:56:51.608Z",
+    "id": 1789171005830
    }
   ],
   "oilroxwood_demandes": [],
