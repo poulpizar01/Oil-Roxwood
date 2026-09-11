@@ -17930,7 +17930,9 @@
   "impot": 0.32,
   "limite": 24000,
   "permsRO": {
-   "rh": [],
+   "rh": [
+    "relances"
+   ],
    "commercial": [],
    "respcom": [],
    "assistdir": [],
@@ -18110,8 +18112,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146114180,
- "_rev": "2icl8o0am5f-mtx7el0g",
+ "_maj": 1789146120364,
+ "_rev": "v7nvke4ards-mtx7enfo",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18120,13 +18122,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146114180,
+  "journal": 1789146120364,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146114180,
+  "settings": 1789146120364,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18149,6 +18151,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146122148,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « relances » → lecture seule 👁"
+  },
   {
    "t": 1789146115964,
    "u": "Diego Herrera",
@@ -19643,11 +19650,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503781401,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503781251,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19973,7 +19975,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:59.392Z",
+  "maj": "2026-09-11T17:02:02.532Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
