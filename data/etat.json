@@ -18065,9 +18065,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "h6grzx1idso",
- "_maj": 1789130882486,
- "_rev": "381nzcfw29t-mtwyc1x9",
+ "_cid": "bomomdvxhd",
+ "_maj": 1789130889594,
+ "_rev": "xpfbhqwmmhp-mtwycb52",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18090,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789130882486,
+  "_tables": 1789130889594,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -19929,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T12:48:04.797Z",
+  "maj": "2026-09-11T12:48:16.742Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -39503,11 +39503,11 @@
     "id": 1789130825415
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-11T12:48:02.486Z",
-    "id": 1789130880642
+    "vu": "2026-09-11T12:48:09.594Z",
+    "id": 1789130892490
    }
   ],
   "oilroxwood_demandes": [],
