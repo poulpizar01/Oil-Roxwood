@@ -192,14 +192,17 @@ Détails dans **[SETUP-BOT.md](SETUP-BOT.md)** et **[SETUP-BOT-ENTREPRISE.md](SE
 
 ---
 
-## Si tu renommes le dépôt
+## Si tu renommes le dépôt ou changes de compte propriétaire
 
-Le site est écrit en chemins relatifs : il fonctionne sous n'importe quel nom.
-Trois choses seulement dépendent de l'adresse :
+Le site est écrit en chemins relatifs : il fonctionne sous n'importe quel nom
+ou compte. Quatre choses seulement dépendent de l'adresse :
 
-1. **`index.html`, lignes 20–21** — les deux balises `og:url` et `og:image`.
+1. **`index.html`, lignes 24–30** — `og:url`, `og:image` et `canonical`.
    Les robots de Discord et des réseaux sociaux n'exécutent pas de JavaScript,
    ces adresses doivent rester absolues. Le bloc est signalé par un commentaire.
+   **Et plus bas, lignes ~59–60** — le JSON-LD (`<script type="application/ld+json">`),
+   champs `url` et `logo`. Facile à oublier : ça a été raté lors du transfert de
+   septembre 2026, justement parce que ce n'était pas listé ici.
 2. **Le bloc `ROXWOOD_CFG`** en haut d'`admin.html` — `owner` et `repo`.
 3. **Discord → OAuth2 → Redirects** — ajouter la nouvelle adresse de `admin.html`,
    sinon la connexion échoue.

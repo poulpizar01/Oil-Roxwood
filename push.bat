@@ -22,7 +22,7 @@ if not exist ".git" (
   echo   Lance d'abord, dans ce dossier :
   echo.
   echo     git init -b main
-  echo     git remote add origin https://github.com/poulpizar01/Oil-Roxwood.git
+  echo     git remote add origin https://github.com/Shop-Entreprise-FBFA/Oil-Roxwood.git
   echo.
   pause
   exit /b 1
