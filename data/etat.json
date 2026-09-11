@@ -18131,9 +18131,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "x6239qd91yk",
- "_maj": 1789152056215,
- "_rev": "e53n5tqz4qe-mtxaxwz4",
+ "_cid": "w9e3nenlu5c",
+ "_maj": 1789152058303,
+ "_rev": "mqgzyoo0b5g-mtxaxzu2",
  "_majSec": {
   "fer": 1789145657706,
   "fact": 1789145657706,
@@ -18156,7 +18156,7 @@
   "primesExtra": 1789145657706,
   "quotasComHist": 1789145657706,
   "profils": 1789151998596,
-  "_tables": 1789152056215,
+  "_tables": 1789152058303,
   "_permsFix1": 1789145657706,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789145657706,
@@ -19995,7 +19995,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T18:41:00.208Z",
+  "maj": "2026-09-11T18:41:03.914Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -41207,18 +41207,11 @@
     "id": 1789151925457
    },
    {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T18:40:03.917Z",
-    "id": 1789152004609
-   },
-   {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T18:40:56.126Z",
-    "id": 1789152056922
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-11T18:40:58.038Z",
+    "id": 1789152060702
    }
   ],
   "oilroxwood_demandes": [],
