@@ -1,5 +1,5 @@
 {
- "maj": "2026-09-11T12:40:33.501Z",
+ "maj": "2026-09-11T18:42:32.794Z",
  "semaine": 36,
  "totalBarils": 119331,
  "ca": 596655,
@@ -40,6 +40,12 @@
    "nom": "Diego Herrera",
    "titre": "Co Patron",
    "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+   "bio": ""
+  },
+  {
+   "nom": "Julio Collins",
+   "titre": "Commercial",
+   "photo": "https://cdn.discordapp.com/avatars/767332288744128512/6c11157ab60158807c7bcb3defdfa100.png",
    "bio": ""
   }
  ]
