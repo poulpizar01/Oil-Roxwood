@@ -17931,9 +17931,7 @@
   "limite": 24000,
   "permsRO": {
    "rh": [],
-   "commercial": [
-    "maj"
-   ],
+   "commercial": [],
    "respcom": [],
    "assistdir": [],
    "comptable": [],
@@ -17944,7 +17942,8 @@
     "felig",
     "overview",
     "quotashist",
-    "affiches"
+    "affiches",
+    "maj"
    ]
   },
   "semaine": 36,
@@ -17997,8 +17996,7 @@
     "profil",
     "moi",
     "agenda",
-    "affiches",
-    "maj"
+    "affiches"
    ],
    "respcom": [
     "frh",
@@ -18071,7 +18069,6 @@
     "quotashist",
     "agenda",
     "affiches",
-    "maj",
     "dlogs"
    ],
    "membre": [
@@ -18127,8 +18124,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146343883,
- "_rev": "uh3rtpuokc-mtx7jfwu",
+ "_maj": 1789146346840,
+ "_rev": "714n652ybbm-mtx7ji78",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18137,13 +18134,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146343883,
+  "journal": 1789146346840,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146343883,
+  "settings": 1789146346840,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18166,6 +18163,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146348624,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1789146347832,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « maj » → aucun accès"
+  },
+  {
+   "t": 1789146347259,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « maj » → lecture seule 👁"
+  },
+  {
+   "t": 1789146346161,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « maj » → aucun accès"
+  },
   {
    "t": 1789146345667,
    "u": "Diego Herrera",
@@ -19645,26 +19662,6 @@
    "a": "Fer acheté noté : William Rodriguez-collins → 690",
    "t": 1788014446168,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 690",
-   "t": 1788014436484,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Contrat de travail généré : Amine Nasser (Runner)",
-   "t": 1788012684592,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Adel Dulax du 25/08/2026 au 07/09/2026",
-   "t": 1788012188690,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Lucas Vettel du 29/08/2026 au 31/08/2026",
-   "t": 1788012152138,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19990,7 +19987,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:46.062Z",
+  "maj": "2026-09-11T17:05:49.028Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
