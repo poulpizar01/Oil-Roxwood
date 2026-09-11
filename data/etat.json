@@ -18020,8 +18020,9 @@
    ],
    "assistdir": [
     "effectif",
-    "affiches",
-    "produits"
+    "produits",
+    "agenda",
+    "affiches"
    ]
   },
   "prixBidonCom": 50,
@@ -18066,8 +18067,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789145972381,
- "_rev": "qpk2uh4unfm-mtx7bjnq",
+ "_maj": 1789145989253,
+ "_rev": "pmcvnnxmgys-mtx7bufp",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18076,13 +18077,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789145056908,
+  "journal": 1789145989253,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789129111202,
+  "settings": 1789145989253,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18105,6 +18106,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789145991037,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « agenda » → accès complet ✓"
+  },
   {
    "t": 1789145054823,
    "u": "Stella Collins",
@@ -19599,11 +19605,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503759619,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Momoow",
-   "t": 1787503757710,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19929,7 +19930,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T16:59:37.671Z",
+  "maj": "2026-09-11T16:59:51.637Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
