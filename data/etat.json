@@ -17042,7 +17042,6 @@
     "params"
    ],
    "commercial": [
-    "frh",
     "fblacklist",
     "factures",
     "relances",
@@ -17184,8 +17183,8 @@
   "postesV4": 1
  },
  "_cid": "6sz7gxe359c",
- "_maj": 1789170906677,
- "_rev": "f4czaxc903f-mtxm5zty",
+ "_maj": 1789170912658,
+ "_rev": "4ytmxpmkcwd-mtxm6223",
  "_majSec": {
   "fer": 1789170364287,
   "fact": 1789170364287,
@@ -17194,13 +17193,13 @@
   "sheets": 1789170378709,
   "_qcFix1": 1789170364287,
   "_wkFix1": 1789170364287,
-  "journal": 1789170378709,
+  "journal": 1789170912658,
   "pending": 1789170364287,
   "prodDer": 1789170364287,
   "runners": 1789170378722,
   "absences": 1789170364287,
   "imported": 1789170364287,
-  "settings": 1789170364287,
+  "settings": 1789170912658,
   "closeUndo": 1789170364287,
   "quotasCom": 1789170364287,
   "bilanExtra": 1789170364287,
@@ -17223,6 +17222,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789170915433,
+   "u": "Stella Collins",
+   "a": "Permissions : Commercial · « frh » → aucun accès"
+  },
+  {
+   "t": 1789170914519,
+   "u": "Stella Collins",
+   "a": "Permissions : Commercial · « frh » → lecture seule 👁"
+  },
   {
    "t": 1789170381484,
    "u": "Stella Collins",
@@ -18712,16 +18721,6 @@
    "a": "Contrat de travail généré : Miles Cole (Runner)",
    "t": 1788017703216,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Hirsute Maasai (Runner)",
-   "t": 1788017653425,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Fer acheté noté : Juan Sanchez → 319",
-   "t": 1788014461043,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19047,7 +19046,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T23:55:12.934Z",
+  "maj": "2026-09-11T23:55:15.819Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
