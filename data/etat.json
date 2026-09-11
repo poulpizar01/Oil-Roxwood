@@ -15112,7 +15112,8 @@
    "id": 1787498251136,
    "did": "690537200689086537",
    "role": "rh",
-   "user": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
+   "user": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+   "avatar": "https://cdn.discordapp.com/avatars/690537200689086537/89422621d14f87124a4e8ea64b0ac191.png"
   }
  ],
  "profils": {
@@ -18020,9 +18021,8 @@
    ],
    "assistdir": [
     "effectif",
-    "produits",
-    "agenda",
-    "affiches"
+    "affiches",
+    "produits"
    ]
   },
   "prixBidonCom": 50,
@@ -18066,51 +18066,46 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "ij79qyn90ri",
- "_maj": 1789145989253,
- "_rev": "p8fnefwybsm-mtx7ci23",
+ "_cid": "pgfztlu3xlm",
+ "_maj": 1789146018505,
+ "_rev": "1peieysskgh-mtx7cec5",
  "_majSec": {
-  "fer": 1789129111202,
-  "fact": 1789129111202,
-  "users": 1789130432022,
-  "weeks": 1789129111202,
-  "sheets": 1789145056908,
-  "_qcFix1": 1789129111202,
-  "_wkFix1": 1789129111202,
-  "journal": 1789145989253,
-  "pending": 1789129111202,
-  "prodDer": 1789129111202,
-  "runners": 1789129208406,
-  "absences": 1789130684444,
-  "imported": 1789129111202,
-  "settings": 1789145989253,
-  "closeUndo": 1789129111202,
-  "quotasCom": 1789130279061,
-  "bilanExtra": 1789129111202,
-  "bilanForce": 1789129111202,
-  "primesExtra": 1789129111202,
-  "quotasComHist": 1789129111202,
-  "profils": 1789130209002,
-  "_tables": 1789145972381,
-  "_permsFix1": 1789129111202,
+  "fer": 1789145657706,
+  "fact": 1789145657706,
+  "users": 1789145657706,
+  "weeks": 1789145657706,
+  "sheets": 1789145657706,
+  "_qcFix1": 1789145657706,
+  "_wkFix1": 1789145657706,
+  "journal": 1789145657706,
+  "pending": 1789145657706,
+  "prodDer": 1789145657706,
+  "runners": 1789145657706,
+  "absences": 1789145657706,
+  "imported": 1789145657706,
+  "settings": 1789145657706,
+  "closeUndo": 1789145657706,
+  "quotasCom": 1789145657706,
+  "bilanExtra": 1789145657706,
+  "bilanForce": 1789145657706,
+  "primesExtra": 1789145657706,
+  "quotasComHist": 1789145657706,
+  "profils": 1789145657706,
+  "_tables": 1789146018505,
+  "_permsFix1": 1789145657706,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789129111202,
-  "affiches": 1789129111202,
-  "_affFix1": 1789129111202,
-  "produits": 1789129111202,
-  "_prodFix1": 1789129111202,
-  "_recruesIgnore": 1789129111202,
-  "ventesAlias": 1789129111202,
-  "_ventesIgnore": 1789129111202
+  "_rolesFix77": 1789145657706,
+  "affiches": 1789145657706,
+  "_affFix1": 1789145657706,
+  "produits": 1789145657706,
+  "_prodFix1": 1789145657706,
+  "_recruesIgnore": 1789145657706,
+  "ventesAlias": 1789145657706,
+  "_ventesIgnore": 1789145657706
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789145991037,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « agenda » → accès complet ✓"
-  },
   {
    "t": 1789145054823,
    "u": "Stella Collins",
@@ -19605,6 +19600,11 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503759619,
    "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Momoow",
+   "t": 1787503757710,
+   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19930,7 +19930,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:00:22.251Z",
+  "maj": "2026-09-11T17:00:17.429Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40589,88 +40589,109 @@
     "id": 1789144620301
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:42:54.755Z",
-    "id": 1789144972935
+    "vu": "2026-09-11T16:38:53.840Z",
+    "id": 1789144740155
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:44:24.758Z",
-    "id": 1789145063243
+    "vu": "2026-09-11T16:39:53.842Z",
+    "id": 1789144800290
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:45:54.757Z",
-    "id": 1789145153451
+    "vu": "2026-09-11T16:41:53.841Z",
+    "id": 1789144919469
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:47:24.754Z",
-    "id": 1789145242788
+    "vu": "2026-09-11T16:42:53.842Z",
+    "id": 1789144979760
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:48:54.758Z",
-    "id": 1789145332748
+    "vu": "2026-09-11T16:44:53.841Z",
+    "id": 1789145099626
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:50:24.760Z",
-    "id": 1789145423257
+    "vu": "2026-09-11T16:45:53.842Z",
+    "id": 1789145160017
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:51:54.753Z",
-    "id": 1789145512906
+    "vu": "2026-09-11T16:47:53.853Z",
+    "id": 1789145280335
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:53:26.018Z",
-    "id": 1789145604156
+    "vu": "2026-09-11T16:48:53.854Z",
+    "id": 1789145339356
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:54:54.848Z",
-    "id": 1789145692706
+    "vu": "2026-09-11T16:50:53.853Z",
+    "id": 1789145459850
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:56:24.849Z",
-    "id": 1789145783440
+    "vu": "2026-09-11T16:51:53.855Z",
+    "id": 1789145519864
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:57:54.849Z",
-    "id": 1789145872926
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T16:54:17.729Z",
+    "id": 1789145652955
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-11T16:59:32.120Z",
-    "id": 1789145974857
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T16:55:47.732Z",
+    "id": 1789145743227
+   },
+   {
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T16:57:18.499Z",
+    "id": 1789145833146
+   },
+   {
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T16:58:48.500Z",
+    "id": 1789145923831
+   },
+   {
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T17:00:18.505Z",
+    "id": 1789146013022
    }
   ],
   "oilroxwood_demandes": [],
@@ -40701,19 +40722,6 @@
     "commercial": "@role",
     "hebdo": true,
     "id": 1788526786838
-   },
-   {
-    "uid": "948542221429379112",
-    "titre": "Famillia Ghost",
-    "type": "contrat",
-    "date": "2026-09-13",
-    "deb": "18:00",
-    "fin": "19:00",
-    "note": "120 Bidons",
-    "partage": true,
-    "commercial": "@role",
-    "hebdo": true,
-    "id": 1789145270913
    }
   ],
   "oilroxwood_bot_ordres": [
