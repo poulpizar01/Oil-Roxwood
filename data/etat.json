@@ -16993,7 +16993,9 @@
   "limite": 24000,
   "permsRO": {
    "rh": [],
-   "commercial": [],
+   "commercial": [
+    "fblacklist"
+   ],
    "respcom": [],
    "assistdir": [],
    "comptable": [],
@@ -17042,6 +17044,7 @@
     "params"
    ],
    "commercial": [
+    "effectif",
     "fblacklist",
     "factures",
     "relances",
@@ -17183,8 +17186,8 @@
   "postesV4": 1
  },
  "_cid": "6sz7gxe359c",
- "_maj": 1789170912658,
- "_rev": "4ytmxpmkcwd-mtxm6223",
+ "_maj": 1789170915226,
+ "_rev": "p6r9h8p1sii-mtxm63y5",
  "_majSec": {
   "fer": 1789170364287,
   "fact": 1789170364287,
@@ -17193,13 +17196,13 @@
   "sheets": 1789170378709,
   "_qcFix1": 1789170364287,
   "_wkFix1": 1789170364287,
-  "journal": 1789170912658,
+  "journal": 1789170915226,
   "pending": 1789170364287,
   "prodDer": 1789170364287,
   "runners": 1789170378722,
   "absences": 1789170364287,
   "imported": 1789170364287,
-  "settings": 1789170912658,
+  "settings": 1789170915226,
   "closeUndo": 1789170364287,
   "quotasCom": 1789170364287,
   "bilanExtra": 1789170364287,
@@ -17222,6 +17225,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789170918001,
+   "u": "Stella Collins",
+   "a": "Permissions : Commercial · « effectif » → accès complet ✓"
+  },
+  {
+   "t": 1789170917861,
+   "u": "Stella Collins",
+   "a": "Permissions : Commercial · « fblacklist » → lecture seule 👁"
+  },
   {
    "t": 1789170915433,
    "u": "Stella Collins",
@@ -18711,16 +18724,6 @@
    "a": "Vente rapide sans facture : 1 bidon(s) — Employé Ray Buffalo (vendeur : Thomas Boyer)",
    "t": 1788022266051,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Vente rapide sans facture : 2 bidon(s) — Employé rodriguez johnatan (vendeur : Julio Collins)",
-   "t": 1788021909222,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Contrat de travail généré : Miles Cole (Runner)",
-   "t": 1788017703216,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19046,7 +19049,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T23:55:15.819Z",
+  "maj": "2026-09-11T23:55:18.269Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
