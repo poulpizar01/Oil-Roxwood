@@ -17933,7 +17933,11 @@
    "rh": [],
    "commercial": [],
    "respcom": [],
-   "assistdir": []
+   "assistdir": [],
+   "comptable": [],
+   "resprunner": [
+    "prodder"
+   ]
   },
   "semaine": 36,
   "webhook": "",
@@ -18023,6 +18027,39 @@
     "produits",
     "agenda",
     "affiches"
+   ],
+   "comptable": [
+    "factures",
+    "relances",
+    "prodder",
+    "fcompta",
+    "frecues",
+    "bilan",
+    "overview",
+    "reunions",
+    "quotashist",
+    "profil",
+    "moi",
+    "agenda",
+    "affiches",
+    "maj"
+   ],
+   "resprunner": [
+    "overview",
+    "effectif",
+    "semaine",
+    "historique",
+    "reunions",
+    "felig",
+    "ftablette",
+    "prodder",
+    "moi",
+    "profil",
+    "quotashist",
+    "agenda",
+    "affiches",
+    "maj",
+    "dlogs"
    ]
   },
   "prixBidonCom": 50,
@@ -18067,8 +18104,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146099049,
- "_rev": "xjns4d9exts-mtx7e713",
+ "_maj": 1789146103994,
+ "_rev": "zfqwibwz5b-mtx7eath",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18077,13 +18114,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146099049,
+  "journal": 1789146103994,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146099049,
+  "settings": 1789146103994,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18106,6 +18143,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146105778,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable Runner · « prodder » → lecture seule 👁"
+  },
+  {
+   "t": 1789146103008,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « prodder » → accès complet ✓"
+  },
   {
    "t": 1789146100833,
    "u": "Diego Herrera",
@@ -19595,16 +19642,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503768301,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503767958,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503767768,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19930,7 +19967,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:01:41.271Z",
+  "maj": "2026-09-11T17:01:46.181Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
