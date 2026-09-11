@@ -15062,7 +15062,8 @@
    "id": 1783374562991,
    "did": "948542221429379112",
    "role": "direction",
-   "user": "Stella Collins"
+   "user": "Stella Collins",
+   "avatar": "https://cdn.discordapp.com/avatars/948542221429379112/9ead2c2f20a0b9980c9b59116b06f67e.png"
   },
   {
    "id": 1783374678410,
@@ -18064,13 +18065,13 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "umibpn5h9yj",
- "_maj": 1789130415261,
- "_rev": "3zijlma6bwe-mtwy21f5",
+ "_cid": "h6grzx1idso",
+ "_maj": 1789130432210,
+ "_rev": "ysvwva258x-mtwy2dp9",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
-  "users": 1789129111202,
+  "users": 1789130432022,
   "weeks": 1789129111202,
   "sheets": 1789130289776,
   "_qcFix1": 1789129111202,
@@ -18089,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789130415261,
+  "_tables": 1789130432210,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -19918,7 +19919,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T12:40:17.585Z",
+  "maj": "2026-09-11T12:40:33.501Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -39455,6 +39456,13 @@
     "role": "direction",
     "vu": "2026-09-11T12:40:15.261Z",
     "id": 1789130413444
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-11T12:40:32.049Z",
+    "id": 1789130429723
    }
   ],
   "oilroxwood_demandes": [],
