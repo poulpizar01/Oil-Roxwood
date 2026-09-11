@@ -17961,7 +17961,6 @@
     "fblacklist",
     "factures",
     "prodder",
-    "cloture",
     "felig",
     "historique",
     "reunions",
@@ -18106,8 +18105,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146190381,
- "_rev": "rfx5d8hrjqg-mtx7g5ae",
+ "_maj": 1789146192448,
+ "_rev": "h5imtixrgco-mtx7g9p0",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18116,13 +18115,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146190381,
+  "journal": 1789146192448,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146190381,
+  "settings": 1789146192448,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18145,6 +18144,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146194231,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « cloture » → aucun accès"
+  },
+  {
+   "t": 1789146193451,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « cloture » → lecture seule 👁"
+  },
   {
    "t": 1789146192165,
    "u": "Diego Herrera",
@@ -19634,16 +19643,6 @@
    "a": "Absence déclarée : Scott Mate du 24/08/2026 au 30/08/2026",
    "t": 1787595339680,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Zack Ishua du 24/08/2026 au 31/08/2026",
-   "t": 1787595184354,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Elyra Collins du 24/08/2026 au 31/08/2026",
-   "t": 1787595162017,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19969,7 +19968,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:03:12.326Z",
+  "maj": "2026-09-11T17:03:18.036Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
