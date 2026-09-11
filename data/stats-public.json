@@ -1,5 +1,5 @@
 {
- "maj": "2026-09-11T18:47:08.554Z",
+ "maj": "2026-09-11T23:56:43.525Z",
  "semaine": 36,
  "totalBarils": 119331,
  "ca": 596655,
@@ -26,16 +26,22 @@
    "nom": "11",
    "desc": "",
    "prix": "",
-   "photo": "https://raw.githubusercontent.com/poulpizar01/Oil-Roxwood/main/assets/produits/1788913582777-4rxwt.jpg"
+   "photo": "https://raw.githubusercontent.com/Shop-Entreprise-FBFA/Oil-Roxwood/main/assets/produits/1788913582777-4rxwt.jpg"
   },
   {
    "nom": "vv",
    "desc": "vv",
    "prix": "180000",
-   "photo": "https://raw.githubusercontent.com/poulpizar01/Oil-Roxwood/main/assets/produits/1788911762546-ppr2w.jpg"
+   "photo": "https://raw.githubusercontent.com/Shop-Entreprise-FBFA/Oil-Roxwood/main/assets/produits/1788911762546-ppr2w.jpg"
   }
  ],
  "equipe": [
+  {
+   "nom": "Stella Collins",
+   "titre": "Patron",
+   "photo": "https://cdn.discordapp.com/avatars/948542221429379112/9ead2c2f20a0b9980c9b59116b06f67e.png",
+   "bio": ""
+  },
   {
    "nom": "Diego Herrera",
    "titre": "Co Patron",
