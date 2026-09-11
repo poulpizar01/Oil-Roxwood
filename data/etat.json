@@ -16993,9 +16993,7 @@
   "limite": 24000,
   "permsRO": {
    "rh": [],
-   "commercial": [
-    "fblacklist"
-   ],
+   "commercial": [],
    "respcom": [],
    "assistdir": [],
    "comptable": [],
@@ -17045,7 +17043,6 @@
    ],
    "commercial": [
     "effectif",
-    "fblacklist",
     "factures",
     "relances",
     "fventes",
@@ -17186,8 +17183,8 @@
   "postesV4": 1
  },
  "_cid": "6sz7gxe359c",
- "_maj": 1789170915226,
- "_rev": "p6r9h8p1sii-mtxm63y5",
+ "_maj": 1789170916134,
+ "_rev": "0rfsgpntmla-mtxm67uy",
  "_majSec": {
   "fer": 1789170364287,
   "fact": 1789170364287,
@@ -17196,13 +17193,13 @@
   "sheets": 1789170378709,
   "_qcFix1": 1789170364287,
   "_wkFix1": 1789170364287,
-  "journal": 1789170915226,
+  "journal": 1789170916134,
   "pending": 1789170364287,
   "prodDer": 1789170364287,
   "runners": 1789170378722,
   "absences": 1789170364287,
   "imported": 1789170364287,
-  "settings": 1789170915226,
+  "settings": 1789170916134,
   "closeUndo": 1789170364287,
   "quotasCom": 1789170364287,
   "bilanExtra": 1789170364287,
@@ -17225,6 +17222,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789170918909,
+   "u": "Stella Collins",
+   "a": "Permissions : Commercial · « fblacklist » → aucun accès"
+  },
   {
    "t": 1789170918001,
    "u": "Stella Collins",
@@ -18719,11 +18721,6 @@
    "a": "Vente rapide sans facture : 20 bidon(s) — Citoyen (vendeur : Julio Collins)",
    "t": 1788035377752,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Vente rapide sans facture : 1 bidon(s) — Employé Ray Buffalo (vendeur : Thomas Boyer)",
-   "t": 1788022266051,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19049,7 +19046,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T23:55:18.269Z",
+  "maj": "2026-09-11T23:55:23.338Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
