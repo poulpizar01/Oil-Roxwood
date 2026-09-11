@@ -18131,9 +18131,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "x6239qd91yk",
- "_maj": 1789152076390,
- "_rev": "7l7c3tr6di-mtxaya6d",
+ "_cid": "z0dcst87rnm",
+ "_maj": 1789152079870,
+ "_rev": "l06f8oiwxe-mtxaycgw",
  "_majSec": {
   "fer": 1789145657706,
   "fact": 1789145657706,
@@ -18156,7 +18156,7 @@
   "primesExtra": 1789145657706,
   "quotasComHist": 1789145657706,
   "profils": 1789152076390,
-  "_tables": 1789152056215,
+  "_tables": 1789152079870,
   "_permsFix1": 1789145657706,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789145657706,
@@ -19995,7 +19995,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T18:41:17.317Z",
+  "maj": "2026-09-11T18:41:20.288Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -41225,6 +41225,13 @@
     "role": "commercial",
     "vu": "2026-09-11T18:40:56.126Z",
     "id": 1789152056922
+   },
+   {
+    "uid": "767332288744128512",
+    "nom": "Julio Collins",
+    "role": "commercial",
+    "vu": "2026-09-11T18:41:19.812Z",
+    "id": 1789152080499
    }
   ],
   "oilroxwood_demandes": [],
