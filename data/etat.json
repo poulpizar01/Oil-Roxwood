@@ -17940,7 +17940,8 @@
    ],
    "membre": [
     "felig",
-    "overview"
+    "overview",
+    "quotashist"
    ]
   },
   "semaine": 36,
@@ -17981,21 +17982,23 @@
     "maj"
    ],
    "commercial": [
-    "overview",
-    "felig",
-    "fventes",
     "frh",
     "fblacklist",
     "factures",
     "relances",
-    "prodder",
+    "fventes",
     "quotascom",
-    "moi",
+    "prodder",
+    "overview",
+    "felig",
+    "historique",
+    "reunions",
     "quotashist",
+    "produits",
+    "moi",
     "agenda",
     "affiches",
-    "maj",
-    "produits"
+    "maj"
    ],
    "respcom": [
     "frh",
@@ -18009,6 +18012,8 @@
     "frecues",
     "overview",
     "felig",
+    "historique",
+    "reunions",
     "quotashist",
     "produits",
     "moi",
@@ -18025,6 +18030,10 @@
     "frecues",
     "bilan",
     "overview",
+    "felig",
+    "historique",
+    "reunions",
+    "quotashist",
     "produits",
     "agenda",
     "affiches"
@@ -18038,6 +18047,7 @@
     "cloture",
     "semaine",
     "overview",
+    "historique",
     "reunions",
     "quotashist",
     "profil",
@@ -18063,7 +18073,6 @@
    "membre": [
     "overview",
     "felig",
-    "reunions",
     "quotashist",
     "profil",
     "moi",
@@ -18113,9 +18122,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wde5ouun348",
- "_maj": 1789146234840,
- "_rev": "t08yqhfncn-mtx7i1sw",
+ "_cid": "ij79qyn90ri",
+ "_maj": 1789146282180,
+ "_rev": "vidcbuksqjq-mtx7i7al",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18124,13 +18133,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146232091,
+  "journal": 1789146282180,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146232091,
+  "settings": 1789146282180,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18138,7 +18147,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789146234840,
+  "_tables": 1789146242132,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -18153,6 +18162,66 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146283964,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « felig » → accès complet ✓"
+  },
+  {
+   "t": 1789146282229,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « quotashist » → accès complet ✓"
+  },
+  {
+   "t": 1789146272446,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « quotashist » → lecture seule 👁"
+  },
+  {
+   "t": 1789146262403,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « reunions » → aucun accès"
+  },
+  {
+   "t": 1789146261511,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « reunions » → lecture seule 👁"
+  },
+  {
+   "t": 1789146259992,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « reunions » → accès complet ✓"
+  },
+  {
+   "t": 1789146258939,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « reunions » → accès complet ✓"
+  },
+  {
+   "t": 1789146256745,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « reunions » → accès complet ✓"
+  },
+  {
+   "t": 1789146254435,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → accès complet ✓"
+  },
+  {
+   "t": 1789146253143,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « historique » → accès complet ✓"
+  },
+  {
+   "t": 1789146251401,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « historique » → accès complet ✓"
+  },
+  {
+   "t": 1789146249737,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « historique » → accès complet ✓"
+  },
   {
    "t": 1789146233875,
    "u": "Diego Herrera",
@@ -19592,66 +19661,6 @@
    "a": "Demande d'accès refusée : SnP_FraGueR",
    "t": 1787769715813,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : _𝒩ø𝓍ÿ_",
-   "t": 1787769714806,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Erjonihno",
-   "t": 1787769713961,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : 24xf",
-   "t": 1787769712828,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Momoow",
-   "t": 1787769711942,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Strya Ryuzen",
-   "t": 1787769710763,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787769709609,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787769708529,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Suppression de la facture n°253071",
-   "t": 1787761910811,
-   "u": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
-  },
-  {
-   "a": "Vente rapide sans facture : 50 bidon(s) — Employé diego (vendeur : Diego Herrera)",
-   "t": 1787760023950,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Prime exceptionnelle : Diego Herrera +60 000 $",
-   "t": 1787756425958,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Facture reçue archivée : casa del gusto — 100 000 $",
-   "t": 1787749756277,
-   "u": "Diego Herrera"
-  },
-  {
-   "a": "Contrat de travail généré : Gérard Lopez (Runner)",
-   "t": 1787690160992,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19977,7 +19986,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:04:41.120Z",
+  "maj": "2026-09-11T17:04:48.237Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40713,32 +40722,32 @@
     "id": 1789145872926
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-11T16:59:24.850Z",
-    "id": 1789145963650
+    "vu": "2026-09-11T16:59:32.120Z",
+    "id": 1789145974857
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-11T17:00:54.851Z",
-    "id": 1789146053398
+    "vu": "2026-09-11T17:01:02.123Z",
+    "id": 1789146064731
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-11T17:02:24.852Z",
-    "id": 1789146143213
+    "vu": "2026-09-11T17:02:32.130Z",
+    "id": 1789146154299
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-11T17:03:54.840Z",
-    "id": 1789146233522
+    "vu": "2026-09-11T17:04:02.132Z",
+    "id": 1789146244344
    }
   ],
   "oilroxwood_demandes": [],
