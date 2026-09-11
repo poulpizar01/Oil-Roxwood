@@ -11485,7 +11485,7 @@
     "don": "",
     "nom": "Juan Sanchez",
     "date": "",
-    "grade": "RH",
+    "grade": "Commercial",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11535,7 +11535,7 @@
     "don": "",
     "nom": "Ashley Cooper",
     "date": "",
-    "grade": "Responsable Runner",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11545,7 +11545,7 @@
     "don": "",
     "nom": "Bobby Rousseau",
     "date": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11645,7 +11645,7 @@
     "don": "",
     "nom": "Alejandro Varrgas",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11675,7 +11675,7 @@
     "don": "",
     "nom": "Eden Birds",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11735,7 +11735,7 @@
     "don": "",
     "nom": "Bjorn Frost",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -17933,14 +17933,8 @@
    "rh": [],
    "commercial": [],
    "respcom": [],
-   "assistdir": [],
-   "comptable": [],
-   "resprunner": [
-    "felig"
-   ],
-   "membre": [
-    "felig",
-    "overview"
+   "assistdir": [
+    "effectif"
    ]
   },
   "semaine": 36,
@@ -17961,31 +17955,39 @@
   "prixRecrue": 4000,
   "permsCustom": {
    "rh": [
-    "frh",
-    "effectif",
-    "fblacklist",
-    "factures",
-    "prodder",
-    "overview",
-    "felig",
     "historique",
+    "cloture",
     "reunions",
-    "quotashist",
-    "profil",
-    "moi",
-    "agenda",
-    "affiches",
-    "dlogs",
-    "journal",
-    "params",
-    "maj"
-   ],
-   "commercial": [
-    "overview",
+    "ftablette",
     "felig",
     "fventes",
     "frh",
     "fblacklist",
+    "fcompta",
+    "factures",
+    "relances",
+    "bilan",
+    "prodder",
+    "quotascom",
+    "frecues",
+    "moi",
+    "profil",
+    "quotashist",
+    "agenda",
+    "affiches",
+    "maj",
+    "dlogs",
+    "journal",
+    "params"
+   ],
+   "commercial": [
+    "overview",
+    "ftablette",
+    "felig",
+    "fventes",
+    "frh",
+    "fblacklist",
+    "fcompta",
     "factures",
     "relances",
     "prodder",
@@ -17998,78 +18000,28 @@
     "produits"
    ],
    "respcom": [
+    "overview",
+    "ftablette",
+    "felig",
+    "fventes",
     "frh",
     "fblacklist",
+    "fcompta",
     "factures",
     "relances",
-    "fventes",
+    "prodder",
     "quotascom",
-    "prodder",
-    "ftablette",
-    "frecues",
-    "overview",
-    "felig",
-    "quotashist",
-    "produits",
     "moi",
-    "agenda",
-    "affiches",
-    "maj"
-   ],
-   "assistdir": [
-    "effectif",
-    "fblacklist",
-    "factures",
-    "prodder",
-    "ftablette",
-    "frecues",
-    "bilan",
-    "overview",
-    "produits",
-    "agenda",
-    "affiches"
-   ],
-   "comptable": [
-    "factures",
-    "prodder",
-    "ftablette",
-    "fcompta",
-    "bilan",
-    "cloture",
-    "semaine",
-    "overview",
-    "reunions",
-    "quotashist",
-    "profil",
-    "moi",
-    "agenda",
-    "affiches",
-    "maj"
-   ],
-   "resprunner": [
-    "overview",
-    "semaine",
-    "historique",
-    "reunions",
-    "felig",
-    "moi",
-    "profil",
     "quotashist",
     "agenda",
     "affiches",
     "maj",
-    "dlogs"
+    "produits"
    ],
-   "membre": [
-    "overview",
-    "felig",
-    "reunions",
-    "quotashist",
-    "profil",
-    "moi",
-    "agenda",
+   "assistdir": [
+    "effectif",
     "affiches",
-    "maj"
+    "produits"
    ]
   },
   "prixBidonCom": 50,
@@ -18113,24 +18065,24 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wde5ouun348",
- "_maj": 1789146414841,
- "_rev": "x31b5g80utf-mtx7lym3",
+ "_cid": "kkw72v52njk",
+ "_maj": 1789146413681,
+ "_rev": "z55ww79rej-mtx7mb2p",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
   "users": 1789130432022,
   "weeks": 1789129111202,
-  "sheets": 1789145056908,
+  "sheets": 1789130289776,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146232091,
+  "journal": 1789130684444,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146232091,
+  "settings": 1789129111202,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18138,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789146414841,
+  "_tables": 1789146413681,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -18153,331 +18105,6 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789146233875,
-   "u": "Diego Herrera",
-   "a": "Permissions : Membre · « overview » → lecture seule 👁"
-  },
-  {
-   "t": 1789146224140,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « felig » → lecture seule 👁"
-  },
-  {
-   "t": 1789146219754,
-   "u": "Diego Herrera",
-   "a": "Permissions : Membre · « felig » → lecture seule 👁"
-  },
-  {
-   "t": 1789146216841,
-   "u": "Diego Herrera",
-   "a": "Permissions : Membre · « felig » → accès complet ✓"
-  },
-  {
-   "t": 1789146203907,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « overview » → accès complet ✓"
-  },
-  {
-   "t": 1789146203213,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « overview » → accès complet ✓"
-  },
-  {
-   "t": 1789146199163,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « semaine » → accès complet ✓"
-  },
-  {
-   "t": 1789146194231,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « cloture » → aucun accès"
-  },
-  {
-   "t": 1789146193451,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « cloture » → lecture seule 👁"
-  },
-  {
-   "t": 1789146192165,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « cloture » → accès complet ✓"
-  },
-  {
-   "t": 1789146187339,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « bilan » → accès complet ✓"
-  },
-  {
-   "t": 1789146182855,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « bilan » → aucun accès"
-  },
-  {
-   "t": 1789146182115,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « bilan » → lecture seule 👁"
-  },
-  {
-   "t": 1789146181262,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « bilan » → aucun accès"
-  },
-  {
-   "t": 1789146180495,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « bilan » → lecture seule 👁"
-  },
-  {
-   "t": 1789146179569,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « bilan » → accès complet ✓"
-  },
-  {
-   "t": 1789146175585,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable commercial · « frecues » → accès complet ✓"
-  },
-  {
-   "t": 1789146174239,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « frecues » → aucun accès"
-  },
-  {
-   "t": 1789146173443,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « frecues » → lecture seule 👁"
-  },
-  {
-   "t": 1789146172657,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « frecues » → aucun accès"
-  },
-  {
-   "t": 1789146171879,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « frecues » → lecture seule 👁"
-  },
-  {
-   "t": 1789146170652,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « frecues » → accès complet ✓"
-  },
-  {
-   "t": 1789146166038,
-   "u": "Diego Herrera",
-   "a": "Permissions : Commercial · « fcompta » → aucun accès"
-  },
-  {
-   "t": 1789146165019,
-   "u": "Diego Herrera",
-   "a": "Permissions : Commercial · « fcompta » → lecture seule 👁"
-  },
-  {
-   "t": 1789146164025,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable commercial · « fcompta » → aucun accès"
-  },
-  {
-   "t": 1789146163119,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable commercial · « ftablette » → accès complet ✓"
-  },
-  {
-   "t": 1789146162959,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable commercial · « fcompta » → lecture seule 👁"
-  },
-  {
-   "t": 1789146161751,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « fcompta » → accès complet ✓"
-  },
-  {
-   "t": 1789146159789,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « fcompta » → aucun accès"
-  },
-  {
-   "t": 1789146158973,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « fcompta » → aucun accès"
-  },
-  {
-   "t": 1789146157947,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « fcompta » → lecture seule 👁"
-  },
-  {
-   "t": 1789146156929,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « fcompta » → lecture seule 👁"
-  },
-  {
-   "t": 1789146149118,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « ftablette » → accès complet ✓"
-  },
-  {
-   "t": 1789146147025,
-   "u": "Diego Herrera",
-   "a": "Permissions : Commercial · « ftablette » → aucun accès"
-  },
-  {
-   "t": 1789146146188,
-   "u": "Diego Herrera",
-   "a": "Permissions : Commercial · « ftablette » → lecture seule 👁"
-  },
-  {
-   "t": 1789146144538,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « ftablette » → accès complet ✓"
-  },
-  {
-   "t": 1789146142217,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable commercial · « ftablette » → aucun accès"
-  },
-  {
-   "t": 1789146141133,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable commercial · « ftablette » → lecture seule 👁"
-  },
-  {
-   "t": 1789146138905,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « ftablette » → aucun accès"
-  },
-  {
-   "t": 1789146138062,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « ftablette » → lecture seule 👁"
-  },
-  {
-   "t": 1789146124991,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « relances » → aucun accès"
-  },
-  {
-   "t": 1789146123978,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « relances » → lecture seule 👁"
-  },
-  {
-   "t": 1789146123096,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « relances » → aucun accès"
-  },
-  {
-   "t": 1789146122148,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « relances » → lecture seule 👁"
-  },
-  {
-   "t": 1789146115964,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « effectif » → aucun accès"
-  },
-  {
-   "t": 1789146115260,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « effectif » → lecture seule 👁"
-  },
-  {
-   "t": 1789146113751,
-   "u": "Diego Herrera",
-   "a": "Permissions : Membre · « effectif » → aucun accès"
-  },
-  {
-   "t": 1789146112913,
-   "u": "Diego Herrera",
-   "a": "Permissions : Membre · « effectif » → lecture seule 👁"
-  },
-  {
-   "t": 1789146109439,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « ftablette » → aucun accès"
-  },
-  {
-   "t": 1789146108683,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « ftablette » → lecture seule 👁"
-  },
-  {
-   "t": 1789146106763,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « prodder » → aucun accès"
-  },
-  {
-   "t": 1789146105778,
-   "u": "Diego Herrera",
-   "a": "Permissions : Responsable Runner · « prodder » → lecture seule 👁"
-  },
-  {
-   "t": 1789146103008,
-   "u": "Diego Herrera",
-   "a": "Permissions : Comptable · « prodder » → accès complet ✓"
-  },
-  {
-   "t": 1789146100833,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « prodder » → accès complet ✓"
-  },
-  {
-   "t": 1789146097857,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « quotascom » → aucun accès"
-  },
-  {
-   "t": 1789146096985,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « quotascom » → lecture seule 👁"
-  },
-  {
-   "t": 1789146092667,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « fventes » → aucun accès"
-  },
-  {
-   "t": 1789146091415,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « fventes » → lecture seule 👁"
-  },
-  {
-   "t": 1789146086521,
-   "u": "Diego Herrera",
-   "a": "Permissions : RH · « effectif » → accès complet ✓"
-  },
-  {
-   "t": 1789146084130,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « effectif » → accès complet ✓"
-  },
-  {
-   "t": 1789146083035,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « effectif » → aucun accès"
-  },
-  {
-   "t": 1789146037405,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « factures » → accès complet ✓"
-  },
-  {
-   "t": 1789146031808,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « fblacklist » → accès complet ✓"
-  },
-  {
-   "t": 1789145991037,
-   "u": "Diego Herrera",
-   "a": "Permissions : Assistant de direction · « agenda » → accès complet ✓"
-  },
-  {
-   "t": 1789145054823,
-   "u": "Stella Collins",
-   "a": "Éligibilité : 6 grade(s) réalignés sur l'effectif — Juan Sanchez : Commercial → RH · Ashley Cooper : Raffineur Expert → Responsable Runner · Bobby Rousseau : Raffineur Expert → Raffineur Confirmé · Alejandro Varrgas : Raffineur → Intérimaire…"
-  },
   {
    "t": 1789130686122,
    "u": "Diego Herrera",
@@ -19652,6 +19279,331 @@
    "a": "Contrat de travail généré : Gérard Lopez (Runner)",
    "t": 1787690160992,
    "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Larry Lewington (Runner)",
+   "t": 1787671880450,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : John Clair (Runner)",
+   "t": 1787671857651,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Alexander Hayes (Runner)",
+   "t": 1787599788889,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Packito Brown (Runner)",
+   "t": 1787599759476,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Rico Garcia (Runner)",
+   "t": 1787599658051,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Absence déclarée : Amia Collins du 24/08/2026 au 30/08/2026",
+   "t": 1787595876396,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Absence déclarée : Scott Mate du 24/08/2026 au 30/08/2026",
+   "t": 1787595339680,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Absence déclarée : Zack Ishua du 24/08/2026 au 31/08/2026",
+   "t": 1787595184354,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Absence déclarée : Elyra Collins du 24/08/2026 au 31/08/2026",
+   "t": 1787595162017,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Absence déclarée : Tony Bellino du 24/08/2026 au 29/08/2026",
+   "t": 1787595141147,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Joseph Larose (Runner)",
+   "t": 1787585145910,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Vente rapide sans facture : 50 bidon(s) — Citoyen (vendeur : Stella Collins)",
+   "t": 1787577689867,
+   "u": "Laurent Roquel"
+  },
+  {
+   "a": "Contrat de travail généré : Thomas Cortello (Runner)",
+   "t": 1787576124567,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Contrat de travail généré : Luca Morel (Runner)",
+   "t": 1787576117640,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Palier fiscal : retour au calcul automatique",
+   "t": 1787570501400,
+   "u": "Diego Herrera"
+  },
+  {
+   "a": "Palier fiscal forcé : palier 10 (automatique attendu : 4)",
+   "t": 1787570494994,
+   "u": "Diego Herrera"
+  },
+  {
+   "a": "Suppression de la facture n°253065",
+   "t": 1787527149800,
+   "u": "Emma Collins"
+  },
+  {
+   "a": "Réinitialisation de la feuille « Compta » (9 lignes)",
+   "t": 1787526687513,
+   "u": "Diego Herrera"
+  },
+  {
+   "a": "Réinitialisation de la feuille « Tablette » (77 lignes)",
+   "t": 1787526680489,
+   "u": "Diego Herrera"
+  },
+  {
+   "a": "Réinitialisation de la feuille « Ventes de la semaine » (25 lignes)",
+   "t": 1787526677077,
+   "u": "Diego Herrera"
+  },
+  {
+   "a": "Clôture de la semaine 34 — 302 854 barils · 461 994 $ de primes · promus : Fred Montaigu, Mason Harper, John Scoupio, Alex Turner, Lázaro Ochoa, Andrew Clark, Strya Ryuzen, Saad Lzaar, Jayson Simth, Jojo Lappach, Elliot Mayers, Joseph Purple, Louka Romelu, Alejandro Varrgas, Sevan Vargas",
+   "t": 1787526653805,
+   "u": "Diego Herrera"
+  },
+  {
+   "a": "Vente rapide sans facture : 1 bidon(s) — Citoyen Liam Collins (vendeur : Thomas Boyer)",
+   "t": 1787517524022,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Fer acheté noté : Juan Sanchez → 1 914",
+   "t": 1787514028986,
+   "u": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
+  },
+  {
+   "a": "Contrat de travail généré : Junior Winchester (Runner)",
+   "t": 1787505480987,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Fer acheté noté : Juan Sanchez → 1 602",
+   "t": 1787504962503,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Fer acheté noté : Julio Collins → 1 914",
+   "t": 1787504958485,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Fer acheté noté : Laurent Roquel → 1 914",
+   "t": 1787504955501,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 1 914",
+   "t": 1787504952062,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Fer acheté noté : William Rodriguez-collins → 1 914",
+   "t": 1787504949079,
+   "u": "Stella Collins"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503794507,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503791728,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503791541,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503791357,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503791222,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503787570,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503787396,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503787034,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503786842,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503786700,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503782124,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503781927,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503781568,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503781401,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503781251,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503776924,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503776758,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503776434,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503776228,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503776084,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503768477,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503768301,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503767958,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503767768,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503767610,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503767428,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503767236,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503767118,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503765826,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503764724,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503763562,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503762311,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503761174,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Ayko",
+   "t": 1787503759619,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : Momoow",
+   "t": 1787503757710,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503755595,
+   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19977,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:07:43.611Z",
+  "maj": "2026-09-11T17:07:59.762Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40636,123 +40588,144 @@
     "id": 1789144620301
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:42:54.755Z",
-    "id": 1789144972935
+    "vu": "2026-09-11T16:38:53.840Z",
+    "id": 1789144740155
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:44:24.758Z",
-    "id": 1789145063243
+    "vu": "2026-09-11T16:39:53.842Z",
+    "id": 1789144800290
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:45:54.757Z",
-    "id": 1789145153451
+    "vu": "2026-09-11T16:41:53.841Z",
+    "id": 1789144919469
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:47:24.754Z",
-    "id": 1789145242788
+    "vu": "2026-09-11T16:42:53.842Z",
+    "id": 1789144979760
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:48:54.758Z",
-    "id": 1789145332748
+    "vu": "2026-09-11T16:44:53.841Z",
+    "id": 1789145099626
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:50:24.760Z",
-    "id": 1789145423257
+    "vu": "2026-09-11T16:45:53.842Z",
+    "id": 1789145160017
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:51:54.753Z",
-    "id": 1789145512906
+    "vu": "2026-09-11T16:47:53.853Z",
+    "id": 1789145280335
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:53:26.018Z",
-    "id": 1789145604156
+    "vu": "2026-09-11T16:48:53.854Z",
+    "id": 1789145339356
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:54:54.848Z",
-    "id": 1789145692706
+    "vu": "2026-09-11T16:50:53.853Z",
+    "id": 1789145459850
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:56:24.849Z",
-    "id": 1789145783440
+    "vu": "2026-09-11T16:51:53.855Z",
+    "id": 1789145519864
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:57:54.849Z",
-    "id": 1789145872926
+    "vu": "2026-09-11T16:53:53.853Z",
+    "id": 1789145639455
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:59:24.850Z",
-    "id": 1789145963650
+    "vu": "2026-09-11T16:54:53.855Z",
+    "id": 1789145700306
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T17:00:54.851Z",
-    "id": 1789146053398
+    "vu": "2026-09-11T16:56:53.854Z",
+    "id": 1789145820301
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T17:02:24.852Z",
-    "id": 1789146143213
+    "vu": "2026-09-11T16:57:53.680Z",
+    "id": 1789145879829
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T17:03:54.840Z",
-    "id": 1789146233522
+    "vu": "2026-09-11T16:59:53.679Z",
+    "id": 1789146000172
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T17:05:24.841Z",
-    "id": 1789146323663
+    "vu": "2026-09-11T17:00:53.678Z",
+    "id": 1789146059655
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
     "role": "direction",
-    "vu": "2026-09-11T17:06:54.841Z",
-    "id": 1789146413009
+    "vu": "2026-09-11T17:02:53.679Z",
+    "id": 1789146180189
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T17:03:53.680Z",
+    "id": 1789146239418
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T17:05:53.679Z",
+    "id": 1789146360269
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T17:06:53.681Z",
+    "id": 1789146420210
    }
   ],
   "oilroxwood_demandes": [],
@@ -40783,19 +40756,6 @@
     "commercial": "@role",
     "hebdo": true,
     "id": 1788526786838
-   },
-   {
-    "uid": "948542221429379112",
-    "titre": "Famillia Ghost",
-    "type": "contrat",
-    "date": "2026-09-13",
-    "deb": "18:00",
-    "fin": "19:00",
-    "note": "120 Bidons",
-    "partage": true,
-    "commercial": "@role",
-    "hebdo": true,
-    "id": 1789145270913
    }
   ],
   "oilroxwood_bot_ordres": [
