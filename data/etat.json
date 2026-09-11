@@ -18078,7 +18078,6 @@
     "felig",
     "quotashist",
     "profil",
-    "moi",
     "agenda",
     "affiches",
     "maj"
@@ -18126,8 +18125,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146311912,
- "_rev": "3v3jvqhocq-mtx7itjw",
+ "_maj": 1789146317873,
+ "_rev": "8lpyyvtkxqm-mtx7ivut",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18136,13 +18135,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146311912,
+  "journal": 1789146317873,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146311912,
+  "settings": 1789146317873,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18165,6 +18164,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146319657,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « moi » → aucun accès"
+  },
+  {
+   "t": 1789146318376,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « moi » → lecture seule 👁"
+  },
   {
    "t": 1789146313695,
    "u": "Diego Herrera",
@@ -19654,16 +19663,6 @@
    "a": "Contrat de travail généré : Eddy Conor (Runner)",
    "t": 1787848361842,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "↩ Retour en arrière sur la feuille RH",
-   "t": 1787848202355,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Feuille RH triée par grade",
-   "t": 1787848192698,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19989,7 +19988,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:17.084Z",
+  "maj": "2026-09-11T17:05:20.069Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
