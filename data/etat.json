@@ -17977,7 +17977,6 @@
     "moi",
     "agenda",
     "affiches",
-    "journal",
     "params",
     "maj"
    ],
@@ -18127,8 +18126,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146327549,
- "_rev": "zgb4cq9tdxj-mtx7j61w",
+ "_maj": 1789146334871,
+ "_rev": "wekxwysj6n-mtx7j8zq",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18137,13 +18136,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146327549,
+  "journal": 1789146334871,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146327549,
+  "settings": 1789146334871,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18151,7 +18150,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789146242132,
+  "_tables": 1789146332129,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -18166,6 +18165,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146336655,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « journal » → aucun accès"
+  },
+  {
+   "t": 1789146335355,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « journal » → lecture seule 👁"
+  },
   {
    "t": 1789146329333,
    "u": "Diego Herrera",
@@ -19655,16 +19664,6 @@
    "a": "Vente rapide sans facture : 10 bidon(s) — Citoyen (vendeur : Juan Sanchez)",
    "t": 1787948226706,
    "u": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 486",
-   "t": 1787947369837,
-   "u": "Emma Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 486",
-   "t": 1787947309064,
-   "u": "Emma Collins"
   }
  ],
  "prodDer": {
@@ -19990,7 +19989,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:33.284Z",
+  "maj": "2026-09-11T17:05:37.094Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40752,6 +40751,13 @@
     "role": "direction",
     "vu": "2026-09-11T17:04:02.132Z",
     "id": 1789146244344
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-11T17:05:32.129Z",
+    "id": 1789146334348
    }
   ],
   "oilroxwood_demandes": [],
