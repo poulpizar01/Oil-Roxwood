@@ -11485,7 +11485,7 @@
     "don": "",
     "nom": "Juan Sanchez",
     "date": "",
-    "grade": "Commercial",
+    "grade": "RH",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11535,7 +11535,7 @@
     "don": "",
     "nom": "Ashley Cooper",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Responsable Runner",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11545,7 +11545,7 @@
     "don": "",
     "nom": "Bobby Rousseau",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11645,7 +11645,7 @@
     "don": "",
     "nom": "Alejandro Varrgas",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11675,7 +11675,7 @@
     "don": "",
     "nom": "Eden Birds",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11735,7 +11735,7 @@
     "don": "",
     "nom": "Bjorn Frost",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -18065,18 +18065,18 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "kkw72v52njk",
- "_maj": 1789145693855,
- "_rev": "xwv5enm23dq-mtx75lbk",
+ "_cid": "wde5ouun348",
+ "_maj": 1789145694848,
+ "_rev": "ero0uq73mwu-mtx75ihs",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
   "users": 1789130432022,
   "weeks": 1789129111202,
-  "sheets": 1789130289776,
+  "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789130684444,
+  "journal": 1789145056908,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
@@ -18090,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789145693855,
+  "_tables": 1789145694848,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -18105,6 +18105,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789145054823,
+   "u": "Stella Collins",
+   "a": "Éligibilité : 6 grade(s) réalignés sur l'effectif — Juan Sanchez : Commercial → RH · Ashley Cooper : Raffineur Expert → Responsable Runner · Bobby Rousseau : Raffineur Expert → Raffineur Confirmé · Alejandro Varrgas : Raffineur → Intérimaire…"
+  },
   {
    "t": 1789130686122,
    "u": "Diego Herrera",
@@ -19599,11 +19604,6 @@
    "a": "Demande d'accès refusée : Momoow",
    "t": 1787503757710,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503755595,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19929,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T16:54:59.888Z",
+  "maj": "2026-09-11T16:54:56.224Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40588,88 +40588,67 @@
     "id": 1789144620301
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:38:53.840Z",
-    "id": 1789144740155
+    "vu": "2026-09-11T16:42:54.755Z",
+    "id": 1789144972935
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:39:53.842Z",
-    "id": 1789144800290
+    "vu": "2026-09-11T16:44:24.758Z",
+    "id": 1789145063243
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:41:53.841Z",
-    "id": 1789144919469
+    "vu": "2026-09-11T16:45:54.757Z",
+    "id": 1789145153451
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:42:53.842Z",
-    "id": 1789144979760
+    "vu": "2026-09-11T16:47:24.754Z",
+    "id": 1789145242788
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:44:53.841Z",
-    "id": 1789145099626
+    "vu": "2026-09-11T16:48:54.758Z",
+    "id": 1789145332748
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:45:53.842Z",
-    "id": 1789145160017
+    "vu": "2026-09-11T16:50:24.760Z",
+    "id": 1789145423257
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:47:53.853Z",
-    "id": 1789145280335
+    "vu": "2026-09-11T16:51:54.753Z",
+    "id": 1789145512906
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:48:53.854Z",
-    "id": 1789145339356
+    "vu": "2026-09-11T16:53:26.018Z",
+    "id": 1789145604156
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:50:53.853Z",
-    "id": 1789145459850
-   },
-   {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:51:53.855Z",
-    "id": 1789145519864
-   },
-   {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:53:53.853Z",
-    "id": 1789145639455
-   },
-   {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:54:53.855Z",
-    "id": 1789145700306
+    "vu": "2026-09-11T16:54:54.848Z",
+    "id": 1789145692706
    }
   ],
   "oilroxwood_demandes": [],
@@ -40700,6 +40679,19 @@
     "commercial": "@role",
     "hebdo": true,
     "id": 1788526786838
+   },
+   {
+    "uid": "948542221429379112",
+    "titre": "Famillia Ghost",
+    "type": "contrat",
+    "date": "2026-09-13",
+    "deb": "18:00",
+    "fin": "19:00",
+    "note": "120 Bidons",
+    "partage": true,
+    "commercial": "@role",
+    "hebdo": true,
+    "id": 1789145270913
    }
   ],
   "oilroxwood_bot_ordres": [
