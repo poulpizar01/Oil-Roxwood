@@ -1,5 +1,546 @@
 {
- "runners": [],
+ "runners": [
+  {
+   "id": 1789129289742,
+   "nom": "Stella Collins",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Patron",
+   "lastSync": 0
+  },
+  {
+   "id": 1789129630908,
+   "nom": "Tyler Collins",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Co Patron",
+   "lastSync": 0
+  },
+  {
+   "id": 1789129487311,
+   "nom": "Diego Herrera",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Co Patron",
+   "lastSync": 0
+  },
+  {
+   "id": 1789129588955,
+   "nom": "Thomas Boyer",
+   "discord": "",
+   "grade": 0,
+   "barils": 739,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "RH",
+   "lastSync": 739
+  },
+  {
+   "id": 1789129727275,
+   "nom": "Juan Sanchez",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "RH",
+   "lastSync": 0
+  },
+  {
+   "id": 1789129469951,
+   "nom": "Emma Collins-rodriguez",
+   "discord": "",
+   "grade": 0,
+   "barils": 2478,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Responsable Commercial",
+   "lastSync": 2478
+  },
+  {
+   "id": 1789129883861,
+   "nom": "William Rodriguez-collins",
+   "discord": "",
+   "grade": 0,
+   "barils": 1728,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Commercial",
+   "lastSync": 1728
+  },
+  {
+   "id": 1789129220774,
+   "nom": "Julio Collins",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Commercial",
+   "lastSync": 0
+  },
+  {
+   "id": 1789129558547,
+   "nom": "Laurent Roquel",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Commercial",
+   "lastSync": 0
+  },
+  {
+   "id": 1789129508560,
+   "nom": "Ashley Cooper",
+   "discord": "",
+   "grade": 4,
+   "barils": 3597,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 3597
+  },
+  {
+   "id": 1789129591150,
+   "nom": "Jack Hamilton",
+   "discord": "",
+   "grade": 3,
+   "barils": 604,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 604
+  },
+  {
+   "id": 1789129404212,
+   "nom": "Darian Nguyen",
+   "discord": "",
+   "grade": 3,
+   "barils": 5869,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 5869
+  },
+  {
+   "id": 1789130025469,
+   "nom": "Alex Turner",
+   "discord": "",
+   "grade": 3,
+   "barils": 22780,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 22780
+  },
+  {
+   "id": 1789129227906,
+   "nom": "Eden Birds",
+   "discord": "",
+   "grade": 3,
+   "barils": 10149,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 10149
+  },
+  {
+   "id": 1789129547144,
+   "nom": "Junior Wills",
+   "discord": "",
+   "grade": 3,
+   "barils": 2194,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 2194
+  },
+  {
+   "id": 1789130174612,
+   "nom": "Morino Collins",
+   "discord": "",
+   "grade": 2,
+   "barils": 5162,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 5162
+  },
+  {
+   "id": 1789129878900,
+   "nom": "Victor Sulivane",
+   "discord": "",
+   "grade": 2,
+   "barils": 8776,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 8776
+  },
+  {
+   "id": 1789129407297,
+   "nom": "Bobby Rousseau",
+   "discord": "",
+   "grade": 2,
+   "barils": 5154,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 5154
+  },
+  {
+   "id": 1789129257834,
+   "nom": "Savannah Brooks",
+   "discord": "",
+   "grade": 2,
+   "barils": 733,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 733
+  },
+  {
+   "id": 1789129601767,
+   "nom": "Tommy Helfinger",
+   "discord": "",
+   "grade": 1,
+   "barils": 3030,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 3030
+  },
+  {
+   "id": 1789129207671,
+   "nom": "Arthure Pilon",
+   "discord": "",
+   "grade": 1,
+   "barils": 3831,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 3831
+  },
+  {
+   "id": 1789129499492,
+   "nom": "Marcus Johnson",
+   "discord": "",
+   "grade": 1,
+   "barils": 3569,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 3569
+  },
+  {
+   "id": 1789129514008,
+   "nom": "Helena Rhosé",
+   "discord": "",
+   "grade": 1,
+   "barils": 630,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 630
+  },
+  {
+   "id": 1789129458203,
+   "nom": "Amine Nasser",
+   "discord": "",
+   "grade": 1,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 0
+  },
+  {
+   "id": 1789130129848,
+   "nom": "Ilyes Moutaouk",
+   "discord": "",
+   "grade": 1,
+   "barils": 3148,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 3148
+  },
+  {
+   "id": 1789130149204,
+   "nom": "Adel Dulax",
+   "discord": "",
+   "grade": 1,
+   "barils": 2984,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 2984
+  },
+  {
+   "id": 1789130090337,
+   "nom": "Fred Montaigu",
+   "discord": "",
+   "grade": 1,
+   "barils": 626,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 626
+  },
+  {
+   "id": 1789130075926,
+   "nom": "Ray Buffalo",
+   "discord": "",
+   "grade": 1,
+   "barils": 150,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 150
+  },
+  {
+   "id": 1789129904251,
+   "nom": "Bjorn Frost",
+   "discord": "",
+   "grade": 0,
+   "barils": 1538,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 1538
+  },
+  {
+   "id": 1789130007392,
+   "nom": "Ivar Frost",
+   "discord": "",
+   "grade": 0,
+   "barils": 778,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 778
+  },
+  {
+   "id": 1789129489499,
+   "nom": "Hitachi Hydro",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 0
+  },
+  {
+   "id": 1789129612883,
+   "nom": "Elliot Adkins",
+   "discord": "",
+   "grade": 0,
+   "barils": 1912,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 1912
+  },
+  {
+   "id": 1789129510428,
+   "nom": "Pablo Escocha",
+   "discord": "",
+   "grade": 0,
+   "barils": 636,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 636
+  },
+  {
+   "id": 1789129757456,
+   "nom": "Keath Chop's",
+   "discord": "",
+   "grade": 0,
+   "barils": 6591,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 6591
+  },
+  {
+   "id": 1789129401306,
+   "nom": "Nicolas Ismeurt",
+   "discord": "",
+   "grade": 0,
+   "barils": 1976,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 1976
+  },
+  {
+   "id": 1789129259972,
+   "nom": "Bratan Leoneti",
+   "discord": "",
+   "grade": 0,
+   "barils": 6427,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 6427
+  },
+  {
+   "id": 1789129347299,
+   "nom": "Jason White",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 0
+  },
+  {
+   "id": 1789129781656,
+   "nom": "Junior Collins",
+   "discord": "",
+   "grade": 0,
+   "barils": 3486,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 3486
+  },
+  {
+   "id": 1789129672642,
+   "nom": "Drew Miller",
+   "discord": "",
+   "grade": 0,
+   "barils": 1224,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 1224
+  },
+  {
+   "id": 1789129324401,
+   "nom": "Louka Romelu",
+   "discord": "",
+   "grade": 0,
+   "barils": 2492,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 2492
+  },
+  {
+   "id": 1789130053854,
+   "nom": "Alex Bren",
+   "discord": "",
+   "grade": 0,
+   "barils": 741,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 741
+  },
+  {
+   "id": 1789129983807,
+   "nom": "Lazario Ramirez",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 0
+  },
+  {
+   "id": 1789129737521,
+   "nom": "Tarek Rodriguez",
+   "discord": "",
+   "grade": 0,
+   "barils": 2967,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": "Stagiaire",
+   "lastSync": 2967
+  },
+  {
+   "id": 1789129703859,
+   "nom": "Alejandro Varrgas",
+   "discord": "",
+   "grade": 0,
+   "barils": 0,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 0
+  },
+  {
+   "id": 1789129892777,
+   "nom": "Jose Danielle",
+   "discord": "",
+   "grade": 0,
+   "barils": 632,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 632
+  }
+ ],
  "weeks": [
   {
    "num": 28,
@@ -8627,7 +9168,413 @@
     "remboursement": 0
    }
   ],
-  "tablette": [],
+  "tablette": [
+   {
+    "nom": "Stella Collins",
+    "rang": "Patron",
+    "factures": 60000,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "25h42min"
+   },
+   {
+    "nom": "Tyler Collins",
+    "rang": "Co Patron",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "4h06min"
+   },
+   {
+    "nom": "Diego Herrera",
+    "rang": "Co Patron",
+    "factures": 9000,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "8h10min"
+   },
+   {
+    "nom": "Thomas Boyer",
+    "rang": "RH",
+    "factures": 0,
+    "runs": 3695,
+    "ventes": 0,
+    "part": 7390,
+    "heures": "27h52min"
+   },
+   {
+    "nom": "Juan Sanchez",
+    "rang": "RH",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "14h12min"
+   },
+   {
+    "nom": "Emma Collins-rodriguez",
+    "rang": "Responsable Commercial",
+    "factures": 19200,
+    "runs": 12390,
+    "ventes": 0,
+    "part": 24780,
+    "heures": "11h58min"
+   },
+   {
+    "nom": "William Rodriguez-collins",
+    "rang": "Commercial",
+    "factures": 27000,
+    "runs": 8640,
+    "ventes": 0,
+    "part": 17280,
+    "heures": "7h18min"
+   },
+   {
+    "nom": "Julio Collins",
+    "rang": "Commercial",
+    "factures": 7800,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "17h50min"
+   },
+   {
+    "nom": "Laurent Roquel",
+    "rang": "Commercial",
+    "factures": 27000,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "6h54min"
+   },
+   {
+    "nom": "Ashley Cooper",
+    "rang": "Responsable Runner",
+    "factures": 0,
+    "runs": 17985,
+    "ventes": 0,
+    "part": 35970,
+    "heures": "10h06min"
+   },
+   {
+    "nom": "Jack Hamilton",
+    "rang": "Raffineur Expert",
+    "factures": 0,
+    "runs": 3020,
+    "ventes": 0,
+    "part": 6040,
+    "heures": "0h30min"
+   },
+   {
+    "nom": "Darian Nguyen",
+    "rang": "Raffineur Expert",
+    "factures": 0,
+    "runs": 29345,
+    "ventes": 0,
+    "part": 58690,
+    "heures": "10h42min"
+   },
+   {
+    "nom": "Alex Turner",
+    "rang": "Raffineur Expert",
+    "factures": 0,
+    "runs": 113900,
+    "ventes": 0,
+    "part": 227800,
+    "heures": "53h40min"
+   },
+   {
+    "nom": "Eden Birds",
+    "rang": "Raffineur Expert",
+    "factures": 0,
+    "runs": 50745,
+    "ventes": 0,
+    "part": 101490,
+    "heures": "20h02min"
+   },
+   {
+    "nom": "Junior Wills",
+    "rang": "Raffineur Expert",
+    "factures": 0,
+    "runs": 10970,
+    "ventes": 0,
+    "part": 21940,
+    "heures": "3h16min"
+   },
+   {
+    "nom": "Morino Collins",
+    "rang": "Raffineur Confirmé",
+    "factures": 0,
+    "runs": 25810,
+    "ventes": 0,
+    "part": 51620,
+    "heures": "6h08min"
+   },
+   {
+    "nom": "Victor Sulivane",
+    "rang": "Raffineur Confirmé",
+    "factures": 0,
+    "runs": 43880,
+    "ventes": 0,
+    "part": 87760,
+    "heures": "16h40min"
+   },
+   {
+    "nom": "Bobby Rousseau",
+    "rang": "Raffineur Confirmé",
+    "factures": 0,
+    "runs": 25770,
+    "ventes": 0,
+    "part": 51540,
+    "heures": "5h08min"
+   },
+   {
+    "nom": "Savannah Brooks",
+    "rang": "Raffineur Confirmé",
+    "factures": 0,
+    "runs": 3665,
+    "ventes": 0,
+    "part": 7330,
+    "heures": "0h58min"
+   },
+   {
+    "nom": "Tommy Helfinger",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 15150,
+    "ventes": 0,
+    "part": 30300,
+    "heures": "9h54min"
+   },
+   {
+    "nom": "Arthure Pilon",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 19155,
+    "ventes": 0,
+    "part": 38310,
+    "heures": "10h52min"
+   },
+   {
+    "nom": "Marcus Johnson",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 17845,
+    "ventes": 0,
+    "part": 35690,
+    "heures": "5h00min"
+   },
+   {
+    "nom": "Helena Rhosé",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 3150,
+    "ventes": 0,
+    "part": 6300,
+    "heures": "3h46min"
+   },
+   {
+    "nom": "Amine Nasser",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "0h46min"
+   },
+   {
+    "nom": "Ilyes Moutaouk",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 15740,
+    "ventes": 0,
+    "part": 31480,
+    "heures": "5h30min"
+   },
+   {
+    "nom": "Adel Dulax",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 14920,
+    "ventes": 0,
+    "part": 29840,
+    "heures": "5h26min"
+   },
+   {
+    "nom": "Fred Montaigu",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 3130,
+    "ventes": 0,
+    "part": 6260,
+    "heures": "2h16min"
+   },
+   {
+    "nom": "Ray Buffalo",
+    "rang": "Raffineur",
+    "factures": 0,
+    "runs": 750,
+    "ventes": 0,
+    "part": 1500,
+    "heures": "4h10min"
+   },
+   {
+    "nom": "Bjorn Frost",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 7690,
+    "ventes": 0,
+    "part": 15380,
+    "heures": "3h16min"
+   },
+   {
+    "nom": "Ivar Frost",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 3890,
+    "ventes": 0,
+    "part": 7780,
+    "heures": "2h18min"
+   },
+   {
+    "nom": "Hitachi Hydro",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "3h08min"
+   },
+   {
+    "nom": "Elliot Adkins",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 9560,
+    "ventes": 0,
+    "part": 19120,
+    "heures": "3h52min"
+   },
+   {
+    "nom": "Pablo Escocha",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 3180,
+    "ventes": 0,
+    "part": 6360,
+    "heures": "1h32min"
+   },
+   {
+    "nom": "Keath Chop's",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 32955,
+    "ventes": 0,
+    "part": 65910,
+    "heures": "15h50min"
+   },
+   {
+    "nom": "Nicolas Ismeurt",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 9880,
+    "ventes": 0,
+    "part": 19760,
+    "heures": "4h14min"
+   },
+   {
+    "nom": "Bratan Leoneti",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 32135,
+    "ventes": 0,
+    "part": 64270,
+    "heures": "19h34min"
+   },
+   {
+    "nom": "Jason White",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "0h58min"
+   },
+   {
+    "nom": "Junior Collins",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 17430,
+    "ventes": 0,
+    "part": 34860,
+    "heures": "6h46min"
+   },
+   {
+    "nom": "Drew Miller",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 6120,
+    "ventes": 0,
+    "part": 12240,
+    "heures": "3h48min"
+   },
+   {
+    "nom": "Louka Romelu",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 12460,
+    "ventes": 0,
+    "part": 24920,
+    "heures": "5h48min"
+   },
+   {
+    "nom": "Alex Bren",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 3705,
+    "ventes": 0,
+    "part": 7410,
+    "heures": "2h28min"
+   },
+   {
+    "nom": "Lazario Ramirez",
+    "rang": "Intérimaire",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "0h20min"
+   },
+   {
+    "nom": "Tarek Rodriguez",
+    "rang": "Stagiaire",
+    "factures": 0,
+    "runs": 14835,
+    "ventes": 0,
+    "part": 29670,
+    "heures": "5h48min"
+   },
+   {
+    "nom": "Alejandro Varrgas",
+    "rang": "-",
+    "factures": 0,
+    "runs": 0,
+    "ventes": 0,
+    "part": 0,
+    "heures": "0h06min"
+   },
+   {
+    "nom": "Jose Danielle",
+    "rang": "-",
+    "factures": 0,
+    "runs": 3160,
+    "ventes": 0,
+    "part": 6320,
+    "heures": "1h30min"
+   }
+  ],
   "blacklist": [
    {
     "idU": "376513",
@@ -14159,7 +15106,8 @@
    "id": 1783522211554,
    "did": "767332288744128512",
    "role": "commercial",
-   "user": "Julio Collins"
+   "user": "Julio Collins",
+   "avatar": "https://cdn.discordapp.com/avatars/767332288744128512/6c11157ab60158807c7bcb3defdfa100.png"
   },
   {
    "id": 1787498251136,
@@ -14186,13 +15134,13 @@
    "public": false,
    "maj": "2026-09-11T12:36:49.002Z"
   },
-  "stella collins": {
-   "nom": "Stella Collins",
+  "julio collins": {
+   "nom": "Julio Collins",
    "photo": "",
    "titre": "",
    "bio": "",
    "public": true,
-   "maj": "2026-09-11T23:54:00.900Z"
+   "maj": "2026-09-11T23:53:50.627Z"
   }
  },
  "affiches": [],
@@ -17042,7 +17990,8 @@
     "params"
    ],
    "commercial": [
-    "effectif",
+    "frh",
+    "fblacklist",
     "factures",
     "relances",
     "fventes",
@@ -17182,76 +18131,46 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "6sz7gxe359c",
- "_maj": 1789170916134,
- "_rev": "0rfsgpntmla-mtxm67uy",
+ "_cid": "45vfbgdr6hc",
+ "_maj": 1789170921801,
+ "_rev": "ofmsuebaja-mtxm68wx",
  "_majSec": {
-  "fer": 1789170364287,
-  "fact": 1789170364287,
-  "users": 1789170364287,
-  "weeks": 1789170364287,
-  "sheets": 1789170378709,
-  "_qcFix1": 1789170364287,
-  "_wkFix1": 1789170364287,
-  "journal": 1789170916134,
-  "pending": 1789170364287,
-  "prodDer": 1789170364287,
-  "runners": 1789170378722,
-  "absences": 1789170364287,
-  "imported": 1789170364287,
-  "settings": 1789170916134,
-  "closeUndo": 1789170364287,
-  "quotasCom": 1789170364287,
-  "bilanExtra": 1789170364287,
-  "bilanForce": 1789170364287,
-  "primesExtra": 1789170364287,
-  "quotasComHist": 1789170364287,
-  "profils": 1789170840900,
-  "_tables": 1789170906677,
-  "_permsFix1": 1789170364287,
+  "fer": 1789170394751,
+  "fact": 1789170394751,
+  "users": 1789170394751,
+  "weeks": 1789170394751,
+  "sheets": 1789170394751,
+  "_qcFix1": 1789170394751,
+  "_wkFix1": 1789170394751,
+  "journal": 1789170394751,
+  "pending": 1789170394751,
+  "prodDer": 1789170394751,
+  "runners": 1789170394751,
+  "absences": 1789170394751,
+  "imported": 1789170394751,
+  "settings": 1789170394751,
+  "closeUndo": 1789170394751,
+  "quotasCom": 1789170394751,
+  "bilanExtra": 1789170394751,
+  "bilanForce": 1789170394751,
+  "primesExtra": 1789170394751,
+  "quotasComHist": 1789170394751,
+  "profils": 1789170830627,
+  "_tables": 1789170921801,
+  "_permsFix1": 1789170394751,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789170364287,
-  "affiches": 1789170364287,
-  "_affFix1": 1789170364287,
-  "produits": 1789170364287,
-  "_prodFix1": 1789170364287,
-  "_recruesIgnore": 1789170364287,
-  "ventesAlias": 1789170364287,
-  "_ventesIgnore": 1789170364287
+  "_rolesFix77": 1789170394751,
+  "affiches": 1789170394751,
+  "_affFix1": 1789170394751,
+  "produits": 1789170394751,
+  "_prodFix1": 1789170394751,
+  "_recruesIgnore": 1789170394751,
+  "ventesAlias": 1789170394751,
+  "_ventesIgnore": 1789170394751
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789170918909,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « fblacklist » → aucun accès"
-  },
-  {
-   "t": 1789170918001,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « effectif » → accès complet ✓"
-  },
-  {
-   "t": 1789170917861,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « fblacklist » → lecture seule 👁"
-  },
-  {
-   "t": 1789170915433,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « frh » → aucun accès"
-  },
-  {
-   "t": 1789170914519,
-   "u": "Stella Collins",
-   "a": "Permissions : Commercial · « frh » → lecture seule 👁"
-  },
-  {
-   "t": 1789170381484,
-   "u": "Stella Collins",
-   "a": "Réinitialisation de la feuille « Tablette » (45 lignes)"
-  },
   {
    "t": 1789146349232,
    "u": "Diego Herrera",
@@ -18721,6 +19640,36 @@
    "a": "Vente rapide sans facture : 20 bidon(s) — Citoyen (vendeur : Julio Collins)",
    "t": 1788035377752,
    "u": "Julio Collins"
+  },
+  {
+   "a": "Vente rapide sans facture : 1 bidon(s) — Employé Ray Buffalo (vendeur : Thomas Boyer)",
+   "t": 1788022266051,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Vente rapide sans facture : 2 bidon(s) — Employé rodriguez johnatan (vendeur : Julio Collins)",
+   "t": 1788021909222,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Contrat de travail généré : Miles Cole (Runner)",
+   "t": 1788017703216,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Contrat de travail généré : Hirsute Maasai (Runner)",
+   "t": 1788017653425,
+   "u": "Thomas Boyer"
+  },
+  {
+   "a": "Fer acheté noté : Juan Sanchez → 319",
+   "t": 1788014461043,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 690",
+   "t": 1788014453835,
+   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19046,14 +19995,27 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T23:55:23.338Z",
+  "maj": "2026-09-11T23:55:24.705Z",
   "semaine": 36,
-  "totalBarils": 0,
-  "ca": 0,
+  "totalBarils": 119331,
+  "ca": 596655,
   "objectif": 375000,
-  "effectif": 107,
+  "effectif": 114,
   "clientsServis": 74,
-  "top3": [],
+  "top3": [
+   {
+    "nom": "Alex Turner",
+    "barils": 22780
+   },
+   {
+    "nom": "Eden Birds",
+    "barils": 10149
+   },
+   {
+    "nom": "Victor Sulivane",
+    "barils": 8776
+   }
+  ],
   "runners": [],
   "produits": [
    {
@@ -19071,15 +20033,15 @@
   ],
   "equipe": [
    {
-    "nom": "Stella Collins",
-    "titre": "Patron",
-    "photo": "https://cdn.discordapp.com/avatars/948542221429379112/9ead2c2f20a0b9980c9b59116b06f67e.png",
-    "bio": ""
-   },
-   {
     "nom": "Diego Herrera",
     "titre": "Co Patron",
     "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+    "bio": ""
+   },
+   {
+    "nom": "Julio Collins",
+    "titre": "Commercial",
+    "photo": "https://cdn.discordapp.com/avatars/767332288744128512/6c11157ab60158807c7bcb3defdfa100.png",
     "bio": ""
    }
   ]
@@ -41245,60 +42207,60 @@
     "id": 1789164788948
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:46:03.944Z",
-    "id": 1789170367172
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T23:46:21.729Z",
+    "id": 1789170375749
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:46:09.447Z",
-    "id": 1789170370672
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T23:47:51.732Z",
+    "id": 1789170465804
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:47:36.677Z",
-    "id": 1789170459836
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T23:49:22.253Z",
+    "id": 1789170556879
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:49:07.321Z",
-    "id": 1789170550098
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T23:50:52.251Z",
+    "id": 1789170646636
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:50:37.325Z",
-    "id": 1789170640961
+    "uid": "690537200689086537",
+    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "role": "rh",
+    "vu": "2026-09-11T23:52:22.254Z",
+    "id": 1789170736867
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:52:07.315Z",
-    "id": 1789170730114
+    "uid": "767332288744128512",
+    "nom": "Julio Collins",
+    "role": "commercial",
+    "vu": "2026-09-11T23:53:06.826Z",
+    "id": 1789170787708
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:53:37.316Z",
-    "id": 1789170820277
+    "uid": "767332288744128512",
+    "nom": "Julio Collins",
+    "role": "commercial",
+    "vu": "2026-09-11T23:54:08.433Z",
+    "id": 1789170848650
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-11T23:55:06.677Z",
-    "id": 1789170910105
+    "uid": "767332288744128512",
+    "nom": "Julio Collins",
+    "role": "commercial",
+    "vu": "2026-09-11T23:55:21.759Z",
+    "id": 1789170922065
    }
   ],
   "oilroxwood_demandes": [],
