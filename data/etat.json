@@ -16982,8 +16982,8 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "t1no2bd4k0g",
- "_maj": 1789129043135,
+ "_cid": "bot",
+ "_maj": 1789129052567,
  "_rev": "hl2xb8doxh-mtwx8p5i",
  "_majSec": {
   "fer": 1788952559812,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1789129042346,
+  "_tables": 1789129052567,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -38804,6 +38804,17 @@
     "tel": "555 654 137",
     "rib": "361218",
     "idU": "212626",
+    "grade": "Intérimaire",
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "arrivee": "2026-09-11"
+   },
+   {
+    "id": 1789129051953,
+    "nom": "Lazario/Ramirez",
+    "discord": "1546568394445160460",
+    "tel": "555377810",
+    "rib": "560953",
+    "idU": "379240",
     "grade": "Intérimaire",
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "arrivee": "2026-09-11"
