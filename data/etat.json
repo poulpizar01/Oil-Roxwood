@@ -18078,6 +18078,7 @@
     "felig",
     "quotashist",
     "profil",
+    "moi",
     "agenda",
     "affiches",
     "maj"
@@ -18125,8 +18126,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146317873,
- "_rev": "8lpyyvtkxqm-mtx7ivut",
+ "_maj": 1789146318693,
+ "_rev": "sikiydke6n-mtx7j02c",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18135,13 +18136,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146317873,
+  "journal": 1789146318693,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146317873,
+  "settings": 1789146318693,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18164,6 +18165,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146320477,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « moi » → accès complet ✓"
+  },
   {
    "t": 1789146319657,
    "u": "Diego Herrera",
@@ -19658,11 +19664,6 @@
    "a": "Absence déclarée : Nikko Mount du 27/08/2026 au 14/09/2026",
    "t": 1787859935331,
    "u": "Nikko Mount"
-  },
-  {
-   "a": "Contrat de travail généré : Eddy Conor (Runner)",
-   "t": 1787848361842,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19988,7 +19989,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:05:20.069Z",
+  "maj": "2026-09-11T17:05:25.524Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
