@@ -18066,8 +18066,8 @@
   "postesV4": 1
  },
  "_cid": "wde5ouun348",
- "_maj": 1789145244755,
- "_rev": "kp0u750lb4e-mtx6vv8x",
+ "_maj": 1789145272016,
+ "_rev": "k1xuffn4ohh-mtx6wdv0",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18090,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789145244755,
+  "_tables": 1789145272016,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -19929,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T16:47:26.193Z",
+  "maj": "2026-09-11T16:47:50.316Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40644,6 +40644,19 @@
     "commercial": "@role",
     "hebdo": true,
     "id": 1788526786838
+   },
+   {
+    "uid": "948542221429379112",
+    "titre": "Famillia Ghost",
+    "type": "contrat",
+    "date": "2026-09-13",
+    "deb": "18:00",
+    "fin": "19:00",
+    "note": "120 Bidons",
+    "partage": true,
+    "commercial": "@role",
+    "hebdo": true,
+    "id": 1789145270913
    }
   ],
   "oilroxwood_bot_ordres": [
