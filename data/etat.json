@@ -3649,7 +3649,7 @@
     "tel": "555 833 545",
     "actif": true,
     "avert": "",
-    "grade": "Commercial",
+    "grade": "RH",
     "recrut": "",
     "arrivee": "2026-02-26",
     "contrat": true,
@@ -17637,17 +17637,17 @@
   "postesV4": 1
  },
  "_cid": "kkw72v52njk",
- "_maj": 1789130154032,
- "_rev": "gu2v75463lm-mtwxwv7k",
+ "_maj": 1789130175040,
+ "_rev": "zcj4wlnm2vb-mtwxx16r",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
   "users": 1789129111202,
   "weeks": 1789129111202,
-  "sheets": 1789129227079,
+  "sheets": 1789130175040,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789129227079,
+  "journal": 1789130175040,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
@@ -17676,6 +17676,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789130180362,
+   "u": "Tyler Collins",
+   "a": "Grades RH alignés sur Discord : Juan Sanchez · Commercial → RH"
+  },
   {
    "t": 1789129232761,
    "u": "Tyler Collins",
@@ -19170,11 +19175,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503753654,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Diego Rony (Runner)",
-   "t": 1787503454846,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19490,7 +19490,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T12:36:16.257Z",
+  "maj": "2026-09-11T12:36:24.003Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
