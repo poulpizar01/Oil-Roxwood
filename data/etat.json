@@ -17981,21 +17981,22 @@
     "maj"
    ],
    "commercial": [
-    "overview",
-    "felig",
-    "fventes",
     "frh",
     "fblacklist",
     "factures",
     "relances",
-    "prodder",
+    "fventes",
     "quotascom",
-    "moi",
+    "prodder",
+    "overview",
+    "felig",
+    "historique",
     "quotashist",
+    "produits",
+    "moi",
     "agenda",
     "affiches",
-    "maj",
-    "produits"
+    "maj"
    ],
    "respcom": [
     "frh",
@@ -18114,8 +18115,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146242132,
- "_rev": "9p9en3ozvvf-mtx7hbq9",
+ "_maj": 1789146247953,
+ "_rev": "achw4yaf0ad-mtx7hdvu",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18124,13 +18125,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146232091,
+  "journal": 1789146247953,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146232091,
+  "settings": 1789146247953,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18153,6 +18154,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146249737,
+   "u": "Diego Herrera",
+   "a": "Permissions : Commercial · « historique » → accès complet ✓"
+  },
   {
    "t": 1789146233875,
    "u": "Diego Herrera",
@@ -19647,11 +19653,6 @@
    "a": "Facture reçue archivée : casa del gusto — 100 000 $",
    "t": 1787749756277,
    "u": "Diego Herrera"
-  },
-  {
-   "a": "Contrat de travail généré : Gérard Lopez (Runner)",
-   "t": 1787690160992,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19977,7 +19978,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:04:07.329Z",
+  "maj": "2026-09-11T17:04:10.122Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
