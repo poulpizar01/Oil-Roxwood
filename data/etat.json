@@ -17932,7 +17932,9 @@
   "permsRO": {
    "rh": [],
    "commercial": [],
-   "respcom": [],
+   "respcom": [
+    "fcompta"
+   ],
    "assistdir": [],
    "comptable": [],
    "resprunner": [],
@@ -17996,22 +17998,23 @@
     "produits"
    ],
    "respcom": [
-    "overview",
-    "felig",
-    "fventes",
     "frh",
     "fblacklist",
-    "fcompta",
     "factures",
     "relances",
-    "prodder",
+    "fventes",
     "quotascom",
-    "moi",
+    "prodder",
+    "ftablette",
+    "fcompta",
+    "overview",
+    "felig",
     "quotashist",
+    "produits",
+    "moi",
     "agenda",
     "affiches",
-    "maj",
-    "produits"
+    "maj"
    ],
    "assistdir": [
     "effectif",
@@ -18027,6 +18030,7 @@
     "factures",
     "prodder",
     "ftablette",
+    "fcompta",
     "frecues",
     "bilan",
     "overview",
@@ -18105,8 +18109,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146158005,
- "_rev": "ea54tesgyvb-mtx7fgih",
+ "_maj": 1789146161335,
+ "_rev": "22ow4htr2kh-mtx7fiy8",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18115,13 +18119,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146158005,
+  "journal": 1789146161335,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146158005,
+  "settings": 1789146161335,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18144,6 +18148,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146163119,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « ftablette » → accès complet ✓"
+  },
+  {
+   "t": 1789146162959,
+   "u": "Diego Herrera",
+   "a": "Permissions : Responsable commercial · « fcompta » → lecture seule 👁"
+  },
+  {
+   "t": 1789146161751,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « fcompta » → accès complet ✓"
+  },
   {
    "t": 1789146159789,
    "u": "Diego Herrera",
@@ -19628,21 +19647,6 @@
    "a": "Fer acheté noté : Juan Sanchez → 1 602",
    "t": 1787504962503,
    "u": "Stella Collins"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 1 914",
-   "t": 1787504958485,
-   "u": "Stella Collins"
-  },
-  {
-   "a": "Fer acheté noté : Laurent Roquel → 1 914",
-   "t": 1787504955501,
-   "u": "Stella Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 1 914",
-   "t": 1787504952062,
-   "u": "Stella Collins"
   }
  ],
  "prodDer": {
@@ -19968,7 +19972,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:02:40.217Z",
+  "maj": "2026-09-11T17:02:43.376Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
