@@ -17939,7 +17939,8 @@
     "felig"
    ],
    "membre": [
-    "felig"
+    "felig",
+    "overview"
    ]
   },
   "semaine": 36,
@@ -18113,8 +18114,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146222356,
- "_rev": "g3cyq38pai-mtx7gytt",
+ "_maj": 1789146232091,
+ "_rev": "gxlgo6bab8j-mtx7h1o7",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18123,13 +18124,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146222356,
+  "journal": 1789146232091,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146222356,
+  "settings": 1789146232091,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18152,6 +18153,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146233875,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « overview » → lecture seule 👁"
+  },
   {
    "t": 1789146224140,
    "u": "Diego Herrera",
@@ -19646,11 +19652,6 @@
    "a": "Contrat de travail généré : Gérard Lopez (Runner)",
    "t": 1787690160992,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Larry Lewington (Runner)",
-   "t": 1787671880450,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19976,7 +19977,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:03:50.609Z",
+  "maj": "2026-09-11T17:03:54.295Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
