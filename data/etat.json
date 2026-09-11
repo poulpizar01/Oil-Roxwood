@@ -18065,8 +18065,8 @@
   "postesV4": 1
  },
  "_cid": "kkw72v52njk",
- "_maj": 1789130289776,
- "_rev": "yzzdmeqdai-mtwxzi2x",
+ "_maj": 1789130294856,
+ "_rev": "d6xodyjy83k-mtwxzlqk",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18089,7 +18089,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789130275423,
+  "_tables": 1789130294856,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -19918,7 +19918,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T12:38:19.209Z",
+  "maj": "2026-09-11T12:38:23.948Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -39434,6 +39434,13 @@
     "role": "direction",
     "vu": "2026-09-11T12:37:55.423Z",
     "id": 1789130277135
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T12:38:14.855Z",
+    "id": 1789130300798
    }
   ],
   "oilroxwood_demandes": [],
