@@ -2996,7 +2996,7 @@
     "tel": "555 833 545",
     "actif": true,
     "avert": "",
-    "grade": "Commercial",
+    "grade": "RH",
     "recrut": "",
     "arrivee": "2026-02-26",
     "contrat": true,
@@ -16982,22 +16982,22 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bot",
- "_maj": 1789083709632,
- "_rev": "iaqgli4brtl-mtu5t80k",
+ "_cid": "t1no2bd4k0g",
+ "_maj": 1789129043135,
+ "_rev": "hl2xb8doxh-mtwx8p5i",
  "_majSec": {
   "fer": 1788952559812,
   "fact": 1788947099473,
   "users": 1788952643777,
   "weeks": 1788912897604,
-  "sheets": 1788947099473,
+  "sheets": 1789129043135,
   "_qcFix1": 1788222184505,
   "_wkFix1": 1788222184505,
-  "journal": 1788952643779,
+  "journal": 1789129043135,
   "pending": 1788222184505,
   "prodDer": 1788222184505,
   "runners": 1788484895369,
-  "absences": 1788918247565,
+  "absences": 1789129042146,
   "imported": 1788222184505,
   "settings": 1788911738862,
   "closeUndo": 1788222184505,
@@ -17007,7 +17007,7 @@
   "primesExtra": 1788222184505,
   "quotasComHist": 1788222184505,
   "profils": 1788311643773,
-  "_tables": 1789083709632,
+  "_tables": 1789129042346,
   "_permsFix1": 1788487775674,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1788490324055,
@@ -17022,6 +17022,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789129044768,
+   "u": "Diego Herrera",
+   "a": "Grades RH alignés sur Discord : Juan Sanchez · Commercial → RH"
+  },
+  {
+   "t": 1789129043779,
+   "u": "Diego Herrera",
+   "a": "Absences Discord reprises : Carlos dupont · Jack Hamilton"
+  },
   {
    "t": 1788952855203,
    "u": "Diego Herrera",
@@ -18511,16 +18521,6 @@
    "a": "Contrat de travail généré : Diego Rony (Runner)",
    "t": 1787503454846,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Calvin Praline (Runner)",
-   "t": 1787503432180,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Suppression de la facture n°253055",
-   "t": 1787500722090,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -18813,10 +18813,30 @@
    "motif": "Prolongation de travail a l’étranger",
    "par": "⚫ Thomas Boyer",
    "auto": true
+  },
+  {
+   "id": 1789129053126,
+   "nom": "Carlos dupont",
+   "du": "2026-09-09",
+   "au": "2026-09-19",
+   "srcId": "1789026092659",
+   "motif": "",
+   "par": "⚫ Thomas Boyer",
+   "auto": true
+  },
+  {
+   "id": 1789129049762,
+   "nom": "Jack Hamilton",
+   "du": "2026-09-10",
+   "au": "2027-08-13",
+   "srcId": "1789061347532",
+   "motif": "AUCUN AGENT DE DISPO POUR POSER MON STUFF",
+   "par": "⚫ Juan Sanchez",
+   "auto": true
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-09T13:54:04.628Z",
+  "maj": "2026-09-11T12:17:28.662Z",
   "semaine": 36,
   "totalBarils": 0,
   "ca": 0,
@@ -38186,6 +38206,13 @@
     "role": "direction",
     "vu": "2026-09-09T13:36:59.693Z",
     "id": 1788961020966
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-11T12:17:22.120Z",
+    "id": 1789129044139
    }
   ],
   "oilroxwood_demandes": [],
