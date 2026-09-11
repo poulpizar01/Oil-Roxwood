@@ -17940,7 +17940,8 @@
    ],
    "membre": [
     "felig",
-    "overview"
+    "overview",
+    "quotashist"
    ]
   },
   "semaine": 36,
@@ -18120,8 +18121,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146260619,
- "_rev": "e92ohs9uutg-mtx7hr31",
+ "_maj": 1789146270662,
+ "_rev": "ob4m2k9nli-mtx7hvfa",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18130,13 +18131,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146260619,
+  "journal": 1789146270662,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146260619,
+  "settings": 1789146270662,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18159,6 +18160,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146272446,
+   "u": "Diego Herrera",
+   "a": "Permissions : Membre · « quotashist » → lecture seule 👁"
+  },
   {
    "t": 1789146262403,
    "u": "Diego Herrera",
@@ -19653,11 +19659,6 @@
    "a": "Demande d'accès refusée : Erjonihno",
    "t": 1787769713961,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : 24xf",
-   "t": 1787769712828,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19983,7 +19984,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:04:27.229Z",
+  "maj": "2026-09-11T17:04:32.854Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
