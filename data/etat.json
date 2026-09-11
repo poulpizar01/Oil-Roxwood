@@ -11485,7 +11485,7 @@
     "don": "",
     "nom": "Juan Sanchez",
     "date": "",
-    "grade": "RH",
+    "grade": "Commercial",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11535,7 +11535,7 @@
     "don": "",
     "nom": "Ashley Cooper",
     "date": "",
-    "grade": "Responsable Runner",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11545,7 +11545,7 @@
     "don": "",
     "nom": "Bobby Rousseau",
     "date": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11645,7 +11645,7 @@
     "don": "",
     "nom": "Alejandro Varrgas",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11675,7 +11675,7 @@
     "don": "",
     "nom": "Eden Birds",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11735,7 +11735,7 @@
     "don": "",
     "nom": "Bjorn Frost",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -15112,8 +15112,7 @@
    "id": 1787498251136,
    "did": "690537200689086537",
    "role": "rh",
-   "user": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-   "avatar": "https://cdn.discordapp.com/avatars/690537200689086537/89422621d14f87124a4e8ea64b0ac191.png"
+   "user": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
   }
  ],
  "profils": {
@@ -18066,51 +18065,46 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "pgfztlu3xlm",
- "_maj": 1789146108514,
- "_rev": "vu9k5up3lp9-mtx7eqfa",
+ "_cid": "kkw72v52njk",
+ "_maj": 1789146053679,
+ "_rev": "oc75lff7wi-mtx7f1hk",
  "_majSec": {
-  "fer": 1789145657706,
-  "fact": 1789145657706,
-  "users": 1789145657706,
-  "weeks": 1789145657706,
-  "sheets": 1789145657706,
-  "_qcFix1": 1789145657706,
-  "_wkFix1": 1789145657706,
-  "journal": 1789145657706,
-  "pending": 1789145657706,
-  "prodDer": 1789145657706,
-  "runners": 1789145657706,
-  "absences": 1789145657706,
-  "imported": 1789145657706,
-  "settings": 1789145657706,
-  "closeUndo": 1789145657706,
-  "quotasCom": 1789145657706,
-  "bilanExtra": 1789145657706,
-  "bilanForce": 1789145657706,
-  "primesExtra": 1789145657706,
-  "quotasComHist": 1789145657706,
-  "profils": 1789145657706,
-  "_tables": 1789146108514,
-  "_permsFix1": 1789145657706,
+  "fer": 1789129111202,
+  "fact": 1789129111202,
+  "users": 1789130432022,
+  "weeks": 1789129111202,
+  "sheets": 1789130289776,
+  "_qcFix1": 1789129111202,
+  "_wkFix1": 1789129111202,
+  "journal": 1789130684444,
+  "pending": 1789129111202,
+  "prodDer": 1789129111202,
+  "runners": 1789129208406,
+  "absences": 1789130684444,
+  "imported": 1789129111202,
+  "settings": 1789129111202,
+  "closeUndo": 1789129111202,
+  "quotasCom": 1789130279061,
+  "bilanExtra": 1789129111202,
+  "bilanForce": 1789129111202,
+  "primesExtra": 1789129111202,
+  "quotasComHist": 1789129111202,
+  "profils": 1789130209002,
+  "_tables": 1789146053679,
+  "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789145657706,
-  "affiches": 1789145657706,
-  "_affFix1": 1789145657706,
-  "produits": 1789145657706,
-  "_prodFix1": 1789145657706,
-  "_recruesIgnore": 1789145657706,
-  "ventesAlias": 1789145657706,
-  "_ventesIgnore": 1789145657706
+  "_rolesFix77": 1789129111202,
+  "affiches": 1789129111202,
+  "_affFix1": 1789129111202,
+  "produits": 1789129111202,
+  "_prodFix1": 1789129111202,
+  "_recruesIgnore": 1789129111202,
+  "ventesAlias": 1789129111202,
+  "_ventesIgnore": 1789129111202
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789145054823,
-   "u": "Stella Collins",
-   "a": "Éligibilité : 6 grade(s) réalignés sur l'effectif — Juan Sanchez : Commercial → RH · Ashley Cooper : Raffineur Expert → Responsable Runner · Bobby Rousseau : Raffineur Expert → Raffineur Confirmé · Alejandro Varrgas : Raffineur → Intérimaire…"
-  },
   {
    "t": 1789130686122,
    "u": "Diego Herrera",
@@ -19605,6 +19599,11 @@
    "a": "Demande d'accès refusée : Momoow",
    "t": 1787503757710,
    "u": "Thomas Boyer"
+  },
+  {
+   "a": "Demande d'accès refusée : le rho",
+   "t": 1787503755595,
+   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19930,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:02:06.406Z",
+  "maj": "2026-09-11T17:02:20.744Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40659,46 +40658,46 @@
     "id": 1789145519864
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-11T16:54:17.729Z",
-    "id": 1789145652955
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:53:53.853Z",
+    "id": 1789145639455
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-11T16:55:47.732Z",
-    "id": 1789145743227
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:54:53.855Z",
+    "id": 1789145700306
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-11T16:57:18.499Z",
-    "id": 1789145833146
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:56:53.854Z",
+    "id": 1789145820301
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-11T16:58:48.500Z",
-    "id": 1789145923831
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:57:53.680Z",
+    "id": 1789145879829
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-11T17:00:18.505Z",
-    "id": 1789146013022
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:59:53.679Z",
+    "id": 1789146000172
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-11T17:01:48.514Z",
-    "id": 1789146103990
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T17:00:53.678Z",
+    "id": 1789146059655
    }
   ],
   "oilroxwood_demandes": [],
