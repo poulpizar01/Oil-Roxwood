@@ -18065,9 +18065,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bot",
- "_maj": 1789130676231,
- "_rev": "f1yl3po9g4d-mtwy771k",
+ "_cid": "gzgrydam5ci",
+ "_maj": 1789130684444,
+ "_rev": "nry2eqhk1f-mtwy7so9",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18076,11 +18076,11 @@
   "sheets": 1789130289776,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789130289776,
+  "journal": 1789130684444,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
-  "absences": 1789129111236,
+  "absences": 1789130684444,
   "imported": 1789129111202,
   "settings": 1789129111202,
   "closeUndo": 1789129111202,
@@ -18105,6 +18105,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789130686122,
+   "u": "Diego Herrera",
+   "a": "Absences Discord reprises : Junior Wills"
+  },
   {
    "t": 1789130295162,
    "u": "Tyler Collins",
@@ -19599,11 +19604,6 @@
    "a": "Demande d'accès refusée : le rho",
    "t": 1787503755595,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503753654,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19916,10 +19916,20 @@
    "motif": "AUCUN AGENT DE DISPO POUR POSER MON STUFF",
    "par": "⚫ Juan Sanchez",
    "auto": true
+  },
+  {
+   "id": 1789130687769,
+   "nom": "Junior Wills",
+   "du": "2026-09-11",
+   "au": "2026-09-14",
+   "srcId": "1789130675726",
+   "motif": "Raison familiale",
+   "par": "⚫ Juan Sanchez",
+   "auto": true
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T12:44:18.152Z",
+  "maj": "2026-09-11T12:44:46.185Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
