@@ -18028,6 +18028,8 @@
     "prodder",
     "ftablette",
     "fcompta",
+    "bilan",
+    "cloture",
     "overview",
     "reunions",
     "quotashist",
@@ -18104,8 +18106,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146181071,
- "_rev": "7iemvjqn7ot-mtx7g18n",
+ "_maj": 1789146190381,
+ "_rev": "rfx5d8hrjqg-mtx7g5ae",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18114,13 +18116,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146181071,
+  "journal": 1789146190381,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146181071,
+  "settings": 1789146190381,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18143,6 +18145,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146192165,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « cloture » → accès complet ✓"
+  },
+  {
+   "t": 1789146187339,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « bilan » → accès complet ✓"
+  },
   {
    "t": 1789146182855,
    "u": "Diego Herrera",
@@ -19632,16 +19644,6 @@
    "a": "Absence déclarée : Elyra Collins du 24/08/2026 au 31/08/2026",
    "t": 1787595162017,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Absence déclarée : Tony Bellino du 24/08/2026 au 29/08/2026",
-   "t": 1787595141147,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Joseph Larose (Runner)",
-   "t": 1787585145910,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19967,7 +19969,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:03:07.079Z",
+  "maj": "2026-09-11T17:03:12.326Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
