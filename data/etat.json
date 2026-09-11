@@ -18027,6 +18027,8 @@
     "frecues",
     "bilan",
     "overview",
+    "historique",
+    "reunions",
     "produits",
     "agenda",
     "affiches"
@@ -18117,8 +18119,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146251359,
- "_rev": "kf9g2rxny5-mtx7hgjo",
+ "_maj": 1789146254961,
+ "_rev": "6erz86bhgwk-mtx7hjbp",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18127,13 +18129,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146251359,
+  "journal": 1789146254961,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146251359,
+  "settings": 1789146254961,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18156,6 +18158,16 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146256745,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « reunions » → accès complet ✓"
+  },
+  {
+   "t": 1789146254435,
+   "u": "Diego Herrera",
+   "a": "Permissions : Assistant de direction · « historique » → accès complet ✓"
+  },
   {
    "t": 1789146253143,
    "u": "Diego Herrera",
@@ -19645,16 +19657,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787769708529,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Suppression de la facture n°253071",
-   "t": 1787761910811,
-   "u": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿"
-  },
-  {
-   "a": "Vente rapide sans facture : 50 bidon(s) — Employé diego (vendeur : Diego Herrera)",
-   "t": 1787760023950,
-   "u": "Diego Herrera"
   }
  ],
  "prodDer": {
@@ -19980,7 +19982,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:04:13.572Z",
+  "maj": "2026-09-11T17:04:17.173Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
