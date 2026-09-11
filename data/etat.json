@@ -3391,6 +3391,132 @@
  "sheets": {
   "rh": [
    {
+    "nom": "Lazario/Ramirez",
+    "grade": "Intérimaire",
+    "tel": "555377810",
+    "rib": "560953",
+    "idU": "379240",
+    "arrivee": "2026-09-11",
+    "discord": "1546568394445160460",
+    "avert": "",
+    "contrat": false,
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Alex Bren",
+    "grade": "Intérimaire",
+    "tel": "555 654 137",
+    "rib": "361218",
+    "idU": "212626",
+    "arrivee": "2026-09-11",
+    "discord": "1075144695111491594",
+    "avert": "",
+    "contrat": false,
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Liam Doyle",
+    "grade": "Intérimaire",
+    "tel": "555-326-537",
+    "rib": "526208",
+    "idU": "144117",
+    "arrivee": "2026-09-10",
+    "discord": "1269633450332131368",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Drew Miller",
+    "grade": "Intérimaire",
+    "tel": "555007779",
+    "rib": "479193",
+    "idU": "192622",
+    "arrivee": "2026-09-10",
+    "discord": "1105562321935405117",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Junior Collins",
+    "grade": "Intérimaire",
+    "tel": "555 340 550",
+    "rib": "440600",
+    "idU": "285798",
+    "arrivee": "2026-09-10",
+    "discord": "1163467854763544586",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Tarek Rodriguez",
+    "grade": "Intérimaire",
+    "tel": "555 601 545",
+    "rib": "560 906",
+    "idU": "251746",
+    "arrivee": "2026-09-09",
+    "discord": "1026082196500521012",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Ismeurt Nicolas",
+    "grade": "Intérimaire",
+    "tel": "555 132 899",
+    "rib": "559815",
+    "idU": "378344",
+    "arrivee": "2026-09-09",
+    "discord": "735583302836158533",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Keath Chop's",
+    "grade": "Intérimaire",
+    "tel": "555141095",
+    "rib": "324259",
+    "idU": "1911052",
+    "arrivee": "2026-09-09",
+    "discord": "596685020018769930",
+    "avert": "",
+    "contrat": false,
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
+    "nom": "Bratan LEONETI",
+    "grade": "Intérimaire",
+    "tel": "555-770-230",
+    "rib": "560414",
+    "idU": "378834",
+    "arrivee": "2026-09-09",
+    "discord": "870991671960145920",
+    "avert": "",
+    "contrat": false,
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
     "nom": "Pablo Escocha",
     "grade": "Intérimaire",
     "tel": "560060",
@@ -17939,17 +18065,17 @@
   "postesV4": 1
  },
  "_cid": "kkw72v52njk",
- "_maj": 1789130279061,
- "_rev": "av33gqt0tzj-mtwxzbe2",
+ "_maj": 1789130289776,
+ "_rev": "d936s786uu8-mtwxzfi1",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
   "users": 1789129111202,
   "weeks": 1789129111202,
-  "sheets": 1789130185286,
+  "sheets": 1789130289776,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789130185286,
+  "journal": 1789130289776,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
@@ -17978,6 +18104,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789130295162,
+   "u": "Tyler Collins",
+   "a": "Recrutements Discord : 9 fiche(s) créée(s), 0 case(s) complétée(s) — Bratan LEONETI, Keath Chop's, Ismeurt Nicolas…"
+  },
   {
    "t": 1789130186964,
    "u": "Diego Herrera",
@@ -19472,11 +19603,6 @@
    "a": "Demande d'accès refusée : Ayko",
    "t": 1787503753654,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Contrat de travail généré : Diego Rony (Runner)",
-   "t": 1787503454846,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19792,12 +19918,12 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T12:38:10.539Z",
+  "maj": "2026-09-11T12:38:15.865Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
   "objectif": 375000,
-  "effectif": 111,
+  "effectif": 114,
   "clientsServis": 74,
   "top3": [
    {
