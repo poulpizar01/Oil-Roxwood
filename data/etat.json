@@ -18065,9 +18065,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wde5ouun348",
- "_maj": 1789144253814,
- "_rev": "etfru21pb7i-mtx6gfot",
+ "_cid": "kkw72v52njk",
+ "_maj": 1789144613817,
+ "_rev": "gt2thzwlbnq-mtx6ifyp",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18090,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789130610744,
+  "_tables": 1789144613817,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -19929,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T16:35:26.189Z",
+  "maj": "2026-09-11T16:36:59.857Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40558,6 +40558,34 @@
     "role": "direction",
     "vu": "2026-09-11T16:30:53.814Z",
     "id": 1789144259853
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:32:53.815Z",
+    "id": 1789144380051
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:33:53.816Z",
+    "id": 1789144439648
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:35:53.814Z",
+    "id": 1789144559489
+   },
+   {
+    "uid": "593431852291850281",
+    "nom": "Tyler Collins",
+    "role": "direction",
+    "vu": "2026-09-11T16:36:53.817Z",
+    "id": 1789144620301
    }
   ],
   "oilroxwood_demandes": [],
