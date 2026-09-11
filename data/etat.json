@@ -11485,7 +11485,7 @@
     "don": "",
     "nom": "Juan Sanchez",
     "date": "",
-    "grade": "Commercial",
+    "grade": "RH",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11535,7 +11535,7 @@
     "don": "",
     "nom": "Ashley Cooper",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Responsable Runner",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11545,7 +11545,7 @@
     "don": "",
     "nom": "Bobby Rousseau",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11645,7 +11645,7 @@
     "don": "",
     "nom": "Alejandro Varrgas",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11675,7 +11675,7 @@
     "don": "",
     "nom": "Eden Birds",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11735,7 +11735,7 @@
     "don": "",
     "nom": "Bjorn Frost",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -18065,18 +18065,18 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "kkw72v52njk",
- "_maj": 1789144973842,
- "_rev": "ymzbxaiovzn-mtx6rfye",
+ "_cid": "wde5ouun348",
+ "_maj": 1789145056908,
+ "_rev": "7yfgk86scik-mtx6ruc4",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
   "users": 1789130432022,
   "weeks": 1789129111202,
-  "sheets": 1789130289776,
+  "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789130684444,
+  "journal": 1789145056908,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
@@ -18090,7 +18090,7 @@
   "primesExtra": 1789129111202,
   "quotasComHist": 1789129111202,
   "profils": 1789130209002,
-  "_tables": 1789144973842,
+  "_tables": 1789144974755,
   "_permsFix1": 1789129111202,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789129111202,
@@ -18105,6 +18105,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789145054823,
+   "u": "Stella Collins",
+   "a": "Éligibilité : 6 grade(s) réalignés sur l'effectif — Juan Sanchez : Commercial → RH · Ashley Cooper : Raffineur Expert → Responsable Runner · Bobby Rousseau : Raffineur Expert → Raffineur Confirmé · Alejandro Varrgas : Raffineur → Intérimaire…"
+  },
   {
    "t": 1789130686122,
    "u": "Diego Herrera",
@@ -19599,11 +19604,6 @@
    "a": "Demande d'accès refusée : Momoow",
    "t": 1787503757710,
    "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503755595,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19929,7 +19929,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T16:43:59.750Z",
+  "maj": "2026-09-11T16:44:18.388Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -40588,32 +40588,11 @@
     "id": 1789144620301
    },
    {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-11T16:38:53.840Z",
-    "id": 1789144740155
-   },
-   {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:39:53.842Z",
-    "id": 1789144800290
-   },
-   {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:41:53.841Z",
-    "id": 1789144919469
-   },
-   {
-    "uid": "593431852291850281",
-    "nom": "Tyler Collins",
-    "role": "direction",
-    "vu": "2026-09-11T16:42:53.842Z",
-    "id": 1789144979760
+    "vu": "2026-09-11T16:42:54.755Z",
+    "id": 1789144972935
    }
   ],
   "oilroxwood_demandes": [],
