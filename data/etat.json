@@ -15106,7 +15106,8 @@
    "id": 1783522211554,
    "did": "767332288744128512",
    "role": "commercial",
-   "user": "Julio Collins"
+   "user": "Julio Collins",
+   "avatar": "https://cdn.discordapp.com/avatars/767332288744128512/6c11157ab60158807c7bcb3defdfa100.png"
   },
   {
    "id": 1787498251136,
@@ -18122,13 +18123,13 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wde5ouun348",
- "_maj": 1789151827852,
- "_rev": "ijxuarzsua-mtxau8if",
+ "_cid": "q7qb4or3mc",
+ "_maj": 1789151924995,
+ "_rev": "qx2xegv4rb-mtxavr9a",
  "_majSec": {
   "fer": 1789145657706,
   "fact": 1789145657706,
-  "users": 1789145657706,
+  "users": 1789150354956,
   "weeks": 1789145657706,
   "sheets": 1789145657706,
   "_qcFix1": 1789145657706,
@@ -18147,7 +18148,7 @@
   "primesExtra": 1789145657706,
   "quotasComHist": 1789145657706,
   "profils": 1789145657706,
-  "_tables": 1789151827852,
+  "_tables": 1789151924995,
   "_permsFix1": 1789145657706,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789145657706,
@@ -19986,7 +19987,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T18:38:08.536Z",
+  "maj": "2026-09-11T18:39:19.486Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -41182,6 +41183,20 @@
     "role": "direction",
     "vu": "2026-09-11T18:37:07.852Z",
     "id": 1789151828937
+   },
+   {
+    "uid": "767332288744128512",
+    "nom": "Julio Collins",
+    "role": "commercial",
+    "vu": "2026-09-11T18:38:38.523Z",
+    "id": 1789151919058
+   },
+   {
+    "uid": "767332288744128512",
+    "nom": "Julio Collins",
+    "role": "commercial",
+    "vu": "2026-09-11T18:38:44.938Z",
+    "id": 1789151925457
    }
   ],
   "oilroxwood_demandes": [],
