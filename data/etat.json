@@ -17930,9 +17930,7 @@
   "impot": 0.32,
   "limite": 24000,
   "permsRO": {
-   "rh": [
-    "fcompta"
-   ],
+   "rh": [],
    "commercial": [],
    "respcom": [],
    "assistdir": [],
@@ -17963,7 +17961,6 @@
     "fblacklist",
     "factures",
     "prodder",
-    "fcompta",
     "frecues",
     "bilan",
     "cloture",
@@ -18030,7 +18027,6 @@
     "factures",
     "prodder",
     "ftablette",
-    "fcompta",
     "frecues",
     "bilan",
     "overview",
@@ -18109,8 +18105,8 @@
   "postesV4": 1
  },
  "_cid": "ij79qyn90ri",
- "_maj": 1789146155146,
- "_rev": "hjgm1yzyln-mtx7fea9",
+ "_maj": 1789146158005,
+ "_rev": "ea54tesgyvb-mtx7fgih",
  "_majSec": {
   "fer": 1789129111202,
   "fact": 1789129111202,
@@ -18119,13 +18115,13 @@
   "sheets": 1789145056908,
   "_qcFix1": 1789129111202,
   "_wkFix1": 1789129111202,
-  "journal": 1789146155146,
+  "journal": 1789146158005,
   "pending": 1789129111202,
   "prodDer": 1789129111202,
   "runners": 1789129208406,
   "absences": 1789130684444,
   "imported": 1789129111202,
-  "settings": 1789146155146,
+  "settings": 1789146158005,
   "closeUndo": 1789129111202,
   "quotasCom": 1789130279061,
   "bilanExtra": 1789129111202,
@@ -18148,6 +18144,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789146159789,
+   "u": "Diego Herrera",
+   "a": "Permissions : RH · « fcompta » → aucun accès"
+  },
+  {
+   "t": 1789146158973,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « fcompta » → aucun accès"
+  },
+  {
+   "t": 1789146157947,
+   "u": "Diego Herrera",
+   "a": "Permissions : Comptable · « fcompta » → lecture seule 👁"
+  },
   {
    "t": 1789146156929,
    "u": "Diego Herrera",
@@ -19632,21 +19643,6 @@
    "a": "Fer acheté noté : Emma Collins-rodriguez → 1 914",
    "t": 1787504952062,
    "u": "Stella Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 1 914",
-   "t": 1787504949079,
-   "u": "Stella Collins"
-  },
-  {
-   "a": "Demande d'accès refusée : le rho",
-   "t": 1787503794507,
-   "u": "Thomas Boyer"
-  },
-  {
-   "a": "Demande d'accès refusée : Ayko",
-   "t": 1787503791728,
-   "u": "Thomas Boyer"
   }
  ],
  "prodDer": {
@@ -19972,7 +19968,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-11T17:02:37.329Z",
+  "maj": "2026-09-11T17:02:40.217Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
