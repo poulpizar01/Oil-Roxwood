@@ -4742,13 +4742,13 @@
     "nom": "Alex Bren",
     "grade": "Intérimaire",
     "tel": "555 654 137",
-    "rib": "",
+    "rib": "361218",
     "idU": "221626",
     "arrivee": "2026-09-11",
     "discord": "1075144695111491594",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "2026-09-12",
     "flagOut": false
    },
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226954639,
- "_rev": "r5wqttq156d-mtyjj9q9",
+ "_maj": 1789226961954,
+ "_rev": "x1gqzdhqaii-mtyjjcrt",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226954639,
+  "sheets": 1789226961954,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:29:19.617Z",
+  "maj": "2026-09-12T15:29:23.561Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
