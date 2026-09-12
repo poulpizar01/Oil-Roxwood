@@ -3391,6 +3391,20 @@
  "sheets": {
   "rh": [
    {
+    "nom": "Marco Sanchez",
+    "grade": "Intérimaire",
+    "tel": "555-803-725",
+    "rib": "559892",
+    "idU": "142012",
+    "arrivee": "2026-09-04",
+    "discord": "1383749459866812476",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
     "nom": "Lazario/Ramirez",
     "grade": "Intérimaire",
     "tel": "555377810",
@@ -4409,24 +4423,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-08-29"
-   },
-   {
-    "idU": "142012",
-    "nom": "Marco Sanchez",
-    "rib": "362031",
-    "tel": "555-033-464",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-24",
-    "contrat": true,
-    "discord": "1383749459866812476",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787599658051,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
    },
    {
     "idU": "142324",
@@ -17921,17 +17917,17 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789216369843,
- "_rev": "przhjeew1p-mtyd8ee0",
+ "_maj": 1789216392119,
+ "_rev": "uz8s25eksba-mtyd8tmc",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789216369843,
+  "sheets": 1789216392119,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
-  "journal": 1789215771989,
+  "journal": 1789216392119,
   "pending": 1789215604317,
   "prodDer": 1789215604317,
   "runners": 1789215604317,
@@ -17960,6 +17956,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789216393612,
+   "u": "Stella Collins",
+   "a": "Recrutements Discord : 1 fiche(s) créée(s), 0 case(s) complétée(s) — Marco Sanchez"
+  },
   {
    "t": 1789215773368,
    "u": "Stella Collins",
@@ -19454,11 +19455,6 @@
    "a": "Fer acheté noté : Emma Collins-rodriguez → 940",
    "t": 1788096388761,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 700",
-   "t": 1788078870182,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19784,12 +19780,12 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:32:54.745Z",
+  "maj": "2026-09-12T12:33:14.484Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
   "objectif": 375000,
-  "effectif": 93,
+  "effectif": 94,
   "clientsServis": 73,
   "top3": [
    {
