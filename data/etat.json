@@ -17828,7 +17828,7 @@
  },
  "_cid": "08tna2761ocl",
  "_maj": 1789235211798,
- "_rev": "rqqs0bnqylt-mtyolw0a",
+ "_rev": "oosvgbiyncs-mtyontjm",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789228034523,
-  "_tables": 1789231561546,
+  "_tables": 1789231651549,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T17:51:19.882Z",
+  "maj": "2026-09-12T17:52:50.002Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
