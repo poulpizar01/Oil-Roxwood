@@ -11799,13 +11799,6 @@
     "lastCmd": "2026-08-24"
    },
    {
-    "nom": "404",
-    "rib": "",
-    "tel": "555-108-754",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-15"
-   },
-   {
     "nom": "Abatoir",
     "rib": "20024",
     "tel": "934",
@@ -11885,20 +11878,6 @@
     "lastCmd": "2026-08-30"
    },
    {
-    "nom": "Black Phanthère",
-    "rib": "",
-    "tel": "",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-04-18"
-   },
-   {
-    "nom": "Black Sakura",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-21"
-   },
-   {
     "nom": "Black Sand Compagny",
     "rib": "",
     "tel": "555 232 022",
@@ -11960,13 +11939,6 @@
      "par": "Juan Sanchez",
      "date": "2026-07-14"
     }
-   },
-   {
-    "nom": "Cartel Madrazo",
-    "rib": "",
-    "tel": "555 842 439",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-07-31"
    },
    {
     "nom": "Cartel Paredez",
@@ -12178,13 +12150,6 @@
     "lastCmd": "2026-08-30"
    },
    {
-    "nom": "ECO",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-30"
-   },
-   {
     "nom": "Elasco",
     "rib": "BLACKLIST",
     "tel": "BLACKLIST",
@@ -12215,32 +12180,11 @@
     "adresse": "Los Santos"
    },
    {
-    "nom": "Famille Cartel Karatel",
-    "rib": "",
-    "tel": "",
-    "adresse": "Grapseed",
-    "lastCmd": "2026-05-12"
-   },
-   {
-    "nom": "Famille GMF",
-    "rib": "",
-    "tel": "",
-    "adresse": "Paleto",
-    "lastCmd": "2026-05-07"
-   },
-   {
     "nom": "Famille Krueger",
     "rib": "",
     "tel": "555 201 755",
     "adresse": "roxwood",
     "lastCmd": "2026-08-19"
-   },
-   {
-    "nom": "Famille Lockwood",
-    "rib": "",
-    "tel": "",
-    "adresse": "Sandy shore",
-    "lastCmd": "2026-04-25"
    },
    {
     "nom": "Famille MCreary",
@@ -12254,13 +12198,6 @@
     "tel": "555 163 152",
     "adresse": "Roxwood",
     "lastCmd": "2026-08-07"
-   },
-   {
-    "nom": "Famille Obscyde",
-    "rib": "",
-    "tel": "555-177-301",
-    "adresse": "",
-    "lastCmd": "2026-04-06"
    },
    {
     "nom": "Famille TPK",
@@ -12350,13 +12287,6 @@
     "lastCmd": "2026-08-17"
    },
    {
-    "nom": "Gang Gorée 221",
-    "rib": "",
-    "tel": "555 530 288",
-    "adresse": "Los santos",
-    "lastCmd": "2026-05-14"
-   },
-   {
     "nom": "Gang Marabunta Grande",
     "rib": "",
     "tel": "",
@@ -12381,13 +12311,6 @@
     "tel": "",
     "adresse": "Los Santos",
     "lastCmd": "2026-07-01"
-   },
-   {
-    "nom": "Habitants Evadés",
-    "rib": "",
-    "tel": "555 066 404",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-25"
    },
    {
     "nom": "Harmony's",
@@ -12415,13 +12338,6 @@
     "adresse": "Cayo"
    },
    {
-    "nom": "ivanovitch",
-    "rib": "",
-    "tel": "555-967-000",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-30"
-   },
-   {
     "nom": "Jackers",
     "rib": "",
     "tel": "555 472 105",
@@ -12433,13 +12349,6 @@
     "tel": "",
     "adresse": "Los Santos",
     "lastCmd": "2026-05-16"
-   },
-   {
-    "nom": "Klan Nostrad",
-    "rib": "",
-    "tel": "555-674-288",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-13"
    },
    {
     "nom": "Klan Ozumiya",
@@ -12516,13 +12425,6 @@
     "adresse": "Los Santos"
    },
    {
-    "nom": "Los Hermanos",
-    "rib": "",
-    "tel": "555 045 100",
-    "adresse": "paleto",
-    "lastCmd": "2026-05-16"
-   },
-   {
     "nom": "Los Reyes Colombianos",
     "rib": "",
     "tel": "",
@@ -12534,13 +12436,6 @@
     "rib": "",
     "tel": "",
     "adresse": "Roxwood"
-   },
-   {
-    "nom": "los vargas",
-    "rib": "",
-    "tel": "",
-    "adresse": "roxwood",
-    "lastCmd": "2026-04-16"
    },
    {
     "nom": "Loup Blanc Pressing",
@@ -12650,13 +12545,6 @@
     "adresse": ""
    },
    {
-    "nom": "Mendes ",
-    "rib": "",
-    "tel": "",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-03-31"
-   },
-   {
     "nom": "Milis Makila",
     "rib": "",
     "tel": "",
@@ -12695,24 +12583,10 @@
     "lastCmd": "2026-09-09"
    },
    {
-    "nom": "Ombra Nera",
-    "rib": "",
-    "tel": "555 330 572",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-13"
-   },
-   {
     "nom": "Omera",
     "rib": "",
     "tel": "555 059 380 \n555 947 383",
     "adresse": "Los Santos"
-   },
-   {
-    "nom": "Osiris",
-    "rib": "",
-    "tel": "",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-05-01"
    },
    {
     "nom": "Pacific Bluff",
@@ -12770,13 +12644,6 @@
     "lastCmd": "2026-08-30"
    },
    {
-    "nom": "Rayper",
-    "rib": "",
-    "tel": "555-099-208",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-28"
-   },
-   {
     "nom": "Red Triades",
     "rib": "",
     "tel": "555-082-759",
@@ -12788,13 +12655,6 @@
     "tel": "947",
     "adresse": "Los Santos",
     "lastCmd": "2026-03-14"
-   },
-   {
-    "nom": "Rosadera",
-    "rib": "",
-    "tel": "555 967 179",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-25"
    },
    {
     "nom": "SafeGuard Assurance",
@@ -12894,13 +12754,6 @@
     "lastCmd": "2026-07-22"
    },
    {
-    "nom": "The Last Nightmare",
-    "rib": "",
-    "tel": "",
-    "adresse": "sandy shore",
-    "lastCmd": "2026-04-14"
-   },
-   {
     "nom": "The Night Ghost",
     "rib": "",
     "tel": "555 742 796",
@@ -12934,27 +12787,6 @@
     "rib": "",
     "tel": "",
     "adresse": "Los Santos"
-   },
-   {
-    "nom": "uptown rider",
-    "rib": "",
-    "tel": "",
-    "adresse": "Paleto",
-    "lastCmd": "2026-06-22"
-   },
-   {
-    "nom": "Vagos",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-04"
-   },
-   {
-    "nom": "Valley Side Mob",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-30"
    },
    {
     "nom": "Vespucci Médical",
@@ -13005,25 +12837,11 @@
     }
    },
    {
-    "nom": "Whites Creams",
-    "rib": "",
-    "tel": "555 472 459",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-04-22"
-   },
-   {
     "nom": "Yellow Jack",
     "rib": "20008",
     "tel": "918",
     "adresse": "Sandy shores",
     "lastCmd": "2026-08-21"
-   },
-   {
-    "nom": "YMC",
-    "rib": "",
-    "tel": "555 756 258",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-05-16"
    },
    {
     "nom": "You Radio",
@@ -17826,12 +17644,12 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "x4ie0xa8hto",
- "_maj": 1789243491779,
- "_rev": "9qjst4df57h-mtytdnc4",
+ "_cid": "1q6yzoq4izh",
+ "_maj": 1789243505859,
+ "_rev": "paqq18xbicn-mtyte26o",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789215771989,
+  "fact": 1789223085754,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789227236561,
@@ -17851,7 +17669,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789228034523,
-  "_tables": 1789243491779,
+  "_tables": 1789243505859,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19508,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:04:53.476Z",
+  "maj": "2026-09-12T20:05:12.720Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -44316,60 +44134,60 @@
     "id": 1789242773397
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T19:54:51.731Z",
-    "id": 1789242893680
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T19:53:49.463Z",
+    "id": 1789242829249
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T19:55:51.746Z",
-    "id": 1789242953574
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T19:55:20.127Z",
+    "id": 1789242920196
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T19:57:51.743Z",
-    "id": 1789243073554
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T19:56:50.124Z",
+    "id": 1789243009676
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T19:58:51.746Z",
-    "id": 1789243133886
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T19:58:20.124Z",
+    "id": 1789243099643
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:00:51.733Z",
-    "id": 1789243253176
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T19:59:50.121Z",
+    "id": 1789243190327
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:01:51.786Z",
-    "id": 1789243313070
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T20:01:20.124Z",
+    "id": 1789243280178
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:03:51.771Z",
-    "id": 1789243433247
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T20:02:50.114Z",
+    "id": 1789243370202
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:04:51.779Z",
-    "id": 1789243493189
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T20:05:05.859Z",
+    "id": 1789243505757
    }
   ],
   "oilroxwood_demandes": [],
@@ -45065,11 +44883,5 @@
  "_rolesFix4": true,
  "_rolesFix77": true,
  "_affFix1": true,
- "_prodFix1": true,
- "_recruesIgnore": [
-  "1788483950097",
-  "1788484358109",
-  "1788622713571",
-  "1789028277714"
- ]
+ "_prodFix1": true
 }
