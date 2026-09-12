@@ -15134,13 +15134,13 @@
    "public": false,
    "maj": "2026-09-11T12:36:49.002Z"
   },
-  "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿": {
-   "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+  "stella collins": {
+   "nom": "Stella Collins",
    "photo": "",
    "titre": "",
    "bio": "",
    "public": true,
-   "maj": "2026-09-11T23:54:31.263Z"
+   "maj": "2026-09-11T23:54:00.900Z"
   }
  },
  "affiches": [],
@@ -18128,9 +18128,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "rtlgdmlsla",
- "_maj": 1789172631570,
- "_rev": "p2be266y7a-mtxn6rw6",
+ "_cid": "faolzfc7fpe",
+ "_maj": 1789172630840,
+ "_rev": "6vqpcafqcbp-mtxn85rj",
  "_majSec": {
   "fer": 1789170394751,
   "fact": 1789170394751,
@@ -18152,8 +18152,8 @@
   "bilanForce": 1789170394751,
   "primesExtra": 1789170394751,
   "quotasComHist": 1789170394751,
-  "profils": 1789170871263,
-  "_tables": 1789172631570,
+  "profils": 1789170840900,
+  "_tables": 1789172630840,
   "_permsFix1": 1789170394751,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789170394751,
@@ -19992,7 +19992,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T00:23:48.918Z",
+  "maj": "2026-09-12T00:24:53.551Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -20030,15 +20030,15 @@
   ],
   "equipe": [
    {
-    "nom": "Diego Herrera",
-    "titre": "Co Patron",
-    "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+    "nom": "Stella Collins",
+    "titre": "Patron",
+    "photo": "https://cdn.discordapp.com/avatars/948542221429379112/9ead2c2f20a0b9980c9b59116b06f67e.png",
     "bio": ""
    },
    {
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "titre": "RH",
-    "photo": "https://cdn.discordapp.com/avatars/690537200689086537/89422621d14f87124a4e8ea64b0ac191.png",
+    "nom": "Diego Herrera",
+    "titre": "Co Patron",
+    "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
     "bio": ""
    }
   ]
@@ -42354,71 +42354,57 @@
     "uid": "948542221429379112",
     "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-12T00:11:52.030Z",
-    "id": 1789171915278
+    "vu": "2026-09-12T00:13:12.861Z",
+    "id": 1789171995306
    },
    {
     "uid": "948542221429379112",
     "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-12T00:13:22.453Z",
-    "id": 1789172005434
+    "vu": "2026-09-12T00:14:50.862Z",
+    "id": 1789172093236
    },
    {
     "uid": "948542221429379112",
     "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-12T00:14:52.445Z",
-    "id": 1789172095752
+    "vu": "2026-09-12T00:16:50.853Z",
+    "id": 1789172213825
    },
    {
     "uid": "948542221429379112",
     "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-12T00:15:50.602Z",
-    "id": 1789172151808
+    "vu": "2026-09-12T00:17:50.859Z",
+    "id": 1789172273722
    },
    {
     "uid": "948542221429379112",
     "nom": "Stella Collins",
     "role": "direction",
-    "vu": "2026-09-12T00:17:18.147Z",
-    "id": 1789172241622
+    "vu": "2026-09-12T00:19:50.836Z",
+    "id": 1789172393921
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-12T00:17:51.582Z",
-    "id": 1789172266056
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T00:20:50.834Z",
+    "id": 1789172453335
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-12T00:19:21.576Z",
-    "id": 1789172356134
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T00:22:50.839Z",
+    "id": 1789172573473
    },
    {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-12T00:20:51.577Z",
-    "id": 1789172446313
-   },
-   {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-12T00:22:21.569Z",
-    "id": 1789172535958
-   },
-   {
-    "uid": "690537200689086537",
-    "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "role": "rh",
-    "vu": "2026-09-12T00:23:51.570Z",
-    "id": 1789172626140
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T00:23:50.839Z",
+    "id": 1789172633971
    }
   ],
   "oilroxwood_demandes": [],
