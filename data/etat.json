@@ -12935,13 +12935,6 @@
     }
    },
    {
-    "nom": "Whites Creams",
-    "rib": "",
-    "tel": "555 472 459",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-04-22"
-   },
-   {
     "nom": "Yellow Jack",
     "rib": "20008",
     "tel": "918",
@@ -17757,11 +17750,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789218897846,
- "_rev": "rg6yvnb3f4-mtyeql5q",
+ "_maj": 1789218908065,
+ "_rev": "gpdhotl7z15-mtyeqpxf",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789218753688,
+  "fact": 1789218908065,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19620,7 +19613,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:15:02.942Z",
+  "maj": "2026-09-12T13:15:09.123Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
