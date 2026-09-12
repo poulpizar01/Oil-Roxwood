@@ -12572,11 +12572,7 @@
     "rib": "",
     "tel": "",
     "adresse": "Los Santos",
-    "lastCmd": "2026-03-29",
-    "relance": {
-     "par": "Emma Collins",
-     "date": "2026-09-12"
-    }
+    "lastCmd": "2026-03-29"
    },
    {
     "nom": "LTD Little Seoul",
@@ -17810,11 +17806,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789217166760,
- "_rev": "f0duop9fdwj-mtydpgn6",
+ "_maj": 1789217170360,
+ "_rev": "5sru46gabbf-mtydpkdi",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789217166760,
+  "fact": 1789217170360,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19673,7 +19669,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:46:10.818Z",
+  "maj": "2026-09-12T12:46:15.654Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
