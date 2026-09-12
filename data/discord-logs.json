@@ -1,11 +1,32 @@
 {
- "maj": "2026-09-12T14:02:08.078878+00:00",
+ "maj": "2026-09-12T14:21:41.781259+00:00",
  "salon": "1245400913066066099",
  "fenetreJours": 3,
  "coffres": [
   "entreprise (Oil RoxWood)"
  ],
  "messages": [
+  {
+   "id": "1548336687225249834",
+   "t": "2026-09-12T14:17:12.939000+00:00",
+   "auteur": "Logs- Spawn un véhicule",
+   "texte": "Spawn véhicule\nSpawn d'un véhicule appartenant à l'entreprise: gbvoyagerb\nplayerNetId : 319\nplayerDiscord : 633665872011198485\nplayerName : petit prince\nplayerCharacter : Eden Birds\nplayerId : 29602\nvehiclePlate : EO3801SO\njobId : 76\njobName : Oil RoxWood",
+   "nom": "Eden Birds",
+   "quantite": null,
+   "montant": null,
+   "type": "vehicule_spawn",
+   "salon": "1245400913473179732",
+   "champs": {
+    "playernetid": "319",
+    "playerdiscord": "633665872011198485",
+    "playername": "petit prince",
+    "playercharacter": "Eden Birds",
+    "playerid": "29602",
+    "vehicleplate": "EO3801SO",
+    "jobid": "76",
+    "jobname": "Oil RoxWood"
+   }
+  },
   {
    "id": "1548330601827012732",
    "t": "2026-09-12T13:53:02.067000+00:00",
@@ -93624,30 +93645,6 @@
    "coffre": "entreprise (Oil RoxWood)",
    "champs": {
     "position": "-3084.71, 6815.62, 44.73",
-    "targetposition": "-3084.39, 6815.87, 43.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547308643202895958-1",
-   "t": "2026-09-09T18:12:08.144000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\na retiré 54x Pétrole Brut du coffre de l'entreprise (Oil RoxWood)\nposition : -3084.15, 6815.30, 44.73\ntargetPosition : -3084.39, 6815.87, 43.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 54,
-   "montant": null,
-   "type": "coffre_retrait",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-3084.15, 6815.30, 44.73",
     "targetposition": "-3084.39, 6815.87, 43.75",
     "jobid": "76",
     "jobname": "Oil RoxWood",
