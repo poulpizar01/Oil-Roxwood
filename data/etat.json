@@ -4375,60 +4375,6 @@
     "dernierService": "2026-08-27"
    },
    {
-    "idU": "378209",
-    "nom": "Enzo Vargas",
-    "rib": "559024",
-    "tel": "555 734 752",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-22",
-    "contrat": true,
-    "discord": "1462892729964171469",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787360264602,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-29"
-   },
-   {
-    "idU": "337769",
-    "nom": "Issac Bennet",
-    "rib": "559191",
-    "tel": " 555986805",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-22",
-    "contrat": true,
-    "discord": "1398796313310662686",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787414416243,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-23"
-   },
-   {
-    "idU": "2399",
-    "nom": "Abdel Hafy",
-    "rib": "102353",
-    "tel": "555 023 53",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-23",
-    "contrat": true,
-    "discord": "1273293194481631384",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787484303170,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-26"
-   },
-   {
     "idU": "373597",
     "nom": "Calvin Praline",
     "rib": "552577",
@@ -18029,14 +17975,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789216347386,
- "_rev": "ng070m9srtn-mtyd7x2e",
+ "_maj": 1789216358461,
+ "_rev": "yy6yt72rvg-mtyd85l7",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789216347386,
+  "sheets": 1789216358461,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789215771989,
@@ -19892,7 +19838,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:32:32.294Z",
+  "maj": "2026-09-12T12:32:43.339Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
