@@ -11941,13 +11941,6 @@
     }
    },
    {
-    "nom": "Cartel Madrazo",
-    "rib": "",
-    "tel": "555 842 439",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-07-31"
-   },
-   {
     "nom": "Cartel Paredez",
     "rib": "",
     "tel": "",
@@ -17652,11 +17645,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789223044821,
- "_rev": "t21eocdy1k-mtyh85x8",
+ "_maj": 1789223085754,
+ "_rev": "vx0bkrpjzpa-mtyh89g2",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789222553606,
+  "fact": 1789223085754,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19515,7 +19508,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T14:24:42.236Z",
+  "maj": "2026-09-12T14:24:46.802Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
