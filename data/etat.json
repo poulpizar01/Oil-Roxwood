@@ -12401,13 +12401,6 @@
     "adresse": "Cayo"
    },
    {
-    "nom": "ivanovitch",
-    "rib": "",
-    "tel": "555-967-000",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-30"
-   },
-   {
     "nom": "Jackers",
     "rib": "",
     "tel": "555 472 105",
@@ -17806,11 +17799,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789217344847,
- "_rev": "3o65j40guyg-mtydti0z",
+ "_maj": 1789217371007,
+ "_rev": "1vg3w3bflj5-mtydtrwz",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789217170360,
+  "fact": 1789217371007,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19669,7 +19662,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:49:19.235Z",
+  "maj": "2026-09-12T12:49:32.051Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
