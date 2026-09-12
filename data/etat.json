@@ -17641,6 +17641,38 @@
    "quantite": 150,
    "montant": 750,
    "did": "1053366471574687844"
+  },
+  {
+   "id": "1548267939268927573",
+   "t": "2026-09-12 11:44",
+   "nom": "Laurent Roquel",
+   "quantite": 125,
+   "montant": 625,
+   "did": "707695913187016785"
+  },
+  {
+   "id": "1548267691045945397",
+   "t": "2026-09-12 11:43",
+   "nom": "Laurent Roquel",
+   "quantite": 125,
+   "montant": 625,
+   "did": "707695913187016785"
+  },
+  {
+   "id": "1548251064619241486",
+   "t": "2026-09-12 10:36",
+   "nom": "Julio Collins",
+   "quantite": 100,
+   "montant": 500,
+   "did": "767332288744128512"
+  },
+  {
+   "id": "1548250807357546549",
+   "t": "2026-09-12 10:35",
+   "nom": "Julio Collins",
+   "quantite": 100,
+   "montant": 500,
+   "did": "767332288744128512"
   }
  ],
  "settings": {
@@ -17848,10 +17880,10 @@
   "postesV4": 1
  },
  "_cid": "1q6yzoq4izh",
- "_maj": 1789243975046,
- "_rev": "vj9zqph5q4a-mtytobb0",
+ "_maj": 1789243994135,
+ "_rev": "kq17atgcv3-mtytog79",
  "_majSec": {
-  "fer": 1789243704049,
+  "fer": 1789243994135,
   "fact": 1789243963585,
   "users": 1789243704049,
   "weeks": 1789243704049,
@@ -17887,6 +17919,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789243993812,
+   "u": "Emma Collins",
+   "a": "Achats de fer : 4 relevé(s) repris du salon"
+  },
   {
    "t": 1789216393612,
    "u": "Stella Collins",
@@ -19381,11 +19418,6 @@
    "a": "Fer acheté noté : William Rodriguez-collins → 940",
    "t": 1788096400417,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 940",
-   "t": 1788096388761,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19711,7 +19743,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:13:11.100Z",
+  "maj": "2026-09-12T20:13:17.445Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
