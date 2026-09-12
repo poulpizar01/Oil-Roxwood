@@ -12208,13 +12208,6 @@
     "lastCmd": "2026-05-12"
    },
    {
-    "nom": "Famille GMF",
-    "rib": "",
-    "tel": "",
-    "adresse": "Paleto",
-    "lastCmd": "2026-05-07"
-   },
-   {
     "nom": "Famille Krueger",
     "rib": "",
     "tel": "555 201 755",
@@ -17736,11 +17729,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789219444854,
- "_rev": "frwxvmhsym8-mtyf2fqw",
+ "_maj": 1789219465099,
+ "_rev": "nvcqzxruvm-mtyf2npw",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789219227941,
+  "fact": 1789219465099,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19599,7 +19592,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:24:15.800Z",
+  "maj": "2026-09-12T13:24:26.132Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
