@@ -17826,9 +17826,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bot",
- "_maj": 1789239451285,
- "_rev": "idca0z7t5ig-mtyqy76s",
+ "_cid": "x4ie0xa8hto",
+ "_maj": 1789239531828,
+ "_rev": "n65mni8m8yq-mtyr0rql",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789228034523,
-  "_tables": 1789239451285,
+  "_tables": 1789239531828,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T18:56:53.476Z",
+  "maj": "2026-09-12T18:58:53.421Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -44048,6 +44048,20 @@
     "role": "direction",
     "vu": "2026-09-12T18:55:51.821Z",
     "id": 1789239353296
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T18:57:51.821Z",
+    "id": 1789239473695
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T18:58:51.828Z",
+    "id": 1789239533588
    }
   ],
   "oilroxwood_demandes": [],
@@ -44679,17 +44693,6 @@
     "grade": "Intérimaire",
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "arrivee": "2026-09-11"
-   },
-   {
-    "id": 1789239450907,
-    "nom": "Abdel Bren",
-    "discord": "552827252543324160",
-    "tel": "555-309-161",
-    "rib": "486350",
-    "idU": "322142",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-09-12"
    }
   ],
   "oilroxwood_absences": [
