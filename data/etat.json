@@ -18137,9 +18137,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "vgqoddjcnna",
- "_maj": 1789216235516,
- "_rev": "0uksg6r92rn-mtyd5ic6",
+ "_cid": "t57emwjv67o",
+ "_maj": 1789216239180,
+ "_rev": "g37doq7pmgm-mtyd5khg",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215604317,
@@ -18162,7 +18162,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789216235516,
+  "_tables": 1789216239180,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -20001,7 +20001,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:30:39.894Z",
+  "maj": "2026-09-12T12:30:42.676Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42546,6 +42546,13 @@
     "role": "respcom",
     "vu": "2026-09-12T12:30:35.516Z",
     "id": 1789216236346
+   },
+   {
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:30:39.016Z",
+    "id": 1789216239637
    }
   ],
   "oilroxwood_demandes": [],
