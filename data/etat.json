@@ -4713,7 +4713,7 @@
    {
     "nom": "Brandon Parker",
     "grade": "Intérimaire",
-    "tel": "",
+    "tel": "555999901",
     "rib": "",
     "idU": "180519",
     "arrivee": "2026-09-05",
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226874937,
- "_rev": "nddefdgd5df-mtyjhk5v",
+ "_maj": 1789226881820,
+ "_rev": "0ul2dmu5qfq9-mtyjhqhx",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226874937,
+  "sheets": 1789226881820,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:27:59.827Z",
+  "maj": "2026-09-12T15:28:08.037Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
