@@ -12859,13 +12859,6 @@
     "lastCmd": "2026-07-22"
    },
    {
-    "nom": "The Last Nightmare",
-    "rib": "",
-    "tel": "",
-    "adresse": "sandy shore",
-    "lastCmd": "2026-04-14"
-   },
-   {
     "nom": "The Night Ghost",
     "rib": "",
     "tel": "555 742 796",
@@ -17778,11 +17771,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789218231773,
- "_rev": "usse0zbpgjk-mtyecagr",
+ "_maj": 1789218278424,
+ "_rev": "ukcjsnaeigc-mtyed84g",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789218067297,
+  "fact": 1789218278424,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19641,7 +19634,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:03:55.899Z",
+  "maj": "2026-09-12T13:04:39.520Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
