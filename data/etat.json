@@ -4814,11 +4814,11 @@
     "tel": "",
     "rib": "",
     "idU": "368391",
-    "arrivee": "",
-    "discord": "",
+    "arrivee": "2026-09-11",
+    "discord": "1056044944571248710",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "2026-09-12",
     "flagOut": false
    },
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789227095108,
- "_rev": "j8qa50k3vbq-mtyjma2f",
+ "_maj": 1789227111860,
+ "_rev": "x5bzwmq0cv-mtyjmmz7",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789227095108,
+  "sheets": 1789227111860,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789227019263,
+  "_tables": 1789227109282,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:31:40.023Z",
+  "maj": "2026-09-12T15:31:56.755Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -43082,6 +43082,13 @@
     "role": "direction",
     "vu": "2026-09-12T15:30:19.263Z",
     "id": 1789227021124
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T15:31:49.282Z",
+    "id": 1789227111507
    }
   ],
   "oilroxwood_demandes": [],
