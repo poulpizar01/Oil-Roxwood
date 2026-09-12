@@ -11986,7 +11986,11 @@
     "rib": "",
     "tel": "2035",
     "adresse": "Roxwood",
-    "lastCmd": "2026-04-24"
+    "lastCmd": "2026-04-24",
+    "relance": {
+     "par": "William Rodriguez-collins",
+     "date": "2026-09-12"
+    }
    },
    {
     "nom": "Casa Nostra",
@@ -12752,11 +12756,7 @@
     "rib": "20035",
     "tel": "945",
     "adresse": "Los Santos",
-    "lastCmd": "2026-02-24",
-    "relance": {
-     "par": "Emma Collins",
-     "date": "2026-09-12"
-    }
+    "lastCmd": "2026-02-24"
    },
    {
     "nom": "Post OP",
@@ -17839,12 +17839,12 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "1q6yzoq4izh",
- "_maj": 1789243950288,
- "_rev": "p5xi8dmwjzs-mtytnibr",
+ "_cid": "vr7qthw9dlm",
+ "_maj": 1789243953813,
+ "_rev": "snmt02k3pn-mtytnl3j",
  "_majSec": {
   "fer": 1789243704049,
-  "fact": 1789243950288,
+  "fact": 1789243953813,
   "users": 1789243704049,
   "weeks": 1789243704049,
   "sheets": 1789243704049,
@@ -19703,7 +19703,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:12:33.543Z",
+  "maj": "2026-09-12T20:12:37.135Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
