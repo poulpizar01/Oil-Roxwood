@@ -12678,13 +12678,6 @@
     "lastCmd": "2026-03-14"
    },
    {
-    "nom": "Rosadera",
-    "rib": "",
-    "tel": "555 967 179",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-25"
-   },
-   {
     "nom": "SafeGuard Assurance",
     "rib": "",
     "tel": "",
@@ -17680,11 +17673,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789220502906,
- "_rev": "2gu6jn5xgb4-mtyfoyyc",
+ "_maj": 1789220511682,
+ "_rev": "t013pb36ane-mtyfp3ay",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789220395118,
+  "fact": 1789220511682,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19543,7 +19536,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:41:47.124Z",
+  "maj": "2026-09-12T13:41:52.762Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
