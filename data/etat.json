@@ -3416,7 +3416,11 @@
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "",
-    "flagOut": false
+    "flagOut": false,
+    "contratGen": {
+     "t": 1789215358040,
+     "par": "Stella Collins"
+    }
    },
    {
     "nom": "Liam Doyle",
@@ -18129,17 +18133,17 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789215319719,
- "_rev": "pwqcg93u0i-mtyclwic",
+ "_maj": 1789215358041,
+ "_rev": "oz5s5w6oi4s-mtycmnfy",
  "_majSec": {
   "fer": 1789170394751,
   "fact": 1789170394751,
   "users": 1789170394751,
   "weeks": 1789170394751,
-  "sheets": 1789170394751,
+  "sheets": 1789215358041,
   "_qcFix1": 1789170394751,
   "_wkFix1": 1789170394751,
-  "journal": 1789170926264,
+  "journal": 1789215358041,
   "pending": 1789170394751,
   "prodDer": 1789170394751,
   "runners": 1789170394751,
@@ -18168,6 +18172,11 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789215359423,
+   "u": "Stella Collins",
+   "a": "Contrat de travail généré : Alex Bren (Runner)"
+  },
   {
    "t": 1789170929039,
    "u": "Stella Collins",
@@ -19662,11 +19671,6 @@
    "a": "Fer acheté noté : William Rodriguez-collins → 700",
    "t": 1788078848156,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 700",
-   "t": 1788078843789,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19992,7 +19996,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:15:25.140Z",
+  "maj": "2026-09-12T12:16:00.046Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
