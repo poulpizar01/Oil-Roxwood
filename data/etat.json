@@ -14840,6 +14840,14 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-12T12:21:43.292Z"
+  },
+  "laurent roquel": {
+   "nom": "Laurent Roquel",
+   "photo": "",
+   "titre": "",
+   "bio": "",
+   "public": true,
+   "maj": "2026-09-12T16:48:15.042Z"
   }
  },
  "affiches": [],
@@ -17859,11 +17867,11 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "8j36jzrvex6",
- "_maj": 1789231716731,
- "_rev": "997ub5k5cc-mtymdc2m",
+ "_cid": "6hufd4a00tw",
+ "_maj": 1789231726890,
+ "_rev": "ypkqf6udpj7-mtymdk6g",
  "_majSec": {
-  "fer": 1789231716731,
+  "fer": 1789231726890,
   "fact": 1789231555514,
   "users": 1789231555514,
   "weeks": 1789231555514,
@@ -17883,8 +17891,8 @@
   "bilanForce": 1789231555514,
   "primesExtra": 1789231555514,
   "quotasComHist": 1789231555514,
-  "profils": 1789231555514,
-  "_tables": 1789231652566,
+  "profils": 1789231695043,
+  "_tables": 1789231645634,
   "_permsFix1": 1789231555514,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789231555514,
@@ -17900,8 +17908,8 @@
  "_wkFix1": true,
  "journal": [
   {
-   "t": 1789231718187,
-   "u": "Diego Herrera",
+   "t": 1789231728551,
+   "u": "Laurent Roquel",
    "a": "Achats de fer : 4 relevé(s) repris du salon"
   },
   {
@@ -19723,7 +19731,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T16:48:41.566Z",
+  "maj": "2026-09-12T16:48:52.072Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19776,6 +19784,12 @@
     "nom": "Emma Collins",
     "titre": "Responsable commercial",
     "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
+    "bio": ""
+   },
+   {
+    "nom": "Laurent Roquel",
+    "titre": "Commercial",
+    "photo": "https://cdn.discordapp.com/avatars/707695913187016785/447248cc6f059b26b70f1c477e3c2e4d.png",
     "bio": ""
    }
   ]
@@ -43453,39 +43467,18 @@
     "id": 1789231253844
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T16:42:42.088Z",
-    "id": 1789231363284
+    "uid": "707695913187016785",
+    "nom": "Laurent Roquel",
+    "role": "commercial",
+    "vu": "2026-09-12T16:45:55.621Z",
+    "id": 1789231558324
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T16:43:45.762Z",
-    "id": 1789231427445
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T16:44:32.061Z",
-    "id": 1789231474709
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T16:46:02.571Z",
-    "id": 1789231564309
-   },
-   {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T16:47:32.566Z",
-    "id": 1789231654136
+    "uid": "707695913187016785",
+    "nom": "Laurent Roquel",
+    "role": "commercial",
+    "vu": "2026-09-12T16:47:25.634Z",
+    "id": 1789231648142
    }
   ],
   "oilroxwood_demandes": [],
