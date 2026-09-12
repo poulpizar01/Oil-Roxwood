@@ -1,1 +1,1 @@
-{"v": "C-99", "note": "les profils se fusionnent fiche par fiche ; recharge la page si elle etait deja ouverte"}
+{"v": "C-100", "note": "correction de la lecture du depot au-dela d'1 Mo ; recharge la page si elle etait deja ouverte"}

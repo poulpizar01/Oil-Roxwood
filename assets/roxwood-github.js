@@ -40,12 +40,6 @@
     for (var i = 0; i < o.length; i++) s += String.fromCharCode(o[i]);
     return btoa(s);
   }
-  function depuisB64(b64) {
-    var s = atob(b64.replace(/\s/g, "")), o = new Uint8Array(s.length);
-    for (var i = 0; i < s.length; i++) o[i] = s.charCodeAt(i);
-    return new TextDecoder().decode(o);
-  }
-
   /* ---------- lecture ---------- */
   /* Sans jeton on passe par raw.githubusercontent : aucune limite de débit.
      Le CDN garde le fichier ~5 min, d'où le paramètre anti-cache.            */
@@ -66,16 +60,26 @@
      la même chose dans les deux cas, pour ne pas révéler l'existence d'un
      dépôt à quelqu'un qui n'y a pas droit. On renvoie donc le drapeau
      `absent`, et c'est `verifierAcces()` qui tranche. */
+  /* Au-delà d'1 Mo, l'API GitHub renvoie toujours le SHA mais plus le contenu
+     encodé (`content:""`) — data/etat.json a franchi ce seuil début septembre.
+     JSON.parse d'une chaîne vide échouait silencieusement (try/catch muet),
+     et la fusion avec le dépôt sautait sans prévenir à CHAQUE écriture depuis :
+     exactement le genre de course qui a effacé le profil de Julio. On demande
+     donc le contenu « brut », sans limite de taille ; le SHA voyage alors dans
+     l'en-tête ETag plutôt que dans le corps de la réponse. */
   function lireAvecSha() {
+    var h = enTetes(true);
+    h["Accept"] = "application/vnd.github.raw+json";
     return fetch(API + "?ref=" + CFG.branche + "&t=" + Date.now(),
-                 { headers: enTetes(true), cache: "no-store" })
+                 { headers: h, cache: "no-store" })
       .then(function (r) {
         if (r.status === 404) return { data: null, sha: null, absent: true };
         if (!r.ok) return r.json().then(function (j) { throw new Error(j.message || "HTTP " + r.status); });
-        return r.json().then(function (j) {
+        var etag = (r.headers.get("ETag") || "").replace(/^W\//, "").replace(/"/g, "");
+        return r.text().then(function (txt) {
           var d = null;
-          try { d = JSON.parse(depuisB64(j.content)); } catch (e) {}
-          return { data: d, sha: j.sha };
+          try { d = JSON.parse(txt); } catch (e) {}
+          return { data: d, sha: etag };
         });
       });
   }

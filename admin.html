@@ -1196,7 +1196,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-99';
+const APP_VERSION='C-100';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -4701,6 +4701,10 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-100',d:'12/09/2026',t:'Le dépôt a dépassé 1 Mo — la fusion sautait en silence',items:[
+   ['📦','data/etat.json a franchi la limite d\'1 Mo que GitHub accepte de renvoyer d\'un coup','Au-delà, l\'API répond toujours avec le SHA mais plus le contenu du fichier. Chaque enregistrement depuis ce seuil essayait de fusionner avec un contenu vide, échouait sans le dire (un try/catch resté muet), et écrivait quand même — en ignorant tout changement en cours ailleurs. C\'est la même mécanique qui a effacé le profil de Julio, mais sur n\'importe quelle section, à chaque sauvegarde.'],
+   ['🔧','Le contenu se lit maintenant « brut », sans limite de taille','Le SHA voyage dans l\'en-tête de la réponse plutôt que dans son corps encodé — testé de bout en bout sur le fichier réel (1,14 Mo) avant publication. Le bot Discord reçoit le même correctif.'],
+ ]},
  {v:'C-99',d:'12/09/2026',t:'Deux profils qui s\'effaçaient l\'un l\'autre',items:[
    ['👤','La fiche de Julio a disparu, remplacée par celle de Stella','Deux personnes qui n\'avaient rien à voir : Julio a coché « Afficher ma carte », puis Stella a fait pareil quelques secondes plus tard depuis un navigateur qui ne savait pas encore que Julio venait d\'écrire. Son enregistrement a remplacé tout le tiroir des profils au lieu de n\'ajouter que le sien — la fiche de Julio est partie avec.'],
    ['🔧','Chaque fiche a maintenant sa propre date','Comme les tables du bot avant elle, la section des profils se fusionnait en bloc : la plus récente écrasait tout. Elle se fusionne désormais fiche par fiche — celle de Julio, celle de Stella, celle de qui s\'enregistre en même temps, chacune garde sa place.'],
