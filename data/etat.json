@@ -17826,8 +17826,8 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "x4ie0xa8hto",
- "_maj": 1789239351821,
+ "_cid": "bot",
+ "_maj": 1789239451285,
  "_rev": "idca0z7t5ig-mtyqy76s",
  "_majSec": {
   "fer": 1789215604317,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789228034523,
-  "_tables": 1789239351821,
+  "_tables": 1789239451285,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -44679,6 +44679,17 @@
     "grade": "Intérimaire",
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "arrivee": "2026-09-11"
+   },
+   {
+    "id": 1789239450907,
+    "nom": "Abdel Bren",
+    "discord": "552827252543324160",
+    "tel": "555-309-161",
+    "rib": "486350",
+    "idU": "322142",
+    "grade": "Intérimaire",
+    "recrut": "Thomas Boyer",
+    "arrivee": "2026-09-12"
    }
   ],
   "oilroxwood_absences": [
