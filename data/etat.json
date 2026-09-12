@@ -11267,7 +11267,7 @@
     "don": "",
     "nom": "Jason Harper",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11287,7 +11287,7 @@
     "don": "",
     "nom": "Andrew Clark",
     "date": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11437,7 +11437,7 @@
     "don": "",
     "nom": "John Scoupio",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Responsable Runner",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11457,7 +11457,7 @@
     "don": "",
     "nom": "Joseph Larose",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11507,7 +11507,7 @@
     "don": "",
     "nom": "Marco Sanchez",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11537,7 +11537,7 @@
     "don": "",
     "nom": "Tony Clark",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11547,7 +11547,7 @@
     "don": "",
     "nom": "Xavier Collins",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Responsable Runner",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11597,7 +11597,7 @@
     "don": "",
     "nom": "carlos dupont",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11677,7 +11677,7 @@
     "don": "",
     "nom": "Miles Cole",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -14840,14 +14840,6 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-12T12:21:43.292Z"
-  },
-  "laurent roquel": {
-   "nom": "Laurent Roquel",
-   "photo": "",
-   "titre": "",
-   "bio": "",
-   "public": true,
-   "maj": "2026-09-12T16:48:15.042Z"
   }
  },
  "affiches": [],
@@ -17867,18 +17859,18 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "6hufd4a00tw",
- "_maj": 1789231915626,
- "_rev": "35fptszmcgp-mtymhlua",
+ "_cid": "8j36jzrvex6",
+ "_maj": 1789231922069,
+ "_rev": "c6hg5rwsibh-mtymhqlr",
  "_majSec": {
-  "fer": 1789231726890,
+  "fer": 1789231716731,
   "fact": 1789231555514,
   "users": 1789231555514,
   "weeks": 1789231555514,
-  "sheets": 1789231555514,
+  "sheets": 1789231769985,
   "_qcFix1": 1789231555514,
   "_wkFix1": 1789231555514,
-  "journal": 1789231735660,
+  "journal": 1789231769985,
   "pending": 1789231555514,
   "prodDer": 1789231555514,
   "runners": 1789231555514,
@@ -17891,8 +17883,8 @@
   "bilanForce": 1789231555514,
   "primesExtra": 1789231555514,
   "quotasComHist": 1789231555514,
-  "profils": 1789231695043,
-  "_tables": 1789231915626,
+  "profils": 1789231555514,
+  "_tables": 1789231922069,
   "_permsFix1": 1789231555514,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789231555514,
@@ -17908,8 +17900,13 @@
  "_wkFix1": true,
  "journal": [
   {
-   "t": 1789231728551,
-   "u": "Laurent Roquel",
+   "t": 1789231771419,
+   "u": "Diego Herrera",
+   "a": "Éligibilité : 9 grade(s) réalignés sur l'effectif — Jason Harper : Raffineur Expert → Raffineur Confirmé · Andrew Clark : Raffineur Confirmé → Raffineur Expert · John Scoupio : Raffineur → Responsable Runner · Joseph Larose : Raffineur → Intérimaire…"
+  },
+  {
+   "t": 1789231718187,
+   "u": "Diego Herrera",
    "a": "Achats de fer : 4 relevé(s) repris du salon"
   },
   {
@@ -19401,11 +19398,6 @@
    "a": "Fer acheté noté : Julio Collins → 940",
    "t": 1788096407929,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 940",
-   "t": 1788096400417,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19731,7 +19723,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T16:52:00.850Z",
+  "maj": "2026-09-12T16:52:07.023Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19784,12 +19776,6 @@
     "nom": "Emma Collins",
     "titre": "Responsable commercial",
     "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
-    "bio": ""
-   },
-   {
-    "nom": "Laurent Roquel",
-    "titre": "Commercial",
-    "photo": "https://cdn.discordapp.com/avatars/707695913187016785/447248cc6f059b26b70f1c477e3c2e4d.png",
     "bio": ""
    }
   ]
@@ -43467,39 +43453,60 @@
     "id": 1789231253844
    },
    {
-    "uid": "707695913187016785",
-    "nom": "Laurent Roquel",
-    "role": "commercial",
-    "vu": "2026-09-12T16:45:55.621Z",
-    "id": 1789231558324
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:42:42.088Z",
+    "id": 1789231363284
    },
    {
-    "uid": "707695913187016785",
-    "nom": "Laurent Roquel",
-    "role": "commercial",
-    "vu": "2026-09-12T16:47:25.634Z",
-    "id": 1789231648142
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:43:45.762Z",
+    "id": 1789231427445
    },
    {
-    "uid": "707695913187016785",
-    "nom": "Laurent Roquel",
-    "role": "commercial",
-    "vu": "2026-09-12T16:48:55.627Z",
-    "id": 1789231737252
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:44:32.061Z",
+    "id": 1789231474709
    },
    {
-    "uid": "707695913187016785",
-    "nom": "Laurent Roquel",
-    "role": "commercial",
-    "vu": "2026-09-12T16:50:25.636Z",
-    "id": 1789231827592
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:46:02.571Z",
+    "id": 1789231564309
    },
    {
-    "uid": "707695913187016785",
-    "nom": "Laurent Roquel",
-    "role": "commercial",
-    "vu": "2026-09-12T16:51:55.623Z",
-    "id": 1789231918194
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:47:32.566Z",
+    "id": 1789231654136
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:49:02.074Z",
+    "id": 1789231744280
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:50:32.065Z",
+    "id": 1789231833946
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T16:52:02.069Z",
+    "id": 1789231924264
    }
   ],
   "oilroxwood_demandes": [],
