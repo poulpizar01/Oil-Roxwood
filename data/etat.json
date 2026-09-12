@@ -11267,7 +11267,7 @@
     "don": "",
     "nom": "Jason Harper",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11287,7 +11287,7 @@
     "don": "",
     "nom": "Andrew Clark",
     "date": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11437,7 +11437,7 @@
     "don": "",
     "nom": "John Scoupio",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Responsable Runner",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11457,7 +11457,7 @@
     "don": "",
     "nom": "Joseph Larose",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11507,7 +11507,7 @@
     "don": "",
     "nom": "Marco Sanchez",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11537,7 +11537,7 @@
     "don": "",
     "nom": "Tony Clark",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11547,7 +11547,7 @@
     "don": "",
     "nom": "Xavier Collins",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Responsable Runner",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11597,7 +11597,7 @@
     "don": "",
     "nom": "carlos dupont",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11677,7 +11677,7 @@
     "don": "",
     "nom": "Miles Cole",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11986,7 +11986,19 @@
     "rib": "",
     "tel": "2035",
     "adresse": "Roxwood",
-    "lastCmd": "2026-04-24"
+    "lastCmd": "2026-04-24",
+    "relance": {
+     "par": "William Rodriguez-collins",
+     "date": "2026-09-12"
+    },
+    "notes": [
+     {
+      "t": 1789243963585,
+      "par": "William Rodriguez-collins",
+      "txt": "Ils leur restent 2800bidons",
+      "imgs": 0
+     }
+    ]
    },
    {
     "nom": "Casa Nostra",
@@ -14764,7 +14776,8 @@
    "id": 1783435518631,
    "did": "235844738656239616",
    "role": "commercial",
-   "user": "William Rodriguez-collins"
+   "user": "William Rodriguez-collins",
+   "avatar": "https://cdn.discordapp.com/avatars/235844738656239616/6705cf8fc5707bfb269446b197494252.png"
   },
   {
    "id": 1783447686613,
@@ -14839,6 +14852,14 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-12T12:21:43.292Z"
+  },
+  "william rodriguez-collins": {
+   "nom": "William Rodriguez-collins",
+   "photo": "",
+   "titre": "",
+   "bio": "",
+   "public": true,
+   "maj": "2026-09-12T20:11:53.537Z"
   }
  },
  "affiches": [],
@@ -17620,6 +17641,38 @@
    "quantite": 150,
    "montant": 750,
    "did": "1053366471574687844"
+  },
+  {
+   "id": "1548267939268927573",
+   "t": "2026-09-12 11:44",
+   "nom": "Laurent Roquel",
+   "quantite": 125,
+   "montant": 625,
+   "did": "707695913187016785"
+  },
+  {
+   "id": "1548267691045945397",
+   "t": "2026-09-12 11:43",
+   "nom": "Laurent Roquel",
+   "quantite": 125,
+   "montant": 625,
+   "did": "707695913187016785"
+  },
+  {
+   "id": "1548251064619241486",
+   "t": "2026-09-12 10:36",
+   "nom": "Julio Collins",
+   "quantite": 100,
+   "montant": 500,
+   "did": "767332288744128512"
+  },
+  {
+   "id": "1548250807357546549",
+   "t": "2026-09-12 10:35",
+   "nom": "Julio Collins",
+   "quantite": 100,
+   "montant": 500,
+   "did": "767332288744128512"
   }
  ],
  "settings": {
@@ -17826,46 +17879,56 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bq72b3b52g",
- "_maj": 1789244503501,
- "_rev": "cxzmlir5hm-mtytzf20",
+ "_cid": "vr7qthw9dlm",
+ "_maj": 1789244530806,
+ "_rev": "egsjkl2nm9j-mtytzw9z",
  "_majSec": {
-  "fer": 1789215604317,
-  "fact": 1789215771989,
-  "users": 1789215604317,
-  "weeks": 1789215604317,
-  "sheets": 1789227236561,
-  "_qcFix1": 1789215604317,
-  "_wkFix1": 1789215604317,
-  "journal": 1789216392119,
-  "pending": 1789215604317,
-  "prodDer": 1789215604317,
-  "runners": 1789227624561,
-  "absences": 1789215604317,
-  "imported": 1789215604317,
-  "settings": 1789215604317,
-  "closeUndo": 1789215604317,
-  "quotasCom": 1789215839232,
-  "bilanExtra": 1789215604317,
-  "bilanForce": 1789215604317,
-  "primesExtra": 1789215604317,
-  "quotasComHist": 1789215604317,
-  "profils": 1789228034523,
-  "_tables": 1789244503501,
-  "_permsFix1": 1789215604317,
+  "fer": 1789243994135,
+  "fact": 1789243963585,
+  "users": 1789243704049,
+  "weeks": 1789243704049,
+  "sheets": 1789244066105,
+  "_qcFix1": 1789243704049,
+  "_wkFix1": 1789243704049,
+  "journal": 1789244066105,
+  "pending": 1789243704049,
+  "prodDer": 1789243704049,
+  "runners": 1789243704049,
+  "absences": 1789243704049,
+  "imported": 1789243704049,
+  "settings": 1789243704049,
+  "closeUndo": 1789243704049,
+  "quotasCom": 1789243704049,
+  "bilanExtra": 1789243704049,
+  "bilanForce": 1789243704049,
+  "primesExtra": 1789243704049,
+  "quotasComHist": 1789243704049,
+  "profils": 1789243913537,
+  "_tables": 1789244530806,
+  "_permsFix1": 1789243704049,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789215604317,
-  "affiches": 1789215604317,
-  "_affFix1": 1789215604317,
-  "produits": 1789215604317,
-  "_prodFix1": 1789215604317,
-  "_recruesIgnore": 1789215604317,
-  "ventesAlias": 1789215604317,
-  "_ventesIgnore": 1789215604317
+  "_rolesFix77": 1789243704049,
+  "affiches": 1789243704049,
+  "_affFix1": 1789243704049,
+  "produits": 1789243704049,
+  "_prodFix1": 1789243704049,
+  "_recruesIgnore": 1789243704049,
+  "ventesAlias": 1789243704049,
+  "_ventesIgnore": 1789243704049
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789244065657,
+   "u": "Emma Collins",
+   "a": "Éligibilité : 9 grade(s) réalignés sur l'effectif — Jason Harper : Raffineur Expert → Raffineur Confirmé · Andrew Clark : Raffineur Confirmé → Raffineur Expert · John Scoupio : Raffineur → Responsable Runner · Joseph Larose : Raffineur → Intérimaire…"
+  },
+  {
+   "t": 1789243993812,
+   "u": "Emma Collins",
+   "a": "Achats de fer : 4 relevé(s) repris du salon"
+  },
   {
    "t": 1789216393612,
    "u": "Stella Collins",
@@ -19355,16 +19418,6 @@
    "a": "Fer acheté noté : Julio Collins → 940",
    "t": 1788096407929,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 940",
-   "t": 1788096400417,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 940",
-   "t": 1788096388761,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19690,7 +19743,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:21:49.176Z",
+  "maj": "2026-09-12T20:22:11.495Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19743,6 +19796,12 @@
     "nom": "Emma Collins",
     "titre": "Responsable commercial",
     "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
+    "bio": ""
+   },
+   {
+    "nom": "William Rodriguez-collins",
+    "titre": "Commercial",
+    "photo": "https://cdn.discordapp.com/avatars/235844738656239616/6705cf8fc5707bfb269446b197494252.png",
     "bio": ""
    }
   ]
@@ -44389,71 +44448,71 @@
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:08:15.633Z",
-    "id": 1789243696150
+    "vu": "2026-09-12T20:09:51.782Z",
+    "id": 1789243793197
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:09:43.801Z",
-    "id": 1789243786022
+    "vu": "2026-09-12T20:10:51.777Z",
+    "id": 1789243853341
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:11:13.802Z",
-    "id": 1789243876395
+    "vu": "2026-09-12T20:12:50.858Z",
+    "id": 1789243973463
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:12:43.800Z",
-    "id": 1789243966999
+    "vu": "2026-09-12T20:13:50.855Z",
+    "id": 1789244033881
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:14:13.795Z",
-    "id": 1789244056266
+    "vu": "2026-09-12T20:15:50.854Z",
+    "id": 1789244153984
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:15:43.791Z",
-    "id": 1789244146540
+    "vu": "2026-09-12T20:16:50.861Z",
+    "id": 1789244213860
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:17:50.803Z",
-    "id": 1789244273691
+    "vu": "2026-09-12T20:18:50.859Z",
+    "id": 1789244333270
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:18:50.862Z",
-    "id": 1789244333158
+    "vu": "2026-09-12T20:19:50.864Z",
+    "id": 1789244393777
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:20:50.855Z",
-    "id": 1789244453643
+    "uid": "235844738656239616",
+    "nom": "William Rodriguez-collins",
+    "role": "commercial",
+    "vu": "2026-09-12T20:21:10.813Z",
+    "id": 1789244471270
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:21:43.501Z",
-    "id": 1789244506322
+    "uid": "235844738656239616",
+    "nom": "William Rodriguez-collins",
+    "role": "commercial",
+    "vu": "2026-09-12T20:22:10.805Z",
+    "id": 1789244530835
    }
   ],
   "oilroxwood_demandes": [],
