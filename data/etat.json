@@ -470,7 +470,7 @@
   },
   {
    "id": 1789129324401,
-   "nom": "Louka Romelu",
+   "nom": "Romelu Louka",
    "discord": "",
    "grade": 0,
    "barils": 2492,
@@ -2380,7 +2380,7 @@
     },
     {
      "ok": true,
-     "nom": "Louka Romelu",
+     "nom": "Romelu Louka",
      "poste": false,
      "quota": 3000,
      "barils": 5358
@@ -3181,7 +3181,7 @@
     },
     {
      "ok": false,
-     "nom": "Louka Romelu",
+     "nom": "Romelu Louka",
      "poste": false,
      "quota": 3000,
      "barils": 2272
@@ -4622,7 +4622,7 @@
    },
    {
     "idU": "377944",
-    "nom": "Louka Romelu",
+    "nom": "Romelu Louka",
     "rib": " 558474",
     "tel": "555 654 025",
     "avert": "",
@@ -9525,7 +9525,7 @@
     "heures": "3h48min"
    },
    {
-    "nom": "Louka Romelu",
+    "nom": "Romelu Louka",
     "rang": "Intérimaire",
     "factures": 0,
     "runs": 12460,
@@ -18133,20 +18133,20 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789215377649,
- "_rev": "330046c6tvz-mtycn4tc",
+ "_maj": 1789215400974,
+ "_rev": "91l5znjmtk-mtycnkk3",
  "_majSec": {
   "fer": 1789170394751,
   "fact": 1789170394751,
   "users": 1789170394751,
-  "weeks": 1789170394751,
-  "sheets": 1789215358041,
+  "weeks": 1789215400974,
+  "sheets": 1789215400974,
   "_qcFix1": 1789170394751,
   "_wkFix1": 1789170394751,
-  "journal": 1789215358041,
+  "journal": 1789215400974,
   "pending": 1789170394751,
   "prodDer": 1789170394751,
-  "runners": 1789170394751,
+  "runners": 1789215400974,
   "absences": 1789170394751,
   "imported": 1789170394751,
   "settings": 1789170926264,
@@ -18165,13 +18165,18 @@
   "_affFix1": 1789170394751,
   "produits": 1789170394751,
   "_prodFix1": 1789170394751,
-  "_recruesIgnore": 1789215377649,
+  "_recruesIgnore": 1789215400974,
   "ventesAlias": 1789170394751,
   "_ventesIgnore": 1789170394751
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789215402356,
+   "u": "Stella Collins",
+   "a": "Renommage : Louka Romelu → Romelu Louka · effectif (1), feuille rh (1), feuille tablette (1), historique des semaines (2)"
+  },
   {
    "t": 1789215359423,
    "u": "Stella Collins",
@@ -19666,11 +19671,6 @@
    "a": "Fer acheté noté : Juan Sanchez → 700",
    "t": 1788078860245,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 700",
-   "t": 1788078848156,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19996,7 +19996,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:16:22.560Z",
+  "maj": "2026-09-12T12:16:42.963Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -43172,6 +43172,7 @@
  "_recruesIgnore": [
   "1788483950097",
   "1788484358109",
-  "1788622713571"
+  "1788622713571",
+  "1789028277714"
  ]
 }
