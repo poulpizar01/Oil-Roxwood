@@ -469,18 +469,6 @@
    "lastSync": 1224
   },
   {
-   "id": 1789129324401,
-   "nom": "Louka Romelu",
-   "discord": "",
-   "grade": 0,
-   "barils": 2492,
-   "total": 0,
-   "runs": [],
-   "src": "tablette",
-   "poste": null,
-   "lastSync": 2492
-  },
-  {
    "id": 1789130053854,
    "nom": "Alex Bren",
    "discord": "",
@@ -539,6 +527,18 @@
    "src": "tablette",
    "poste": null,
    "lastSync": 632
+  },
+  {
+   "id": 1789228566110,
+   "nom": "Romelu Louka",
+   "discord": "",
+   "grade": 0,
+   "barils": 2492,
+   "total": 0,
+   "runs": [],
+   "src": "tablette",
+   "poste": null,
+   "lastSync": 2492
   }
  ],
  "weeks": [
@@ -17826,9 +17826,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wdcu2mjtxhn",
- "_maj": 1789227471837,
- "_rev": "jq930l52yx-mtyjvki5",
+ "_cid": "97m589nuet5",
+ "_maj": 1789227624561,
+ "_rev": "6wxi1430im5-mtyjxkjv",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
@@ -17840,7 +17840,7 @@
   "journal": 1789216392119,
   "pending": 1789215604317,
   "prodDer": 1789215604317,
-  "runners": 1789215604317,
+  "runners": 1789227624561,
   "absences": 1789215604317,
   "imported": 1789215604317,
   "settings": 1789215604317,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789227471837,
+  "_tables": 1789227624433,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,12 +19690,12 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:38:53.453Z",
+  "maj": "2026-09-12T15:40:26.827Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
   "objectif": 375000,
-  "effectif": 94,
+  "effectif": 93,
   "clientsServis": 73,
   "top3": [
    {
@@ -43117,6 +43117,13 @@
     "role": "direction",
     "vu": "2026-09-12T15:37:51.837Z",
     "id": 1789227473400
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T15:40:24.120Z",
+    "id": 1789227626622
    }
   ],
   "oilroxwood_demandes": [],
