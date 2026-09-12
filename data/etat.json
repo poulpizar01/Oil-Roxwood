@@ -4646,10 +4646,10 @@
     "tel": "555916571",
     "rib": "502521",
     "idU": "334570",
-    "arrivee": "",
+    "arrivee": "2026-09-02",
     "discord": "621418824658321449",
     "avert": "",
-    "contrat": false,
+    "contrat": true,
     "recrut": "Thomas Boyer",
     "dernierService": "2026-09-12",
     "flagOut": false
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226510328,
- "_rev": "hdgwuqdx3rc-mtyj9qop",
+ "_maj": 1789226538342,
+ "_rev": "v2sn5x4snd-mtyjacob",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226510328,
+  "sheets": 1789226538342,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:21:55.033Z",
+  "maj": "2026-09-12T15:22:23.531Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
