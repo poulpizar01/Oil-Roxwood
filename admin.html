@@ -1196,7 +1196,7 @@ function logout(){
 }
 
 /* ---- Canari de version : prévient les onglets restés sur une vieille version ---- */
-const APP_VERSION='C-98';
+const APP_VERSION='C-99';
 /* Le bandeau ne doit dire qu'une chose : « une version plus récente existe ».
    Il comparait deux chaînes avec !==, donc il s'allumait aussi dans l'autre
    sens — quand la page ouverte était PLUS récente que version.json, ce qui
@@ -4701,6 +4701,11 @@ function ferDel(id){
 
 /* ================== MISES À JOUR (changelog) ================== */
 const CHANGELOG=[
+ {v:'C-99',d:'12/09/2026',t:'Deux profils qui s\'effaçaient l\'un l\'autre',items:[
+   ['👤','La fiche de Julio a disparu, remplacée par celle de Stella','Deux personnes qui n\'avaient rien à voir : Julio a coché « Afficher ma carte », puis Stella a fait pareil quelques secondes plus tard depuis un navigateur qui ne savait pas encore que Julio venait d\'écrire. Son enregistrement a remplacé tout le tiroir des profils au lieu de n\'ajouter que le sien — la fiche de Julio est partie avec.'],
+   ['🔧','Chaque fiche a maintenant sa propre date','Comme les tables du bot avant elle, la section des profils se fusionnait en bloc : la plus récente écrasait tout. Elle se fusionne désormais fiche par fiche — celle de Julio, celle de Stella, celle de qui s\'enregistre en même temps, chacune garde sa place.'],
+   ['⚠️','Si tu avais l\'onglet déjà ouvert, recharge la page','Ce correctif vit dans le code : un onglet resté ouvert depuis avant continue de tourner sur l\'ancienne version tant qu\'il n\'est pas rechargé, et peut donc encore écraser une fiche. Recharger une fois suffit.'],
+ ]},
  {v:'C-98',d:'09/09/2026',t:'Le grade de la fiche RH suit Discord',items:[
    ['🧾','Un quota pour un poste qu\'on n\'occupe plus','Juan n\'était plus commercial, et gardait 1 600 fer à acheter. Parce que le rôle d\'accès et le grade de la fiche RH sont deux choses différentes : C-97 alignait le premier, mais c\'est le second, et lui seul, qui décide qui apparaît dans Quotas &amp; fer. Sa fiche disait toujours « Commercial », donc il comptait dans la division — et sa part gonflait celle des autres. Le grade suit maintenant Discord comme le rôle.'],
    ['🛡️','Quatre prudences','« Direction » n\'est pas traduit : deux rôles Discord y mènent, Patron et Co Patron, et rien ne dit lequel. Un patron n\'est jamais rétrogradé par une tâche de fond, ni un Responsable Runner — ce grade s\'attribue et se retire à la main, aux barils, jamais sur relevé Discord. Quand un poste disparaît sans qu\'un autre le remplace, on écrit « - » plutôt qu\'un grade de runner inventé : le site ne sait pas si la personne redevient Intérimaire ou Raffineur Expert, et le deviner effacerait une ancienneté réelle. Et un rôle Discord non reconnu (identifiant pas encore renseigné, nouveau rôle…) ne ferme plus rien : par prudence, ce qu\'on ne sait pas identifier n\'est jamais traité comme « plus de poste ».'],
