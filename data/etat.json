@@ -14810,11 +14810,11 @@
  "profils": {
   "diego herrera": {
    "nom": "Diego Herrera",
-   "photo": "",
+   "photo": "https://cdn.phototourl.com/free/2026-09-12-a2130830-e7ae-4aca-8154-8c84c0c0d50f.png",
    "titre": "",
    "bio": "",
    "public": true,
-   "maj": "2026-09-02T01:14:03.773Z"
+   "maj": "2026-09-12T15:47:14.523Z"
   },
   "tyler collins": {
    "nom": "Tyler Collins",
@@ -17827,8 +17827,8 @@
   "postesV4": 1
  },
  "_cid": "x4ie0xa8hto",
- "_maj": 1789228004642,
- "_rev": "qb2mk1mcw2i-mtyk5tc1",
+ "_maj": 1789228034523,
+ "_rev": "0mcgcah7qq8-mtyk6da2",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
@@ -17850,7 +17850,7 @@
   "bilanForce": 1789215604317,
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
-  "profils": 1789215703292,
+  "profils": 1789228034523,
   "_tables": 1789228004642,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:46:51.457Z",
+  "maj": "2026-09-12T15:47:17.306Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19730,7 +19730,7 @@
    {
     "nom": "Diego Herrera",
     "titre": "Co Patron",
-    "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+    "photo": "https://cdn.phototourl.com/free/2026-09-12-a2130830-e7ae-4aca-8154-8c84c0c0d50f.png",
     "bio": ""
    },
    {
