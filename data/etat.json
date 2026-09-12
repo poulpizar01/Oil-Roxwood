@@ -12201,13 +12201,6 @@
     "adresse": "Los Santos"
    },
    {
-    "nom": "Famille Cartel Karatel",
-    "rib": "",
-    "tel": "",
-    "adresse": "Grapseed",
-    "lastCmd": "2026-05-12"
-   },
-   {
     "nom": "Famille Krueger",
     "rib": "",
     "tel": "555 201 755",
@@ -17729,11 +17722,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789219617866,
- "_rev": "dlwj0huxvwe-mtyf632p",
+ "_maj": 1789219665479,
+ "_rev": "4jm634xa0xr-mtyf6yd6",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789219465099,
+  "fact": 1789219665479,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19592,7 +19585,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:27:06.001Z",
+  "maj": "2026-09-12T13:27:46.554Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
