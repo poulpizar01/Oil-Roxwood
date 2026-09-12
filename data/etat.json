@@ -11990,7 +11990,15 @@
     "relance": {
      "par": "William Rodriguez-collins",
      "date": "2026-09-12"
-    }
+    },
+    "notes": [
+     {
+      "t": 1789243963585,
+      "par": "William Rodriguez-collins",
+      "txt": "Ils leur restent 2800bidons",
+      "imgs": 0
+     }
+    ]
    },
    {
     "nom": "Casa Nostra",
@@ -17840,11 +17848,11 @@
   "postesV4": 1
  },
  "_cid": "vr7qthw9dlm",
- "_maj": 1789243953813,
- "_rev": "c7jjmknyyfg-mtytnp7v",
+ "_maj": 1789243963585,
+ "_rev": "ojh79kdyx-mtytnrb8",
  "_majSec": {
   "fer": 1789243704049,
-  "fact": 1789243953813,
+  "fact": 1789243963585,
   "users": 1789243704049,
   "weeks": 1789243704049,
   "sheets": 1789243704049,
@@ -17864,7 +17872,7 @@
   "primesExtra": 1789243704049,
   "quotasComHist": 1789243704049,
   "profils": 1789243913537,
-  "_tables": 1789243909201,
+  "_tables": 1789243963585,
   "_permsFix1": 1789243704049,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789243704049,
@@ -19703,7 +19711,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:12:42.475Z",
+  "maj": "2026-09-12T20:12:45.188Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
