@@ -12376,13 +12376,6 @@
     "lastCmd": "2026-07-01"
    },
    {
-    "nom": "Habitants Evadés",
-    "rib": "",
-    "tel": "555 066 404",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-25"
-   },
-   {
     "nom": "Harmony's",
     "rib": "21121",
     "tel": "2031",
@@ -17813,11 +17806,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789216881808,
- "_rev": "8gbpnfpwove-mtydkxv1",
+ "_maj": 1789216963729,
+ "_rev": "2srj8cqcvjb-mtydl1sk",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789216881717,
+  "fact": 1789216963729,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19676,7 +19669,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:42:39.853Z",
+  "maj": "2026-09-12T12:42:44.948Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
