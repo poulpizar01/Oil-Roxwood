@@ -12379,13 +12379,6 @@
     "lastCmd": "2026-05-16"
    },
    {
-    "nom": "Klan Nostrad",
-    "rib": "",
-    "tel": "555-674-288",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-13"
-   },
-   {
     "nom": "Klan Ozumiya",
     "rib": "",
     "tel": "555-824-485",
@@ -17722,11 +17715,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789219777858,
- "_rev": "qyqq2hqt6qh-mtyf9xzq",
+ "_maj": 1789219827798,
+ "_rev": "q7ocdmctwl-mtyfafkt",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789219665479,
+  "fact": 1789219827798,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19585,7 +19578,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:30:06.038Z",
+  "maj": "2026-09-12T13:30:28.829Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
