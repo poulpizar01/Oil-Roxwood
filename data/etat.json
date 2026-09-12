@@ -17879,9 +17879,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "1q6yzoq4izh",
+ "_cid": "vr7qthw9dlm",
  "_maj": 1789244066105,
- "_rev": "1q1rx06p82y-mtytpznr",
+ "_rev": "u53bqwvz7fq-mtytq33e",
  "_majSec": {
   "fer": 1789243994135,
   "fact": 1789243963585,
@@ -17904,7 +17904,7 @@
   "primesExtra": 1789243704049,
   "quotasComHist": 1789243704049,
   "profils": 1789243913537,
-  "_tables": 1789244053796,
+  "_tables": 1789244065045,
   "_permsFix1": 1789243704049,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789243704049,
@@ -19743,7 +19743,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:14:29.319Z",
+  "maj": "2026-09-12T20:14:33.770Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -44459,25 +44459,39 @@
     "id": 1789243786022
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:11:13.802Z",
-    "id": 1789243876395
+    "uid": "235844738656239616",
+    "nom": "William Rodriguez-collins",
+    "role": "commercial",
+    "vu": "2026-09-12T20:09:54.065Z",
+    "id": 1789243794866
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:12:43.800Z",
-    "id": 1789243966999
+    "uid": "235844738656239616",
+    "nom": "William Rodriguez-collins",
+    "role": "commercial",
+    "vu": "2026-09-12T20:11:25.049Z",
+    "id": 1789243886701
    },
    {
-    "uid": "826526979204841482",
-    "nom": "Diego Herrera",
-    "role": "direction",
-    "vu": "2026-09-12T20:14:13.795Z",
-    "id": 1789244056266
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T20:11:49.201Z",
+    "id": 1789243909405
+   },
+   {
+    "uid": "235844738656239616",
+    "nom": "William Rodriguez-collins",
+    "role": "commercial",
+    "vu": "2026-09-12T20:12:55.045Z",
+    "id": 1789243976531
+   },
+   {
+    "uid": "235844738656239616",
+    "nom": "William Rodriguez-collins",
+    "role": "commercial",
+    "vu": "2026-09-12T20:14:25.045Z",
+    "id": 1789244065882
    }
   ],
   "oilroxwood_demandes": [],
@@ -45166,7 +45180,8 @@
     "motif": "Raison familiale",
     "par": "⚫ Juan Sanchez"
    }
-  ]
+  ],
+  "oilroxwood_media": []
  },
  "reunions": [],
  "_permsFix1": true,
