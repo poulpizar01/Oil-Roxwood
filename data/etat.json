@@ -3391,6 +3391,20 @@
  "sheets": {
   "rh": [
    {
+    "nom": "Marco Sanchez",
+    "grade": "Intérimaire",
+    "tel": "555-803-725",
+    "rib": "559892",
+    "idU": "142012",
+    "arrivee": "2026-09-04",
+    "discord": "1383749459866812476",
+    "avert": "",
+    "contrat": false,
+    "recrut": "Thomas Boyer",
+    "dernierService": "",
+    "flagOut": false
+   },
+   {
     "nom": "Lazario/Ramirez",
     "grade": "Intérimaire",
     "tel": "555377810",
@@ -3401,7 +3415,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "dernierService": "",
+    "dernierService": "2026-09-12",
     "flagOut": false
    },
    {
@@ -3416,7 +3430,11 @@
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "",
-    "flagOut": false
+    "flagOut": true,
+    "contratGen": {
+     "t": 1789215358040,
+     "par": "Stella Collins"
+    }
    },
    {
     "nom": "Liam Doyle",
@@ -3429,7 +3447,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-11",
     "flagOut": false
    },
    {
@@ -3443,7 +3461,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-12",
     "flagOut": false
    },
    {
@@ -3457,7 +3475,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-12",
     "flagOut": false
    },
    {
@@ -3471,7 +3489,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-12",
     "flagOut": false
    },
    {
@@ -3485,7 +3503,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-10",
     "flagOut": false
    },
    {
@@ -3500,7 +3518,7 @@
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "",
-    "flagOut": false
+    "flagOut": true
    },
    {
     "nom": "Bratan LEONETI",
@@ -3513,7 +3531,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
-    "dernierService": "",
+    "dernierService": "2026-09-12",
     "flagOut": false
    },
    {
@@ -3527,7 +3545,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-09",
     "flagOut": false,
     "contratGen": {
      "t": 1788711331304,
@@ -3545,7 +3563,7 @@
     "avert": "",
     "contrat": false,
     "recrut": "Thomas Boyer",
-    "dernierService": "",
+    "dernierService": "2026-09-06",
     "flagOut": false
    },
    {
@@ -3560,7 +3578,7 @@
     "contrat": false,
     "recrut": "Thomas Boyer",
     "dernierService": "",
-    "flagOut": false
+    "flagOut": true
    },
    {
     "idU": "232050",
@@ -3579,7 +3597,7 @@
      "t": 1785795791991,
      "par": "Enzo Morreti"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "276 376",
@@ -3609,7 +3627,7 @@
     "contrat": true,
     "discord": "593431852291850281",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-10"
    },
    {
     "idU": "231487",
@@ -3624,7 +3642,7 @@
     "contrat": true,
     "discord": "826526979204841482",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "160 149",
@@ -3639,7 +3657,7 @@
     "contrat": true,
     "discord": "438358976141328404",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "227799",
@@ -3654,7 +3672,7 @@
     "contrat": true,
     "discord": "1053366471574687844",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "200738",
@@ -3669,7 +3687,7 @@
     "contrat": true,
     "discord": "690537200689086537",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "356873",
@@ -3684,7 +3702,7 @@
     "contrat": true,
     "discord": "767332288744128512",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "282 695",
@@ -3699,7 +3717,7 @@
     "contrat": true,
     "discord": "707695913187016785",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "46658",
@@ -3714,7 +3732,7 @@
     "contrat": true,
     "discord": "235844738656239616",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "342423",
@@ -3723,13 +3741,13 @@
     "tel": "555 425 686",
     "actif": true,
     "avert": "",
-    "grade": "Raffineur Expert",
+    "grade": "Responsable Runner",
     "recrut": "",
     "arrivee": "2026-04-16",
     "contrat": true,
     "discord": "1278121596112080958",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "66750",
@@ -3738,7 +3756,7 @@
     "tel": "555 949 29",
     "actif": true,
     "avert": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur",
     "recrut": "",
     "arrivee": "2026-06-25",
     "contrat": true,
@@ -3753,13 +3771,13 @@
     "tel": "555 152 084",
     "actif": true,
     "avert": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "recrut": "",
     "arrivee": "2026-05-31",
     "contrat": true,
     "discord": "581548515516481537",
     "flagOut": false,
-    "dernierService": "2026-08-29"
+    "dernierService": "2026-09-10"
    },
    {
     "idU": "245699",
@@ -3774,22 +3792,7 @@
     "contrat": true,
     "discord": "1142587715720851538",
     "flagOut": false,
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "166332",
-    "nom": "Nico Whites",
-    "rib": "393506",
-    "tel": "555 173 791",
-    "actif": true,
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "",
-    "arrivee": "2026-06-01",
-    "contrat": true,
-    "discord": "1167846235072376865",
-    "flagOut": false,
-    "dernierService": "2026-08-07"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "292769",
@@ -3798,13 +3801,13 @@
     "tel": "555 219 678",
     "actif": true,
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Responsable Runner",
     "recrut": "",
     "arrivee": "2025-12-11",
     "contrat": true,
     "discord": "1346541845949186092",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "291946",
@@ -3813,28 +3816,13 @@
     "tel": "555 702 474",
     "actif": false,
     "avert": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur",
     "recrut": "",
     "arrivee": "2025-08-31",
     "contrat": true,
     "discord": "1345355939334586409",
     "flagOut": false,
     "dernierService": "2026-07-26"
-   },
-   {
-    "idU": "115900",
-    "nom": "Elyra Collins",
-    "rib": "545832",
-    "tel": "555 299 011",
-    "actif": true,
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "",
-    "arrivee": "2026-06-28",
-    "contrat": true,
-    "discord": "460475832054317076",
-    "flagOut": false,
-    "dernierService": "2026-08-07"
    },
    {
     "idU": "350955",
@@ -3849,7 +3837,7 @@
     "contrat": true,
     "discord": "530397758520295465",
     "flagOut": false,
-    "dernierService": "2026-08-29"
+    "dernierService": "2026-09-10"
    },
    {
     "idU": "355128",
@@ -3864,7 +3852,7 @@
     "contrat": true,
     "discord": "423564334916960266",
     "flagOut": false,
-    "dernierService": "2026-08-29"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "349424",
@@ -3879,7 +3867,7 @@
     "contrat": true,
     "discord": "1470084619553472683",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-09"
    },
    {
     "idU": "258721",
@@ -3898,7 +3886,7 @@
      "t": 1785935801945,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-04"
    },
    {
     "idU": "370766",
@@ -3913,39 +3901,7 @@
     "contrat": true,
     "discord": "1239697350138658919",
     "flagOut": false,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "336474",
-    "nom": "Amia Collins",
-    "rib": "553804",
-    "tel": "555 124 586",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "",
-    "arrivee": "2026-07-20",
-    "contrat": true,
-    "discord": "1428794618748735570",
-    "flagOut": false,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "293094",
-    "nom": "Zack Ishua",
-    "rib": "557707",
-    "tel": "555750067",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-11",
-    "contrat": true,
-    "discord": "724079257571295233",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1786441806306,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-11"
+    "dernierService": "2026-09-08"
    },
    {
     "idU": "371918",
@@ -3960,21 +3916,7 @@
     "contrat": true,
     "discord": "439730147747430430",
     "flagOut": false,
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "288524",
-    "nom": "Robert Redfield",
-    "rib": "443717",
-    "tel": "555042630",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "",
-    "arrivee": "2026-07-26",
-    "contrat": true,
-    "discord": "1171159739124690946",
-    "flagOut": false,
-    "dernierService": "2026-08-15"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "374908",
@@ -3989,90 +3931,6 @@
     "discord": "908264886449094687",
     "flagOut": false,
     "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "307745",
-    "nom": "Francis Zonetti",
-    "rib": "467647",
-    "tel": "555-125-158",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Enzo Moretti",
-    "arrivee": "2026-07-29",
-    "contrat": true,
-    "discord": "1336784104343208038",
-    "flagOut": false,
-    "dernierService": "2026-08-11"
-   },
-   {
-    "idU": "135656",
-    "nom": "Henry Carry",
-    "rib": "467688",
-    "tel": "555 673 720",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-07-29",
-    "contrat": true,
-    "discord": "1251109472642928692",
-    "flagOut": false,
-    "dernierService": "2026-08-12"
-   },
-   {
-    "idU": "331296",
-    "nom": "Endrew Paslase",
-    "rib": "498352",
-    "tel": "555194928",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Enzo Moretti",
-    "arrivee": "2026-07-30",
-    "contrat": true,
-    "discord": "1254000268543262742",
-    "flagOut": false,
-    "dernierService": "2026-08-29"
-   },
-   {
-    "idU": "370061",
-    "nom": "Scott Mate",
-    "rib": "370061",
-    "tel": "555547749",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-07-31",
-    "contrat": true,
-    "discord": "1120092728030666784",
-    "flagOut": false,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "375996",
-    "nom": "Cléa Nova",
-    "rib": "555751",
-    "tel": "555 072 534",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Enzo Moretti",
-    "arrivee": "2026-07-30",
-    "contrat": true,
-    "discord": "1135232742964084777",
-    "flagOut": false,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "294867",
-    "nom": "Miguel Paco",
-    "rib": "469156",
-    "tel": "555 130 252",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-01",
-    "contrat": true,
-    "discord": "1350309739455713321",
-    "flagOut": false,
-    "dernierService": "2026-08-10"
    },
    {
     "idU": "142977",
@@ -4090,7 +3948,7 @@
      "t": 1785760085979,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-27"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "339193",
@@ -4098,7 +3956,7 @@
     "rib": "544010",
     "tel": "555-041-858",
     "avert": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-04",
     "contrat": true,
@@ -4144,7 +4002,7 @@
      "t": 1785957225176,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-28"
+    "dernierService": "2026-09-04"
    },
    {
     "idU": "220971",
@@ -4180,25 +4038,7 @@
      "t": 1786130810886,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-20"
-   },
-   {
-    "idU": "274210",
-    "nom": "Inaros Fermando",
-    "rib": "426849",
-    "tel": "555 260 059",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-08",
-    "contrat": true,
-    "discord": "1023581638187294890",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1786218792841,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-20"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "374820",
@@ -4234,7 +4074,7 @@
      "t": 1786463871511,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "168234",
@@ -4252,21 +4092,7 @@
      "t": 1786463842494,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-28"
-   },
-   {
-    "idU": "340054",
-    "nom": "Amadou Kingsley",
-    "rib": "509450",
-    "tel": "555 842 228",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-12",
-    "contrat": true,
-    "discord": "593926784899350538",
-    "flagOut": false,
-    "dernierService": "2026-08-15"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "369986",
@@ -4280,25 +4106,7 @@
     "contrat": true,
     "discord": "1346352248841568326",
     "flagOut": false,
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "377490",
-    "nom": "Leffe Mate",
-    "rib": "557762",
-    "tel": "555101561",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-13",
-    "contrat": true,
-    "discord": "1019694060895748279",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1786636801028,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "376167",
@@ -4316,7 +4124,7 @@
      "t": 1786726169063,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-06"
    },
    {
     "idU": "16794",
@@ -4324,7 +4132,7 @@
     "rib": "546022",
     "tel": "555-715-091",
     "avert": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur",
     "recrut": "Enzo Moretti",
     "arrivee": "2026-08-16",
     "contrat": true,
@@ -4342,13 +4150,13 @@
     "rib": "536445",
     "tel": "555-162-191",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "recrut": "Diego Herrera",
     "arrivee": "2026-08-18",
     "contrat": true,
     "discord": "1096933851659517975",
     "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-11"
    },
    {
     "idU": "348398",
@@ -4356,7 +4164,7 @@
     "rib": "519692",
     "tel": "555 568 221",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Responsable Runner",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-18",
     "contrat": true,
@@ -4366,7 +4174,7 @@
      "t": 1787072513912,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-01"
    },
    {
     "idU": "371783",
@@ -4384,43 +4192,7 @@
      "t": 1787086926414,
      "par": "Diego Herrera"
     },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "375245",
-    "nom": "Brian Collins",
-    "rib": "554755",
-    "tel": "555303814",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Diego Herrera",
-    "arrivee": "2026-08-18",
-    "contrat": true,
-    "discord": "792526506508812369",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787086941333,
-     "par": "Diego Herrera"
-    },
-    "dernierService": "2026-08-25"
-   },
-   {
-    "idU": "375271",
-    "nom": "Baza Kov",
-    "rib": "554785",
-    "tel": "555 878 461",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Diego Herrera",
-    "arrivee": "2026-08-18",
-    "contrat": true,
-    "discord": "1251962473297346668",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787088957926,
-     "par": "Diego Herrera"
-    },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "167535",
@@ -4428,7 +4200,7 @@
     "rib": "516800",
     "tel": "555-024-681",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-19",
     "contrat": true,
@@ -4446,7 +4218,7 @@
     "rib": "554521",
     "tel": "555 692 961",
     "avert": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur Expert",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-19",
     "contrat": true,
@@ -4456,7 +4228,7 @@
      "t": 1787160871610,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-08"
    },
    {
     "idU": "371912",
@@ -4474,21 +4246,7 @@
      "t": 1787173346156,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-25"
-   },
-   {
-    "idU": "374846",
-    "nom": "Saad Lzaar",
-    "rib": "554212",
-    "tel": "555366157",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "Stella Collins",
-    "arrivee": "2026-08-20",
-    "contrat": true,
-    "discord": "295152285992878080",
-    "flagOut": false,
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-02"
    },
    {
     "idU": "378033",
@@ -4496,7 +4254,7 @@
     "rib": "558598",
     "tel": "555 190 100",
     "avert": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-20",
     "contrat": true,
@@ -4506,7 +4264,7 @@
      "t": 1787233835885,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-23"
+    "dernierService": "2026-09-02"
    },
    {
     "idU": "375074",
@@ -4514,7 +4272,7 @@
     "rib": "554523",
     "tel": "555099195",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-20",
     "contrat": false,
@@ -4542,7 +4300,7 @@
      "t": 1787245856292,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-27"
+    "dernierService": "2026-09-04"
    },
    {
     "idU": "111904",
@@ -4560,7 +4318,7 @@
      "t": 1787255963483,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-29"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "111908",
@@ -4578,7 +4336,7 @@
      "t": 1787256014681,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "9926",
@@ -4599,36 +4357,18 @@
     "dernierService": "2026-08-25"
    },
    {
-    "idU": "372874",
-    "nom": "Joseph Purple",
-    "rib": " 551610",
-    "tel": "555-844-666",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-21",
-    "contrat": true,
-    "discord": "824713610823467052",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787340682842,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
     "idU": "377944",
-    "nom": "Louka Romelu",
+    "nom": "Romelu Louka",
     "rib": " 558474",
     "tel": "555 654 025",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-21",
     "contrat": true,
     "discord": "1431659354519634023",
     "flagOut": false,
-    "dernierService": "2026-08-24"
+    "dernierService": "2026-09-10"
    },
    {
     "idU": "356785",
@@ -4649,124 +4389,6 @@
     "dernierService": "2026-08-27"
    },
    {
-    "idU": "258138",
-    "nom": "Alejandro Varrgas",
-    "rib": "462012",
-    "tel": "555947856",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-22",
-    "contrat": true,
-    "discord": "1294377138174165024",
-    "flagOut": false,
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "378187",
-    "nom": "Sevan Vargas",
-    "rib": "558994",
-    "tel": "555 930 984",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-22",
-    "contrat": true,
-    "discord": "1476280983689887781",
-    "flagOut": false,
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "378209",
-    "nom": "Enzo Vargas",
-    "rib": "559024",
-    "tel": "555 734 752",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-22",
-    "contrat": true,
-    "discord": "1462892729964171469",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787360264602,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-29"
-   },
-   {
-    "idU": "337769",
-    "nom": "Issac Bennet",
-    "rib": "559191",
-    "tel": " 555986805",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-22",
-    "contrat": true,
-    "discord": "1398796313310662686",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787414416243,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-23"
-   },
-   {
-    "idU": "2399",
-    "nom": "Abdel Hafy",
-    "rib": "102353",
-    "tel": "555 023 53",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-23",
-    "contrat": true,
-    "discord": "1273293194481631384",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787484303170,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-26"
-   },
-   {
-    "idU": "373597",
-    "nom": "Calvin Praline",
-    "rib": "552577",
-    "tel": "555 813 871",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-23",
-    "contrat": true,
-    "discord": "1144281552352710706",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787503432180,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "244680",
-    "nom": "Diego Rony",
-    "rib": "554633",
-    "tel": "555 407 662",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-23",
-    "contrat": true,
-    "discord": "391618077441261568",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787503454846,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-27"
-   },
-   {
     "idU": "274083",
     "nom": "Junior Winchester",
     "rib": "478487",
@@ -4782,25 +4404,7 @@
      "t": 1787505480987,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-26"
-   },
-   {
-    "idU": "257459",
-    "nom": "Thomas Cortello",
-    "rib": "405976",
-    "tel": "555554168",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Stella Collins",
-    "arrivee": "2026-08-24",
-    "contrat": false,
-    "discord": "366486262808444928",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787576124567,
-     "par": "Stella Collins"
-    },
-    "dernierService": "2026-08-28"
+    "dernierService": "2026-09-02"
    },
    {
     "idU": "372489",
@@ -4808,7 +4412,7 @@
     "rib": "551107",
     "tel": "555 295 623",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-24",
     "contrat": true,
@@ -4819,60 +4423,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-08-29"
-   },
-   {
-    "idU": "142012",
-    "nom": "Marco Sanchez",
-    "rib": "362031",
-    "tel": "555-033-464",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-24",
-    "contrat": true,
-    "discord": "1383749459866812476",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787599658051,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "142324",
-    "nom": "Alexander Hayes",
-    "rib": "557779",
-    "tel": "555 041 399",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-24",
-    "contrat": true,
-    "discord": "356859030217555969",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787599788889,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "84710",
-    "nom": "John Clair",
-    "rib": "193816",
-    "tel": " 555 731 44",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-25",
-    "contrat": false,
-    "discord": "553242095524249612",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787671857651,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-26"
    },
    {
     "idU": "43280",
@@ -4890,25 +4440,7 @@
      "t": 1787671880450,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-25"
-   },
-   {
-    "idU": "140974",
-    "nom": "Gérard Lopez",
-    "rib": "261835",
-    "tel": "555-599-447",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-25",
-    "contrat": true,
-    "discord": "304611560276623371",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787690160991,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-04"
    },
    {
     "idU": "29602",
@@ -4916,7 +4448,7 @@
     "rib": "558468",
     "tel": "555511148",
     "avert": "",
-    "grade": "Raffineur",
+    "grade": "Raffineur Expert",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-26",
     "contrat": true,
@@ -4926,7 +4458,7 @@
      "t": 1787769845437,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-29"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "343329",
@@ -4944,7 +4476,7 @@
      "t": 1787848361842,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-28"
+    "dernierService": "2026-09-06"
    },
    {
     "idU": "373994",
@@ -4965,24 +4497,6 @@
     "dernierService": "2026-08-28"
    },
    {
-    "idU": "229225",
-    "nom": "Marlon Grant",
-    "rib": "558940",
-    "tel": "555-280-819",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-29",
-    "contrat": true,
-    "discord": "967448063176220792",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1787955209413,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-29"
-   },
-   {
     "idU": "356567",
     "nom": "Amine Nasser",
     "rib": "541295",
@@ -4998,7 +4512,7 @@
      "t": 1788012684591,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-09"
    },
    {
     "idU": "356542",
@@ -5016,7 +4530,7 @@
      "t": 1788017653424,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-08-31"
    },
    {
     "idU": "184474",
@@ -5024,7 +4538,7 @@
     "rib": "544972",
     "tel": "555076693",
     "avert": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-29",
     "contrat": true,
@@ -5034,7 +4548,7 @@
      "t": 1788017703216,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-06"
    },
    {
     "idU": "275127",
@@ -5042,7 +4556,7 @@
     "rib": "427910",
     "tel": " 555 381 070",
     "avert": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-29",
     "contrat": true,
@@ -5052,25 +4566,7 @@
      "t": 1788040763101,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "83190",
-    "nom": "Nills Truduk",
-    "rib": "192042",
-    "tel": "55595888",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-29",
-    "contrat": true,
-    "discord": "1008620335005978634",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1788040794296,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-07"
    },
    {
     "idU": "370478",
@@ -5088,7 +4584,7 @@
      "t": 1788040901207,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-01"
    },
    {
     "idU": "287377",
@@ -5096,7 +4592,7 @@
     "rib": "442400",
     "tel": "555 526 626",
     "avert": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur Expert",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-30",
     "contrat": true,
@@ -5106,7 +4602,7 @@
      "t": 1788124876947,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-31"
+    "dernierService": "2026-09-12"
    },
    {
     "idU": "180494",
@@ -5114,7 +4610,7 @@
     "rib": "558049",
     "tel": "555-961-842",
     "avert": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur Expert",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-30",
     "contrat": true,
@@ -5124,7 +4620,7 @@
      "t": 1788124910457,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-10"
    },
    {
     "idU": "93232",
@@ -5132,7 +4628,7 @@
     "rib": "203133",
     "tel": "555558720",
     "avert": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur Expert",
     "recrut": "Thomas Boyer",
     "arrivee": "2026-08-30",
     "contrat": true,
@@ -5142,7 +4638,231 @@
      "t": 1788124935197,
      "par": "Thomas Boyer"
     },
-    "dernierService": "2026-08-30"
+    "dernierService": "2026-09-11"
+   },
+   {
+    "nom": "Victor Sulivane",
+    "grade": "Raffineur Confirmé",
+    "tel": "",
+    "rib": "",
+    "idU": "334570",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Arthure Pilon",
+    "grade": "Raffineur",
+    "tel": "",
+    "rib": "",
+    "idU": "121351",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Jean Michel",
+    "grade": "Raffineur",
+    "tel": "",
+    "rib": "",
+    "idU": "276005",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-06",
+    "flagOut": false
+   },
+   {
+    "nom": "Hitachi Hydro",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "80415",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Ilyes Dom",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "139145",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-05",
+    "flagOut": false
+   },
+   {
+    "nom": "Brandon Parker",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "180519",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-06",
+    "flagOut": false
+   },
+   {
+    "nom": "Keath Chop's",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "191052",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Alex Bren",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "221626",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Carla Braz",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "222475",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-11",
+    "flagOut": false
+   },
+   {
+    "nom": "Ben Abdel",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "234808",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-01",
+    "flagOut": false
+   },
+   {
+    "nom": "Jason White",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "180356",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-10",
+    "flagOut": false
+   },
+   {
+    "nom": "Mada Dillon",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "352844",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Kazuki Ishikawa",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "368391",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Cristóbal Perrera",
+    "grade": "Intérimaire",
+    "tel": "",
+    "rib": "",
+    "idU": "379487",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Aníbal Santamaría",
+    "grade": "Stagiaire",
+    "tel": "",
+    "rib": "",
+    "idU": "157794",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
+   },
+   {
+    "nom": "Kamara Doue",
+    "grade": "Stagiaire",
+    "tel": "",
+    "rib": "",
+    "idU": "379640",
+    "arrivee": "",
+    "discord": "",
+    "avert": "",
+    "contrat": false,
+    "recrut": "",
+    "dernierService": "2026-09-12",
+    "flagOut": false
    }
   ],
   "compta": [
@@ -9521,7 +9241,7 @@
     "heures": "3h48min"
    },
    {
-    "nom": "Louka Romelu",
+    "nom": "Romelu Louka",
     "rang": "Intérimaire",
     "factures": 0,
     "runs": 12460,
@@ -10359,15 +10079,7 @@
     "entreprise": "klan-ozumiya"
    }
   ],
-  "ventesSem": [
-   {
-    "date": "2026-09-09",
-    "client": "Oil Roxwood",
-    "quantite": 4000,
-    "qui": "Diego Herrera",
-    "fact": 253086
-   }
-  ],
+  "ventesSem": [],
   "collection": [
    {
     "nom": "Nom",
@@ -13340,29 +13052,6 @@
   ],
   "compteur": 253087,
   "factures": [
-   {
-    "num": 253086,
-    "date": "2026-09-09",
-    "client": "Oil Roxwood",
-    "emetteur": "Diego Herrera",
-    "postop": false,
-    "lignes": [
-     {
-      "ref": "CMD",
-      "qte": 4000,
-      "tva": 0.05,
-      "pu": 180,
-      "ht": 720000,
-      "ttc": 756000,
-      "desc": "bidons d'essence "
-     }
-    ],
-    "offert": 0,
-    "ht": 720000,
-    "ttc": 756000,
-    "poids": 8000,
-    "statut": "attente"
-   },
    {
     "ht": 18000,
     "num": 253084,
@@ -18137,18 +17826,18 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "7jhh553z5f7",
- "_maj": 1789216702404,
- "_rev": "i2idc4f36b-mtydfipz",
+ "_cid": "wdcu2mjtxhn",
+ "_maj": 1789216671935,
+ "_rev": "gwz08hfr9d4-mtydg36b",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789215604317,
+  "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789215604317,
+  "sheets": 1789216407241,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
-  "journal": 1789215604317,
+  "journal": 1789216392119,
   "pending": 1789215604317,
   "prodDer": 1789215604317,
   "runners": 1789215604317,
@@ -18156,13 +17845,13 @@
   "imported": 1789215604317,
   "settings": 1789215604317,
   "closeUndo": 1789215604317,
-  "quotasCom": 1789215604317,
+  "quotasCom": 1789215839232,
   "bilanExtra": 1789215604317,
   "bilanForce": 1789215604317,
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789216702404,
+  "_tables": 1789216671935,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -18177,6 +17866,26 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789216393612,
+   "u": "Stella Collins",
+   "a": "Recrutements Discord : 1 fiche(s) créée(s), 0 case(s) complétée(s) — Marco Sanchez"
+  },
+  {
+   "t": 1789215773368,
+   "u": "Stella Collins",
+   "a": "Suppression de la facture n°253086"
+  },
+  {
+   "t": 1789215402356,
+   "u": "Stella Collins",
+   "a": "Renommage : Louka Romelu → Romelu Louka · effectif (1), feuille rh (1), feuille tablette (1), historique des semaines (2)"
+  },
+  {
+   "t": 1789215359423,
+   "u": "Stella Collins",
+   "a": "Contrat de travail généré : Alex Bren (Runner)"
+  },
   {
    "t": 1789170929039,
    "u": "Stella Collins",
@@ -19656,26 +19365,6 @@
    "a": "Fer acheté noté : Emma Collins-rodriguez → 940",
    "t": 1788096388761,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Julio Collins → 700",
-   "t": 1788078870182,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Juan Sanchez → 700",
-   "t": 1788078860245,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 700",
-   "t": 1788078848156,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 700",
-   "t": 1788078843789,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -20001,13 +19690,13 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:38:26.951Z",
+  "maj": "2026-09-12T12:38:53.459Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
   "objectif": 375000,
-  "effectif": 114,
-  "clientsServis": 74,
+  "effectif": 94,
+  "clientsServis": 73,
   "top3": [
    {
     "nom": "Alex Turner",
@@ -20068,9 +19757,9 @@
   "achats": {
    "Emma Collins-rodriguez": 0
   },
-  "vendus": 4000,
-  "parPers": 1000,
-  "ferPers": 1965
+  "vendus": 0,
+  "parPers": 0,
+  "ferPers": 0
  },
  "bilanExtra": [
   {
@@ -42555,46 +42244,39 @@
     "id": 1789216239637
    },
    {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T12:30:52.315Z",
-    "id": 1789216253333
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:31:50.096Z",
+    "id": 1789216312258
    },
    {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T12:32:22.403Z",
-    "id": 1789216343009
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:33:20.656Z",
+    "id": 1789216403133
    },
    {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T12:33:52.403Z",
-    "id": 1789216433304
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:34:49.498Z",
+    "id": 1789216491159
    },
    {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T12:35:38.875Z",
-    "id": 1789216539508
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:36:51.889Z",
+    "id": 1789216613997
    },
    {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T12:36:52.400Z",
-    "id": 1789216613130
-   },
-   {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T12:38:22.403Z",
-    "id": 1789216703089
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:37:51.935Z",
+    "id": 1789216673899
    }
   ],
   "oilroxwood_demandes": [],
@@ -43277,5 +42959,11 @@
  "_rolesFix4": true,
  "_rolesFix77": true,
  "_affFix1": true,
- "_prodFix1": true
+ "_prodFix1": true,
+ "_recruesIgnore": [
+  "1788483950097",
+  "1788484358109",
+  "1788622713571",
+  "1789028277714"
+ ]
 }
