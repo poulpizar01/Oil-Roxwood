@@ -14840,6 +14840,14 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-12T12:21:43.292Z"
+  },
+  "william rodriguez-collins": {
+   "nom": "William Rodriguez-collins",
+   "photo": "",
+   "titre": "",
+   "bio": "",
+   "public": true,
+   "maj": "2026-09-12T20:11:53.537Z"
   }
  },
  "affiches": [],
@@ -17827,9 +17835,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "1q6yzoq4izh",
- "_maj": 1789243909201,
- "_rev": "6jw42yyoyu-mtytmox8",
+ "_cid": "vr7qthw9dlm",
+ "_maj": 1789243913537,
+ "_rev": "ste1vymml38-mtytms0k",
  "_majSec": {
   "fer": 1789243704049,
   "fact": 1789243704049,
@@ -17851,7 +17859,7 @@
   "bilanForce": 1789243704049,
   "primesExtra": 1789243704049,
   "quotasComHist": 1789243704049,
-  "profils": 1789243704049,
+  "profils": 1789243913537,
   "_tables": 1789243909201,
   "_permsFix1": 1789243704049,
   "_rolesFix4": 1788489352546,
@@ -19691,7 +19699,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:11:55.436Z",
+  "maj": "2026-09-12T20:11:59.444Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19744,6 +19752,12 @@
     "nom": "Emma Collins",
     "titre": "Responsable commercial",
     "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
+    "bio": ""
+   },
+   {
+    "nom": "William Rodriguez-collins",
+    "titre": "Commercial",
+    "photo": "https://cdn.discordapp.com/avatars/235844738656239616/6705cf8fc5707bfb269446b197494252.png",
     "bio": ""
    }
   ]
