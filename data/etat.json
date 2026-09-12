@@ -17826,9 +17826,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "bot",
- "_maj": 1789238661109,
- "_rev": "agf2mxsuqc8-mtyqhkcm",
+ "_cid": "x4ie0xa8hto",
+ "_maj": 1789238630886,
+ "_rev": "e9fboy0azos-mtyqirlc",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789228034523,
-  "_tables": 1789238661109,
+  "_tables": 1789238630886,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T18:43:57.382Z",
+  "maj": "2026-09-12T18:44:53.424Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -44679,15 +44679,6 @@
     "au": "2026-09-14",
     "motif": "Raison familiale",
     "par": "⚫ Juan Sanchez"
-   },
-   {
-    "id": 1789238660516,
-    "nom": "Carla Braz",
-    "discord": "619059771915501588",
-    "du": "2026-09-14",
-    "au": "2026-09-20",
-    "motif": "",
-    "par": "⚫ Diego Herrera"
    }
   ]
  },
