@@ -3781,21 +3781,6 @@
     "dernierService": "2026-09-12"
    },
    {
-    "idU": "166332",
-    "nom": "Nico Whites",
-    "rib": "393506",
-    "tel": "555 173 791",
-    "actif": true,
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "",
-    "arrivee": "2026-06-01",
-    "contrat": true,
-    "discord": "1167846235072376865",
-    "flagOut": true,
-    "dernierService": "2026-08-07"
-   },
-   {
     "idU": "292769",
     "nom": "Xavier Collins",
     "rib": "448707",
@@ -3824,21 +3809,6 @@
     "discord": "1345355939334586409",
     "flagOut": false,
     "dernierService": "2026-07-26"
-   },
-   {
-    "idU": "115900",
-    "nom": "Elyra Collins",
-    "rib": "545832",
-    "tel": "555 299 011",
-    "actif": true,
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "",
-    "arrivee": "2026-06-28",
-    "contrat": true,
-    "discord": "460475832054317076",
-    "flagOut": true,
-    "dernierService": "2026-08-07"
    },
    {
     "idU": "350955",
@@ -3920,38 +3890,6 @@
     "dernierService": "2026-09-08"
    },
    {
-    "idU": "336474",
-    "nom": "Amia Collins",
-    "rib": "553804",
-    "tel": "555 124 586",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "",
-    "arrivee": "2026-07-20",
-    "contrat": true,
-    "discord": "1428794618748735570",
-    "flagOut": true,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "293094",
-    "nom": "Zack Ishua",
-    "rib": "557707",
-    "tel": "555750067",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-11",
-    "contrat": true,
-    "discord": "724079257571295233",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1786441806306,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-11"
-   },
-   {
     "idU": "371918",
     "nom": "Ray Buffalo",
     "rib": "550358",
@@ -3967,20 +3905,6 @@
     "dernierService": "2026-09-11"
    },
    {
-    "idU": "288524",
-    "nom": "Robert Redfield",
-    "rib": "443717",
-    "tel": "555042630",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "",
-    "arrivee": "2026-07-26",
-    "contrat": true,
-    "discord": "1171159739124690946",
-    "flagOut": true,
-    "dernierService": "2026-08-15"
-   },
-   {
     "idU": "374908",
     "nom": "Maxime Letourneur",
     "rib": "554305",
@@ -3993,90 +3917,6 @@
     "discord": "908264886449094687",
     "flagOut": false,
     "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "307745",
-    "nom": "Francis Zonetti",
-    "rib": "467647",
-    "tel": "555-125-158",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Enzo Moretti",
-    "arrivee": "2026-07-29",
-    "contrat": true,
-    "discord": "1336784104343208038",
-    "flagOut": true,
-    "dernierService": "2026-08-11"
-   },
-   {
-    "idU": "135656",
-    "nom": "Henry Carry",
-    "rib": "467688",
-    "tel": "555 673 720",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-07-29",
-    "contrat": true,
-    "discord": "1251109472642928692",
-    "flagOut": true,
-    "dernierService": "2026-08-12"
-   },
-   {
-    "idU": "331296",
-    "nom": "Endrew Paslase",
-    "rib": "498352",
-    "tel": "555194928",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Enzo Moretti",
-    "arrivee": "2026-07-30",
-    "contrat": true,
-    "discord": "1254000268543262742",
-    "flagOut": true,
-    "dernierService": "2026-08-29"
-   },
-   {
-    "idU": "370061",
-    "nom": "Scott Mate",
-    "rib": "370061",
-    "tel": "555547749",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-07-31",
-    "contrat": true,
-    "discord": "1120092728030666784",
-    "flagOut": true,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "375996",
-    "nom": "Cléa Nova",
-    "rib": "555751",
-    "tel": "555 072 534",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Enzo Moretti",
-    "arrivee": "2026-07-30",
-    "contrat": true,
-    "discord": "1135232742964084777",
-    "flagOut": true,
-    "dernierService": "2026-08-21"
-   },
-   {
-    "idU": "294867",
-    "nom": "Miguel Paco",
-    "rib": "469156",
-    "tel": "555 130 252",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-01",
-    "contrat": true,
-    "discord": "1350309739455713321",
-    "flagOut": true,
-    "dernierService": "2026-08-10"
    },
    {
     "idU": "142977",
@@ -4187,24 +4027,6 @@
     "dernierService": "2026-09-11"
    },
    {
-    "idU": "274210",
-    "nom": "Inaros Fermando",
-    "rib": "426849",
-    "tel": "555 260 059",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-08",
-    "contrat": true,
-    "discord": "1023581638187294890",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1786218792841,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-20"
-   },
-   {
     "idU": "374820",
     "nom": "Jesse Delane",
     "rib": "554194",
@@ -4259,20 +4081,6 @@
     "dernierService": "2026-09-11"
    },
    {
-    "idU": "340054",
-    "nom": "Amadou Kingsley",
-    "rib": "509450",
-    "tel": "555 842 228",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-12",
-    "contrat": true,
-    "discord": "593926784899350538",
-    "flagOut": true,
-    "dernierService": "2026-08-15"
-   },
-   {
     "idU": "369986",
     "nom": "Elliot Adkins",
     "rib": "547644",
@@ -4285,24 +4093,6 @@
     "discord": "1346352248841568326",
     "flagOut": false,
     "dernierService": "2026-09-12"
-   },
-   {
-    "idU": "377490",
-    "nom": "Leffe Mate",
-    "rib": "557762",
-    "tel": "555101561",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-13",
-    "contrat": true,
-    "discord": "1019694060895748279",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1786636801028,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
    },
    {
     "idU": "376167",
@@ -4391,42 +4181,6 @@
     "dernierService": "2026-09-12"
    },
    {
-    "idU": "375245",
-    "nom": "Brian Collins",
-    "rib": "554755",
-    "tel": "555303814",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Diego Herrera",
-    "arrivee": "2026-08-18",
-    "contrat": true,
-    "discord": "792526506508812369",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787086941333,
-     "par": "Diego Herrera"
-    },
-    "dernierService": "2026-08-25"
-   },
-   {
-    "idU": "375271",
-    "nom": "Baza Kov",
-    "rib": "554785",
-    "tel": "555 878 461",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Diego Herrera",
-    "arrivee": "2026-08-18",
-    "contrat": true,
-    "discord": "1251962473297346668",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787088957926,
-     "par": "Diego Herrera"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
     "idU": "167535",
     "nom": "Lázaro Ochoa",
     "rib": "516800",
@@ -4479,20 +4233,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-09-02"
-   },
-   {
-    "idU": "374846",
-    "nom": "Saad Lzaar",
-    "rib": "554212",
-    "tel": "555366157",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "Stella Collins",
-    "arrivee": "2026-08-20",
-    "contrat": true,
-    "discord": "295152285992878080",
-    "flagOut": true,
-    "dernierService": "2026-08-30"
    },
    {
     "idU": "378033",
@@ -4601,24 +4341,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-08-25"
-   },
-   {
-    "idU": "372874",
-    "nom": "Joseph Purple",
-    "rib": " 551610",
-    "tel": "555-844-666",
-    "avert": "",
-    "grade": "Raffineur Confirmé",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-21",
-    "contrat": true,
-    "discord": "824713610823467052",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787340682842,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
    },
    {
     "idU": "377944",
@@ -18335,14 +18057,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789216239180,
- "_rev": "58xlug3f96l-mtyd64qq",
+ "_maj": 1789216331774,
+ "_rev": "54gdx6xm7ga-mtyd7l1i",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789216205120,
+  "sheets": 1789216331774,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789215771989,
@@ -18359,7 +18081,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789216239180,
+  "_tables": 1789216310096,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -20198,7 +19920,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:31:08.930Z",
+  "maj": "2026-09-12T12:32:16.710Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42750,6 +42472,13 @@
     "role": "respcom",
     "vu": "2026-09-12T12:30:39.016Z",
     "id": 1789216239637
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:31:50.096Z",
+    "id": 1789216312258
    }
   ],
   "oilroxwood_demandes": [],
