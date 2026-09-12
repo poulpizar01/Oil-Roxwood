@@ -4825,7 +4825,7 @@
    {
     "nom": "Cristóbal Perrera",
     "grade": "Intérimaire",
-    "tel": "",
+    "tel": "555-672-914",
     "rib": "",
     "idU": "379487",
     "arrivee": "2026-09-12",
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789227149480,
- "_rev": "cfpgm9nhppr-mtyjngfz",
+ "_maj": 1789227154203,
+ "_rev": "v66ed00q5x-mtyjnjoc",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789227149480,
+  "sheets": 1789227154203,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:32:34.943Z",
+  "maj": "2026-09-12T15:32:39.132Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
