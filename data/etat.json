@@ -11892,13 +11892,6 @@
     "lastCmd": "2026-04-18"
    },
    {
-    "nom": "Black Sakura",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-21"
-   },
-   {
     "nom": "Black Sand Compagny",
     "rib": "",
     "tel": "555 232 022",
@@ -17820,11 +17813,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789216792397,
- "_rev": "mdfg1w1crbg-mtydj5i8",
+ "_maj": 1789216881808,
+ "_rev": "d28b5ivxdxn-mtydjad1",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789216753013,
+  "fact": 1789216881717,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -17844,7 +17837,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789216792397,
+  "_tables": 1789216881808,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19683,7 +19676,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:41:16.448Z",
+  "maj": "2026-09-12T12:41:22.741Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42284,6 +42277,13 @@
     "role": "respcom",
     "vu": "2026-09-12T12:39:52.397Z",
     "id": 1789216792602
+   },
+   {
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:41:21.808Z",
+    "id": 1789216882761
    }
   ],
   "oilroxwood_demandes": [],
