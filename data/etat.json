@@ -12658,13 +12658,6 @@
     "lastCmd": "2026-08-30"
    },
    {
-    "nom": "Rayper",
-    "rib": "",
-    "tel": "555-099-208",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-28"
-   },
-   {
     "nom": "Red Triades",
     "rib": "",
     "tel": "555-082-759",
@@ -17673,11 +17666,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789220571844,
- "_rev": "zlf4gqttbzs-mtyfqns3",
+ "_maj": 1789220619271,
+ "_rev": "kekorhx6yf-mtyfrei8",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789220511682,
+  "fact": 1789220619271,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19536,7 +19529,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:43:05.956Z",
+  "maj": "2026-09-12T13:43:40.592Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
