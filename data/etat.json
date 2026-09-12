@@ -11885,13 +11885,6 @@
     "lastCmd": "2026-08-30"
    },
    {
-    "nom": "Black Phanthère",
-    "rib": "",
-    "tel": "",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-04-18"
-   },
-   {
     "nom": "Black Sand Compagny",
     "rib": "",
     "tel": "555 232 022",
@@ -17764,11 +17757,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789218717851,
- "_rev": "v101lvdvshg-mtyemsn6",
+ "_maj": 1789218753688,
+ "_rev": "8rxsksp0om4-mtyenes4",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789218546312,
+  "fact": 1789218753688,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19627,7 +19620,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:12:06.018Z",
+  "maj": "2026-09-12T13:12:34.708Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
