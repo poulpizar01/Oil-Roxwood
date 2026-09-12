@@ -1,11 +1,99 @@
 {
- "maj": "2026-09-12T03:49:32.591931+00:00",
+ "maj": "2026-09-12T04:02:05.884487+00:00",
  "salon": "1245400913066066099",
  "fenetreJours": 3,
  "coffres": [
   "entreprise (Oil RoxWood)"
  ],
  "messages": [
+  {
+   "id": "1548180827353915424-0",
+   "t": "2026-09-12T03:57:53.050000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 143x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1846.30, 6514.22, 16.73\ntargetPosition : -1845.91, 6514.70, 15.74\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6554\nplayerDiscord : 1351242102985719829\nplayerName : Dimring\nplayerCharacter : Alex Turner\nplayerId : 371783\nitemId : refinedoil",
+   "nom": "Alex Turner",
+   "quantite": 143,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1846.30, 6514.22, 16.73",
+    "targetposition": "-1845.91, 6514.70, 15.74",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6554",
+    "playerdiscord": "1351242102985719829",
+    "playername": "Dimring",
+    "playercharacter": "Alex Turner",
+    "playerid": "371783",
+    "itemid": "refinedoil"
+   }
+  },
+  {
+   "id": "1548180827353915424-1",
+   "t": "2026-09-12T03:57:53.050000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 34x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1846.30, 6514.22, 16.73\ntargetPosition : -1845.91, 6514.70, 15.74\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6554\nplayerDiscord : 1351242102985719829\nplayerName : Dimring\nplayerCharacter : Alex Turner\nplayerId : 371783\nitemId : refinedoil",
+   "nom": "Alex Turner",
+   "quantite": 34,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1846.30, 6514.22, 16.73",
+    "targetposition": "-1845.91, 6514.70, 15.74",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6554",
+    "playerdiscord": "1351242102985719829",
+    "playername": "Dimring",
+    "playercharacter": "Alex Turner",
+    "playerid": "371783",
+    "itemid": "refinedoil"
+   }
+  },
+  {
+   "id": "1548180574651289601",
+   "t": "2026-09-12T03:56:52.801000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 143x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1846.33, 6514.23, 16.54\ntargetPosition : -1845.91, 6514.70, 15.74\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6554\nplayerDiscord : 1351242102985719829\nplayerName : Dimring\nplayerCharacter : Alex Turner\nplayerId : 371783\nitemId : refinedoil",
+   "nom": "Alex Turner",
+   "quantite": 143,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1846.33, 6514.23, 16.54",
+    "targetposition": "-1845.91, 6514.70, 15.74",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6554",
+    "playerdiscord": "1351242102985719829",
+    "playername": "Dimring",
+    "playercharacter": "Alex Turner",
+    "playerid": "371783",
+    "itemid": "refinedoil"
+   }
+  },
+  {
+   "id": "1548180328776994817",
+   "t": "2026-09-12T03:55:54.180000+00:00",
+   "auteur": "Logs - Vente run",
+   "texte": "Vente run\nVente de 302x Pétrole Raffiné pour 3020$ par Elliot Adkins. 1510$ pour la société\nitemId : refinedoil\njobId : 76\njobName : Oil RoxWood",
+   "nom": null,
+   "quantite": 302,
+   "montant": 3020,
+   "type": "vente",
+   "salon": "1245400913473179729",
+   "champs": {
+    "itemid": "refinedoil",
+    "jobid": "76",
+    "jobname": "Oil RoxWood"
+   }
+  },
   {
    "id": "1548175042716766320",
    "t": "2026-09-12T03:34:53.885000+00:00",
@@ -93708,102 +93796,6 @@
     "playercharacter": "Diego Herrera",
     "playerid": "231487",
     "itemid": "refinedoil"
-   }
-  },
-  {
-   "id": "1547260834227421331-2",
-   "t": "2026-09-09T15:02:09.596000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\na retiré 48x Pétrole Brut du coffre de l'entreprise (Oil RoxWood)\nposition : -1849.36, 6497.58, 16.73\ntargetPosition : -1849.11, 6498.65, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 714\nplayerDiscord : 826526979204841482\nplayerName : Orion\nplayerCharacter : Diego Herrera\nplayerId : 231487\nitemId : oil",
-   "nom": "Diego Herrera",
-   "quantite": 48,
-   "montant": null,
-   "type": "coffre_retrait",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-1849.36, 6497.58, 16.73",
-    "targetposition": "-1849.11, 6498.65, 15.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "714",
-    "playerdiscord": "826526979204841482",
-    "playername": "Orion",
-    "playercharacter": "Diego Herrera",
-    "playerid": "231487",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547260834227421331-3",
-   "t": "2026-09-09T15:02:09.596000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\ndépot de 40x Pétrole Brut dans le coffre de l'entreprise (Oil RoxWood)\nposition : -3087.14, 6819.17, 44.73\ntargetPosition : -3086.26, 6819.89, 43.78\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 40,
-   "montant": null,
-   "type": "coffre_depot",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-3087.14, 6819.17, 44.73",
-    "targetposition": "-3086.26, 6819.89, 43.78",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547260834227421331-4",
-   "t": "2026-09-09T15:02:09.596000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\na retiré 62x Pétrole Brut du coffre de l'entreprise (Oil RoxWood)\nposition : -3089.37, 6812.99, 44.73\ntargetPosition : -3089.68, 6814.50, 43.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 62,
-   "montant": null,
-   "type": "coffre_retrait",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-3089.37, 6812.99, 44.73",
-    "targetposition": "-3089.68, 6814.50, 43.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547260834227421331-5",
-   "t": "2026-09-09T15:02:09.596000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\na retiré 62x Pétrole Brut du coffre de l'entreprise (Oil RoxWood)\nposition : -3089.37, 6812.99, 44.73\ntargetPosition : -3089.68, 6814.50, 43.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 62,
-   "montant": null,
-   "type": "coffre_retrait",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-3089.37, 6812.99, 44.73",
-    "targetposition": "-3089.68, 6814.50, 43.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
-    "itemid": "oil"
    }
   }
  ]
