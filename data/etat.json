@@ -4706,7 +4706,7 @@
     "discord": "922995956763463730",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "Thomas Boyer",
     "dernierService": "2026-09-05",
     "flagOut": false
    },
@@ -4720,7 +4720,7 @@
     "discord": "906662155171024987",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "Thomas Boyer",
     "dernierService": "2026-09-06",
     "flagOut": false
    },
@@ -4734,7 +4734,7 @@
     "discord": "596685020018769930",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "Thomas Boyer",
     "dernierService": "2026-09-12",
     "flagOut": false
    },
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226961954,
- "_rev": "x1gqzdhqaii-mtyjjcrt",
+ "_maj": 1789226967808,
+ "_rev": "4949e67n25n-mtyjjju7",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226961954,
+  "sheets": 1789226967808,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:29:23.561Z",
+  "maj": "2026-09-12T15:29:32.719Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
