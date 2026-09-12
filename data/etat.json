@@ -4857,10 +4857,10 @@
     "rib": "",
     "idU": "379640",
     "arrivee": "",
-    "discord": "",
+    "discord": "1225132652953210900",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "Thomas Boyer",
     "dernierService": "2026-09-12",
     "flagOut": false
    }
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789227199261,
- "_rev": "rhwysh3s9wk-mtyjoiff",
+ "_maj": 1789227205295,
+ "_rev": "dgxewn2b1td-mtyjon3t",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789227198064,
+  "sheets": 1789227205295,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:33:24.171Z",
+  "maj": "2026-09-12T15:33:30.233Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
