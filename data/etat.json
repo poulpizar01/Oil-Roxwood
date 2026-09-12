@@ -12308,13 +12308,6 @@
     "lastCmd": "2026-08-17"
    },
    {
-    "nom": "Gang Gorée 221",
-    "rib": "",
-    "tel": "555 530 288",
-    "adresse": "Los santos",
-    "lastCmd": "2026-05-14"
-   },
-   {
     "nom": "Gang Marabunta Grande",
     "rib": "",
     "tel": "",
@@ -17708,11 +17701,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789219941866,
- "_rev": "tpofuxvna7l-mtyfemg7",
+ "_maj": 1789220031078,
+ "_rev": "2q8lc83574-mtyfesfd",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789219935230,
+  "fact": 1789220031078,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19571,7 +19564,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:33:44.359Z",
+  "maj": "2026-09-12T13:33:52.105Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
