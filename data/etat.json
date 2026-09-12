@@ -4839,7 +4839,7 @@
    {
     "nom": "Aníbal Santamaría",
     "grade": "Stagiaire",
-    "tel": "",
+    "tel": "555-786-452",
     "rib": "",
     "idU": "157794",
     "arrivee": "2026-09-12",
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789227173584,
- "_rev": "cbii6vbu8ds-mtyjnymv",
+ "_maj": 1789227180253,
+ "_rev": "adods58knos-mtyjo3yf",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789227173584,
+  "sheets": 1789227180253,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:32:58.519Z",
+  "maj": "2026-09-12T15:33:05.415Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
