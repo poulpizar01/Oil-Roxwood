@@ -14840,6 +14840,14 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-12T12:21:43.292Z"
+  },
+  "laurent roquel": {
+   "nom": "Laurent Roquel",
+   "photo": "",
+   "titre": "",
+   "bio": "",
+   "public": true,
+   "maj": "2026-09-12T16:48:15.042Z"
   }
  },
  "affiches": [],
@@ -17828,8 +17836,8 @@
   "postesV4": 1
  },
  "_cid": "6hufd4a00tw",
- "_maj": 1789231645634,
- "_rev": "a77xfacjx9g-mtymccx2",
+ "_maj": 1789231695043,
+ "_rev": "t1bmdkkrc-mtymct9g",
  "_majSec": {
   "fer": 1789231555514,
   "fact": 1789231555514,
@@ -17851,7 +17859,7 @@
   "bilanForce": 1789231555514,
   "primesExtra": 1789231555514,
   "quotasComHist": 1789231555514,
-  "profils": 1789231555514,
+  "profils": 1789231695043,
   "_tables": 1789231645634,
   "_permsFix1": 1789231555514,
   "_rolesFix4": 1788489352546,
@@ -19691,7 +19699,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T16:47:56.056Z",
+  "maj": "2026-09-12T16:48:17.188Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19744,6 +19752,12 @@
     "nom": "Emma Collins",
     "titre": "Responsable commercial",
     "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
+    "bio": ""
+   },
+   {
+    "nom": "Laurent Roquel",
+    "titre": "Commercial",
+    "photo": "https://cdn.discordapp.com/avatars/707695913187016785/447248cc6f059b26b70f1c477e3c2e4d.png",
     "bio": ""
    }
   ]
