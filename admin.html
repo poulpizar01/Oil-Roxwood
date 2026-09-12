@@ -344,12 +344,41 @@ function save(){
    puis l'effacerait du dépôt à son prochain envoi. Ces tables-là n'ont qu'un
    auteur, il n'y a rien à arbitrer : on les reprend toujours du dépôt. */
 const TABLES_BOT=['oilroxwood_coffres','oilroxwood_recrues','oilroxwood_absences'];
+/* `profils` a un auteur par fiche (chacun la sienne), mais se fusionnait comme
+   les autres sections : en bloc, la plus récente gagne. Deux personnes qui
+   enregistrent leur profil à quelques secondes d'écart depuis deux navigateurs
+   différents ne se voient pas encore l'une l'autre — la seconde à écrire
+   remplace tout le bloc et efface la fiche de la première, qui n'avait rien à
+   voir avec ce qu'elle enregistrait. Constaté en septembre 2026 : le profil de
+   Julio a disparu, remplacé par celui de Stella, alors qu'aucun des deux
+   n'avait touché à l'autre. On fusionne donc fiche par fiche, chacune gardant
+   sa propre date (`maj`, déjà écrite par profilSave) : la plus récente des
+   deux versions de CETTE fiche gagne, et une fiche absente d'un côté est
+   reprise de l'autre plutôt que perdue. */
+function mergeProfils(loc,dist){
+  loc=loc||{}; dist=dist||{};
+  const fusion={...loc}; let changed=false;
+  Object.keys(dist).forEach(cle=>{
+    const l=loc[cle], d=dist[cle];
+    if(!l){ fusion[cle]=d; changed=true; return; }               // absente ici : reprise de l'autre
+    if(Date.parse(d.maj||0)>Date.parse(l.maj||0)){ fusion[cle]=d; changed=true; } // sinon la plus récente des deux gagne
+  });
+  return {fusion,changed};
+}
 function mergeRemote(rem){
   // fusion section par section : pour chacune, la plus récente gagne
   let changed=false, localNewer=false;
   S._majSec=S._majSec||{}; S._fp=S._fp||{};
   const lim=nowSrv()+120000; // les dates « du futur » (horloge décalée) sont ramenées à maintenant
   SEC_KEYS.forEach(k=>{
+    if(k==='profils'){                                            // fusionné fiche par fiche, pas en bloc
+      if(rem.profils){
+        const {fusion,changed:chg}=mergeProfils(S.profils,rem.profils);
+        if(chg){ S.profils=fusion; S._fp.profils=fpOf(S.profils); changed=true; }
+        S._majSec.profils=Math.max(S._majSec.profils||0,(rem._majSec&&rem._majSec.profils)||0);
+      }
+      return;
+    }
     let rt=(rem._majSec&&rem._majSec[k])||rem._maj||0;
     let lt=S._majSec[k]||S._maj||0;
     if(rt>lim) rt=nowSrv();
