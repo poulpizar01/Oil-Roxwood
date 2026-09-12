@@ -4797,7 +4797,7 @@
    {
     "nom": "Mada Dillon",
     "grade": "Intérimaire",
-    "tel": "",
+    "tel": "555040267",
     "rib": "",
     "idU": "352844",
     "arrivee": "2026-09-12",
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789227080119,
- "_rev": "za9vuj4vryk-mtyjlzho",
+ "_maj": 1789227085509,
+ "_rev": "4s0ur87lcdk-mtyjm2yg",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789227080119,
+  "sheets": 1789227085509,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:31:26.316Z",
+  "maj": "2026-09-12T15:31:30.808Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
