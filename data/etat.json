@@ -17827,8 +17827,8 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789225311742,
- "_rev": "fc28oqfkrm6-mtyil9tj",
+ "_maj": 1789225491742,
+ "_rev": "6gsae7owg8n-mtyinuga",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
@@ -17851,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789225311742,
+  "_tables": 1789225491742,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:02:53.431Z",
+  "maj": "2026-09-12T15:04:53.482Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42949,6 +42949,20 @@
     "role": "direction",
     "vu": "2026-09-12T15:01:51.742Z",
     "id": 1789225313078
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T15:03:51.732Z",
+    "id": 1789225433691
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T15:04:51.741Z",
+    "id": 1789225493636
    }
   ],
   "oilroxwood_demandes": [],
