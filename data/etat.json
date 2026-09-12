@@ -12157,13 +12157,6 @@
     "lastCmd": "2026-08-30"
    },
    {
-    "nom": "ECO",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-05-30"
-   },
-   {
     "nom": "Elasco",
     "rib": "BLACKLIST",
     "tel": "BLACKLIST",
@@ -17666,11 +17659,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789220661840,
- "_rev": "4gg6zdj3b3w-mtyfssk4",
+ "_maj": 1789220688051,
+ "_rev": "z6bho0mpz9s-mtyfsvdd",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789220619271,
+  "fact": 1789220688051,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19529,7 +19522,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:44:45.460Z",
+  "maj": "2026-09-12T13:44:49.105Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
