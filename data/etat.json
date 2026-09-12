@@ -4375,42 +4375,6 @@
     "dernierService": "2026-08-27"
    },
    {
-    "idU": "373597",
-    "nom": "Calvin Praline",
-    "rib": "552577",
-    "tel": "555 813 871",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-23",
-    "contrat": true,
-    "discord": "1144281552352710706",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787503432180,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "244680",
-    "nom": "Diego Rony",
-    "rib": "554633",
-    "tel": "555 407 662",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-23",
-    "contrat": true,
-    "discord": "391618077441261568",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787503454846,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-27"
-   },
-   {
     "idU": "274083",
     "nom": "Junior Winchester",
     "rib": "478487",
@@ -4427,24 +4391,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-09-02"
-   },
-   {
-    "idU": "257459",
-    "nom": "Thomas Cortello",
-    "rib": "405976",
-    "tel": "555554168",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Stella Collins",
-    "arrivee": "2026-08-24",
-    "contrat": false,
-    "discord": "366486262808444928",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787576124567,
-     "par": "Stella Collins"
-    },
-    "dernierService": "2026-08-28"
    },
    {
     "idU": "372489",
@@ -17975,14 +17921,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789216358461,
- "_rev": "yy6yt72rvg-mtyd85l7",
+ "_maj": 1789216369843,
+ "_rev": "przhjeew1p-mtyd8ee0",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789216358461,
+  "sheets": 1789216369843,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789215771989,
@@ -19838,7 +19784,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:32:43.339Z",
+  "maj": "2026-09-12T12:32:54.745Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
