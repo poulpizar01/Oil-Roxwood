@@ -12922,13 +12922,6 @@
     "lastCmd": "2026-06-22"
    },
    {
-    "nom": "Valley Side Mob",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-30"
-   },
-   {
     "nom": "Vespucci Médical",
     "rib": "",
     "tel": "",
@@ -17799,11 +17792,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789217572167,
- "_rev": "t51p8rz5eon-mtydy5pu",
+ "_maj": 1789217581676,
+ "_rev": "pxng9f31k4d-mtydyamd",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789217371007,
+  "fact": 1789217581676,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19662,7 +19655,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:52:56.562Z",
+  "maj": "2026-09-12T12:53:02.917Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
