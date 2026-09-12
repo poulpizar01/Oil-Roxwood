@@ -11986,19 +11986,7 @@
     "rib": "",
     "tel": "2035",
     "adresse": "Roxwood",
-    "lastCmd": "2026-04-24",
-    "relance": {
-     "par": "William Rodriguez-collins",
-     "date": "2026-09-12"
-    },
-    "notes": [
-     {
-      "t": 1789243963585,
-      "par": "William Rodriguez-collins",
-      "txt": "Ils leur restent 2800bidons",
-      "imgs": 0
-     }
-    ]
+    "lastCmd": "2026-04-24"
    },
    {
     "nom": "Casa Nostra",
@@ -14776,8 +14764,7 @@
    "id": 1783435518631,
    "did": "235844738656239616",
    "role": "commercial",
-   "user": "William Rodriguez-collins",
-   "avatar": "https://cdn.discordapp.com/avatars/235844738656239616/6705cf8fc5707bfb269446b197494252.png"
+   "user": "William Rodriguez-collins"
   },
   {
    "id": 1783447686613,
@@ -14852,14 +14839,6 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-12T12:21:43.292Z"
-  },
-  "william rodriguez-collins": {
-   "nom": "William Rodriguez-collins",
-   "photo": "",
-   "titre": "",
-   "bio": "",
-   "public": true,
-   "maj": "2026-09-12T20:11:53.537Z"
   }
  },
  "affiches": [],
@@ -17641,38 +17620,6 @@
    "quantite": 150,
    "montant": 750,
    "did": "1053366471574687844"
-  },
-  {
-   "id": "1548267939268927573",
-   "t": "2026-09-12 11:44",
-   "nom": "Laurent Roquel",
-   "quantite": 125,
-   "montant": 625,
-   "did": "707695913187016785"
-  },
-  {
-   "id": "1548267691045945397",
-   "t": "2026-09-12 11:43",
-   "nom": "Laurent Roquel",
-   "quantite": 125,
-   "montant": 625,
-   "did": "707695913187016785"
-  },
-  {
-   "id": "1548251064619241486",
-   "t": "2026-09-12 10:36",
-   "nom": "Julio Collins",
-   "quantite": 100,
-   "montant": 500,
-   "did": "767332288744128512"
-  },
-  {
-   "id": "1548250807357546549",
-   "t": "2026-09-12 10:35",
-   "nom": "Julio Collins",
-   "quantite": 100,
-   "montant": 500,
-   "did": "767332288744128512"
   }
  ],
  "settings": {
@@ -17879,51 +17826,46 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "1q6yzoq4izh",
- "_maj": 1789243999200,
- "_rev": "h40a6gfj76k-mtytok94",
+ "_cid": "x4ie0xa8hto",
+ "_maj": 1789244030855,
+ "_rev": "arcs82mknx6-mtytp83a",
  "_majSec": {
-  "fer": 1789243994135,
-  "fact": 1789243963585,
-  "users": 1789243704049,
-  "weeks": 1789243704049,
-  "sheets": 1789243704049,
-  "_qcFix1": 1789243704049,
-  "_wkFix1": 1789243704049,
-  "journal": 1789243999200,
-  "pending": 1789243704049,
-  "prodDer": 1789243704049,
-  "runners": 1789243704049,
-  "absences": 1789243704049,
-  "imported": 1789243704049,
-  "settings": 1789243704049,
-  "closeUndo": 1789243704049,
-  "quotasCom": 1789243704049,
-  "bilanExtra": 1789243704049,
-  "bilanForce": 1789243704049,
-  "primesExtra": 1789243704049,
-  "quotasComHist": 1789243704049,
-  "profils": 1789243913537,
-  "_tables": 1789243999200,
-  "_permsFix1": 1789243704049,
+  "fer": 1789215604317,
+  "fact": 1789215771989,
+  "users": 1789215604317,
+  "weeks": 1789215604317,
+  "sheets": 1789227236561,
+  "_qcFix1": 1789215604317,
+  "_wkFix1": 1789215604317,
+  "journal": 1789216392119,
+  "pending": 1789215604317,
+  "prodDer": 1789215604317,
+  "runners": 1789227624561,
+  "absences": 1789215604317,
+  "imported": 1789215604317,
+  "settings": 1789215604317,
+  "closeUndo": 1789215604317,
+  "quotasCom": 1789215839232,
+  "bilanExtra": 1789215604317,
+  "bilanForce": 1789215604317,
+  "primesExtra": 1789215604317,
+  "quotasComHist": 1789215604317,
+  "profils": 1789228034523,
+  "_tables": 1789244030855,
+  "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789243704049,
-  "affiches": 1789243704049,
-  "_affFix1": 1789243704049,
-  "produits": 1789243704049,
-  "_prodFix1": 1789243704049,
-  "_recruesIgnore": 1789243704049,
-  "ventesAlias": 1789243704049,
-  "_ventesIgnore": 1789243704049
+  "_rolesFix77": 1789215604317,
+  "affiches": 1789215604317,
+  "_affFix1": 1789215604317,
+  "produits": 1789215604317,
+  "_prodFix1": 1789215604317,
+  "_recruesIgnore": 1789215604317,
+  "ventesAlias": 1789215604317,
+  "_ventesIgnore": 1789215604317
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789243993812,
-   "u": "Emma Collins",
-   "a": "Achats de fer : 4 relevé(s) repris du salon"
-  },
   {
    "t": 1789216393612,
    "u": "Stella Collins",
@@ -19418,6 +19360,11 @@
    "a": "Fer acheté noté : William Rodriguez-collins → 940",
    "t": 1788096400417,
    "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 940",
+   "t": 1788096388761,
+   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19743,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T20:13:22.696Z",
+  "maj": "2026-09-12T20:13:53.590Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -19796,12 +19743,6 @@
     "nom": "Emma Collins",
     "titre": "Responsable commercial",
     "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
-    "bio": ""
-   },
-   {
-    "nom": "William Rodriguez-collins",
-    "titre": "Commercial",
-    "photo": "https://cdn.discordapp.com/avatars/235844738656239616/6705cf8fc5707bfb269446b197494252.png",
     "bio": ""
    }
   ]
@@ -44448,50 +44389,29 @@
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:08:15.633Z",
-    "id": 1789243696150
+    "vu": "2026-09-12T20:09:51.782Z",
+    "id": 1789243793197
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T20:09:43.801Z",
-    "id": 1789243786022
+    "vu": "2026-09-12T20:10:51.777Z",
+    "id": 1789243853341
    },
    {
-    "uid": "235844738656239616",
-    "nom": "William Rodriguez-collins",
-    "role": "commercial",
-    "vu": "2026-09-12T20:09:54.065Z",
-    "id": 1789243794866
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T20:12:50.858Z",
+    "id": 1789243973463
    },
    {
-    "uid": "235844738656239616",
-    "nom": "William Rodriguez-collins",
-    "role": "commercial",
-    "vu": "2026-09-12T20:11:25.049Z",
-    "id": 1789243886701
-   },
-   {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T20:11:49.201Z",
-    "id": 1789243909405
-   },
-   {
-    "uid": "235844738656239616",
-    "nom": "William Rodriguez-collins",
-    "role": "commercial",
-    "vu": "2026-09-12T20:12:55.045Z",
-    "id": 1789243976531
-   },
-   {
-    "uid": "1053366471574687844",
-    "nom": "Emma Collins",
-    "role": "respcom",
-    "vu": "2026-09-12T20:13:19.200Z",
-    "id": 1789243998935
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T20:13:50.855Z",
+    "id": 1789244033881
    }
   ],
   "oilroxwood_demandes": [],
@@ -45180,8 +45100,7 @@
     "motif": "Raison familiale",
     "par": "⚫ Juan Sanchez"
    }
-  ],
-  "oilroxwood_media": []
+  ]
  },
  "reunions": [],
  "_permsFix1": true,
