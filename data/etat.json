@@ -470,7 +470,7 @@
   },
   {
    "id": 1789129324401,
-   "nom": "Romelu Louka",
+   "nom": "Louka Romelu",
    "discord": "",
    "grade": 0,
    "barils": 2492,
@@ -2380,7 +2380,7 @@
     },
     {
      "ok": true,
-     "nom": "Romelu Louka",
+     "nom": "Louka Romelu",
      "poste": false,
      "quota": 3000,
      "barils": 5358
@@ -3181,7 +3181,7 @@
     },
     {
      "ok": false,
-     "nom": "Romelu Louka",
+     "nom": "Louka Romelu",
      "poste": false,
      "quota": 3000,
      "barils": 2272
@@ -3416,11 +3416,7 @@
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "",
-    "flagOut": false,
-    "contratGen": {
-     "t": 1789215358040,
-     "par": "Stella Collins"
-    }
+    "flagOut": false
    },
    {
     "nom": "Liam Doyle",
@@ -4622,7 +4618,7 @@
    },
    {
     "idU": "377944",
-    "nom": "Romelu Louka",
+    "nom": "Louka Romelu",
     "rib": " 558474",
     "tel": "555 654 025",
     "avert": "",
@@ -9525,7 +9521,7 @@
     "heures": "3h48min"
    },
    {
-    "nom": "Romelu Louka",
+    "nom": "Louka Romelu",
     "rang": "Intérimaire",
     "factures": 0,
     "runs": 12460,
@@ -15104,7 +15100,8 @@
    "id": 1783467608217,
    "did": "1053366471574687844",
    "role": "respcom",
-   "user": "Emma Collins"
+   "user": "Emma Collins",
+   "avatar": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png"
   },
   {
    "id": 1783522211554,
@@ -18132,56 +18129,46 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wdcu2mjtxhn",
- "_maj": 1789215589619,
- "_rev": "43qd3dakp4g-mtycrp3h",
+ "_cid": "vgqoddjcnna",
+ "_maj": 1789215604506,
+ "_rev": "2v95i1vrp4q-mtyctkwf",
  "_majSec": {
-  "fer": 1789170394751,
-  "fact": 1789170394751,
-  "users": 1789170394751,
-  "weeks": 1789215400974,
-  "sheets": 1789215400974,
-  "_qcFix1": 1789170394751,
-  "_wkFix1": 1789170394751,
-  "journal": 1789215400974,
-  "pending": 1789170394751,
-  "prodDer": 1789170394751,
-  "runners": 1789215400974,
-  "absences": 1789170394751,
-  "imported": 1789170394751,
-  "settings": 1789170926264,
-  "closeUndo": 1789170394751,
-  "quotasCom": 1789170394751,
-  "bilanExtra": 1789170394751,
-  "bilanForce": 1789170394751,
-  "primesExtra": 1789170394751,
-  "quotasComHist": 1789170394751,
-  "profils": 1789170871263,
-  "_tables": 1789215589619,
-  "_permsFix1": 1789170394751,
+  "fer": 1789215604317,
+  "fact": 1789215604317,
+  "users": 1789215604317,
+  "weeks": 1789215604317,
+  "sheets": 1789215604317,
+  "_qcFix1": 1789215604317,
+  "_wkFix1": 1789215604317,
+  "journal": 1789215604317,
+  "pending": 1789215604317,
+  "prodDer": 1789215604317,
+  "runners": 1789215604317,
+  "absences": 1789215604317,
+  "imported": 1789215604317,
+  "settings": 1789215604317,
+  "closeUndo": 1789215604317,
+  "quotasCom": 1789215604317,
+  "bilanExtra": 1789215604317,
+  "bilanForce": 1789215604317,
+  "primesExtra": 1789215604317,
+  "quotasComHist": 1789215604317,
+  "profils": 1789215604317,
+  "_tables": 1789215604506,
+  "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789170394751,
-  "affiches": 1789170394751,
-  "_affFix1": 1789170394751,
-  "produits": 1789170394751,
-  "_prodFix1": 1789170394751,
-  "_recruesIgnore": 1789215400974,
-  "ventesAlias": 1789170394751,
-  "_ventesIgnore": 1789170394751
+  "_rolesFix77": 1789215604317,
+  "affiches": 1789215604317,
+  "_affFix1": 1789215604317,
+  "produits": 1789215604317,
+  "_prodFix1": 1789215604317,
+  "_recruesIgnore": 1789215604317,
+  "ventesAlias": 1789215604317,
+  "_ventesIgnore": 1789215604317
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789215402356,
-   "u": "Stella Collins",
-   "a": "Renommage : Louka Romelu → Romelu Louka · effectif (1), feuille rh (1), feuille tablette (1), historique des semaines (2)"
-  },
-  {
-   "t": 1789215359423,
-   "u": "Stella Collins",
-   "a": "Contrat de travail généré : Alex Bren (Runner)"
-  },
   {
    "t": 1789170929039,
    "u": "Stella Collins",
@@ -19671,6 +19658,16 @@
    "a": "Fer acheté noté : Juan Sanchez → 700",
    "t": 1788078860245,
    "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : William Rodriguez-collins → 700",
+   "t": 1788078848156,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 700",
+   "t": 1788078843789,
+   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19996,7 +19993,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:19:55.469Z",
+  "maj": "2026-09-12T12:21:23.343Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42481,32 +42478,11 @@
     "id": 1789173345993
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:15:19.367Z",
-    "id": 1789215321197
-   },
-   {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:16:49.615Z",
-    "id": 1789215411806
-   },
-   {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:18:19.691Z",
-    "id": 1789215501342
-   },
-   {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:19:49.619Z",
-    "id": 1789215591283
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:20:04.333Z",
+    "id": 1789215606210
    }
   ],
   "oilroxwood_demandes": [],
@@ -43189,11 +43165,5 @@
  "_rolesFix4": true,
  "_rolesFix77": true,
  "_affFix1": true,
- "_prodFix1": true,
- "_recruesIgnore": [
-  "1788483950097",
-  "1788484358109",
-  "1788622713571",
-  "1789028277714"
- ]
+ "_prodFix1": true
 }
