@@ -12796,13 +12796,6 @@
     "adresse": "Los Santos"
    },
    {
-    "nom": "uptown rider",
-    "rib": "",
-    "tel": "",
-    "adresse": "Paleto",
-    "lastCmd": "2026-06-22"
-   },
-   {
     "nom": "Vespucci Médical",
     "rib": "",
     "tel": "",
@@ -17659,11 +17652,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789222544939,
- "_rev": "mqyv1m2xq4q-mtygwqwf",
+ "_maj": 1789222553606,
+ "_rev": "km36tmrr07h-mtygwua6",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789220688051,
+  "fact": 1789222553606,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -17683,7 +17676,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789222544939,
+  "_tables": 1789222552511,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19522,7 +19515,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T14:15:49.551Z",
+  "maj": "2026-09-12T14:15:53.934Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42494,6 +42487,13 @@
     "role": "respcom",
     "vu": "2026-09-12T14:15:44.937Z",
     "id": 1789222546279
+   },
+   {
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T14:15:52.511Z",
+    "id": 1789222553088
    }
   ],
   "oilroxwood_demandes": [],
