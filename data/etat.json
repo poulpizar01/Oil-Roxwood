@@ -4801,10 +4801,10 @@
     "rib": "",
     "idU": "352844",
     "arrivee": "",
-    "discord": "",
+    "discord": "898860615274217522",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "2026-09-12",
     "flagOut": false
    },
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789227053024,
- "_rev": "5v031jpcq7p-mtyjldkv",
+ "_maj": 1789227075841,
+ "_rev": "7tdfeynq75d-mtyjlv72",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789227053024,
+  "sheets": 1789227075841,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:30:57.919Z",
+  "maj": "2026-09-12T15:31:20.750Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
