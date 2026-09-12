@@ -4425,42 +4425,6 @@
     "dernierService": "2026-08-29"
    },
    {
-    "idU": "142324",
-    "nom": "Alexander Hayes",
-    "rib": "557779",
-    "tel": "555 041 399",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-24",
-    "contrat": true,
-    "discord": "356859030217555969",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787599788889,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
-   },
-   {
-    "idU": "84710",
-    "nom": "John Clair",
-    "rib": "193816",
-    "tel": " 555 731 44",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-25",
-    "contrat": false,
-    "discord": "553242095524249612",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787671857651,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-26"
-   },
-   {
     "idU": "43280",
     "nom": "Larry Lewington",
     "rib": "559320",
@@ -4477,24 +4441,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-09-04"
-   },
-   {
-    "idU": "140974",
-    "nom": "Gérard Lopez",
-    "rib": "261835",
-    "tel": "555-599-447",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-25",
-    "contrat": true,
-    "discord": "304611560276623371",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787690160991,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
    },
    {
     "idU": "29602",
@@ -4549,24 +4495,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-08-28"
-   },
-   {
-    "idU": "229225",
-    "nom": "Marlon Grant",
-    "rib": "558940",
-    "tel": "555-280-819",
-    "avert": "",
-    "grade": "Intérimaire",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-29",
-    "contrat": true,
-    "discord": "967448063176220792",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1787955209413,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-29"
    },
    {
     "idU": "356567",
@@ -4639,24 +4567,6 @@
      "par": "Thomas Boyer"
     },
     "dernierService": "2026-09-07"
-   },
-   {
-    "idU": "83190",
-    "nom": "Nills Truduk",
-    "rib": "192042",
-    "tel": "55595888",
-    "avert": "",
-    "grade": "Raffineur",
-    "recrut": "Thomas Boyer",
-    "arrivee": "2026-08-29",
-    "contrat": true,
-    "discord": "1008620335005978634",
-    "flagOut": true,
-    "contratGen": {
-     "t": 1788040794296,
-     "par": "Thomas Boyer"
-    },
-    "dernierService": "2026-08-30"
    },
    {
     "idU": "370478",
@@ -17917,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789216392119,
- "_rev": "uz8s25eksba-mtyd8tmc",
+ "_maj": 1789216407241,
+ "_rev": "poby7b2zdb-mtyd97by",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789216392119,
+  "sheets": 1789216407241,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -17941,7 +17851,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789216310096,
+  "_tables": 1789216400657,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19780,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:33:14.484Z",
+  "maj": "2026-09-12T12:33:32.254Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42339,6 +42249,13 @@
     "role": "direction",
     "vu": "2026-09-12T12:31:50.096Z",
     "id": 1789216312258
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:33:20.656Z",
+    "id": 1789216403133
    }
   ],
   "oilroxwood_demandes": [],
