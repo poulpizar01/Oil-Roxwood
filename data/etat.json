@@ -4714,7 +4714,7 @@
     "nom": "Brandon Parker",
     "grade": "Intérimaire",
     "tel": "555999901",
-    "rib": "",
+    "rib": "311722",
     "idU": "180519",
     "arrivee": "2026-09-05",
     "discord": "",
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226881820,
- "_rev": "0ul2dmu5qfq9-mtyjhqhx",
+ "_maj": 1789226887566,
+ "_rev": "j2ddfdrflem-mtyjhtwr",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226881820,
+  "sheets": 1789226887566,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:28:08.037Z",
+  "maj": "2026-09-12T15:28:12.459Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
