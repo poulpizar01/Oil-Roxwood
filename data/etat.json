@@ -4716,7 +4716,7 @@
     "tel": "",
     "rib": "",
     "idU": "180519",
-    "arrivee": "",
+    "arrivee": "2026-09-05",
     "discord": "",
     "avert": "",
     "contrat": false,
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226862888,
- "_rev": "u0ga71cor2m-mtyjhaur",
+ "_maj": 1789226874937,
+ "_rev": "nddefdgd5df-mtyjhk5v",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226862888,
+  "sheets": 1789226874937,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:27:47.764Z",
+  "maj": "2026-09-12T15:27:59.827Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
