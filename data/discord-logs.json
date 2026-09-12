@@ -1,11 +1,107 @@
 {
- "maj": "2026-09-12T05:34:26.232646+00:00",
+ "maj": "2026-09-12T05:46:57.785075+00:00",
  "salon": "1245400913066066099",
  "fenetreJours": 3,
  "coffres": [
   "entreprise (Oil RoxWood)"
  ],
  "messages": [
+  {
+   "id": "1548207753510785055",
+   "t": "2026-09-12T05:44:52.746000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 2x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1850.84, 6515.43, 16.73\ntargetPosition : -1850.63, 6515.15, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6634\nplayerDiscord : 1056044944571248710\nplayerName : Denzel DAVID\nplayerCharacter : Kazuki Ishikawa\nplayerId : 368391\nitemId : refinedoil",
+   "nom": "Kazuki Ishikawa",
+   "quantite": 2,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1850.84, 6515.43, 16.73",
+    "targetposition": "-1850.63, 6515.15, 15.75",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6634",
+    "playerdiscord": "1056044944571248710",
+    "playername": "Denzel DAVID",
+    "playercharacter": "Kazuki Ishikawa",
+    "playerid": "368391",
+    "itemid": "refinedoil"
+   }
+  },
+  {
+   "id": "1548207501898682601-0",
+   "t": "2026-09-12T05:43:52.757000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 145x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1850.23, 6514.85, 16.73\ntargetPosition : -1850.63, 6515.15, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6634\nplayerDiscord : 1056044944571248710\nplayerName : Denzel DAVID\nplayerCharacter : Kazuki Ishikawa\nplayerId : 368391\nitemId : refinedoil",
+   "nom": "Kazuki Ishikawa",
+   "quantite": 145,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1850.23, 6514.85, 16.73",
+    "targetposition": "-1850.63, 6515.15, 15.75",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6634",
+    "playerdiscord": "1056044944571248710",
+    "playername": "Denzel DAVID",
+    "playercharacter": "Kazuki Ishikawa",
+    "playerid": "368391",
+    "itemid": "refinedoil"
+   }
+  },
+  {
+   "id": "1548207501898682601-1",
+   "t": "2026-09-12T05:43:52.757000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 145x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1850.84, 6514.54, 16.73\ntargetPosition : -1850.63, 6515.15, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6634\nplayerDiscord : 1056044944571248710\nplayerName : Denzel DAVID\nplayerCharacter : Kazuki Ishikawa\nplayerId : 368391\nitemId : refinedoil",
+   "nom": "Kazuki Ishikawa",
+   "quantite": 145,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1850.84, 6514.54, 16.73",
+    "targetposition": "-1850.63, 6515.15, 15.75",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6634",
+    "playerdiscord": "1056044944571248710",
+    "playername": "Denzel DAVID",
+    "playercharacter": "Kazuki Ishikawa",
+    "playerid": "368391",
+    "itemid": "refinedoil"
+   }
+  },
+  {
+   "id": "1548207251024519291",
+   "t": "2026-09-12T05:42:52.944000+00:00",
+   "auteur": "Logs - Coffre",
+   "texte": "Coffre\ndépot de 30x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1851.02, 6514.67, 16.73\ntargetPosition : -1850.63, 6515.15, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 6634\nplayerDiscord : 1056044944571248710\nplayerName : Denzel DAVID\nplayerCharacter : Kazuki Ishikawa\nplayerId : 368391\nitemId : refinedoil",
+   "nom": "Kazuki Ishikawa",
+   "quantite": 30,
+   "montant": null,
+   "type": "coffre_depot",
+   "salon": "1245400913066066099",
+   "coffre": "entreprise (Oil RoxWood)",
+   "champs": {
+    "position": "-1851.02, 6514.67, 16.73",
+    "targetposition": "-1850.63, 6515.15, 15.75",
+    "jobid": "76",
+    "jobname": "Oil RoxWood",
+    "playernetid": "6634",
+    "playerdiscord": "1056044944571248710",
+    "playername": "Denzel DAVID",
+    "playercharacter": "Kazuki Ishikawa",
+    "playerid": "368391",
+    "itemid": "refinedoil"
+   }
+  },
   {
    "id": "1548201713608036436-0",
    "t": "2026-09-12T05:20:52.721000+00:00",
@@ -93669,102 +93765,6 @@
     "playername": "IcyToad7886",
     "playercharacter": "Stella Collins",
     "playerid": "232050",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547261543081582693-4",
-   "t": "2026-09-09T15:04:58.600000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\ndépot de 62x Pétrole Brut dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1842.84, 6520.60, 16.73\ntargetPosition : -1842.58, 6521.16, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 62,
-   "montant": null,
-   "type": "coffre_depot",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-1842.84, 6520.60, 16.73",
-    "targetposition": "-1842.58, 6521.16, 15.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547261543081582693-5",
-   "t": "2026-09-09T15:04:58.600000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\ndépot de 62x Pétrole Brut dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1842.75, 6520.60, 16.73\ntargetPosition : -1842.58, 6521.16, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 62,
-   "montant": null,
-   "type": "coffre_depot",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-1842.75, 6520.60, 16.73",
-    "targetposition": "-1842.58, 6521.16, 15.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
-    "itemid": "oil"
-   }
-  },
-  {
-   "id": "1547261543081582693-6",
-   "t": "2026-09-09T15:04:58.600000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\ndépot de 128x Pétrole Raffiné dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1844.02, 6518.36, 16.73\ntargetPosition : -1843.83, 6518.10, 15.74\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 796\nplayerDiscord : 633665872011198485\nplayerName : petit prince\nplayerCharacter : Eden Birds\nplayerId : 29602\nitemId : refinedoil",
-   "nom": "Eden Birds",
-   "quantite": 128,
-   "montant": null,
-   "type": "coffre_depot",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-1844.02, 6518.36, 16.73",
-    "targetposition": "-1843.83, 6518.10, 15.74",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "796",
-    "playerdiscord": "633665872011198485",
-    "playername": "petit prince",
-    "playercharacter": "Eden Birds",
-    "playerid": "29602",
-    "itemid": "refinedoil"
-   }
-  },
-  {
-   "id": "1547261543081582693-7",
-   "t": "2026-09-09T15:04:58.600000+00:00",
-   "auteur": "Logs - Coffre",
-   "texte": "Coffre\ndépot de 62x Pétrole Brut dans le coffre de l'entreprise (Oil RoxWood)\nposition : -1842.75, 6520.60, 16.73\ntargetPosition : -1842.58, 6521.16, 15.75\njobId : 76\njobName : Oil RoxWood\nplayerNetId : 120\nplayerDiscord : 438358976141328404\nplayerName : Thomas Boyer\nplayerCharacter : Thomas Boyer\nplayerId : 160149\nitemId : oil",
-   "nom": "Thomas Boyer",
-   "quantite": 62,
-   "montant": null,
-   "type": "coffre_depot",
-   "salon": "1245400913066066099",
-   "coffre": "entreprise (Oil RoxWood)",
-   "champs": {
-    "position": "-1842.75, 6520.60, 16.73",
-    "targetposition": "-1842.58, 6521.16, 15.75",
-    "jobid": "76",
-    "jobname": "Oil RoxWood",
-    "playernetid": "120",
-    "playerdiscord": "438358976141328404",
-    "playername": "Thomas Boyer",
-    "playercharacter": "Thomas Boyer",
-    "playerid": "160149",
     "itemid": "oil"
    }
   }
