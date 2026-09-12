@@ -15141,14 +15141,6 @@
    "bio": "",
    "public": true,
    "maj": "2026-09-11T23:54:00.900Z"
-  },
-  "julio collins": {
-   "nom": "Julio Collins",
-   "photo": "",
-   "titre": "",
-   "bio": "",
-   "public": true,
-   "maj": "2026-09-12T00:00:47.078Z"
   }
  },
  "affiches": [],
@@ -18136,9 +18128,9 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "94bi2medl4p",
- "_maj": 1789171251101,
- "_rev": "1mo2bnrxl5n-mtxmd91m",
+ "_cid": "faolzfc7fpe",
+ "_maj": 1789171256887,
+ "_rev": "2ch40n17w1g-mtxmdihv",
  "_majSec": {
   "fer": 1789170394751,
   "fact": 1789170394751,
@@ -18160,8 +18152,8 @@
   "bilanForce": 1789170394751,
   "primesExtra": 1789170394751,
   "quotasComHist": 1789170394751,
-  "profils": 1789171247078,
-  "_tables": 1789171251101,
+  "profils": 1789170840900,
+  "_tables": 1789171256887,
   "_permsFix1": 1789170394751,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789170394751,
@@ -20000,7 +19992,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T00:00:51.466Z",
+  "maj": "2026-09-12T00:01:03.715Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -20047,12 +20039,6 @@
     "nom": "Diego Herrera",
     "titre": "Co Patron",
     "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
-    "bio": ""
-   },
-   {
-    "nom": "Julio Collins",
-    "titre": "Commercial",
-    "photo": "https://cdn.discordapp.com/avatars/767332288744128512/6c11157ab60158807c7bcb3defdfa100.png",
     "bio": ""
    }
   ]
@@ -42288,46 +42274,32 @@
     "id": 1789170975925
    },
    {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T23:56:22.969Z",
-    "id": 1789170983296
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-11T23:57:09.982Z",
+    "id": 1789171032570
    },
    {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T23:57:51.903Z",
-    "id": 1789171073390
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-11T23:57:58.915Z",
+    "id": 1789171079572
    },
    {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T23:58:04.399Z",
-    "id": 1789171084624
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-11T23:59:26.902Z",
+    "id": 1789171169835
    },
    {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T23:58:44.626Z",
-    "id": 1789171124709
-   },
-   {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-11T23:59:46.177Z",
-    "id": 1789171186637
-   },
-   {
-    "uid": "767332288744128512",
-    "nom": "Julio Collins",
-    "role": "commercial",
-    "vu": "2026-09-12T00:00:51.051Z",
-    "id": 1789171251692
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T00:00:56.887Z",
+    "id": 1789171260060
    }
   ],
   "oilroxwood_demandes": [],
