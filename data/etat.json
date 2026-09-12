@@ -12652,13 +12652,6 @@
     "adresse": "Los Santos"
    },
    {
-    "nom": "Osiris",
-    "rib": "",
-    "tel": "",
-    "adresse": "Roxwood",
-    "lastCmd": "2026-05-01"
-   },
-   {
     "nom": "Pacific Bluff",
     "rib": "",
     "tel": "",
@@ -17743,11 +17736,11 @@
   "postesV4": 1
  },
  "_cid": "7jhh553z5f7",
- "_maj": 1789219221769,
- "_rev": "k37q894dil-mtyexiah",
+ "_maj": 1789219227941,
+ "_rev": "2n06zg7ejsp-mtyexnql",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789219025175,
+  "fact": 1789219227941,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -19606,7 +19599,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T13:20:25.817Z",
+  "maj": "2026-09-12T13:20:32.878Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
