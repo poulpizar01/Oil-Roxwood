@@ -3416,7 +3416,11 @@
     "contrat": false,
     "recrut": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
     "dernierService": "",
-    "flagOut": false
+    "flagOut": false,
+    "contratGen": {
+     "t": 1789215358040,
+     "par": "Stella Collins"
+    }
    },
    {
     "nom": "Liam Doyle",
@@ -4618,7 +4622,7 @@
    },
    {
     "idU": "377944",
-    "nom": "Louka Romelu",
+    "nom": "Romelu Louka",
     "rib": " 558474",
     "tel": "555 654 025",
     "avert": "",
@@ -9521,7 +9525,7 @@
     "heures": "3h48min"
    },
    {
-    "nom": "Louka Romelu",
+    "nom": "Romelu Louka",
     "rang": "Intérimaire",
     "factures": 0,
     "runs": 12460,
@@ -10359,15 +10363,7 @@
     "entreprise": "klan-ozumiya"
    }
   ],
-  "ventesSem": [
-   {
-    "date": "2026-09-09",
-    "client": "Oil Roxwood",
-    "quantite": 4000,
-    "qui": "Diego Herrera",
-    "fact": 253086
-   }
-  ],
+  "ventesSem": [],
   "collection": [
    {
     "nom": "Nom",
@@ -13340,29 +13336,6 @@
   ],
   "compteur": 253087,
   "factures": [
-   {
-    "num": 253086,
-    "date": "2026-09-09",
-    "client": "Oil Roxwood",
-    "emetteur": "Diego Herrera",
-    "postop": false,
-    "lignes": [
-     {
-      "ref": "CMD",
-      "qte": 4000,
-      "tva": 0.05,
-      "pu": 180,
-      "ht": 720000,
-      "ttc": 756000,
-      "desc": "bidons d'essence "
-     }
-    ],
-    "offert": 0,
-    "ht": 720000,
-    "ttc": 756000,
-    "poids": 8000,
-    "statut": "attente"
-   },
    {
     "ht": 18000,
     "num": 253084,
@@ -18137,18 +18110,18 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "vgqoddjcnna",
- "_maj": 1789215874337,
- "_rev": "wwyn2krvayn-mtycypcj",
+ "_cid": "wdcu2mjtxhn",
+ "_maj": 1789215949263,
+ "_rev": "9jq5rykzqat-mtyczdwr",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789215604317,
+  "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789215604317,
+  "sheets": 1789215836014,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
-  "journal": 1789215604317,
+  "journal": 1789215771989,
   "pending": 1789215604317,
   "prodDer": 1789215604317,
   "runners": 1789215604317,
@@ -18156,13 +18129,13 @@
   "imported": 1789215604317,
   "settings": 1789215604317,
   "closeUndo": 1789215604317,
-  "quotasCom": 1789215604317,
+  "quotasCom": 1789215839232,
   "bilanExtra": 1789215604317,
   "bilanForce": 1789215604317,
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789215874337,
+  "_tables": 1789215949263,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -18177,6 +18150,21 @@
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
+  {
+   "t": 1789215773368,
+   "u": "Stella Collins",
+   "a": "Suppression de la facture n°253086"
+  },
+  {
+   "t": 1789215402356,
+   "u": "Stella Collins",
+   "a": "Renommage : Louka Romelu → Romelu Louka · effectif (1), feuille rh (1), feuille tablette (1), historique des semaines (2)"
+  },
+  {
+   "t": 1789215359423,
+   "u": "Stella Collins",
+   "a": "Contrat de travail généré : Alex Bren (Runner)"
+  },
   {
    "t": 1789170929039,
    "u": "Stella Collins",
@@ -19661,21 +19649,6 @@
    "a": "Fer acheté noté : Julio Collins → 700",
    "t": 1788078870182,
    "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Juan Sanchez → 700",
-   "t": 1788078860245,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : William Rodriguez-collins → 700",
-   "t": 1788078848156,
-   "u": "Julio Collins"
-  },
-  {
-   "a": "Fer acheté noté : Emma Collins-rodriguez → 700",
-   "t": 1788078843789,
-   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -20001,13 +19974,13 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:25:22.387Z",
+  "maj": "2026-09-12T12:25:54.219Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
   "objectif": 375000,
-  "effectif": 114,
-  "clientsServis": 74,
+  "effectif": 115,
+  "clientsServis": 73,
   "top3": [
    {
     "nom": "Alex Turner",
@@ -20068,9 +20041,9 @@
   "achats": {
    "Emma Collins-rodriguez": 0
   },
-  "vendus": 4000,
-  "parPers": 1000,
-  "ferPers": 1965
+  "vendus": 0,
+  "parPers": 0,
+  "ferPers": 0
  },
  "bilanExtra": [
   {
@@ -42518,6 +42491,13 @@
     "role": "respcom",
     "vu": "2026-09-12T12:24:34.337Z",
     "id": 1789215876042
+   },
+   {
+    "uid": "948542221429379112",
+    "nom": "Stella Collins",
+    "role": "direction",
+    "vu": "2026-09-12T12:25:49.262Z",
+    "id": 1789215951450
    }
   ],
   "oilroxwood_demandes": [],
@@ -43200,5 +43180,11 @@
  "_rolesFix4": true,
  "_rolesFix77": true,
  "_affFix1": true,
- "_prodFix1": true
+ "_prodFix1": true,
+ "_recruesIgnore": [
+  "1788483950097",
+  "1788484358109",
+  "1788622713571",
+  "1789028277714"
+ ]
 }
