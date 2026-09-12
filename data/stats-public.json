@@ -1,11 +1,11 @@
 {
- "maj": "2026-09-12T00:12:08.437Z",
+ "maj": "2026-09-12T14:16:55.360Z",
  "semaine": 36,
  "totalBarils": 119331,
  "ca": 596655,
  "objectif": 375000,
- "effectif": 114,
- "clientsServis": 74,
+ "effectif": 94,
+ "clientsServis": 73,
  "top3": [
   {
    "nom": "Alex Turner",
@@ -37,15 +37,21 @@
  ],
  "equipe": [
   {
-   "nom": "Stella Collins",
-   "titre": "Patron",
-   "photo": "https://cdn.discordapp.com/avatars/948542221429379112/9ead2c2f20a0b9980c9b59116b06f67e.png",
-   "bio": ""
-  },
-  {
    "nom": "Diego Herrera",
    "titre": "Co Patron",
    "photo": "https://cdn.discordapp.com/avatars/826526979204841482/2e05d6308ec2d6fe2658a6f674b2c8eb.png",
+   "bio": ""
+  },
+  {
+   "nom": "𝒮𝑜𝓁𝑜_ℰ𝒞𝟿",
+   "titre": "RH",
+   "photo": "https://cdn.discordapp.com/avatars/690537200689086537/89422621d14f87124a4e8ea64b0ac191.png",
+   "bio": ""
+  },
+  {
+   "nom": "Emma Collins",
+   "titre": "Responsable commercial",
+   "photo": "https://cdn.discordapp.com/avatars/1053366471574687844/c613016aec543b8fcfe858f55bf42219.png",
    "bio": ""
   }
  ]
