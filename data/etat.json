@@ -11267,7 +11267,7 @@
     "don": "",
     "nom": "Jason Harper",
     "date": "",
-    "grade": "Raffineur Confirmé",
+    "grade": "Raffineur Expert",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11287,7 +11287,7 @@
     "don": "",
     "nom": "Andrew Clark",
     "date": "",
-    "grade": "Raffineur Expert",
+    "grade": "Raffineur Confirmé",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11437,7 +11437,7 @@
     "don": "",
     "nom": "John Scoupio",
     "date": "",
-    "grade": "Responsable Runner",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11457,7 +11457,7 @@
     "don": "",
     "nom": "Joseph Larose",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11507,7 +11507,7 @@
     "don": "",
     "nom": "Marco Sanchez",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11537,7 +11537,7 @@
     "don": "",
     "nom": "Tony Clark",
     "date": "",
-    "grade": "Intérimaire",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11547,7 +11547,7 @@
     "don": "",
     "nom": "Xavier Collins",
     "date": "",
-    "grade": "Responsable Runner",
+    "grade": "Raffineur",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11597,7 +11597,7 @@
     "don": "",
     "nom": "carlos dupont",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -11677,7 +11677,7 @@
     "don": "",
     "nom": "Miles Cole",
     "date": "",
-    "grade": "Raffineur",
+    "grade": "Intérimaire",
     "menus": false,
     "bidons": false,
     "permis": "",
@@ -14777,8 +14777,7 @@
    "id": 1783447751721,
    "did": "707695913187016785",
    "role": "commercial",
-   "user": "Laurent Roquel",
-   "avatar": "https://cdn.discordapp.com/avatars/707695913187016785/447248cc6f059b26b70f1c477e3c2e4d.png"
+   "user": "Laurent Roquel"
   },
   {
    "id": 1783448983109,
@@ -17621,38 +17620,6 @@
    "quantite": 150,
    "montant": 750,
    "did": "1053366471574687844"
-  },
-  {
-   "id": "1548267939268927573",
-   "t": "2026-09-12 11:44",
-   "nom": "Laurent Roquel",
-   "quantite": 125,
-   "montant": 625,
-   "did": "707695913187016785"
-  },
-  {
-   "id": "1548267691045945397",
-   "t": "2026-09-12 11:43",
-   "nom": "Laurent Roquel",
-   "quantite": 125,
-   "montant": 625,
-   "did": "707695913187016785"
-  },
-  {
-   "id": "1548251064619241486",
-   "t": "2026-09-12 10:36",
-   "nom": "Julio Collins",
-   "quantite": 100,
-   "montant": 500,
-   "did": "767332288744128512"
-  },
-  {
-   "id": "1548250807357546549",
-   "t": "2026-09-12 10:35",
-   "nom": "Julio Collins",
-   "quantite": 100,
-   "montant": 500,
-   "did": "767332288744128512"
   }
  ],
  "settings": {
@@ -17859,56 +17826,46 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "8j36jzrvex6",
- "_maj": 1789232751849,
- "_rev": "jbol7dpal1-mtyn0qjl",
+ "_cid": "x4ie0xa8hto",
+ "_maj": 1789232871795,
+ "_rev": "kuamkuahnlj-mtyn20uz",
  "_majSec": {
-  "fer": 1789231716731,
-  "fact": 1789231555514,
-  "users": 1789231555514,
-  "weeks": 1789231555514,
-  "sheets": 1789231769985,
-  "_qcFix1": 1789231555514,
-  "_wkFix1": 1789231555514,
-  "journal": 1789231769985,
-  "pending": 1789231555514,
-  "prodDer": 1789231555514,
-  "runners": 1789231555514,
-  "absences": 1789231555514,
-  "imported": 1789231555514,
-  "settings": 1789231555514,
-  "closeUndo": 1789231555514,
-  "quotasCom": 1789231555514,
-  "bilanExtra": 1789231555514,
-  "bilanForce": 1789231555514,
-  "primesExtra": 1789231555514,
-  "quotasComHist": 1789231555514,
-  "profils": 1789231555514,
-  "_tables": 1789232751849,
-  "_permsFix1": 1789231555514,
+  "fer": 1789215604317,
+  "fact": 1789215771989,
+  "users": 1789215604317,
+  "weeks": 1789215604317,
+  "sheets": 1789227236561,
+  "_qcFix1": 1789215604317,
+  "_wkFix1": 1789215604317,
+  "journal": 1789216392119,
+  "pending": 1789215604317,
+  "prodDer": 1789215604317,
+  "runners": 1789227624561,
+  "absences": 1789215604317,
+  "imported": 1789215604317,
+  "settings": 1789215604317,
+  "closeUndo": 1789215604317,
+  "quotasCom": 1789215839232,
+  "bilanExtra": 1789215604317,
+  "bilanForce": 1789215604317,
+  "primesExtra": 1789215604317,
+  "quotasComHist": 1789215604317,
+  "profils": 1789228034523,
+  "_tables": 1789232871795,
+  "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
-  "_rolesFix77": 1789231555514,
-  "affiches": 1789231555514,
-  "_affFix1": 1789231555514,
-  "produits": 1789231555514,
-  "_prodFix1": 1789231555514,
-  "_recruesIgnore": 1789231555514,
-  "ventesAlias": 1789231555514,
-  "_ventesIgnore": 1789231555514
+  "_rolesFix77": 1789215604317,
+  "affiches": 1789215604317,
+  "_affFix1": 1789215604317,
+  "produits": 1789215604317,
+  "_prodFix1": 1789215604317,
+  "_recruesIgnore": 1789215604317,
+  "ventesAlias": 1789215604317,
+  "_ventesIgnore": 1789215604317
  },
  "_qcFix1": true,
  "_wkFix1": true,
  "journal": [
-  {
-   "t": 1789231771419,
-   "u": "Diego Herrera",
-   "a": "Éligibilité : 9 grade(s) réalignés sur l'effectif — Jason Harper : Raffineur Expert → Raffineur Confirmé · Andrew Clark : Raffineur Confirmé → Raffineur Expert · John Scoupio : Raffineur → Responsable Runner · Joseph Larose : Raffineur → Intérimaire…"
-  },
-  {
-   "t": 1789231718187,
-   "u": "Diego Herrera",
-   "a": "Achats de fer : 4 relevé(s) repris du salon"
-  },
   {
    "t": 1789216393612,
    "u": "Stella Collins",
@@ -19398,6 +19355,16 @@
    "a": "Fer acheté noté : Julio Collins → 940",
    "t": 1788096407929,
    "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : William Rodriguez-collins → 940",
+   "t": 1788096400417,
+   "u": "Julio Collins"
+  },
+  {
+   "a": "Fer acheté noté : Emma Collins-rodriguez → 940",
+   "t": 1788096388761,
+   "u": "Julio Collins"
   }
  ],
  "prodDer": {
@@ -19723,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T17:06:53.409Z",
+  "maj": "2026-09-12T17:07:53.435Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -43470,106 +43437,113 @@
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:44:32.061Z",
-    "id": 1789231474709
+    "vu": "2026-09-12T16:45:15.853Z",
+    "id": 1789231517283
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:46:02.571Z",
-    "id": 1789231564309
+    "vu": "2026-09-12T16:46:51.883Z",
+    "id": 1789231613750
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:47:32.566Z",
-    "id": 1789231654136
+    "vu": "2026-09-12T16:48:51.860Z",
+    "id": 1789231733313
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:49:02.074Z",
-    "id": 1789231744280
+    "vu": "2026-09-12T16:49:51.868Z",
+    "id": 1789231793040
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:50:32.065Z",
-    "id": 1789231833946
+    "vu": "2026-09-12T16:51:51.860Z",
+    "id": 1789231913941
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:52:02.069Z",
-    "id": 1789231924264
+    "vu": "2026-09-12T16:52:51.862Z",
+    "id": 1789231973473
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:53:32.571Z",
-    "id": 1789232014889
+    "vu": "2026-09-12T16:54:31.851Z",
+    "id": 1789232073672
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:55:38.845Z",
-    "id": 1789232140683
+    "vu": "2026-09-12T16:55:51.860Z",
+    "id": 1789232153223
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:56:51.841Z",
-    "id": 1789232213804
+    "vu": "2026-09-12T16:57:51.852Z",
+    "id": 1789232273365
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:58:51.842Z",
-    "id": 1789232333903
+    "vu": "2026-09-12T16:58:51.857Z",
+    "id": 1789232333074
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T16:59:51.837Z",
-    "id": 1789232393280
+    "vu": "2026-09-12T17:00:51.851Z",
+    "id": 1789232453638
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T17:01:51.840Z",
-    "id": 1789232513545
+    "vu": "2026-09-12T17:01:51.799Z",
+    "id": 1789232513931
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T17:02:51.843Z",
-    "id": 1789232573966
+    "vu": "2026-09-12T17:03:51.796Z",
+    "id": 1789232633042
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T17:04:51.856Z",
-    "id": 1789232693885
+    "vu": "2026-09-12T17:04:51.814Z",
+    "id": 1789232693616
    },
    {
     "uid": "826526979204841482",
     "nom": "Diego Herrera",
     "role": "direction",
-    "vu": "2026-09-12T17:05:51.849Z",
-    "id": 1789232753131
+    "vu": "2026-09-12T17:06:51.795Z",
+    "id": 1789232813372
+   },
+   {
+    "uid": "826526979204841482",
+    "nom": "Diego Herrera",
+    "role": "direction",
+    "vu": "2026-09-12T17:07:51.795Z",
+    "id": 1789232873423
    }
   ],
   "oilroxwood_demandes": [],
