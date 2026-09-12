@@ -4685,14 +4685,14 @@
    {
     "nom": "Hitachi Hydro",
     "grade": "Intérimaire",
-    "tel": "",
+    "tel": " 555-804-611",
     "rib": "188449",
     "idU": "80415",
     "arrivee": "2026-09-02",
     "discord": "597879541695905804",
     "avert": "",
     "contrat": false,
-    "recrut": "",
+    "recrut": "Thomas Boyer",
     "dernierService": "2026-09-12",
     "flagOut": false
    },
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226809270,
- "_rev": "dd9teo0j8g-mtyjg5hf",
+ "_maj": 1789226816467,
+ "_rev": "t6ypfn01l4g-mtyjgb2a",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789226809270,
+  "sheets": 1789226816467,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:26:54.147Z",
+  "maj": "2026-09-12T15:27:01.378Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
