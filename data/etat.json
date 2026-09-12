@@ -11892,13 +11892,6 @@
     "lastCmd": "2026-04-18"
    },
    {
-    "nom": "Black Sakura",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-21"
-   },
-   {
     "nom": "Black Sand Compagny",
     "rib": "",
     "tel": "555 232 022",
@@ -12381,13 +12374,6 @@
     "tel": "",
     "adresse": "Los Santos",
     "lastCmd": "2026-07-01"
-   },
-   {
-    "nom": "Habitants Evadés",
-    "rib": "",
-    "tel": "555 066 404",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-25"
    },
    {
     "nom": "Harmony's",
@@ -12941,13 +12927,6 @@
     "tel": "",
     "adresse": "Paleto",
     "lastCmd": "2026-06-22"
-   },
-   {
-    "nom": "Vagos",
-    "rib": "",
-    "tel": "",
-    "adresse": "Los Santos",
-    "lastCmd": "2026-03-04"
    },
    {
     "nom": "Valley Side Mob",
@@ -17826,12 +17805,12 @@
   "salonContrats": "1328076154586009660",
   "postesV4": 1
  },
- "_cid": "wdcu2mjtxhn",
- "_maj": 1789217211866,
- "_rev": "wuk5tf3dgx-mtydrnt4",
+ "_cid": "7jhh553z5f7",
+ "_maj": 1789217257853,
+ "_rev": "7id61ec608g-mtydrxh7",
  "_majSec": {
   "fer": 1789215604317,
-  "fact": 1789215771989,
+  "fact": 1789217170360,
   "users": 1789215604317,
   "weeks": 1789215604317,
   "sheets": 1789216407241,
@@ -17851,7 +17830,7 @@
   "primesExtra": 1789215604317,
   "quotasComHist": 1789215604317,
   "profils": 1789215703292,
-  "_tables": 1789217211866,
+  "_tables": 1789217257853,
   "_permsFix1": 1789215604317,
   "_rolesFix4": 1788489352546,
   "_rolesFix77": 1789215604317,
@@ -19690,7 +19669,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T12:47:53.416Z",
+  "maj": "2026-09-12T12:48:05.947Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
@@ -42244,81 +42223,88 @@
     "id": 1789216239637
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:31:50.096Z",
-    "id": 1789216312258
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:30:52.315Z",
+    "id": 1789216253333
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:33:20.656Z",
-    "id": 1789216403133
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:32:22.403Z",
+    "id": 1789216343009
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:34:49.498Z",
-    "id": 1789216491159
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:33:52.403Z",
+    "id": 1789216433304
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:36:51.889Z",
-    "id": 1789216613997
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:35:38.875Z",
+    "id": 1789216539508
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:37:51.935Z",
-    "id": 1789216673899
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:36:52.400Z",
+    "id": 1789216613130
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:39:51.849Z",
-    "id": 1789216793862
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:38:22.403Z",
+    "id": 1789216703089
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:40:51.859Z",
-    "id": 1789216853015
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:39:52.397Z",
+    "id": 1789216792602
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:42:51.862Z",
-    "id": 1789216973110
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:41:21.808Z",
+    "id": 1789216882761
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:43:51.858Z",
-    "id": 1789217033672
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:42:51.843Z",
+    "id": 1789216973403
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:45:51.859Z",
-    "id": 1789217153599
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:44:37.845Z",
+    "id": 1789217078660
    },
    {
-    "uid": "948542221429379112",
-    "nom": "Stella Collins",
-    "role": "direction",
-    "vu": "2026-09-12T12:46:51.866Z",
-    "id": 1789217213553
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:45:53.828Z",
+    "id": 1789217154951
+   },
+   {
+    "uid": "1053366471574687844",
+    "nom": "Emma Collins",
+    "role": "respcom",
+    "vu": "2026-09-12T12:47:37.853Z",
+    "id": 1789217258623
    }
   ],
   "oilroxwood_demandes": [],
@@ -43001,11 +42987,5 @@
  "_rolesFix4": true,
  "_rolesFix77": true,
  "_affFix1": true,
- "_prodFix1": true,
- "_recruesIgnore": [
-  "1788483950097",
-  "1788484358109",
-  "1788622713571",
-  "1789028277714"
- ]
+ "_prodFix1": true
 }
