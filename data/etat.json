@@ -4643,7 +4643,7 @@
    {
     "nom": "Victor Sulivane",
     "grade": "Raffineur Confirmé",
-    "tel": "",
+    "tel": "555916571",
     "rib": "",
     "idU": "334570",
     "arrivee": "",
@@ -17827,14 +17827,14 @@
   "postesV4": 1
  },
  "_cid": "wdcu2mjtxhn",
- "_maj": 1789226479619,
- "_rev": "6k45y6wbsh8-mtyj936m",
+ "_maj": 1789226493841,
+ "_rev": "c13vsx5hbaw-mtyj9dtx",
  "_majSec": {
   "fer": 1789215604317,
   "fact": 1789215771989,
   "users": 1789215604317,
   "weeks": 1789215604317,
-  "sheets": 1789216407241,
+  "sheets": 1789226493841,
   "_qcFix1": 1789215604317,
   "_wkFix1": 1789215604317,
   "journal": 1789216392119,
@@ -19690,7 +19690,7 @@
   }
  ],
  "_statsPub": {
-  "maj": "2026-09-12T15:21:24.574Z",
+  "maj": "2026-09-12T15:21:38.373Z",
   "semaine": 36,
   "totalBarils": 119331,
   "ca": 596655,
